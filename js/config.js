@@ -8,9 +8,12 @@
  */
 
 const VIMEO_CONFIG = {
-  // Alterne para false quando inserir seu token de acesso real do Vimeo
+  // Alterne para false assim que colar seu Personal Access Token
   useMock: true,
-  // Token da API do Vimeo (Bearer Token gerado em developer.vimeo.com)
+  // Dados do seu canal Vimeo fornecidos
+  userId: "1803190",
+  rootFolderId: "30421333", // Pasta 'Gravações' (https://vimeo.com/user/1803190/folder/30421333)
+  // Token de Acesso da API (Bearer Token gerado em developer.vimeo.com/apps)
   accessToken: "",
   // Endpoint oficial da API v3 do Vimeo
   apiBaseUrl: "https://api.vimeo.com"
@@ -18,91 +21,92 @@ const VIMEO_CONFIG = {
 
 /**
  * Mapeamento da Grade do Evento (Hierarquia: Dias -> Salas -> folder_id)
+ * Dias oficiais: Dia 29, Dia 30 e Dia 31
  */
 const EVENT_SCHEDULE = {
   days: [
     {
-      id: "dia-19",
-      label: "Dia 19",
-      subtitle: "19 de Outubro",
+      id: "dia-29",
+      label: "Dia 29",
+      subtitle: "29 de Outubro",
       rooms: [
         {
           id: "sala-01",
-          name: "Dia 19 - Sala 01",
-          folder_id: "21495801"
+          name: "Dia 29 - Sala 01",
+          folder_id: "21495801" // Substitua pelo ID da subpasta da Sala 01 do Dia 29
         },
         {
           id: "sala-02",
-          name: "Dia 19 - Sala 02",
+          name: "Dia 29 - Sala 02",
           folder_id: "21495802"
         },
         {
           id: "sala-03",
-          name: "Dia 19 - Sala 03",
+          name: "Dia 29 - Sala 03",
           folder_id: "21495803"
         },
         {
           id: "sala-04",
-          name: "Dia 19 - Sala 04",
+          name: "Dia 29 - Sala 04",
           folder_id: "21495804"
         },
         {
           id: "sala-07",
-          name: "Dia 19 - Sala 07",
+          name: "Dia 29 - Sala 07",
           folder_id: "21495805"
         },
         {
           id: "sala-08",
-          name: "Dia 19 - Sala 08",
+          name: "Dia 29 - Sala 08",
           folder_id: "21495806"
         }
       ]
     },
     {
-      id: "dia-20",
-      label: "Dia 20",
-      subtitle: "20 de Outubro",
+      id: "dia-30",
+      label: "Dia 30",
+      subtitle: "30 de Outubro",
       rooms: [
         {
           id: "sala-01",
-          name: "Dia 20 - Sala 01",
+          name: "Dia 30 - Sala 01",
           folder_id: "21495807"
         },
         {
           id: "sala-02",
-          name: "Dia 20 - Sala 02",
+          name: "Dia 30 - Sala 02",
           folder_id: "21495808"
         },
         {
           id: "sala-03",
-          name: "Dia 20 - Sala 03",
+          name: "Dia 30 - Sala 03",
           folder_id: "21495809"
         },
         {
           id: "sala-04",
-          name: "Dia 20 - Sala 04",
+          name: "Dia 30 - Sala 04",
           folder_id: "21495810"
         }
       ]
     },
     {
-      id: "dia-21",
-      label: "Dia 21",
-      subtitle: "21 de Outubro",
+      id: "dia-31",
+      label: "Dia 31",
+      subtitle: "31 de Outubro",
       rooms: [
         {
           id: "sala-01",
-          name: "Dia 21 - Sala 01",
+          name: "Dia 31 - Sala 01",
           folder_id: "21495811"
         },
         {
           id: "sala-02",
-          name: "Dia 21 - Sala 02",
+          name: "Dia 31 - Sala 02",
           folder_id: "21495812"
         },
         {
           id: "sala-03",
-          name: "Dia 21 - Sala 03",
+          name: "Dia 31 - Sala 03",
           folder_id: "21495813"
         }
       ]

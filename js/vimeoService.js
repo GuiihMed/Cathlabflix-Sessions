@@ -47,7 +47,8 @@ class VimeoService {
 
     // 3. Execução de requisição real na API do Vimeo v3
     try {
-      const endpoint = `${this.config.apiBaseUrl}/me/projects/${encodeURIComponent(folderId)}/videos?fields=uri,name,description,duration,created_time,player_embed_url,embed.html,tags,pictures&per_page=50`;
+      const basePath = this.config.userId ? `/users/${this.config.userId}` : '/me';
+      const endpoint = `${this.config.apiBaseUrl}${basePath}/projects/${encodeURIComponent(folderId)}/videos?fields=uri,name,description,duration,created_time,player_embed_url,embed.html,tags,pictures&per_page=50`;
       
       const response = await fetch(endpoint, {
         method: "GET",
