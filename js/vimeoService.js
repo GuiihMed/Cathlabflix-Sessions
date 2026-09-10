@@ -118,8 +118,12 @@ class VimeoService {
       // Extração do ID do vídeo (ex: de "/videos/76979871" extrai "76979871")
       const videoId = item.uri ? item.uri.replace("/videos/", "") : `mock-${index}`;
       
-      // Monta URL de embed com parâmetros otimizados para conferência
-      const embedUrl = item.player_embed_url || `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`;
+      // Monta URL de embed preservando o hash de privacidade (?h=...)
+      let embedUrl = item.player_embed_url || `https://player.vimeo.com/video/${videoId}`;
+      const separator = embedUrl.includes('?') ? '&' : '?';
+      if (!embedUrl.includes('badge=')) {
+        embedUrl += `${separator}badge=0&autopause=0&player_id=0`;
+      }
 
       return {
         id: videoId,

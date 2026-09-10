@@ -1,115 +1,100 @@
-/**
- * Cathlabflix Sessions - Script Auxiliar de Descoberta Automática de Pastas
- * 
- * Este script consulta a API do Vimeo a partir da sua pasta principal "Gravações" (ID: 30421333),
- * busca automaticamente as subpastas de Dias (Dia 29, 30, 31) e as subpastas de Salas,
- * gerando a estrutura JSON exata para o js/config.js.
- * 
- * Como rodar:
- * node scripts/inspect-vimeo-folders.js SEU_TOKEN_DO_VIMEO
- */
-
 const https = require('https');
 
+const ACCESS_TOKEN = "dcfc518d6c38756016a3330df5ef8e5f";
 const USER_ID = "1803190";
 const ROOT_FOLDER_ID = "30421333";
-const ACCESS_TOKEN = process.argv[2] || process.env.VIMEO_TOKEN || "";
 
-if (!ACCESS_TOKEN) {
-  console.log("\n❌ Token de acesso do Vimeo não fornecido!");
-  console.log("\nComo usar este script:");
-  console.log("  node scripts/inspect-vimeo-folders.js SEU_TOKEN_DO_VIMEO\n");
-  console.log("Para gerar seu token:");
-  console.log("  1. Acesse https://developer.vimeo.com/apps");
-  console.log("  2. Crie um app e gere um Personal Access Token com escopos 'public', 'private', 'video_files'");
-  process.exit(1);
-}
-
-function vimeoFetch(path) {
+function vimeo(path) {
   return new Promise((resolve, reject) => {
-    const options = {
+    const req = https.request({
       hostname: 'api.vimeo.com',
       path: path,
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${ACCESS_TOKEN.trim()}`,
-        'Accept': 'application/vnd.vimeo.*+json;version=3.4',
-        'User-Agent': 'Cathlabflix-Session-Inspector'
+        'Authorization': `Bearer ${ACCESS_TOKEN}`,
+        'Accept': 'application/vnd.vimeo.*+json;version=3.4'
       }
-    };
-
-    const req = https.request(options, (res) => {
+    }, res => {
       let data = '';
-      res.on('data', chunk => data += chunk);
+      res.on('data', c => data += c);
       res.on('end', () => {
         try {
-          const json = JSON.parse(data);
-          if (res.statusCode >= 200 && res.statusCode < 300) {
-            resolve(json);
-          } else {
-            reject(new Error(`Vimeo API Erro ${res.statusCode}: ${json.error || json.message || data}`));
-          }
+          resolve(JSON.parse(data));
         } catch (e) {
           reject(e);
         }
       });
     });
-
     req.on('error', reject);
     req.end();
   });
 }
 
-async function run() {
-  console.log(`\n🔍 Conectando à API do Vimeo para o Usuário ${USER_ID}...`);
-  console.log(`📂 Mapeando subpastas a partir da pasta raiz 'Gravações' (ID: ${ROOT_FOLDER_ID})...\n`);
-
-  try {
-    // 1. Busca os dias dentro da pasta raiz
-    const daysResponse = await vimeoFetch(`/users/${USER_ID}/projects/${ROOT_FOLDER_ID}/items?filter=folders&per_page=50`);
-    const dayFolders = daysResponse.data ? daysResponse.data.map(item => item.folder || item) : [];
-
-    if (dayFolders.length === 0) {
-      console.log("⚠️ Nenhuma subpasta encontrada dentro da pasta Gravações.");
-      return;
-    }
-
-    console.log(`✅ Encontradas ${dayFolders.length} pastas de dias:`);
-    const resultDays = [];
-
-    // 2. Para cada dia, busca as pastas de salas
-    for (const day of dayFolders) {
-      const dayId = day.uri.replace('/projects/', '').replace('/users/' + USER_ID + '/projects/', '');
-      console.log(`  📅 [${day.name}] (ID da Pasta: ${dayId})`);
-
-      const roomsResponse = await vimeoFetch(`/users/${USER_ID}/projects/${dayId}/items?filter=folders&per_page=50`);
-      const roomFolders = roomsResponse.data ? roomsResponse.data.map(item => item.folder || item) : [];
-
-      const mappedRooms = roomFolders.map((room, idx) => {
-        const roomId = room.uri.replace('/projects/', '').replace('/users/' + USER_ID + '/projects/', '');
-        console.log(`     🚪 Sala: ${room.name} -> folder_id: ${roomId}`);
-        return {
-          id: `sala-0${idx + 1}`,
-          name: room.name,
-          folder_id: roomId
-        };
-      });
-
-      resultDays.push({
-        id: day.name.toLowerCase().replace(/\s+/g, '-'),
-        label: day.name,
-        rooms: mappedRooms
-      });
-    }
-
-    console.log("\n=======================================================");
-    console.log("📋 ESTRUTURA GERADA PARA COLAR EM js/config.js:");
-    console.log("=======================================================\n");
-    console.log("const EVENT_SCHEDULE = " + JSON.stringify({ days: resultDays }, null, 2) + ";\n");
-
-  } catch (error) {
-    console.error("❌ Erro durante a inspeção:", error.message);
+async function start() {
+  console.log("=== VIMEO SUBFOLDERS MAPPER ===");
+  const root = await vimeo(`/users/${USER_ID}/projects/${ROOT_FOLDER_ID}/items?filter=folders&per_page=50`);
+  
+  if (!root.data) {
+    console.log("Nenhum dado retornado:", root);
+    return;
   }
+
+  const days = [];
+
+  for (const item of root.data) {
+    const folder = item.folder || (item.type === 'folder' ? item : null);
+    if (!folder || !folder.uri) continue;
+
+    const folderId = folder.uri.split('/').pop();
+    const folderName = folder.name;
+
+    console.log(`\n📅 DIA ENCONTRADO: "${folderName}" | ID: ${folderId}`);
+
+    // Busca subpastas dentro desse dia
+    const roomsData = await vimeo(`/users/${USER_ID}/projects/${folderId}/items?per_page=50`);
+    const rooms = [];
+
+    if (roomsData.data) {
+      for (const subItem of roomsData.data) {
+        const roomFolder = subItem.folder || (subItem.type === 'folder' ? subItem : null);
+        if (!roomFolder || !roomFolder.uri) {
+          // Pode ser um vídeo solto na pasta do dia
+          continue;
+        }
+
+        const roomId = roomFolder.uri.split('/').pop();
+        const roomName = roomFolder.name;
+
+        // Verifica vídeos da sala
+        const vidsData = await vimeo(`/users/${USER_ID}/projects/${roomId}/videos?per_page=1`);
+        const vidTotal = vidsData.total !== undefined ? vidsData.total : 0;
+
+        console.log(`   🚪 SALA: "${roomName}" | folder_id: "${roomId}" | Vídeos: ${vidTotal}`);
+
+        rooms.push({
+          id: `sala-${roomId}`,
+          name: roomName,
+          folder_id: roomId,
+          videoCount: vidTotal
+        });
+      }
+    }
+
+    days.push({
+      id: folderName.toLowerCase().replace(/\s+/g, '-'),
+      label: folderName,
+      folder_id: folderId,
+      rooms: rooms
+    });
+  }
+
+  // Ordena os dias (Dia 29, Dia 30, Dia 31)
+  days.sort((a, b) => a.label.localeCompare(b.label, undefined, { numeric: true }));
+
+  console.log("\n=======================================================");
+  console.log("JSON FINAL PRONTO PARA USO:");
+  console.log("=======================================================");
+  console.log(JSON.stringify(days, null, 2));
 }
 
-run();
+start().catch(console.error);
