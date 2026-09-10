@@ -2,12 +2,11 @@
  * Cathlabflix Sessions - Controlador Principal da Aplicação (App.js)
  * 
  * Orquestra:
- * 1. Gerenciamento de Estado Reativo (Dia Ativo, Sala Ativa, Busca, Carregamento)
- * 2. Navegação Primária (Dias) com abas em alto contraste
- * 3. Navegação Secundária (Salas) com sublinhado/indicador azul claro
+ * 1. Gerenciamento de Estado Reativo (Dia Ativo, Sala Ativa, Carregamento)
+ * 2. Navegação Primária (Dias) em grid de 3 colunas (Dia 19 | Dia 20 | Dia 21)
+ * 3. Navegação Secundária (Salas) horizontal com linha azul clara
  * 4. Mapeamento de folder_id e requisição ao VimeoService
- * 5. Renderização do Accordion de Vídeos com lazy loading e Skeleton Screen
- * 6. Modal de configuração da API do Vimeo
+ * 5. Renderização do Accordion de Vídeos com lazy loading 16:9 idêntico ao design de referência
  */
 
 (function () {
@@ -19,8 +18,6 @@
     currentRoomId: null,
     currentFolderId: null,
     videos: [],
-    filteredVideos: [],
-    searchQuery: '',
     isLoading: false,
     useMock: VIMEO_CONFIG.useMock,
     accessToken: VIMEO_CONFIG.accessToken || ''
@@ -30,14 +27,9 @@
   const dom = {
     daysNav: document.getElementById('daysNav'),
     roomsNav: document.getElementById('roomsNav'),
+    roomsNavWrapper: document.getElementById('roomsNavWrapper'),
+    roomsScrollNext: document.getElementById('roomsScrollNext'),
     accordionContainer: document.getElementById('accordionContainer'),
-    roomCurrentTitle: document.getElementById('roomCurrentTitle'),
-    roomFolderDisplay: document.getElementById('roomFolderDisplay'),
-    roomCountDisplay: document.getElementById('roomCountDisplay'),
-    searchInput: document.getElementById('searchInput'),
-    clearSearchBtn: document.getElementById('clearSearchBtn'),
-    modeBadge: document.getElementById('modeBadge'),
-    modeStatusText: document.getElementById('modeStatusText'),
     
     // Modal de Configurações
     btnOpenSettings: document.getElementById('btnOpenSettings'),
@@ -65,7 +57,7 @@
     accordionManager = new VideoAccordionManager(dom.accordionContainer);
     accordionManager.init();
 
-    // Define o dia e a sala iniciais (primeiro dia, primeira sala)
+    // Define o dia e a sala iniciais (Dia 19, Sala 01)
     const initialDay = EVENT_SCHEDULE.days[0];
     const initialRoom = initialDay.rooms[0];
 
@@ -73,12 +65,9 @@
     state.currentRoomId = initialRoom.id;
     state.currentFolderId = initialRoom.folder_id;
 
-    // Renderiza a navegação primária (Dias) e secundária (Salas)
+    // Renderiza abas dos dias e salas
     renderDaysNav();
     renderRoomsNav();
-
-    // Atualiza status do badge no cabeçalho
-    updateModeBadge();
 
     // Registra os ouvintes de eventos globais
     bindEvents();
@@ -111,11 +100,15 @@
       }
     });
 
-    // 3. Campo de Busca Instantânea
-    dom.searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value.trim().toLowerCase();
-      filterVideos();
-    });
+    // 3. Seta de Scroll Horizontal de Salas
+    if (dom.roomsScrollNext && dom.roomsNavWrapper) {
+      dom.roomsScrollNext.addEventListener('click', () => {
+        dom.roomsNavWrapper.scrollBy({
+          left: 220,
+          behavior: 'smooth'
+        });
+      });
+    }
 
     // 4. Modal de Configurações da API do Vimeo
     if (dom.btnOpenSettings) {
@@ -143,7 +136,7 @@
 
   /**
    * Renderiza a Barra de Abas dos Dias (Nível 1)
-   * Regra Visual: Aba ativa tem fundo branco e texto escuro
+   * Aba ativa tem fundo branco e texto escuro
    */
   function renderDaysNav() {
     dom.daysNav.innerHTML = '';
@@ -159,10 +152,8 @@
           role="tab" 
           aria-selected="${isActive}"
           id="tab-${day.id}"
-          aria-controls="panel-day"
         >
-          <span>${day.label}</span>
-          <span class="day-sub">${day.subtitle.split('•')[1] || day.subtitle}</span>
+          ${escapeHtml(day.label)}
         </button>
       `;
 
@@ -172,7 +163,7 @@
 
   /**
    * Renderiza a Barra de Navegação Horizontal das Salas (Nível 2)
-   * Regra Visual: Sala ativa possui borda ou linha sublinhada em azul mais claro
+   * Sala ativa possui linha sublinhada em azul claro
    */
   function renderRoomsNav() {
     const currentDay = getCurrentDayObject();
@@ -192,15 +183,14 @@
           aria-selected="${isActive}"
           id="tab-${room.id}"
         >
-          <span>${room.name}</span>
-          <span class="room-badge-folder">ID: ${room.folder_id}</span>
+          ${escapeHtml(room.name)}
         </button>
       `;
 
       dom.roomsNav.appendChild(li);
     });
 
-    // Se o elemento ativo estiver fora da visão em telas menores, faz scroll suave
+    // Centraliza a aba ativa no scroll horizontal
     const activeTab = dom.roomsNav.querySelector('.room-tab.active');
     if (activeTab) {
       activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
@@ -214,20 +204,13 @@
     state.currentDayId = dayId;
     const currentDay = getCurrentDayObject();
 
-    // Ao mudar o dia, define a sala ativa como a primeira sala daquele dia
     if (currentDay && currentDay.rooms.length > 0) {
       state.currentRoomId = currentDay.rooms[0].id;
       state.currentFolderId = currentDay.rooms[0].folder_id;
     }
 
-    // Limpa busca
-    resetSearch();
-
-    // Re-renderiza interfaces de navegação
     renderDaysNav();
     renderRoomsNav();
-
-    // Busca os vídeos do novo folder_id
     loadVideosForActiveRoom();
   }
 
@@ -242,10 +225,7 @@
       state.currentFolderId = currentRoom.folder_id;
     }
 
-    // Limpa busca
-    resetSearch();
-
-    // Atualiza classes ativas na barra de salas
+    // Atualiza classes ativas
     const allRoomTabs = dom.roomsNav.querySelectorAll('.room-tab');
     allRoomTabs.forEach(tab => {
       const isActive = tab.dataset.roomId === roomId;
@@ -253,7 +233,6 @@
       tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
-    // Busca os vídeos do novo folder_id
     loadVideosForActiveRoom();
   }
 
@@ -264,38 +243,27 @@
     const currentRoom = getCurrentRoomObject();
     if (!currentRoom) return;
 
-    // Fecha qualquer accordion aberto anteriormente
     if (accordionManager) {
       accordionManager.closeAll();
     }
 
-    // Atualiza títulos e metadados no topo da lista
-    dom.roomCurrentTitle.textContent = currentRoom.name;
-    dom.roomFolderDisplay.textContent = currentRoom.folder_id;
-    dom.roomCountDisplay.textContent = 'Carregando vídeos...';
-
-    // Exibe Skeleton Loading animado
     renderSkeletonLoading();
-
     state.isLoading = true;
 
     try {
-      // Faz o fetch através do serviço do Vimeo (com cache e fallback embutidos)
       const result = await window.vimeoService.getFolderVideos(currentRoom.folder_id);
       
       state.videos = result.videos || [];
-      state.filteredVideos = [...state.videos];
       state.isLoading = false;
 
-      // Renderiza lista de accordions
       renderAccordionList();
 
-      // Atualiza contador
-      updateVideoCount();
-
-      // Se houve aviso de fallback na API real
-      if (result.fallbackWarning) {
-        console.info(`[Info] ${result.fallbackWarning}`);
+      // Abre automaticamente o primeiro item se houver vídeos (como no design de referência)
+      if (state.videos.length > 0) {
+        const firstItem = dom.accordionContainer.querySelector('.accordion-item');
+        if (firstItem && accordionManager) {
+          accordionManager.openItem(firstItem);
+        }
       }
 
     } catch (error) {
@@ -307,12 +275,12 @@
 
   /**
    * Renderiza a Lista de Vídeos em formato de Accordion
-   * Regra Visual: Fechado = barra azul escura com título e chevron. Aberto = iframe 16:9
+   * Visual minimalista idêntico à imagem: apenas Título e Chevron
    */
   function renderAccordionList() {
     dom.accordionContainer.innerHTML = '';
 
-    const videosToRender = state.filteredVideos;
+    const videosToRender = state.videos;
 
     if (videosToRender.length === 0) {
       renderEmptyState();
@@ -326,13 +294,8 @@
       itemEl.className = 'accordion-item';
       itemEl.id = `video-item-${video.id}`;
 
-      // Monta tags HTML
-      const tagsHtml = video.tags && video.tags.length > 0
-        ? video.tags.map(t => `<span class="video-meta-tag">${escapeHtml(t)}</span>`).join('')
-        : '';
-
       itemEl.innerHTML = `
-        <!-- Cabeçalho / Gatilho do Accordion (Barra Azul Escura) -->
+        <!-- Cabeçalho do Accordion (Barra Azul Escura) -->
         <button 
           type="button"
           class="accordion-header" 
@@ -340,22 +303,9 @@
           aria-controls="panel-${video.id}"
           id="header-${video.id}"
         >
-          <div class="accordion-title-block">
-            <div class="lecture-badges">
-              <span class="lecture-index">Aula ${String(index + 1).padStart(2, '0')}</span>
-              <span class="lecture-duration">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                ${escapeHtml(video.formattedDuration)}
-              </span>
-              <span class="lecture-speaker-tag">${escapeHtml(video.speaker)}</span>
-            </div>
-            <h3 class="accordion-title">${escapeHtml(video.title)}</h3>
-          </div>
+          <h3 class="accordion-title">${escapeHtml(video.title)}</h3>
 
-          <!-- Ícone de Seta (Chevron) com Animação de Rotação -->
+          <!-- Ícone de Seta (Chevron) -->
           <div class="accordion-chevron-wrapper">
             <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="6 9 12 15 18 9"></polyline>
@@ -363,7 +313,7 @@
           </div>
         </button>
 
-        <!-- Corpo Expansível do Accordion (CSS Grid Transition) -->
+        <!-- Corpo Expansível com Iframe do Vimeo (16:9) -->
         <div 
           class="accordion-body" 
           id="panel-${video.id}" 
@@ -374,38 +324,13 @@
           <div class="accordion-inner">
             <div class="accordion-content-box">
               
-              <!-- Container do Player: Proporção Estrita 16:9 (padding-bottom: 56.25%) -->
+              <!-- Container 16:9 com Lazy Loading -->
               <div 
                 class="video-responsive-wrapper" 
                 data-embed-url="${escapeHtml(video.embedUrl)}"
                 data-video-title="${escapeHtml(video.title)}"
               >
-                <!-- O iframe é injetado sob demanda via JavaScript ao expandir -->
-              </div>
-
-              <!-- Rodapé com Metadados e Informações do Palestrante -->
-              <div class="video-details-footer">
-                <p class="video-description">${escapeHtml(video.description)}</p>
-                
-                <div class="video-actions-bar">
-                  <div class="video-meta-tags">
-                    ${tagsHtml}
-                  </div>
-                  <a 
-                    href="https://vimeo.com/${video.id}" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="vimeo-external-link"
-                    title="Assistir diretamente na plataforma Vimeo"
-                  >
-                    <span>Abrir no Vimeo</span>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                </div>
+                <!-- Iframe é injetado dinamicamente ao expandir -->
               </div>
 
             </div>
@@ -420,79 +345,30 @@
   }
 
   /**
-   * Filtra os vídeos carregados pelo termo digitado na busca
-   */
-  function filterVideos() {
-    if (!state.searchQuery) {
-      state.filteredVideos = [...state.videos];
-    } else {
-      const q = state.searchQuery;
-      state.filteredVideos = state.videos.filter(v => {
-        const inTitle = v.title.toLowerCase().includes(q);
-        const inSpeaker = v.speaker.toLowerCase().includes(q);
-        const inDesc = v.description.toLowerCase().includes(q);
-        const inTags = v.tags.some(t => t.toLowerCase().includes(q));
-        return inTitle || inSpeaker || inDesc || inTags;
-      });
-    }
-
-    if (accordionManager) {
-      accordionManager.closeAll();
-    }
-
-    renderAccordionList();
-    updateVideoCount();
-  }
-
-  /**
-   * Limpa a busca ao trocar de sala ou dia
-   */
-  function resetSearch() {
-    state.searchQuery = '';
-    if (dom.searchInput) dom.searchInput.value = '';
-  }
-
-  /**
-   * Atualiza o contador de aulas encontradas
-   */
-  function updateVideoCount() {
-    const total = state.filteredVideos.length;
-    const label = total === 1 ? '1 aula disponível' : `${total} aulas disponíveis`;
-    dom.roomCountDisplay.textContent = label;
-  }
-
-  /**
-   * Renderiza Skeleton Screens durante a requisição
+   * Renderiza Skeleton Screens durante o carregamento
    */
   function renderSkeletonLoading() {
     dom.accordionContainer.innerHTML = '';
-    const count = 3;
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 3; i++) {
       const skeleton = document.createElement('div');
       skeleton.className = 'skeleton-item';
       skeleton.innerHTML = `
         <div class="skeleton-shimmer"></div>
-        <div class="skeleton-lines">
-          <div class="skeleton-line short"></div>
-          <div class="skeleton-line"></div>
-        </div>
-        <div style="width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.06);"></div>
+        <div class="skeleton-line"></div>
+        <div style="width: 16px; height: 16px; background: rgba(255,255,255,0.06); border-radius: 2px;"></div>
       `;
       dom.accordionContainer.appendChild(skeleton);
     }
   }
 
   /**
-   * Renderiza estado vazio amigável
+   * Renderiza estado vazio
    */
   function renderEmptyState() {
     dom.accordionContainer.innerHTML = `
       <div class="empty-state">
-        <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
         <h3>Nenhuma sessão encontrada</h3>
-        <p>Não foram encontrados vídeos para os filtros aplicados nesta sala. Tente outro termo de busca ou selecione outra sala.</p>
+        <p>Não foram encontrados vídeos cadastrados para esta sala.</p>
       </div>
     `;
   }
@@ -502,33 +378,14 @@
    */
   function renderErrorState(message) {
     dom.accordionContainer.innerHTML = `
-      <div class="empty-state" style="border-color: rgba(239, 68, 68, 0.4);">
-        <svg class="empty-state-icon" style="color: #ef4444;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <h3>Falha ao carregar vídeos do Vimeo</h3>
+      <div class="empty-state" style="border: 1px solid rgba(239, 68, 68, 0.3);">
+        <h3 style="color: #ef4444;">Falha ao carregar vídeos do Vimeo</h3>
         <p>${escapeHtml(message)}</p>
-        <button class="btn-primary" style="margin-top: 1.25rem;" onclick="location.reload()">
-          Recarregar Página
+        <button class="btn-primary" style="margin-top: 1rem;" onclick="location.reload()">
+          Recarregar
         </button>
       </div>
     `;
-  }
-
-  /**
-   * Atualiza o badge de modo (Mock vs API Live) no cabeçalho
-   */
-  function updateModeBadge() {
-    if (!dom.modeBadge || !dom.modeStatusText) return;
-    if (state.useMock) {
-      dom.modeBadge.classList.remove('is-live');
-      dom.modeStatusText.textContent = 'Modo Mock Ativo';
-    } else {
-      dom.modeBadge.classList.add('is-live');
-      dom.modeStatusText.textContent = 'API Vimeo Conectada';
-    }
   }
 
   /**
@@ -560,20 +417,16 @@
     state.accessToken = token;
     state.useMock = useMock;
 
-    // Atualiza o serviço do Vimeo
     window.vimeoService.updateConfig({
       accessToken: token,
       useMock: useMock
     });
 
-    updateModeBadge();
     closeSettingsModal();
-
-    // Recarrega vídeos com as novas credenciais
     loadVideosForActiveRoom();
   }
 
-  /* --- Funções Utilitárias de Consulta --- */
+  /* --- Funções Utilitárias --- */
   function getCurrentDayObject() {
     return EVENT_SCHEDULE.days.find(d => d.id === state.currentDayId) || EVENT_SCHEDULE.days[0];
   }
