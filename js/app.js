@@ -521,6 +521,7 @@
    * Atualiza o badge de modo (Mock vs API Live) no cabeçalho
    */
   function updateModeBadge() {
+    if (!dom.modeBadge || !dom.modeStatusText) return;
     if (state.useMock) {
       dom.modeBadge.classList.remove('is-live');
       dom.modeStatusText.textContent = 'Modo Mock Ativo';
