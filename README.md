@@ -106,6 +106,28 @@ const EVENT_SCHEDULE = {
 
 ---
 
+## 🌐 Links do Projeto & Deploy em Produção
+
+- **Repositório GitHub:** [https://github.com/GuiihMed/Cathlabflix-Sessions](https://github.com/GuiihMed/Cathlabflix-Sessions)
+- **URL Oficial Vercel:** [https://cathlabflix-sessions.vercel.app](https://cathlabflix-sessions.vercel.app)
+
+### Como incorporar no seu site via Embed (Iframe):
+O projeto já conta com cabeçalhos permissivos (`Content-Security-Policy: frame-ancestors *;` e `Access-Control-Allow-Origin: *`) configurados no `vercel.json` para permitir embed sem bloqueios de segurança:
+
+```html
+<iframe 
+  src="https://cathlabflix-sessions.vercel.app" 
+  width="100%" 
+  height="900" 
+  frameborder="0" 
+  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" 
+  allowfullscreen
+  style="border: none; border-radius: 12px; width: 100%; min-height: 850px;"
+></iframe>
+```
+
+---
+
 ## 🚀 Como Executar Localmente
 
 Como o projeto é em JavaScript puro sem dependências externas de compilação:
@@ -116,3 +138,4 @@ Como o projeto é em JavaScript puro sem dependências externas de compilação:
   python3 -m http.server 8000
   ```
   E abra `http://localhost:8000` no navegador.
+
