@@ -1,0 +1,2385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesse os conteúdos - Cathlabflix Sessions</title>
+  <meta name="description" content="Grade científica e exibidor dinâmico de aulas e transmissões integrado à API do Vimeo com navegação por dias, salas e accordions responsivos 16:9.">
+
+  <!-- Fonte Montserrat (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+/* ==========================================================================
+   1. VARIÁVEIS E DESIGN TOKENS (MONTSERRAT, 980px, FUNDO TRANSPARENTE)
+   ========================================================================== */
+/* ==========================================================================
+   Cathlabflix Sessions - Design Tokens & Variáveis CSS
+   Fidelidade ao layout de referência oficial
+   ========================================================================== */
+
+:root {
+  /* Fundo da Página e Superfícies */
+  --bg-main: transparent;           /* Fundo transparente para integração via iframe */
+  --bg-card: #050e2d;               /* Contêiner principal das abas e salas */
+  --bg-card-border: #0a1845;        /* Borda sutil do contêiner */
+
+  /* Accordion (Cards de Vídeo) */
+  --accordion-bg: #020722;          /* Fundo azul escuro profundo idêntico à imagem */
+  --accordion-border: #09163d;      /* Borda dos cards de aula */
+  --accordion-title-color: #ffffff; /* Título em branco de alto contraste */
+
+  /* Cores de Destaque */
+  --accent-pink: #e11d48;           /* Traço rosa/magenta abaixo de 'Acesse os conteúdos' */
+  --accent-cyan: #38bdf8;           /* Azul claro para a sala ativa e chevron */
+  --accent-cyan-hover: #7dd3fc;
+
+  /* Navegação de Dias (Abas Superiores) */
+  --day-tab-active-bg: #ffffff;     /* Aba ativa: fundo branco */
+  --day-tab-active-text: #03071e;   /* Aba ativa: texto escuro */
+  --day-tab-inactive-bg: #08143d;   /* Aba inativa: azul marinho */
+  --day-tab-inactive-text: #ffffff; /* Aba inativa: texto branco */
+  --day-tab-divider: #0e1e54;       /* Divisor vertical entre as abas */
+
+  /* Navegação de Salas */
+  --room-text-default: #ffffff;     /* Texto branco para salas inativas */
+  --room-text-active: #38bdf8;      /* Texto azul claro para sala ativa */
+  --room-underline-active: #38bdf8; /* Sublinhado da sala ativa */
+
+  /* Tipografia */
+  --font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Transições e Bordas */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-accordion: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --container-max-width: 980px;
+}
+
+
+/* ==========================================================================
+   2. ESTILOS PRINCIPAIS & RESPONSIVIDADE
+   ========================================================================== */
+/* ==========================================================================
+   Cathlabflix Sessions - Folha de Estilos Oficial
+   Layout fiel à referência (Design Pixel-Match)
+   ========================================================================== */
+
+
+
+/* --- Resets e Estilos Globais --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background: transparent;
+}
+
+body {
+  font-family: var(--font-family);
+  background: transparent;
+  background-color: transparent;
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0 2.5rem 0;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* --- Contêiner Central (980px) --- */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   1. Cabeçalho da Seção: 'Acesse os conteúdos' com traço magenta/rosa
+   ========================================================================== */
+.content-header {
+  margin-bottom: 2.25rem;
+}
+
+.page-title {
+  font-size: 1.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+.title-underline {
+  width: 65px;
+  height: 3px;
+  background-color: var(--accent-pink);
+  margin-top: 0.65rem;
+}
+
+/* ==========================================================================
+   2. Card Principal do Evento (Envolve Abas, Salas e Accordions)
+   ========================================================================== */
+.event-main-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  width: 100%;
+}
+
+/* ==========================================================================
+   3. Nível 1: Navegação por Dias (Dia 19 | Dia 20 | Dia 21)
+   Grid de 3 colunas de larguras iguais
+   Aba ativa: Fundo Branco (#ffffff) e Texto Escuro (#03071e)
+   ========================================================================== */
+.days-nav-wrapper {
+  width: 100%;
+  border-bottom: 1px solid var(--bg-card-border);
+}
+
+.days-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.days-nav li {
+  min-width: 0;
+}
+
+.day-tab {
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.02rem;
+  font-weight: 700;
+  background-color: var(--day-tab-inactive-bg);
+  color: var(--day-tab-inactive-text);
+  border-right: 1px solid var(--day-tab-divider);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.5rem;
+}
+
+.days-nav li:last-child .day-tab {
+  border-right: none;
+}
+
+.day-tab:hover:not(.active) {
+  background-color: #0b1a4f;
+}
+
+/* Aba Ativa Obrigatória */
+.day-tab.active {
+  background-color: var(--day-tab-active-bg) !important;
+  color: var(--day-tab-active-text) !important;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   4. Nível 2: Barra Horizontal de Salas (Dia 19 - Sala 01 | Sala 02 ...)
+   Sala ativa: texto azul claro (#38bdf8) com linha sublinhada
+   ========================================================================== */
+.rooms-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 2rem;
+  position: relative;
+  background-color: var(--bg-card);
+}
+
+.rooms-nav-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  width: 100%;
+}
+
+.rooms-nav-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.rooms-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.room-tab {
+  position: relative;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--room-text-default);
+  padding: 0.25rem 0 0.55rem 0;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.room-tab:hover:not(.active) {
+  color: var(--accent-cyan);
+}
+
+/* Sala Ativa: Texto Azul Claro e Linha Sublinhada */
+.room-tab.active {
+  color: var(--room-text-active);
+  font-weight: 700;
+}
+
+.room-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background-color: var(--room-underline-active);
+}
+
+/* Seta de Avanço Horizontal de Salas */
+.rooms-scroll-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  padding: 0.25rem 0.5rem;
+  margin-left: 1rem;
+  opacity: 0.9;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.rooms-scroll-arrow:hover {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   5. Nível 3: Accordion de Vídeos (Cards em Azul Escuro Profundo)
+   Fechado: Barra azul escura com título e chevron para baixo
+   Aberto: Iframe 16:9 ajustado e chevron apontando para cima
+   Item único aberto por vez
+   ========================================================================== */
+.accordion-list {
+  padding: 0 2rem 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.accordion-item {
+  background-color: var(--accordion-bg);
+  border: 1px solid var(--accordion-border);
+  transition: border-color var(--transition-fast);
+}
+
+.accordion-item:hover {
+  border-color: #122562;
+}
+
+.accordion-item.is-open {
+  border-color: #1a3285;
+}
+
+/* Cabeçalho do Accordion */
+.accordion-header {
+  width: 100%;
+  padding: 1.25rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background-color: var(--accordion-bg);
+  text-align: left;
+  user-select: none;
+  min-width: 0;
+}
+
+.accordion-header:hover .accordion-title {
+  color: var(--accent-cyan);
+}
+
+.accordion-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accordion-title-color);
+  line-height: 1.4;
+  transition: color var(--transition-fast);
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Ícone de Chevron */
+.accordion-chevron-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.accordion-chevron {
+  width: 16px;
+  height: 16px;
+  color: #94a3b8;
+  transition: transform var(--transition-accordion), color var(--transition-fast);
+}
+
+/* Ao abrir: Chevron gira 180° para cima */
+.accordion-item.is-open .accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--accent-cyan);
+}
+
+/* Corpo do Accordion com transição CSS Grid fluida */
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-accordion);
+  background-color: var(--accordion-bg);
+}
+
+.accordion-item.is-open .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+  overflow: hidden;
+}
+
+.accordion-content-box {
+  padding: 0 1.6rem 1.6rem 1.6rem;
+}
+
+/* ==========================================================================
+   Contêiner do Player Vimeo: Proporção Perfeita 16:9
+   padding-bottom: 56.25% (9 / 16 = 0.5625)
+   ========================================================================== */
+.video-responsive-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 Universal Fallback */
+  overflow: hidden;
+  background-color: #000000;
+}
+
+@supports (aspect-ratio: 16 / 9) {
+  .video-responsive-wrapper {
+    height: auto;
+    padding-bottom: 0;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.video-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Placeholder de carregamento do player */
+.video-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #020722;
+  color: var(--text-secondary);
+  gap: 0.75rem;
+}
+
+.video-placeholder-spinner {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(56, 189, 248, 0.15);
+  border-top-color: var(--accent-cyan);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Estados Especiais: Skeleton Loading e Vazio
+   ========================================================================== */
+.skeleton-item {
+  background-color: var(--accordion-bg);
+  border: 1px solid var(--accordion-border);
+  padding: 1.25rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  height: 60px;
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-line {
+  height: 16px;
+  width: 55%;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-secondary);
+}
+
+.empty-state h3 {
+  color: #ffffff;
+  margin-bottom: 0.35rem;
+}
+
+/* ==========================================================================
+   Rodapé Discreto com Acesso a Configurações da API
+   ========================================================================== */
+.app-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--bg-card-border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-settings-link {
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--bg-card-border);
+  border-radius: 4px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.72rem;
+  transition: all var(--transition-fast);
+}
+
+.btn-settings-link:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   Modal de Configuração da API Vimeo
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 30, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+  padding: 1.25rem;
+}
+
+.modal-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #061138;
+  border: 1px solid #1c2c6b;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--bg-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffffff;
+}
+
+.modal-close-btn {
+  color: var(--text-muted);
+  padding: 0.35rem;
+  transition: color var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  color: #ffffff;
+}
+
+.modal-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-control {
+  background: #020722;
+  border: 1px solid var(--bg-card-border);
+  padding: 0.65rem 0.85rem;
+  color: #ffffff;
+  font-size: 0.88rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color var(--transition-fast);
+}
+
+.form-control:focus {
+  border-color: var(--accent-cyan);
+}
+
+.form-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.form-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background: #020722;
+  border: 1px solid var(--bg-card-border);
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  background: #020722;
+  border-top: 1px solid var(--bg-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  background: var(--accent-cyan);
+  color: #03071e;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+}
+
+.btn-secondary:hover {
+  color: #ffffff;
+}
+
+/* Telas até 980px (Inclusão de margens laterais de respiro) */
+@media (max-width: 980px) {
+  body {
+    padding: 1.25rem 0.85rem 2rem 0.85rem;
+  }
+}
+
+/* Tablets e Telas Médias (<= 768px) */
+@media (max-width: 768px) {
+  body {
+    padding: 1.5rem 0.85rem;
+  }
+
+  .content-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 1.55rem;
+  }
+
+  .day-tab {
+    height: 48px;
+    font-size: 0.95rem;
+  }
+
+  .rooms-nav-container {
+    padding: 1rem 1.25rem;
+  }
+
+  .rooms-nav {
+    gap: 1.5rem;
+  }
+
+  .accordion-list {
+    padding: 0 1.25rem 1.5rem 1.25rem;
+  }
+
+  .accordion-header {
+    padding: 1.05rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .accordion-title {
+    font-size: 0.92rem;
+  }
+
+  .accordion-content-box {
+    padding: 0 1.25rem 1.25rem 1.25rem;
+  }
+}
+
+/* Smartphones e Telas Pequenas (<= 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 1.1rem 0.6rem 2rem 0.6rem;
+  }
+
+  .content-header {
+    margin-bottom: 1.2rem;
+  }
+
+  .page-title {
+    font-size: 1.35rem;
+  }
+
+  .title-underline {
+    width: 50px;
+    height: 2.5px;
+    margin-top: 0.45rem;
+  }
+
+  .day-tab {
+    height: 44px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0 0.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .rooms-nav-container {
+    padding: 0.75rem 0.85rem;
+  }
+
+  .rooms-nav {
+    gap: 1.25rem;
+  }
+
+  .room-tab {
+    font-size: 0.85rem;
+    padding: 0.2rem 0 0.4rem 0;
+  }
+
+  .rooms-scroll-arrow {
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .accordion-list {
+    padding: 0 0.75rem 1.25rem 0.75rem;
+    gap: 0.85rem;
+  }
+
+  .accordion-header {
+    padding: 0.9rem 0.85rem;
+    gap: 0.75rem;
+  }
+
+  .accordion-title {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .accordion-chevron-wrapper {
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion-chevron {
+    width: 14px;
+    height: 14px;
+  }
+
+  .accordion-content-box {
+    padding: 0 0.85rem 0.85rem 0.85rem;
+  }
+
+  /* Modais no Mobile */
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .modal-card {
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-header {
+    padding: 1rem 1.15rem;
+  }
+
+  .modal-body {
+    padding: 1.15rem;
+    overflow-y: auto;
+  }
+
+  .modal-footer {
+    padding: 0.85rem 1.15rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       CONTEÚDO PRINCIPAL (ÁREA CENTRAL 980px)
+       ========================================================================== -->
+<main class="container">
+    
+    <!-- 1. Título 'Acesse os conteúdos' com traço magenta/rosa -->
+    <div class="content-header">
+      <h1 class="page-title">Acesse os conteúdos</h1>
+      <div class="title-underline"></div>
+    </div>
+
+    <!-- 2. Card Principal do Evento -->
+    <div class="event-main-card">
+      
+      <!-- Nível 1: Abas dos Dias (Dia 19 | Dia 20 | Dia 21) -->
+      <div class="days-nav-wrapper">
+        <ul class="days-nav" id="daysNav" role="tablist">
+          <!-- Renderizado dinamicamente via JS -->
+        </ul>
+      </div>
+
+      <!-- Nível 2: Barra Horizontal de Salas (Dia 19 - Sala 01 | Dia 19 - Sala 02...) -->
+      <div class="rooms-nav-container">
+        <div class="rooms-nav-wrapper" id="roomsNavWrapper">
+          <ul class="rooms-nav" id="roomsNav" role="tablist">
+            <!-- Renderizado dinamicamente via JS -->
+          </ul>
+        </div>
+        
+        <button type="button" class="rooms-scroll-arrow" id="roomsScrollNext" title="Ver mais salas">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Nível 3: Accordion de Vídeos (Cards Escuros com Iframe 16:9) -->
+      <div class="accordion-list" id="accordionContainer">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal de Configuração da API do Vimeo (Opcional) -->
+<div class="modal-backdrop" id="settingsModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Configuração da API do Vimeo
+        </h3>
+        <button type="button" class="modal-close-btn" id="btnCloseSettings" aria-label="Fechar modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="settingsForm">
+        <div class="modal-body">
+          <div class="form-switch-row">
+            <div>
+              <div class="form-label" style="color: #ffffff; margin-bottom: 2px;">Usar Dados Mockados (Simulação)</div>
+              <div class="form-hint">Ative para navegar e testar a interface sem necessidade de token ativo.</div>
+            </div>
+            <label style="cursor: pointer; display: flex; align-items: center;">
+              <input type="checkbox" id="toggleMockSwitch" style="width: 20px; height: 20px; accent-color: var(--accent-cyan);" checked>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="tokenInput" class="form-label">Vimeo Personal Access Token (Bearer Token)</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              id="tokenInput" 
+              placeholder="Cole seu token de acesso da API do Vimeo aqui..." 
+              autocomplete="off"
+            >
+            <div class="form-hint">
+              Para obter seu token, acesse <a href="https://developer.vimeo.com/apps" target="_blank" rel="noopener">developer.vimeo.com/apps</a>, crie uma aplicação e gere um Personal Access Token com escopo <code>private</code> e <code>video_files</code>.
+            </div>
+          </div>
+
+          <div class="form-hint" style="background: rgba(56, 189, 248, 0.08); padding: 0.75rem; border: 1px solid rgba(56, 189, 248, 0.2);">
+            💡 <strong>Dica de Mapeamento:</strong> A lista de dias, salas e seus respectivos <code>folder_id</code> podem ser facilmente ajustados no arquivo <code>js/config.js</code>.
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="btnCancelSettings">Cancelar</button>
+          <button type="submit" class="btn-primary">Salvar & Aplicar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SCRIPTS JAVASCRIPT INTEGRADOS (TUDO-EM-UM)
+       ========================================================================== -->
+  <script>
+/* ==========================================================================
+   Mapeamento de Pastas e Base de Vídeos Reais do Vimeo
+   ========================================================================== */
+/**
+ * Cathlabflix Sessions - Configuração Oficial e Mapeamento Real do Vimeo
+ * 
+ * Mapeamento extraído automaticamente via API oficial da pasta "Gravações" (ID: 30421333):
+ * - Dia 29 (Folder ID: 30421713) -> Heart Team (30424545), INCOR (30423156)
+ * - Dia 30 (Folder ID: 30421340) -> Heart Team (30424636)
+ * - Dia 31 (Folder ID: 30423303) -> Heart Team (30424838), Dante Pazzanese (30423313)
+ */
+
+const VIMEO_CONFIG = {
+  // Flag de fallback (usa dados reais locais instantâneos e consulta API para novidades)
+  useMock: false,
+  userId: "1803190",
+  rootFolderId: "30421333", // Pasta "Gravações"
+  accessToken: "dcfc518d6c38756016a3330df5ef8e5f",
+  apiBaseUrl: "https://api.vimeo.com"
+};
+
+/**
+ * Mapeamento da Grade do Evento (Hierarquia: Dias -> Salas -> folder_id)
+ */
+const EVENT_SCHEDULE = {
+  days: [
+    {
+      id: "dia-29",
+      label: "Dia 29",
+      subtitle: "29 de Outubro",
+      folder_id: "30421713",
+      rooms: [
+        {
+          id: "sala-30424545",
+          name: "Heart Team",
+          folder_id: "30424545"
+        },
+        {
+          id: "sala-30423156",
+          name: "INCOR",
+          folder_id: "30423156"
+        }
+      ]
+    },
+    {
+      id: "dia-30",
+      label: "Dia 30",
+      subtitle: "30 de Outubro",
+      folder_id: "30421340",
+      rooms: [
+        {
+          id: "sala-30424636",
+          name: "Heart Team",
+          folder_id: "30424636"
+        }
+      ]
+    },
+    {
+      id: "dia-31",
+      label: "Dia 31",
+      subtitle: "31 de Outubro",
+      folder_id: "30423303",
+      rooms: [
+        {
+          id: "sala-30424838",
+          name: "Heart Team",
+          folder_id: "30424838"
+        },
+        {
+          id: "sala-30423313",
+          name: "Dante Pazzanese",
+          folder_id: "30423313"
+        }
+      ]
+    }
+  ]
+};
+
+/**
+ * Base de Dados com todas as aulas reais extraídas do Vimeo
+ * Garante carregamento instantâneo das 37 aulas mesmo em ambientes offline ou com restrições de CORS
+ */
+const MOCK_VIMEO_DATA_BY_FOLDER = {
+  "30423156": [
+    {
+      "uri": "/videos/1223707542",
+      "name": "02_SOLACI_INCOR_Dr Raul Arrieta-003",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707542?h=7bc3c51775",
+      "duration": 2614,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707542?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"02_SOLACI_INCOR_Dr Raul Arrieta-003\"></iframe>"
+      },
+      "created_time": "2026-09-03T14:51:09+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223707532",
+      "name": "04_SOLACI_INCOR_Dr Raul Arrieta-004",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707532?h=68b6c52dd8",
+      "duration": 2795,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707532?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"04_SOLACI_INCOR_Dr Raul Arrieta-004\"></iframe>"
+      },
+      "created_time": "2026-09-03T14:51:08+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223707531",
+      "name": "03_SOLACI_INCOR_Dr Carlos Campos-002",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707531?h=44d5b84a4c",
+      "duration": 2453,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707531?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"03_SOLACI_INCOR_Dr Carlos Campos-002\"></iframe>"
+      },
+      "created_time": "2026-09-03T14:51:07+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223707530",
+      "name": "01_SOLACI_INCOR_Dr Carlos Campos",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707530?h=a5d6ac5fcd",
+      "duration": 1444,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707530?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"01_SOLACI_INCOR_Dr Carlos Campos\"></iframe>"
+      },
+      "created_time": "2026-09-03T14:51:07+00:00",
+      "tags": []
+    }
+  ],
+  "30423313": [
+    {
+      "uri": "/videos/1223744925",
+      "name": "MEDITRONIC-001",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744925?h=1a6523d787",
+      "duration": 2895,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744925?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"MEDITRONIC-001\"></iframe>"
+      },
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223744924",
+      "name": "SMT-002",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744924?h=357d8a2fb7",
+      "duration": 2085,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744924?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"SMT-002\"></iframe>"
+      },
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223744923",
+      "name": "DANTE-003",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744923?h=17586492c7",
+      "duration": 2522,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744923?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"DANTE-003\"></iframe>"
+      },
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223744922",
+      "name": "MERIL-004",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744922?h=3fe57bcdee",
+      "duration": 2806,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744922?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"MERIL-004\"></iframe>"
+      },
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    }
+  ],
+  "30424545": [
+    {
+      "uri": "/videos/1223778332",
+      "name": "14-00 - 15-00- Lecture & International Live Case - Support- Boston Scientific",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223778332?h=f8364cb68b",
+      "duration": 2842,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223778332?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"14-00 - 15-00- Lecture &amp; International Live Case - Support- Boston Scientific\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:04:19+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223777539",
+      "name": "16-00 - 17-00- Mechanical Circulatory Support- From High-Risk Pci To Cardiogenic Shock",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223777539?h=e34142425c",
+      "duration": 3493,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223777539?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"16-00 - 17-00- Mechanical Circulatory Support- From High-Risk Pci To Cardiogenic Shock\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:01:13+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223777407",
+      "name": "13-00 - 14-00- Lecture & International Case - Support- Medtronic",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223777407?h=dfa8122a7c",
+      "duration": 3423,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223777407?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-00 - 14-00- Lecture &amp; International Case - Support- Medtronic\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:00:42+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223777350",
+      "name": "12-00 - 13-00- Scientific Talk- Advancing From Long-Term Evidence To Next-Generation Design - Support- Venus",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223777350?h=364d45a51c",
+      "duration": 3598,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223777350?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"12-00 - 13-00- Scientific Talk- Advancing From Long-Term Evidence To Next-Generation Design - Support- Venus\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:00:30+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223776147",
+      "name": "11-00 - 12-00- Lecture & National Live Case - Support- Lepu",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223776147?h=2f422a015d",
+      "duration": 3134,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223776147?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"11-00 - 12-00- Lecture &amp; National Live Case - Support- Lepu\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:56:13+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775830",
+      "name": "18-00 - 19-00- Solaci-Sbhci Awards Ceremony",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775830?h=cb5a5c8ef1",
+      "duration": 3064,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775830?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"18-00 - 19-00- Solaci-Sbhci Awards Ceremony\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:55:17+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775461",
+      "name": "15-30 - 16-00- Pulmonary Embolism- From Risk Stratification To Advanced Therapies - Support- Penumbra",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775461?h=6c1a5e1f3b",
+      "duration": 1719,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775461?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"15-30 - 16-00- Pulmonary Embolism- From Risk Stratification To Advanced Therapies - Support- Penumbra\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:51+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775458",
+      "name": "17-00 - 18-00- Coronary Physiology In Debate- Wires, Algorithms, And The Battle For Guidance",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775458?h=aec33eaa75",
+      "duration": 3563,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775458?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"17-00 - 18-00- Coronary Physiology In Debate- Wires, Algorithms, And The Battle For Guidance\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:50+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775457",
+      "name": "08-45 - 10-00- Opening & Vision- The Future Of Interventional Cardiology 2026",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775457?h=cd3e553bb0",
+      "duration": 4836,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775457?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"08-45 - 10-00- Opening &amp; Vision- The Future Of Interventional Cardiology 2026\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:50+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775456",
+      "name": "10-00 - 11-00- Lecture & National Live Case - Support- Meril Life Science",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775456?h=cf10a1be55",
+      "duration": 3771,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775456?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"10-00 - 11-00- Lecture &amp; National Live Case - Support- Meril Life Science\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:50+00:00",
+      "tags": []
+    }
+  ],
+  "30424636": [
+    {
+      "uri": "/videos/1223788581",
+      "name": "13-00 - 14-00- Lecture & International Live Case - Support- Boston Scientific",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223788581?h=8d1f6e2efb",
+      "duration": 3687,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223788581?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-00 - 14-00- Lecture &amp; International Live Case - Support- Boston Scientific\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:43:59+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223788580",
+      "name": "12-00 - 13-00- Scientific Talk- Modern Pci In Practice- See. Prep. Treat. From Strategy To Case Discussion - Support- Boston Sci",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223788580?h=000d3f1631",
+      "duration": 2736,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223788580?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"12-00 - 13-00- Scientific Talk- Modern Pci In Practice- See. Prep. Treat. From Strategy To Case Discussion - Support- Boston Sci\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:43:59+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223788579",
+      "name": "08-00 - 09-00- From Calcium To Compliance- Contemporary Atherectomy Strategies",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223788579?h=a50599241e",
+      "duration": 3259,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223788579?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"08-00 - 09-00- From Calcium To Compliance- Contemporary Atherectomy Strategies\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:43:59+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782745",
+      "name": "17-00 - 18-00- Updates In Mitral Valve-In-Valve Interventions & Live Case - Support- Edwards Lifesciences",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782745?h=841c224455",
+      "duration": 3455,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782745?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"17-00 - 18-00- Updates In Mitral Valve-In-Valve Interventions &amp; Live Case - Support- Edwards Lifesciences\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:14+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782744",
+      "name": "11-15 - 12-00- National Live Case - Support- Shockwave",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782744?h=fa689b035b",
+      "duration": 2553,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782744?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"11-15 - 12-00- National Live Case - Support- Shockwave\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:14+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782743",
+      "name": "10-30 - 11-15- Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782743?h=78de018565",
+      "duration": 2908,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782743?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"10-30 - 11-15- Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:14+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780659",
+      "name": "14-00 - 14-30- Shockwave Ivl In Complex Pci- From Procedural Strategy To Proven Clinical Impact - Support- Shockwave",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780659?h=e2d62fd7ab",
+      "duration": 2108,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780659?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"14-00 - 14-30- Shockwave Ivl In Complex Pci- From Procedural Strategy To Proven Clinical Impact - Support- Shockwave\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780658",
+      "name": "16-15 - 17-00- Joint Session Crf - Tavi Durability In 2026- Evidence, Gaps, And What Comes Next",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780658?h=338811e3de",
+      "duration": 2764,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780658?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"16-15 - 17-00- Joint Session Crf - Tavi Durability In 2026- Evidence, Gaps, And What Comes Next\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780657",
+      "name": "14-30 - 15-00- Coronary Calcium Case Theater- Cracking The Toughest Lesions",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780657?h=15b9ffeae1",
+      "duration": 2314,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780657?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"14-30 - 15-00- Coronary Calcium Case Theater- Cracking The Toughest Lesions\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780656",
+      "name": "09-00 - 10-00- Live Case - Support- Microport",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780656?h=a5ba2f8707",
+      "duration": 4287,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780656?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"09-00 - 10-00- Live Case - Support- Microport\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    }
+  ],
+  "30424838": [
+    {
+      "uri": "/videos/1223784655",
+      "name": "10-30 - 11-00- The Future Of Pci- Technology, Intelligence, And The End Of Conventional Workflows - Part 2",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223784655?h=f50ead4afa",
+      "duration": 1867,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223784655?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"10-30 - 11-00- The Future Of Pci- Technology, Intelligence, And The End Of Conventional Workflows - Part 2\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:28:32+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223784580",
+      "name": "16-15 - 16-30- Closing Ceremony",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223784580?h=b897c3fa19",
+      "duration": 1017,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223784580?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"16-15 - 16-30- Closing Ceremony\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:28:20+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223783349",
+      "name": "12-00 - 13-00- Scientific Talk - Crdn- Innovations In Cardiovascular Intervention - Support- Medtronic",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223783349?h=02cb727be5",
+      "duration": 3371,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223783349?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"12-00 - 13-00- Scientific Talk - Crdn- Innovations In Cardiovascular Intervention - Support- Medtronic\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:23:28+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223783065",
+      "name": "08-00 - 09-00- Stable Cad And Multivessel Disease",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223783065?h=e51ebb5596",
+      "duration": 3281,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223783065?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"08-00 - 09-00- Stable Cad And Multivessel Disease\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:22:27+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782937",
+      "name": "09-00 - 10-00- Lecture & Live Case",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782937?h=36d1b06d0c",
+      "duration": 3848,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782937?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"09-00 - 10-00- Lecture &amp; Live Case\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:57+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782508",
+      "name": "13-30 - 13-56- Boston Scientific Calcium Challenge",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782508?h=4edf89a100",
+      "duration": 488,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782508?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-30 - 13-56- Boston Scientific Calcium Challenge\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782507",
+      "name": "13-00 - 13-30- Complex Acs Presentation",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782507?h=11f6429c5a",
+      "duration": 2010,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782507?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-00 - 13-30- Complex Acs Presentation\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782506",
+      "name": "13-56 - 14-30- Best Elca Cases Biomedical-Philips",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782506?h=ced000e8f8",
+      "duration": 474,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782506?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-56 - 14-30- Best Elca Cases Biomedical-Philips\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782505",
+      "name": "15-00 - 16-15- Solaci-Sbhci Best Case And Abstract Award Cerimony",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782505?h=6a09a868c6",
+      "duration": 2920,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782505?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"15-00 - 16-15- Solaci-Sbhci Best Case And Abstract Award Cerimony\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    }
+  ]
+};
+
+if (typeof window !== 'undefined') {
+  window.VIMEO_CONFIG = VIMEO_CONFIG;
+  window.EVENT_SCHEDULE = EVENT_SCHEDULE;
+  window.MOCK_VIMEO_DATA_BY_FOLDER = MOCK_VIMEO_DATA_BY_FOLDER;
+}
+
+
+
+/* ==========================================================================
+   Serviço de Integração Vimeo API
+   ========================================================================== */
+/**
+ * Cathlabflix Sessions - Serviço de Integração com a API do Vimeo
+ * 
+ * Responsável por:
+ * 1. Fazer requisições à API v3 do Vimeo utilizando o endpoint de projetos/pastas:
+ *    GET https://api.vimeo.com/me/projects/{folder_id}/videos
+ * 2. Gerenciar cache em memória por folder_id para evitar requisições repetidas
+ * 3. Fornecer fallback gracioso para os dados mockados em caso de falta de token ou modo de desenvolvimento
+ */
+
+class VimeoService {
+  constructor(config) {
+    this.config = config || (typeof window !== 'undefined' && window.VIMEO_CONFIG) || (typeof VIMEO_CONFIG !== 'undefined' ? VIMEO_CONFIG : {});
+    this.cache = new Map();
+  }
+
+  /**
+   * Atualiza as credenciais e configurações em tempo de execução
+   */
+  updateConfig(newConfig) {
+    this.config = { ...this.config, ...newConfig };
+    this.cache.clear(); // Limpa o cache ao mudar token/modo
+  }
+
+  /**
+   * Busca os vídeos contidos em uma pasta específica do Vimeo
+   * @param {string} folderId - Identificador numérico da pasta no Vimeo
+   * @returns {Promise<{ videos: Array, source: 'cache'|'live'|'mock' }>}
+   */
+  async getFolderVideos(folderId) {
+    if (!folderId) {
+      throw new Error("O folder_id é obrigatório para buscar os vídeos.");
+    }
+
+    // 1. Verifica cache em memória
+    if (this.cache.has(folderId)) {
+      return {
+        videos: this.cache.get(folderId),
+        source: 'cache'
+      };
+    }
+
+    // 2. Tenta a Serverless Function do Vercel (/api/videos) que faz o proxy no servidor sem bloqueio de CORS
+    if (window.location && window.location.protocol && window.location.protocol.startsWith('http')) {
+      try {
+        const isLocalOrVercel = window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost';
+        const apiHost = isLocalOrVercel ? '' : 'https://cathlabflix-sessions.vercel.app';
+        const proxyUrl = `${apiHost}/api/videos?folderId=${encodeURIComponent(folderId)}`;
+        const response = await fetch(proxyUrl);
+        if (response.ok) {
+          const json = await response.json();
+          if (json && Array.isArray(json.data) && json.data.length > 0) {
+            const normalized = this._normalizeVimeoData(json.data);
+            this.cache.set(folderId, normalized);
+            return {
+              videos: normalized,
+              source: 'api-proxy'
+            };
+          }
+        }
+      } catch (proxyError) {
+        console.info('[Vimeo Service] Usando base sincronizada de aulas:', proxyError.message);
+      }
+    }
+
+    // 3. Fallback instantâneo com os dados reais sincronizados do Vimeo
+    return this._getMockVideos(folderId);
+  }
+
+  /**
+   * Resgata aulas a partir da base sincronizada
+   */
+  async _getMockVideos(folderId) {
+    const dataStore = (typeof window !== 'undefined' && window.MOCK_VIMEO_DATA_BY_FOLDER) || (typeof MOCK_VIMEO_DATA_BY_FOLDER !== 'undefined' ? MOCK_VIMEO_DATA_BY_FOLDER : {});
+    const mockResponse = dataStore[folderId];
+    let rawList = [];
+
+    if (Array.isArray(mockResponse)) {
+      rawList = mockResponse;
+    } else if (mockResponse && Array.isArray(mockResponse.data)) {
+      rawList = mockResponse.data;
+    } else {
+      rawList = this._generateGenericMock(folderId);
+    }
+
+    const normalized = this._normalizeVimeoData(rawList);
+    this.cache.set(folderId, normalized);
+
+    return {
+      videos: normalized,
+      source: 'dataset'
+    };
+  }
+
+  /**
+   * Normaliza os dados da resposta da API do Vimeo para o formato consumido pela UI
+   */
+  _normalizeVimeoData(rawVideos) {
+    return rawVideos.map((item, index) => {
+      // Extração do ID do vídeo (ex: de "/videos/76979871" extrai "76979871")
+      const videoId = item.uri ? item.uri.replace("/videos/", "") : `mock-${index}`;
+      
+      // Monta URL de embed preservando o hash de privacidade (?h=...)
+      let embedUrl = item.player_embed_url || `https://player.vimeo.com/video/${videoId}`;
+      const separator = embedUrl.includes('?') ? '&' : '?';
+      if (!embedUrl.includes('badge=')) {
+        embedUrl += `${separator}badge=0&autopause=0&player_id=0`;
+      }
+
+      return {
+        id: videoId,
+        uri: item.uri || `/videos/${videoId}`,
+        title: item.name || `Aula ${String(index + 1).padStart(2, '0')}`,
+        description: item.description || "Sem descrição disponível para esta sessão.",
+        speaker: item.speaker || this._extractSpeaker(item.name, item.description),
+        duration: item.duration || 0,
+        formattedDuration: this.formatDuration(item.duration || 0),
+        createdTime: item.created_time || new Date().toISOString(),
+        embedUrl: embedUrl,
+        embedHtml: item.embed?.html || null,
+        tags: Array.isArray(item.tags) ? item.tags.map(t => typeof t === 'string' ? t : t.tag || t.name) : []
+      };
+    });
+  }
+
+  /**
+   * Formata segundos no formato legível (ex: 45 min ou 1h 15 min)
+   */
+  formatDuration(seconds) {
+    if (!seconds || seconds <= 0) return "Duração N/D";
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+
+    if (hours > 0) {
+      return `${hours}h ${remainingMinutes > 0 ? remainingMinutes + 'min' : ''}`.trim();
+    }
+    return `${minutes} min`;
+  }
+
+  /**
+   * Tenta deduzir o palestrante a partir do nome ou descrição caso não venha explícito
+   */
+  _extractSpeaker(name, description) {
+    const textName = typeof name === 'string' ? name : '';
+    const textDesc = typeof description === 'string' ? description : '';
+    const speakerRegex = /(?:Dr\.|Dra\.|Prof\.|Palestrante:?)\s+([A-ZÀ-Úa-zà-ú\s]+)/i;
+    const match = textName.match(speakerRegex) || textDesc.match(speakerRegex);
+    if (match && match[1]) {
+      return match[0].trim();
+    }
+    return "Palestrante Convidado";
+  }
+
+  /**
+   * Gera mock dinâmico caso um folder_id customizado seja adicionado pelo usuário
+   */
+  _generateGenericMock(folderId) {
+    return [
+      {
+        uri: "/videos/76979871",
+        name: `Sessão Inaugural da Pasta #${folderId}`,
+        description: `Gravação ao vivo referente ao folder_id ${folderId}. Demonstração dinâmica com proporção de tela 16:9.`,
+        duration: 2700,
+        speaker: "Corpo Docente Especializado",
+        tags: ["Folder " + folderId, "On-Demand"]
+      },
+      {
+        uri: "/videos/824804225",
+        name: `Mesa Redonda e Debates da Pasta #${folderId}`,
+        description: `Discussão aprofundada dos casos e perguntas dos congressistas na sala correspondente.`,
+        duration: 3200,
+        speaker: "Painel de Especialistas",
+        tags: ["Debate", "Perguntas & Respostas"]
+      }
+    ];
+  }
+}
+
+// Exporta instância única global
+window.vimeoService = new VimeoService();
+
+
+/* ==========================================================================
+   Gerenciador de Accordion e Injeção Dinâmica 16:9
+   ========================================================================== */
+/**
+ * Cathlabflix Sessions - Controlador do Accordion de Vídeos
+ * 
+ * Regras Obrigatórias e Melhores Práticas:
+ * 1. Apenas um item aberto por vez (Single-Open Accordion). Ao abrir a "Aula B", a "Aula A" fecha automaticamente.
+ * 2. Estado fechado: Barra azul escura com título/palestrante e chevron para baixo.
+ * 3. Estado aberto: Expande suavemente revelando o iframe 16:9 (padding-bottom: 56.25%) e chevron gira 180°.
+ * 4. Lazy-Loading do Player: O iframe é injetado sob demanda apenas ao abrir para otimizar performance.
+ * 5. Pausa/Destruição de Áudio: Ao fechar ou trocar de aula, o iframe é desmontado para não continuar tocando áudio em background.
+ */
+
+class VideoAccordionManager {
+  constructor(containerElement) {
+    this.container = containerElement;
+    this.currentlyOpenItem = null;
+    this._handleHeaderClick = this._handleHeaderClick.bind(this);
+    this._handleKeyDown = this._handleKeyDown.bind(this);
+  }
+
+  /**
+   * Inicializa os event listeners do container via Event Delegation
+   */
+  init() {
+    if (!this.container) return;
+    this.container.addEventListener('click', this._handleHeaderClick);
+    this.container.addEventListener('keydown', this._handleKeyDown);
+  }
+
+  /**
+   * Destrói listeners e libera memória
+   */
+  destroy() {
+    if (!this.container) return;
+    this.closeAll();
+    this.container.removeEventListener('click', this._handleHeaderClick);
+    this.container.removeEventListener('keydown', this._handleKeyDown);
+  }
+
+  /**
+   * Manipulador de cliques via delegação de eventos
+   */
+  _handleHeaderClick(event) {
+    const headerBtn = event.target.closest('.accordion-header');
+    if (!headerBtn) return;
+
+    event.preventDefault();
+    const item = headerBtn.closest('.accordion-item');
+    if (!item) return;
+
+    this.toggleItem(item);
+  }
+
+  /**
+   * Acessibilidade de teclado: Enter e Barra de Espaço
+   */
+  _handleKeyDown(event) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      const headerBtn = event.target.closest('.accordion-header');
+      if (headerBtn) {
+        event.preventDefault();
+        const item = headerBtn.closest('.accordion-item');
+        if (item) this.toggleItem(item);
+      }
+    }
+  }
+
+  /**
+   * Alterna estado do item: Se estiver aberto, fecha. Se estiver fechado, fecha o anterior e abre este.
+   * @param {HTMLElement} itemElement 
+   */
+  toggleItem(itemElement) {
+    const isOpen = itemElement.classList.contains('is-open');
+
+    if (isOpen) {
+      this.closeItem(itemElement);
+    } else {
+      // Regra estrita: Fechar qualquer outro accordion aberto antes de abrir o novo
+      if (this.currentlyOpenItem && this.currentlyOpenItem !== itemElement) {
+        this.closeItem(this.currentlyOpenItem);
+      }
+      this.openItem(itemElement);
+    }
+  }
+
+  /**
+   * Abre o accordion, injeta o iframe do Vimeo no container 16:9 e rotaciona o chevron
+   * @param {HTMLElement} itemElement 
+   */
+  openItem(itemElement) {
+    const headerBtn = itemElement.querySelector('.accordion-header');
+    const panel = itemElement.querySelector('.accordion-body');
+    const playerContainer = itemElement.querySelector('.video-responsive-wrapper');
+
+    // 1. Atualiza classes e estados ARIA
+    itemElement.classList.add('is-open');
+    if (headerBtn) headerBtn.setAttribute('aria-expanded', 'true');
+    if (panel) panel.setAttribute('aria-hidden', 'false');
+
+    // 2. Injeta o iframe sob demanda (Lazy Loading) caso ainda não esteja presente
+    if (playerContainer && !playerContainer.querySelector('iframe')) {
+      const embedUrl = playerContainer.dataset.embedUrl;
+      const videoTitle = playerContainer.dataset.videoTitle || "Aula Vimeo";
+
+      if (embedUrl) {
+        // Exibe feedback visual breve de carregamento
+        playerContainer.innerHTML = `
+          <div class="video-placeholder">
+            <div class="video-placeholder-spinner"></div>
+            <span style="font-size: 0.85rem; font-weight: 500;">Carregando player Vimeo...</span>
+          </div>
+        `;
+
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('src', embedUrl);
+        iframe.setAttribute('title', videoTitle);
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media');
+        iframe.setAttribute('allowfullscreen', 'true');
+
+        // Quando o iframe carregar, remove o placeholder
+        iframe.addEventListener('load', () => {
+          const placeholder = playerContainer.querySelector('.video-placeholder');
+          if (placeholder) placeholder.remove();
+        });
+
+        playerContainer.appendChild(iframe);
+      }
+    }
+
+    this.currentlyOpenItem = itemElement;
+
+    // Scroll sutil e inteligente caso o item esteja fora da área visível superior
+    setTimeout(() => {
+      const rect = itemElement.getBoundingClientRect();
+      if (rect.top < 80) {
+        window.scrollBy({
+          top: rect.top - 90,
+          behavior: 'smooth'
+        });
+      }
+    }, 150);
+  }
+
+  /**
+   * Fecha o accordion e remove o iframe para interromper imediatamente a reprodução de áudio
+   * @param {HTMLElement} itemElement 
+   */
+  closeItem(itemElement) {
+    if (!itemElement) return;
+
+    const headerBtn = itemElement.querySelector('.accordion-header');
+    const panel = itemElement.querySelector('.accordion-body');
+    const playerContainer = itemElement.querySelector('.video-responsive-wrapper');
+
+    // 1. Atualiza classes e ARIA
+    itemElement.classList.remove('is-open');
+    if (headerBtn) headerBtn.setAttribute('aria-expanded', 'false');
+    if (panel) panel.setAttribute('aria-hidden', 'true');
+
+    // 2. Limpa o iframe para cessar reprodução de vídeo/áudio imediatamente
+    if (playerContainer) {
+      // Um pequeno delay de 250ms acompanha o término da animação CSS antes de desmontar o DOM
+      setTimeout(() => {
+        if (!itemElement.classList.contains('is-open')) {
+          playerContainer.innerHTML = '';
+        }
+      }, 250);
+    }
+
+    if (this.currentlyOpenItem === itemElement) {
+      this.currentlyOpenItem = null;
+    }
+  }
+
+  /**
+   * Fecha todos os accordions ativos
+   */
+  closeAll() {
+    if (this.currentlyOpenItem) {
+      this.closeItem(this.currentlyOpenItem);
+    }
+    const openItems = this.container.querySelectorAll('.accordion-item.is-open');
+    openItems.forEach(item => this.closeItem(item));
+  }
+}
+
+// Exporta globalmente
+window.VideoAccordionManager = VideoAccordionManager;
+
+
+/* ==========================================================================
+   Orquestrador da Aplicação e Controle de Eventos
+   ========================================================================== */
+/**
+ * Cathlabflix Sessions - Controlador Principal da Aplicação (App.js)
+ * 
+ * Orquestra:
+ * 1. Gerenciamento de Estado Reativo (Dia Ativo, Sala Ativa, Carregamento)
+ * 2. Navegação Primária (Dias) em grid de 3 colunas (Dia 19 | Dia 20 | Dia 21)
+ * 3. Navegação Secundária (Salas) horizontal com linha azul clara
+ * 4. Mapeamento de folder_id e requisição ao VimeoService
+ * 5. Renderização do Accordion de Vídeos com lazy loading 16:9 idêntico ao design de referência
+ */
+
+(function () {
+  'use strict';
+
+  // Estado Central da Aplicação
+  const state = {
+    currentDayId: null,
+    currentRoomId: null,
+    currentFolderId: null,
+    videos: [],
+    isLoading: false,
+    useMock: VIMEO_CONFIG.useMock,
+    accessToken: VIMEO_CONFIG.accessToken || ''
+  };
+
+  // Cache de Elementos do DOM
+  const dom = {
+    daysNav: document.getElementById('daysNav'),
+    roomsNav: document.getElementById('roomsNav'),
+    roomsNavWrapper: document.getElementById('roomsNavWrapper'),
+    roomsScrollNext: document.getElementById('roomsScrollNext'),
+    accordionContainer: document.getElementById('accordionContainer'),
+    
+    // Modal de Configurações
+    btnOpenSettings: document.getElementById('btnOpenSettings'),
+    btnCloseSettings: document.getElementById('btnCloseSettings'),
+    btnCancelSettings: document.getElementById('btnCancelSettings'),
+    settingsModal: document.getElementById('settingsModal'),
+    settingsForm: document.getElementById('settingsForm'),
+    tokenInput: document.getElementById('tokenInput'),
+    toggleMockSwitch: document.getElementById('toggleMockSwitch')
+  };
+
+  // Instância do Gerenciador de Accordion
+  let accordionManager = null;
+
+  /**
+   * Inicialização do Aplicativo
+   */
+  function init() {
+    if (!EVENT_SCHEDULE.days || EVENT_SCHEDULE.days.length === 0) {
+      console.error("Nenhum dia configurado em EVENT_SCHEDULE.");
+      return;
+    }
+
+    // Inicializa o gerenciador de Accordion
+    accordionManager = new VideoAccordionManager(dom.accordionContainer);
+    accordionManager.init();
+
+    // Define o dia e a sala iniciais (Dia 19, Sala 01)
+    const initialDay = EVENT_SCHEDULE.days[0];
+    const initialRoom = initialDay.rooms[0];
+
+    state.currentDayId = initialDay.id;
+    state.currentRoomId = initialRoom.id;
+    state.currentFolderId = initialRoom.folder_id;
+
+    // Renderiza abas dos dias e salas
+    renderDaysNav();
+    renderRoomsNav();
+
+    // Registra os ouvintes de eventos globais
+    bindEvents();
+
+    // Carrega os vídeos da sala ativa
+    loadVideosForActiveRoom();
+
+    // Notifica e sincroniza dinamicamente a altura para sites que usam iframe
+    setupIframeAutoResizer();
+  }
+
+  /**
+   * Comunicação com a página pai para auto-ajuste de altura do iframe
+   */
+  function setupIframeAutoResizer() {
+    if (typeof ResizeObserver !== 'undefined' && document.body) {
+      const ro = new ResizeObserver(() => {
+        notifyParentHeight();
+      });
+      ro.observe(document.body);
+    }
+    window.addEventListener('resize', notifyParentHeight);
+    window.addEventListener('load', notifyParentHeight);
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'cathlabflix-request-height') {
+        notifyParentHeight();
+      }
+    });
+    // Primeira notificação
+    notifyParentHeight();
+  }
+
+  function notifyParentHeight() {
+    if (window.parent && window.parent !== window) {
+      const height = Math.max(
+        document.body.scrollHeight || 0,
+        document.body.offsetHeight || 0,
+        document.documentElement.scrollHeight || 0,
+        document.documentElement.offsetHeight || 0
+      );
+      window.parent.postMessage({
+        type: 'cathlabflix-sessions-resize',
+        height: height
+      }, '*');
+    }
+  }
+
+  /**
+   * Configuração de Ouvintes de Eventos
+   */
+  function bindEvents() {
+    // 1. Navegação de Dias (Nível 1)
+    dom.daysNav.addEventListener('click', (e) => {
+      const tab = e.target.closest('.day-tab');
+      if (!tab) return;
+      const dayId = tab.dataset.dayId;
+      if (dayId && dayId !== state.currentDayId) {
+        selectDay(dayId);
+      }
+    });
+
+    // 2. Navegação de Salas (Nível 2)
+    dom.roomsNav.addEventListener('click', (e) => {
+      const tab = e.target.closest('.room-tab');
+      if (!tab) return;
+      const roomId = tab.dataset.roomId;
+      if (roomId && roomId !== state.currentRoomId) {
+        selectRoom(roomId);
+      }
+    });
+
+    // 3. Seta de Scroll Horizontal de Salas
+    if (dom.roomsScrollNext && dom.roomsNavWrapper) {
+      dom.roomsScrollNext.addEventListener('click', () => {
+        const isNearEnd = dom.roomsNavWrapper.scrollLeft + dom.roomsNavWrapper.clientWidth >= dom.roomsNavWrapper.scrollWidth - 15;
+        if (isNearEnd) {
+          dom.roomsNavWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          dom.roomsNavWrapper.scrollBy({ left: 160, behavior: 'smooth' });
+        }
+      });
+
+      dom.roomsNavWrapper.addEventListener('scroll', updateRoomsScrollArrow, { passive: true });
+      window.addEventListener('resize', updateRoomsScrollArrow);
+    }
+
+    // 4. Modal de Configurações da API do Vimeo
+    if (dom.btnOpenSettings) {
+      dom.btnOpenSettings.addEventListener('click', openSettingsModal);
+    }
+    if (dom.btnCloseSettings) {
+      dom.btnCloseSettings.addEventListener('click', closeSettingsModal);
+    }
+    if (dom.btnCancelSettings) {
+      dom.btnCancelSettings.addEventListener('click', closeSettingsModal);
+    }
+
+    // Fechar modal ao clicar fora do card
+    if (dom.settingsModal) {
+      dom.settingsModal.addEventListener('click', (e) => {
+        if (e.target === dom.settingsModal) closeSettingsModal();
+      });
+    }
+
+    // Submissão das Configurações
+    if (dom.settingsForm) {
+      dom.settingsForm.addEventListener('submit', handleSettingsSubmit);
+    }
+  }
+
+  /**
+   * Renderiza a Barra de Abas dos Dias (Nível 1)
+   * Aba ativa tem fundo branco e texto escuro
+   */
+  function renderDaysNav() {
+    dom.daysNav.innerHTML = '';
+
+    EVENT_SCHEDULE.days.forEach((day) => {
+      const isActive = day.id === state.currentDayId;
+      const li = document.createElement('li');
+      
+      li.innerHTML = `
+        <button 
+          class="day-tab ${isActive ? 'active' : ''}" 
+          data-day-id="${day.id}" 
+          role="tab" 
+          aria-selected="${isActive}"
+          id="tab-${day.id}"
+        >
+          ${escapeHtml(day.label)}
+        </button>
+      `;
+
+      dom.daysNav.appendChild(li);
+    });
+  }
+
+  /**
+   * Renderiza a Barra de Navegação Horizontal das Salas (Nível 2)
+   * Sala ativa possui linha sublinhada em azul claro
+   */
+  function renderRoomsNav() {
+    const currentDay = getCurrentDayObject();
+    if (!currentDay) return;
+
+    dom.roomsNav.innerHTML = '';
+
+    currentDay.rooms.forEach((room) => {
+      const isActive = room.id === state.currentRoomId;
+      const li = document.createElement('li');
+
+      li.innerHTML = `
+        <button 
+          class="room-tab ${isActive ? 'active' : ''}" 
+          data-room-id="${room.id}"
+          role="tab"
+          aria-selected="${isActive}"
+          id="tab-${room.id}"
+        >
+          ${escapeHtml(room.name)}
+        </button>
+      `;
+
+      dom.roomsNav.appendChild(li);
+    });
+
+    // Centraliza a aba ativa no scroll horizontal
+    const activeTab = dom.roomsNav.querySelector('.room-tab.active');
+    if (activeTab) {
+      activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    updateRoomsScrollArrow();
+  }
+
+  /**
+   * Mostra ou oculta a seta de rolagem das salas dinamicamente
+   */
+  function updateRoomsScrollArrow() {
+    if (!dom.roomsScrollNext || !dom.roomsNavWrapper) return;
+    requestAnimationFrame(() => {
+      const isScrollable = dom.roomsNavWrapper.scrollWidth > dom.roomsNavWrapper.clientWidth + 8;
+      dom.roomsScrollNext.style.display = isScrollable ? 'flex' : 'none';
+    });
+  }
+
+  /**
+   * Ação ao Selecionar um Dia: Atualiza Salas e seleciona a primeira sala do dia
+   */
+  function selectDay(dayId) {
+    state.currentDayId = dayId;
+    const currentDay = getCurrentDayObject();
+
+    if (currentDay && currentDay.rooms.length > 0) {
+      state.currentRoomId = currentDay.rooms[0].id;
+      state.currentFolderId = currentDay.rooms[0].folder_id;
+    }
+
+    renderDaysNav();
+    renderRoomsNav();
+    loadVideosForActiveRoom();
+  }
+
+  /**
+   * Ação ao Selecionar uma Sala: Resgata o folder_id correspondente no JSON e faz requisição
+   */
+  function selectRoom(roomId) {
+    state.currentRoomId = roomId;
+    const currentRoom = getCurrentRoomObject();
+
+    if (currentRoom) {
+      state.currentFolderId = currentRoom.folder_id;
+    }
+
+    // Atualiza classes ativas
+    const allRoomTabs = dom.roomsNav.querySelectorAll('.room-tab');
+    allRoomTabs.forEach(tab => {
+      const isActive = tab.dataset.roomId === roomId;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    loadVideosForActiveRoom();
+  }
+
+  /**
+   * Carrega e Renderiza os Vídeos da Sala e Pasta Ativa
+   */
+  async function loadVideosForActiveRoom() {
+    const currentRoom = getCurrentRoomObject();
+    if (!currentRoom) return;
+
+    if (accordionManager) {
+      accordionManager.closeAll();
+    }
+
+    renderSkeletonLoading();
+    state.isLoading = true;
+
+    try {
+      const result = await window.vimeoService.getFolderVideos(currentRoom.folder_id);
+      
+      state.videos = result.videos || [];
+      state.isLoading = false;
+
+      renderAccordionList();
+
+      // Abre automaticamente o primeiro item se houver vídeos (como no design de referência)
+      if (state.videos.length > 0) {
+        const firstItem = dom.accordionContainer.querySelector('.accordion-item');
+        if (firstItem && accordionManager) {
+          accordionManager.openItem(firstItem);
+        }
+      }
+
+    } catch (error) {
+      state.isLoading = false;
+      console.error("Erro ao carregar vídeos da pasta:", error);
+      renderErrorState(error.message);
+    }
+  }
+
+  /**
+   * Renderiza a Lista de Vídeos em formato de Accordion
+   * Visual minimalista idêntico à imagem: apenas Título e Chevron
+   */
+  function renderAccordionList() {
+    dom.accordionContainer.innerHTML = '';
+
+    const videosToRender = state.videos;
+
+    if (videosToRender.length === 0) {
+      renderEmptyState();
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    videosToRender.forEach((video, index) => {
+      const itemEl = document.createElement('div');
+      itemEl.className = 'accordion-item';
+      itemEl.id = `video-item-${video.id}`;
+
+      itemEl.innerHTML = `
+        <!-- Cabeçalho do Accordion (Barra Azul Escura) -->
+        <button 
+          type="button"
+          class="accordion-header" 
+          aria-expanded="false" 
+          aria-controls="panel-${video.id}"
+          id="header-${video.id}"
+        >
+          <h3 class="accordion-title">${escapeHtml(video.title)}</h3>
+
+          <!-- Ícone de Seta (Chevron) -->
+          <div class="accordion-chevron-wrapper">
+            <svg class="accordion-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Corpo Expansível com Iframe do Vimeo (16:9) -->
+        <div 
+          class="accordion-body" 
+          id="panel-${video.id}" 
+          role="region" 
+          aria-labelledby="header-${video.id}"
+          aria-hidden="true"
+        >
+          <div class="accordion-inner">
+            <div class="accordion-content-box">
+              
+              <!-- Container 16:9 com Lazy Loading -->
+              <div 
+                class="video-responsive-wrapper" 
+                data-embed-url="${escapeHtml(video.embedUrl)}"
+                data-video-title="${escapeHtml(video.title)}"
+              >
+                <!-- Iframe é injetado dinamicamente ao expandir -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      `;
+
+      fragment.appendChild(itemEl);
+    });
+
+    dom.accordionContainer.appendChild(fragment);
+  }
+
+  /**
+   * Renderiza Skeleton Screens durante o carregamento
+   */
+  function renderSkeletonLoading() {
+    dom.accordionContainer.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+      const skeleton = document.createElement('div');
+      skeleton.className = 'skeleton-item';
+      skeleton.innerHTML = `
+        <div class="skeleton-shimmer"></div>
+        <div class="skeleton-line"></div>
+        <div style="width: 16px; height: 16px; background: rgba(255,255,255,0.06); border-radius: 2px;"></div>
+      `;
+      dom.accordionContainer.appendChild(skeleton);
+    }
+  }
+
+  /**
+   * Renderiza estado vazio
+   */
+  function renderEmptyState() {
+    dom.accordionContainer.innerHTML = `
+      <div class="empty-state">
+        <h3>Nenhuma sessão encontrada</h3>
+        <p>Não foram encontrados vídeos cadastrados para esta sala.</p>
+      </div>
+    `;
+  }
+
+  /**
+   * Renderiza estado de erro
+   */
+  function renderErrorState(message) {
+    dom.accordionContainer.innerHTML = `
+      <div class="empty-state" style="border: 1px solid rgba(239, 68, 68, 0.3);">
+        <h3 style="color: #ef4444;">Falha ao carregar vídeos do Vimeo</h3>
+        <p>${escapeHtml(message)}</p>
+        <button class="btn-primary" style="margin-top: 1rem;" onclick="location.reload()">
+          Recarregar
+        </button>
+      </div>
+    `;
+  }
+
+  /**
+   * Abertura do Modal de Configurações
+   */
+  function openSettingsModal() {
+    dom.tokenInput.value = state.accessToken;
+    dom.toggleMockSwitch.checked = state.useMock;
+    dom.settingsModal.classList.add('is-visible');
+    dom.settingsModal.setAttribute('aria-hidden', 'false');
+  }
+
+  /**
+   * Fechamento do Modal de Configurações
+   */
+  function closeSettingsModal() {
+    dom.settingsModal.classList.remove('is-visible');
+    dom.settingsModal.setAttribute('aria-hidden', 'true');
+  }
+
+  /**
+   * Salva configurações personalizadas (Token e Modo)
+   */
+  function handleSettingsSubmit(e) {
+    e.preventDefault();
+    const token = dom.tokenInput.value.trim();
+    const useMock = dom.toggleMockSwitch.checked;
+
+    state.accessToken = token;
+    state.useMock = useMock;
+
+    window.vimeoService.updateConfig({
+      accessToken: token,
+      useMock: useMock
+    });
+
+    closeSettingsModal();
+    loadVideosForActiveRoom();
+  }
+
+  /* --- Funções Utilitárias --- */
+  function getCurrentDayObject() {
+    return EVENT_SCHEDULE.days.find(d => d.id === state.currentDayId) || EVENT_SCHEDULE.days[0];
+  }
+
+  function getCurrentRoomObject() {
+    const day = getCurrentDayObject();
+    if (!day) return null;
+    return day.rooms.find(r => r.id === state.currentRoomId) || day.rooms[0];
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Inicializa quando o DOM estiver pronto
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+
+  </script>
+</body>
+</html>
