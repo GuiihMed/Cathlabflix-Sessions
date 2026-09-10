@@ -533,3 +533,10 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     }
   ]
 };
+
+if (typeof window !== 'undefined') {
+  window.VIMEO_CONFIG = VIMEO_CONFIG;
+  window.EVENT_SCHEDULE = EVENT_SCHEDULE;
+  window.MOCK_VIMEO_DATA_BY_FOLDER = MOCK_VIMEO_DATA_BY_FOLDER;
+}
+

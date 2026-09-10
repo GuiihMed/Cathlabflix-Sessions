@@ -9,8 +9,8 @@
  */
 
 class VimeoService {
-  constructor(config = VIMEO_CONFIG) {
-    this.config = config;
+  constructor(config) {
+    this.config = config || (typeof window !== 'undefined' && window.VIMEO_CONFIG) || (typeof VIMEO_CONFIG !== 'undefined' ? VIMEO_CONFIG : {});
     this.cache = new Map();
   }
 
@@ -69,9 +69,8 @@ class VimeoService {
    * Resgata aulas a partir da base sincronizada
    */
   async _getMockVideos(folderId) {
-    await new Promise(resolve => setTimeout(resolve, 150));
-
-    const mockResponse = MOCK_VIMEO_DATA_BY_FOLDER[folderId];
+    const dataStore = (typeof window !== 'undefined' && window.MOCK_VIMEO_DATA_BY_FOLDER) || (typeof MOCK_VIMEO_DATA_BY_FOLDER !== 'undefined' ? MOCK_VIMEO_DATA_BY_FOLDER : {});
+    const mockResponse = dataStore[folderId];
     let rawList = [];
 
     if (Array.isArray(mockResponse)) {
@@ -88,17 +87,6 @@ class VimeoService {
     return {
       videos: normalized,
       source: 'dataset'
-    };
-  }
-      rawList = this._generateGenericMock(folderId);
-    }
-
-    const normalized = this._normalizeVimeoData(rawList);
-    this.cache.set(folderId, normalized);
-
-    return {
-      videos: normalized,
-      source: 'mock'
     };
   }
 
@@ -151,9 +139,11 @@ class VimeoService {
   /**
    * Tenta deduzir o palestrante a partir do nome ou descrição caso não venha explícito
    */
-  _extractSpeaker(name = "", description = "") {
+  _extractSpeaker(name, description) {
+    const textName = typeof name === 'string' ? name : '';
+    const textDesc = typeof description === 'string' ? description : '';
     const speakerRegex = /(?:Dr\.|Dra\.|Prof\.|Palestrante:?)\s+([A-ZÀ-Úa-zà-ú\s]+)/i;
-    const match = name.match(speakerRegex) || description.match(speakerRegex);
+    const match = textName.match(speakerRegex) || textDesc.match(speakerRegex);
     if (match && match[1]) {
       return match[0].trim();
     }
