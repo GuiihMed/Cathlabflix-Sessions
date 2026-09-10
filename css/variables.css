@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Cathlabflix Sessions - Design Tokens & Variáveis CSS
+   Identidade: Tema Escuro com Fundo Azul Marinho Profundo (#040a23)
+   ========================================================================== */
+
+:root {
+  /* Paleta Primária */
+  --bg-main: #040a23;            /* Fundo principal azul marinho profundo */
+  --bg-surface: #08123b;         /* Superfície de contêineres e cartões */
+  --bg-surface-elevated: #0d1b54;/* Superfície elevada / hover */
+  --bg-header: rgba(4, 10, 35, 0.95);
+
+  /* Accordion & Cartões */
+  --accordion-bg: #0a1540;       /* Barra azul escura do accordion fechado */
+  --accordion-bg-hover: #0f1f5c; /* Barra ao passar o mouse */
+  --accordion-bg-active: #0c1844;/* Fundo do cabeçalho quando aberto */
+  --accordion-border: #1a2a6c;   /* Borda sutil */
+  --accordion-body-bg: #060e30;  /* Fundo do corpo expandido onde fica o vídeo */
+
+  /* Cores de Destaque e Acento */
+  --accent-cyan: #38bdf8;        /* Azul claro / ciano para sublinhado da sala ativa */
+  --accent-cyan-hover: #7dd3fc;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.25);
+  --accent-blue-vimeo: #1ab7ea;  /* Tom azul padrão Vimeo */
+
+  /* Navegação de Dias (Contraste Máximo Solicitado) */
+  --day-tab-bg-active: #ffffff;  /* Aba ativa: fundo branco */
+  --day-tab-text-active: #040a23;/* Aba ativa: texto escuro */
+  --day-tab-bg-inactive: #0a1540;/* Aba inativa: azul escuro */
+  --day-tab-text-inactive: #94a3b8;/* Aba inativa: cinza sutil */
+  --day-tab-border-inactive: #1a2a6c;
+
+  /* Navegação de Salas */
+  --room-tab-text: #94a3b8;
+  --room-tab-text-active: #ffffff;
+  --room-tab-line-active: #38bdf8; /* Sublinhado em azul mais claro */
+
+  /* Tipografia */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --text-primary: #f8fafc;       /* Texto principal de alto contraste */
+  --text-secondary: #94a3b8;     /* Metadados, palestrantes, durações */
+  --text-muted: #64748b;         /* Rótulos secundários */
+
+  /* Status e Tags */
+  --tag-bg: rgba(56, 189, 248, 0.12);
+  --tag-text: #38bdf8;
+  --tag-border: rgba(56, 189, 248, 0.25);
+  --badge-live-bg: #ef4444;
+  --badge-live-text: #ffffff;
+
+  /* Efeitos e Sombras */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --shadow-active: 0 0 20px rgba(56, 189, 248, 0.15);
+
+  /* Transições Suaves */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-accordion: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Bordas Arredondadas */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --container-max-width: 1140px;
+}
