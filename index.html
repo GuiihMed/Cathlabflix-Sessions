@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cathlabflix Sessions - Grade Científica & Galeria de Vídeos Vimeo</title>
+  <meta name="description" content="Painel de programação e exibidor dinâmico de aulas e transmissões integrado à API do Vimeo com navegação por dias, salas e accordions responsivos 16:9.">
+
+  <!-- Tipografia Inter do Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilos -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Cabeçalho Superior Fixo (Header & Branding)
+       ========================================================================== -->
+  <header class="app-header">
+    <div class="container">
+      <div class="header-wrapper">
+        <div class="brand-group">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <h1>Cathlabflix Sessions</h1>
+            <p>Grade Científica & Aulas On-Demand</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="mode-badge" id="modeBadge">
+            <span class="mode-dot"></span>
+            <span id="modeStatusText">Modo Mock Ativo</span>
+          </div>
+          
+          <button type="button" class="btn-settings" id="btnOpenSettings" title="Configurar Token da API do Vimeo">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span>Configurar Vimeo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       Conteúdo Principal
+       ========================================================================== -->
+  <main class="container">
+    
+    <!-- Hero / Apresentação -->
+    <section class="hero-section">
+      <h2 class="hero-title">Painel de Programação <span>Multi-Salas</span></h2>
+      <p class="hero-subtitle">Navegue pelas datas do congresso e selecione uma das salas temáticas para assistir às aulas e procedimentos gravados em alta definição.</p>
+    </section>
+
+    <!-- NAVEGAÇÃO PRIMÁRIA: Dias do Evento (Abas Superiores)
+         Regra: Aba ativa possui fundo branco e texto escuro -->
+    <section class="days-nav-wrapper" aria-label="Navegação por Dias do Evento">
+      <ul class="days-nav" id="daysNav" role="tablist">
+        <!-- Renderizado dinamicamente via JS (config.js -> EVENT_SCHEDULE.days) -->
+      </ul>
+    </section>
+
+    <!-- NAVEGAÇÃO SECUNDÁRIA: Salas daquele Dia (Barra Horizontal)
+         Regra: Sala ativa indicada por borda ou linha sublinhada em azul mais claro -->
+    <section class="rooms-nav-wrapper" aria-label="Navegação por Salas">
+      <ul class="rooms-nav" id="roomsNav" role="tablist">
+        <!-- Renderizado dinamicamente via JS -->
+      </ul>
+    </section>
+
+    <!-- Barra de Metadados e Filtro Rápido -->
+    <div class="room-meta-bar">
+      <div class="room-info-display">
+        <h3 class="room-current-title" id="roomCurrentTitle">Carregando sala...</h3>
+        <div class="room-folder-tag" title="Identificador da pasta associada na API do Vimeo">
+          <span>Pasta Vimeo:</span>
+          <code id="roomFolderDisplay">---</code>
+        </div>
+        <span class="room-badge-folder" id="roomCountDisplay" style="background: rgba(56, 189, 248, 0.15); color: #7dd3fc;">---</span>
+      </div>
+
+      <div class="search-wrapper">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          class="search-input" 
+          id="searchInput" 
+          placeholder="Buscar aula ou palestrante..."
+          aria-label="Buscar aula ou palestrante nesta sala"
+        >
+      </div>
+    </div>
+
+    <!-- EXIBIÇÃO DO CONTEÚDO: Lista em Accordion
+         Regras:
+         1. Fechado: Barra azul escura com título e chevron para baixo
+         2. Aberto: Iframe do Vimeo ajustado em 16:9 (padding-bottom: 56.25%) e chevron girado
+         3. Apenas um item aberto por vez (Single-Open Accordion) -->
+    <section class="accordion-section" aria-label="Aulas e Sessões Gravadas">
+      <div class="accordion-list" id="accordionContainer">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       Rodapé
+       ========================================================================== -->
+  <footer class="app-footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2026 Cathlabflix Sessions. Todos os direitos reservados.</p>
+        <p>Desenvolvido com HTML, CSS e JavaScript Puro • Integração com Vimeo API v3</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       Modal de Configuração da API do Vimeo
+       ========================================================================== -->
+  <div class="modal-backdrop" id="settingsModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Configuração da API do Vimeo
+        </h3>
+        <button type="button" class="modal-close-btn" id="btnCloseSettings" aria-label="Fechar modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="settingsForm">
+        <div class="modal-body">
+          <div class="form-switch-row">
+            <div>
+              <div class="form-label" style="color: #ffffff; margin-bottom: 2px;">Usar Dados Mockados (Simulação)</div>
+              <div class="form-hint">Ative para navegar e testar a interface sem necessidade de token ativo.</div>
+            </div>
+            <label style="cursor: pointer; display: flex; align-items: center;">
+              <input type="checkbox" id="toggleMockSwitch" style="width: 20px; height: 20px; accent-color: var(--accent-cyan);" checked>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label for="tokenInput" class="form-label">Vimeo Personal Access Token (Bearer Token)</label>
+            <input 
+              type="password" 
+              class="form-control" 
+              id="tokenInput" 
+              placeholder="Cole seu token de acesso da API do Vimeo aqui..." 
+              autocomplete="off"
+            >
+            <div class="form-hint">
+              Para obter seu token, acesse <a href="https://developer.vimeo.com/apps" target="_blank" rel="noopener">developer.vimeo.com/apps</a>, crie uma aplicação e gere um Personal Access Token com escopo <code>private</code> e <code>video_files</code>.
+            </div>
+          </div>
+
+          <div class="form-hint" style="background: rgba(56, 189, 248, 0.08); padding: 0.75rem; border-radius: 6px; border: 1px solid var(--tag-border);">
+            💡 <strong>Dica de Mapeamento:</strong> A lista de dias, salas e seus respectivos <code>folder_id</code> podem ser facilmente ajustados no arquivo <code>js/config.js</code>.
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="btnCancelSettings">Cancelar</button>
+          <button type="submit" class="btn-primary">Salvar & Aplicar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Scripts JavaScript (Vanilla JS Modular)
+       ========================================================================== -->
+  <script src="js/config.js"></script>
+  <script src="js/vimeoService.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
