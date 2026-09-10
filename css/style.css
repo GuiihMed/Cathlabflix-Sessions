@@ -27,6 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 3rem 1.25rem 2.5rem 1.25rem;
+  overflow-x: hidden;
 }
 
 button {
@@ -74,6 +75,7 @@ button {
   border: 1px solid var(--bg-card-border);
   overflow: hidden;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  width: 100%;
 }
 
 /* ==========================================================================
@@ -88,14 +90,20 @@ button {
 
 .days-nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 100%;
+}
+
+.days-nav li {
+  min-width: 0;
 }
 
 .day-tab {
   width: 100%;
+  min-width: 0;
   height: 52px;
   display: flex;
   align-items: center;
@@ -107,6 +115,10 @@ button {
   border-right: 1px solid var(--day-tab-divider);
   transition: background-color var(--transition-fast), color var(--transition-fast);
   user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.5rem;
 }
 
 .days-nav li:last-child .day-tab {
@@ -138,9 +150,13 @@ button {
 }
 
 .rooms-nav-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
   width: 100%;
 }
 
@@ -242,6 +258,7 @@ button {
   background-color: var(--accordion-bg);
   text-align: left;
   user-select: none;
+  min-width: 0;
 }
 
 .accordion-header:hover .accordion-title {
@@ -254,6 +271,9 @@ button {
   color: var(--accordion-title-color);
   line-height: 1.4;
   transition: color var(--transition-fast);
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 /* Ícone de Chevron */
@@ -304,14 +324,16 @@ button {
 .video-responsive-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 Exato */
   height: 0;
+  padding-bottom: 56.25%; /* 16:9 Universal Fallback */
   overflow: hidden;
   background-color: #000000;
 }
 
 @supports (aspect-ratio: 16 / 9) {
   .video-responsive-wrapper {
+    height: auto;
+    padding-bottom: 0;
     aspect-ratio: 16 / 9;
   }
 }
@@ -586,8 +608,10 @@ button {
 }
 
 /* ==========================================================================
-   Responsividade
+   Responsividade (Tablets e Dispositivos Móveis)
    ========================================================================== */
+
+/* Tablets e Telas Médias (<= 768px) */
 @media (max-width: 768px) {
   body {
     padding: 1.5rem 0.85rem;
@@ -599,6 +623,11 @@ button {
 
   .page-title {
     font-size: 1.55rem;
+  }
+
+  .day-tab {
+    height: 48px;
+    font-size: 0.95rem;
   }
 
   .rooms-nav-container {
@@ -614,7 +643,8 @@ button {
   }
 
   .accordion-header {
-    padding: 1.1rem 1.25rem;
+    padding: 1.05rem 1.25rem;
+    gap: 1rem;
   }
 
   .accordion-title {
@@ -623,5 +653,105 @@ button {
 
   .accordion-content-box {
     padding: 0 1.25rem 1.25rem 1.25rem;
+  }
+}
+
+/* Smartphones e Telas Pequenas (<= 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 1.1rem 0.6rem 2rem 0.6rem;
+  }
+
+  .content-header {
+    margin-bottom: 1.2rem;
+  }
+
+  .page-title {
+    font-size: 1.35rem;
+  }
+
+  .title-underline {
+    width: 50px;
+    height: 2.5px;
+    margin-top: 0.45rem;
+  }
+
+  .day-tab {
+    height: 44px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0 0.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .rooms-nav-container {
+    padding: 0.75rem 0.85rem;
+  }
+
+  .rooms-nav {
+    gap: 1.25rem;
+  }
+
+  .room-tab {
+    font-size: 0.85rem;
+    padding: 0.2rem 0 0.4rem 0;
+  }
+
+  .rooms-scroll-arrow {
+    margin-left: 0.5rem;
+    padding: 0.2rem 0.3rem;
+  }
+
+  .accordion-list {
+    padding: 0 0.75rem 1.25rem 0.75rem;
+    gap: 0.85rem;
+  }
+
+  .accordion-header {
+    padding: 0.9rem 0.85rem;
+    gap: 0.75rem;
+  }
+
+  .accordion-title {
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  .accordion-chevron-wrapper {
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion-chevron {
+    width: 14px;
+    height: 14px;
+  }
+
+  .accordion-content-box {
+    padding: 0 0.85rem 0.85rem 0.85rem;
+  }
+
+  /* Modais no Mobile */
+  .modal-backdrop {
+    padding: 0.75rem;
+  }
+
+  .modal-card {
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-header {
+    padding: 1rem 1.15rem;
+  }
+
+  .modal-body {
+    padding: 1.15rem;
+    overflow-y: auto;
+  }
+
+  .modal-footer {
+    padding: 0.85rem 1.15rem;
   }
 }

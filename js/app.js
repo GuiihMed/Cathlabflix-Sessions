@@ -103,11 +103,16 @@
     // 3. Seta de Scroll Horizontal de Salas
     if (dom.roomsScrollNext && dom.roomsNavWrapper) {
       dom.roomsScrollNext.addEventListener('click', () => {
-        dom.roomsNavWrapper.scrollBy({
-          left: 220,
-          behavior: 'smooth'
-        });
+        const isNearEnd = dom.roomsNavWrapper.scrollLeft + dom.roomsNavWrapper.clientWidth >= dom.roomsNavWrapper.scrollWidth - 15;
+        if (isNearEnd) {
+          dom.roomsNavWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          dom.roomsNavWrapper.scrollBy({ left: 160, behavior: 'smooth' });
+        }
       });
+
+      dom.roomsNavWrapper.addEventListener('scroll', updateRoomsScrollArrow, { passive: true });
+      window.addEventListener('resize', updateRoomsScrollArrow);
     }
 
     // 4. Modal de Configurações da API do Vimeo
@@ -195,6 +200,19 @@
     if (activeTab) {
       activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
+
+    updateRoomsScrollArrow();
+  }
+
+  /**
+   * Mostra ou oculta a seta de rolagem das salas dinamicamente
+   */
+  function updateRoomsScrollArrow() {
+    if (!dom.roomsScrollNext || !dom.roomsNavWrapper) return;
+    requestAnimationFrame(() => {
+      const isScrollable = dom.roomsNavWrapper.scrollWidth > dom.roomsNavWrapper.clientWidth + 8;
+      dom.roomsScrollNext.style.display = isScrollable ? 'flex' : 'none';
+    });
   }
 
   /**
