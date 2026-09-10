@@ -74,6 +74,45 @@
 
     // Carrega os vídeos da sala ativa
     loadVideosForActiveRoom();
+
+    // Notifica e sincroniza dinamicamente a altura para sites que usam iframe
+    setupIframeAutoResizer();
+  }
+
+  /**
+   * Comunicação com a página pai para auto-ajuste de altura do iframe
+   */
+  function setupIframeAutoResizer() {
+    if (typeof ResizeObserver !== 'undefined' && document.body) {
+      const ro = new ResizeObserver(() => {
+        notifyParentHeight();
+      });
+      ro.observe(document.body);
+    }
+    window.addEventListener('resize', notifyParentHeight);
+    window.addEventListener('load', notifyParentHeight);
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'cathlabflix-request-height') {
+        notifyParentHeight();
+      }
+    });
+    // Primeira notificação
+    notifyParentHeight();
+  }
+
+  function notifyParentHeight() {
+    if (window.parent && window.parent !== window) {
+      const height = Math.max(
+        document.body.scrollHeight || 0,
+        document.body.offsetHeight || 0,
+        document.documentElement.scrollHeight || 0,
+        document.documentElement.offsetHeight || 0
+      );
+      window.parent.postMessage({
+        type: 'cathlabflix-sessions-resize',
+        height: height
+      }, '*');
+    }
   }
 
   /**

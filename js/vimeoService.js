@@ -43,7 +43,9 @@ class VimeoService {
     // 2. Tenta a Serverless Function do Vercel (/api/videos) que faz o proxy no servidor sem bloqueio de CORS
     if (window.location && window.location.protocol && window.location.protocol.startsWith('http')) {
       try {
-        const proxyUrl = `/api/videos?folderId=${encodeURIComponent(folderId)}`;
+        const isLocalOrVercel = window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost';
+        const apiHost = isLocalOrVercel ? '' : 'https://cathlabflix-sessions.vercel.app';
+        const proxyUrl = `${apiHost}/api/videos?folderId=${encodeURIComponent(folderId)}`;
         const response = await fetch(proxyUrl);
         if (response.ok) {
           const json = await response.json();
