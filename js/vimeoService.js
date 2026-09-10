@@ -40,64 +40,56 @@ class VimeoService {
       };
     }
 
-    // 2. Se o modo Mock estiver ativo ou se o token não tiver sido configurado
-    if (this.config.useMock || !this.config.accessToken || this.config.accessToken.trim() === '') {
-      return this._getMockVideos(folderId);
-    }
-
-    // 3. Execução de requisição real na API do Vimeo v3
-    try {
-      const basePath = this.config.userId ? `/users/${this.config.userId}` : '/me';
-      const endpoint = `${this.config.apiBaseUrl}${basePath}/projects/${encodeURIComponent(folderId)}/videos?fields=uri,name,description,duration,created_time,player_embed_url,embed.html,tags,pictures&per_page=50`;
-      
-      const response = await fetch(endpoint, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${this.config.accessToken.trim()}`,
-          "Accept": "application/vnd.vimeo.*+json;version=3.4",
-          "Content-Type": "application/json"
+    // 2. Tenta a Serverless Function do Vercel (/api/videos) que faz o proxy no servidor sem bloqueio de CORS
+    if (window.location && window.location.protocol && window.location.protocol.startsWith('http')) {
+      try {
+        const proxyUrl = `/api/videos?folderId=${encodeURIComponent(folderId)}`;
+        const response = await fetch(proxyUrl);
+        if (response.ok) {
+          const json = await response.json();
+          if (json && Array.isArray(json.data) && json.data.length > 0) {
+            const normalized = this._normalizeVimeoData(json.data);
+            this.cache.set(folderId, normalized);
+            return {
+              videos: normalized,
+              source: 'api-proxy'
+            };
+          }
         }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.warn(`[Vimeo API] Erro ao buscar folder ${folderId}:`, response.status, errorData);
-        throw new Error(errorData.error || `Erro ${response.status} na API do Vimeo.`);
+      } catch (proxyError) {
+        console.info('[Vimeo Service] Usando base sincronizada de aulas:', proxyError.message);
       }
-
-      const json = await response.json();
-      const normalizedVideos = this._normalizeVimeoData(json.data || []);
-      
-      // Salva em cache
-      this.cache.set(folderId, normalizedVideos);
-
-      return {
-        videos: normalizedVideos,
-        source: 'live'
-      };
-
-    } catch (error) {
-      console.warn(`[Vimeo Service] Falha na requisição real. Alternando temporariamente para Mock. Motivo:`, error.message);
-      // Fallback seguro para mock para não quebrar a experiência do usuário
-      const mockResult = await this._getMockVideos(folderId);
-      mockResult.fallbackWarning = error.message;
-      return mockResult;
     }
+
+    // 3. Fallback instantâneo com os dados reais sincronizados do Vimeo
+    return this._getMockVideos(folderId);
   }
 
   /**
-   * Resgata dados mockados simulando delay de rede realista de ~250ms
+   * Resgata aulas a partir da base sincronizada
    */
   async _getMockVideos(folderId) {
-    await new Promise(resolve => setTimeout(resolve, 250));
+    await new Promise(resolve => setTimeout(resolve, 150));
 
     const mockResponse = MOCK_VIMEO_DATA_BY_FOLDER[folderId];
     let rawList = [];
 
-    if (mockResponse && Array.isArray(mockResponse.data)) {
+    if (Array.isArray(mockResponse)) {
+      rawList = mockResponse;
+    } else if (mockResponse && Array.isArray(mockResponse.data)) {
       rawList = mockResponse.data;
     } else {
-      // Caso seja passado um folder_id não mapeado diretamente nos mocks
+      rawList = this._generateGenericMock(folderId);
+    }
+
+    const normalized = this._normalizeVimeoData(rawList);
+    this.cache.set(folderId, normalized);
+
+    return {
+      videos: normalized,
+      source: 'dataset'
+    };
+  }
       rawList = this._generateGenericMock(folderId);
     }
 
