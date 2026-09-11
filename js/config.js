@@ -81,7 +81,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
   "30423156": [
     {
       "uri": "/videos/1223707542",
-      "name": "02_SOLACI_INCOR_Dr Raul Arrieta-003",
+      "name": "02 - SOLACI INCOR - Dr Raul Arrieta - 003",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223707542?h=7bc3c51775",
       "duration": 2614,
@@ -93,7 +93,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223707532",
-      "name": "04_SOLACI_INCOR_Dr Raul Arrieta-004",
+      "name": "04 - SOLACI INCOR - Dr Raul Arrieta - 004",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223707532?h=68b6c52dd8",
       "duration": 2795,
@@ -105,7 +105,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223707531",
-      "name": "03_SOLACI_INCOR_Dr Carlos Campos-002",
+      "name": "03 - SOLACI INCOR - Dr Carlos Campos - 002",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223707531?h=44d5b84a4c",
       "duration": 2453,
@@ -117,7 +117,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223707530",
-      "name": "01_SOLACI_INCOR_Dr Carlos Campos",
+      "name": "01 - SOLACI INCOR - Dr Carlos Campos",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223707530?h=a5d6ac5fcd",
       "duration": 1444,
@@ -131,7 +131,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
   "30423313": [
     {
       "uri": "/videos/1223744925",
-      "name": "MEDITRONIC-001",
+      "name": "MEDITRONIC - 001",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223744925?h=1a6523d787",
       "duration": 2895,
@@ -143,7 +143,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223744924",
-      "name": "SMT-002",
+      "name": "SMT - 002",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223744924?h=357d8a2fb7",
       "duration": 2085,
@@ -155,7 +155,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223744923",
-      "name": "DANTE-003",
+      "name": "DANTE - 003",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223744923?h=17586492c7",
       "duration": 2522,
@@ -167,7 +167,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223744922",
-      "name": "MERIL-004",
+      "name": "MERIL - 004",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223744922?h=3fe57bcdee",
       "duration": 2806,
@@ -181,7 +181,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
   "30424545": [
     {
       "uri": "/videos/1223778332",
-      "name": "14-00 - 15-00- Lecture & International Live Case - Support- Boston Scientific",
+      "name": "14-00 - 15-00 - Lecture & International Live Case - Support - Boston Scientific",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223778332?h=f8364cb68b",
       "duration": 2842,
@@ -193,7 +193,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223777539",
-      "name": "16-00 - 17-00- Mechanical Circulatory Support- From High-Risk Pci To Cardiogenic Shock",
+      "name": "16-00 - 17-00 - Mechanical Circulatory Support - From High-Risk Pci To Cardiogenic Shock",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223777539?h=e34142425c",
       "duration": 3493,
@@ -205,7 +205,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223777407",
-      "name": "13-00 - 14-00- Lecture & International Case - Support- Medtronic",
+      "name": "13-00 - 14-00 - Lecture & International Case - Support - Medtronic",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223777407?h=dfa8122a7c",
       "duration": 3423,
@@ -217,7 +217,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223777350",
-      "name": "12-00 - 13-00- Scientific Talk- Advancing From Long-Term Evidence To Next-Generation Design - Support- Venus",
+      "name": "12-00 - 13-00 - Scientific Talk - Advancing From Long-Term Evidence To Next-Generation Design - Support - Venus",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223777350?h=364d45a51c",
       "duration": 3598,
@@ -229,7 +229,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223776147",
-      "name": "11-00 - 12-00- Lecture & National Live Case - Support- Lepu",
+      "name": "11-00 - 12-00 - Lecture & National Live Case - Support - Lepu",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223776147?h=2f422a015d",
       "duration": 3134,
@@ -241,7 +241,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223775830",
-      "name": "18-00 - 19-00- Solaci-Sbhci Awards Ceremony",
+      "name": "18-00 - 19-00 - Solaci-Sbhci Awards Ceremony",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223775830?h=cb5a5c8ef1",
       "duration": 3064,
@@ -253,7 +253,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223775461",
-      "name": "15-30 - 16-00- Pulmonary Embolism- From Risk Stratification To Advanced Therapies - Support- Penumbra",
+      "name": "15-30 - 16-00 - Pulmonary Embolism - From Risk Stratification To Advanced Therapies - Support - Penumbra",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223775461?h=6c1a5e1f3b",
       "duration": 1719,
@@ -265,7 +265,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223775458",
-      "name": "17-00 - 18-00- Coronary Physiology In Debate- Wires, Algorithms, And The Battle For Guidance",
+      "name": "17-00 - 18-00 - Coronary Physiology In Debate - Wires, Algorithms, And The Battle For Guidance",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223775458?h=aec33eaa75",
       "duration": 3563,
@@ -277,7 +277,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223775457",
-      "name": "08-45 - 10-00- Opening & Vision- The Future Of Interventional Cardiology 2026",
+      "name": "08-45 - 10-00 - Opening & Vision - The Future Of Interventional Cardiology 2026",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223775457?h=cd3e553bb0",
       "duration": 4836,
@@ -289,7 +289,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223775456",
-      "name": "10-00 - 11-00- Lecture & National Live Case - Support- Meril Life Science",
+      "name": "10-00 - 11-00 - Lecture & National Live Case - Support - Meril Life Science",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223775456?h=cf10a1be55",
       "duration": 3771,
@@ -315,7 +315,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
   "30424636": [
     {
       "uri": "/videos/1223788581",
-      "name": "13-00 - 14-00- Lecture & International Live Case - Support- Boston Scientific",
+      "name": "13-00 - 14-00 - Lecture & International Live Case - Support - Boston Scientific",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223788581?h=8d1f6e2efb",
       "duration": 3687,
@@ -327,7 +327,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223788580",
-      "name": "12-00 - 13-00- Scientific Talk- Modern Pci In Practice- See. Prep. Treat. From Strategy To Case Discussion - Support- Boston Sci",
+      "name": "12-00 - 13-00 - Scientific Talk - Modern Pci In Practice - See. Prep. Treat. From Strategy To Case Discussion - Support - Boston Sci",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223788580?h=000d3f1631",
       "duration": 2736,
@@ -339,7 +339,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223788579",
-      "name": "08-00 - 09-00- From Calcium To Compliance- Contemporary Atherectomy Strategies",
+      "name": "08-00 - 09-00 - From Calcium To Compliance - Contemporary Atherectomy Strategies",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223788579?h=a50599241e",
       "duration": 3259,
@@ -351,7 +351,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782745",
-      "name": "17-00 - 18-00- Updates In Mitral Valve-In-Valve Interventions & Live Case - Support- Edwards Lifesciences",
+      "name": "17-00 - 18-00 - Updates In Mitral Valve-In-Valve Interventions & Live Case - Support - Edwards Lifesciences",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782745?h=841c224455",
       "duration": 3455,
@@ -363,7 +363,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782744",
-      "name": "11-15 - 12-00- National Live Case - Support- Shockwave",
+      "name": "11-15 - 12-00 - National Live Case - Support - Shockwave",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782744?h=fa689b035b",
       "duration": 2553,
@@ -375,7 +375,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782743",
-      "name": "10-30 - 11-15- Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge",
+      "name": "10-30 - 11-15 - Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782743?h=78de018565",
       "duration": 2908,
@@ -387,7 +387,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223780659",
-      "name": "14-00 - 14-30- Shockwave Ivl In Complex Pci- From Procedural Strategy To Proven Clinical Impact - Support- Shockwave",
+      "name": "14-00 - 14-30 - Shockwave Ivl In Complex Pci - From Procedural Strategy To Proven Clinical Impact - Support - Shockwave",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223780659?h=e2d62fd7ab",
       "duration": 2108,
@@ -399,7 +399,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223780658",
-      "name": "16-15 - 17-00- Joint Session Crf - Tavi Durability In 2026- Evidence, Gaps, And What Comes Next",
+      "name": "16-15 - 17-00 - Joint Session Crf - Tavi Durability In 2026 - Evidence, Gaps, And What Comes Next",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223780658?h=338811e3de",
       "duration": 2764,
@@ -411,7 +411,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223780657",
-      "name": "14-30 - 15-00- Coronary Calcium Case Theater- Cracking The Toughest Lesions",
+      "name": "14-30 - 15-00 - Coronary Calcium Case Theater - Cracking The Toughest Lesions",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223780657?h=15b9ffeae1",
       "duration": 2314,
@@ -423,7 +423,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223780656",
-      "name": "09-00 - 10-00- Live Case - Support- Microport",
+      "name": "09-00 - 10-00 - Live Case - Support - Microport",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223780656?h=a5ba2f8707",
       "duration": 4287,
@@ -437,7 +437,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
   "30424838": [
     {
       "uri": "/videos/1223784655",
-      "name": "10-30 - 11-00- The Future Of Pci- Technology, Intelligence, And The End Of Conventional Workflows - Part 2",
+      "name": "10-30 - 11-00 - The Future Of Pci - Technology, Intelligence, And The End Of Conventional Workflows - Part 2",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223784655?h=f50ead4afa",
       "duration": 1867,
@@ -449,7 +449,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223784580",
-      "name": "16-15 - 16-30- Closing Ceremony",
+      "name": "16-15 - 16-30 - Closing Ceremony",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223784580?h=b897c3fa19",
       "duration": 1017,
@@ -461,7 +461,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223783349",
-      "name": "12-00 - 13-00- Scientific Talk - Crdn- Innovations In Cardiovascular Intervention - Support- Medtronic",
+      "name": "12-00 - 13-00 - Scientific Talk - Crdn - Innovations In Cardiovascular Intervention - Support - Medtronic",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223783349?h=02cb727be5",
       "duration": 3371,
@@ -473,7 +473,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223783065",
-      "name": "08-00 - 09-00- Stable Cad And Multivessel Disease",
+      "name": "08-00 - 09-00 - Stable Cad And Multivessel Disease",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223783065?h=e51ebb5596",
       "duration": 3281,
@@ -485,7 +485,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782937",
-      "name": "09-00 - 10-00- Lecture & Live Case",
+      "name": "09-00 - 10-00 - Lecture & Live Case",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782937?h=36d1b06d0c",
       "duration": 3848,
@@ -497,7 +497,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782508",
-      "name": "13-30 - 13-56- Boston Scientific Calcium Challenge",
+      "name": "13-30 - 13-56 - Boston Scientific Calcium Challenge",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782508?h=4edf89a100",
       "duration": 488,
@@ -509,7 +509,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782507",
-      "name": "13-00 - 13-30- Complex Acs Presentation",
+      "name": "13-00 - 13-30 - Complex Acs Presentation",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782507?h=11f6429c5a",
       "duration": 2010,
@@ -521,7 +521,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782506",
-      "name": "13-56 - 14-30- Best Elca Cases Biomedical-Philips",
+      "name": "13-56 - 14-30 - Best Elca Cases Biomedical-Philips",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782506?h=ced000e8f8",
       "duration": 474,
@@ -533,7 +533,7 @@ const MOCK_VIMEO_DATA_BY_FOLDER = {
     },
     {
       "uri": "/videos/1223782505",
-      "name": "15-00 - 16-15- Solaci-Sbhci Best Case And Abstract Award Cerimony",
+      "name": "15-00 - 16-15 - Solaci-Sbhci Best Case And Abstract Award Cerimony",
       "description": null,
       "player_embed_url": "https://player.vimeo.com/video/1223782505?h=6a09a868c6",
       "duration": 2920,

@@ -107,12 +107,15 @@ class VimeoService {
         embedUrl += `${separator}badge=0&autopause=0&player_id=0`;
       }
 
+      const rawTitle = item.name || `Aula ${String(index + 1).padStart(2, '0')}`;
+      const formattedTitle = this.formatVideoTitle(rawTitle);
+
       return {
         id: videoId,
         uri: item.uri || `/videos/${videoId}`,
-        title: item.name || `Aula ${String(index + 1).padStart(2, '0')}`,
+        title: formattedTitle,
         description: item.description || "Sem descrição disponível para esta sessão.",
-        speaker: item.speaker || this._extractSpeaker(item.name, item.description),
+        speaker: item.speaker || this._extractSpeaker(formattedTitle, item.description),
         duration: item.duration || 0,
         formattedDuration: this.formatDuration(item.duration || 0),
         createdTime: item.created_time || new Date().toISOString(),
@@ -121,6 +124,34 @@ class VimeoService {
         tags: Array.isArray(item.tags) ? item.tags.map(t => typeof t === 'string' ? t : t.tag || t.name) : []
       };
     });
+  }
+
+  /**
+   * Formata e limpa o título do vídeo para exibição refinada
+   * Remove underscores, normaliza hífens soltos e preserva integralmente o conteúdo original
+   */
+  formatVideoTitle(raw) {
+    if (!raw) return "";
+    let s = String(raw).trim();
+
+    // 1. Trata casos como "01_SOLACI_INCOR_Dr Carlos Campos" -> "01 - SOLACI INCOR - Dr Carlos Campos"
+    s = s.replace(/^(\d{1,2})_([A-Za-z0-9]+)_([A-Za-z0-9]+)_/i, "$1 - $2 $3 - ");
+    
+    // 2. Para qualquer outro underscore restante, substitui por espaço
+    s = s.replace(/_+/g, " ");
+
+    // 3. Normaliza hífens colados no final de horários ou palavras antes de espaço:
+    // "15-00- Lecture" -> "15-00 - Lecture", "Support- Boston" -> "Support - Boston"
+    s = s.replace(/([^\s-])-\s+/g, "$1 - ");
+
+    // 4. Normaliza hífens colados antes de código numérico final:
+    // "Arrieta-003" -> "Arrieta - 003", "MEDITRONIC-001" -> "MEDITRONIC - 001"
+    s = s.replace(/([A-Za-zÀ-ÿ])-(\d{3,})/g, "$1 - $2");
+
+    // 5. Normaliza múltiplos espaços
+    s = s.replace(/\s+/g, " ").trim();
+
+    return s;
   }
 
   /**
