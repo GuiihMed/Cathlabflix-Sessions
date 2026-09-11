@@ -39,8 +39,8 @@ export default async function handler(req, res) {
     }
 
     const data = await vimeoRes.json();
-    // Cache de 5 minutos na borda da Vercel
-    res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate');
+    // Cache de 60s na borda da Vercel para rápida sincronização com alterações no Vimeo
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=120');
     return res.status(200).json(data);
 
   } catch (error) {
