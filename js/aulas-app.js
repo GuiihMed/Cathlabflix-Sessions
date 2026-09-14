@@ -2,9 +2,8 @@
  * Cathlabflix Sessions - Controlador da Grade de Aulas e Apresentações PPTX (/solaci/aulas)
  * 
  * Gerencia:
- * - Seleção de Salas (Nível 1)
- * - Seleção e Scroll Horizontal de Períodos (Nível 2)
- * - Accordion com Card de Download PPTX (Nível 3)
+ * - Seleção de Dias (Dia 29 | Dia 30 | Dia 31)
+ * - Accordion com Card de Download PPTX (Nomes reais sincronizados com Gravações)
  * - Auto-ajuste de altura via postMessage para iframes/embed
  * - Hook preparado para Google Drive API
  */
@@ -14,16 +13,13 @@
 
   // Estado da Aplicação de Aulas
   const state = {
-    currentRoomId: null,
-    currentPeriodId: null,
+    currentDayId: null,
     openAulaIds: new Set()
   };
 
   // Elementos do DOM
   const dom = {
-    roomsBar: document.getElementById('aulasRoomsBar'),
-    periodsWrapper: document.getElementById('aulasPeriodsWrapper'),
-    scrollNextBtn: document.getElementById('aulasScrollNextBtn'),
+    daysBar: document.getElementById('aulasDaysBar'),
     aulasContainer: document.getElementById('aulasContainer')
   };
 
@@ -31,143 +27,142 @@
    * Inicialização
    */
   function init() {
-    if (!AULAS_SCHEDULE.rooms || AULAS_SCHEDULE.rooms.length === 0) {
-      console.warn("Nenhuma sala configurada em AULAS_SCHEDULE.");
+    if (!AULAS_SCHEDULE.days || AULAS_SCHEDULE.days.length === 0) {
+      console.warn("Nenhum dia configurado em AULAS_SCHEDULE.");
       return;
     }
 
-    // Inicializa na primeira sala e no primeiro período
-    const initialRoom = AULAS_SCHEDULE.rooms[0];
-    state.currentRoomId = initialRoom.id;
+    // Inicializa no primeiro dia
+    const initialDay = AULAS_SCHEDULE.days[0];
+    state.currentDayId = initialDay.id;
 
-    if (initialRoom.periods && initialRoom.periods.length > 0) {
-      state.currentPeriodId = initialRoom.periods[0].id;
+    // Abre a primeira aula por padrão para feedback visual imediato
+    if (initialDay.aulas && initialDay.aulas.length > 0) {
+      state.openAulaIds.add(initialDay.aulas[0].id);
     }
 
-    renderRooms();
-    renderPeriods();
+    renderDays();
     renderAulas();
     bindEvents();
     setupIframeResizer();
   }
 
   /**
-   * Renderiza Abas de Salas (Nível 1)
+   * Renderiza Abas dos Dias (Nível 1)
    */
-  function renderRooms() {
-    if (!dom.roomsBar) return;
-    dom.roomsBar.innerHTML = '';
+  function renderDays() {
+    if (!dom.daysBar) return;
+    dom.daysBar.innerHTML = '';
 
-    AULAS_SCHEDULE.rooms.forEach(room => {
+    AULAS_SCHEDULE.days.forEach(day => {
       const btn = document.createElement('button');
       btn.type = 'button';
-      btn.className = `aulas-room-tab ${room.id === state.currentRoomId ? 'active' : ''}`;
-      btn.dataset.roomId = room.id;
-      btn.textContent = room.name;
+      btn.className = `aulas-day-tab ${day.id === state.currentDayId ? 'active' : ''}`;
+      btn.dataset.dayId = day.id;
+      btn.textContent = day.name || day.label;
       btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', room.id === state.currentRoomId ? 'true' : 'false');
-      dom.roomsBar.appendChild(btn);
+      btn.setAttribute('aria-selected', day.id === state.currentDayId ? 'true' : 'false');
+      btn.id = `tab-${day.id}`;
+      dom.daysBar.appendChild(btn);
     });
   }
 
   /**
-   * Renderiza Sub-abas de Períodos (Nível 2)
+   * Seleciona um dia e atualiza a grade de aulas
    */
-  function renderPeriods() {
-    if (!dom.periodsWrapper) return;
-    dom.periodsWrapper.innerHTML = '';
+  function selectDay(dayId) {
+    if (state.currentDayId === dayId) return;
 
-    const currentRoom = getCurrentRoom();
-    if (!currentRoom || !currentRoom.periods || currentRoom.periods.length === 0) {
-      dom.periodsWrapper.innerHTML = '<span style="color: #94a3b8; font-size: 0.85rem; padding: 0.5rem 0;">Nenhum período disponível.</span>';
-      return;
+    state.currentDayId = dayId;
+    state.openAulaIds.clear();
+
+    const currentDay = getCurrentDay();
+    if (currentDay && currentDay.aulas && currentDay.aulas.length > 0) {
+      state.openAulaIds.add(currentDay.aulas[0].id);
     }
 
-    currentRoom.periods.forEach(period => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = `aulas-period-tab ${period.id === state.currentPeriodId ? 'active' : ''}`;
-      btn.dataset.periodId = period.id;
-      btn.textContent = period.label;
-      btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', period.id === state.currentPeriodId ? 'true' : 'false');
-      dom.periodsWrapper.appendChild(btn);
-    });
-
-    updateScrollArrowVisibility();
+    renderDays();
+    renderAulas();
+    notifyHeight();
   }
 
   /**
-   * Renderiza a Lista de Accordions com os Cards de PPTX (Nível 3)
+   * Renderiza a Lista de Accordions com Cards de Download PPTX
    */
   function renderAulas() {
     if (!dom.aulasContainer) return;
     dom.aulasContainer.innerHTML = '';
 
-    const currentPeriod = getCurrentPeriod();
-    if (!currentPeriod || !currentPeriod.aulas || currentPeriod.aulas.length === 0) {
-      renderEmptyState();
+    const currentDay = getCurrentDay();
+    if (!currentDay || !currentDay.aulas || currentDay.aulas.length === 0) {
+      dom.aulasContainer.innerHTML = `
+        <div style="padding: 2.5rem; text-align: center; color: #94a3b8; font-size: 0.95rem;">
+          Nenhuma aula disponível para este dia.
+        </div>
+      `;
       notifyHeight();
       return;
     }
 
-    // Por padrão, se nenhum item estiver aberto, abre o primeiro (como na imagem de referência)
-    if (state.openAulaIds.size === 0 && currentPeriod.aulas.length > 0) {
-      state.openAulaIds.add(currentPeriod.aulas[0].id);
-    }
-
     const fragment = document.createDocumentFragment();
 
-    currentPeriod.aulas.forEach(aula => {
+    currentDay.aulas.forEach((aula, index) => {
       const isOpen = state.openAulaIds.has(aula.id);
-      const itemEl = document.createElement('div');
-      itemEl.className = `aula-accordion-item ${isOpen ? 'active' : ''}`;
-      itemEl.id = `aula-item-${aula.id}`;
-
       const file = aula.file || {};
-      const fileName = escapeHtml(file.name || 'Apresentacao.pptx');
-      const fileSize = escapeHtml(file.size || 'Download PPTX');
-      const downloadUrl = file.downloadUrl && file.downloadUrl !== '#' ? escapeHtml(file.downloadUrl) : 'javascript:void(0)';
+      const fileName = file.name || `${aula.title}.pptx`;
+      const fileSize = file.size || '38.39MB';
+      const downloadUrl = file.downloadUrl || '#';
 
-      itemEl.innerHTML = `
+      const item = document.createElement('div');
+      item.className = `aulas-accordion-item ${isOpen ? 'open' : ''}`;
+      item.dataset.aulaId = aula.id;
+
+      item.innerHTML = `
         <button 
           type="button" 
-          class="aula-accordion-header" 
-          aria-expanded="${isOpen ? 'true' : 'false'}"
-          aria-controls="panel-${aula.id}"
-          data-aula-id="${aula.id}"
+          class="aulas-accordion-header" 
+          aria-expanded="${isOpen}"
+          aria-controls="aula-body-${aula.id}"
+          id="aula-header-${aula.id}"
         >
-          <span class="aula-accordion-title">${escapeHtml(aula.title)}</span>
-          <svg class="aula-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
+          <span class="aulas-item-title">${escapeHtml(aula.title)}</span>
+          <span class="aulas-item-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
         </button>
 
-        <div class="aula-accordion-body" id="panel-${aula.id}" role="region">
-          <a href="${downloadUrl}" class="pptx-card-box" target="_blank" rel="noopener" download title="Baixar ${fileName}">
-            <div class="pptx-left-group">
-              <!-- Ícone Badge P do PowerPoint -->
-              <div class="pptx-icon-badge" aria-hidden="true">P</div>
-              
-              <div class="pptx-info-stack">
-                <span class="pptx-filename">${fileName}</span>
-                <span class="pptx-filemeta">Download PPTX · ${fileSize}</span>
-              </div>
+        <div 
+          class="aulas-accordion-body" 
+          id="aula-body-${aula.id}"
+          role="region"
+          aria-labelledby="aula-header-${aula.id}"
+        >
+          <div class="aulas-pptx-card">
+            <div class="aulas-pptx-badge">P</div>
+            <div class="aulas-pptx-info">
+              <span class="aulas-pptx-name">${escapeHtml(fileName)}</span>
+              <span class="aulas-pptx-meta">Download PPTX · ${escapeHtml(fileSize)}</span>
             </div>
-
-            <!-- Botão de Download SVG -->
-            <div class="pptx-download-btn" title="Baixar apresentação">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <a 
+              href="${downloadUrl}" 
+              class="aulas-pptx-download-btn" 
+              title="Baixar Apresentação PPTX (${escapeHtml(fileName)})"
+              data-aula-id="${aula.id}"
+              ${downloadUrl !== '#' ? 'download' : ''}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-            </div>
-          </a>
+            </a>
+          </div>
         </div>
       `;
 
-      fragment.appendChild(itemEl);
+      fragment.appendChild(item);
     });
 
     dom.aulasContainer.appendChild(fragment);
@@ -175,157 +170,114 @@
   }
 
   /**
-   * Estado Vazio para períodos sem aulas cadastradas ainda
-   */
-  function renderEmptyState() {
-    dom.aulasContainer.innerHTML = `
-      <div class="aulas-empty-state">
-        <svg class="aulas-empty-icon" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-        <p>As apresentações deste período estarão disponíveis em breve.</p>
-      </div>
-    `;
-  }
-
-  /**
-   * Event Listeners
-   */
-  function bindEvents() {
-    // 1. Clique nas salas (Nível 1)
-    if (dom.roomsBar) {
-      dom.roomsBar.addEventListener('click', (e) => {
-        const tab = e.target.closest('.aulas-room-tab');
-        if (!tab) return;
-        const roomId = tab.dataset.roomId;
-        if (roomId && roomId !== state.currentRoomId) {
-          selectRoom(roomId);
-        }
-      });
-    }
-
-    // 2. Clique nos períodos (Nível 2)
-    if (dom.periodsWrapper) {
-      dom.periodsWrapper.addEventListener('click', (e) => {
-        const tab = e.target.closest('.aulas-period-tab');
-        if (!tab) return;
-        const periodId = tab.dataset.periodId;
-        if (periodId && periodId !== state.currentPeriodId) {
-          selectPeriod(periodId);
-        }
-      });
-    }
-
-    // 3. Clique nos accordions (Nível 3)
-    if (dom.aulasContainer) {
-      dom.aulasContainer.addEventListener('click', (e) => {
-        const header = e.target.closest('.aula-accordion-header');
-        if (!header) return;
-        const aulaId = header.dataset.aulaId;
-        if (!aulaId) return;
-        toggleAula(aulaId);
-      });
-    }
-
-    // 4. Seta de Rolagem Horizontal de Períodos
-    if (dom.scrollNextBtn && dom.periodsWrapper) {
-      dom.scrollNextBtn.addEventListener('click', () => {
-        const isNearEnd = dom.periodsWrapper.scrollLeft + dom.periodsWrapper.clientWidth >= dom.periodsWrapper.scrollWidth - 15;
-        if (isNearEnd) {
-          dom.periodsWrapper.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          dom.periodsWrapper.scrollBy({ left: 160, behavior: 'smooth' });
-        }
-      });
-
-      dom.periodsWrapper.addEventListener('scroll', updateScrollArrowVisibility, { passive: true });
-      window.addEventListener('resize', updateScrollArrowVisibility);
-    }
-  }
-
-  /**
-   * Seleciona Sala
-   */
-  function selectRoom(roomId) {
-    state.currentRoomId = roomId;
-    const room = getCurrentRoom();
-    state.currentPeriodId = (room && room.periods && room.periods.length > 0) ? room.periods[0].id : null;
-    state.openAulaIds.clear();
-
-    renderRooms();
-    renderPeriods();
-    renderAulas();
-  }
-
-  /**
-   * Seleciona Período
-   */
-  function selectPeriod(periodId) {
-    state.currentPeriodId = periodId;
-    state.openAulaIds.clear();
-
-    // Atualiza classes ativas de períodos
-    const allTabs = dom.periodsWrapper.querySelectorAll('.aulas-period-tab');
-    allTabs.forEach(t => {
-      const isActive = t.dataset.periodId === periodId;
-      t.classList.toggle('active', isActive);
-      t.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
-
-    renderAulas();
-  }
-
-  /**
-   * Alterna estado do Accordion
+   * Alterna abertura/fechamento do accordion
    */
   function toggleAula(aulaId) {
-    const itemEl = document.getElementById(`aula-item-${aulaId}`);
-    if (!itemEl) return;
+    const item = dom.aulasContainer.querySelector(`[data-aula-id="${aulaId}"]`);
+    if (!item) return;
 
-    if (state.openAulaIds.has(aulaId)) {
+    const isOpen = state.openAulaIds.has(aulaId);
+    const header = item.querySelector('.aulas-accordion-header');
+
+    if (isOpen) {
       state.openAulaIds.delete(aulaId);
-      itemEl.classList.remove('active');
-      const btn = itemEl.querySelector('.aula-accordion-header');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
+      item.classList.remove('open');
+      if (header) header.setAttribute('aria-expanded', 'false');
     } else {
       state.openAulaIds.add(aulaId);
-      itemEl.classList.add('active');
-      const btn = itemEl.querySelector('.aula-accordion-header');
-      if (btn) btn.setAttribute('aria-expanded', 'true');
+      item.classList.add('open');
+      if (header) header.setAttribute('aria-expanded', 'true');
     }
 
     notifyHeight();
   }
 
   /**
-   * Mostra/oculta seta de rolagem de períodos
+   * Configuração de Eventos
    */
-  function updateScrollArrowVisibility() {
-    if (!dom.scrollNextBtn || !dom.periodsWrapper) return;
+  function bindEvents() {
+    // 1. Clique nas abas de Dias
+    if (dom.daysBar) {
+      dom.daysBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.aulas-day-tab');
+        if (!btn) return;
+        const dayId = btn.dataset.dayId;
+        if (dayId) selectDay(dayId);
+      });
+    }
+
+    // 2. Clique nos Accordions e Botões de Download
+    if (dom.aulasContainer) {
+      dom.aulasContainer.addEventListener('click', (e) => {
+        // Intercepta botão de download para feedback se ainda não conectado ao Google Drive
+        const downloadBtn = e.target.closest('.aulas-pptx-download-btn');
+        if (downloadBtn) {
+          const href = downloadBtn.getAttribute('href');
+          if (!href || href === '#') {
+            e.preventDefault();
+            showDrivePendingNotice();
+            return;
+          }
+        }
+
+        // Accordion Toggle
+        const header = e.target.closest('.aulas-accordion-header');
+        if (header) {
+          const item = header.closest('.aulas-accordion-item');
+          if (item && item.dataset.aulaId) {
+            toggleAula(item.dataset.aulaId);
+          }
+        }
+      });
+    }
+  }
+
+  /**
+   * Exibe aviso amigável quando o arquivo do Drive ainda está em processo de sincronização
+   */
+  function showDrivePendingNotice() {
+    let toast = document.getElementById('aulasDriveToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'aulasDriveToast';
+      toast.style.position = 'fixed';
+      toast.style.bottom = '24px';
+      toast.style.left = '50%';
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+      toast.style.background = '#0a1f54';
+      toast.style.color = '#ffffff';
+      toast.style.border = '1px solid #38bdf8';
+      toast.style.padding = '0.85rem 1.4rem';
+      toast.style.borderRadius = '8px';
+      toast.style.fontSize = '0.88rem';
+      toast.style.fontWeight = '500';
+      toast.style.fontFamily = 'Montserrat, sans-serif';
+      toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+      toast.style.zIndex = '9999';
+      toast.style.transition = 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease';
+      toast.style.opacity = '0';
+      toast.textContent = 'Arquivo PPTX estará disponível para download assim que conectado à pasta do Google Drive.';
+      document.body.appendChild(toast);
+    }
+
+    // Exibe toast com animação
     requestAnimationFrame(() => {
-      const canScroll = dom.periodsWrapper.scrollWidth > dom.periodsWrapper.clientWidth + 8;
-      dom.scrollNextBtn.style.display = canScroll ? 'flex' : 'none';
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
     });
+
+    clearTimeout(window._aulasToastTimer);
+    window._aulasToastTimer = setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(100px)';
+    }, 3800);
   }
 
   /**
-   * Helper: Resgata objeto da sala atual
+   * Helper: Resgata objeto do dia atual
    */
-  function getCurrentRoom() {
-    return AULAS_SCHEDULE.rooms.find(r => r.id === state.currentRoomId) || null;
-  }
-
-  /**
-   * Helper: Resgata objeto do período atual
-   */
-  function getCurrentPeriod() {
-    const room = getCurrentRoom();
-    if (!room || !room.periods) return null;
-    return room.periods.find(p => p.id === state.currentPeriodId) || null;
+  function getCurrentDay() {
+    return AULAS_SCHEDULE.days.find(d => d.id === state.currentDayId) || null;
   }
 
   /**
