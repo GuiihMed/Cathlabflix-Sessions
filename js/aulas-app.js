@@ -3,7 +3,7 @@
  * 
  * Gerencia:
  * - Seleção de Dias (Dia 29 | Dia 30 | Dia 31)
- * - Accordion com Card de Download PPTX (Nomes reais sincronizados com Gravações)
+ * - Exibição limpa (apenas abas dos dias, sem conteúdo temporário)
  * - Auto-ajuste de altura via postMessage para iframes/embed
  * - Hook preparado para Google Drive API
  */
@@ -36,11 +36,6 @@
     const initialDay = AULAS_SCHEDULE.days[0];
     state.currentDayId = initialDay.id;
 
-    // Abre a primeira aula por padrão para feedback visual imediato
-    if (initialDay.aulas && initialDay.aulas.length > 0) {
-      state.openAulaIds.add(initialDay.aulas[0].id);
-    }
-
     renderDays();
     renderAulas();
     bindEvents();
@@ -68,7 +63,7 @@
   }
 
   /**
-   * Seleciona um dia e atualiza a grade de aulas
+   * Seleciona um dia e atualiza o estado
    */
   function selectDay(dayId) {
     if (state.currentDayId === dayId) return;
@@ -76,18 +71,13 @@
     state.currentDayId = dayId;
     state.openAulaIds.clear();
 
-    const currentDay = getCurrentDay();
-    if (currentDay && currentDay.aulas && currentDay.aulas.length > 0) {
-      state.openAulaIds.add(currentDay.aulas[0].id);
-    }
-
     renderDays();
     renderAulas();
     notifyHeight();
   }
 
   /**
-   * Renderiza a Lista de Accordions com Cards de Download PPTX
+   * Renderiza as Aulas (se houver; por enquanto vazio conforme solicitado)
    */
   function renderAulas() {
     if (!dom.aulasContainer) return;
@@ -95,18 +85,14 @@
 
     const currentDay = getCurrentDay();
     if (!currentDay || !currentDay.aulas || currentDay.aulas.length === 0) {
-      dom.aulasContainer.innerHTML = `
-        <div style="padding: 2.5rem; text-align: center; color: #94a3b8; font-size: 0.95rem;">
-          Nenhuma aula disponível para este dia.
-        </div>
-      `;
+      // Vazio por enquanto a pedido do usuário
       notifyHeight();
       return;
     }
 
     const fragment = document.createDocumentFragment();
 
-    currentDay.aulas.forEach((aula, index) => {
+    currentDay.aulas.forEach((aula) => {
       const isOpen = state.openAulaIds.has(aula.id);
       const file = aula.file || {};
       const fileName = file.name || `${aula.title}.pptx`;
@@ -209,18 +195,15 @@
     // 2. Clique nos Accordions e Botões de Download
     if (dom.aulasContainer) {
       dom.aulasContainer.addEventListener('click', (e) => {
-        // Intercepta botão de download para feedback se ainda não conectado ao Google Drive
         const downloadBtn = e.target.closest('.aulas-pptx-download-btn');
         if (downloadBtn) {
           const href = downloadBtn.getAttribute('href');
           if (!href || href === '#') {
             e.preventDefault();
-            showDrivePendingNotice();
             return;
           }
         }
 
-        // Accordion Toggle
         const header = e.target.closest('.aulas-accordion-header');
         if (header) {
           const item = header.closest('.aulas-accordion-item');
@@ -230,47 +213,6 @@
         }
       });
     }
-  }
-
-  /**
-   * Exibe aviso amigável quando o arquivo do Drive ainda está em processo de sincronização
-   */
-  function showDrivePendingNotice() {
-    let toast = document.getElementById('aulasDriveToast');
-    if (!toast) {
-      toast = document.createElement('div');
-      toast.id = 'aulasDriveToast';
-      toast.style.position = 'fixed';
-      toast.style.bottom = '24px';
-      toast.style.left = '50%';
-      toast.style.transform = 'translateX(-50%) translateY(100px)';
-      toast.style.background = '#0a1f54';
-      toast.style.color = '#ffffff';
-      toast.style.border = '1px solid #38bdf8';
-      toast.style.padding = '0.85rem 1.4rem';
-      toast.style.borderRadius = '8px';
-      toast.style.fontSize = '0.88rem';
-      toast.style.fontWeight = '500';
-      toast.style.fontFamily = 'Montserrat, sans-serif';
-      toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-      toast.style.zIndex = '9999';
-      toast.style.transition = 'transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease';
-      toast.style.opacity = '0';
-      toast.textContent = 'Arquivo PPTX estará disponível para download assim que conectado à pasta do Google Drive.';
-      document.body.appendChild(toast);
-    }
-
-    // Exibe toast com animação
-    requestAnimationFrame(() => {
-      toast.style.opacity = '1';
-      toast.style.transform = 'translateX(-50%) translateY(0)';
-    });
-
-    clearTimeout(window._aulasToastTimer);
-    window._aulasToastTimer = setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateX(-50%) translateY(100px)';
-    }, 3800);
   }
 
   /**
@@ -327,7 +269,6 @@
   window.AulasDriveAdapter = {
     loadFromDrive: async function (folderId, apiKey) {
       console.log(`[Google Drive Adapter] Preparado para conectar à pasta: ${folderId}`);
-      // Lógica de fetch da API do Google Drive Files v3 será ativada aqui
     }
   };
 

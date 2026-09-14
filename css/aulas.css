@@ -91,6 +91,16 @@
   gap: 0.65rem;
 }
 
+.aulas-list-wrapper:empty {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aulas-main-card:has(.aulas-list-wrapper:empty) .aulas-days-bar {
+  border-bottom: none;
+}
+
 .aulas-accordion-item,
 .aula-accordion-item {
   background: #061338;
