@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentações e Aulas - Cathlabflix Sessions</title>
+  <meta name="description" content="Grade de apresentações e downloads de arquivos PPTX das aulas do evento científico com navegação por salas e períodos.">
+
+  <!-- Tipografia Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilos -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/aulas.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Conteúdo Principal (Grade de Apresentações PPTX)
+       ========================================================================== -->
+  <main class="container">
+    
+    <!-- 1. Título 'Acesse os conteúdos' com traço magenta/rosa -->
+    <div class="content-header">
+      <h1 class="page-title">Acesse os conteúdos</h1>
+      <div class="title-underline"></div>
+    </div>
+
+    <!-- 2. Card Principal de Aulas -->
+    <div class="aulas-main-card">
+      
+      <!-- Nível 1: Barra Superior de Salas (HEART TEAM ARENA | HALL NOBRE...) -->
+      <div class="aulas-rooms-bar" id="aulasRoomsBar" role="tablist">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+      <!-- Nível 2: Barra Horizontal de Períodos (19-03 - Manhã | 19-03 - Tarde...) -->
+      <div class="aulas-periods-container">
+        <div class="aulas-periods-wrapper" id="aulasPeriodsWrapper" role="tablist">
+          <!-- Renderizado dinamicamente via JS -->
+        </div>
+        
+        <button type="button" class="aulas-scroll-next-btn" id="aulasScrollNextBtn" title="Ver mais períodos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Nível 3: Accordion de Aulas com Cards de Download PPTX -->
+      <div class="aulas-list-wrapper" id="aulasContainer">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       Scripts JavaScript Modulares
+       ========================================================================== -->
+  <script src="/js/aulas-config.js"></script>
+  <script src="/js/aulas-app.js"></script>
+</body>
+</html>

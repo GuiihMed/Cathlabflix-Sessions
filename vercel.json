@@ -4,32 +4,12 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/solaci/aulas",
-      "destination": "/solaci-aulas.html"
-    },
-    {
-      "source": "/solaci/aulas/(.*)",
-      "destination": "/solaci-aulas.html"
-    },
-    {
       "source": "/solaci/gravação",
-      "destination": "/solaci.html"
+      "destination": "/solaci/gravacao"
     },
     {
       "source": "/solaci/grava%C3%A7%C3%A3o",
-      "destination": "/solaci.html"
-    },
-    {
-      "source": "/solaci/gravacao",
-      "destination": "/solaci.html"
-    },
-    {
-      "source": "/solaci/(.*)",
-      "destination": "/solaci.html"
-    },
-    {
-      "source": "/solaci",
-      "destination": "/solaci.html"
+      "destination": "/solaci/gravacao"
     }
   ],
   "headers": [
