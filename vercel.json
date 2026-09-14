@@ -4,6 +4,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/solaci/aulas",
+      "destination": "/solaci-aulas.html"
+    },
+    {
+      "source": "/solaci/aulas/(.*)",
+      "destination": "/solaci-aulas.html"
+    },
+    {
       "source": "/solaci/gravação",
       "destination": "/solaci.html"
     },
