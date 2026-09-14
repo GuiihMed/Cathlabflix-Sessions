@@ -161,26 +161,53 @@
 
     /* Footer */
     .portal-footer {
-      margin-top: 3rem;
+      margin-top: 3.5rem;
       text-align: center;
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.45);
-      font-weight: 400;
-      letter-spacing: 0.2px;
-      line-height: 1.6;
-      max-width: 820px;
-      margin-left: auto;
-      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.15rem;
+      width: 100%;
+      padding-bottom: 0.75rem;
     }
 
-    .portal-footer a {
-      color: rgba(255, 255, 255, 0.65);
+    .footer-logo-link {
+      display: inline-block;
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .footer-logo-link:hover {
+      transform: scale(1.03);
+      opacity: 0.95;
+    }
+
+    .footer-logo {
+      width: 180px;
+      max-width: 60vw;
+      height: auto;
+      display: block;
+    }
+
+    .footer-text {
+      font-size: 0.8125rem;
+      color: #ffffff;
+      font-weight: 400;
+      letter-spacing: 0.25px;
+      line-height: 1.6;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .footer-link {
+      color: #ffffff;
       text-decoration: underline;
-      text-underline-offset: 3px;
+      text-underline-offset: 3.5px;
       transition: color 0.2s ease;
     }
 
-    .portal-footer a:hover {
+    .footer-link:hover {
       color: var(--accent-cyan, #38bdf8);
     }
 
@@ -259,7 +286,18 @@
 
     <!-- Rodapé -->
     <footer class="portal-footer">
-      <p>CathlabFlix by SBHCI - Copyright &copy; Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista - <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></p>
+      <a href="https://www.cathlabflix.org/" class="footer-logo-link" title="CathlabFlix by SBHCI" target="_blank" rel="noopener noreferrer">
+        <img 
+          src="/assets/images/logo-cathlabflix.png" 
+          alt="CathlabFlix by SBHCI" 
+          class="footer-logo"
+          width="180" 
+          height="52"
+        >
+      </a>
+      <p class="footer-text">
+        CathlabFlix by SBHCI - Copyright &copy; Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista - <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Política de Privacidade</a>
+      </p>
     </footer>
   </div>
 
