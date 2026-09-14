@@ -1,44 +1,31 @@
 /**
- * Cathlabflix Sessions - Embed Script Loader
+ * Cathlabflix Sessions - Embed Script Loader (Aulas / Apresentações PPTX)
  * 
- * Permite incorporar o exibidor dinâmico do Cathlabflix Sessions em qualquer
+ * Permite incorporar a grade de apresentações e aulas do Cathlabflix Sessions em qualquer
  * website (WordPress, Elementor, Webflow, Wix, HTML puro) com uma única tag de script.
  * 
  * Características:
  * - Fundo 100% transparente (integração visual nativa)
  * - Largura máxima centralizada em 980px
  * - Auto-redimensionamento fluido de altura via postMessage (zero barras de rolagem duplas)
- * - Suporte total a autoplay e tela cheia para o player Vimeo
  */
 (function() {
   var currentScript = document.currentScript;
-  var view = (currentScript && (currentScript.getAttribute('data-view') || currentScript.getAttribute('data-type'))) || '';
-  
-  var aulasContainer = document.getElementById('cathlabflix-aulas');
-  var sessionsContainer = document.getElementById('cathlabflix-sessions');
-  var container = (view === 'aulas' ? aulasContainer : (sessionsContainer || aulasContainer)) || (currentScript && currentScript.parentElement);
-
-  var isAulas = view === 'aulas' || (container && container.id === 'cathlabflix-aulas');
+  var container = document.getElementById('cathlabflix-aulas') || 
+                  document.getElementById('cathlabflix-sessions') || 
+                  (currentScript && currentScript.parentElement);
 
   if (!container) {
     container = document.createElement('div');
-    container.id = isAulas ? 'cathlabflix-aulas' : 'cathlabflix-sessions';
+    container.id = 'cathlabflix-aulas';
     document.body.appendChild(container);
   }
 
-  var targetSrc = isAulas 
-    ? 'https://cathlabflix-sessions.vercel.app/solaci/aulas'
-    : 'https://cathlabflix-sessions.vercel.app/solaci/grava%C3%A7%C3%A3o';
-
-  var title = isAulas 
-    ? 'Cathlabflix Sessions - Aulas SOLACI 2026'
-    : 'Cathlabflix Sessions - SOLACI 2026';
-
   // Cria o iframe com estilos de transparência e largura máxima de 980px
   var iframe = document.createElement('iframe');
-  iframe.id = 'cathlabflix-embed-frame-' + Math.floor(Math.random() * 10000);
-  iframe.src = targetSrc;
-  iframe.title = title;
+  iframe.id = 'cathlabflix-aulas-frame-' + Math.floor(Math.random() * 10000);
+  iframe.src = 'https://cathlabflix-sessions.vercel.app/solaci/aulas';
+  iframe.title = 'Cathlabflix Sessions - Aulas SOLACI 2026';
   iframe.scrolling = 'no';
   iframe.setAttribute('frameborder', '0');
   iframe.setAttribute('allowtransparency', 'true');
@@ -47,8 +34,8 @@
   // Estilização isolada e responsiva
   iframe.style.width = '100%';
   iframe.style.maxWidth = '980px';
-  iframe.style.minHeight = '480px';
-  iframe.style.height = '750px';
+  iframe.style.minHeight = '120px';
+  iframe.style.height = '350px';
   iframe.style.border = 'none';
   iframe.style.display = 'block';
   iframe.style.margin = '0 auto';

@@ -245,6 +245,11 @@
     }
     window.addEventListener('resize', notifyHeight);
     window.addEventListener('load', notifyHeight);
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'cathlabflix-request-height') {
+        notifyHeight();
+      }
+    });
     notifyHeight();
   }
 
