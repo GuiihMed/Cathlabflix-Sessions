@@ -30,7 +30,7 @@ Caso a sua plataforma (ex: alguns blocos de CMS) não permita scripts externos, 
 <!-- Contêiner do Iframe Cathlabflix -->
 <iframe 
   id="cathlabflix-frame"
-  src="https://cathlabflix-sessions.vercel.app" 
+  src="https://cathlabflix-sessions.vercel.app/solaci" 
   width="100%" 
   height="750" 
   frameborder="0" 

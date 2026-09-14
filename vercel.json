@@ -1,6 +1,13 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/solaci",
+      "destination": "/solaci.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

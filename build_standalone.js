@@ -7,11 +7,11 @@ const variablesCss = fs.readFileSync(path.join(baseDir, 'css/variables.css'), 'u
 let styleCss = fs.readFileSync(path.join(baseDir, 'css/style.css'), 'utf8');
 styleCss = styleCss.replace("@import url('variables.css');", '');
 
-const indexHtml = fs.readFileSync(path.join(baseDir, 'index.html'), 'utf8');
-const mainMatch = indexHtml.match(/<main class="container">[\s\S]*?<\/main>/);
+const solaciHtml = fs.readFileSync(path.join(baseDir, 'solaci.html'), 'utf8');
+const mainMatch = solaciHtml.match(/<main class="container">[\s\S]*?<\/main>/);
 const mainHtml = mainMatch ? mainMatch[0] : '';
 
-const modalMatch = indexHtml.match(/<div class="modal-backdrop" id="settingsModal"[\s\S]*?<\/form>\s*<\/div>\s*<\/div>/);
+const modalMatch = solaciHtml.match(/<div class="modal-backdrop" id="settingsModal"[\s\S]*?<\/form>\s*<\/div>\s*<\/div>/);
 const modalHtml = modalMatch ? modalMatch[0] : '';
 
 const configJs = fs.readFileSync(path.join(baseDir, 'js/config.js'), 'utf8');
