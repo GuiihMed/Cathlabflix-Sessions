@@ -4,6 +4,22 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/solaci/gravação",
+      "destination": "/solaci.html"
+    },
+    {
+      "source": "/solaci/grava%C3%A7%C3%A3o",
+      "destination": "/solaci.html"
+    },
+    {
+      "source": "/solaci/gravacao",
+      "destination": "/solaci.html"
+    },
+    {
+      "source": "/solaci/(.*)",
+      "destination": "/solaci.html"
+    },
+    {
       "source": "/solaci",
       "destination": "/solaci.html"
     }

@@ -23,7 +23,7 @@
   // Cria o iframe com estilos de transparência e largura máxima de 980px
   var iframe = document.createElement('iframe');
   iframe.id = 'cathlabflix-embed-frame-' + Math.floor(Math.random() * 10000);
-  iframe.src = 'https://cathlabflix-sessions.vercel.app/solaci';
+  iframe.src = 'https://cathlabflix-sessions.vercel.app/solaci/grava%C3%A7%C3%A3o';
   iframe.title = 'Cathlabflix Sessions - SOLACI 2026';
   iframe.scrolling = 'no';
   iframe.setAttribute('frameborder', '0');
