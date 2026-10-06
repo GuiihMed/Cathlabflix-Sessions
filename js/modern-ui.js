@@ -697,10 +697,7 @@ function initMobileBottomNav() {
       link.classList.add('active');
 
       const targetSection = link.getAttribute('data-nav-target');
-      if (targetSection === 'explore') {
-        const categoriesBar = document.querySelector('.categories-bar-wrapper');
-        if (categoriesBar) categoriesBar.scrollIntoView({ behavior: 'smooth' });
-      } else if (targetSection === 'solaci') {
+      if (targetSection === 'explore' || targetSection === 'solaci') {
         const solaciSec = document.getElementById('solaciSection');
         if (solaciSec) solaciSec.scrollIntoView({ behavior: 'smooth' });
       } else if (targetSection === 'home') {
