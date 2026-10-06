@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFavorites();
   initMobileBottomNav();
   initContinueWatching();
+  initUserMenu();
 });
 
 /* ==========================================================================
@@ -704,6 +705,15 @@ function initMobileBottomNav() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
+  });
+}
+
+function initUserMenu() {
+  const userBtn = document.getElementById('topbarUserBtn');
+  if (!userBtn) return;
+
+  userBtn.addEventListener('click', () => {
+    showToast("Menu de Usuário (em breve)");
   });
 }
 
