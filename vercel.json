@@ -4,6 +4,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/new",
+      "destination": "/new.html"
+    },
+    {
+      "source": "/novo",
+      "destination": "/new.html"
+    },
+    {
       "source": "/solaci/gravação",
       "destination": "/solaci/gravacao"
     },
