@@ -83,74 +83,59 @@
     </header>
 
     <!-- ==========================================================================
-         2. Hero Banner (Imersivo / Tela Inteira)
-         Baseado na Seção 4: Hero Banner (100vw, 70vh a 100vh)
+         2. Banner SOLACI 2026 (1920x550 em Qualidade Máxima)
          ========================================================================== -->
-    <section class="hero-banner" id="heroBanner">
-      <img 
-        src="/assets/images/solaci-2026-confira.png" 
-        alt="SOLACI SBHCI 2026 Destaque" 
-        class="hero-background-image" 
-        fetchpriority="high"
-      >
-      <div class="hero-gradient-overlay"></div>
-      <div class="hero-radial-glow"></div>
+    <section class="banner-stage-section" id="bannerStage">
+      <div class="banner-container-1920">
+        <img 
+          src="/assets/images/banner-solaci-1920x550.png" 
+          alt="SOLACI SBHCI 2026" 
+          class="banner-image-1920" 
+          width="1920" 
+          height="550"
+          fetchpriority="high"
+        >
+      </div>
 
-      <div class="hero-content">
-        <div class="hero-badges-row">
-          <span class="hero-badge-primary">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-            Destaque Exclusivo
-          </span>
-          <span class="hero-badge-glass">SOLACI SBHCI 2026</span>
-          <span class="hero-badge-outline">4K Ultra HD</span>
-        </div>
+      <!-- Faixa de Botões de Ação Abaixo do Banner -->
+      <div class="banner-actions-strip">
+        <div class="banner-actions-container">
+          <div class="banner-actions-left">
+            <span class="banner-strip-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              SOLACI SBHCI 2026
+            </span>
+            <span class="banner-strip-title">Sessões & Transmissões Oficiais</span>
+          </div>
 
-        <h1 class="hero-title">
-          SOLACI SBHCI 2026: Heart Team & Inovações na Cardiologia Intervencionista
-        </h1>
+          <div class="banner-actions-buttons">
+            <button type="button" class="btn-pill-primary" id="heroWatchBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Assistir Agora
+            </button>
 
-        <div class="hero-metadata">
-          <span class="hero-meta-item meta-match">99% Relevância</span>
-          <span class="hero-meta-dot"></span>
-          <span class="hero-meta-item">2026</span>
-          <span class="hero-meta-dot"></span>
-          <span class="hero-meta-item">37 Sessões Gravadas</span>
-          <span class="hero-meta-dot"></span>
-          <span class="hero-meta-item">INCOR • Dante Pazzanese • Heart Team</span>
-        </div>
+            <button type="button" class="btn-pill-surface" id="heroMyListBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Minha Lista
+            </button>
 
-        <p class="hero-description">
-          Acesse na íntegra todas as transmissões científicas, casos clínicos gravados e discussões de especialistas internacionais. Uma experiência imersiva e sob demanda para médicos e pesquisadores de hemodinâmica.
-        </p>
-
-        <div class="hero-actions">
-          <button type="button" class="btn-pill-primary" id="heroWatchBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Assistir Agora
-          </button>
-
-          <button type="button" class="btn-pill-surface" id="heroMyListBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-            Minha Lista
-          </button>
-
-          <a href="/solaci/gravacao" class="btn-pill-surface" title="Ver grade completa do congresso">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            Grade Completa
-          </a>
+            <a href="/solaci/gravacao" class="btn-pill-surface" title="Ver grade completa do congresso">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Grade Completa
+            </a>
+          </div>
         </div>
       </div>
     </section>
