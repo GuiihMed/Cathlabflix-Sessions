@@ -240,6 +240,39 @@ input {
   flex-shrink: 0;
 }
 
+.topbar-user-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-text-primary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.topbar-user-btn:hover {
+  background: #FFFFFF;
+  border-color: rgba(229, 9, 20, 0.4);
+  color: var(--color-primary);
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 4px 14px rgba(229, 9, 20, 0.15);
+}
+
+.topbar-user-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.topbar-user-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: color var(--transition-fast);
+}
+
 .topbar-btn {
   display: inline-flex;
   align-items: center;
