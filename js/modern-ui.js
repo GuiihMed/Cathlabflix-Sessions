@@ -512,17 +512,11 @@ function initVideoPlayerModal() {
   const closeBtn = document.getElementById('modalCloseBtn');
   const backdrop = modal;
 
-  // Botões de Assistir no Hero
+  // Botão Assistir Agora no Hero
   const heroWatchBtn = document.getElementById('heroWatchBtn');
   if (heroWatchBtn) {
     heroWatchBtn.addEventListener('click', () => {
-      openPlayerModal({
-        title: "SOLACI SBHCI 2026: Heart Team & Inovações na Cardiologia Intervencionista",
-        speaker: "Dr. Raul Arrieta, Dr. Carlos Campos & Heart Team",
-        room: "Transmissão Plenária Oficial",
-        videoUrl: "https://player.vimeo.com/video/1223707542?autoplay=1",
-        description: "Acesse na íntegra todas as transmissões científicas e casos ao vivo gravados durante o SOLACI SBHCI 2026."
-      });
+      window.location.href = '/new/player';
     });
   }
 
@@ -561,6 +555,7 @@ function attachCardEvents(container) {
       // Se clicou no botão de favoritar, ignora abertura do player
       if (e.target.closest('.card-favorite-btn')) return;
 
+      const id = card.getAttribute('data-id') || '';
       const title = card.getAttribute('data-title');
       const speaker = card.getAttribute('data-speaker');
       const room = card.getAttribute('data-room');
@@ -568,7 +563,7 @@ function attachCardEvents(container) {
       const description = card.getAttribute('data-description');
 
       if (videoUrl) {
-        openPlayerModal({ title, speaker, room, videoUrl, description });
+        openPlayerModal({ id, title, speaker, room, videoUrl, description });
       }
     });
 
@@ -588,6 +583,7 @@ function openPlayerModal(sessionData) {
   const titleEl = document.getElementById('modalSessionTitle');
   const speakerEl = document.getElementById('modalSpeakerName');
   const roomEl = document.getElementById('modalRoomInfo');
+  const openPlayerBtn = document.getElementById('modalOpenPlayerBtn');
 
   if (!modal || !iframeContainer) return;
 
@@ -596,6 +592,15 @@ function openPlayerModal(sessionData) {
   titleEl.textContent = sessionData.title || "Sessão SOLACI SBHCI 2026";
   speakerEl.textContent = sessionData.speaker || "Especialista";
   roomEl.textContent = `${sessionData.room || 'Auditório'} • SOLACI SBHCI 2026`;
+
+  // Atualizar link para a página completa de aula com slides e playlist
+  if (openPlayerBtn) {
+    if (sessionData.id) {
+      openPlayerBtn.href = `/new/player?id=${encodeURIComponent(sessionData.id)}`;
+    } else {
+      openPlayerBtn.href = '/new/player';
+    }
+  }
 
   // Injetar Iframe do Vimeo com reprodução limpa
   iframeContainer.innerHTML = `

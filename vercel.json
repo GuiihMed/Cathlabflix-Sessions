@@ -8,6 +8,10 @@
       "destination": "/new.html"
     },
     {
+      "source": "/new/player",
+      "destination": "/new/player.html"
+    },
+    {
       "source": "/novo",
       "destination": "/new.html"
     },
