@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentações e Aulas - Cathlabflix Sessions</title>
+  <meta name="description" content="Grade de apresentações e downloads de arquivos PPTX das aulas do SOLACI SBHCI 2026 com navegação por dias.">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.cathlabflix.org/">
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cathlabflix.org/">
+  <meta property="og:title" content="Apresentações e Aulas | CathlabFlix Sessions">
+  <meta property="og:description" content="Grade de apresentações e downloads de arquivos PPTX das aulas do SOLACI SBHCI 2026.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+  <meta property="og:image:secure_url" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Logo CathlabFlix">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/logo-cathlabflix.png">
+  <meta property="og:site_name" content="CathlabFlix by SBHCI">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.cathlabflix.org/">
+  <meta name="twitter:title" content="Apresentações e Aulas | CathlabFlix Sessions">
+  <meta name="twitter:description" content="Grade de apresentações e downloads de arquivos PPTX das aulas do SOLACI SBHCI 2026.">
+  <meta name="twitter:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilos -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/aulas.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Conteúdo Principal (Grade de Apresentações PPTX)
+       ========================================================================== -->
+  <main class="container">
+    
+    <!-- 1. Título 'Acesse os conteúdos' com traço magenta/rosa -->
+    <div class="content-header">
+      <h1 class="page-title">Acesse os conteúdos</h1>
+      <div class="title-underline"></div>
+    </div>
+
+    <!-- 2. Card Principal de Aulas -->
+    <div class="aulas-main-card">
+      
+      <!-- Nível 1: Barra Superior de Dias (Dia 29 | Dia 30 | Dia 31) -->
+      <div class="aulas-days-bar" id="aulasDaysBar" role="tablist">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+      <!-- Nível 2: Accordion de Aulas com Cards de Download PPTX -->
+      <div class="aulas-list-wrapper" id="aulasContainer">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       Scripts JavaScript Modulares
+       ========================================================================== -->
+  <script src="/js/aulas-config.js"></script>
+  <script src="/js/aulas-app.js"></script>
+</body>
+</html>

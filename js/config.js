@@ -1,21 +1,18 @@
 /**
- * Cathlabflix Sessions - Configuração e Mapeamento do Evento
+ * Cathlabflix Sessions - Configuração Oficial e Mapeamento Real do Vimeo
  * 
- * Arquitetura de Mapeamento em 3 Níveis:
- * Nível 1: Dias do Evento (ex: Dia 19, Dia 20, Dia 21)
- * Nível 2: Salas dentro de cada Dia (ex: Sala 01, Sala 02, Sala 03)
- * Nível 3: folder_id específico do Vimeo associado à combinação Dia + Sala
- * 
- * NOTA: Para adaptar para o seu evento real no Vimeo, basta alterar os nomes das
- * salas, dias e inserir os IDs numéricos reais das pastas (folder_id) obtidos no Vimeo.
+ * Mapeamento extraído automaticamente via API oficial da pasta "Gravações" (ID: 30421333):
+ * - Dia 29 (Folder ID: 30421713) -> Heart Team (30424545), INCOR (30423156)
+ * - Dia 30 (Folder ID: 30421340) -> Heart Team (30424636)
+ * - Dia 31 (Folder ID: 30423303) -> Heart Team (30424838), Dante Pazzanese (30423313)
  */
 
 const VIMEO_CONFIG = {
-  // Alterne para false quando inserir seu token de acesso real do Vimeo
-  useMock: true,
-  // Token da API do Vimeo (Bearer Token gerado em developer.vimeo.com)
-  accessToken: "",
-  // Endpoint oficial da API v3 do Vimeo
+  // Flag de fallback (usa dados reais locais instantâneos e consulta API para novidades)
+  useMock: false,
+  userId: "1803190",
+  rootFolderId: "30421333", // Pasta "Gravações"
+  accessToken: "dcfc518d6c38756016a3330df5ef8e5f",
   apiBaseUrl: "https://api.vimeo.com"
 };
 
@@ -25,71 +22,51 @@ const VIMEO_CONFIG = {
 const EVENT_SCHEDULE = {
   days: [
     {
-      id: "dia-19",
-      label: "Dia 19",
-      subtitle: "19 de Outubro • Abertura e Plenárias",
+      id: "dia-29",
+      label: "Dia 29",
+      subtitle: "29 de Outubro",
+      folder_id: "30421713",
       rooms: [
         {
-          id: "sala-01",
-          name: "Sala 01 - Plenária Principal & Abertura",
-          folder_id: "21495801",
-          description: "Sessões magnas, diretrizes internacionais e discussões ao vivo de casos desafiadores."
+          id: "sala-30424545",
+          name: "Heart Team",
+          folder_id: "30424545"
         },
         {
-          id: "sala-02",
-          name: "Sala 02 - Inovação & TAVI Estrutural",
-          folder_id: "21495802",
-          description: "Novas próteses aórticas, anatomias anulares bicuspides e técnicas de proteção coronariana."
-        },
-        {
-          id: "sala-03",
-          name: "Sala 03 - Oclusões Totais Crônicas (CTO)",
-          folder_id: "21495803",
-          description: "Técnicas retrógradas, guias dedicados, microcateteres e gerenciamento de complicações."
+          id: "sala-30423156",
+          name: "INCOR",
+          folder_id: "30423156"
         }
       ]
     },
     {
-      id: "dia-20",
-      label: "Dia 20",
-      subtitle: "20 de Outubro • Sessões Especializadas",
+      id: "dia-30",
+      label: "Dia 30",
+      subtitle: "30 de Outubro",
+      folder_id: "30421340",
       rooms: [
         {
-          id: "sala-01",
-          name: "Sala 01 - Imagem Intracoronária (OCT & IVUS)",
-          folder_id: "21495804",
-          description: "Otimização de implante de stent, caracterização de placa e avaliação fisiológica (iFR/FFR)."
-        },
-        {
-          id: "sala-02",
-          name: "Sala 02 - Intervenção Periférica & Carótidas",
-          folder_id: "21495805",
-          description: "Tratamento de isquemia crítica de membros inferiores, stents carotídeos e filtros cerebrais."
-        },
-        {
-          id: "sala-03",
-          name: "Sala 03 - Choque Cardiogênico & Suporte (ECMO/Impella)",
-          folder_id: "21495806",
-          description: "Manejo hemodinâmico invasivo, suporte circulatório mecânico e desmame gradual."
+          id: "sala-30424636",
+          name: "Heart Team",
+          folder_id: "30424636"
         }
       ]
     },
     {
-      id: "dia-21",
-      label: "Dia 21",
-      subtitle: "21 de Outubro • Highlights & Hands-on",
+      id: "dia-31",
+      label: "Dia 31",
+      subtitle: "31 de Outubro",
+      folder_id: "30423303",
       rooms: [
         {
-          id: "sala-01",
-          name: "Sala 01 - Masterclass dos Melhores Casos",
-          folder_id: "21495807",
-          description: "Apresentação dos casos mais emblemáticos do ano com painel internacional de debatedores."
+          id: "sala-30424838",
+          name: "Heart Team",
+          folder_id: "30424838"
         },
         {
-          id: "sala-02",
-          name: "Sala 02 - Complicações: Como Evitar e Como Sair",
-          folder_id: "21495808",
-          description: "Perfuração coronária, no-reflow, perda de stent e trombose aguda tratadas passo a passo."
+          id: "sala-30423313",
+          name: "Dante Pazzanese",
+          folder_id: "30423313"
         }
       ]
     }
@@ -97,300 +74,481 @@ const EVENT_SCHEDULE = {
 };
 
 /**
- * Base de Dados Mockada Simulando Retorno da API v3 do Vimeo
- * Endpoint equivalente: GET https://api.vimeo.com/me/projects/{folder_id}/videos
- * Cada vídeo possui o player_embed_url funcional para teste visual imediato do iframe 16:9.
+ * Base de Dados com todas as aulas reais extraídas do Vimeo
+ * Garante carregamento instantâneo das 37 aulas mesmo em ambientes offline ou com restrições de CORS
  */
 const MOCK_VIMEO_DATA_BY_FOLDER = {
-  // --- DIA 19 / SALA 01 (folder_id: 21495801) ---
-  "21495801": {
-    total: 4,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/76979871",
-        name: "Aula 01: Estado da Arte no Implante de Stents Farmacológicos de 4ª Geração",
-        description: "Revisão abrangente sobre polímeros bioabsorvíveis, cinética de eluição e evidências clínicas comparativas em cenários de alto risco hemorrágico.",
-        duration: 2580, // 43min
-        speaker: "Dr. Carlos Mendonça (InCor - SP)",
-        created_time: "2026-10-19T08:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Stents", "Farmacologia", "Ensaios Clínicos"]
+  "30423156": [
+    {
+      "uri": "/videos/1223707542",
+      "name": "02 - SOLACI INCOR - Dr Raul Arrieta - 003",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707542?h=7bc3c51775",
+      "duration": 2614,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707542?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"02_SOLACI_INCOR_Dr Raul Arrieta-003\"></iframe>"
       },
-      {
-        uri: "/videos/824804225",
-        name: "Aula 02: Desafios em Tronco de Coronária Esquerda: Quando Indicar PCI vs CABG",
-        description: "Análise dos escores SYNTAX estendido, critérios de elegibilidade para angioplastia e técnicas cirúrgicas minimamente invasivas de revascularização.",
-        duration: 3120, // 52min
-        speaker: "Dra. Renata Vasconcellos (CardioDF)",
-        created_time: "2026-10-19T09:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Tronco de Coronária", "SYNTAX", "Diretrizes"]
+      "created_time": "2026-09-03T14:51:09+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223707532",
+      "name": "04 - SOLACI INCOR - Dr Raul Arrieta - 004",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707532?h=68b6c52dd8",
+      "duration": 2795,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707532?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"04_SOLACI_INCOR_Dr Raul Arrieta-004\"></iframe>"
       },
-      {
-        uri: "/videos/649872580",
-        name: "Aula 03: Técnica DK-Crush Passo a Passo em Lesões de Bifurcação Complexas",
-        description: "Protocolo de double-kissing crush com otimização proximal (POT), seleção de fios dedicados e reconstrução tridimensional guiada por imagem.",
-        duration: 2700, // 45min
-        speaker: "Dr. Marcos Guimarães (Hospital Pró-Cardíaco)",
-        created_time: "2026-10-19T11:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["DK-Crush", "Bifurcação", "Intervenção Guiada"]
+      "created_time": "2026-09-03T14:51:08+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223707531",
+      "name": "03 - SOLACI INCOR - Dr Carlos Campos - 002",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707531?h=44d5b84a4c",
+      "duration": 2453,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707531?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"03_SOLACI_INCOR_Dr Carlos Campos-002\"></iframe>"
       },
-      {
-        uri: "/videos/76979871",
-        name: "Aula 04: Mesa Redonda & Discussão Interativa de Casos ao Vivo",
-        description: "Debate com especialistas convidados sobre estratégias de revascularização em pacientes diabéticos multiarteriais com disfunção ventricular severa.",
-        duration: 3600, // 60min
-        speaker: "Painel de Especialistas Cathlabflix",
-        created_time: "2026-10-19T14:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Mesa Redonda", "Debate", "Casos Clínicos"]
-      }
-    ]
-  },
-
-  // --- DIA 19 / SALA 02 (folder_id: 21495802) ---
-  "21495802": {
-    total: 3,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/824804225",
-        name: "Aula 01: Planejamento por Tomografia Computadorizada Multislice para TAVI",
-        description: "Mensuração de anel valvar, altura de óstios coronarianos, risco de oclusão coronária e avaliação de vias de acesso transfemoral.",
-        duration: 2400,
-        speaker: "Dr. Leonardo Castilho (Hospital Albert Einstein)",
-        created_time: "2026-10-19T09:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["TAVI", "Tomografia", "Planejamento"]
+      "created_time": "2026-09-03T14:51:07+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223707530",
+      "name": "01 - SOLACI INCOR - Dr Carlos Campos",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223707530?h=a5d6ac5fcd",
+      "duration": 1444,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223707530?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"01_SOLACI_INCOR_Dr Carlos Campos\"></iframe>"
       },
-      {
-        uri: "/videos/649872580",
-        name: "Aula 02: Válvulas Balão-Expansíveis vs Auto-Expansíveis: Seleção Personalizada",
-        description: "Critérios anatômicos para escolha de prótese em anéis calcificados, risco de bloqueio atrioventricular e gradientes hemodinâmicos tardios.",
-        duration: 2820,
-        speaker: "Dra. Patrícia Silveira (Hospital Sírio-Libanês)",
-        created_time: "2026-10-19T10:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["TAVI", "Próteses", "Hemodinâmica"]
+      "created_time": "2026-09-03T14:51:07+00:00",
+      "tags": []
+    }
+  ],
+  "30423313": [
+    {
+      "uri": "/videos/1223744925",
+      "name": "MEDITRONIC - 001",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744925?h=1a6523d787",
+      "duration": 2895,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744925?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"MEDITRONIC-001\"></iframe>"
       },
-      {
-        uri: "/videos/76979871",
-        name: "Aula 03: Técnica BASILICA e Chimney Stent para Prevenção de Obstrução Coronária",
-        description: "Lacerativação de folhetos nativos com eletrificação por radiofrequência antes do implante de TAVI em anatomias coronarianas de alto risco.",
-        duration: 3300,
-        speaker: "Dr. Alexandre Fontoura (Rede D'Or)",
-        created_time: "2026-10-19T14:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["BASILICA", "TAVI", "Prevenção"]
-      }
-    ]
-  },
-
-  // --- DIA 19 / SALA 03 (folder_id: 21495803) ---
-  "21495803": {
-    total: 3,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/76979871",
-        name: "Aula 01: Algoritmo Híbrido Contemporâneo para Recanalização de CTO",
-        description: "Abordagem anterógrada vs retrógrada, escalonamento e desescalonamento de guias, e técnicas de reentrada por dissecção (ADR).",
-        duration: 2950,
-        speaker: "Dr. Guilherme Siqueira (Hospital Moinhos de Vento)",
-        created_time: "2026-10-19T09:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["CTO", "Algoritmo Híbrido", "Recanalização"]
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223744924",
+      "name": "SMT - 002",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744924?h=357d8a2fb7",
+      "duration": 2085,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744924?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"SMT-002\"></iframe>"
       },
-      {
-        uri: "/videos/824804225",
-        name: "Aula 02: O Papel dos Microcateteres e Guias Poliméricos em Colaterais Septais",
-        description: "Como navegar em canais septais e epicárdicos tortuosos mantendo estabilidade e evitando perfuração de ramos de conexão colateral.",
-        duration: 2760,
-        speaker: "Dr. Marcelo Bittencourt (Beneficência Portuguesa)",
-        created_time: "2026-10-19T11:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Microcateteres", "Colaterais", "Técnica Retrógrada"]
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223744923",
+      "name": "DANTE - 003",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744923?h=17586492c7",
+      "duration": 2522,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744923?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"DANTE-003\"></iframe>"
       },
-      {
-        uri: "/videos/649872580",
-        name: "Aula 03: Manejo Imediato de Perfurações Coronarianas Tipo Ellis III",
-        description: "Uso de balões de hemostasia prolongada, implante rápido de stents revestidos com PTFE e técnicas de embolização com coils.",
-        duration: 3100,
-        speaker: "Dr. Fernando Teles (HC-FMUSP)",
-        created_time: "2026-10-19T14:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Emergência", "Complicações", "Stents Cobertos"]
-      }
-    ]
-  },
-
-  // --- DIA 20 / SALA 01 (folder_id: 21495804) ---
-  "21495804": {
-    total: 3,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/649872580",
-        name: "Aula 01: Mapeamento de Placas Vulneráveis por Tomografia de Coerência Óptica (OCT)",
-        description: "Critérios de fibroateroma de capa fina (TCFA), identificação de neoaterosclerose intrastent e erosão de placa sem ruptura evidente.",
-        duration: 2450,
-        speaker: "Dra. Juliana Prado (Instituto Dante Pazzanese)",
-        created_time: "2026-10-20T08:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["OCT", "Placa Vulnerável", "Imagem"]
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223744922",
+      "name": "MERIL - 004",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223744922?h=3fe57bcdee",
+      "duration": 2806,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223744922?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"MERIL-004\"></iframe>"
       },
-      {
-        uri: "/videos/76979871",
-        name: "Aula 02: IVUS de Alta Resolução (HD-IVUS 60MHz): Quando Supera o OCT?",
-        description: "Avaliação de lesões ostiais em tronco da coronária esquerda e vasos calibrosos onde o clearance de sangue pelo contraste é restrito.",
-        duration: 2800,
-        speaker: "Dr. Tiago Meireles (Unifesp)",
-        created_time: "2026-10-20T10:15:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["IVUS", "HD-IVUS", "Tronco Esquerdo"]
+      "created_time": "2026-09-03T16:59:23+00:00",
+      "tags": []
+    }
+  ],
+  "30424545": [
+    {
+      "uri": "/videos/1223778332",
+      "name": "14-00 - 15-00 - Lecture & International Live Case - Support - Boston Scientific",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223778332?h=f8364cb68b",
+      "duration": 2842,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223778332?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"14-00 - 15-00- Lecture &amp; International Live Case - Support- Boston Scientific\"></iframe>"
       },
-      {
-        uri: "/videos/824804225",
-        name: "Aula 03: FFR Angiográfico (sem Fio-Guia de Pressão): O Futuro Chegou?",
-        description: "Validação clínica de ferramentas de modelagem fluídica 3D (QFR / vFFR) em comparação direta com hiperemia induzida por adenosina.",
-        duration: 2600,
-        speaker: "Dr. Lucas Fontes (Hospital Barra D'Or)",
-        created_time: "2026-10-20T13:45:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["FFR", "Fisiologia", "Inteligência Artificial"]
-      }
-    ]
-  },
-
-  // --- DIA 20 / SALA 02 (folder_id: 21495805) ---
-  "21495805": {
-    total: 2,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/824804225",
-        name: "Aula 01: Tratamento Endovascular do Território Fêmoro-Poplíteo com Balão Farmacológico",
-        description: "Critérios de preparo de vaso com aterectomia rotacional e eluição de paclitaxel vs sirolimus em lesões TASC C e D.",
-        duration: 2750,
-        speaker: "Dr. André Antunes (Sociedade Brasileira de Angiologia)",
-        created_time: "2026-10-20T09:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Periférico", "Balão Farmacológico", "Aterectomia"]
+      "created_time": "2026-09-03T19:04:19+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223777539",
+      "name": "16-00 - 17-00 - Mechanical Circulatory Support - From High-Risk Pci To Cardiogenic Shock",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223777539?h=e34142425c",
+      "duration": 3493,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223777539?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"16-00 - 17-00- Mechanical Circulatory Support- From High-Risk Pci To Cardiogenic Shock\"></iframe>"
       },
-      {
-        uri: "/videos/649872580",
-        name: "Aula 02: Angioplastia de Artérias Carótidas sob Proteção Cerebral com Filtros",
-        description: "Seleção entre filtros de proteção distal vs fluxo retrógrado reverso (TCAR) em placas carotídeas friáveis e sintomáticas.",
-        duration: 3150,
-        speaker: "Dra. Camila Nogueira (Hospital Samaritano)",
-        created_time: "2026-10-20T11:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Carótida", "TCAR", "Neuroproteção"]
-      }
-    ]
-  },
-
-  // --- DIA 20 / SALA 03 (folder_id: 21495806) ---
-  "21495806": {
-    total: 2,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/76979871",
-        name: "Aula 01: Indicação Precoce de Impella CP no Choque Cardiogênico Pós-IAM",
-        description: "Timing ideal para descarregamento ventricular antes da reperfusão coronária para redução do tamanho do infarto.",
-        duration: 3350,
-        speaker: "Dr. Eduardo Barreto (InCor - SP)",
-        created_time: "2026-10-20T09:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Choque Cardiogênico", "Impella", "Suporte Circulatório"]
+      "created_time": "2026-09-03T19:01:13+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223777407",
+      "name": "13-00 - 14-00 - Lecture & International Case - Support - Medtronic",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223777407?h=dfa8122a7c",
+      "duration": 3423,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223777407?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-00 - 14-00- Lecture &amp; International Case - Support- Medtronic\"></iframe>"
       },
-      {
-        uri: "/videos/824804225",
-        name: "Aula 02: V-A ECMO na Sala de Hemodinâmica: Canulação e Monitorização Invasiva",
-        description: "Cuidados para prevenção de isquemia de membro inferior, descompressão ventricular esquerda e manejo de anticoagulação plena.",
-        duration: 2900,
-        speaker: "Dr. Rodrigo Fagundes (Hospital Israelita Albert Einstein)",
-        created_time: "2026-10-20T11:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["ECMO", "Canulação", "Terapia Intensiva"]
-      }
-    ]
-  },
-
-  // --- DIA 21 / SALA 01 (folder_id: 21495807) ---
-  "21495807": {
-    total: 3,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/76979871",
-        name: "Aula 01: Masterclass Internacional: O Futuro da Cardiologia Intervencionista",
-        description: "Perspectivas sobre terapias gênicas, robótica endovascular teleoperada e novos biomateriais autorregenerativos.",
-        duration: 3600,
-        speaker: "Prof. Dr. Antônio Moreira (Universidade de Coimbra)",
-        created_time: "2026-10-21T09:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Masterclass", "Robótica", "Inovação"]
+      "created_time": "2026-09-03T19:00:42+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223777350",
+      "name": "12-00 - 13-00 - Scientific Talk - Advancing From Long-Term Evidence To Next-Generation Design - Support - Venus",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223777350?h=364d45a51c",
+      "duration": 3598,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223777350?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"12-00 - 13-00- Scientific Talk- Advancing From Long-Term Evidence To Next-Generation Design - Support- Venus\"></iframe>"
       },
-      {
-        uri: "/videos/649872580",
-        name: "Aula 02: Sessão de Casos Clínicos Premiados: Soluções Fora da Caixa",
-        description: "Apresentação e votação interativa dos casos clínicos mais complexos submetidos pelos congressistas com soluções inovadoras.",
-        duration: 3200,
-        speaker: "Comissão Científica Cathlabflix",
-        created_time: "2026-10-21T10:45:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Casos Clínicos", "Premiação", "Discussão"]
+      "created_time": "2026-09-03T19:00:30+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223776147",
+      "name": "11-00 - 12-00 - Lecture & National Live Case - Support - Lepu",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223776147?h=2f422a015d",
+      "duration": 3134,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223776147?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"11-00 - 12-00- Lecture &amp; National Live Case - Support- Lepu\"></iframe>"
       },
-      {
-        uri: "/videos/824804225",
-        name: "Aula 03: Cerimônia de Encerramento e Apresentação dos Guidelines 2027",
-        description: "Síntese dos consensos estabelecidos durante o congresso e apresentação do calendário de imersões da próxima edição.",
-        duration: 2100,
-        speaker: "Diretoria Científica",
-        created_time: "2026-10-21T13:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/824804225?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Encerramento", "Guidelines", "Consensos"]
-      }
-    ]
-  },
-
-  // --- DIA 21 / SALA 02 (folder_id: 21495808) ---
-  "21495808": {
-    total: 2,
-    page: 1,
-    per_page: 25,
-    data: [
-      {
-        uri: "/videos/649872580",
-        name: "Aula 01: Dispositivos de Fechamento Vascular de Grande Calibre (ProGlide vs Manta)",
-        description: "Hands-on virtual com dicas para hemostasia segura pós-TAVI e EVAR e resgate em caso de falha de captura do nó arterial.",
-        duration: 2650,
-        speaker: "Dr. Gustavo Ramos (Hospital Santa Catarina)",
-        created_time: "2026-10-21T09:30:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/649872580?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["Hemostasia", "Fechamento", "ProGlide"]
+      "created_time": "2026-09-03T18:56:13+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775830",
+      "name": "18-00 - 19-00 - Solaci-Sbhci Awards Ceremony",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775830?h=cb5a5c8ef1",
+      "duration": 3064,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775830?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"18-00 - 19-00- Solaci-Sbhci Awards Ceremony\"></iframe>"
       },
-      {
-        uri: "/videos/76979871",
-        name: "Aula 02: No-Reflow e Espasmo Microvascular Agudo: Protocolos Farmacológicos Intracoronários",
-        description: "Doses recomendadas de adenosina, nitroprussiato, verapamil e epinefrina diluída durante a angioplastia primária no infarto com supra.",
-        duration: 2890,
-        speaker: "Dra. Mariana Costa (Hospital de Base)",
-        created_time: "2026-10-21T11:00:00+00:00",
-        player_embed_url: "https://player.vimeo.com/video/76979871?badge=0&autopause=0&player_id=0&app_id=58479",
-        tags: ["No-Reflow", "Farmacologia", "Infarto Agudo"]
-      }
-    ]
-  }
+      "created_time": "2026-09-03T18:55:17+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775461",
+      "name": "15-30 - 16-00 - Pulmonary Embolism - From Risk Stratification To Advanced Therapies - Support - Penumbra",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775461?h=6c1a5e1f3b",
+      "duration": 1719,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775461?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"15-30 - 16-00- Pulmonary Embolism- From Risk Stratification To Advanced Therapies - Support- Penumbra\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:51+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775458",
+      "name": "17-00 - 18-00 - Coronary Physiology In Debate - Wires, Algorithms, And The Battle For Guidance",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775458?h=aec33eaa75",
+      "duration": 3563,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775458?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"17-00 - 18-00- Coronary Physiology In Debate- Wires, Algorithms, And The Battle For Guidance\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:50+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775457",
+      "name": "08-45 - 10-00 - Opening & Vision - The Future Of Interventional Cardiology 2026",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775457?h=cd3e553bb0",
+      "duration": 4836,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775457?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"08-45 - 10-00- Opening &amp; Vision- The Future Of Interventional Cardiology 2026\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:50+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223775456",
+      "name": "10-00 - 11-00 - Lecture & National Live Case - Support - Meril Life Science",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223775456?h=cf10a1be55",
+      "duration": 3771,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223775456?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"10-00 - 11-00- Lecture &amp; National Live Case - Support- Meril Life Science\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:53:50+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223768684",
+      "name": "Dr. Edgar",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223768684?h=c323431ac8",
+      "duration": 2597,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223768684?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"Dr. Edgar\"></iframe>"
+      },
+      "created_time": "2026-09-03T18:27:25+00:00",
+      "tags": []
+    }
+  ],
+  "30424636": [
+    {
+      "uri": "/videos/1223788581",
+      "name": "13-00 - 14-00 - Lecture & International Live Case - Support - Boston Scientific",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223788581?h=8d1f6e2efb",
+      "duration": 3687,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223788581?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-00 - 14-00- Lecture &amp; International Live Case - Support- Boston Scientific\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:43:59+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223788580",
+      "name": "12-00 - 13-00 - Scientific Talk - Modern Pci In Practice - See. Prep. Treat. From Strategy To Case Discussion - Support - Boston Sci",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223788580?h=000d3f1631",
+      "duration": 2736,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223788580?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"12-00 - 13-00- Scientific Talk- Modern Pci In Practice- See. Prep. Treat. From Strategy To Case Discussion - Support- Boston Sci\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:43:59+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223788579",
+      "name": "08-00 - 09-00 - From Calcium To Compliance - Contemporary Atherectomy Strategies",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223788579?h=a50599241e",
+      "duration": 3259,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223788579?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"08-00 - 09-00- From Calcium To Compliance- Contemporary Atherectomy Strategies\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:43:59+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782745",
+      "name": "17-00 - 18-00 - Updates In Mitral Valve-In-Valve Interventions & Live Case - Support - Edwards Lifesciences",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782745?h=841c224455",
+      "duration": 3455,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782745?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"17-00 - 18-00- Updates In Mitral Valve-In-Valve Interventions &amp; Live Case - Support- Edwards Lifesciences\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:14+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782744",
+      "name": "11-15 - 12-00 - National Live Case - Support - Shockwave",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782744?h=fa689b035b",
+      "duration": 2553,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782744?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"11-15 - 12-00- National Live Case - Support- Shockwave\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:14+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782743",
+      "name": "10-30 - 11-15 - Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782743?h=78de018565",
+      "duration": 2908,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782743?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"10-30 - 11-15- Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:14+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780659",
+      "name": "14-00 - 14-30 - Shockwave Ivl In Complex Pci - From Procedural Strategy To Proven Clinical Impact - Support - Shockwave",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780659?h=e2d62fd7ab",
+      "duration": 2108,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780659?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"14-00 - 14-30- Shockwave Ivl In Complex Pci- From Procedural Strategy To Proven Clinical Impact - Support- Shockwave\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780658",
+      "name": "16-15 - 17-00 - Joint Session Crf - Tavi Durability In 2026 - Evidence, Gaps, And What Comes Next",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780658?h=338811e3de",
+      "duration": 2764,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780658?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"16-15 - 17-00- Joint Session Crf - Tavi Durability In 2026- Evidence, Gaps, And What Comes Next\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780657",
+      "name": "14-30 - 15-00 - Coronary Calcium Case Theater - Cracking The Toughest Lesions",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780657?h=15b9ffeae1",
+      "duration": 2314,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780657?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"14-30 - 15-00- Coronary Calcium Case Theater- Cracking The Toughest Lesions\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223780656",
+      "name": "09-00 - 10-00 - Live Case - Support - Microport",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223780656?h=a5ba2f8707",
+      "duration": 4287,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223780656?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"09-00 - 10-00- Live Case - Support- Microport\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:13:54+00:00",
+      "tags": []
+    }
+  ],
+  "30424838": [
+    {
+      "uri": "/videos/1223784655",
+      "name": "10-30 - 11-00 - The Future Of Pci - Technology, Intelligence, And The End Of Conventional Workflows - Part 2",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223784655?h=f50ead4afa",
+      "duration": 1867,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223784655?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"10-30 - 11-00- The Future Of Pci- Technology, Intelligence, And The End Of Conventional Workflows - Part 2\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:28:32+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223784580",
+      "name": "16-15 - 16-30 - Closing Ceremony",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223784580?h=b897c3fa19",
+      "duration": 1017,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223784580?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"16-15 - 16-30- Closing Ceremony\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:28:20+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223783349",
+      "name": "12-00 - 13-00 - Scientific Talk - Crdn - Innovations In Cardiovascular Intervention - Support - Medtronic",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223783349?h=02cb727be5",
+      "duration": 3371,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223783349?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"12-00 - 13-00- Scientific Talk - Crdn- Innovations In Cardiovascular Intervention - Support- Medtronic\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:23:28+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223783065",
+      "name": "08-00 - 09-00 - Stable Cad And Multivessel Disease",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223783065?h=e51ebb5596",
+      "duration": 3281,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223783065?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"08-00 - 09-00- Stable Cad And Multivessel Disease\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:22:27+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782937",
+      "name": "09-00 - 10-00 - Lecture & Live Case",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782937?h=36d1b06d0c",
+      "duration": 3848,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782937?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"09-00 - 10-00- Lecture &amp; Live Case\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:21:57+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782508",
+      "name": "13-30 - 13-56 - Boston Scientific Calcium Challenge",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782508?h=4edf89a100",
+      "duration": 488,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782508?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-30 - 13-56- Boston Scientific Calcium Challenge\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782507",
+      "name": "13-00 - 13-30 - Complex Acs Presentation",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782507?h=11f6429c5a",
+      "duration": 2010,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782507?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-00 - 13-30- Complex Acs Presentation\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782506",
+      "name": "13-56 - 14-30 - Best Elca Cases Biomedical-Philips",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782506?h=ced000e8f8",
+      "duration": 474,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782506?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"13-56 - 14-30- Best Elca Cases Biomedical-Philips\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    },
+    {
+      "uri": "/videos/1223782505",
+      "name": "15-00 - 16-15 - Solaci-Sbhci Best Case And Abstract Award Cerimony",
+      "description": null,
+      "player_embed_url": "https://player.vimeo.com/video/1223782505?h=6a09a868c6",
+      "duration": 2920,
+      "embed": {
+        "html": "<iframe src=\"https://player.vimeo.com/video/1223782505?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=544935\" width=\"1920\" height=\"1080\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" title=\"15-00 - 16-15- Solaci-Sbhci Best Case And Abstract Award Cerimony\"></iframe>"
+      },
+      "created_time": "2026-09-03T19:20:25+00:00",
+      "tags": []
+    }
+  ]
 };
+
+if (typeof window !== 'undefined') {
+  window.VIMEO_CONFIG = VIMEO_CONFIG;
+  window.EVENT_SCHEDULE = EVENT_SCHEDULE;
+  window.MOCK_VIMEO_DATA_BY_FOLDER = MOCK_VIMEO_DATA_BY_FOLDER;
+}
+

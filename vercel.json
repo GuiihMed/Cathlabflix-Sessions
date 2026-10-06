@@ -1,6 +1,25 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/new",
+      "destination": "/new.html"
+    },
+    {
+      "source": "/novo",
+      "destination": "/new.html"
+    },
+    {
+      "source": "/solaci/gravação",
+      "destination": "/solaci/gravacao"
+    },
+    {
+      "source": "/solaci/grava%C3%A7%C3%A3o",
+      "destination": "/solaci/gravacao"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

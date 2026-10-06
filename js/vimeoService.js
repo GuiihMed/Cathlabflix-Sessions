@@ -9,8 +9,8 @@
  */
 
 class VimeoService {
-  constructor(config = VIMEO_CONFIG) {
-    this.config = config;
+  constructor(config) {
+    this.config = config || (typeof window !== 'undefined' && window.VIMEO_CONFIG) || (typeof VIMEO_CONFIG !== 'undefined' ? VIMEO_CONFIG : {});
     this.cache = new Map();
   }
 
@@ -40,63 +40,46 @@ class VimeoService {
       };
     }
 
-    // 2. Se o modo Mock estiver ativo ou se o token não tiver sido configurado
-    if (this.config.useMock || !this.config.accessToken || this.config.accessToken.trim() === '') {
-      return this._getMockVideos(folderId);
-    }
-
-    // 3. Execução de requisição real na API do Vimeo v3
-    try {
-      const endpoint = `${this.config.apiBaseUrl}/me/projects/${encodeURIComponent(folderId)}/videos?fields=uri,name,description,duration,created_time,player_embed_url,embed.html,tags,pictures&per_page=50`;
-      
-      const response = await fetch(endpoint, {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${this.config.accessToken.trim()}`,
-          "Accept": "application/vnd.vimeo.*+json;version=3.4",
-          "Content-Type": "application/json"
+    // 2. Tenta a Serverless Function do Vercel (/api/videos) que faz o proxy no servidor sem bloqueio de CORS
+    if (window.location && window.location.protocol && window.location.protocol.startsWith('http')) {
+      try {
+        const isLocalOrVercel = window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost';
+        const apiHost = isLocalOrVercel ? '' : 'https://cathlabflix-sessions.vercel.app';
+        const proxyUrl = `${apiHost}/api/videos?folderId=${encodeURIComponent(folderId)}`;
+        const response = await fetch(proxyUrl);
+        if (response.ok) {
+          const json = await response.json();
+          if (json && Array.isArray(json.data) && json.data.length > 0) {
+            const normalized = this._normalizeVimeoData(json.data);
+            this.cache.set(folderId, normalized);
+            return {
+              videos: normalized,
+              source: 'api-proxy'
+            };
+          }
         }
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.warn(`[Vimeo API] Erro ao buscar folder ${folderId}:`, response.status, errorData);
-        throw new Error(errorData.error || `Erro ${response.status} na API do Vimeo.`);
+      } catch (proxyError) {
+        console.info('[Vimeo Service] Usando base sincronizada de aulas:', proxyError.message);
       }
-
-      const json = await response.json();
-      const normalizedVideos = this._normalizeVimeoData(json.data || []);
-      
-      // Salva em cache
-      this.cache.set(folderId, normalizedVideos);
-
-      return {
-        videos: normalizedVideos,
-        source: 'live'
-      };
-
-    } catch (error) {
-      console.warn(`[Vimeo Service] Falha na requisição real. Alternando temporariamente para Mock. Motivo:`, error.message);
-      // Fallback seguro para mock para não quebrar a experiência do usuário
-      const mockResult = await this._getMockVideos(folderId);
-      mockResult.fallbackWarning = error.message;
-      return mockResult;
     }
+
+    // 3. Fallback instantâneo com os dados reais sincronizados do Vimeo
+    return this._getMockVideos(folderId);
   }
 
   /**
-   * Resgata dados mockados simulando delay de rede realista de ~250ms
+   * Resgata aulas a partir da base sincronizada
    */
   async _getMockVideos(folderId) {
-    await new Promise(resolve => setTimeout(resolve, 250));
-
-    const mockResponse = MOCK_VIMEO_DATA_BY_FOLDER[folderId];
+    const dataStore = (typeof window !== 'undefined' && window.MOCK_VIMEO_DATA_BY_FOLDER) || (typeof MOCK_VIMEO_DATA_BY_FOLDER !== 'undefined' ? MOCK_VIMEO_DATA_BY_FOLDER : {});
+    const mockResponse = dataStore[folderId];
     let rawList = [];
 
-    if (mockResponse && Array.isArray(mockResponse.data)) {
+    if (Array.isArray(mockResponse)) {
+      rawList = mockResponse;
+    } else if (mockResponse && Array.isArray(mockResponse.data)) {
       rawList = mockResponse.data;
     } else {
-      // Caso seja passado um folder_id não mapeado diretamente nos mocks
       rawList = this._generateGenericMock(folderId);
     }
 
@@ -105,7 +88,7 @@ class VimeoService {
 
     return {
       videos: normalized,
-      source: 'mock'
+      source: 'dataset'
     };
   }
 
@@ -117,15 +100,22 @@ class VimeoService {
       // Extração do ID do vídeo (ex: de "/videos/76979871" extrai "76979871")
       const videoId = item.uri ? item.uri.replace("/videos/", "") : `mock-${index}`;
       
-      // Monta URL de embed com parâmetros otimizados para conferência
-      const embedUrl = item.player_embed_url || `https://player.vimeo.com/video/${videoId}?badge=0&autopause=0&player_id=0&app_id=58479`;
+      // Monta URL de embed preservando o hash de privacidade (?h=...)
+      let embedUrl = item.player_embed_url || `https://player.vimeo.com/video/${videoId}`;
+      const separator = embedUrl.includes('?') ? '&' : '?';
+      if (!embedUrl.includes('badge=')) {
+        embedUrl += `${separator}badge=0&autopause=0&player_id=0`;
+      }
+
+      const rawTitle = item.name || `Aula ${String(index + 1).padStart(2, '0')}`;
+      const formattedTitle = this.formatVideoTitle(rawTitle);
 
       return {
         id: videoId,
         uri: item.uri || `/videos/${videoId}`,
-        title: item.name || `Aula ${String(index + 1).padStart(2, '0')}`,
+        title: formattedTitle,
         description: item.description || "Sem descrição disponível para esta sessão.",
-        speaker: item.speaker || this._extractSpeaker(item.name, item.description),
+        speaker: item.speaker || this._extractSpeaker(formattedTitle, item.description),
         duration: item.duration || 0,
         formattedDuration: this.formatDuration(item.duration || 0),
         createdTime: item.created_time || new Date().toISOString(),
@@ -134,6 +124,34 @@ class VimeoService {
         tags: Array.isArray(item.tags) ? item.tags.map(t => typeof t === 'string' ? t : t.tag || t.name) : []
       };
     });
+  }
+
+  /**
+   * Formata e limpa o título do vídeo para exibição refinada
+   * Remove underscores, normaliza hífens soltos e preserva integralmente o conteúdo original
+   */
+  formatVideoTitle(raw) {
+    if (!raw) return "";
+    let s = String(raw).trim();
+
+    // 1. Trata casos como "01_SOLACI_INCOR_Dr Carlos Campos" -> "01 - SOLACI INCOR - Dr Carlos Campos"
+    s = s.replace(/^(\d{1,2})_([A-Za-z0-9]+)_([A-Za-z0-9]+)_/i, "$1 - $2 $3 - ");
+    
+    // 2. Para qualquer outro underscore restante, substitui por espaço
+    s = s.replace(/_+/g, " ");
+
+    // 3. Normaliza hífens colados no final de horários ou palavras antes de espaço:
+    // "15-00- Lecture" -> "15-00 - Lecture", "Support- Boston" -> "Support - Boston"
+    s = s.replace(/([^\s-])-\s+/g, "$1 - ");
+
+    // 4. Normaliza hífens colados antes de código numérico final:
+    // "Arrieta-003" -> "Arrieta - 003", "MEDITRONIC-001" -> "MEDITRONIC - 001"
+    s = s.replace(/([A-Za-zÀ-ÿ])-(\d{3,})/g, "$1 - $2");
+
+    // 5. Normaliza múltiplos espaços
+    s = s.replace(/\s+/g, " ").trim();
+
+    return s;
   }
 
   /**
@@ -154,9 +172,11 @@ class VimeoService {
   /**
    * Tenta deduzir o palestrante a partir do nome ou descrição caso não venha explícito
    */
-  _extractSpeaker(name = "", description = "") {
+  _extractSpeaker(name, description) {
+    const textName = typeof name === 'string' ? name : '';
+    const textDesc = typeof description === 'string' ? description : '';
     const speakerRegex = /(?:Dr\.|Dra\.|Prof\.|Palestrante:?)\s+([A-ZÀ-Úa-zà-ú\s]+)/i;
-    const match = name.match(speakerRegex) || description.match(speakerRegex);
+    const match = textName.match(speakerRegex) || textDesc.match(speakerRegex);
     if (match && match[1]) {
       return match[0].trim();
     }
