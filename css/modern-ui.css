@@ -343,7 +343,7 @@ input {
    ========================================================================== */
 .banner-stage-section {
   width: 100%;
-  background: #080a0f;
+  background: #FAF8F5;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -353,10 +353,10 @@ input {
   width: 100%;
   max-width: 1920px;
   margin: 0 auto;
-  aspect-ratio: 1920 / 550;
+  aspect-ratio: 1024 / 251;
   max-height: 550px;
   overflow: hidden;
-  background: #000000;
+  background: #FAF8F5;
   position: relative;
   display: flex;
   align-items: center;
