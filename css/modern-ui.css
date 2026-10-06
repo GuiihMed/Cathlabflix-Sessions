@@ -1351,9 +1351,9 @@ input {
 }
 
 .footer-logo {
-  height: 28px;
+  height: 30px;
   width: auto;
-  opacity: 0.85;
+  display: block;
 }
 
 .footer-text {
