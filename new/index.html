@@ -70,12 +70,13 @@
         </div>
       </div>
 
-      <!-- Ações do Usuário (Ícone de Usuário) -->
+      <!-- Menu Hambúrguer Principal -->
       <div class="topbar-right">
-        <button type="button" class="topbar-user-btn" id="topbarUserBtn" title="Perfil do Usuário" aria-label="Perfil do Usuário">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
+        <button type="button" class="topbar-hamburger-btn" id="topbarHamburgerBtn" title="Menu Principal" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="appDrawer">
+          <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
           </svg>
         </button>
       </div>
@@ -141,124 +142,10 @@
 
 
     <!-- ==========================================================================
-         4. Layout Híbrido: Sidebar Flutuante + Área Principal de Streaming
+         3. Área Principal de Streaming (Fileiras / Carrosséis)
          ========================================================================== -->
     <div class="app-body-layout">
 
-      <!-- Sidebar Flutuante à Esquerda (Desktop) -->
-      <aside class="app-sidebar-floating" aria-label="Navegação Lateral">
-        <div>
-          <span class="sidebar-section-title">Menu Principal</span>
-          <ul class="sidebar-nav-list">
-            <li class="sidebar-nav-item">
-              <a href="/new" class="sidebar-nav-link active">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                  </svg>
-                  Início
-                </span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a href="/solaci/gravacao" class="sidebar-nav-link">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                  Gravações SOLACI
-                </span>
-                <span class="sidebar-badge">37</span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a href="/new/player" class="sidebar-nav-link">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                  Player de Aula
-                </span>
-                <span class="sidebar-badge" style="background: #fee2e2; color: #e50914; font-weight: 700;">NOVO</span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a href="/solaci/aulas" class="sidebar-nav-link">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                  </svg>
-                  Aulas PPTX
-                </span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a href="#solaciSection" class="sidebar-nav-link">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                  </svg>
-                  Minha Lista
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <span class="sidebar-section-title">Centros Médicos</span>
-          <ul class="sidebar-nav-list">
-            <li class="sidebar-nav-item">
-              <a href="#solaciSection" class="sidebar-nav-link" onclick="filterCardsByCategory('Heart Team')">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                  Heart Team
-                </span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a href="#solaciSection" class="sidebar-nav-link" onclick="filterCardsByCategory('INCOR')">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M8 12h8"></path>
-                    <path d="M12 8v8"></path>
-                  </svg>
-                  INCOR
-                </span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a href="#solaciSection" class="sidebar-nav-link" onclick="filterCardsByCategory('Dante Pazzanese')">
-                <span class="sidebar-link-content">
-                  <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                    <polyline points="2 17 12 22 22 17"></polyline>
-                    <polyline points="2 12 12 17 22 12"></polyline>
-                  </svg>
-                  Dante Pazzanese
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Card Promocional da Sidebar -->
-        <div class="sidebar-promo-card">
-          <span class="sidebar-promo-badge">Live & On-Demand</span>
-          <h4 class="sidebar-promo-title">SOLACI 2026</h4>
-          <p class="sidebar-promo-desc">Reveja os procedimentos e debates gravados em alta definição.</p>
-          <a href="/solaci/gravacao" class="sidebar-promo-btn">Acessar Tudo</a>
-        </div>
-      </aside>
-
-      <!-- Área Principal de Streaming (Fileiras / Carrosséis) -->
       <main class="main-stage-content">
 
         <!-- 1. Fileira: Continue Assistindo -->
@@ -485,6 +372,145 @@
       </div>
     </div>
   </div>
+
+  <!-- ==========================================================================
+       Drawer Lateral (Menu Hambúrguer)
+       ========================================================================== -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+  <aside class="app-drawer" id="appDrawer" aria-label="Menu Principal" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img 
+          src="/assets/images/logo-cathlabflix-color.png" 
+          alt="CathlabFlix" 
+          class="drawer-logo"
+          width="135"
+          height="38"
+        >
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Fechar menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- 1. Menu Principal -->
+      <div class="drawer-section">
+        <span class="drawer-section-title">Menu Principal</span>
+        <ul class="drawer-nav-list">
+          <li class="drawer-nav-item">
+            <a href="/new" class="drawer-nav-link active">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                Início
+              </span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="/solaci/gravacao" class="drawer-nav-link">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Gravações SOLACI
+              </span>
+              <span class="drawer-badge">37</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="/new/player" class="drawer-nav-link">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Player de Aula
+              </span>
+              <span class="drawer-badge novelty">NOVO</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="/solaci/aulas" class="drawer-nav-link">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                Aulas PPTX
+              </span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="#solaciSection" class="drawer-nav-link" id="drawerMyListLink">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Minha Lista
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 2. Centros Médicos -->
+      <div class="drawer-section">
+        <span class="drawer-section-title">Centros Médicos</span>
+        <ul class="drawer-nav-list">
+          <li class="drawer-nav-item">
+            <a href="#solaciSection" class="drawer-nav-link" data-filter-category="Heart Team">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                Heart Team
+              </span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="#solaciSection" class="drawer-nav-link" data-filter-category="INCOR">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 12h8"></path>
+                  <path d="M12 8v8"></path>
+                </svg>
+                INCOR
+              </span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="#solaciSection" class="drawer-nav-link" data-filter-category="Dante Pazzanese">
+              <span class="drawer-link-content">
+                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Dante Pazzanese
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3. Card Promocional da Sidebar -->
+      <div class="drawer-promo-card">
+        <span class="drawer-promo-badge">Live & On-Demand</span>
+        <h4 class="drawer-promo-title">SOLACI 2026</h4>
+        <p class="drawer-promo-desc">Reveja os procedimentos e debates gravados em alta definição.</p>
+        <a href="/solaci/gravacao" class="drawer-promo-btn">Acessar Tudo</a>
+      </div>
+    </div>
+  </aside>
 
   <!-- Scripts Interativos Modernos -->
   <script src="/js/modern-ui.js"></script>
