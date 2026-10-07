@@ -315,6 +315,18 @@
 .aulas-accordion-item.open .aulas-accordion-body,
 .aula-accordion-item.active .aula-accordion-body {
   display: block;
+  animation: aulas-accordion-expand 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes aulas-accordion-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
