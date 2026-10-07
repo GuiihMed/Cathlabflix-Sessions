@@ -1,0 +1,809 @@
+/* ==========================================================================
+   CathlabFlix Modern Hub - Estilos da Página /new (Portal Central)
+   Layout 2 Colunas: Notícias do Wix + Agenda com Calendário Expansível
+   ========================================================================== */
+
+/* 1. Container Principal do Hub */
+.hub-main-container {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* 2. Carrossel Hero com Banners Oficiais */
+.hub-hero-section {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.hub-hero-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1920 / 520;
+  max-height: 480px;
+  min-height: 220px;
+}
+
+.hub-hero-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hub-hero-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.hub-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hub-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.55) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 24px 32px;
+}
+
+.hub-hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  box-shadow: 0 4px 16px var(--color-primary-glow);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.hub-hero-cta-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Controles de Navegação do Hero */
+.hero-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.hero-nav-arrow:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.hero-nav-arrow.prev { left: 16px; }
+.hero-nav-arrow.next { right: 16px; }
+
+.hero-dots-container {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.hero-dot.active {
+  width: 26px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+}
+
+/* ==========================================================================
+   3. Seção Principal de Duas Colunas: Destaques (65%) + Agenda (35%)
+   ========================================================================== */
+.hub-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  gap: 36px;
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .hub-content-grid {
+    grid-template-columns: 1fr 340px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 860px) {
+  .hub-content-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Cabeçalho de Coluna */
+.column-heading-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-border-subtle);
+}
+
+.column-heading-title {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.column-heading-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(229, 9, 20, 0.1);
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   4. Coluna da Esquerda: Notícias em Destaque (Cards do Wix)
+   ========================================================================== */
+.wix-news-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wix-news-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.wix-news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(229, 9, 20, 0.25);
+}
+
+.news-card-thumb-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 155px;
+  background: var(--color-surface-dark);
+  overflow: hidden;
+}
+
+.news-card-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.wix-news-card:hover .news-card-thumb {
+  transform: scale(1.05);
+}
+
+.news-category-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.news-card-content {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.news-card-date {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.news-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.news-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.news-card-title a:hover {
+  color: var(--color-primary);
+}
+
+.news-card-excerpt {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.news-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.news-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.news-card-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px var(--color-primary-glow);
+}
+
+@media (max-width: 640px) {
+  .wix-news-card {
+    grid-template-columns: 1fr;
+  }
+  .news-card-thumb-wrapper {
+    aspect-ratio: 16 / 9;
+    min-height: auto;
+  }
+  .news-card-content {
+    padding: 16px;
+  }
+}
+
+/* ==========================================================================
+   5. Coluna da Direita: Agenda Interativa com Expansão Vertical
+   Design baseado nas referências: Frosted Glass / Soft UI
+   ========================================================================== */
+.agenda-card-wrapper {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-card);
+  padding: 24px 22px;
+  position: sticky;
+  top: 88px;
+  transition: all var(--transition-base);
+}
+
+/* Topo da Agenda */
+.agenda-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.agenda-kicker {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.agenda-month-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.agenda-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.agenda-nav-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.agenda-nav-btn:hover {
+  background: var(--color-surface);
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1.06);
+}
+
+/* Grade de Dias da Semana */
+.agenda-weekdays-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.agenda-weekday-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+/* Grade Numérica */
+.agenda-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.agenda-day-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.agenda-day-cell:hover:not(.empty) {
+  background: var(--color-hover-subdued);
+}
+
+.agenda-day-cell.empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Dia Selecionado */
+.agenda-day-cell.is-selected {
+  background: var(--color-primary) !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px var(--color-primary-glow);
+}
+
+/* Dia com Evento (Halo / Círculo inspirado na Referência 2 e 4) */
+.agenda-day-cell.has-event {
+  font-weight: 700;
+}
+
+.agenda-day-badge-ring {
+  position: absolute;
+  inset: 1px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.agenda-day-cell.has-event.event-red {
+  color: var(--color-primary);
+}
+
+.agenda-day-cell.has-event.event-blue {
+  color: #0284c7;
+}
+
+.agenda-day-cell.has-event.event-amber {
+  color: #d97706;
+}
+
+.agenda-day-cell.is-selected .agenda-day-badge-ring {
+  display: none;
+}
+
+/* ==========================================================================
+   6. Gaveta Expansível Inferior (Aparece embaixo sem mover o mapa)
+   ========================================================================== */
+.agenda-expandable-drawer {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.3s ease;
+}
+
+.agenda-expandable-drawer.is-open {
+  max-height: 480px;
+  opacity: 1;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+/* Card Detalhado do Evento (Fiel à Referência 3) */
+.agenda-event-detail-card {
+  background: var(--color-bg-base);
+  border-radius: 14px;
+  padding: 18px;
+  border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideEventCardDown 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideEventCardDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.agenda-event-detail-card.event-blue {
+  border-left-color: #0284c7;
+}
+
+.agenda-event-detail-card.event-amber {
+  border-left-color: #d97706;
+}
+
+.event-detail-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.event-date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.event-pill-date {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.event-pill-badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  letter-spacing: 0.5px;
+}
+
+.event-detail-close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.event-detail-close-btn:hover {
+  color: var(--color-primary);
+  border-color: rgba(229, 9, 20, 0.3);
+}
+
+.event-category-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.event-detail-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.event-detail-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.event-detail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.event-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.event-detail-cta-btn {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.event-detail-cta-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.agenda-event-empty-box {
+  background: var(--color-bg-base);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.empty-date-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.empty-text {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   7. Compatibilidade Nativa com o Tema Azul Oficial (#062257 e #010234)
+   ========================================================================== */
+[data-theme="blue"] .hub-hero-section {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .column-heading-wrapper {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .column-heading-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .column-heading-badge {
+  background: rgba(229, 9, 20, 0.2);
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .wix-news-card {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .wix-news-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="blue"] .news-card-date {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .news-card-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .news-card-excerpt {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .agenda-card-wrapper {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="blue"] .agenda-month-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .agenda-kicker {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .agenda-nav-btn {
+  background: #010234;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .agenda-nav-btn:hover {
+  background: #0a2d72;
+}
+
+[data-theme="blue"] .agenda-weekday-label {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .agenda-day-cell {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .agenda-day-cell:hover:not(.empty) {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .agenda-expandable-drawer.is-open {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .agenda-event-detail-card {
+  background: #010234;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="blue"] .event-date-pill {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="blue"] .event-pill-date {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .event-detail-close-btn {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .event-detail-close-btn:hover {
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .event-category-tag {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .event-detail-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .event-detail-desc {
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .event-meta-item {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .agenda-event-empty-box {
+  background: #010234;
+}
+
+[data-theme="blue"] .empty-date-tag {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .empty-text {
+  color: #94a3b8;
+}
