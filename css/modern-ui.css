@@ -67,6 +67,48 @@
   --transition-slow: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   Tema Azul Oficial CathlabFlix (#062257 e #010234)
+   ========================================================================== */
+[data-theme="blue"] {
+  --color-bg-base: #010234;
+  --color-surface: #062257;
+  --color-surface-translucent: rgba(6, 34, 87, 0.94);
+  --color-surface-dark: #010234;
+  --color-surface-dark-elevated: #0a2d72;
+
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-text-inverse: #010234;
+
+  --color-hover-subdued: rgba(255, 255, 255, 0.08);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+  --color-border-dark: rgba(255, 255, 255, 0.16);
+
+  --color-overlay-dark: rgba(1, 2, 52, 0.88);
+  --color-overlay-cinema: linear-gradient(180deg, rgba(1, 2, 52, 0.25) 0%, rgba(1, 2, 52, 0.85) 60%, #010234 100%);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(6, 34, 87, 0.6);
+  --shadow-floating: 0 14px 38px rgba(0, 0, 0, 0.6);
+}
+
+/* Logos alternados entre temas Claro e Azul */
+.logo-blue {
+  display: none !important;
+}
+
+[data-theme="blue"] .logo-light {
+  display: none !important;
+}
+
+[data-theme="blue"] .logo-blue {
+  display: inline-block !important;
+}
+
 /* Reset Moderno */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -1487,10 +1529,10 @@ input {
   width: 320px;
   max-width: calc(100vw - 32px);
   height: 100vh;
-  background: #FFFFFF;
+  background: var(--color-surface);
   z-index: 9999;
   transform: translateX(100%);
-  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
   box-shadow: -12px 0 40px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
@@ -1508,8 +1550,9 @@ input {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: #FFFFFF;
+  background: var(--color-surface);
   flex-shrink: 0;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .drawer-brand {
@@ -1726,4 +1769,459 @@ input {
   background: var(--color-primary-hover);
   transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   Controle de Tema no Drawer (Claro vs Azul Oficial #062257 / #010234)
+   ========================================================================== */
+.drawer-theme-section {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  margin-bottom: 4px;
+}
+
+.drawer-theme-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: var(--color-bg-base);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.drawer-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 9px;
+  font-family: var(--font-family-base);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.drawer-theme-btn:hover {
+  color: var(--color-text-primary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.drawer-theme-btn.active {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-subtle);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.drawer-theme-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.drawer-theme-btn:hover .drawer-theme-swatch {
+  transform: scale(1.1);
+}
+
+.drawer-theme-swatch.swatch-light {
+  background: #FFFFFF;
+  border: 1.5px solid #cbd5e1;
+  color: #f59e0b;
+}
+
+.drawer-theme-swatch.swatch-blue {
+  background: linear-gradient(135deg, #062257 0%, #010234 100%);
+  border: 1.5px solid #38bdf8;
+  color: #38bdf8;
+}
+
+.drawer-theme-name {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Sobrescritas Específicas do Tema Azul (#062257 e #010234)
+   ========================================================================== */
+[data-theme="blue"] body {
+  background-color: #010234;
+  color: #FFFFFF;
+}
+
+/* Topbar */
+[data-theme="blue"] .app-topbar {
+  background: rgba(6, 34, 87, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="blue"] .search-pill {
+  background: rgba(1, 2, 52, 0.7);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="blue"] .search-pill:focus-within {
+  background: rgba(1, 2, 52, 0.9);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.25);
+}
+
+[data-theme="blue"] .search-input {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .search-input::placeholder {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .search-icon {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .search-clear-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .search-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .search-dropdown {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="blue"] .search-result-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .search-result-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .search-result-meta {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .topbar-user-btn,
+[data-theme="blue"] .topbar-hamburger-btn {
+  background: rgba(1, 2, 52, 0.65);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .topbar-user-btn:hover,
+[data-theme="blue"] .topbar-hamburger-btn:hover {
+  background: #0a2d72;
+  border-color: rgba(229, 9, 20, 0.5);
+  color: var(--color-primary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Faixa de Ações do Banner */
+[data-theme="blue"] .banner-actions-strip {
+  background: rgba(6, 34, 87, 0.9);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .banner-strip-badge {
+  background: #010234;
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+[data-theme="blue"] .banner-strip-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .btn-pill-surface {
+  background: rgba(1, 2, 52, 0.75);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .btn-pill-surface:hover {
+  background: #0a2d72;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+}
+
+/* Sidebar */
+[data-theme="blue"] .app-sidebar {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="blue"] .sidebar-nav-link {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .sidebar-nav-link:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="blue"] .sidebar-nav-link.active {
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .sidebar-badge {
+  background: rgba(229, 9, 20, 0.22);
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .sidebar-category-card {
+  background: rgba(1, 2, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .sidebar-category-card:hover {
+  background: #0a2d72;
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+[data-theme="blue"] .sidebar-cat-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .sidebar-cat-count {
+  color: #94a3b8;
+}
+
+/* Category Pills Bar */
+[data-theme="blue"] .category-pill {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .category-pill:hover {
+  background: #0a2d72;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="blue"] .category-pill.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* Cards de Vídeo */
+[data-theme="blue"] .video-card {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="blue"] .video-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(6, 34, 87, 0.6);
+}
+
+[data-theme="blue"] .card-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .card-meta-line {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .card-speaker {
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .card-center-tag {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .card-favorite-btn {
+  background: rgba(1, 2, 52, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .card-favorite-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme="blue"] .card-favorite-btn.saved {
+  background: #062257;
+  border-color: rgba(229, 9, 20, 0.45);
+  color: var(--color-primary);
+}
+
+/* Controles de Carrossel */
+[data-theme="blue"] .carousel-nav-btn {
+  background: rgba(6, 34, 87, 0.95);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .carousel-nav-btn:hover {
+  background: #0a2d72;
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #FFFFFF;
+}
+
+/* Modal Player */
+[data-theme="blue"] .player-modal-backdrop {
+  background: rgba(1, 2, 52, 0.92);
+}
+
+[data-theme="blue"] .player-modal-dialog {
+  background: #010234;
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+[data-theme="blue"] .player-modal-header {
+  background: #062257;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .player-modal-footer {
+  background: #062257;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .modal-action-btn {
+  background: rgba(1, 2, 52, 0.65);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .modal-action-btn:hover {
+  background: #0a2d72;
+  color: #FFFFFF;
+}
+
+/* Drawer no Tema Azul */
+[data-theme="blue"] .app-drawer {
+  background: #010234;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="blue"] .drawer-header {
+  background: #062257;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .drawer-close-btn {
+  background: rgba(1, 2, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .drawer-close-btn:hover {
+  background: rgba(229, 9, 20, 0.2);
+  color: #ff6b6b;
+  border-color: rgba(229, 9, 20, 0.4);
+}
+
+[data-theme="blue"] .drawer-theme-section {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .drawer-theme-switcher {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="blue"] .drawer-theme-btn {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .drawer-theme-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="blue"] .drawer-theme-btn.active {
+  background: #010234;
+  color: #FFFFFF;
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="blue"] .drawer-section-title {
+  color: #64748b;
+}
+
+[data-theme="blue"] .drawer-nav-link {
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .drawer-nav-link:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+[data-theme="blue"] .drawer-nav-link.active {
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .drawer-badge {
+  background: rgba(229, 9, 20, 0.22);
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .drawer-promo-card {
+  background: linear-gradient(135deg, #062257 0%, #010234 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+/* Bottom Nav Mobile */
+[data-theme="blue"] .bottom-nav {
+  background: rgba(6, 34, 87, 0.95);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme="blue"] .bottom-nav-item {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .bottom-nav-item:hover,
+[data-theme="blue"] .bottom-nav-item.active {
+  color: var(--color-primary);
+}
+
+/* Footer */
+[data-theme="blue"] .app-footer {
+  background: #010234;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .footer-link {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .footer-link:hover {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .footer-copy {
+  color: #64748b;
+}
+
 

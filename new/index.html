@@ -26,6 +26,18 @@
 
   <!-- Folha de Estilos Moderna -->
   <link rel="stylesheet" href="/css/modern-ui.css">
+
+  <!-- Detecção de Tema Anti-FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('cathlabflix-theme');
+        if (theme === 'blue') {
+          document.documentElement.setAttribute('data-theme', 'blue');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
@@ -40,7 +52,14 @@
           <img 
             src="/assets/images/logo-cathlabflix-color.png" 
             alt="CathlabFlix" 
-            class="topbar-logo"
+            class="topbar-logo logo-light"
+            width="145"
+            height="42"
+          >
+          <img 
+            src="/assets/images/logo-cathlabflix-white.png" 
+            alt="CathlabFlix" 
+            class="topbar-logo logo-blue"
             width="145"
             height="42"
           >
@@ -312,7 +331,14 @@
           <img 
             src="/assets/images/logo-cathlabflix-color.png" 
             alt="CathlabFlix" 
-            class="footer-logo"
+            class="footer-logo logo-light"
+            width="120"
+            height="35"
+          >
+          <img 
+            src="/assets/images/logo-cathlabflix-white.png" 
+            alt="CathlabFlix" 
+            class="footer-logo logo-blue"
             width="120"
             height="35"
           >
@@ -384,7 +410,14 @@
         <img 
           src="/assets/images/logo-cathlabflix-color.png" 
           alt="CathlabFlix" 
-          class="drawer-logo"
+          class="drawer-logo logo-light"
+          width="135"
+          height="38"
+        >
+        <img 
+          src="/assets/images/logo-cathlabflix-white.png" 
+          alt="CathlabFlix" 
+          class="drawer-logo logo-blue"
           width="135"
           height="38"
         >
@@ -398,6 +431,37 @@
     </div>
 
     <div class="drawer-body">
+      <!-- 0. Tema / Aparência -->
+      <div class="drawer-section drawer-theme-section">
+        <span class="drawer-section-title">Tema</span>
+        <div class="drawer-theme-switcher" role="radiogroup" aria-label="Escolha de tema">
+          <button type="button" class="drawer-theme-btn active" data-theme-val="light" aria-checked="true" role="radio">
+            <span class="drawer-theme-swatch swatch-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+            <span class="drawer-theme-name">Claro</span>
+          </button>
+          <button type="button" class="drawer-theme-btn" data-theme-val="blue" aria-checked="false" role="radio">
+            <span class="drawer-theme-swatch swatch-blue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </span>
+            <span class="drawer-theme-name">Azul</span>
+          </button>
+        </div>
+      </div>
+
       <!-- 1. Menu Principal -->
       <div class="drawer-section">
         <span class="drawer-section-title">Menu Principal</span>

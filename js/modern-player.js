@@ -235,6 +235,7 @@ function initPlayerApp() {
   bindActionButtons();
   initTopSearch();
   initHamburgerDrawer();
+  initThemeSwitcher();
 }
 
 /**
@@ -705,4 +706,50 @@ function initHamburgerDrawer() {
     });
   });
 }
+
+/**
+ * Alternador de Tema Oficial (Claro vs Azul #062257 e #010234)
+ */
+function initThemeSwitcher() {
+  const themeBtns = document.querySelectorAll('.drawer-theme-btn');
+  if (!themeBtns.length) return;
+
+  function applyTheme(theme) {
+    if (theme === 'blue') {
+      document.documentElement.setAttribute('data-theme', 'blue');
+      try { localStorage.setItem('cathlabflix-theme', 'blue'); } catch (e) {}
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      try { localStorage.setItem('cathlabflix-theme', 'light'); } catch (e) {}
+    }
+
+    themeBtns.forEach(btn => {
+      const val = btn.getAttribute('data-theme-val');
+      const isActive = val === (theme === 'blue' ? 'blue' : 'light');
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-checked', isActive ? 'true' : 'false');
+    });
+  }
+
+  let currentTheme = 'light';
+  try {
+    const saved = localStorage.getItem('cathlabflix-theme');
+    if (saved) {
+      currentTheme = saved;
+    } else if (document.documentElement.getAttribute('data-theme') === 'blue') {
+      currentTheme = 'blue';
+    }
+  } catch (e) {}
+
+  applyTheme(currentTheme);
+
+  themeBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetTheme = btn.getAttribute('data-theme-val') || 'light';
+      applyTheme(targetTheme);
+    });
+  });
+}
+
 
