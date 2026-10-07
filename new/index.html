@@ -2,30 +2,25 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CathlabFlix Sessions - Novo Layout Modern UI</title>
-  <meta name="description" content="Plataforma de streaming científico em cardiologia intervencionista. Assista a transmissões ao vivo, gravações e aulas exclusivas do SOLACI SBHCI 2026.">
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://cathlabflix-sessions.vercel.app/new">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>CathlabFlix - Hub de Educação em Cardiologia Intervencionista</title>
+  <meta name="description" content="Plataforma oficial de educação médica continuada, transmissões de congressos, webinares e discussões clínicas da SBHCI.">
+  
   <!-- Open Graph / Redes Sociais -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cathlabflix-sessions.vercel.app/new">
-  <meta property="og:title" content="CathlabFlix Sessions - Novo Layout Modern UI">
-  <meta property="og:description" content="Assista às transmissões e gravações científicas exclusivas do CathlabFlix na nova interface moderna.">
-  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:site_name" content="CathlabFlix by SBHCI">
+  <meta property="og:title" content="CathlabFlix by SBHCI">
+  <meta property="og:description" content="Educação e transmissões oficiais em Cardiologia Intervencionista.">
+  <meta property="og:image" content="/assets/images/og-cathlabflix.png">
 
-  <!-- Tipografia Inter (Design System Oficial) -->
+  <!-- Tipografia Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Folha de Estilos Moderna -->
+  <!-- Folhas de Estilo -->
   <link rel="stylesheet" href="/css/modern-ui.css">
+  <link rel="stylesheet" href="/css/modern-hub.css">
 
   <!-- Detecção de Tema Anti-FOUC -->
   <script>
@@ -44,52 +39,37 @@
   <div class="app-container">
 
     <!-- ==========================================================================
-         1. App Topbar (Barra Superior Integrada)
+         1. Topbar do Portal (Barra Superior com Navegação e Menu Hambúrguer)
          ========================================================================== -->
     <header class="app-topbar" id="appTopbar">
       <div class="topbar-left">
-        <a href="/new" class="topbar-brand" title="CathlabFlix Home">
+        <a href="/new" class="topbar-brand" title="CathlabFlix Início">
           <img 
             src="/assets/images/logo-cathlabflix-color.png" 
             alt="CathlabFlix" 
-            class="topbar-logo logo-light"
-            width="145"
+            class="topbar-logo logo-light" 
+            width="145" 
             height="42"
           >
           <img 
             src="/assets/images/logo-cathlabflix-white.png" 
             alt="CathlabFlix" 
-            class="topbar-logo logo-blue"
-            width="145"
+            class="topbar-logo logo-blue" 
+            width="145" 
             height="42"
           >
         </a>
       </div>
 
-      <!-- Barra de Busca em Pílula (--radius-pill) -->
-      <div class="search-pill-container">
-        <div class="search-pill">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input 
-            type="text" 
-            class="search-input" 
-            id="globalSearchInput" 
-            placeholder="Buscar por palestrante, tema, sala (ex: Arrieta, Heart Team, INCOR)..." 
-            aria-label="Buscar sessões"
-          >
-          <button type="button" class="search-clear-btn" id="searchClearBtn" title="Limpar busca">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </div>
+      <!-- Navegação Rápida (Desktop) -->
+      <nav class="topbar-quick-nav" aria-label="Navegação rápida">
+        <a href="#destaquesSection" class="quick-nav-link active">Destaques</a>
+        <a href="/new/solaci" class="quick-nav-link">Congressos</a>
+        <a href="#agendaSection" class="quick-nav-link">Agenda</a>
+        <a href="/new/player" class="quick-nav-link">Player de Aulas</a>
+      </nav>
 
-      <!-- Menu Hambúrguer Principal -->
+      <!-- Menu Hambúrguer Principal (Com Seletor de Tema) -->
       <div class="topbar-right">
         <button type="button" class="topbar-hamburger-btn" id="topbarHamburgerBtn" title="Menu Principal" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="appDrawer">
           <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -102,228 +82,123 @@
     </header>
 
     <!-- ==========================================================================
-         2. Banner Oficial SOLACI SBHCI 2026
+         2. Conteúdo Principal do Hub (Carrossel + 2 Colunas: Destaques & Agenda)
          ========================================================================== -->
-    <section class="banner-stage-section" id="bannerStage">
-      <div class="banner-container-1920">
-        <img 
-          src="/assets/images/banner-solaci-2026.png" 
-          alt="SOLACI SBHCI 2026 - 29 a 31 de Julho de 2026 | WTC São Paulo" 
-          class="banner-image-1920" 
-          width="1024" 
-          height="251"
-          fetchpriority="high"
-        >
-      </div>
+    <main class="hub-main-container">
 
-      <!-- Faixa de Botões de Ação Abaixo do Banner -->
-      <div class="banner-actions-strip">
-        <div class="banner-actions-container">
-          <div class="banner-actions-left">
-            <span class="banner-strip-badge">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
-              SOLACI SBHCI 2026
-            </span>
-            <span class="banner-strip-title">Sessões & Transmissões Oficiais</span>
+      <!-- Carrossel Hero com Banners Oficiais -->
+      <section class="hub-hero-section" id="hubHeroSection" aria-label="Destaques Principais">
+        <div class="hub-hero-viewport">
+          <div class="hub-hero-track" id="hubHeroTrack">
+            <!-- Slide 1: SOLACI SBHCI 2026 -->
+            <div class="hub-hero-slide">
+              <img 
+                src="/assets/images/banner-solaci-2026.png" 
+                alt="SOLACI SBHCI 2026 - 29 a 31 de Julho no WTC São Paulo" 
+                class="hub-hero-img"
+                fetchpriority="high"
+              >
+              <div class="hub-hero-overlay">
+                <a href="/new/solaci" class="hub-hero-cta-btn" title="Acessar o Congresso SOLACI 2026">
+                  <span>Confira a Cobertura SOLACI 2026</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Slide 2: Banner CathlabFlix Institucional -->
+            <div class="hub-hero-slide">
+              <img 
+                src="/assets/images/banner-solaci-1920x550.png" 
+                alt="CathlabFlix - Nova era da educação em cardiologia intervencionista" 
+                class="hub-hero-img"
+                loading="lazy"
+              >
+              <div class="hub-hero-overlay">
+                <a href="/new/solaci" class="hub-hero-cta-btn" title="Acessar catálogo de sessões">
+                  <span>Explorar Conteúdos e Aulas</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
 
-          <div class="banner-actions-buttons">
-            <button type="button" class="btn-pill-primary" id="heroWatchBtn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              Assistir Agora
-            </button>
+          <!-- Setas de Navegação -->
+          <button type="button" class="hero-nav-arrow prev" id="heroPrevBtn" aria-label="Banner anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button type="button" class="hero-nav-arrow next" id="heroNextBtn" aria-label="Próximo banner">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
-            <button type="button" class="btn-pill-surface" id="heroMyListBtn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              Minha Lista
-            </button>
+          <!-- Pontos de Paginação -->
+          <div class="hero-dots-container" id="heroDotsContainer"></div>
+        </div>
+      </section>
 
-            <a href="/solaci/gravacao" class="btn-pill-surface" title="Ver grade completa do congresso">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <!-- ======================================================================
+           3. Grade de Conteúdo em 2 Colunas:
+              Coluna Esquerda (65%): Em Destaque (Notícias do Wix)
+              Coluna Direita (35%): Agenda Interativa com Calendário
+           ====================================================================== -->
+      <div class="hub-content-grid">
+
+        <!-- Coluna Esquerda: Notícias em Destaque do Wix -->
+        <section class="hub-news-column" id="destaquesSection" aria-label="Notícias em Destaque">
+          <div class="column-heading-wrapper">
+            <h2 class="column-heading-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary)">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              Em Destaque
+            </h2>
+            <span class="column-heading-badge">Notícias & Coberturas</span>
+          </div>
+
+          <!-- Lista de Notícias (Preenchida dinamicamente via /api/wix-news) -->
+          <div class="wix-news-feed-list" id="wixNewsContainer">
+            <!-- Skeleton de Carregamento inicial -->
+            <div class="news-loading-state" style="padding: 40px; text-align: center; color: var(--color-text-secondary);">
+              <p>Carregando as últimas atualizações do CathlabFlix...</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Coluna Direita: Agenda Interativa com Calendário Expansível -->
+        <aside class="hub-agenda-column" id="agendaSection" aria-label="Agenda de Eventos">
+          <div class="column-heading-wrapper">
+            <h2 class="column-heading-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary)">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
-              Grade Completa
-            </a>
+              Agenda
+            </h2>
+            <span class="column-heading-badge" style="background: rgba(2, 132, 199, 0.1); color: #0284c7;">Eventos</span>
           </div>
-        </div>
+
+          <!-- Componente do Calendário Interativo -->
+          <div id="agendaCalendarContainer">
+            <!-- Injetado pelo js/modern-calendar.js -->
+          </div>
+        </aside>
+
       </div>
-    </section>
 
-
-    <!-- ==========================================================================
-         3. Área Principal de Streaming (Fileiras / Carrosséis)
-         ========================================================================== -->
-    <div class="app-body-layout">
-
-      <main class="main-stage-content">
-
-        <!-- 1. Fileira: Continue Assistindo -->
-        <section class="carousel-section" id="continueSection">
-          <div class="section-header">
-            <div class="section-title-wrap">
-              <h2 class="section-title">Continue Assistindo</h2>
-              <span class="section-count-tag">Em andamento</span>
-            </div>
-
-            <div class="section-controls">
-              <div class="carousel-nav-buttons">
-                <button type="button" class="carousel-nav-btn" id="prevContinueBtn" aria-label="Rolar para esquerda">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                </button>
-                <button type="button" class="carousel-nav-btn" id="nextContinueBtn" aria-label="Rolar para direita">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="continueCarouselTrack">
-              <!-- Renderizado dinamicamente via modern-ui.js -->
-            </div>
-          </div>
-        </section>
-
-        <!-- 2. Fileira: Destaques Oficiais SOLACI SBHCI 2026 -->
-        <section class="carousel-section" id="solaciSection">
-          <div class="section-header">
-            <div class="section-title-wrap">
-              <h2 class="section-title">Sessões SOLACI SBHCI 2026</h2>
-              <span class="section-count-tag" id="solaciCountTag">37 Gravações</span>
-            </div>
-
-            <div class="section-controls">
-              <a href="/solaci/gravacao" class="see-all-link">
-                Ver Todas
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-
-              <div class="carousel-nav-buttons">
-                <button type="button" class="carousel-nav-btn" id="prevSolaciBtn" aria-label="Rolar para esquerda">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                </button>
-                <button type="button" class="carousel-nav-btn" id="nextSolaciBtn" aria-label="Rolar para direita">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="solaciCarouselTrack">
-              <!-- Renderizado dinamicamente via modern-ui.js -->
-            </div>
-          </div>
-        </section>
-
-        <!-- 3. Fileira: Aulas & Apresentações Científicas PPTX -->
-        <section class="carousel-section" id="pptxSection">
-          <div class="section-header">
-            <div class="section-title-wrap">
-              <h2 class="section-title">Aulas & Apresentações Científicas (PPTX)</h2>
-              <span class="section-count-tag">Material de Apoio</span>
-            </div>
-
-            <div class="section-controls">
-              <a href="/solaci/aulas" class="see-all-link">
-                Acessar Slides
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-
-              <div class="carousel-nav-buttons">
-                <button type="button" class="carousel-nav-btn" id="prevPptxBtn" aria-label="Rolar para esquerda">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                </button>
-                <button type="button" class="carousel-nav-btn" id="nextPptxBtn" aria-label="Rolar para direita">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="pptxCarouselTrack">
-              <!-- Renderizado dinamicamente via modern-ui.js -->
-            </div>
-          </div>
-        </section>
-
-      </main>
-
-    </div>
+    </main>
 
     <!-- ==========================================================================
-         5. Menu Mobile Flutuante (Bottom Navigation)
-         Baseado em Seção 6: Responsividade
-         ========================================================================== -->
-    <nav class="floating-bottom-nav" aria-label="Navegação Rápida Mobile">
-      <ul class="bottom-nav-list">
-        <li>
-          <button type="button" class="bottom-nav-link active" data-nav-target="home">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            </svg>
-            Início
-          </button>
-        </li>
-        <li>
-          <button type="button" class="bottom-nav-link" data-nav-target="explore">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            Explorar
-          </button>
-        </li>
-        <li>
-          <button type="button" class="bottom-nav-link" data-nav-target="solaci">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Gravações
-          </button>
-        </li>
-        <li>
-          <a href="/solaci/aulas" class="bottom-nav-link">
-            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-            </svg>
-            Aulas
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- ==========================================================================
-         6. Footer Oficial
+         4. Footer Oficial CathlabFlix
          ========================================================================== -->
     <footer class="app-footer">
       <div class="footer-content">
@@ -331,15 +206,15 @@
           <img 
             src="/assets/images/logo-cathlabflix-color.png" 
             alt="CathlabFlix" 
-            class="footer-logo logo-light"
-            width="120"
+            class="footer-logo logo-light" 
+            width="120" 
             height="35"
           >
           <img 
             src="/assets/images/logo-cathlabflix-white.png" 
             alt="CathlabFlix" 
-            class="footer-logo logo-blue"
-            width="120"
+            class="footer-logo logo-blue" 
+            width="120" 
             height="35"
           >
           <p class="footer-text">
@@ -356,51 +231,7 @@
   </div>
 
   <!-- ==========================================================================
-       7. Modal do Player de Vídeo (Vimeo Oficial)
-       ========================================================================== -->
-  <div class="player-modal-backdrop" id="playerModal" role="dialog" aria-modal="true" aria-labelledby="modalSessionTitle">
-    <div class="player-modal-dialog">
-      <div class="player-modal-header">
-        <div class="modal-title-group">
-          <span class="modal-live-tag">Vimeo HD</span>
-          <h3 class="modal-session-title" id="modalSessionTitle">Carregando Sessão...</h3>
-        </div>
-        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar player">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-
-      <div class="player-iframe-container" id="playerIframeContainer">
-        <!-- Iframe injetado dinamicamente -->
-      </div>
-
-      <div class="player-modal-footer">
-        <div class="modal-meta-left">
-          <span class="modal-speaker-name" id="modalSpeakerName">Palestrante</span>
-          <span class="modal-room-info" id="modalRoomInfo">Sala e detalhes</span>
-        </div>
-
-        <div class="modal-actions-right">
-          <button type="button" class="modal-action-btn" id="modalCopyLinkBtn" title="Copiar link da sessão">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-            </svg>
-            Compartilhar
-          </button>
-          <a href="/new/player" id="modalOpenPlayerBtn" class="modal-action-btn primary" title="Abrir aula completa no player com slides">
-            Abrir Aula no Player
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================================================
-       Drawer Lateral (Menu Hambúrguer)
+       5. Drawer Lateral (Menu Hambúrguer com Seletor de Tema Claro/Azul)
        ========================================================================== -->
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
 
@@ -411,14 +242,14 @@
           src="/assets/images/logo-cathlabflix-color.png" 
           alt="CathlabFlix" 
           class="drawer-logo logo-light"
-          width="135"
+          width="135" 
           height="38"
         >
         <img 
           src="/assets/images/logo-cathlabflix-white.png" 
           alt="CathlabFlix" 
           class="drawer-logo logo-blue"
-          width="135"
+          width="135" 
           height="38"
         >
       </div>
@@ -478,12 +309,12 @@
             </a>
           </li>
           <li class="drawer-nav-item">
-            <a href="/solaci/gravacao" class="drawer-nav-link">
+            <a href="/new/solaci" class="drawer-nav-link">
               <span class="drawer-link-content">
                 <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
-                Gravações SOLACI
+                Congresso SOLACI 2026
               </span>
               <span class="drawer-badge">37</span>
             </a>
@@ -494,7 +325,7 @@
                 <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
-                Player de Aula
+                Player de Aula & Slides
               </span>
               <span class="drawer-badge novelty">NOVO</span>
             </a>
@@ -512,72 +343,22 @@
               </span>
             </a>
           </li>
-          <li class="drawer-nav-item">
-            <a href="#solaciSection" class="drawer-nav-link" id="drawerMyListLink">
-              <span class="drawer-link-content">
-                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                </svg>
-                Minha Lista
-              </span>
-            </a>
-          </li>
         </ul>
       </div>
 
-      <!-- 2. Centros Médicos -->
-      <div class="drawer-section">
-        <span class="drawer-section-title">Centros Médicos</span>
-        <ul class="drawer-nav-list">
-          <li class="drawer-nav-item">
-            <a href="#solaciSection" class="drawer-nav-link" data-filter-category="Heart Team">
-              <span class="drawer-link-content">
-                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-                Heart Team
-              </span>
-            </a>
-          </li>
-          <li class="drawer-nav-item">
-            <a href="#solaciSection" class="drawer-nav-link" data-filter-category="INCOR">
-              <span class="drawer-link-content">
-                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M8 12h8"></path>
-                  <path d="M12 8v8"></path>
-                </svg>
-                INCOR
-              </span>
-            </a>
-          </li>
-          <li class="drawer-nav-item">
-            <a href="#solaciSection" class="drawer-nav-link" data-filter-category="Dante Pazzanese">
-              <span class="drawer-link-content">
-                <svg class="drawer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
-                Dante Pazzanese
-              </span>
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 3. Card Promocional da Sidebar -->
+      <!-- 2. Card Promocional da Sidebar -->
       <div class="drawer-promo-card">
-        <span class="drawer-promo-badge">Live & On-Demand</span>
-        <h4 class="drawer-promo-title">SOLACI 2026</h4>
-        <p class="drawer-promo-desc">Reveja os procedimentos e debates gravados em alta definição.</p>
-        <a href="/solaci/gravacao" class="drawer-promo-btn">Acessar Tudo</a>
+        <span class="drawer-promo-badge">Congresso Oficial</span>
+        <h4 class="drawer-promo-title">SOLACI SBHCI 2026</h4>
+        <p class="drawer-promo-desc">Acesse as sessões, gravações e aulas completas do congresso.</p>
+        <a href="/new/solaci" class="drawer-promo-btn">Acessar Catálogo</a>
       </div>
     </div>
   </aside>
 
   <!-- Scripts Interativos Modernos -->
-  <script src="/js/modern-ui.js"></script>
+  <script src="/js/modern-calendar.js"></script>
+  <script src="/js/modern-hub.js"></script>
 
 </body>
 </html>
