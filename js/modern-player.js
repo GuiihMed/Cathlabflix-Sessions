@@ -234,6 +234,7 @@ function initPlayerApp() {
   renderPlaylist();
   bindActionButtons();
   initTopSearch();
+  initHamburgerDrawer();
 }
 
 /**
@@ -650,3 +651,58 @@ function escapeHtml(text) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
 }
+
+function initHamburgerDrawer() {
+  const hamburgerBtn = document.getElementById('topbarHamburgerBtn');
+  const closeBtn = document.getElementById('drawerCloseBtn');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const drawer = document.getElementById('appDrawer');
+
+  if (!drawer) return;
+
+  function openDrawer() {
+    drawer.classList.add('active');
+    if (backdrop) backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    drawer.setAttribute('aria-hidden', 'false');
+    if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('active');
+    if (backdrop) backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    drawer.setAttribute('aria-hidden', 'true');
+    if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openDrawer();
+    });
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeDrawer);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeDrawer);
+  }
+
+  // Tecla ESC fecha o drawer
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('active')) {
+      closeDrawer();
+    }
+  });
+
+  // Ações nos links da gaveta
+  drawer.querySelectorAll('.drawer-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      closeDrawer();
+    });
+  });
+}
+
