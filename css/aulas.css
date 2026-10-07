@@ -1,9 +1,9 @@
 /**
- * Cathlabflix Sessions - Estilos da Página de Aulas e Apresentações PPTX (/solaci/aulas)
+ * Cathlabflix Sessions - Estilos Mobile-First da Grade de Aulas e Apresentações PPTX (/solaci/aulas)
  * 
- * Fidelidade visual total à interface de referência:
- * - Nível 1: Barra superior de Dias (Dia 29, Dia 30, Dia 31) com aba ativa em fundo branco (#ffffff) e texto escuro (#040a23).
- * - Nível 2: Accordion de aulas com cards de arquivo PPTX (badge azul com "P", detalhes do arquivo e ícone de download).
+ * Arquitetura Mobile-First:
+ * - Base (Mobile < 640px): Design responsivo, toques confortáveis, espaçamentos otimizados e zero quebras indevidas de palavras.
+ * - Desktop (>= 640px / >= 768px): Expansão proporcional mantendo a identidade visual SOLACI SBHCI 2026.
  */
 
 /* ==========================================================================
@@ -12,42 +12,43 @@
 .aulas-main-card {
   width: 100%;
   background: #030c2c;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
-  margin-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .aulas-main-card {
+    border-radius: 6px;
+    margin-top: 1.5rem;
+  }
 }
 
 /* ==========================================================================
-   2. Nível 1: Abas Principais de Dias (Barra Superior)
+   2. Nível 1: Abas de Dias (Dia 29 | Dia 30 | Dia 31)
    ========================================================================== */
 .aulas-days-bar {
   display: flex;
   width: 100%;
   background: #041038;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -webkit-overflow-scrolling: touch;
-}
-
-.aulas-days-bar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  overflow: hidden;
 }
 
 .aulas-day-tab {
   flex: 1 1 0;
-  min-width: 100px;
-  padding: 1.15rem 0.85rem;
+  min-width: 0;
+  padding: 0.95rem 0.35rem;
   background: transparent;
   border: none;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   font-family: var(--font-family, 'Montserrat', sans-serif);
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
@@ -68,26 +69,35 @@
   color: var(--accent-cyan, #38bdf8);
 }
 
-/* Estado Ativo: Fundo Branco com Texto Escuro (idêntico à referência) */
+/* Estado Ativo: Fundo Branco com Texto Escuro */
 .aulas-day-tab.active {
   background: #ffffff !important;
   color: #040a23 !important;
   font-weight: 800;
 }
 
+@media (min-width: 768px) {
+  .aulas-day-tab {
+    padding: 1.15rem 0.85rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.6px;
+  }
+}
+
 /* ==========================================================================
-   2.1. Sub-Nível: Filtro por Salas/Arenas do Dia
+   3. Sub-Nível: Filtro de Salas/Arenas do Dia
    ========================================================================== */
 .aulas-rooms-bar {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
+  gap: 0.45rem;
+  padding: 0.65rem 0.75rem;
   background: #020822;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  scroll-padding: 0 0.75rem;
 }
 
 .aulas-rooms-bar:empty {
@@ -100,20 +110,24 @@
 
 .aulas-room-tab {
   flex: 0 0 auto;
-  padding: 0.42rem 0.95rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #94a3b8;
   font-family: var(--font-family, 'Montserrat', sans-serif);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.35px;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
   user-select: none;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .aulas-room-tab:hover:not(.active) {
@@ -130,25 +144,40 @@
   box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
 }
 
+@media (min-width: 768px) {
+  .aulas-rooms-bar {
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    scroll-padding: 0 1.25rem;
+  }
+
+  .aulas-room-tab {
+    padding: 0.42rem 0.95rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.4px;
+    min-height: 34px;
+  }
+}
+
 /* ==========================================================================
-   2.2. Barra de Ferramentas / Contador & Busca
+   4. Barra de Ferramentas / Contador & Busca (Mobile-First)
    ========================================================================== */
 .aulas-toolbar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.95rem 1.25rem 0.25rem;
-  gap: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.85rem 0.85rem 0.25rem;
 }
 
 .aulas-count-badge {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #94a3b8;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
+  line-height: 1.35;
+  flex-wrap: wrap;
 }
 
 .aulas-count-badge strong {
@@ -159,15 +188,14 @@
 .aulas-search-box {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
-  padding: 0.4rem 0.9rem;
+  padding: 0.45rem 0.95rem;
   color: #94a3b8;
   transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   width: 100%;
-  max-width: 280px;
 }
 
 .aulas-search-box:focus-within {
@@ -182,7 +210,7 @@
   border: none;
   outline: none;
   color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-family: inherit;
   width: 100%;
 }
@@ -191,14 +219,32 @@
   color: #64748b;
 }
 
+@media (min-width: 640px) {
+  .aulas-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.95rem 1.25rem 0.25rem;
+    gap: 1rem;
+  }
+
+  .aulas-count-badge {
+    font-size: 0.82rem;
+  }
+
+  .aulas-search-box {
+    max-width: 280px;
+  }
+}
+
 /* ==========================================================================
-   3. Nível 2: Accordion de Aulas & Download de PPTX
+   5. Nível 2: Lista de Aulas & Accordions (Mobile-First)
    ========================================================================== */
 .aulas-list-wrapper {
-  padding: 1.25rem;
+  padding: 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
 .aulas-list-wrapper:empty {
@@ -207,15 +253,11 @@
   margin: 0;
 }
 
-.aulas-main-card:has(.aulas-list-wrapper:empty) .aulas-days-bar {
-  border-bottom: none;
-}
-
 .aulas-accordion-item,
 .aula-accordion-item {
   background: #061338;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
@@ -226,75 +268,89 @@
   background: #071642;
 }
 
-/* Cabeçalho do Accordion */
+/* Cabeçalho do Accordion (Layout Responsivo e Anti-Quebra) */
 .aulas-accordion-header,
 .aula-accordion-header {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.15rem 1.35rem;
+  padding: 0.85rem 0.85rem;
   background: transparent;
   border: none;
   color: #ffffff;
   font-family: var(--font-family, 'Montserrat', sans-serif);
   text-align: left;
   cursor: pointer;
-  gap: 1.25rem;
+  gap: 0.75rem;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.aulas-header-left {
+/* Contêiner de Informações do Cabeçalho:
+   - No Mobile: empilha metadados (horário + sala) em cima e o título 100% legível embaixo.
+   - No Desktop: alinha lado a lado se houver espaço. */
+.aulas-header-content {
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
+  flex-direction: column;
+  gap: 0.35rem;
   flex: 1;
   min-width: 0;
+}
+
+.aulas-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .aula-time-badge {
   background: rgba(56, 189, 248, 0.15);
   color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  padding: 0.18rem 0.5rem;
   border-radius: 4px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .aula-room-badge {
   background: rgba(255, 255, 255, 0.06);
   color: #cbd5e1;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.2rem 0.55rem;
+  padding: 0.18rem 0.5rem;
   border-radius: 4px;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.35px;
   text-transform: uppercase;
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .aulas-item-title,
 .aula-accordion-title {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  line-height: 1.45;
+  line-height: 1.4;
   color: #ffffff;
-  flex: 1;
-  word-break: break-word;
+  margin: 0;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .aulas-item-chevron,
 .aula-chevron-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: #ffffff;
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -305,11 +361,54 @@
   transform: rotate(180deg);
 }
 
+@media (min-width: 768px) {
+  .aulas-list-wrapper {
+    padding: 1.25rem;
+    gap: 0.65rem;
+  }
+
+  .aulas-accordion-item,
+  .aula-accordion-item {
+    border-radius: 4px;
+  }
+
+  .aulas-accordion-header,
+  .aula-accordion-header {
+    padding: 1.15rem 1.35rem;
+    gap: 1.25rem;
+  }
+
+  .aulas-header-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .aulas-header-meta {
+    gap: 0.5rem;
+  }
+
+  .aula-time-badge {
+    padding: 0.2rem 0.55rem;
+    font-size: 0.75rem;
+  }
+
+  .aula-room-badge {
+    padding: 0.2rem 0.55rem;
+    font-size: 0.7rem;
+  }
+
+  .aulas-item-title,
+  .aula-accordion-title {
+    font-size: 0.88rem;
+  }
+}
+
 /* Corpo do Accordion (Expansível) */
 .aulas-accordion-body,
 .aula-accordion-body {
   display: none;
-  padding: 0 1.35rem 1.35rem;
+  padding: 0 0.85rem 0.85rem;
 }
 
 .aulas-accordion-item.open .aulas-accordion-body,
@@ -329,20 +428,27 @@
   }
 }
 
+@media (min-width: 768px) {
+  .aulas-accordion-body,
+  .aula-accordion-body {
+    padding: 0 1.35rem 1.35rem;
+  }
+}
+
 /* ==========================================================================
-   4. Card de Arquivo PPTX (Design Idêntico à Imagem)
+   6. Card de Download PPTX/PDF (Mobile-First)
    ========================================================================== */
 .aulas-pptx-card,
 .pptx-card-box {
   width: 100%;
   background: rgba(3, 10, 32, 0.85);
   border: 1px solid rgba(56, 189, 248, 0.35);
-  border-radius: 4px;
-  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  padding: 0.85rem 0.85rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -353,12 +459,12 @@
   border-color: var(--accent-cyan, #38bdf8);
 }
 
-/* Badge Azul PPTX */
+/* Badge do Arquivo */
 .aulas-pptx-badge,
 .pptx-badge {
-  width: 40px;
-  height: 40px;
-  background-color: #1e5bb8; /* Azul característico de apresentações */
+  width: 36px;
+  height: 36px;
+  background-color: #1e5bb8;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -366,27 +472,27 @@
   color: #ffffff;
   font-family: var(--font-family, 'Montserrat', sans-serif);
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1rem;
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
 .aulas-pptx-badge.pdf {
   background-color: #dc2626;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .aulas-pptx-badge.keynote {
   background-color: #0284c7;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 
-/* Informações do Arquivo (Nome + Peso/Meta) */
+/* Informações do Arquivo */
 .aulas-pptx-info,
 .pptx-info {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
   flex: 1;
   min-width: 0;
 }
@@ -394,18 +500,20 @@
 .aulas-pptx-name,
 .pptx-filename {
   color: #ffffff;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  white-space: nowrap;
+  line-height: 1.35;
+  word-break: break-word;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 580px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .aulas-pptx-meta,
 .pptx-meta {
   color: #94a3b8;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 500;
 }
 
@@ -413,7 +521,7 @@
 .aulas-pptx-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   flex-shrink: 0;
 }
 
@@ -427,8 +535,8 @@
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 6px;
   transition: all 0.2s ease;
   text-decoration: none;
@@ -451,16 +559,57 @@
   box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
 }
 
+@media (min-width: 768px) {
+  .aulas-pptx-card,
+  .pptx-card-box {
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+    border-radius: 4px;
+  }
+
+  .aulas-pptx-badge,
+  .pptx-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
+  }
+
+  .aulas-pptx-name,
+  .pptx-filename {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 580px;
+  }
+
+  .aulas-pptx-meta,
+  .pptx-meta {
+    font-size: 0.78rem;
+  }
+
+  .aulas-pptx-actions {
+    gap: 0.5rem;
+  }
+
+  .aulas-pptx-view-btn,
+  .aulas-pptx-download-btn,
+  .pptx-download-icon {
+    width: 38px;
+    height: 38px;
+  }
+}
+
 /* ==========================================================================
-   4.1. Loading Skeletons & Estado Vazio
+   7. Skeletons & Estado Vazio
    ========================================================================== */
 .aulas-skeleton {
   background: linear-gradient(90deg, #061338 25%, #0c215e 50%, #061338 75%);
   background-size: 200% 100%;
   animation: aulas-shimmer 1.5s infinite;
-  border-radius: 4px;
-  height: 54px;
-  margin-bottom: 0.65rem;
+  border-radius: 6px;
+  height: 52px;
+  margin-bottom: 0.5rem;
 }
 
 @keyframes aulas-shimmer {
@@ -470,66 +619,13 @@
 
 .aulas-empty-state {
   text-align: center;
-  padding: 3.5rem 1.5rem;
+  padding: 3rem 1rem;
   color: #94a3b8;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
 }
 
 .aulas-empty-state p {
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   color: #64748b;
-  font-size: 0.82rem;
-}
-
-/* ==========================================================================
-   5. Responsividade & Mobile
-   ========================================================================== */
-@media (max-width: 768px) {
-  .aulas-day-tab,
-  .aulas-room-tab {
-    min-width: 0;
-    font-size: 0.8rem;
-    padding: 1rem 0.5rem;
-  }
-  .aulas-accordion-header,
-  .aula-accordion-header {
-    padding: 1rem 1rem;
-    gap: 0.75rem;
-  }
-  .aulas-item-title,
-  .aula-accordion-title {
-    font-size: 0.82rem;
-  }
-  .aulas-accordion-body,
-  .aula-accordion-body {
-    padding: 0 1rem 1rem;
-  }
-  .aulas-pptx-card,
-  .pptx-card-box {
-    padding: 0.85rem 1rem;
-  }
-  .aulas-pptx-name,
-  .pptx-filename {
-    max-width: 250px;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .aulas-day-tab,
-  .aulas-room-tab {
-    font-size: 0.75rem;
-    padding: 0.85rem 0.35rem;
-  }
-  .aulas-pptx-name,
-  .pptx-filename {
-    max-width: 170px;
-    font-size: 0.75rem;
-  }
-  .aulas-pptx-badge,
-  .pptx-badge {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-  }
+  font-size: 0.78rem;
 }
