@@ -154,9 +154,9 @@
     if (state.searchQuery.trim()) {
       dom.countBadge.innerHTML = `<strong>${count}</strong> resultado(s) para "${escapeHtml(state.searchQuery)}"`;
     } else if (state.currentRoomFilter !== 'Todas as Salas') {
-      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentação(ões) em <strong>${escapeHtml(state.currentRoomFilter)}</strong>`;
+      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações em <strong>${escapeHtml(state.currentRoomFilter)}</strong>`;
     } else {
-      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações disponíveis no ${escapeHtml(currentDay.name || 'Dia')}`;
+      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações disponíveis (${escapeHtml(currentDay.name || 'Dia')})`;
     }
   }
 
@@ -236,9 +236,11 @@
           aria-controls="aula-body-${aula.id}"
           id="aula-header-${aula.id}"
         >
-          <div class="aulas-header-left">
-            ${aula.time ? `<span class="aula-time-badge">${escapeHtml(aula.time)}</span>` : ''}
-            ${aula.room ? `<span class="aula-room-badge">${escapeHtml(aula.room)}</span>` : ''}
+          <div class="aulas-header-content">
+            <div class="aulas-header-meta">
+              ${aula.time ? `<span class="aula-time-badge">${escapeHtml(aula.time)}</span>` : ''}
+              ${aula.room ? `<span class="aula-room-badge">${escapeHtml(aula.room)}</span>` : ''}
+            </div>
             <span class="aulas-item-title">${escapeHtml(aula.speaker || aula.title)}</span>
           </div>
           <span class="aulas-item-chevron">
