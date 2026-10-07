@@ -137,6 +137,7 @@
     if (state.currentRoomFilter === roomName) return;
 
     state.currentRoomFilter = roomName;
+    state.openAulaIds.clear();
     renderRooms();
     renderAulas();
     notifyHeight();
@@ -313,22 +314,36 @@
   }
 
   /**
-   * Alterna abertura/fechamento do accordion
+   * Alterna abertura/fechamento do accordion (modo exclusivo: apenas um aberto por vez)
    */
   function toggleAula(aulaId) {
     const item = dom.aulasContainer.querySelector(`[data-aula-id="${aulaId}"]`);
     if (!item) return;
 
     const isOpen = state.openAulaIds.has(aulaId);
-    const header = item.querySelector('.aulas-accordion-header');
 
     if (isOpen) {
+      // Fecha o item atualmente aberto
       state.openAulaIds.delete(aulaId);
       item.classList.remove('open');
+      const header = item.querySelector('.aulas-accordion-header');
       if (header) header.setAttribute('aria-expanded', 'false');
     } else {
+      // Fecha todos os outros itens abertos anteriormente
+      state.openAulaIds.forEach((openId) => {
+        const openItem = dom.aulasContainer.querySelector(`[data-aula-id="${openId}"]`);
+        if (openItem) {
+          openItem.classList.remove('open');
+          const prevHeader = openItem.querySelector('.aulas-accordion-header');
+          if (prevHeader) prevHeader.setAttribute('aria-expanded', 'false');
+        }
+      });
+      state.openAulaIds.clear();
+
+      // Abre o item recém-selecionado
       state.openAulaIds.add(aulaId);
       item.classList.add('open');
+      const header = item.querySelector('.aulas-accordion-header');
       if (header) header.setAttribute('aria-expanded', 'true');
     }
 
