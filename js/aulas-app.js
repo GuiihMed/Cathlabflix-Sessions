@@ -40,6 +40,7 @@
     renderAulas();
     bindEvents();
     setupIframeResizer();
+    loadAulasFromDriveApi();
   }
 
   /**
@@ -268,12 +269,57 @@
   }
 
   /**
-   * Hook preparado para Google Drive API
-   * Será chamado quando os dados da pasta forem disponibilizados
+   * Consome a API Serverless /api/aulas para sincronizar arquivos do Google Drive
+   */
+  async function loadAulasFromDriveApi() {
+    try {
+      const response = await fetch('/api/aulas');
+      if (!response.ok) return;
+
+      const data = await response.json();
+      if (data.configured && Array.isArray(data.days) && data.days.length > 0) {
+        AULAS_SCHEDULE.days = data.days;
+
+        // Se o dia atualmente selecionado não existir nos novos dados, seleciona o primeiro
+        if (!AULAS_SCHEDULE.days.some(d => d.id === state.currentDayId)) {
+          state.currentDayId = AULAS_SCHEDULE.days[0].id;
+        }
+
+        renderDays();
+        renderAulas();
+        notifyHeight();
+      }
+    } catch (err) {
+      console.warn('[Aulas Google Drive API] Não foi possível sincronizar com o Drive:', err);
+    }
+  }
+
+  /**
+   * Hook preparado para chamada manual com parâmetros
    */
   window.AulasDriveAdapter = {
     loadFromDrive: async function (folderId, apiKey) {
-      console.log(`[Google Drive Adapter] Preparado para conectar à pasta: ${folderId}`);
+      try {
+        const query = new URLSearchParams();
+        if (folderId) query.set('folderId', folderId);
+        if (apiKey) query.set('apiKey', apiKey);
+
+        const response = await fetch(`/api/aulas?${query.toString()}`);
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (data.configured && Array.isArray(data.days) && data.days.length > 0) {
+          AULAS_SCHEDULE.days = data.days;
+          if (!AULAS_SCHEDULE.days.some(d => d.id === state.currentDayId)) {
+            state.currentDayId = AULAS_SCHEDULE.days[0].id;
+          }
+          renderDays();
+          renderAulas();
+          notifyHeight();
+        }
+      } catch (e) {
+        console.error('[AulasDriveAdapter Error]', e);
+      }
     }
   };
 
