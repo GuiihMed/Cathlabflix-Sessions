@@ -105,10 +105,20 @@
       }
     });
 
-    // 4. Tecla ESC fecha a busca
+    // 4. Tecla ESC fecha a busca, ENTER abre a página completa de busca
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && box.classList.contains('is-expanded')) {
         closeSearch();
+      }
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = input.value.trim();
+        if (val) {
+          e.preventDefault();
+          window.location.href = `/new/busca?q=${encodeURIComponent(val)}`;
+        }
       }
     });
 
@@ -220,8 +230,10 @@
       } else {
         const headerHtml = `
           <div class="search-dropdown-header">
-            <span>Resultados</span>
-            <span class="search-dropdown-count">${currentTotal} encontrado(s)</span>
+            <span>Resultados (${currentTotal})</span>
+            <a href="/new/busca?q=${encodeURIComponent(term)}" class="search-dropdown-view-all" title="Ver todos os resultados na página de busca">
+              Ver todos →
+            </a>
           </div>
         `;
         content.innerHTML = headerHtml + itemsHtml;

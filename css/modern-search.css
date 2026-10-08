@@ -249,6 +249,23 @@
   color: var(--color-primary, #E50914);
 }
 
+.search-dropdown-view-all {
+  color: var(--color-primary, #E50914);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.2px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.search-dropdown-view-all:hover {
+  opacity: 0.8;
+  transform: translateX(2px);
+}
+
 .search-dropdown-content {
   max-height: 420px;
   overflow-y: auto;
@@ -473,6 +490,10 @@ mark.search-highlight {
   background: rgba(1, 2, 52, 0.8);
   border-bottom-color: rgba(255, 255, 255, 0.08);
   color: #94A3B8;
+}
+
+[data-theme="blue"] .search-dropdown-view-all {
+  color: #ff6b6b;
 }
 
 [data-theme="blue"] .search-result-item {

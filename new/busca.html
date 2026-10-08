@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>CathlabFlix by SBHCI</title>
-  <meta name="description" content="Grade completa de apresentações, conferências e downloads de slides PPTX do Congresso SOLACI-SBHCI 2026.">
-
+  <meta name="description" content="Busque vídeos, apresentações, aulas PPTX, artigos e conteúdos em Cardiologia Intervencionista no CathlabFlix by SBHCI.">
+  
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="/assets/images/favicon.png">
 
   <!-- Open Graph / Redes Sociais -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cathlabflix-sessions.vercel.app/new/aulas-solaci">
-  <meta property="og:title" content="Aulas e Apresentações PPTX - SOLACI SBHCI 2026">
-  <meta property="og:description" content="Consulte e faça o download oficial dos slides das aulas do Congresso SOLACI-SBHCI 2026.">
+  <meta property="og:url" content="https://cathlabflix-sessions.vercel.app/new/busca">
+  <meta property="og:title" content="Busca no Site - CathlabFlix by SBHCI">
+  <meta property="og:description" content="Pesquise cirurgias, aulas, sessões científicas e artigos da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista.">
   <meta property="og:image" content="/assets/images/og-cathlabflix.png">
 
   <!-- Tipografia Inter -->
@@ -25,7 +25,7 @@
   <!-- Folhas de Estilo -->
   <link rel="stylesheet" href="/css/modern-ui.css">
   <link rel="stylesheet" href="/css/modern-hub.css">
-  <link rel="stylesheet" href="/css/modern-aulas.css">
+  <link rel="stylesheet" href="/css/modern-busca.css">
 
   <!-- Detecção de Tema Anti-FOUC -->
   <script>
@@ -44,7 +44,7 @@
   <div class="app-container">
 
     <!-- ==========================================================================
-         1. Topbar do Portal (Minimalista: Logo + Menu Hambúrguer)
+         1. Topbar do Portal (Barra Superior com Navegação e Menu Hambúrguer)
          ========================================================================== -->
     <header class="app-topbar" id="appTopbar">
       <div class="topbar-left">
@@ -121,176 +121,168 @@
     </header>
 
     <!-- ==========================================================================
-         2. Conteúdo Principal da Grade de Aulas (/new/aulas-solaci)
+         2. Conteúdo Principal da Página Interna de Busca (/new/busca)
          ========================================================================== -->
-    <main class="aulas-page-main" id="aulasMainContent">
+    <main class="busca-page-main" id="buscaMainContent">
 
-      <!-- Barra de Navegação Superior / Breadcrumbs -->
-      <nav class="aulas-top-nav-bar" aria-label="Navegação de retorno">
-        <a href="/new/solaci" class="aulas-back-link" title="Voltar ao Congresso SOLACI-SBHCI 2026">
+      <!-- Barra Superior / Breadcrumbs -->
+      <nav class="busca-top-nav-bar" aria-label="Navegação de retorno">
+        <a href="/new" class="busca-back-link" title="Voltar para a página inicial">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Voltar ao SOLACI 2026</span>
+          <span>Voltar ao Início</span>
         </a>
 
-        <div class="aulas-breadcrumbs">
+        <div class="busca-breadcrumbs">
           <a href="/new">Início</a>
           <span>/</span>
-          <a href="/new/solaci">Congressos</a>
-          <span>/</span>
-          <span class="aulas-breadcrumb-current">Aulas PPTX</span>
+          <span class="busca-breadcrumb-current">Busca no Site</span>
         </div>
       </nav>
 
-      <!-- Cabeçalho Principal -->
-      <header class="aulas-hero-header">
-        <span class="aulas-header-badge">
+      <!-- Cabeçalho Principal Hero -->
+      <header class="busca-hero-header">
+        <span class="busca-header-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          SOLACI SBHCI 2026 • APRESENTAÇÕES
+          Busca Geral CathlabFlix
         </span>
-        <h1 class="aulas-header-title">Grade de Aulas e Apresentações PPTX</h1>
-        <p class="aulas-header-subtitle">
-          Consulte as apresentações científicas e faça o download dos slides oficiais utilizados pelos palestrantes no Congresso SOLACI-SBHCI 2026, organizados por dia e sala.
+        <h1 class="busca-header-title">O que você procura hoje?</h1>
+        <p class="busca-header-subtitle">
+          Pesquise por procedimentos, palestrantes, casos ao vivo, apresentações PPTX do SOLACI 2026, artigos e diretrizes clínicas.
         </p>
-      </header>
 
-      <!-- Card Principal de Apresentações -->
-      <section class="aulas-card-shell" aria-label="Navegador de Aulas e Apresentações">
-
-        <!-- Nível 1: Barra de Dias (Dia 29 | Dia 30 | Dia 31) -->
-        <div class="aulas-days-bar" id="aulasDaysBar" role="tablist" aria-label="Dias do Congresso">
-          <!-- Renderizado dinamicamente via js/modern-aulas.js -->
-        </div>
-
-        <!-- Nível 2: Filtro de Salas/Arenas do Dia -->
-        <div class="aulas-rooms-bar" id="aulasRoomsBar" role="tablist" aria-label="Salas do Congresso">
-          <!-- Renderizado dinamicamente via js/modern-aulas.js -->
-        </div>
-
-        <!-- Nível 3: Barra de Ferramentas / Contador, Filtro de Período & Busca -->
-        <div class="aulas-toolbar" id="aulasToolbar">
-          <div class="aulas-count-badge" id="aulasCountBadge" aria-live="polite">
-            Carregando apresentações...
-          </div>
-
-          <!-- Filtro de Período: Todos | Manhã | Tarde -->
-          <div class="aulas-period-switch" id="aulasPeriodSwitch" role="tablist" aria-label="Filtrar apresentações por período do dia">
-            <button type="button" class="aulas-period-btn active" data-period="all" role="tab" aria-selected="true" title="Exibir todas as apresentações">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              <span class="period-btn-label">Todos</span>
-              <span class="period-btn-count" id="countAllPeriod">0</span>
-            </button>
-
-            <button type="button" class="aulas-period-btn" data-period="manha" role="tab" aria-selected="false" title="Exibir apenas apresentações da manhã (08:00 às 12:00)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
-              <span class="period-btn-label">Manhã</span>
-              <span class="period-btn-count" id="countManhaPeriod">0</span>
-            </button>
-
-            <button type="button" class="aulas-period-btn" data-period="tarde" role="tab" aria-selected="false" title="Exibir apenas apresentações da tarde (12:00 às 18:30)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 18a5 5 0 0 0-10 0"></path>
-                <line x1="12" y1="9" x2="12" y2="2"></line>
-                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
-                <line x1="1" y1="18" x2="3" y2="18"></line>
-                <line x1="21" y1="18" x2="23" y2="18"></line>
-                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
-                <line x1="23" y1="22" x2="1" y2="22"></line>
-              </svg>
-              <span class="period-btn-label">Tarde</span>
-              <span class="period-btn-count" id="countTardePeriod">0</span>
-            </button>
-          </div>
-
-          <div class="aulas-search-box">
-            <svg class="aulas-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Campo Principal de Busca da Página -->
+        <div class="busca-input-container">
+          <div class="busca-input-box">
+            <svg class="busca-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
             <input 
-              type="text" 
-              class="aulas-search-input" 
-              id="aulasSearchInput" 
-              placeholder="Buscar palestrante ou tema..." 
+              type="search" 
+              class="busca-main-input" 
+              id="buscaMainInput" 
+              placeholder="Digite o termo médico, nome do palestrante ou tema..." 
               autocomplete="off"
-              aria-label="Buscar palestrante ou tema"
+              spellcheck="false"
+              aria-label="Campo principal de pesquisa no site"
             >
-            <button type="button" class="aulas-search-clear" id="aulasSearchClearBtn" aria-label="Limpar busca" title="Limpar busca">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <button type="button" class="busca-input-clear-btn" id="buscaClearBtn" aria-label="Limpar campo de busca" title="Limpar busca">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
+            <button type="button" class="busca-submit-btn" id="buscaSubmitBtn" aria-label="Realizar busca">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Buscar</span>
+            </button>
           </div>
         </div>
 
-        <!-- Nível 4: Lista de Accordions com os Cards de Download PPTX -->
-        <div class="aulas-list-wrapper" id="aulasContainer" aria-label="Lista de apresentações">
-          <!-- Renderizado dinamicamente via js/modern-aulas.js -->
+        <!-- Chips de Sugestões Rápidas -->
+        <div class="busca-suggestions-row" aria-label="Sugestões populares de busca">
+          <span class="busca-suggestions-label">Populares:</span>
+          <button type="button" class="busca-suggestion-chip" data-term="TAVI">TAVI</button>
+          <button type="button" class="busca-suggestion-chip" data-term="Angioplastia">Angioplastia</button>
+          <button type="button" class="busca-suggestion-chip" data-term="Arrieta">Dr. Raul Arrieta</button>
+          <button type="button" class="busca-suggestion-chip" data-term="INCOR">INCOR</button>
+          <button type="button" class="busca-suggestion-chip" data-term="SOLACI 2026">SOLACI 2026</button>
+          <button type="button" class="busca-suggestion-chip" data-term="Campos">Dr. Carlos Campos</button>
+          <button type="button" class="busca-suggestion-chip" data-term="CTO">CTO</button>
+          <button type="button" class="busca-suggestion-chip" data-term="Bifurcações">Bifurcações</button>
         </div>
+      </header>
 
+      <!-- Barra de Filtros por Tipo de Conteúdo (Tabs) -->
+      <nav class="busca-type-filters" role="tablist" aria-label="Filtrar por tipo de conteúdo">
+        <button type="button" class="busca-filter-tab active" data-type="all" role="tab" aria-selected="true">
+          <span>Todos</span>
+          <span class="busca-tab-badge" id="tabBadgeAll">0</span>
+        </button>
+        <button type="button" class="busca-filter-tab" data-type="video" role="tab" aria-selected="false">
+          <span>Vídeos & Sessões</span>
+          <span class="busca-tab-badge" id="tabBadgeVideo">0</span>
+        </button>
+        <button type="button" class="busca-filter-tab" data-type="aula" role="tab" aria-selected="false">
+          <span>Aulas PPTX</span>
+          <span class="busca-tab-badge" id="tabBadgeAula">0</span>
+        </button>
+        <button type="button" class="busca-filter-tab" data-type="post" role="tab" aria-selected="false">
+          <span>Notícias & Artigos</span>
+          <span class="busca-tab-badge" id="tabBadgePost">0</span>
+        </button>
+        <button type="button" class="busca-filter-tab" data-type="page" role="tab" aria-selected="false">
+          <span>Páginas</span>
+          <span class="busca-tab-badge" id="tabBadgePage">0</span>
+        </button>
+      </nav>
+
+      <!-- Barra de Meta Informação / Contagem -->
+      <section class="busca-results-meta" id="buscaResultsMeta" aria-live="polite">
+        <div class="busca-meta-count" id="buscaMetaCount">
+          Carregando acervo...
+        </div>
+        <div class="busca-meta-tip">
+          💡 Tolera pequenos erros de digitação (Fuzzy Matching)
+        </div>
       </section>
+
+      <!-- Grade de Cards de Resultados -->
+      <section class="busca-results-grid" id="buscaResultsGrid" aria-label="Resultados da pesquisa">
+        <!-- Injetado dinamicamente via js/modern-busca.js -->
+      </section>
+
+      <!-- Barra de Paginação Numérica -->
+      <nav class="busca-pagination-nav" id="buscaPaginationNav" aria-label="Navegação entre páginas de resultados">
+        <!-- Injetado dinamicamente via js/modern-busca.js -->
+      </nav>
 
     </main>
 
-    <!-- ==========================================================================
-         3. Footer Oficial CathlabFlix
-         ========================================================================== -->
-    <footer class="app-footer">
-      <div class="footer-content">
-        <div class="footer-left">
-          <img 
-            src="/assets/images/logo-cathlabflix-color.png" 
-            alt="CathlabFlix" 
-            class="footer-logo logo-light" 
-            width="120" 
-            height="35"
-          >
-          <img 
-            src="/assets/images/logo-cathlabflix-white.png" 
-            alt="CathlabFlix" 
-            class="footer-logo logo-blue" 
-            width="120" 
-            height="35"
-          >
-          <p class="footer-text">
-            CathlabFlix by SBHCI &copy; 2026 Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista. Todos os direitos reservados.
-          </p>
-        </div>
-
-        <div class="footer-links">
-          <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Política de Privacidade</a>
-        </div>
-      </div>
-    </footer>
-
-  </div>
+  </div> <!-- /.app-container -->
 
   <!-- ==========================================================================
-       4. Drawer Lateral (Menu Hambúrguer com Seletor de Tema Claro/Azul)
+       3. Drawer Lateral do Menu Principal (Design System)
        ========================================================================== -->
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
 
-  <aside class="app-drawer" id="appDrawer" aria-label="Menu Principal" aria-hidden="true">
-    <!-- Lista de Links de Navegação Principal -->
-    <ul class="dropdown-nav-list">
+  <aside class="app-drawer" id="appDrawer" aria-label="Menu de Navegação Principal" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img 
+          src="/assets/images/logo-cathlabflix-color.png" 
+          alt="CathlabFlix" 
+          class="drawer-logo logo-light" 
+          width="135" 
+          height="38"
+        >
+        <img 
+          src="/assets/images/logo-cathlabflix-white.png" 
+          alt="CathlabFlix" 
+          class="drawer-logo logo-blue" 
+          width="135" 
+          height="38"
+        >
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Fechar Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Links de Navegação do Drawer -->
+    <ul class="drawer-nav-list">
       <li class="dropdown-nav-item">
         <a href="/new" class="dropdown-nav-link drawer-nav-link">
           <span class="dropdown-link-left">
@@ -304,7 +296,7 @@
       </li>
 
       <li class="dropdown-nav-item">
-        <a href="/new/busca" class="dropdown-nav-link drawer-nav-link">
+        <a href="/new/busca" class="dropdown-nav-link drawer-nav-link active">
           <span class="dropdown-link-left">
             <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
@@ -320,12 +312,8 @@
         <a href="/new/posts" class="dropdown-nav-link drawer-nav-link">
           <span class="dropdown-link-left">
             <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"></path>
-              <path d="M18 14h4"></path>
-              <path d="M18 18h4"></path>
-              <path d="M18 10h4"></path>
-              <path d="M5 10h6"></path>
-              <path d="M5 14h6"></path>
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>
             <span>Notícias & Posts</span>
           </span>
@@ -340,7 +328,6 @@
             </svg>
             <span>Congresso SOLACI 2026</span>
           </span>
-          <span class="dropdown-badge">37</span>
         </a>
       </li>
 
@@ -354,12 +341,11 @@
             </svg>
             <span>Player de Aula & Slides</span>
           </span>
-          <span class="dropdown-badge novelty">NOVO</span>
         </a>
       </li>
 
       <li class="dropdown-nav-item">
-        <a href="/new/aulas-solaci" class="dropdown-nav-link drawer-nav-link active">
+        <a href="/new/aulas-solaci" class="dropdown-nav-link drawer-nav-link">
           <span class="dropdown-link-left">
             <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -387,8 +373,6 @@
           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
           <line x1="1" y1="12" x2="3" y2="12"></line>
           <line x1="21" y1="12" x2="23" y2="12"></line>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
         </svg>
         <span>Tema</span>
       </div>
@@ -404,8 +388,6 @@
               <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
               <line x1="1" y1="12" x2="3" y2="12"></line>
               <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
           </span>
           <span class="drawer-theme-name">Claro</span>
@@ -422,9 +404,10 @@
     </div>
   </aside>
 
-  <!-- Script da Grade de Aulas -->
-  <script src="/js/modern-aulas.js"></script>
+  <!-- Scripts Interativos Modernos -->
+  <script src="/js/modern-ui.js"></script>
   <script src="/js/modern-search.js" defer></script>
+  <script src="/js/modern-busca.js" defer></script>
 
 </body>
 </html>
