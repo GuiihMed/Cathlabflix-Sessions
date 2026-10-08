@@ -237,6 +237,156 @@
   }
 }
 
+/* Seletor de Período (Todos | Manhã | Tarde) */
+.aulas-period-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(1, 2, 52, 0.7);
+  padding: 3px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aulas-period-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94A3B8;
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.aulas-period-btn:hover {
+  color: #FFFFFF;
+}
+
+.aulas-period-btn.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.aulas-period-btn.active svg {
+  color: #ff6b6b;
+}
+
+.period-btn-count {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+}
+
+.aulas-period-btn.active .period-btn-count {
+  background: var(--color-primary, #E50914);
+  color: #FFFFFF;
+}
+
+/* Seções de Período */
+.aulas-period-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.aulas-period-section:last-child {
+  margin-bottom: 0;
+}
+
+.aulas-period-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: rgba(1, 2, 52, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.aulas-period-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.aulas-period-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.aulas-period-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
+.aulas-period-icon-wrap.sun {
+  background: rgba(245, 158, 11, 0.18);
+  color: #FBBF24;
+}
+
+.aulas-period-icon-wrap.sunset {
+  background: rgba(249, 115, 22, 0.18);
+  color: #FB923C;
+}
+
+.aulas-period-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.aulas-period-range-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #CBD5E1;
+}
+
+.aulas-period-desc {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #94A3B8;
+}
+
+.aulas-period-count-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff8585;
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  white-space: nowrap;
+}
+
+.aulas-period-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 /* ==========================================================================
    5. Nível 2: Lista de Aulas & Accordions (Mobile-First)
    ========================================================================== */

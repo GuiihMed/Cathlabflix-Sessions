@@ -129,10 +129,52 @@
           <!-- Renderizado dinamicamente via js/modern-aulas.js -->
         </div>
 
-        <!-- Nível 3: Barra de Ferramentas / Contador & Busca -->
+        <!-- Nível 3: Barra de Ferramentas / Contador, Filtro de Período & Busca -->
         <div class="aulas-toolbar" id="aulasToolbar">
           <div class="aulas-count-badge" id="aulasCountBadge" aria-live="polite">
             Carregando apresentações...
+          </div>
+
+          <!-- Filtro de Período: Todos | Manhã | Tarde -->
+          <div class="aulas-period-switch" id="aulasPeriodSwitch" role="tablist" aria-label="Filtrar apresentações por período do dia">
+            <button type="button" class="aulas-period-btn active" data-period="all" role="tab" aria-selected="true" title="Exibir todas as apresentações">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span class="period-btn-label">Todos</span>
+              <span class="period-btn-count" id="countAllPeriod">0</span>
+            </button>
+
+            <button type="button" class="aulas-period-btn" data-period="manha" role="tab" aria-selected="false" title="Exibir apenas apresentações da manhã (08:00 às 12:00)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <span class="period-btn-label">Manhã</span>
+              <span class="period-btn-count" id="countManhaPeriod">0</span>
+            </button>
+
+            <button type="button" class="aulas-period-btn" data-period="tarde" role="tab" aria-selected="false" title="Exibir apenas apresentações da tarde (12:00 às 18:30)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 18a5 5 0 0 0-10 0"></path>
+                <line x1="12" y1="9" x2="12" y2="2"></line>
+                <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                <line x1="1" y1="18" x2="3" y2="18"></line>
+                <line x1="21" y1="18" x2="23" y2="18"></line>
+                <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                <line x1="23" y1="22" x2="1" y2="22"></line>
+              </svg>
+              <span class="period-btn-label">Tarde</span>
+              <span class="period-btn-count" id="countTardePeriod">0</span>
+            </button>
           </div>
 
           <div class="aulas-search-box">

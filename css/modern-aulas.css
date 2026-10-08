@@ -321,7 +321,182 @@
   color: var(--color-text-primary);
 }
 
-/* 5. Lista de Accordions de Apresentações */
+/* Seletor de Período (Todos | Manhã | Tarde) */
+.aulas-period-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.aulas-period-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--font-family-base);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.aulas-period-btn svg {
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: transform var(--transition-fast);
+}
+
+.aulas-period-btn:hover {
+  color: var(--color-text-primary);
+}
+
+.aulas-period-btn:hover svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.aulas-period-btn.active {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.aulas-period-btn.active svg {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.period-btn-count {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  color: inherit;
+  transition: all var(--transition-fast);
+}
+
+.aulas-period-btn.active .period-btn-count {
+  background: rgba(229, 9, 20, 0.12);
+  color: var(--color-primary);
+}
+
+/* 5. Seções de Agrupamento por Período (Manhã e Tarde) */
+.aulas-period-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.aulas-period-section:last-child {
+  margin-bottom: 0;
+}
+
+.aulas-period-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--color-border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.aulas-period-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.aulas-period-title-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.aulas-period-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.aulas-period-icon-wrap.sun {
+  background: rgba(245, 158, 11, 0.14);
+  color: #D97706;
+}
+
+.aulas-period-icon-wrap.sunset {
+  background: rgba(249, 115, 22, 0.14);
+  color: #EA580C;
+}
+
+.aulas-period-title {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.aulas-period-range-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.3px;
+}
+
+.aulas-period-desc {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-tertiary);
+  line-height: 1.4;
+}
+
+.aulas-period-header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.aulas-period-count-pill {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(229, 9, 20, 0.08);
+  color: var(--color-primary);
+  border: 1px solid rgba(229, 9, 20, 0.15);
+  white-space: nowrap;
+}
+
+.aulas-period-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 6. Lista de Accordions de Apresentações */
 .aulas-list-wrapper {
   padding: 12px 20px 24px;
   display: flex;
@@ -735,3 +910,121 @@
   background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
   background-size: 200% 100%;
 }
+
+[data-theme="blue"] .aulas-period-switch {
+  background: rgba(1, 2, 52, 0.7);
+  border-color: var(--color-border-subtle);
+}
+
+[data-theme="blue"] .aulas-period-btn {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="blue"] .aulas-period-btn:hover {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .aulas-period-btn.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="blue"] .aulas-period-btn.active svg {
+  color: #ff6b6b;
+}
+
+[data-theme="blue"] .period-btn-count {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-secondary);
+}
+
+[data-theme="blue"] .aulas-period-btn.active .period-btn-count {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .aulas-period-header {
+  background: rgba(1, 2, 52, 0.65);
+  border-color: var(--color-border-subtle);
+}
+
+[data-theme="blue"] .aulas-period-icon-wrap.sun {
+  background: rgba(245, 158, 11, 0.18);
+  color: #FBBF24;
+}
+
+[data-theme="blue"] .aulas-period-icon-wrap.sunset {
+  background: rgba(249, 115, 22, 0.18);
+  color: #FB923C;
+}
+
+[data-theme="blue"] .aulas-period-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .aulas-period-range-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: #CBD5E1;
+}
+
+[data-theme="blue"] .aulas-period-desc {
+  color: var(--color-text-secondary);
+}
+
+[data-theme="blue"] .aulas-period-count-pill {
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff8585;
+  border-color: rgba(229, 9, 20, 0.35);
+}
+
+/* 8. Responsividade da Barra de Ferramentas e Seções de Período */
+@media (max-width: 960px) {
+  .aulas-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .aulas-period-switch {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    box-sizing: border-box;
+  }
+
+  .aulas-period-btn {
+    justify-content: center;
+    padding: 8px 6px;
+    font-size: 0.78125rem;
+  }
+
+  .aulas-search-box {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .aulas-period-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .aulas-period-header-right {
+    width: 100%;
+  }
+
+  .aulas-period-count-pill {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .aulas-period-btn .period-btn-label {
+    font-size: 0.75rem;
+  }
+}
+
