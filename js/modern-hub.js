@@ -111,13 +111,12 @@ async function loadWixNews() {
 
 function renderNewsCards(container, items) {
   container.innerHTML = items.map(item => {
-    const actionUrl = item.internalAction?.url || item.link;
+    const postUrl = `/new/post?id=${encodeURIComponent(item.id || item.slug || '1')}`;
     const actionLabel = item.internalAction?.label || 'Confira';
-    const isInternal = item.internalAction?.isInternal || false;
 
     return `
       <article class="wix-news-card" data-id="${item.id}">
-        <div class="news-card-thumb-wrapper">
+        <a href="${postUrl}" class="news-card-thumb-wrapper" title="${escapeHTML(item.title)}">
           <img 
             src="${item.image}" 
             alt="${escapeHTML(item.title)}" 
@@ -126,7 +125,7 @@ function renderNewsCards(container, items) {
             onerror="this.src='/assets/images/og-cathlabflix.png'"
           >
           <span class="news-category-badge">${item.category || 'Notícia'}</span>
-        </div>
+        </a>
 
         <div class="news-card-content">
           <div class="news-card-header">
@@ -134,7 +133,7 @@ function renderNewsCards(container, items) {
           </div>
 
           <h3 class="news-card-title">
-            <a href="${actionUrl}" ${isInternal ? '' : 'target="_blank" rel="noopener noreferrer"'}>
+            <a href="${postUrl}" title="${escapeHTML(item.title)}">
               ${escapeHTML(item.title)}
             </a>
           </h3>
@@ -143,9 +142,9 @@ function renderNewsCards(container, items) {
 
           <div class="news-card-footer">
             <a 
-              href="${actionUrl}" 
+              href="${postUrl}" 
               class="news-card-btn" 
-              ${isInternal ? '' : 'target="_blank" rel="noopener noreferrer"'}
+              title="Ler matéria completa"
             >
               <span>${actionLabel}</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -170,22 +169,40 @@ function renderNewsError(container, msg) {
 function getLocalFallbackNews() {
   return [
     {
-      id: '1',
+      id: 'solaci-2026-destaque',
       title: 'Conteúdos do Congresso SOLACI-SBHCI 2026 ganham destaque com cobertura multiplataforma',
-      description: 'Já estão disponíveis no CathlabFlix os conteúdos e principais discussões do Congresso SOLACI-SBHCI 2026.',
+      description: 'Já estão disponíveis no CathlabFlix os conteúdos e principais discussões do Congresso SOLACI-SBHCI 2026, um dos maiores encontros de Cardiologia Intervencionista da América Latina.',
       image: 'https://static.wixstatic.com/media/1d3d47_0e8baa2ca7354d62b8b17794f33d9e28~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
       category: 'Congresso',
       formattedDate: '23 Set 2026',
       internalAction: { label: 'Confira', url: '/new/solaci', isInternal: true }
     },
     {
-      id: '2',
+      id: 'cathlabflix-nova-era',
       title: 'CathlabFlix inaugura nova era da educação em Cardiologia Intervencionista',
-      description: 'Desenvolvida para centralizar conteúdos da especialidade em um único ambiente.',
+      description: 'Desenvolvida para centralizar conteúdos da especialidade em um único ambiente, a plataforma reúne aulas, apresentações e materiais complementares.',
       image: 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
       category: 'Institucional',
       formattedDate: '11 Mai 2026',
-      internalAction: { label: 'Confira', url: 'https://www.cathlabflix.org/destaques', isInternal: false }
+      internalAction: { label: 'Confira', url: '/new/post?id=cathlabflix-nova-era', isInternal: true }
+    },
+    {
+      id: 'curso-intervencionistas-formacao',
+      title: 'Curso para Intervencionistas em Formação inicia com foco em fundamentos da especialidade',
+      description: 'Já está disponível o Módulo 1 do Curso para Intervencionistas em Formação, iniciativa educacional desenvolvida para apoiar médicos em treinamento.',
+      image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+      category: 'Curso',
+      formattedDate: '11 Mai 2026',
+      internalAction: { label: 'Confira', url: '/new/post?id=curso-intervencionistas-formacao', isInternal: true }
+    },
+    {
+      id: 'webinar-valve-in-valve',
+      title: 'Valve-in-Valve Mitral ganha destaque em conteúdo sobre terapias estruturais',
+      description: 'O procedimento de Valve-in-Valve Mitral vem consolidando seu espaço como alternativa terapêutica para pacientes com disfunção de biopróteses mitrais.',
+      image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+      category: 'Webinar',
+      formattedDate: '11 Mai 2026',
+      internalAction: { label: 'Confira', url: '/new/post?id=webinar-valve-in-valve', isInternal: true }
     }
   ];
 }
