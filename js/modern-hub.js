@@ -33,7 +33,12 @@ function initHubHeroCarousel() {
       const dot = document.createElement('button');
       dot.className = `hero-dot ${idx === 0 ? 'active' : ''}`;
       dot.setAttribute('aria-label', `Ir para slide ${idx + 1}`);
-      dot.addEventListener('click', () => goToSlide(idx));
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        goToSlide(idx);
+        resetAutoplay();
+      });
       dotsContainer.appendChild(dot);
     });
   }
@@ -58,8 +63,23 @@ function initHubHeroCarousel() {
     goToSlide(currentIndex - 1);
   }
 
-  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
-  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      nextSlide();
+      resetAutoplay();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      prevSlide();
+      resetAutoplay();
+    });
+  }
 
   function startAutoplay() {
     stopAutoplay();
