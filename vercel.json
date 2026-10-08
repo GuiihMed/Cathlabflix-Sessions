@@ -16,6 +16,10 @@
       "destination": "/new/post.html"
     },
     {
+      "source": "/new/posts",
+      "destination": "/new/posts.html"
+    },
+    {
       "source": "/new/solaci",
       "destination": "/new/solaci.html"
     },
