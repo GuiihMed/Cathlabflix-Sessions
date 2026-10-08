@@ -224,20 +224,27 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 155px;
-  background: var(--color-surface-dark);
+  min-height: 180px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
+  padding: 12px;
 }
 
 .news-card-thumb {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-height: 180px;
+  object-fit: contain;
+  object-position: center;
   transition: transform var(--transition-base);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
 }
 
 .wix-news-card:hover .news-card-thumb {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .news-category-badge {
@@ -807,3 +814,413 @@
 [data-theme="blue"] .empty-text {
   color: #94a3b8;
 }
+
+[data-theme="blue"] .news-card-thumb-wrapper {
+  background: #010234;
+}
+
+/* ==========================================================================
+   8. Página Interna de Post / Notícia (/new/post)
+   ========================================================================== */
+.post-page-main {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Breadcrumbs / Voltar */
+.post-top-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 8px;
+}
+
+.post-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.post-back-link:hover {
+  color: var(--color-primary);
+  transform: translateX(-3px);
+}
+
+.post-breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.post-breadcrumb-sep {
+  opacity: 0.5;
+}
+
+.post-breadcrumb-current {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Header do Artigo */
+.post-article-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post-meta-badges-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.post-badge-category {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(229, 9, 20, 0.12);
+  color: var(--color-primary);
+  border: 1px solid rgba(229, 9, 20, 0.25);
+}
+
+.post-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.post-main-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.post-lead-summary {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  border-left: 3px solid var(--color-primary);
+  padding-left: 16px;
+}
+
+/* Caixa da Capa Oficial (Ajustada sem recortar) */
+.post-featured-media-box {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: #f8fafc;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+}
+
+.post-featured-img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.16));
+  border-radius: var(--radius-md);
+}
+
+.post-featured-caption {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Corpo do Artigo */
+.post-article-body {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+  padding: 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.post-content-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+}
+
+.post-content-paragraphs p {
+  margin: 0;
+}
+
+/* Box de Ação Especial (ex: SOLACI 2026) */
+.post-special-cta-banner {
+  background: linear-gradient(135deg, #0d1e44 0%, #062257 100%);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: var(--shadow-md);
+}
+
+.post-cta-text-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 600px;
+}
+
+.post-cta-badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #38bdf8;
+  letter-spacing: 0.8px;
+}
+
+.post-cta-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.post-cta-desc {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.post-cta-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.post-cta-action-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Barra de Compartilhamento */
+.post-share-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--color-bg-base);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.post-share-label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.post-share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.post-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.post-share-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+/* Seção de Posts Relacionados */
+.post-related-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .post-related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.post-related-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.post-related-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(229, 9, 20, 0.25);
+}
+
+.post-related-thumb-box {
+  width: 100%;
+  height: 160px;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.post-related-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transition-base);
+}
+
+.post-related-card:hover .post-related-thumb {
+  transform: scale(1.04);
+}
+
+.post-related-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.post-related-date {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.post-related-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Sobrescritas para o Tema Azul */
+[data-theme="blue"] .post-featured-media-box {
+  background: #010234;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .post-article-body {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .post-content-paragraphs {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .post-lead-summary {
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .post-main-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .post-share-strip {
+  background: #010234;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .post-share-btn {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .post-related-card {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .post-related-thumb-box {
+  background: #010234;
+}
+
+[data-theme="blue"] .post-related-title {
+  color: #FFFFFF;
+}
+

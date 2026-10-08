@@ -107,6 +107,22 @@ function parseRssItems(xml) {
     const cleanDescription = stripHtml(descriptionRaw);
     const formattedDate = formatDatePtBr(pubDate);
 
+    // Extrai slug limpo do link/guid
+    const slugMatch = (link || guid || '').match(/\/post\/([^/?#]+)/i);
+    const slug = slugMatch ? slugMatch[1] : (guid ? guid.replace(/[^a-zA-Z0-9_-]/g, '-') : `post-${items.length + 1}`);
+
+    // Tenta extrair conteúdo completo do blog se disponível
+    const contentEncoded = extractTag(itemBlock, 'content:encoded');
+    let fullBody = [];
+    if (contentEncoded) {
+      const pMatches = contentEncoded.match(/<p[^>]*>([\s\S]*?)<\/p>/gi);
+      if (pMatches) {
+        fullBody = pMatches
+          .map(p => stripHtml(p).trim())
+          .filter(text => text.length > 20);
+      }
+    }
+
     // Mapeamento inteligente para rotas internas
     let internalAction = null;
     const lowerTitle = title.toLowerCase();
@@ -137,9 +153,11 @@ function parseRssItems(xml) {
     }
 
     items.push({
-      id: guid || String(items.length + 1),
+      id: slug || guid || String(items.length + 1),
+      slug: slug,
       title: unescapeEntities(title),
       description: unescapeEntities(cleanDescription),
+      fullBody: fullBody.length ? fullBody : null,
       link,
       image,
       category: unescapeEntities(category),
@@ -206,6 +224,7 @@ function getFallbackNews() {
   return [
     {
       id: 'solaci-2026-destaque',
+      slug: 'conteudos-do-congresso-solaci-sbhci-2026-ganham-destaque-com-cobertura-multiplataforma',
       title: 'Conteúdos do Congresso SOLACI-SBHCI 2026 ganham destaque com cobertura multiplataforma',
       description: 'Já estão disponíveis no CathlabFlix os conteúdos e principais discussões do Congresso SOLACI-SBHCI 2026, um dos maiores encontros de Cardiologia Intervencionista da América Latina.',
       link: 'https://www.cathlabflix.org/post/conteudos-do-congresso-solaci-sbhci-2026-ganham-destaque-com-cobertura-multiplataforma',
@@ -214,12 +233,13 @@ function getFallbackNews() {
       formattedDate: '23 Set 2026',
       internalAction: {
         label: 'Confira',
-        url: '/new/solaci',
+        url: '/new/post?id=solaci-2026-destaque',
         isInternal: true
       }
     },
     {
       id: 'cathlabflix-nova-era',
+      slug: 'cathlabflix-inaugura-nova-era-da-educacao-em-cardiologia-intervencionista',
       title: 'CathlabFlix inaugura nova era da educação em Cardiologia Intervencionista',
       description: 'Desenvolvida para centralizar conteúdos da especialidade em um único ambiente, a plataforma reúne aulas, apresentações e materiais complementares de alta qualidade.',
       link: 'https://www.cathlabflix.org/post/cathlabflix-inaugura-nova-era-da-educacao-em-cardiologia-intervencionista',
@@ -228,12 +248,13 @@ function getFallbackNews() {
       formattedDate: '11 Mai 2026',
       internalAction: {
         label: 'Confira',
-        url: 'https://www.cathlabflix.org/post/cathlabflix-inaugura-nova-era-da-educacao-em-cardiologia-intervencionista',
-        isInternal: false
+        url: '/new/post?id=cathlabflix-nova-era',
+        isInternal: true
       }
     },
     {
       id: 'curso-intervencionistas-formacao',
+      slug: 'curso-para-intervencionistas-em-formacao-inicia-com-foco-em-fundamentos-da-especialidade',
       title: 'Curso para Intervencionistas em Formação inicia com foco em fundamentos da especialidade',
       description: 'Já está disponível o Módulo 1 do Curso para Intervencionistas em Formação, iniciativa educacional desenvolvida para apoiar médicos em treinamento.',
       link: 'https://www.cathlabflix.org/post/curso-para-intervencionistas-em-formacao-inicia-com-foco-em-fundamentos-da-especialidade',
@@ -242,12 +263,13 @@ function getFallbackNews() {
       formattedDate: '11 Mai 2026',
       internalAction: {
         label: 'Confira',
-        url: 'https://www.cathlabflix.org/post/curso-para-intervencionistas-em-formacao-inicia-com-foco-em-fundamentos-da-especialidade',
-        isInternal: false
+        url: '/new/post?id=curso-intervencionistas-formacao',
+        isInternal: true
       }
     },
     {
       id: 'webinar-valve-in-valve',
+      slug: 'valve-in-valve-mitral-ganha-destaque-em-conteudo-sobre-terapias-estruturais',
       title: 'Valve-in-Valve Mitral ganha destaque em conteúdo sobre terapias estruturais',
       description: 'O procedimento de Valve-in-Valve Mitral vem consolidando seu espaço como alternativa terapêutica para pacientes com disfunção de biopróteses mitrais.',
       link: 'https://www.cathlabflix.org/post/valve-in-valve-mitral-ganha-destaque-em-conteudo-sobre-terapias-estruturais',
@@ -256,8 +278,8 @@ function getFallbackNews() {
       formattedDate: '11 Mai 2026',
       internalAction: {
         label: 'Confira',
-        url: 'https://www.cathlabflix.org/post/valve-in-valve-mitral-ganha-destaque-em-conteudo-sobre-terapias-estruturais',
-        isInternal: false
+        url: '/new/post?id=webinar-valve-in-valve',
+        isInternal: true
       }
     }
   ];

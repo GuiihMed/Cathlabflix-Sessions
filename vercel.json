@@ -12,6 +12,10 @@
       "destination": "/new/player.html"
     },
     {
+      "source": "/new/post",
+      "destination": "/new/post.html"
+    },
+    {
       "source": "/new/solaci",
       "destination": "/new/solaci.html"
     },
