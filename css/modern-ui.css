@@ -284,54 +284,53 @@ input {
   flex-shrink: 0;
 }
 
-.topbar-user-btn,
 .topbar-hamburger-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-surface, #FFFFFF);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: transparent;
+  border: none;
+  box-shadow: none;
   color: var(--color-text-primary, #1e293b);
   transition: all var(--transition-fast);
   cursor: pointer;
   position: relative;
+  padding: 0;
 }
 
-.topbar-user-btn:hover,
 .topbar-hamburger-btn:hover {
-  background: #FFFFFF;
-  border-color: rgba(229, 9, 20, 0.35);
+  background: rgba(0, 0, 0, 0.05);
   color: var(--color-primary, #E50914);
-  transform: translateY(-1px) scale(1.04);
-  box-shadow: 0 6px 18px -2px rgba(229, 9, 20, 0.16), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transform: scale(1.08);
+  border: none;
+  box-shadow: none;
 }
 
-.topbar-user-btn:active,
 .topbar-hamburger-btn:active {
-  transform: translateY(0) scale(0.96);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .topbar-hamburger-btn[aria-expanded="true"],
 .topbar-hamburger-btn.active {
-  background: #fef2f2;
-  border-color: rgba(229, 9, 20, 0.4);
+  background: rgba(229, 9, 20, 0.08);
   color: var(--color-primary, #E50914);
+  border: none;
+  box-shadow: none;
 }
 
-.topbar-user-btn svg,
-.topbar-hamburger-btn svg {
-  width: 20px;
-  height: 20px;
+.topbar-hamburger-btn svg,
+.topbar-hamburger-btn .hamburger-icon {
+  width: 26px;
+  height: 26px;
   transition: transform var(--transition-fast), color var(--transition-fast);
 }
 
 .topbar-hamburger-btn:hover svg {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .topbar-btn {
@@ -1871,41 +1870,34 @@ input {
   color: #94a3b8;
 }
 
-[data-theme="blue"] .topbar-user-btn,
 [data-theme="blue"] .topbar-hamburger-btn {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   color: #FFFFFF;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45), 
-              0 1px 3px rgba(0, 0, 0, 0.25),
-              inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-[data-theme="blue"] .topbar-user-btn:hover,
 [data-theme="blue"] .topbar-hamburger-btn:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%);
-  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  box-shadow: none;
   color: #38bdf8;
-  transform: translateY(-1px) scale(1.04);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6), 
-              0 0 16px rgba(56, 189, 248, 0.28),
-              inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: scale(1.08);
 }
 
-[data-theme="blue"] .topbar-user-btn:active,
 [data-theme="blue"] .topbar-hamburger-btn:active {
-  transform: translateY(0) scale(0.96);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.14);
 }
 
 [data-theme="blue"] .topbar-hamburger-btn[aria-expanded="true"],
 [data-theme="blue"] .topbar-hamburger-btn.active {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: rgba(56, 189, 248, 0.65);
+  background: rgba(56, 189, 248, 0.14);
+  border: none;
+  box-shadow: none;
   color: #38bdf8;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 0 14px rgba(56, 189, 248, 0.35);
 }
 
 /* Faixa de Ações do Banner */
