@@ -208,7 +208,7 @@
 
 .wix-news-card {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 350px 1fr;
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border-subtle);
@@ -227,23 +227,22 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 180px;
-  background: #f1f5f9;
+  min-height: 190px;
+  background: #010234;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 12px;
+  padding: 0;
 }
 
 .news-card-thumb {
   width: 100%;
   height: 100%;
-  max-height: 180px;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
+  display: block;
   transition: transform var(--transition-base);
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
 }
 
 .wix-news-card:hover .news-card-thumb {
@@ -336,16 +335,23 @@
   box-shadow: 0 4px 12px var(--color-primary-glow);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1100px) {
+  .wix-news-card {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
   .wix-news-card {
     grid-template-columns: 1fr;
   }
   .news-card-thumb-wrapper {
     aspect-ratio: 16 / 9;
     min-height: auto;
+    width: 100%;
   }
   .news-card-content {
-    padding: 16px;
+    padding: 18px;
   }
 }
 
@@ -1137,18 +1143,17 @@
 
 .post-related-thumb-box {
   width: 100%;
-  height: 160px;
-  background: #f1f5f9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
+  aspect-ratio: 16 / 9;
+  background: #010234;
+  overflow: hidden;
+  padding: 0;
 }
 
 .post-related-thumb {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   transition: transform var(--transition-base);
 }
 
