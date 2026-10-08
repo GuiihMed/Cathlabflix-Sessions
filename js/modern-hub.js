@@ -111,8 +111,12 @@ function initHubHeroCarousel() {
   startAutoplay();
 }
 
+const POSTS_PER_PAGE = 4;
+let allNewsItems = [];
+let currentNewsPage = 1;
+
 /**
- * 2. Carregamento Automático de Notícias do Wix via /api/wix-news
+ * 2. Carregamento Automático de Notícias do Wix via /api/wix-news com Paginação
  */
 async function loadWixNews() {
   const container = document.getElementById('wixNewsContainer');
@@ -124,22 +128,41 @@ async function loadWixNews() {
     const data = await res.json();
 
     if (data.items && data.items.length > 0) {
-      renderNewsCards(container, data.items);
+      allNewsItems = data.items;
+      currentNewsPage = 1;
+      renderCurrentNewsPage();
     } else {
       renderNewsError(container, 'Nenhuma notícia disponível no momento.');
     }
   } catch (error) {
     console.warn('[Hub News] Usando fallback local:', error);
-    // Usa dados locais se houver falha de rede
-    const fallback = getLocalFallbackNews();
-    renderNewsCards(container, fallback);
+    allNewsItems = getLocalFallbackNews();
+    currentNewsPage = 1;
+    renderCurrentNewsPage();
   }
+}
+
+function renderCurrentNewsPage() {
+  const container = document.getElementById('wixNewsContainer');
+  const paginationContainer = document.getElementById('newsPaginationContainer');
+  if (!container) return;
+
+  const totalItems = allNewsItems.length;
+  const totalPages = Math.ceil(totalItems / POSTS_PER_PAGE);
+
+  if (currentNewsPage < 1) currentNewsPage = 1;
+  if (totalPages > 0 && currentNewsPage > totalPages) currentNewsPage = totalPages;
+
+  const startIndex = (currentNewsPage - 1) * POSTS_PER_PAGE;
+  const pageItems = allNewsItems.slice(startIndex, startIndex + POSTS_PER_PAGE);
+
+  renderNewsCards(container, pageItems);
+  renderNewsPagination(paginationContainer, totalPages, currentNewsPage);
 }
 
 function renderNewsCards(container, items) {
   container.innerHTML = items.map(item => {
     const postUrl = `/new/post?id=${encodeURIComponent(item.id || item.slug || '1')}`;
-    const actionLabel = item.internalAction?.label || 'Confira';
 
     return `
       <article class="wix-news-card" data-id="${item.id}">
@@ -171,9 +194,9 @@ function renderNewsCards(container, items) {
             <a 
               href="${postUrl}" 
               class="news-card-btn" 
-              title="Ler matéria completa"
+              title="Confira"
             >
-              <span>${actionLabel}</span>
+              <span>Confira</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
@@ -183,6 +206,87 @@ function renderNewsCards(container, items) {
       </article>
     `;
   }).join('');
+}
+
+function renderNewsPagination(container, totalPages, currentPage) {
+  if (!container) return;
+
+  if (totalPages <= 1) {
+    container.style.display = 'none';
+    container.innerHTML = '';
+    return;
+  }
+
+  container.style.display = 'flex';
+
+  let html = '';
+
+  const prevDisabled = currentPage === 1;
+  html += `
+    <button 
+      type="button" 
+      class="news-pagination-btn prev ${prevDisabled ? 'disabled' : ''}" 
+      aria-label="Página anterior"
+      ${prevDisabled ? 'disabled' : ''}
+      data-page="${currentPage - 1}"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>Anterior</span>
+    </button>
+  `;
+
+  html += `<div class="news-pagination-numbers">`;
+  for (let i = 1; i <= totalPages; i++) {
+    const isActive = i === currentPage;
+    html += `
+      <button 
+        type="button" 
+        class="news-pagination-num ${isActive ? 'active' : ''}" 
+        aria-label="Página ${i}"
+        aria-current="${isActive ? 'page' : 'false'}"
+        data-page="${i}"
+      >
+        ${i}
+      </button>
+    `;
+  }
+  html += `</div>`;
+
+  const nextDisabled = currentPage === totalPages;
+  html += `
+    <button 
+      type="button" 
+      class="news-pagination-btn next ${nextDisabled ? 'disabled' : ''}" 
+      aria-label="Próxima página"
+      ${nextDisabled ? 'disabled' : ''}
+      data-page="${currentPage + 1}"
+    >
+      <span>Próximo</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  `;
+
+  container.innerHTML = html;
+
+  container.querySelectorAll('button[data-page]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+      if (targetPage && targetPage !== currentNewsPage && targetPage >= 1 && targetPage <= totalPages) {
+        currentNewsPage = targetPage;
+        renderCurrentNewsPage();
+
+        const section = document.getElementById('destaquesSection');
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
 }
 
 function renderNewsError(container, msg) {
