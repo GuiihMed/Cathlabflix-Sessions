@@ -64,6 +64,7 @@
       <!-- Navegação Rápida (Desktop) -->
       <nav class="topbar-quick-nav" aria-label="Navegação rápida">
         <a href="/new" class="quick-nav-link">Início</a>
+        <a href="/new/posts" class="quick-nav-link active">Notícias</a>
         <a href="/new/solaci" class="quick-nav-link">Congressos</a>
         <a href="/new#agendaSection" class="quick-nav-link">Agenda</a>
         <a href="/new/player" class="quick-nav-link">Player de Aulas</a>
@@ -88,18 +89,18 @@
 
       <!-- Barra de Navegação Superior / Breadcrumbs -->
       <nav class="post-top-nav-bar" aria-label="Navegação de retorno">
-        <a href="/new" class="post-back-link">
+        <a href="/new/posts" class="post-back-link">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Voltar para o Início</span>
+          <span>Todas as Notícias</span>
         </a>
 
         <div class="post-breadcrumbs-list">
           <a href="/new" style="color: inherit; text-decoration: none;">Início</a>
           <span class="post-breadcrumb-sep">/</span>
-          <span>Notícias</span>
+          <a href="/new/posts" style="color: inherit; text-decoration: none;">Notícias</a>
           <span class="post-breadcrumb-sep">/</span>
           <span class="post-breadcrumb-current" id="postBreadcrumbCurrent">Artigo</span>
         </div>
@@ -218,6 +219,22 @@
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
             <span>Início</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/posts" class="dropdown-nav-link drawer-nav-link active">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"></path>
+              <path d="M18 14h4"></path>
+              <path d="M18 18h4"></path>
+              <path d="M18 10h4"></path>
+              <path d="M5 10h6"></path>
+              <path d="M5 14h6"></path>
+            </svg>
+            <span>Notícias & Posts</span>
           </span>
         </a>
       </li>

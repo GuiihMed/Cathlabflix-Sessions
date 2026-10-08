@@ -124,6 +124,7 @@ function parseRssItems(xml) {
     }
 
     // Todos os botões dos posts padronizados como 'Confira'
+    const lowerTitle = (title || '').toLowerCase();
     const isCongress = lowerTitle.includes('solaci') || lowerTitle.includes('congresso');
     const internalAction = {
       label: 'Confira',
