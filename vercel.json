@@ -28,6 +28,14 @@
       "destination": "/new/aulas-solaci.html"
     },
     {
+      "source": "/new/busca",
+      "destination": "/new/busca.html"
+    },
+    {
+      "source": "/busca",
+      "destination": "/new/busca.html"
+    },
+    {
       "source": "/novo",
       "destination": "/new.html"
     },

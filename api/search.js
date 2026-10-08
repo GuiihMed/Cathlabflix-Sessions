@@ -25,17 +25,22 @@ export default async function handler(req, res) {
 
   const rawQuery = req.query.q || '';
   const page = Math.max(1, parseInt(req.query.page, 10) || 1);
-  const limit = 10; // Exatamente 10 por requisição
+  const filterType = req.query.type || 'all'; // 'all', 'video', 'aula', 'post', 'page'
+  const requestedLimit = parseInt(req.query.limit, 10);
+  const limit = (requestedLimit && requestedLimit > 0 && requestedLimit <= 50) ? requestedLimit : 12;
   const query = sanitizeInput(rawQuery);
+  const isInitial = req.query.initial === 'true' || req.query.initial === '1';
 
-  if (!query || query.length < 3) {
+  if (!isInitial && (!query || query.length < 3)) {
     return res.status(200).json({
       success: true,
       query,
+      type: filterType,
       page,
       limit,
       total: 0,
       hasMore: false,
+      counts: { all: 0, video: 0, aula: 0, post: 0, page: 0 },
       results: [],
       message: 'Digite pelo menos 3 caracteres para buscar.'
     });
@@ -43,24 +48,41 @@ export default async function handler(req, res) {
 
   try {
     const allContents = await getIndexedContents();
-    const scoredResults = [];
+    let matchedResults = [];
 
-    for (const item of allContents) {
-      const score = calculateFuzzyRelevance(item, query);
-      if (score >= 0.35) {
-        scoredResults.push({
-          ...item,
-          relevanceScore: score
-        });
+    if (isInitial && (!query || query.length < 3)) {
+      matchedResults = allContents.map(item => ({ ...item, relevanceScore: 1 }));
+    } else {
+      for (const item of allContents) {
+        const score = calculateFuzzyRelevance(item, query);
+        if (score >= 0.35) {
+          matchedResults.push({
+            ...item,
+            relevanceScore: score
+          });
+        }
       }
+      matchedResults.sort((a, b) => b.relevanceScore - a.relevanceScore);
     }
 
-    // Ordena por relevância decrescente
-    scoredResults.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    // Contagem antes do filtro por tipo
+    const counts = {
+      all: matchedResults.length,
+      video: matchedResults.filter(i => i.type === 'video').length,
+      aula: matchedResults.filter(i => i.type === 'aula').length,
+      post: matchedResults.filter(i => i.type === 'post').length,
+      page: matchedResults.filter(i => i.type === 'page').length
+    };
 
-    const total = scoredResults.length;
+    // Aplica filtro por tipo se especificado
+    let filteredResults = matchedResults;
+    if (filterType && filterType !== 'all') {
+      filteredResults = matchedResults.filter(i => i.type === filterType);
+    }
+
+    const total = filteredResults.length;
     const startIndex = (page - 1) * limit;
-    const paginatedItems = scoredResults.slice(startIndex, startIndex + limit);
+    const paginatedItems = filteredResults.slice(startIndex, startIndex + limit);
     const hasMore = startIndex + limit < total;
 
     // Cache no Edge da Vercel por 60 segundos
@@ -69,10 +91,12 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       query,
+      type: filterType,
       page,
       limit,
       total,
       hasMore,
+      counts,
       results: paginatedItems
     });
 
