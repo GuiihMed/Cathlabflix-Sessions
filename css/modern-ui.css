@@ -891,9 +891,64 @@ input {
   transform: none;
 }
 
-/* Fileira Horizontal com Rolagem */
+/* Fileira Horizontal com Rolagem Harmônica (Estilo Streaming / Sem Corte Seco) */
 .carousel-track-wrapper {
   position: relative;
+  overflow: visible;
+  /* Suave desvanecimento na extremidade direita por padrão (gradiente harmônico) */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+  transition: -webkit-mask-image 0.25s ease, mask-image 0.25s ease;
+}
+
+/* Quando rolado à direita: desvanece suavemente em ambas as extremidades */
+.carousel-track-wrapper.has-scroll-left {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 44px,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 44px,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+}
+
+/* Quando chega ao final da rolagem: borda direita 100% visível, borda esquerda suave */
+.carousel-track-wrapper.is-at-end {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 44px,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 44px,
+    #000 100%
+  );
+}
+
+/* Quando todos os cards cabem sem rolagem horizontal */
+.carousel-track-wrapper.no-scroll {
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
 .carousel-track {
@@ -903,7 +958,8 @@ input {
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 6px 4px 18px;
+  padding: 8px 4px 20px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -913,27 +969,31 @@ input {
 /* ==========================================================================
    Cards de Conteúdo (Thumbnails)
    Baseado em Seção 5: Cards de Conteúdo:
-   - Cantos arredondados suaves (--radius-lg: 18px), sem bordas
-   - Imagem ocupa 100% do card, com gradiente preto na base
-   - Título e ano aplicados sobre o gradiente na parte inferior, em branco
+   - Proporção natural 16:9 para posters sem corte forçado
+   - Cantos arredondados suaves com sutil contorno de acabamento
+   - Imagem ocupa 100% do card, com gradiente escuro de alta legibilidade
+   - Título e palestrante aplicados sobre o gradiente na base, em branco
    - Botão de Play circular vermelho com ícone branco no canto inferior direito
    ========================================================================== */
 .content-card {
   flex: 0 0 310px;
-  height: 185px;
+  aspect-ratio: 16 / 9;
+  height: auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
-  background: #14161B;
-  box-shadow: var(--shadow-card);
+  background: #10141e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   user-select: none;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
 }
 
 .content-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
 .content-card:focus-visible {
@@ -947,30 +1007,34 @@ input {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: #0b0f19;
 }
 
 .card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   transition: transform var(--transition-slow);
 }
 
 .content-card:hover .card-image {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
-/* Gradiente na base do card */
+/* Gradiente na base do card com transição suave */
 .card-gradient-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.45) 45%,
-    rgba(0, 0, 0, 0.92) 100%
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(4, 7, 18, 0.5) 60%,
+    rgba(4, 7, 18, 0.95) 100%
   );
   z-index: 1;
+  pointer-events: none;
 }
 
 /* Tags de Topo do Card */
@@ -1120,7 +1184,8 @@ input {
 /* Card Especial / Banner Largo (Para Aulas PPTX ou Destaques) */
 .content-card-wide {
   flex: 0 0 420px;
-  height: 220px;
+  aspect-ratio: 16 / 9;
+  height: auto;
 }
 
 /* ==========================================================================
@@ -1472,7 +1537,14 @@ input {
 
   .content-card {
     flex: 0 0 280px;
-    height: 180px;
+    aspect-ratio: 16 / 9;
+    height: auto;
+  }
+
+  .content-card-wide {
+    flex: 0 0 380px;
+    aspect-ratio: 16 / 9;
+    height: auto;
   }
 }
 
@@ -1504,9 +1576,137 @@ input {
     justify-content: center;
   }
 
+  /* Ajuste responsivo no cabeçalho das seções do carrossel */
+  .section-header {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    align-items: center;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+  }
+
+  /* Em telas touch/mobile, o swipe gestual é a navegação ideal; ocultamos as setinhas redundantes */
+  .section-controls .carousel-nav-buttons {
+    display: none;
+  }
+
+  /* Sangria elegante nas laterais para que os cards transitem de forma contínua até as bordas */
+  .carousel-track-wrapper {
+    margin: 0 -20px;
+    padding: 0;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 calc(100% - 44px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      #000 0%,
+      #000 calc(100% - 44px),
+      transparent 100%
+    );
+  }
+
+  .carousel-track-wrapper.has-scroll-left {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 32px,
+      #000 calc(100% - 44px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 32px,
+      #000 calc(100% - 44px),
+      transparent 100%
+    );
+  }
+
+  .carousel-track-wrapper.is-at-end {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 32px,
+      #000 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 32px,
+      #000 100%
+    );
+  }
+
+  .carousel-track {
+    padding: 6px 20px 22px 20px;
+    gap: 14px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .content-card {
-    flex: 0 0 260px;
-    height: 165px;
+    scroll-snap-align: start;
+    flex: 0 0 clamp(230px, 78vw, 290px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  .content-card-wide {
+    scroll-snap-align: start;
+    flex: 0 0 clamp(250px, 84vw, 340px);
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 14px;
+  }
+
+  .card-top-badges {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .card-category-tag {
+    height: 20px;
+    font-size: 0.625rem;
+    padding: 0 7px;
+  }
+
+  .card-bottom-info {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .card-title {
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    margin-bottom: 2px;
+  }
+
+  .card-meta-line {
+    font-size: 0.6875rem;
+    gap: 6px;
+  }
+
+  .card-speaker {
+    max-width: 120px;
+  }
+
+  .card-play-button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card-play-button svg {
+    width: 13px;
+    height: 13px;
   }
 
   .footer-content {
@@ -1803,6 +2003,18 @@ input {
     right: 14px;
     width: calc(100vw - 28px);
     border-radius: 18px;
+  }
+
+  .content-card {
+    flex: 0 0 clamp(220px, 76vw, 275px);
+  }
+
+  .content-card-wide {
+    flex: 0 0 clamp(240px, 82vw, 310px);
+  }
+
+  .card-speaker {
+    max-width: 105px;
   }
 }
 

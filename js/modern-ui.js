@@ -356,17 +356,63 @@ function setupCarouselNav(prevBtnId, nextBtnId, trackId) {
   const nextBtn = document.getElementById(nextBtnId);
   const track = document.getElementById(trackId);
 
-  if (!prevBtn || !nextBtn || !track) return;
+  if (!track) return;
 
-  const scrollDistance = 330; // Aproximadamente 1 card de largura
+  const wrapper = track.closest('.carousel-track-wrapper') || track.parentElement;
 
-  prevBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
-  });
+  const updateScrollState = () => {
+    const scrollLeft = track.scrollLeft;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    const hasScrollLeft = scrollLeft > 12;
+    const isAtEnd = scrollLeft >= maxScroll - 12;
 
-  nextBtn.addEventListener('click', () => {
-    track.scrollBy({ left: scrollDistance, behavior: 'smooth' });
-  });
+    if (wrapper) {
+      if (maxScroll <= 6) {
+        wrapper.classList.add('no-scroll');
+      } else {
+        wrapper.classList.remove('no-scroll');
+        wrapper.classList.toggle('has-scroll-left', hasScrollLeft);
+        wrapper.classList.toggle('is-at-end', isAtEnd);
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.disabled = !hasScrollLeft;
+      prevBtn.style.opacity = hasScrollLeft ? '1' : '0.35';
+      prevBtn.style.pointerEvents = hasScrollLeft ? 'auto' : 'none';
+    }
+    if (nextBtn) {
+      nextBtn.disabled = isAtEnd;
+      nextBtn.style.opacity = isAtEnd ? '0.35' : '1';
+      nextBtn.style.pointerEvents = isAtEnd ? 'none' : 'auto';
+    }
+  };
+
+  requestAnimationFrame(updateScrollState);
+  setTimeout(updateScrollState, 200);
+
+  track.addEventListener('scroll', updateScrollState, { passive: true });
+  window.addEventListener('resize', updateScrollState, { passive: true });
+
+  const getScrollDistance = () => {
+    const firstCard = track.querySelector('.content-card');
+    if (firstCard) {
+      return (firstCard.offsetWidth + 16) * 1.5;
+    }
+    return 320;
+  };
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollDistance(), behavior: 'smooth' });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollDistance(), behavior: 'smooth' });
+    });
+  }
 }
 
 function createCardHTML(session, isContinueWatching = false) {
