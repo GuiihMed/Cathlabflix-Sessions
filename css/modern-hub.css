@@ -7,30 +7,41 @@
 .hub-main-container {
   max-width: 1480px;
   margin: 0 auto;
-  padding: 24px 24px 64px;
+  padding: 32px 24px 64px;
   display: flex;
   flex-direction: column;
   gap: 36px;
 }
 
-/* 2. Carrossel Hero com Banners Oficiais */
+/* 2. Carrossel Hero com Banners Oficiais (Tela Inteira, 550px de Altura, Todo Clicável)
+   REGRA PERMANENTE:
+   - Tamanho: 100% de largura (tela inteira / full bleed) e 550px de altura.
+   - Todo o banner é um link clicável (<a>) para o destino identificado.
+   - Sem botão vermelho sobreposto ("Explorar" / CTA removido).
+*/
 .hub-hero-section {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-subtle);
+  background: #010234;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .hub-hero-viewport {
   position: relative;
   width: 100%;
+  height: 550px;
   overflow: hidden;
-  aspect-ratio: 1920 / 520;
-  max-height: 480px;
-  min-height: 220px;
+}
+
+@media (max-width: 900px) {
+  .hub-hero-viewport {
+    height: clamp(260px, 45vw, 550px);
+  }
 }
 
 .hub-hero-track {
@@ -45,42 +56,23 @@
   width: 100%;
   height: 100%;
   position: relative;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .hub-hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+  transition: transform 0.5s ease;
 }
 
-.hub-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.55) 100%);
-  display: flex;
-  align-items: flex-end;
-  padding: 24px 32px;
-}
-
-.hub-hero-cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--color-primary);
-  color: #FFFFFF;
-  padding: 10px 22px;
-  border-radius: var(--radius-pill);
-  font-weight: 700;
-  font-size: var(--font-size-sm);
-  text-decoration: none;
-  box-shadow: 0 4px 16px var(--color-primary-glow);
-  transition: transform var(--transition-fast), background var(--transition-fast);
-}
-
-.hub-hero-cta-btn:hover {
-  background: var(--color-primary-hover);
-  transform: translateY(-2px);
+.hub-hero-slide:hover .hub-hero-img {
+  transform: scale(1.015);
 }
 
 /* Controles de Navegação do Hero */
@@ -88,55 +80,66 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 5;
+  z-index: 10;
   transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .hero-nav-arrow:hover {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
   transform: translateY(-50%) scale(1.08);
 }
 
-.hero-nav-arrow.prev { left: 16px; }
-.hero-nav-arrow.next { right: 16px; }
+.hero-nav-arrow.prev { left: 24px; }
+.hero-nav-arrow.next { right: 24px; }
+
+@media (max-width: 640px) {
+  .hero-nav-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  .hero-nav-arrow.prev { left: 10px; }
+  .hero-nav-arrow.next { right: 10px; }
+}
 
 .hero-dots-container {
   position: absolute;
-  bottom: 14px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 8px;
-  z-index: 5;
+  z-index: 10;
 }
 
 .hero-dot {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.5);
   border: none;
   cursor: pointer;
   transition: all var(--transition-fast);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hero-dot.active {
-  width: 26px;
+  width: 28px;
   border-radius: 9999px;
   background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================================================
@@ -684,8 +687,8 @@
    7. Compatibilidade Nativa com o Tema Azul Oficial (#062257 e #010234)
    ========================================================================== */
 [data-theme="blue"] .hub-hero-section {
-  background: #062257;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: #010234;
+  border: none;
 }
 
 [data-theme="blue"] .column-heading-wrapper {

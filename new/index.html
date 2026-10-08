@@ -82,72 +82,58 @@
     </header>
 
     <!-- ==========================================================================
-         2. Conteúdo Principal do Hub (Carrossel + 2 Colunas: Destaques & Agenda)
+         2. Banner Hero em Tela Inteira (100% Largura, 550px Altura, Todo Clicável)
+         ========================================================================== -->
+    <section class="hub-hero-section" id="hubHeroSection" aria-label="Destaques Principais">
+      <div class="hub-hero-viewport">
+        <div class="hub-hero-track" id="hubHeroTrack">
+          <!-- Slide 1: SOLACI SBHCI 2026 -->
+          <a href="/new/solaci" class="hub-hero-slide" title="Acessar o Congresso SOLACI-SBHCI 2026">
+            <img 
+              src="/assets/images/banner-solaci-2026.png" 
+              alt="SOLACI SBHCI 2026 - 29 a 31 de Julho no WTC São Paulo" 
+              class="hub-hero-img"
+              fetchpriority="high"
+            >
+          </a>
+
+          <!-- Slide 2: Banner CathlabFlix Institucional -->
+          <a href="/new/solaci" class="hub-hero-slide" title="Acessar Conteúdos e Aulas do Congresso">
+            <img 
+              src="/assets/images/banner-solaci-1920x550.png" 
+              alt="CathlabFlix - Nova era da educação em cardiologia intervencionista" 
+              class="hub-hero-img"
+              loading="lazy"
+            >
+          </a>
+        </div>
+
+        <!-- Setas de Navegação -->
+        <button type="button" class="hero-nav-arrow prev" id="heroPrevBtn" aria-label="Banner anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="hero-nav-arrow next" id="heroNextBtn" aria-label="Próximo banner">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Pontos de Paginação -->
+        <div class="hero-dots-container" id="heroDotsContainer"></div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. Conteúdo Principal do Hub (2 Colunas: Destaques & Agenda)
          ========================================================================== -->
     <main class="hub-main-container">
 
-      <!-- Carrossel Hero com Banners Oficiais -->
-      <section class="hub-hero-section" id="hubHeroSection" aria-label="Destaques Principais">
-        <div class="hub-hero-viewport">
-          <div class="hub-hero-track" id="hubHeroTrack">
-            <!-- Slide 1: SOLACI SBHCI 2026 -->
-            <div class="hub-hero-slide">
-              <img 
-                src="/assets/images/banner-solaci-2026.png" 
-                alt="SOLACI SBHCI 2026 - 29 a 31 de Julho no WTC São Paulo" 
-                class="hub-hero-img"
-                fetchpriority="high"
-              >
-              <div class="hub-hero-overlay">
-                <a href="/new/solaci" class="hub-hero-cta-btn" title="Acessar o Congresso SOLACI 2026">
-                  <span>Confira a Cobertura SOLACI 2026</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Slide 2: Banner CathlabFlix Institucional -->
-            <div class="hub-hero-slide">
-              <img 
-                src="/assets/images/banner-solaci-1920x550.png" 
-                alt="CathlabFlix - Nova era da educação em cardiologia intervencionista" 
-                class="hub-hero-img"
-                loading="lazy"
-              >
-              <div class="hub-hero-overlay">
-                <a href="/new/solaci" class="hub-hero-cta-btn" title="Acessar catálogo de sessões">
-                  <span>Explorar Conteúdos e Aulas</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Setas de Navegação -->
-          <button type="button" class="hero-nav-arrow prev" id="heroPrevBtn" aria-label="Banner anterior">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-          </button>
-          <button type="button" class="hero-nav-arrow next" id="heroNextBtn" aria-label="Próximo banner">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
-
-          <!-- Pontos de Paginação -->
-          <div class="hero-dots-container" id="heroDotsContainer"></div>
-        </div>
-      </section>
-
       <!-- ======================================================================
-           3. Grade de Conteúdo em 2 Colunas:
-              Coluna Esquerda (65%): Em Destaque (Notícias do Wix)
-              Coluna Direita (35%): Agenda Interativa com Calendário
+           Grade de Conteúdo em 2 Colunas:
+           Coluna Esquerda (65%): Em Destaque (Notícias do Wix)
+           Coluna Direita (35%): Agenda Interativa com Calendário
            ====================================================================== -->
       <div class="hub-content-grid">
 
