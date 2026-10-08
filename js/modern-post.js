@@ -55,7 +55,7 @@ async function initPostPage() {
 }
 
 function renderPost(post) {
-  document.title = `${post.title} - CathlabFlix`;
+  document.title = 'CathlabFlix by SBHCI';
 
   // Breadcrumbs
   const crumbEl = document.getElementById('postBreadcrumbCurrent');
