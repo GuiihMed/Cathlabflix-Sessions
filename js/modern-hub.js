@@ -23,6 +23,13 @@ function initHubHeroCarousel() {
 
   if (!track || slides.length === 0) return;
 
+  if (slides.length <= 1) {
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (dotsContainer) dotsContainer.style.display = 'none';
+    return;
+  }
+
   let currentIndex = 0;
   let autoplayTimer = null;
 
