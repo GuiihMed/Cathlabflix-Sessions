@@ -243,11 +243,16 @@ function formatAula(file) {
   const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
   const viewUrl = file.webViewLink || `https://drive.google.com/file/d/${file.id}/view`;
 
+  // Define período com base no horário (antes de 12:00 = manhã, a partir de 12:00 = tarde)
+  const hourNum = parsed.time ? parseInt(parsed.time.split(':')[0], 10) : NaN;
+  const period = (!isNaN(hourNum) && hourNum < 12) ? 'manha' : 'tarde';
+
   return {
     id: file.id,
     title: parsed.title,
     speaker: parsed.speaker,
     time: parsed.time,
+    period: period,
     room: file.room,
     day: file.day,
     rawName: file.name,
@@ -270,13 +275,18 @@ function parseFileName(name) {
   clean = clean.replace(/-\d{3}$/, '').trim();      // Remove sufixo "-002"
   clean = clean.replace(/\(VIDEO SEM AUDIO\)/gi, '').replace(/\(AULA GRAVADA\)/gi, '').trim();
 
-  // Extrai horário se presente (ex: 18H00, 09H00, 10H35)
-  const timeMatch = clean.match(/(\d{1,2}H\d{2})/i);
-  const time = timeMatch ? timeMatch[1].toUpperCase().replace('H', ':') : '';
+  // Extrai horário se presente (ex: 18H00, 09H00, 10H35 ou 16H)
+  const timeMatch = clean.match(/(\d{1,2})H(\d{2})?/i);
+  let time = '';
+  if (timeMatch) {
+    const hh = timeMatch[1].padStart(2, '0');
+    const mm = timeMatch[2] ? timeMatch[2].padStart(2, '0') : '00';
+    time = `${hh}:${mm}`;
+  }
 
   // Remove prefixos de sala, data e hora para deixar o nome do palestrante/tema em evidência
-  clean = clean.replace(/^[A-Z\s&]+\s+\d{2}-\d{2}\s+/i, '');
-  clean = clean.replace(/^\d{1,2}H\d{2}\s+/i, '');
+  clean = clean.replace(/^[A-Za-z\s&]+[-–\s]+\d{2}[.-]\d{2}[-–\s]*/i, '');
+  clean = clean.replace(/^\d{1,2}H(\d{2})?[-–\s]*/i, '');
   clean = clean.replace(/^SLIDE\s+/i, '');
   clean = clean.replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
 

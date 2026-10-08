@@ -16,6 +16,7 @@
   const state = {
     currentDayId: 'dia-29',
     currentRoomFilter: 'Todas as Salas',
+    currentPeriodFilter: 'all', // 'all' | 'manha' | 'tarde'
     searchQuery: '',
     openAulaIds: new Set(),
     isLoading: true
@@ -60,12 +61,17 @@
       roomsBar: document.getElementById('aulasRoomsBar'),
       toolbar: document.getElementById('aulasToolbar'),
       countBadge: document.getElementById('aulasCountBadge'),
+      periodSwitch: document.getElementById('aulasPeriodSwitch'),
+      countAllPeriod: document.getElementById('countAllPeriod'),
+      countManhaPeriod: document.getElementById('countManhaPeriod'),
+      countTardePeriod: document.getElementById('countTardePeriod'),
       searchInput: document.getElementById('aulasSearchInput'),
       searchClearBtn: document.getElementById('aulasSearchClearBtn'),
       aulasContainer: document.getElementById('aulasContainer')
     };
 
     renderSkeletons(5);
+    updatePeriodButtons();
     bindEvents();
     loadAulasFromDriveApi();
   }
@@ -124,7 +130,17 @@
       });
     }
 
-    // 4. Clique nos Accordions
+    // 4. Clique no Seletor de Período (Todos | Manhã | Tarde)
+    if (dom.periodSwitch) {
+      dom.periodSwitch.addEventListener('click', (e) => {
+        const btn = e.target.closest('.aulas-period-btn');
+        if (!btn) return;
+        const period = btn.dataset.period;
+        if (period) selectPeriod(period);
+      });
+    }
+
+    // 5. Clique nos Accordions
     if (dom.aulasContainer) {
       dom.aulasContainer.addEventListener('click', (e) => {
         if (e.target.closest('.aulas-pptx-download-btn') || e.target.closest('.aulas-pptx-view-btn')) {
@@ -160,6 +176,48 @@
 
     renderRooms();
     renderAulas();
+  }
+
+  function selectPeriod(period) {
+    if (state.currentPeriodFilter === period) return;
+    state.currentPeriodFilter = period;
+    state.openAulaIds.clear();
+
+    updatePeriodButtons();
+    renderAulas();
+  }
+
+  function updatePeriodButtons() {
+    if (!dom.periodSwitch) return;
+    const buttons = dom.periodSwitch.querySelectorAll('.aulas-period-btn');
+    buttons.forEach(btn => {
+      const isActive = btn.dataset.period === state.currentPeriodFilter;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  function getAulaPeriod(aula) {
+    if (aula && aula.period) return aula.period;
+    if (!aula || !aula.time) return 'tarde';
+    const hour = parseInt(aula.time.split(':')[0], 10);
+    if (isNaN(hour)) return 'manha';
+    return hour < 12 ? 'manha' : 'tarde';
+  }
+
+  function updatePeriodCounts(roomFilteredAulas) {
+    if (!roomFilteredAulas) return;
+    let countManha = 0;
+    let countTarde = 0;
+    roomFilteredAulas.forEach(aula => {
+      const p = getAulaPeriod(aula);
+      if (p === 'manha') countManha++;
+      else countTarde++;
+    });
+
+    if (dom.countAllPeriod) dom.countAllPeriod.textContent = String(roomFilteredAulas.length);
+    if (dom.countManhaPeriod) dom.countManhaPeriod.textContent = String(countManha);
+    if (dom.countTardePeriod) dom.countTardePeriod.textContent = String(countTarde);
   }
 
   function renderDays() {
@@ -214,14 +272,170 @@
   function renderToolbar(count, totalDayCount) {
     if (!dom.countBadge) return;
     const currentDay = getCurrentDay() || { name: 'Dia' };
+    const periodSuffix = state.currentPeriodFilter === 'manha' 
+      ? ' na Manhã' 
+      : (state.currentPeriodFilter === 'tarde' ? ' na Tarde' : '');
 
     if (state.searchQuery) {
-      dom.countBadge.innerHTML = `<strong>${count}</strong> resultado(s) para "${escapeHTML(state.searchQuery)}"`;
+      dom.countBadge.innerHTML = `<strong>${count}</strong> resultado(s) para "${escapeHTML(state.searchQuery)}"${periodSuffix}`;
     } else if (state.currentRoomFilter !== 'Todas as Salas') {
-      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações em <strong>${escapeHTML(state.currentRoomFilter)}</strong>`;
+      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações em <strong>${escapeHTML(state.currentRoomFilter)}</strong>${periodSuffix}`;
     } else {
-      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações disponíveis no <strong>${escapeHTML(currentDay.name || 'Dia')}</strong>`;
+      dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações disponíveis no <strong>${escapeHTML(currentDay.name || 'Dia')}</strong>${periodSuffix}`;
     }
+  }
+
+  function createAulaAccordionItem(aula) {
+    const isOpen = state.openAulaIds.has(aula.id);
+    const file = aula.file || {};
+    const fileName = file.name || `${aula.title}.pptx`;
+    const fileSize = file.size || 'Disponível';
+    const fileFormat = (file.format || 'PPTX').toUpperCase();
+    const downloadUrl = file.downloadUrl || '#';
+    const viewUrl = file.viewUrl || '';
+
+    const isPdf = fileFormat === 'PDF';
+    const isKey = fileFormat === 'KEYNOTE';
+    const badgeClass = isPdf ? 'pdf' : (isKey ? 'keynote' : '');
+    const badgeLetter = isPdf ? 'PDF' : (isKey ? 'KEY' : 'PPTX');
+
+    const item = document.createElement('div');
+    item.className = `aulas-accordion-item ${isOpen ? 'open' : ''}`;
+    item.dataset.aulaId = aula.id;
+
+    item.innerHTML = `
+      <button 
+        type="button" 
+        class="aulas-accordion-header" 
+        aria-expanded="${isOpen}"
+        aria-controls="aula-body-${aula.id}"
+        id="aula-header-${aula.id}"
+      >
+        <div class="aulas-header-content">
+          <div class="aulas-header-meta">
+            ${aula.time ? `<span class="aula-time-badge">${escapeHTML(aula.time)}</span>` : ''}
+            ${aula.room ? `<span class="aula-room-badge">${escapeHTML(aula.room)}</span>` : ''}
+          </div>
+          <span class="aulas-item-title">${escapeHTML(aula.speaker || aula.title)}</span>
+        </div>
+        <span class="aulas-item-chevron">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+      </button>
+
+      <div 
+        class="aulas-accordion-body" 
+        id="aula-body-${aula.id}" 
+        role="region" 
+        aria-labelledby="aula-header-${aula.id}"
+      >
+        <div class="aulas-pptx-card">
+          <div class="aulas-pptx-badge ${badgeClass}">${badgeLetter}</div>
+          <div class="aulas-pptx-info">
+            <span class="aulas-pptx-name" title="${escapeHTML(fileName)}">${escapeHTML(fileName)}</span>
+            <span class="aulas-pptx-meta">Formato ${escapeHTML(fileFormat)} · Tamanho: ${escapeHTML(fileSize)}</span>
+          </div>
+          <div class="aulas-pptx-actions">
+            ${viewUrl ? `
+              <a 
+                href="${escapeHTML(viewUrl)}" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="aulas-pptx-view-btn" 
+                title="Visualizar no Google Drive"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span>Visualizar</span>
+              </a>
+            ` : ''}
+            <a 
+              href="${escapeHTML(downloadUrl)}" 
+              class="aulas-pptx-download-btn" 
+              title="Download ${escapeHTML(fileFormat)}" 
+              ${downloadUrl !== '#' ? 'download' : ''}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    return item;
+  }
+
+  function createPeriodSectionElement(periodType, aulasList) {
+    const isManha = periodType === 'manha';
+    const section = document.createElement('section');
+    section.className = `aulas-period-section ${isManha ? 'section-manha' : 'section-tarde'}`;
+    section.setAttribute('aria-label', isManha ? 'Apresentações da Manhã' : 'Apresentações da Tarde');
+
+    const iconHtml = isManha 
+      ? `<svg class="period-header-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>`
+      : `<svg class="period-header-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 18a5 5 0 0 0-10 0"></path>
+          <line x1="12" y1="9" x2="12" y2="2"></line>
+          <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+          <line x1="1" y1="18" x2="3" y2="18"></line>
+          <line x1="21" y1="18" x2="23" y2="18"></line>
+          <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+          <line x1="23" y1="22" x2="1" y2="22"></line>
+        </svg>`;
+
+    const titleText = isManha ? 'Manhã' : 'Tarde';
+    const rangeText = isManha ? '08:00 às 12:00' : '12:00 às 18:30';
+    const descText = isManha 
+      ? 'Apresentações científicas e conferências do período matutino' 
+      : 'Apresentações científicas, mesas-redondas e casos do período vespertino';
+
+    const header = document.createElement('div');
+    header.className = 'aulas-period-header';
+    header.innerHTML = `
+      <div class="aulas-period-header-left">
+        <div class="aulas-period-title-group">
+          <span class="aulas-period-icon-wrap ${isManha ? 'sun' : 'sunset'}">${iconHtml}</span>
+          <h2 class="aulas-period-title">${titleText}</h2>
+          <span class="aulas-period-range-tag">${rangeText}</span>
+        </div>
+        <p class="aulas-period-desc">${descText}</p>
+      </div>
+      <div class="aulas-period-header-right">
+        <span class="aulas-period-count-pill">
+          <strong>${aulasList.length}</strong> ${aulasList.length === 1 ? 'apresentação' : 'apresentações'}
+        </span>
+      </div>
+    `;
+
+    const itemsWrapper = document.createElement('div');
+    itemsWrapper.className = 'aulas-period-items';
+
+    aulasList.forEach(aula => {
+      itemsWrapper.appendChild(createAulaAccordionItem(aula));
+    });
+
+    section.appendChild(header);
+    section.appendChild(itemsWrapper);
+    return section;
   }
 
   function renderAulas() {
@@ -237,16 +451,30 @@
     if (!currentDay || !Array.isArray(currentDay.aulas) || currentDay.aulas.length === 0) {
       renderEmpty('Nenhuma apresentação encontrada para este dia.');
       renderToolbar(0, 0);
+      updatePeriodCounts([]);
       return;
     }
 
-    const query = state.searchQuery;
-
-    const filteredAulas = currentDay.aulas.filter(aula => {
-      // Filtro por sala
+    // 1. Filtra por sala primeiro (para atualizar os contadores do período)
+    const roomFilteredAulas = currentDay.aulas.filter(aula => {
       if (state.currentRoomFilter !== 'Todas as Salas' && aula.room !== state.currentRoomFilter) {
         return false;
       }
+      return true;
+    });
+
+    updatePeriodCounts(roomFilteredAulas);
+
+    // 2. Filtra por busca e período
+    const query = state.searchQuery;
+
+    const finalFilteredAulas = roomFilteredAulas.filter(aula => {
+      // Filtro por período
+      const period = getAulaPeriod(aula);
+      if (state.currentPeriodFilter !== 'all' && period !== state.currentPeriodFilter) {
+        return false;
+      }
+
       // Filtro por busca
       if (query) {
         const titleMatch = (aula.title || '').toLowerCase().includes(query);
@@ -256,106 +484,35 @@
         const fileMatch = aula.file && (aula.file.name || '').toLowerCase().includes(query);
         return titleMatch || speakerMatch || roomMatch || timeMatch || fileMatch;
       }
+
       return true;
     });
 
-    renderToolbar(filteredAulas.length, currentDay.aulas.length);
+    renderToolbar(finalFilteredAulas.length, currentDay.aulas.length);
 
-    if (filteredAulas.length === 0) {
+    if (finalFilteredAulas.length === 0) {
       renderEmpty('Nenhuma apresentação corresponde aos filtros aplicados.');
       return;
     }
 
+    // 3. Separação visual em Manhã e Tarde
+    const manhaAulas = finalFilteredAulas.filter(a => getAulaPeriod(a) === 'manha');
+    const tardeAulas = finalFilteredAulas.filter(a => getAulaPeriod(a) === 'tarde');
+
     const fragment = document.createDocumentFragment();
 
-    filteredAulas.forEach(aula => {
-      const isOpen = state.openAulaIds.has(aula.id);
-      const file = aula.file || {};
-      const fileName = file.name || `${aula.title}.pptx`;
-      const fileSize = file.size || 'Disponível';
-      const fileFormat = (file.format || 'PPTX').toUpperCase();
-      const downloadUrl = file.downloadUrl || '#';
-      const viewUrl = file.viewUrl || '';
-
-      const isPdf = fileFormat === 'PDF';
-      const isKey = fileFormat === 'KEYNOTE';
-      const badgeClass = isPdf ? 'pdf' : (isKey ? 'keynote' : '');
-      const badgeLetter = isPdf ? 'PDF' : (isKey ? 'KEY' : 'PPTX');
-
-      const item = document.createElement('div');
-      item.className = `aulas-accordion-item ${isOpen ? 'open' : ''}`;
-      item.dataset.aulaId = aula.id;
-
-      item.innerHTML = `
-        <button 
-          type="button" 
-          class="aulas-accordion-header" 
-          aria-expanded="${isOpen}"
-          aria-controls="aula-body-${aula.id}"
-          id="aula-header-${aula.id}"
-        >
-          <div class="aulas-header-content">
-            <div class="aulas-header-meta">
-              ${aula.time ? `<span class="aula-time-badge">${escapeHTML(aula.time)}</span>` : ''}
-              ${aula.room ? `<span class="aula-room-badge">${escapeHTML(aula.room)}</span>` : ''}
-            </div>
-            <span class="aulas-item-title">${escapeHTML(aula.speaker || aula.title)}</span>
-          </div>
-          <span class="aulas-item-chevron">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </span>
-        </button>
-
-        <div 
-          class="aulas-accordion-body" 
-          id="aula-body-${aula.id}" 
-          role="region" 
-          aria-labelledby="aula-header-${aula.id}"
-        >
-          <div class="aulas-pptx-card">
-            <div class="aulas-pptx-badge ${badgeClass}">${badgeLetter}</div>
-            <div class="aulas-pptx-info">
-              <span class="aulas-pptx-name" title="${escapeHTML(fileName)}">${escapeHTML(fileName)}</span>
-              <span class="aulas-pptx-meta">Formato ${escapeHTML(fileFormat)} · Tamanho: ${escapeHTML(fileSize)}</span>
-            </div>
-            <div class="aulas-pptx-actions">
-              ${viewUrl ? `
-                <a 
-                  href="${escapeHTML(viewUrl)}" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="aulas-pptx-view-btn" 
-                  title="Visualizar no Google Drive"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                  <span>Visualizar</span>
-                </a>
-              ` : ''}
-              <a 
-                href="${escapeHTML(downloadUrl)}" 
-                class="aulas-pptx-download-btn" 
-                title="Download ${escapeHTML(fileFormat)}" 
-                ${downloadUrl !== '#' ? 'download' : ''}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                <span>Download</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
-
-      fragment.appendChild(item);
-    });
+    if (state.currentPeriodFilter === 'all') {
+      if (manhaAulas.length > 0) {
+        fragment.appendChild(createPeriodSectionElement('manha', manhaAulas));
+      }
+      if (tardeAulas.length > 0) {
+        fragment.appendChild(createPeriodSectionElement('tarde', tardeAulas));
+      }
+    } else if (state.currentPeriodFilter === 'manha' && manhaAulas.length > 0) {
+      fragment.appendChild(createPeriodSectionElement('manha', manhaAulas));
+    } else if (state.currentPeriodFilter === 'tarde' && tardeAulas.length > 0) {
+      fragment.appendChild(createPeriodSectionElement('tarde', tardeAulas));
+    }
 
     dom.aulasContainer.appendChild(fragment);
   }
