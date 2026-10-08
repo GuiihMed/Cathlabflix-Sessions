@@ -24,6 +24,10 @@
       "destination": "/new/solaci.html"
     },
     {
+      "source": "/new/aulas-solaci",
+      "destination": "/new/aulas-solaci.html"
+    },
+    {
       "source": "/novo",
       "destination": "/new.html"
     },
