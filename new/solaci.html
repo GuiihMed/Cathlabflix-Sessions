@@ -70,31 +70,50 @@
         </a>
       </div>
 
-      <!-- Barra de Busca em Pílula (--radius-pill) -->
-      <div class="search-pill-container">
-        <div class="search-pill">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input 
-            type="text" 
-            class="search-input" 
-            id="globalSearchInput" 
-            placeholder="Buscar por palestrante, tema, sala (ex: Arrieta, Heart Team, INCOR)..." 
-            aria-label="Buscar sessões"
-          >
-          <button type="button" class="search-clear-btn" id="searchClearBtn" title="Limpar busca">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Menu Hambúrguer Principal -->
+      <!-- Menu Hambúrguer & Busca Global -->
       <div class="topbar-right">
+        <!-- Busca Global Expansível (Click-to-Expand para a esquerda com tooltip) -->
+        <div class="header-search-module" id="headerSearchModule">
+          <div class="search-expandable-box" id="searchExpandableBox">
+            <button 
+              type="button" 
+              class="search-trigger-btn" 
+              id="searchTriggerBtn" 
+              data-tooltip="Busque no site"
+              aria-label="Busque no site" 
+              aria-expanded="false"
+            >
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
+            <div class="search-input-wrapper">
+              <input 
+                type="search" 
+                class="search-field-input" 
+                id="searchFieldInput" 
+                placeholder="Busque no site..." 
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Campo de busca interna"
+              >
+              <button type="button" class="search-close-btn" id="searchCloseBtn" aria-label="Limpar ou fechar busca" title="Fechar busca">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dropdown Flutuante de Resultados e Sugestões -->
+          <div class="search-dropdown-results" id="searchDropdownResults" role="region" aria-live="polite">
+            <div class="search-dropdown-content" id="searchDropdownContent"></div>
+          </div>
+        </div>
+
         <button type="button" class="topbar-hamburger-btn" id="topbarHamburgerBtn" title="Menu Principal" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="appDrawer">
           <svg class="hamburger-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="4" y1="6" x2="11" y2="6"></line>
@@ -531,6 +550,7 @@
 
   <!-- Scripts Interativos Modernos -->
   <script src="/js/modern-ui.js"></script>
+  <script src="/js/modern-search.js" defer></script>
 
 </body>
 </html>

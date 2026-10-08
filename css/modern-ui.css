@@ -3,6 +3,8 @@
    Baseado em design_system_cathlabflix_modern_ui.md
    ========================================================================== */
 
+@import url('/css/modern-search.css');
+
 :root {
   /* 1. Cores */
   --color-primary: #E50914;
