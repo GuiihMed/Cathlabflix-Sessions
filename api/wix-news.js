@@ -123,34 +123,13 @@ function parseRssItems(xml) {
       }
     }
 
-    // Mapeamento inteligente para rotas internas
-    let internalAction = null;
-    const lowerTitle = title.toLowerCase();
-    if (lowerTitle.includes('solaci') || lowerTitle.includes('congresso')) {
-      internalAction = {
-        label: 'Acessar Congresso',
-        url: '/new/solaci',
-        isInternal: true
-      };
-    } else if (lowerTitle.includes('webinar')) {
-      internalAction = {
-        label: 'Ver Webinar',
-        url: link,
-        isInternal: false
-      };
-    } else if (lowerTitle.includes('curso')) {
-      internalAction = {
-        label: 'Acessar Curso',
-        url: link,
-        isInternal: false
-      };
-    } else {
-      internalAction = {
-        label: 'Confira',
-        url: link,
-        isInternal: false
-      };
-    }
+    // Todos os botões dos posts padronizados como 'Confira'
+    const isCongress = lowerTitle.includes('solaci') || lowerTitle.includes('congresso');
+    const internalAction = {
+      label: 'Confira',
+      url: isCongress ? '/new/solaci' : `/new/post?id=${encodeURIComponent(slug)}`,
+      isInternal: true
+    };
 
     items.push({
       id: slug || guid || String(items.length + 1),
