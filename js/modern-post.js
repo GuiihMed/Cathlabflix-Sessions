@@ -178,7 +178,7 @@ function renderRelatedPosts(items, currentId) {
           </a>
         </h4>
         <a href="/new/post?id=${encodeURIComponent(item.id)}" style="font-size: 0.8125rem; font-weight: 700; color: var(--color-primary); text-decoration: none; margin-top: auto; display: inline-flex; align-items: center; gap: 4px;">
-          Ler artigo <span>&rarr;</span>
+          Confira <span>&rarr;</span>
         </a>
       </div>
     </article>
