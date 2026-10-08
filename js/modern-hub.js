@@ -250,7 +250,6 @@ function initHamburgerDrawer() {
   function openDrawer() {
     drawer.classList.add('active');
     if (backdrop) backdrop.classList.add('active');
-    document.body.style.overflow = 'hidden';
     drawer.setAttribute('aria-hidden', 'false');
     if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'true');
   }
@@ -258,28 +257,50 @@ function initHamburgerDrawer() {
   function closeDrawer() {
     drawer.classList.remove('active');
     if (backdrop) backdrop.classList.remove('active');
-    document.body.style.overflow = '';
     drawer.setAttribute('aria-hidden', 'true');
     if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
   }
 
-  if (hamburgerBtn) {
-    hamburgerBtn.addEventListener('click', (e) => {
+  function toggleDrawer(e) {
+    if (e) {
+      e.preventDefault();
       e.stopPropagation();
+    }
+    if (drawer.classList.contains('active')) {
+      closeDrawer();
+    } else {
       openDrawer();
-    });
+    }
   }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', toggleDrawer);
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeDrawer();
+  });
+
   if (backdrop) backdrop.addEventListener('click', closeDrawer);
 
+  // Fechar ao clicar fora do dropdown
+  document.addEventListener('click', (e) => {
+    if (!drawer.classList.contains('active')) return;
+    if (!drawer.contains(e.target) && (!hamburgerBtn || !hamburgerBtn.contains(e.target))) {
+      closeDrawer();
+    }
+  });
+
+  // Fechar no ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && drawer.classList.contains('active')) {
       closeDrawer();
     }
   });
 
-  drawer.querySelectorAll('.drawer-nav-link').forEach(link => {
+  // Fechar ao clicar em qualquer link interno do menu
+  drawer.querySelectorAll('.dropdown-nav-link, .drawer-nav-link, .dropdown-featured-card').forEach(link => {
     link.addEventListener('click', () => closeDrawer());
   });
 }
