@@ -299,7 +299,7 @@ function loadSession(session, updateHistory = true) {
   updatePlaylistSelection();
 
   // 6. Atualizar URL e Título da Página
-  document.title = `${session.title} | CathlabFlix Sessions`;
+  document.title = 'CathlabFlix by SBHCI';
 
   if (updateHistory) {
     const newUrl = `${window.location.pathname}?id=${session.id}`;
