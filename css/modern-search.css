@@ -1,0 +1,497 @@
+/* ==========================================================================
+   CathlabFlix Modern Search - Sistema de Busca Expansível (Click-to-Expand)
+   Posicionado ao lado esquerdo do menu, com expansão animada para a esquerda,
+   tooltip hover "Busque no site", dropdown com fuzzy search, highlight e paginação.
+   ========================================================================== */
+
+/* 1. Container Principal no Topbar */
+.header-search-module {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 8px;
+  z-index: 90;
+}
+
+/* 2. Caixa Expansível (Animada para a Esquerda) */
+.search-expandable-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 42px;
+  width: 42px; /* Estado retraído: apenas o botão circular */
+  border-radius: var(--radius-pill, 9999px);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Estado Expandido: cresce suavemente para a esquerda */
+.search-expandable-box.is-expanded {
+  width: 320px;
+  background: var(--color-surface, #FFFFFF);
+  border-color: var(--color-border-subtle, rgba(0, 0, 0, 0.12));
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 640px) {
+  .search-expandable-box.is-expanded {
+    width: 250px;
+  }
+}
+
+@media (max-width: 380px) {
+  .search-expandable-box.is-expanded {
+    width: 200px;
+  }
+}
+
+/* 3. Botão do Ícone de Lupa */
+.search-trigger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.08));
+  background: var(--color-surface, #FFFFFF);
+  color: var(--color-text-secondary, #475569);
+  cursor: pointer;
+  padding: 0;
+  transition: all var(--transition-fast, 0.2s ease);
+  position: relative;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.search-trigger-btn:hover {
+  color: var(--color-primary, #E50914);
+  border-color: rgba(229, 9, 20, 0.3);
+  background: rgba(229, 9, 20, 0.04);
+}
+
+.search-expandable-box.is-expanded .search-trigger-btn {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-primary, #E50914);
+  cursor: default;
+}
+
+/* 4. Tooltip Hover: "Busque no site" */
+.search-trigger-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 50%;
+  transform: translateX(50%) translateY(4px);
+  padding: 6px 12px;
+  background: #0B132B;
+  color: #FFFFFF;
+  font-family: var(--font-family-base, 'Inter', sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: var(--radius-sm, 6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 120;
+}
+
+.search-trigger-btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(50%) translateY(0);
+}
+
+.search-expandable-box.is-expanded .search-trigger-btn::after {
+  display: none !important; /* Esconde tooltip quando a barra já estiver aberta */
+}
+
+/* 5. Wrapper do Input e Ações */
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  padding-right: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease 0.08s;
+}
+
+.search-expandable-box.is-expanded .search-input-wrapper {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-field-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text-primary, #0F172A);
+  font-family: var(--font-family-base, 'Inter', sans-serif);
+  font-size: 0.875rem;
+  padding: 0 8px 0 2px;
+  box-sizing: border-box;
+}
+
+.search-field-input::placeholder {
+  color: var(--color-text-tertiary, #94A3B8);
+  font-size: 0.8125rem;
+}
+
+/* Botão de Limpar / Fechar */
+.search-close-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-tertiary, #94A3B8);
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.search-close-btn:hover {
+  color: var(--color-text-primary, #0F172A);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 6. Dropdown Flutuante de Resultados e Sugestões */
+.search-dropdown-results {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  background: var(--color-surface, #FFFFFF);
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.12));
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  display: none;
+  overflow: hidden;
+  z-index: 110;
+  animation: searchDropdownFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+.search-dropdown-results.is-visible {
+  display: block;
+}
+
+@keyframes searchDropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.08));
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary, #94A3B8);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.search-dropdown-count {
+  color: var(--color-primary, #E50914);
+}
+
+.search-dropdown-content {
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 6px 0;
+  overscroll-behavior: contain;
+}
+
+/* Item de Resultado Individual */
+.search-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.04));
+  transition: background-color 0.15s ease, padding-left 0.15s ease;
+  cursor: pointer;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item:focus {
+  background: rgba(229, 9, 20, 0.04);
+  padding-left: 20px;
+  outline: none;
+}
+
+.search-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-item-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs, 4px);
+  background: rgba(229, 9, 20, 0.08);
+  color: var(--color-primary, #E50914);
+  letter-spacing: 0.3px;
+}
+
+.search-item-type {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary, #94A3B8);
+}
+
+.search-item-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #0F172A);
+  line-height: 1.35;
+}
+
+.search-item-desc {
+  font-size: 0.78125rem;
+  color: var(--color-text-secondary, #64748B);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 7. Highlight Seguro do Termo Buscado */
+mark.search-highlight {
+  background: rgba(229, 9, 20, 0.18);
+  color: var(--color-primary, #E50914);
+  font-weight: 700;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+/* 8. Estados Visuais: Loading, Erro, Vazio e Paginação */
+.search-state-message {
+  padding: 32px 20px;
+  text-align: center;
+  font-size: 0.84375rem;
+  color: var(--color-text-secondary, #64748B);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2.5px solid rgba(0, 0, 0, 0.08);
+  border-top-color: var(--color-primary, #E50914);
+  border-radius: 50%;
+  animation: searchSpinnerRotate 0.75s linear infinite;
+}
+
+@keyframes searchSpinnerRotate {
+  to { transform: rotate(360deg); }
+}
+
+.search-empty-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--color-text-tertiary, #94A3B8);
+  opacity: 0.6;
+}
+
+.search-empty-title {
+  font-weight: 600;
+  color: var(--color-text-primary, #0F172A);
+}
+
+.search-empty-hint {
+  font-size: 0.78125rem;
+  color: var(--color-text-tertiary, #94A3B8);
+}
+
+.search-error-box {
+  color: #DC2626;
+}
+
+.search-retry-btn {
+  margin-top: 6px;
+  padding: 6px 14px;
+  background: rgba(229, 9, 20, 0.08);
+  color: var(--color-primary, #E50914);
+  border: 1px solid rgba(229, 9, 20, 0.2);
+  border-radius: var(--radius-pill, 9999px);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.search-retry-btn:hover {
+  background: var(--color-primary, #E50914);
+  color: #FFFFFF;
+}
+
+/* Botão "Carregar Mais Resultados" (Paginação) */
+.search-load-more-wrap {
+  padding: 10px 16px;
+  text-align: center;
+  border-top: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.06));
+  background: rgba(0, 0, 0, 0.015);
+}
+
+.search-load-more-btn {
+  width: 100%;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill, 9999px);
+  border: 1px solid var(--color-border-subtle, rgba(0, 0, 0, 0.12));
+  background: var(--color-surface, #FFFFFF);
+  color: var(--color-text-secondary, #475569);
+  font-family: inherit;
+  font-size: 0.78125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.search-load-more-btn:hover {
+  color: var(--color-primary, #E50914);
+  border-color: rgba(229, 9, 20, 0.3);
+  background: rgba(229, 9, 20, 0.04);
+}
+
+/* ==========================================================================
+   9. Tema Azul Noturno Oficial ([data-theme="blue"])
+   ========================================================================== */
+[data-theme="blue"] .search-trigger-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #E2E8F0;
+}
+
+[data-theme="blue"] .search-trigger-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  border-color: rgba(229, 9, 20, 0.5);
+}
+
+[data-theme="blue"] .search-expandable-box.is-expanded {
+  background: #010234;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="blue"] .search-field-input {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .search-field-input::placeholder {
+  color: #94A3B8;
+}
+
+[data-theme="blue"] .search-close-btn {
+  color: #94A3B8;
+}
+
+[data-theme="blue"] .search-close-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="blue"] .search-dropdown-results {
+  background: #061338;
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="blue"] .search-dropdown-header {
+  background: rgba(1, 2, 52, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+}
+
+[data-theme="blue"] .search-result-item {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="blue"] .search-result-item:hover,
+[data-theme="blue"] .search-result-item:focus {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="blue"] .search-item-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .search-item-desc {
+  color: #94A3B8;
+}
+
+[data-theme="blue"] mark.search-highlight {
+  background: rgba(229, 9, 20, 0.35);
+  color: #ff8585;
+}
+
+[data-theme="blue"] .search-spinner {
+  border-color: rgba(255, 255, 255, 0.15);
+  border-top-color: #ff6b6b;
+}
+
+[data-theme="blue"] .search-load-more-wrap {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  background: rgba(1, 2, 52, 0.6);
+}
+
+[data-theme="blue"] .search-load-more-btn {
+  background: #010234;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #E2E8F0;
+}
+
+[data-theme="blue"] .search-load-more-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.3);
+}
