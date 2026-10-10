@@ -1087,399 +1087,421 @@ const TCT_COBERTURA = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  initTctTabs();
-  initTctGravacoes();
-  initTctAulas();
-  initTctCobertura();
+  initTctCarousels();
+  initTctDayFilters();
+  initTctHeroActions();
   initTctVideoModal();
   handleUrlParamsAndHash();
 });
 
 /* ==========================================================================
-   1. Controle de Abas Principais (Gravações, Aulas, Cobertura)
+   1. Dados Derivados para os Carrosséis
    ========================================================================== */
-function initTctTabs() {
-  const tabBtns = document.querySelectorAll('.tct-main-tab-btn');
-  const tabPanels = document.querySelectorAll('.tct-tab-panel');
+const CONTINUE_WATCHING_TCT = [
+  { ...TCT_SESSIONS[0], progress: 68 },
+  { ...TCT_SESSIONS[1], progress: 45 },
+  { ...TCT_SESSIONS[2], progress: 85 },
+  { ...TCT_SESSIONS[3], progress: 20 }
+];
 
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tabTarget;
-      switchTctTab(target);
-    });
-  });
-}
-
-function switchTctTab(target) {
-  const tabBtns = document.querySelectorAll('.tct-main-tab-btn');
-  const tabPanels = document.querySelectorAll('.tct-tab-panel');
-
-  tabBtns.forEach(btn => {
-    const isActive = btn.dataset.tabTarget === target;
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-  });
-
-  tabPanels.forEach(panel => {
-    const isVisible = panel.id === `tab-panel-${target}`;
-    panel.classList.toggle('active', isVisible);
-    panel.style.display = isVisible ? 'block' : 'none';
-  });
-
-  if (history.replaceState) {
-    history.replaceState(null, null, `#${target}`);
-  }
-}
+const TCT_LIVE_CASES = TCT_SESSIONS.filter(s => 
+  s.title.toLowerCase().includes('case') || 
+  s.speaker.toLowerCase().includes('case') ||
+  s.speaker.toLowerCase().includes('incor') ||
+  s.title.toLowerCase().includes('tav-in-tav')
+);
 
 /* ==========================================================================
-   2. Gravações On-Demand (Filtros por Dia, Sala e Busca em Tempo Real)
+   2. Utilitários e Geradores de Cards (Padrão Oficial Modern UI)
    ========================================================================== */
-let activeDayFilter = 'all';
-let activeRoomFilter = 'all';
-let activeSearchQuery = '';
-
-function initTctGravacoes() {
-  const dayPills = document.querySelectorAll('.tct-day-pill');
-  const roomSelect = document.getElementById('tctRoomFilterSelect');
-  const searchInput = document.getElementById('tctGravacoesSearchInput');
-  const clearBtn = document.getElementById('tctSearchClearBtn');
-
-  // Filtros por Dia
-  dayPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      dayPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      activeDayFilter = pill.dataset.day || 'all';
-      renderTctSessions();
-    });
-  });
-
-  // Filtro por Sala
-  if (roomSelect) {
-    roomSelect.addEventListener('change', (e) => {
-      activeRoomFilter = e.target.value;
-      renderTctSessions();
-    });
-  }
-
-  // Busca com Debounce
-  if (searchInput) {
-    let debounceTimer;
-    searchInput.addEventListener('input', (e) => {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(() => {
-        activeSearchQuery = e.target.value.trim().toLowerCase();
-        if (clearBtn) clearBtn.style.display = activeSearchQuery ? 'flex' : 'none';
-        renderTctSessions();
-      }, 250);
-    });
-
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        activeSearchQuery = '';
-        clearBtn.style.display = 'none';
-        renderTctSessions();
-        searchInput.focus();
-      });
-    }
-  }
-
-  renderTctSessions();
+function escapeHTML(str) {
+  if (!str) return '';
+  return str.replace(/[&<>"']/g, m => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[m]);
 }
 
-function renderTctSessions() {
-  const grid = document.getElementById('tctSessionsGrid');
-  const counter = document.getElementById('tctSessionsCounter');
-  if (!grid) return;
+function getSavedFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem('cathlabflix-favs') || '[]');
+  } catch(e) {
+    return [];
+  }
+}
 
-  const filtered = TCT_SESSIONS.filter(s => {
-    if (activeDayFilter !== 'all' && s.dayCode !== activeDayFilter) return false;
-    if (activeRoomFilter !== 'all' && s.room !== activeRoomFilter) return false;
-    if (activeSearchQuery) {
-      const matchText = `${s.title} ${s.speaker} ${s.room} ${s.day}`.toLowerCase();
-      if (!matchText.includes(activeSearchQuery)) return false;
-    }
-    return true;
+function toggleFavorite(id) {
+  const favs = getSavedFavorites();
+  const index = favs.indexOf(id);
+  if (index > -1) {
+    favs.splice(index, 1);
+    showTctToast('Removido da Minha Lista');
+  } else {
+    favs.push(id);
+    showTctToast('Adicionado à Minha Lista');
+  }
+  localStorage.setItem('cathlabflix-favs', JSON.stringify(favs));
+  updateFavoriteButtons();
+}
+
+function updateFavoriteButtons() {
+  const favs = getSavedFavorites();
+  document.querySelectorAll('.card-favorite-btn').forEach(btn => {
+    const id = btn.getAttribute('data-fav-id');
+    const isSaved = favs.includes(id);
+    btn.classList.toggle('saved', isSaved);
+    const svg = btn.querySelector('svg');
+    if (svg) svg.setAttribute('fill', isSaved ? 'currentColor' : 'none');
   });
+}
 
-  if (counter) {
-    counter.textContent = `Exibindo ${filtered.length} de ${TCT_SESSIONS.length} gravações`;
-  }
+function createCardHTML(session, isContinue = false) {
+  const isSaved = getSavedFavorites().includes(session.id);
+  const progressHTML = isContinue ? `
+    <div class="card-progress-bar">
+      <div class="card-progress-fill" style="width: ${session.progress || 35}%;"></div>
+    </div>
+  ` : '';
 
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div class="tct-empty-state">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <p class="empty-title">Nenhuma gravação encontrada</p>
-        <p class="empty-desc">Tente alterar os filtros de dia, sala ou o termo digitado na busca.</p>
-        <button type="button" class="empty-reset-btn" onclick="resetTctGravacoesFilters()">Limpar Filtros</button>
-      </div>
-    `;
-    return;
-  }
-
-  grid.innerHTML = filtered.map(s => `
-    <article class="tct-video-card" data-id="${s.id}">
-      <div class="tct-card-media-wrapper">
+  return `
+    <article 
+      class="content-card" 
+      data-id="${session.id}"
+      tabindex="0"
+      role="button"
+      aria-label="Assistir ${escapeHTML(session.title)}"
+    >
+      <div class="card-thumbnail-wrapper">
         <img 
-          src="${s.poster}" 
-          alt="${s.title}" 
-          class="tct-card-poster" 
+          src="${session.poster}" 
+          alt="${escapeHTML(session.title)}" 
+          class="card-image"
           loading="lazy"
           onerror="this.src='/assets/images/tct-latam-2026.png'"
+        />
+        <div class="card-gradient-overlay"></div>
+      </div>
+
+      <div class="card-top-badges">
+        <span class="card-category-tag">${session.room || session.day}</span>
+        <button 
+          type="button" 
+          class="card-favorite-btn ${isSaved ? 'saved' : ''}" 
+          data-fav-id="${session.id}"
+          title="${isSaved ? 'Remover da minha lista' : 'Adicionar à minha lista'}"
         >
-        <div class="tct-card-play-overlay" onclick="openTctVideoModal('${s.id}')" role="button" aria-label="Assistir gravação de ${s.title}">
-          <div class="tct-play-button-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="tct-media-badges">
-          <span class="tct-pill tct-pill-room">${s.room}</span>
-          <span class="tct-pill tct-pill-day">${s.day}</span>
-        </div>
-        ${s.duration ? `<span class="tct-duration-badge">${s.duration}</span>` : ''}
-      </div>
-
-      <div class="tct-card-body">
-        <div class="tct-speaker-row">
-          <svg class="tct-speaker-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="${isSaved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.5">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
           </svg>
-          <span class="tct-speaker-name">${s.speaker}</span>
+        </button>
+      </div>
+
+      <div class="card-bottom-info">
+        <div class="card-text-block">
+          <h3 class="card-title">${escapeHTML(session.title)}</h3>
+          <div class="card-meta-line">
+            <span class="card-speaker">${escapeHTML(session.speaker)}</span>
+            <span>•</span>
+            <span>${session.duration || 'HD'}</span>
+          </div>
         </div>
 
-        <h3 class="tct-card-title" title="${s.title}">${s.title}</h3>
-
-        <div class="tct-card-actions">
-          <button type="button" class="tct-btn-primary" onclick="openTctVideoModal('${s.id}')">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
-            </svg>
-            Assistir Vídeo
-          </button>
-          <button type="button" class="tct-btn-share" onclick="copySessionLink('${s.id}')" title="Copiar link da sessão">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-            </svg>
-          </button>
+        <div class="card-play-button" title="Reproduzir">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
         </div>
       </div>
+
+      ${progressHTML}
     </article>
-  `).join('');
-}
-
-window.resetTctGravacoesFilters = function() {
-  activeDayFilter = 'all';
-  activeRoomFilter = 'all';
-  activeSearchQuery = '';
-  document.querySelectorAll('.tct-day-pill').forEach(p => p.classList.toggle('active', p.dataset.day === 'all'));
-  const roomSelect = document.getElementById('tctRoomFilterSelect');
-  if (roomSelect) roomSelect.value = 'all';
-  const searchInput = document.getElementById('tctGravacoesSearchInput');
-  if (searchInput) searchInput.value = '';
-  const clearBtn = document.getElementById('tctSearchClearBtn');
-  if (clearBtn) clearBtn.style.display = 'none';
-  renderTctSessions();
-};
-
-/* ==========================================================================
-   3. Grade de Aulas (Apresentações, Horários e Palestrantes)
-   ========================================================================== */
-let activeAulasPeriod = 'all';
-let activeAulasSearch = '';
-
-function initTctAulas() {
-  const periodBtns = document.querySelectorAll('.tct-aulas-period-pill');
-  const searchInput = document.getElementById('tctAulasSearchInput');
-
-  periodBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      periodBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeAulasPeriod = btn.dataset.period || 'all';
-      renderTctAulas();
-    });
-  });
-
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      activeAulasSearch = e.target.value.trim().toLowerCase();
-      renderTctAulas();
-    });
-  }
-
-  renderTctAulas();
-}
-
-function renderTctAulas() {
-  const list = document.getElementById('tctAulasList');
-  const counter = document.getElementById('tctAulasCounter');
-  if (!list) return;
-
-  const filtered = TCT_AULAS.filter(a => {
-    if (activeAulasPeriod !== 'all' && a.period !== activeAulasPeriod) return false;
-    if (activeAulasSearch) {
-      const txt = `${a.title} ${a.speaker} ${a.time}`.toLowerCase();
-      if (!txt.includes(activeAulasSearch)) return false;
-    }
-    return true;
-  });
-
-  if (counter) {
-    counter.textContent = `Exibindo ${filtered.length} de ${TCT_AULAS.length} apresentações`;
-  }
-
-  if (filtered.length === 0) {
-    list.innerHTML = `
-      <div class="tct-empty-state">
-        <p class="empty-title">Nenhuma aula encontrada</p>
-        <p class="empty-desc">Tente alterar o período ou o termo de pesquisa.</p>
-      </div>
-    `;
-    return;
-  }
-
-  list.innerHTML = filtered.map(a => `
-    <div class="tct-aula-item">
-      <div class="tct-aula-time-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <span>${a.time || 'Programação'}</span>
-      </div>
-
-      <div class="tct-aula-content">
-        <h4 class="tct-aula-title">${a.title}</h4>
-        ${a.speaker ? `
-          <div class="tct-aula-speaker">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-            <span><strong>Palestrante:</strong> ${a.speaker}</span>
-          </div>
-        ` : ''}
-      </div>
-
-      <div class="tct-aula-period-tag">
-        <span class="tct-tag-badge">${a.period}</span>
-      </div>
-    </div>
-  `).join('');
-}
-
-/* ==========================================================================
-   4. Cobertura do Evento (Melhores Momentos, Depoimentos e Entrevistas)
-   ========================================================================== */
-function initTctCobertura() {
-  const container = document.getElementById('tctCoberturaContainer');
-  if (!container) return;
-
-  container.innerHTML = `
-    <div class="tct-cobertura-section">
-      <h3 class="tct-section-subtitle">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-        </svg>
-        Destaques & Melhores Momentos
-      </h3>
-      <div class="tct-highlights-grid">
-        ${TCT_COBERTURA.highlights.map(h => `
-          <div class="tct-highlight-card">
-            <span class="tct-highlight-tag">${h.tag}</span>
-            <h4 class="tct-highlight-title">${h.title}</h4>
-            <p class="tct-highlight-desc">${h.desc}</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-
-    <div class="tct-cobertura-section" style="margin-top: 48px;">
-      <h3 class="tct-section-subtitle">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-        Depoimentos dos Especialistas
-      </h3>
-      <div class="tct-testimonials-grid">
-        ${TCT_COBERTURA.testimonials.map(t => `
-          <div class="tct-testimonial-card">
-            <p class="tct-testimonial-quote">"${t.quote}"</p>
-            <div class="tct-testimonial-author">
-              <strong>${t.author}</strong>
-              <span>${t.role}</span>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-
-    <div class="tct-cobertura-section" style="margin-top: 48px;">
-      <h3 class="tct-section-subtitle">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-          <line x1="7" y1="2" x2="7" y2="22"></line>
-          <line x1="17" y1="2" x2="17" y2="22"></line>
-          <line x1="2" y1="12" x2="22" y2="12"></line>
-        </svg>
-        Entrevistas Especiais com Líderes de Opinião
-      </h3>
-      <div class="tct-interviews-grid">
-        ${TCT_COBERTURA.interviews.map(i => `
-          <div class="tct-interview-card">
-            <h4 class="tct-interview-title">${i.title}</h4>
-            <p class="tct-interview-person"><strong>Convidado:</strong> ${i.interviewee}</p>
-            <p class="tct-interview-topic">${i.topic}</p>
-          </div>
-        `).join('')}
-      </div>
-    </div>
   `;
 }
 
+function createAulaCardHTML(aula) {
+  return `
+    <article 
+      class="content-card" 
+      tabindex="0"
+      role="button"
+      aria-label="Aula ${escapeHTML(aula.title)}"
+      style="cursor: pointer;"
+      onclick="showTctToast('Apresentação Científica: ${escapeHTML(aula.title)}')"
+    >
+      <div class="card-thumbnail-wrapper" style="background: linear-gradient(135deg, #09132c 0%, #172554 100%); display: flex; align-items: center; justify-content: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; color: #94a3b8;">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #38bdf8; letter-spacing: 0.06em; text-transform: uppercase;">APRESENTAÇÃO PPTX</span>
+        </div>
+        <div class="card-gradient-overlay"></div>
+      </div>
+
+      <div class="card-top-badges">
+        <span class="card-category-tag" style="background: rgba(56, 189, 248, 0.22); color: #38bdf8;">${aula.period}</span>
+        <span style="font-size: 0.6875rem; font-weight: 700; color: rgba(255, 255, 255, 0.9); background: rgba(0, 0, 0, 0.65); padding: 2px 7px; border-radius: 4px;">
+          ${aula.time || '14:00'}
+        </span>
+      </div>
+
+      <div class="card-bottom-info">
+        <div class="card-text-block">
+          <h3 class="card-title">${escapeHTML(aula.title)}</h3>
+          <div class="card-meta-line">
+            <span class="card-speaker">${escapeHTML(aula.speaker || 'TCT Faculty')}</span>
+          </div>
+        </div>
+
+        <div class="card-play-button" style="background: #38bdf8;" title="Ver Apresentação">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function createCoverageCardHTML(item) {
+  return `
+    <article 
+      class="content-card" 
+      tabindex="0"
+      role="button"
+      aria-label="${escapeHTML(item.title || item.author)}"
+      style="cursor: pointer;"
+      onclick="showTctToast('${escapeHTML(item.title || item.author)}: ${escapeHTML(item.topic || item.quote)}')"
+    >
+      <div class="card-thumbnail-wrapper" style="background: linear-gradient(135deg, #1e1b4b 0%, #062257 100%); display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center;">
+        <p style="font-size: 0.8125rem; font-style: italic; line-height: 1.45; color: rgba(255, 255, 255, 0.9); margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
+          "${item.quote || item.topic || item.desc}"
+        </p>
+        <div class="card-gradient-overlay"></div>
+      </div>
+
+      <div class="card-top-badges">
+        <span class="card-category-tag" style="background: rgba(229, 9, 20, 0.25); color: #ff6b6b;">${item.tag || 'ESPECIALISTA'}</span>
+      </div>
+
+      <div class="card-bottom-info">
+        <div class="card-text-block">
+          <h3 class="card-title">${escapeHTML(item.author || item.title || item.interviewee)}</h3>
+          <div class="card-meta-line">
+            <span class="card-speaker">${escapeHTML(item.role || item.interviewee || 'Destaque Oficial')}</span>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function attachCardClickEvents(track) {
+  if (!track) return;
+  track.querySelectorAll('.content-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.card-favorite-btn')) {
+        const id = card.getAttribute('data-id');
+        if (id) toggleFavorite(id);
+        return;
+      }
+      const sessionId = card.getAttribute('data-id');
+      if (sessionId) {
+        openVideoModal(sessionId);
+      }
+    });
+  });
+}
+
 /* ==========================================================================
-   5. Video Player Modal (Vimeo HD)
+   3. Renderização dos Carrosséis Streaming
+   ========================================================================== */
+function initTctCarousels() {
+  renderContinueWatching();
+  renderTctSessions('all');
+  renderTctAulas();
+  renderTctLiveCases();
+  renderTctCoverage();
+
+  setupCarouselNav('prevContinueBtn', 'nextContinueBtn', 'continueCarouselTrack');
+  setupCarouselNav('prevTctSessionsBtn', 'nextTctSessionsBtn', 'tctSessionsCarouselTrack');
+  setupCarouselNav('prevTctAulasBtn', 'nextTctAulasBtn', 'tctAulasCarouselTrack');
+  setupCarouselNav('prevTctLiveBtn', 'nextTctLiveBtn', 'tctLiveCarouselTrack');
+  setupCarouselNav('prevTctCoverageBtn', 'nextTctCoverageBtn', 'tctCoverageCarouselTrack');
+}
+
+function renderContinueWatching() {
+  const track = document.getElementById('continueCarouselTrack');
+  if (!track) return;
+  track.innerHTML = CONTINUE_WATCHING_TCT.map(s => createCardHTML(s, true)).join('');
+  attachCardClickEvents(track);
+}
+
+function renderTctSessions(dayFilter = 'all') {
+  const track = document.getElementById('tctSessionsCarouselTrack');
+  const countTag = document.getElementById('tctSessionsCountTag');
+  if (!track) return;
+
+  const filtered = TCT_SESSIONS.filter(s => {
+    if (dayFilter === 'all') return true;
+    return s.dayCode === dayFilter;
+  });
+
+  if (countTag) {
+    countTag.textContent = `${filtered.length} Gravações`;
+  }
+
+  track.innerHTML = filtered.map(s => createCardHTML(s)).join('');
+  attachCardClickEvents(track);
+}
+
+function renderTctAulas() {
+  const track = document.getElementById('tctAulasCarouselTrack');
+  if (!track) return;
+  track.innerHTML = TCT_AULAS.map(a => createAulaCardHTML(a)).join('');
+}
+
+function renderTctLiveCases() {
+  const track = document.getElementById('tctLiveCarouselTrack');
+  if (!track) return;
+  track.innerHTML = TCT_LIVE_CASES.map(s => createCardHTML(s)).join('');
+  attachCardClickEvents(track);
+}
+
+function renderTctCoverage() {
+  const track = document.getElementById('tctCoverageCarouselTrack');
+  if (!track) return;
+  const items = [
+    ...TCT_COBERTURA.highlights.map(h => ({ ...h, tag: h.tag || 'DESTAQUE' })),
+    ...TCT_COBERTURA.testimonials.map(t => ({ ...t, tag: 'DEPOIMENTO' })),
+    ...TCT_COBERTURA.interviews.map(i => ({ ...i, tag: 'ENTREVISTA' }))
+  ];
+  track.innerHTML = items.map(item => createCoverageCardHTML(item)).join('');
+}
+
+function setupCarouselNav(prevBtnId, nextBtnId, trackId) {
+  const prevBtn = document.getElementById(prevBtnId);
+  const nextBtn = document.getElementById(nextBtnId);
+  const track = document.getElementById(trackId);
+
+  if (!track) return;
+
+  const getScrollDistance = () => Math.max(320, track.clientWidth * 0.75);
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollDistance(), behavior: 'smooth' });
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollDistance(), behavior: 'smooth' });
+    });
+  }
+}
+
+/* ==========================================================================
+   4. Filtros de Dia do Carrossel de Sessões
+   ========================================================================== */
+function initTctDayFilters() {
+  const pills = document.querySelectorAll('[data-tct-day]');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const day = pill.dataset.tctDay || 'all';
+      renderTctSessions(day);
+    });
+  });
+}
+
+/* ==========================================================================
+   5. Ações do Banner Hero
+   ========================================================================== */
+function initTctHeroActions() {
+  const watchBtn = document.getElementById('heroWatchBtn');
+  const myListBtn = document.getElementById('heroMyListBtn');
+  const allSessionsBtn = document.getElementById('heroAllSessionsBtn');
+
+  if (watchBtn) {
+    watchBtn.addEventListener('click', () => {
+      // Abre a primeira sessão de destaque do TCT
+      openVideoModal('vimeo-1199850334');
+    });
+  }
+
+  if (myListBtn) {
+    myListBtn.addEventListener('click', () => {
+      showTctToast('TCT Plus Latam Valves adicionado à sua lista!');
+    });
+  }
+
+  if (allSessionsBtn) {
+    allSessionsBtn.addEventListener('click', () => {
+      const section = document.getElementById('tctSessionsSection');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+}
+
+/* ==========================================================================
+   6. Modal do Player de Vídeo Cinema (Vimeo HD)
    ========================================================================== */
 function initTctVideoModal() {
-  const modal = document.getElementById('tctPlayerModal');
-  const closeBtn = document.getElementById('tctModalCloseBtn');
+  const modal = document.getElementById('playerModal');
+  const closeBtn = document.getElementById('modalCloseBtn');
+  const doneBtn = document.getElementById('modalDoneBtn');
+  const copyBtn = document.getElementById('modalCopyLinkBtn');
 
-  if (closeBtn && modal) {
-    closeBtn.addEventListener('click', closeTctVideoModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeVideoModal);
+  if (doneBtn) doneBtn.addEventListener('click', closeVideoModal);
+
+  if (modal) {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeTctVideoModal();
+      if (e.target === modal) closeVideoModal();
+    });
+  }
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      if (activeSessionModalId) {
+        copySessionLink(activeSessionModalId);
+      }
     });
   }
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-      closeTctVideoModal();
+      closeVideoModal();
     }
   });
 }
 
-window.openTctVideoModal = function(sessionId) {
+let activeSessionModalId = null;
+
+window.openVideoModal = function(sessionId) {
   const session = TCT_SESSIONS.find(s => s.id === sessionId);
   if (!session) return;
 
-  const modal = document.getElementById('tctPlayerModal');
-  const iframeContainer = document.getElementById('tctModalIframeContainer');
-  const titleEl = document.getElementById('tctModalSessionTitle');
-  const speakerEl = document.getElementById('tctModalSpeakerName');
-  const roomEl = document.getElementById('tctModalRoomInfo');
+  activeSessionModalId = sessionId;
+  const modal = document.getElementById('playerModal');
+  const iframeContainer = document.getElementById('playerIframeContainer');
+  const titleEl = document.getElementById('modalSessionTitle');
+  const speakerEl = document.getElementById('modalSpeakerName');
+  const roomEl = document.getElementById('modalRoomInfo');
 
   if (titleEl) titleEl.textContent = session.title;
   if (speakerEl) speakerEl.textContent = session.speaker;
-  if (roomEl) roomEl.textContent = `${session.day} • ${session.room} • ${session.duration || 'Vimeo HD'}`;
+  if (roomEl) roomEl.textContent = `${session.day} • ${session.room} • ${session.duration || 'Vimeo 1080p'}`;
 
   if (iframeContainer) {
     iframeContainer.innerHTML = `
@@ -1491,6 +1513,7 @@ window.openTctVideoModal = function(sessionId) {
         allow="autoplay; fullscreen; picture-in-picture" 
         allowfullscreen
         title="${session.title}"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
       ></iframe>
     `;
   }
@@ -1501,9 +1524,9 @@ window.openTctVideoModal = function(sessionId) {
   }
 };
 
-window.closeTctVideoModal = function() {
-  const modal = document.getElementById('tctPlayerModal');
-  const iframeContainer = document.getElementById('tctModalIframeContainer');
+window.closeVideoModal = function() {
+  const modal = document.getElementById('playerModal');
+  const iframeContainer = document.getElementById('playerIframeContainer');
   if (iframeContainer) iframeContainer.innerHTML = '';
   if (modal) modal.classList.remove('active');
   document.body.style.overflow = '';
@@ -1512,7 +1535,7 @@ window.closeTctVideoModal = function() {
 window.copySessionLink = function(sessionId) {
   const url = `${window.location.origin}/new/tct?id=${encodeURIComponent(sessionId)}`;
   navigator.clipboard.writeText(url).then(() => {
-    showTctToast('Link da sessão copiado para a área de transferência!');
+    showTctToast('Link copiado para a área de transferência!');
   }).catch(() => {
     showTctToast('Link copiado!');
   });
@@ -1532,14 +1555,10 @@ function showTctToast(msg) {
 }
 
 function handleUrlParamsAndHash() {
-  const hash = window.location.hash.replace('#', '');
-  if (hash === 'aulas' || hash === 'cobertura' || hash === 'gravacoes') {
-    switchTctTab(hash);
-  }
-
   const params = new URLSearchParams(window.location.search);
   const sessionId = params.get('id');
   if (sessionId) {
-    setTimeout(() => openTctVideoModal(sessionId), 400);
+    setTimeout(() => openVideoModal(sessionId), 400);
   }
 }
+
