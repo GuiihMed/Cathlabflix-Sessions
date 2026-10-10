@@ -32,6 +32,22 @@
       "destination": "/new/busca.html"
     },
     {
+      "source": "/new/congressos",
+      "destination": "/new/congressos.html"
+    },
+    {
+      "source": "/congressos",
+      "destination": "/new/congressos.html"
+    },
+    {
+      "source": "/new/tct",
+      "destination": "/new/tct.html"
+    },
+    {
+      "source": "/tct",
+      "destination": "/new/tct.html"
+    },
+    {
       "source": "/busca",
       "destination": "/new/busca.html"
     },
