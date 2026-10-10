@@ -1,0 +1,888 @@
+/* ==========================================================================
+   CathlabFlix - Hub de Congressos & Página TCT Latam Valves
+   Design System & Componentes Específicos (Modern UI)
+   ========================================================================== */
+
+/* 1. Hero do Hub de Congressos */
+.congressos-hero-section {
+  position: relative;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #0b1226 0%, #062257 60%, #031438 100%);
+  color: #FFFFFF;
+  padding: 44px 40px;
+  margin-bottom: 36px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.congressos-hero-glow {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(229, 9, 20, 0.35) 0%, rgba(6, 34, 87, 0) 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.congressos-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+}
+
+.congressos-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
+}
+
+.congressos-hero-badge .badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+.congressos-hero-title {
+  font-size: clamp(1.85rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.congressos-hero-title span {
+  background: linear-gradient(90deg, #FFFFFF 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.congressos-hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 24px;
+}
+
+.congressos-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-stat-value {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.hero-stat-label {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.25;
+}
+
+/* 2. Barra de Controle e Filtros */
+.congressos-control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 14px 20px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.congressos-tabs-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.congressos-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.congressos-tab-btn:hover {
+  color: var(--color-text-primary);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.congressos-tab-btn.active {
+  color: #FFFFFF;
+  background: var(--color-primary);
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+}
+
+.tab-badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.congressos-tab-btn.active .tab-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+.congressos-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  min-width: 260px;
+}
+
+.congressos-search-input {
+  width: 100%;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-base);
+  padding: 0 38px 0 38px;
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+.congressos-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+}
+
+.congressos-search-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.congressos-search-clear {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.congressos-search-clear:hover {
+  color: var(--color-text-primary);
+}
+
+/* 3. Grade dos Cards de Congressos */
+.congressos-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 32px;
+  margin-bottom: 56px;
+}
+
+.congresso-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  position: relative;
+}
+
+.congresso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(229, 9, 20, 0.25);
+}
+
+/* Pôster 16:9 de Capa */
+.congresso-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0f121a;
+}
+
+.congresso-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-slow);
+}
+
+.congresso-card:hover .congresso-card-img {
+  transform: scale(1.05);
+}
+
+.congresso-media-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.05) 45%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+/* Badges sobre a capa */
+.congresso-top-badges {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.congresso-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.status-ondemand {
+  background: rgba(16, 185, 129, 0.88);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+
+.status-upcoming {
+  background: rgba(234, 179, 8, 0.92);
+  color: #141414;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.35);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.congresso-fav-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.congresso-fav-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.congresso-fav-btn.saved {
+  color: var(--color-primary);
+  background: #FFFFFF;
+}
+
+/* Corpo e Conteúdo do Card */
+.congresso-card-body {
+  padding: 26px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.congresso-meta-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.congresso-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.congresso-meta-item svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.congresso-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.congresso-summary {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* Pílulas de Destaque Científico */
+.congresso-feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.feature-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-border-subtle);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 4. Contador Regressivo (TCT Latam) */
+.congresso-countdown-box {
+  background: linear-gradient(135deg, rgba(6, 34, 87, 0.08) 0%, rgba(1, 2, 52, 0.05) 100%);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.countdown-label-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.countdown-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(229, 9, 20, 0.1);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+}
+
+.countdown-subtitle {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.countdown-timer-grid {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timer-unit-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 48px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.timer-val {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-sub {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-top: 2px;
+}
+
+.timer-separator {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-text-tertiary);
+}
+
+/* 5. Rodapé de Ações do Card */
+.congresso-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.btn-congresso-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+}
+
+.btn-congresso-primary:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--color-primary-glow);
+  color: #FFFFFF;
+}
+
+.btn-congresso-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-subtle);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-congresso-secondary:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.16);
+  color: var(--color-primary);
+}
+
+/* 6. Estilos Específicos da Página Dedicada /new/tct */
+.tct-banner-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  max-height: 440px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 36px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #010234;
+}
+
+.tct-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.tct-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(1, 2, 52, 0.2) 0%,
+    rgba(1, 2, 52, 0.85) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  padding: 36px 40px;
+}
+
+.tct-overlay-content {
+  max-width: 760px;
+  color: #FFFFFF;
+}
+
+.tct-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.tct-pillar-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.tct-pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.pillar-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.12);
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.pillar-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.pillar-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+/* Localização & Organização */
+.tct-info-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.tct-info-left {
+  max-width: 580px;
+}
+
+.tct-info-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.tct-info-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.tct-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ==========================================================================
+   Sobrescritas Específicas do Tema Azul Oficial ([data-theme="blue"])
+   ========================================================================== */
+[data-theme="blue"] .congressos-hero-section {
+  background: linear-gradient(135deg, #010234 0%, #062257 60%, #082d74 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="blue"] .congressos-control-panel {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="blue"] .congressos-tab-btn {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .congressos-tab-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .congressos-tab-btn.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .tab-badge {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .congressos-search-input {
+  background: rgba(1, 2, 52, 0.7);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .congressos-search-input:focus {
+  background: rgba(1, 2, 52, 0.95);
+  border-color: var(--color-primary);
+}
+
+[data-theme="blue"] .congresso-card {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="blue"] .congresso-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(6, 34, 87, 0.6);
+}
+
+[data-theme="blue"] .congresso-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .congresso-summary {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .feature-pill {
+  background: rgba(1, 2, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+}
+
+[data-theme="blue"] .congresso-countdown-box {
+  background: rgba(1, 2, 52, 0.6);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .countdown-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .timer-unit-slot {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="blue"] .congresso-card-footer {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="blue"] .btn-congresso-secondary {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .btn-congresso-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="blue"] .tct-pillar-card,
+[data-theme="blue"] .tct-info-box {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="blue"] .pillar-card-title,
+[data-theme="blue"] .tct-info-title {
+  color: #FFFFFF;
+}
+
+[data-theme="blue"] .pillar-card-desc,
+[data-theme="blue"] .tct-info-desc {
+  color: #94a3b8;
+}
+
+[data-theme="blue"] .pillar-icon-box {
+  background: rgba(56, 189, 248, 0.16);
+  color: #38bdf8;
+}
+
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+@media (max-width: 900px) {
+  .congressos-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tct-banner-hero {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 768px) {
+  .congressos-hero-section {
+    padding: 30px 20px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+  }
+
+  .congressos-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .congressos-control-panel {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .congressos-tabs-list {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .congressos-tab-btn {
+    white-space: nowrap;
+    height: 34px;
+    padding: 0 12px;
+    font-size: 0.8125rem;
+  }
+
+  .congressos-search-wrap {
+    min-width: 100%;
+  }
+
+  .congresso-card-body {
+    padding: 20px 18px 18px;
+  }
+
+  .congresso-title {
+    font-size: 1.25rem;
+  }
+
+  .congresso-countdown-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .countdown-timer-grid {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .timer-unit-slot {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .congresso-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-congresso-primary,
+  .btn-congresso-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .tct-banner-overlay {
+    padding: 20px;
+  }
+}

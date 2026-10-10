@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CathlabFlix by SBHCI</title>
+  <meta name="description" content="CRF TCT Plus Latam Valves 2026 - The Structural Heart Summit. Parceria entre CRF, SBHCI e SOLACI em São Paulo. Informações, eixos científicos e contagem regressiva.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://cathlabflix-sessions.vercel.app/new/tct">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cathlabflix-sessions.vercel.app/new/tct">
+  <meta property="og:title" content="CRF TCT Plus Latam Valves 2026 | CathlabFlix by SBHCI">
+  <meta property="og:description" content="The Structural Heart Summit. Acompanhe os detalhes do congresso internacional em São Paulo.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/tct-latam-2026.png">
+  <meta property="og:site_name" content="CathlabFlix by SBHCI">
+
+  <!-- Tipografia Inter Oficial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilos -->
+  <link rel="stylesheet" href="/css/modern-ui.css">
+  <link rel="stylesheet" href="/css/modern-congressos.css">
+
+  <!-- Detecção de Tema Anti-FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('cathlabflix-theme');
+        if (theme === 'blue') {
+          document.documentElement.setAttribute('data-theme', 'blue');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body class="theme-blue" data-theme="blue">
+
+  <div class="app-shell-root">
+
+    <!-- ==========================================================================
+         1. TopBar Oficial
+         ========================================================================== -->
+    <header class="app-topbar" id="appTopbar">
+      <div class="topbar-left">
+        <a href="/new" class="topbar-brand" title="CathlabFlix Início">
+          <img 
+            src="/assets/images/logo-cathlabflix-color.png" 
+            alt="CathlabFlix" 
+            class="topbar-logo logo-light" 
+            width="145" 
+            height="42"
+          >
+          <img 
+            src="/assets/images/logo-cathlabflix-white.png" 
+            alt="CathlabFlix" 
+            class="topbar-logo logo-blue" 
+            width="145" 
+            height="42"
+          >
+        </a>
+      </div>
+
+      <!-- Busca Global Expansível & Menu Hambúrguer -->
+      <div class="topbar-right">
+        <div class="header-search-module" id="headerSearchModule">
+          <div class="search-expandable-box" id="searchExpandableBox">
+            <button 
+              type="button" 
+              class="search-trigger-btn" 
+              id="searchTriggerBtn" 
+              data-tooltip="Busque no site"
+              aria-label="Busque no site" 
+              aria-expanded="false"
+            >
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
+            <div class="search-input-wrapper">
+              <input 
+                type="search" 
+                class="search-field-input" 
+                id="searchFieldInput" 
+                placeholder="Busque no site..." 
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Campo de busca interna"
+              >
+              <button type="button" class="search-close-btn" id="searchCloseBtn" aria-label="Limpar ou fechar busca" title="Fechar busca">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="search-dropdown-results" id="searchDropdownResults" role="region" aria-live="polite">
+            <div class="search-dropdown-content" id="searchDropdownContent"></div>
+          </div>
+        </div>
+
+        <button type="button" class="topbar-hamburger-btn" id="topbarHamburgerBtn" title="Menu Principal" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="appDrawer">
+          <svg class="hamburger-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="11" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="13" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         2. Conteúdo Principal da Página do TCT
+         ========================================================================== -->
+    <div class="app-body-layout">
+
+      <!-- Navegação Breadcrumb -->
+      <nav style="margin-bottom: 20px; font-size: 0.8125rem; color: var(--color-text-secondary); display: flex; align-items: center; gap: 8px;">
+        <a href="/new" style="color: inherit; text-decoration: none;">Início</a>
+        <span>/</span>
+        <a href="/new/congressos" style="color: inherit; text-decoration: none;">Congressos</a>
+        <span>/</span>
+        <span style="color: var(--color-primary); font-weight: 600;">TCT Plus Latam Valves 2026</span>
+      </nav>
+
+      <!-- Banner Hero 16:9 de Alta Resolução -->
+      <section class="tct-banner-hero">
+        <img 
+          src="/assets/images/tct-latam-2026.png" 
+          alt="CRF TCT Plus Latam Valves 2026" 
+          class="tct-banner-img"
+        >
+        <div class="tct-banner-overlay">
+          <div class="tct-overlay-content">
+            <div class="congressos-hero-badge" style="background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.35); color: #34d399;">
+              <span class="badge-dot" style="background: #34d399; box-shadow: 0 0 10px #34d399;"></span>
+              The Structural Heart Summit
+            </div>
+            <h1 style="font-size: clamp(1.8rem, 3.5vw, 2.85rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.02em;">
+              CRF TCT Plus Latam Valves 2026
+            </h1>
+            <p style="font-size: 1.05rem; line-height: 1.55; color: rgba(255, 255, 255, 0.88); margin-bottom: 0;">
+              19 a 21 de Março de 2026 • Centro de Convenções Rebouças, São Paulo, Brasil
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Painel de Destaque com Contagem Regressiva Viva -->
+      <div class="congresso-countdown-box" data-countdown-target="2026-03-19T08:00:00-03:00" style="padding: 22px 28px; margin-bottom: 40px;">
+        <div class="countdown-label-group">
+          <div class="countdown-icon" style="width: 44px; height: 44px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div>
+            <div class="countdown-title" style="font-size: 0.9375rem;">Abertura Oficial do Congresso</div>
+            <div class="countdown-subtitle" style="font-size: 0.8125rem;">Contagem regressiva para a plenária presencial em São Paulo</div>
+          </div>
+        </div>
+
+        <div class="countdown-timer-grid">
+          <div class="timer-unit-slot" style="min-width: 60px; padding: 8px 12px;">
+            <span class="timer-val timer-val-days" style="font-size: 1.5rem;">--</span>
+            <span class="timer-sub">Dias</span>
+          </div>
+          <span class="timer-separator" style="font-size: 1.5rem;">:</span>
+          <div class="timer-unit-slot" style="min-width: 60px; padding: 8px 12px;">
+            <span class="timer-val timer-val-hours" style="font-size: 1.5rem;">--</span>
+            <span class="timer-sub">Horas</span>
+          </div>
+          <span class="timer-separator" style="font-size: 1.5rem;">:</span>
+          <div class="timer-unit-slot" style="min-width: 60px; padding: 8px 12px;">
+            <span class="timer-val timer-val-mins" style="font-size: 1.5rem;">--</span>
+            <span class="timer-sub">Minutos</span>
+          </div>
+          <span class="timer-separator" style="font-size: 1.5rem;">:</span>
+          <div class="timer-unit-slot" style="min-width: 60px; padding: 8px 12px;">
+            <span class="timer-val timer-val-secs" style="font-size: 1.5rem;">--</span>
+            <span class="timer-sub">Segundos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção 1: Sobre o Evento e Parceria Científica -->
+      <section style="margin-bottom: 48px;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 16px; letter-spacing: -0.01em;">
+          Sobre o Congresso & Parceria Global
+        </h2>
+        <div style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); max-width: 960px;">
+          <p style="margin-bottom: 14px;">
+            O <strong>CRF TCT Plus Latam Valves</strong> representa a união da maior autoridade mundial em pesquisa e educação intervencionista — a <em>Cardiovascular Research Foundation (CRF)</em> — com a liderança médica da <strong>SBHCI</strong> e da <strong>SOLACI</strong>.
+          </p>
+          <p style="margin-bottom: 0;">
+            Com foco central em intervenções valvares transcateter e doenças cardíacas estruturais, o evento reunirá operadores internacionais, painéis multiprofissionais e transmissão ao vivo de casos desafiadores diretamente na capital paulista.
+          </p>
+        </div>
+      </section>
+
+      <!-- Seção 2: Eixos Temáticos e Pilares Científicos -->
+      <section style="margin-bottom: 48px;">
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 24px; letter-spacing: -0.01em;">
+          Principais Eixos Científicos
+        </h2>
+
+        <div class="tct-pillars-grid">
+          <div class="tct-pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <h3 class="pillar-card-title">TAVI Avançado & Durabilidade</h3>
+            <p class="pillar-card-desc">
+              Discussão sobre seleção de dispositivos de nova geração, durabilidade em pacientes de baixo risco, acesso coronariano pós-TAVI e desafios anatômicos como aorta bicuspide.
+            </p>
+          </div>
+
+          <div class="tct-pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h3 class="pillar-card-title">Terapias Mitrais Transcateter</h3>
+            <p class="pillar-card-desc">
+              Reparo borda a borda (TEER) na insuficiência mitral primária e secundária, substituição valvar mitral transcateter (TMVR) e opções Valve-in-Valve / Valve-in-Ring.
+            </p>
+          </div>
+
+          <div class="tct-pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="pillar-card-title">Intervenção Tricúspide & Inovação</h3>
+            <p class="pillar-card-desc">
+              Abordagem intervencionista da valva tricúspide com reparo transcateter, substituição ortotópica, critérios de imagem intraoperatória com ecocardiografia transesofágica 3D e intracardíaca (ICE).
+            </p>
+          </div>
+
+          <div class="tct-pillar-card">
+            <div class="pillar-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <h3 class="pillar-card-title">Casos Clínicos & Live Transmissions</h3>
+            <p class="pillar-card-desc">
+              Transmissão de procedimentos estruturais ao vivo com centros de excelência, comentários passo a passo por operadores renomados e debates abertos à plateia.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 3: Informações Práticas e Localização -->
+      <section class="tct-info-box">
+        <div class="tct-info-left">
+          <h2 class="tct-info-title">Localização do Evento</h2>
+          <p class="tct-info-desc">
+            <strong>Centro de Convenções Rebouças</strong><br>
+            Av. Rebouças, 600 - Pinheiros, São Paulo - SP, CEP: 05402-000<br>
+            Acesso facilitado pelas estações Clínicas (Linha 2-Verde) e Oscar Freire (Linha 4-Amarela) do Metrô.
+          </p>
+          <div class="tct-badges-row">
+            <span class="feature-pill">🏛️ Rebouças Convention</span>
+            <span class="feature-pill">📍 São Paulo - SP</span>
+            <span class="feature-pill">⭐ Parceria Oficial SBHCI</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 240px;">
+          <a href="https://www.crf.org" target="_blank" rel="noopener noreferrer" class="btn-congresso-primary" style="justify-content: center;">
+            <span>Acessar Portal CRF Oficial</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+
+          <a href="/new/congressos" class="btn-congresso-secondary" style="justify-content: center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Voltar para Congressos</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ==========================================================================
+         3. Menu Mobile Flutuante
+         ========================================================================== -->
+    <nav class="floating-bottom-nav" aria-label="Navegação Rápida Mobile">
+      <ul class="bottom-nav-list">
+        <li>
+          <a href="/new" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li>
+          <a href="/new/congressos" class="bottom-nav-link active">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            Congressos
+          </a>
+        </li>
+        <li>
+          <a href="/new/solaci" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Gravações
+          </a>
+        </li>
+        <li>
+          <a href="/new/aulas-solaci" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            Aulas
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ==========================================================================
+         4. Footer Oficial
+         ========================================================================== -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <img 
+            src="/assets/images/logo-cathlabflix-color.png" 
+            alt="CathlabFlix" 
+            class="footer-logo logo-light" 
+            width="120" 
+            height="35"
+          >
+          <img 
+            src="/assets/images/logo-cathlabflix-white.png" 
+            alt="CathlabFlix" 
+            class="footer-logo logo-blue" 
+            width="120" 
+            height="35"
+          >
+          <p class="footer-desc">
+            CathlabFlix by SBHCI - Copyright © Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista.
+          </p>
+        </div>
+
+        <div class="footer-right">
+          <div class="footer-links">
+            <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener">Política de Privacidade</a>
+            <a href="/new/posts">Notícias</a>
+            <a href="/new/congressos">Congressos</a>
+            <a href="/new/solaci">Gravações</a>
+            <a href="/new/aulas-solaci">Aulas PPTX</a>
+          </div>
+          <div class="footer-developer">
+            Desenvolvido por: <a href="https://wdcom.com.br" target="_blank" rel="noopener" class="dev-link">WDCOM MEDIA DIGITAL</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       5. Drawer Lateral
+       ========================================================================== -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+
+  <aside class="app-drawer" id="appDrawer" aria-label="Menu Principal de Navegação" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img 
+          src="/assets/images/logo-cathlabflix-color.png" 
+          alt="CathlabFlix" 
+          class="drawer-logo logo-light" 
+          width="130" 
+          height="38"
+        >
+        <img 
+          src="/assets/images/logo-cathlabflix-white.png" 
+          alt="CathlabFlix" 
+          class="drawer-logo logo-blue" 
+          width="130" 
+          height="38"
+        >
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Fechar Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <ul class="drawer-nav-list">
+      <li class="dropdown-nav-item">
+        <a href="/new" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Início</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/congressos" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Congressos</span>
+          </span>
+          <span class="dropdown-badge">OFICIAL</span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/busca" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Busca no Site</span>
+          </span>
+          <span class="dropdown-badge novelty">BUSCA</span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/posts" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"></path>
+              <path d="M18 14h4"></path>
+              <path d="M18 18h4"></path>
+              <path d="M18 10h4"></path>
+              <path d="M5 10h6"></path>
+              <path d="M5 14h6"></path>
+            </svg>
+            <span>Notícias & Posts</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/solaci" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Congresso SOLACI 2026</span>
+          </span>
+          <span class="dropdown-badge">37</span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/tct" class="dropdown-nav-link drawer-nav-link active">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>TCT Plus Latam Valves</span>
+          </span>
+          <span class="dropdown-badge novelty">EM BREVE</span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/player" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Player de Aula & Slides</span>
+          </span>
+          <span class="dropdown-badge novelty">NOVO</span>
+        </a>
+      </li>
+
+      <li class="dropdown-nav-item">
+        <a href="/new/aulas-solaci" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>Aulas PPTX</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="dropdown-divider"></div>
+
+    <!-- Seletor de Tema -->
+    <div class="dropdown-theme-row">
+      <div class="dropdown-theme-label">
+        <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <span>Tema do Site</span>
+      </div>
+      <div class="drawer-theme-switcher" role="radiogroup" aria-label="Seletor de Tema">
+        <button type="button" class="drawer-theme-btn" data-theme-val="light" aria-checked="false" role="radio" title="Tema Claro">
+          <span class="drawer-theme-swatch swatch-light">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="drawer-theme-name">Claro</span>
+        </button>
+        <button type="button" class="drawer-theme-btn active" data-theme-val="blue" aria-checked="true" role="radio" title="Tema Azul Oficial">
+          <span class="drawer-theme-swatch swatch-blue">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="drawer-theme-name">Azul</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Scripts Interativos -->
+  <script src="/js/modern-ui.js"></script>
+  <script src="/js/modern-search.js" defer></script>
+  <script src="/js/modern-congressos.js" defer></script>
+
+</body>
+</html>
