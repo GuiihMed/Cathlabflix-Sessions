@@ -299,10 +299,28 @@ async function getIndexedContents() {
       description: 'Assista às gravações em alta definição com controle de qualidade, velocidade e catálogo integrado.',
       url: '/new/player',
       badge: 'Vídeo'
+    },
+    {
+      id: 'page-congressos',
+      type: 'page',
+      category: 'Congressos',
+      title: 'Hub Oficial de Congressos SBHCI',
+      description: 'Calendário completo e acervo on-demand dos principais congressos de cardiologia intervencionista: SOLACI SBHCI 2026 e CRF TCT Plus Latam Valves.',
+      url: '/new/congressos',
+      badge: 'Congressos'
+    },
+    {
+      id: 'page-tct-latam',
+      type: 'page',
+      category: 'Congresso',
+      title: 'CRF TCT Plus Latam Valves 2026 - Acervo On-Demand',
+      description: 'Acervo completo do TCT Latam Valves: 62 gravações Vimeo HD, grade de 22 aulas e cobertura completa com líderes mundiais de intervenção valvar.',
+      url: '/new/tct',
+      badge: 'TCT Latam'
     }
   );
 
-  // 2. Indexa Sessões de Vídeo do Player (INCOR, Dante Pazzanese, Casos ao Vivo)
+  // 2. Indexa Sessões de Vídeo do Player (INCOR, Dante Pazzanese, Casos ao Vivo, TCT Latam)
   const videoSessions = getVideoSessions();
   items.push(...videoSessions);
 
@@ -505,6 +523,56 @@ function getVideoSessions() {
       description: "Implante de prótese transcateter balão-expansível de última geração em estenose aórtica severa em anéis bicúspides e pequenos diâmetros.",
       url: "/new/player?id=vimeo-1223744922",
       badge: "Vídeo"
+    },
+    {
+      id: "vimeo-1199845538",
+      type: "video",
+      category: "TCT Latam Valves",
+      speaker: "Nicolas Van Mieghem",
+      title: "TCT Latam - Nicolas Van Mieghem - TAVI degeneration",
+      description: "TAVI degeneration: the new Achilles heel of contemporary interventional cardiology? Discussão profunda de durabilidade e degeneração estrutural no TCT Plus Latam Valves 2026.",
+      url: "/new/tct?id=vimeo-1199845538",
+      badge: "TCT Latam"
+    },
+    {
+      id: "vimeo-1199850334",
+      type: "video",
+      category: "TCT Latam Valves",
+      speaker: "Pedro Villablanca",
+      title: "TCT Latam - Pedro Villablanca - Redo TAVI",
+      description: "Technique and Valve Choice for Redo TAVI: Planejamento, anatomia hostil, prevenção de oclusão coronariana e técnicas de implante no TCT Latam Valves 2026.",
+      url: "/new/tct?id=vimeo-1199850334",
+      badge: "TCT Latam"
+    },
+    {
+      id: "vimeo-1199852487",
+      type: "video",
+      category: "TCT Latam Valves",
+      speaker: "Fábio Sândoli de Brito Jr.",
+      title: "TCT Latam - Live Case in a Box 1 – TAV-in-TAV",
+      description: "Left Main Protection in a High Coronary Obstruction Risk Patient: Caso ao vivo demonstrativo com proteção de tronco no TCT Plus Latam Valves 2026.",
+      url: "/new/tct?id=vimeo-1199852487",
+      badge: "TCT Latam"
+    },
+    {
+      id: "vimeo-1200071438",
+      type: "video",
+      category: "TCT Latam Valves",
+      speaker: "Rebecca Hahn",
+      title: "TCT Latam - Rebecca Hahn - Imaging for M-TEER",
+      description: "Imaging for M-TEER: Papel da ecocardiografia 3D multimodal e ultrassom intracardíaco no reparo borda a borda no TCT Plus Latam Valves 2026.",
+      url: "/new/tct?id=vimeo-1200071438",
+      badge: "TCT Latam"
+    },
+    {
+      id: "vimeo-1199846887",
+      type: "video",
+      category: "TCT Latam Valves",
+      speaker: "Juan F. Granada",
+      title: "TCT Latam - Juan Granada - Valve Replacement",
+      description: "Tricuspid and Mitral Replacement: Are We Entering in a New Era? Inovação em substituição valvar ortotópica no TCT Plus Latam Valves 2026.",
+      url: "/new/tct?id=vimeo-1199846887",
+      badge: "TCT Latam"
     }
   ];
 }
