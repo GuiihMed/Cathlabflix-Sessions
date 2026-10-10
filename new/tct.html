@@ -4,47 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CathlabFlix by SBHCI</title>
-  
+  <meta name="description" content="Plataforma de streaming científico em cardiologia intervencionista. Assista a transmissões ao vivo, gravações e aulas exclusivas do CRF TCT Plus Latam Valves 2026.">
+
+  <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="/assets/images/favicon.png">
 
-  <!-- Fontes Oficiais Montserrat & Inter -->
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://cathlabflix-sessions.vercel.app/new/tct">
+
+  <!-- Tipografia Inter (Design System Oficial) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Estilos Modern UI & Congressos -->
+  <!-- Folha de Estilos Moderna -->
   <link rel="stylesheet" href="/css/modern-ui.css">
-  <link rel="stylesheet" href="/css/modern-congressos.css">
-</head>
-<body data-theme="light">
 
-  <div class="app-viewport-container">
+  <!-- Detecção de Tema Anti-FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('cathlabflix-theme');
+        if (theme === 'blue') {
+          document.documentElement.setAttribute('data-theme', 'blue');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <div class="app-container">
 
     <!-- ==========================================================================
-         1. Topbar Oficial e Fixa
+         1. App Topbar (Barra Superior Oficial CathlabFlix)
          ========================================================================== -->
     <header class="app-topbar" id="appTopbar">
       <div class="topbar-left">
-        <a href="/new" class="topbar-brand" title="CathlabFlix Início">
+        <a href="/new" class="topbar-brand" title="CathlabFlix Home">
           <img 
             src="/assets/images/logo-cathlabflix-color.png" 
             alt="CathlabFlix" 
-            class="topbar-logo logo-light" 
-            width="145" 
+            class="topbar-logo logo-light"
+            width="145"
             height="42"
           >
           <img 
             src="/assets/images/logo-cathlabflix-white.png" 
             alt="CathlabFlix" 
-            class="topbar-logo logo-blue" 
-            width="145" 
+            class="topbar-logo logo-blue"
+            width="145"
             height="42"
           >
         </a>
       </div>
 
-      <!-- Busca Global Expansível & Menu Hambúrguer -->
+      <!-- Menu Hambúrguer & Busca Global Expansível -->
       <div class="topbar-right">
         <div class="header-search-module" id="headerSearchModule">
           <div class="search-expandable-box" id="searchExpandableBox">
@@ -81,6 +99,7 @@
             </div>
           </div>
 
+          <!-- Dropdown de Resultados da Busca -->
           <div class="search-dropdown-results" id="searchDropdownResults" role="region" aria-live="polite">
             <div class="search-dropdown-content" id="searchDropdownContent"></div>
           </div>
@@ -97,256 +116,279 @@
     </header>
 
     <!-- ==========================================================================
-         2. Conteúdo Principal da Página do TCT (Acervo On-Demand)
+         2. Banner Oficial TCT Plus Latam Valves 2026 (1920x550)
+         ========================================================================== -->
+    <section class="banner-stage-section" id="bannerStage" style="background: #020617;">
+      <div class="banner-container-1920" style="background: #020617; max-height: 480px;">
+        <img 
+          src="/assets/images/tct-latam-2026.png" 
+          alt="CRF TCT Plus Latam Valves 2026 - The Structural Heart Summit" 
+          class="banner-image-1920" 
+          width="976" 
+          height="550"
+          fetchpriority="high"
+          style="object-position: center center;"
+        >
+      </div>
+
+      <!-- Faixa de Botões de Ação Abaixo do Banner -->
+      <div class="banner-actions-strip">
+        <div class="banner-actions-container">
+          <div class="banner-actions-left">
+            <span class="banner-strip-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              TCT PLUS LATAM VALVES 2026
+            </span>
+            <span class="banner-strip-title">The Structural Heart Summit • Acervo On-Demand Completo</span>
+          </div>
+
+          <div class="banner-actions-buttons">
+            <button type="button" class="btn-pill-primary" id="heroWatchBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Assistir Agora
+            </button>
+
+            <button type="button" class="btn-pill-surface" id="heroMyListBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Minha Lista
+            </button>
+
+            <button type="button" class="btn-pill-surface" id="heroAllSessionsBtn" title="Ver grade completa das 62 gravações">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Grade Completa (62)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. Área Principal de Streaming (Carrosséis como no SOLACI)
          ========================================================================== -->
     <div class="app-body-layout">
 
-      <!-- Navegação Breadcrumb -->
-      <nav style="margin-bottom: 20px; font-size: 0.8125rem; color: var(--color-text-secondary); display: flex; align-items: center; gap: 8px;">
-        <a href="/new" style="color: inherit; text-decoration: none;">Início</a>
-        <span>/</span>
-        <a href="/new/congressos" style="color: inherit; text-decoration: none;">Congressos</a>
-        <span>/</span>
-        <span style="color: var(--color-primary); font-weight: 600;">CRF TCT Plus Latam Valves 2026</span>
-      </nav>
+      <main class="main-stage-content">
 
-      <!-- Banner Hero 16:9 Oficial com Overlay e Métricas -->
-      <section class="tct-banner-hero" style="margin-bottom: 32px;">
-        <img 
-          src="/assets/images/tct-latam-2026.png" 
-          alt="CRF TCT Plus Latam Valves 2026" 
-          class="tct-banner-img"
-        >
-        <div class="tct-banner-overlay">
-          <div class="tct-overlay-content">
-            <div class="congressos-hero-badge" style="background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.35); color: #34d399;">
-              <span class="badge-dot" style="background: #34d399; box-shadow: 0 0 10px #34d399;"></span>
-              Congresso Realizado • Acervo Completo On-Demand
-            </div>
-            <h1 style="font-size: clamp(1.8rem, 3.5vw, 2.85rem); font-weight: 800; line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.02em;">
-              CRF TCT Plus Latam Valves 2026
-            </h1>
-            <p style="font-size: 1.05rem; line-height: 1.55; color: rgba(255, 255, 255, 0.9); margin-bottom: 12px;">
-              The Structural Heart Summit • 19 a 21 de Março • Centro de Convenções Rebouças, São Paulo
-            </p>
-
-            <div class="tct-header-stats-row">
-              <span class="tct-stat-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                62 Gravações Oficiais
-              </span>
-              <span class="tct-stat-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                3 Dias de Programação
-              </span>
-              <span class="tct-stat-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                10 Salas Temáticas
-              </span>
-              <span class="tct-stat-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                22 Aulas Especializadas
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==========================================================================
-           3. Abas Principais de Conteúdo (Gravações / Aulas / Cobertura)
-           ========================================================================== -->
-      <nav class="tct-main-tabs-nav" role="tablist" aria-label="Conteúdos do Congresso TCT Latam">
-        <button type="button" class="tct-main-tab-btn active" data-tab-target="gravacoes" role="tab" aria-selected="true" aria-controls="tab-panel-gravacoes">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          Gravações On-Demand
-          <span class="tct-tab-badge">62</span>
-        </button>
-
-        <button type="button" class="tct-main-tab-btn" data-tab-target="aulas" role="tab" aria-selected="false" aria-controls="tab-panel-aulas">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-          </svg>
-          Grade de Aulas & Slides
-          <span class="tct-tab-badge">22</span>
-        </button>
-
-        <button type="button" class="tct-main-tab-btn" data-tab-target="cobertura" role="tab" aria-selected="false" aria-controls="tab-panel-cobertura">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-          Cobertura & Depoimentos
-        </button>
-      </nav>
-
-      <!-- PAINEL 1: GRAVAÇÕES ON-DEMAND -->
-      <section class="tct-tab-panel active" id="tab-panel-gravacoes" role="tabpanel" aria-labelledby="btn-gravacoes">
-        <!-- Barra de Controles e Filtros -->
-        <div class="tct-control-filter-panel">
-          <div class="tct-filter-group-left">
-            <div class="tct-day-pills-list">
-              <button type="button" class="tct-day-pill active" data-day="all">Todos os Dias</button>
-              <button type="button" class="tct-day-pill" data-day="d19">Dia 19 (16)</button>
-              <button type="button" class="tct-day-pill" data-day="d20">Dia 20 (29)</button>
-              <button type="button" class="tct-day-pill" data-day="d21">Dia 21 (17)</button>
+        <!-- 1. Fileira: Continue Assistindo -->
+        <section class="carousel-section" id="continueSection">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Continue Assistindo</h2>
+              <span class="section-count-tag">Em andamento</span>
             </div>
 
-            <div class="tct-room-select-wrap">
-              <select id="tctRoomFilterSelect" class="tct-select-input" aria-label="Filtrar por sala temática">
-                <option value="all">Todas as Salas (10)</option>
-                <option value="Sala 01">Sala 01</option>
-                <option value="Sala 02">Sala 02</option>
-                <option value="Sala 03">Sala 03</option>
-                <option value="Sala 04">Sala 04</option>
-                <option value="Sala 05">Sala 05</option>
-                <option value="Sala 06">Sala 06</option>
-                <option value="Sala 07">Sala 07</option>
-                <option value="Sala 08">Sala 08</option>
-                <option value="Sala 09">Sala 09</option>
-                <option value="Sala 10">Sala 10</option>
-              </select>
-              <svg class="tct-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
+            <div class="section-controls">
+              <div class="carousel-nav-buttons">
+                <button type="button" class="carousel-nav-btn" id="prevContinueBtn" aria-label="Rolar para esquerda">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="carousel-nav-btn" id="nextContinueBtn" aria-label="Rolar para direita">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="tct-filter-group-right">
-            <div class="tct-search-box">
-              <svg class="tct-search-box-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input 
-                type="text" 
-                id="tctGravacoesSearchInput" 
-                class="tct-search-box-input" 
-                placeholder="Buscar por palestrante, tema, sala..."
-                autocomplete="off"
-              >
-              <button type="button" id="tctSearchClearBtn" class="tct-search-clear-btn" aria-label="Limpar pesquisa">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="continueCarouselTrack">
+              <!-- Renderizado dinamicamente via js/tct-app.js -->
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- Indicador de Status dos Resultados -->
-        <div class="tct-meta-status-bar">
-          <span id="tctSessionsCounter" style="font-weight: 600;">Carregando sessões...</span>
-          <span style="font-size: 0.8125rem;">Plataforma Oficial Vimeo HD • 1080p</span>
-        </div>
+        <!-- 2. Fileira: Sessões TCT Plus Latam Valves 2026 -->
+        <section class="carousel-section" id="tctSessionsSection">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Sessões TCT Plus Latam Valves 2026</h2>
+              <span class="section-count-tag" id="tctSessionsCountTag">62 Gravações</span>
+            </div>
 
-        <!-- Grid de Vídeos Injetado Dinamicamente -->
-        <div class="tct-sessions-grid" id="tctSessionsGrid"></div>
-      </section>
-
-      <!-- PAINEL 2: GRADE DE AULAS & APRESENTAÇÕES -->
-      <section class="tct-tab-panel" id="tab-panel-aulas" role="tabpanel" aria-labelledby="btn-aulas" style="display: none;">
-        <!-- Filtros de Aulas -->
-        <div class="tct-control-filter-panel">
-          <div class="tct-filter-group-left">
-            <div class="tct-day-pills-list">
-              <button type="button" class="tct-day-pill tct-aulas-period-pill active" data-period="all">Todas as Apresentações</button>
-              <button type="button" class="tct-day-pill tct-aulas-period-pill" data-period="Manhã">Manhã</button>
-              <button type="button" class="tct-day-pill tct-aulas-period-pill" data-period="Tarde / Noite">Tarde / Noite</button>
+            <div class="section-controls">
+              <div class="carousel-nav-buttons">
+                <button type="button" class="carousel-nav-btn" id="prevTctSessionsBtn" aria-label="Rolar para esquerda">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="carousel-nav-btn" id="nextTctSessionsBtn" aria-label="Rolar para direita">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div class="tct-filter-group-right">
-            <div class="tct-search-box">
-              <svg class="tct-search-box-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input 
-                type="text" 
-                id="tctAulasSearchInput" 
-                class="tct-search-box-input" 
-                placeholder="Buscar aula ou palestrante..."
-                autocomplete="off"
-              >
-            </div>
-          </div>
-        </div>
-
-        <div class="tct-meta-status-bar">
-          <span id="tctAulasCounter" style="font-weight: 600;">Carregando grade de aulas...</span>
-          <span style="font-size: 0.8125rem;">Programação Científica Oficial</span>
-        </div>
-
-        <!-- Lista de Aulas Injetada Dinamicamente -->
-        <div class="tct-aulas-list" id="tctAulasList"></div>
-      </section>
-
-      <!-- PAINEL 3: COBERTURA DO EVENTO & DEPOIMENTOS -->
-      <section class="tct-tab-panel" id="tab-panel-cobertura" role="tabpanel" aria-labelledby="btn-cobertura" style="display: none;">
-        <div id="tctCoberturaContainer"></div>
-      </section>
-
-      <!-- ==========================================================================
-           4. Pilares Temáticos e Parceria Global CRF & SBHCI
-           ========================================================================== -->
-      <section style="margin-top: 60px; margin-bottom: 48px;">
-        <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--color-text-primary); margin-bottom: 14px; letter-spacing: -0.01em;">
-          Sobre o Congresso & Parceria Global
-        </h2>
-        <div style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); max-width: 960px; margin-bottom: 32px;">
-          <p style="margin-bottom: 12px;">
-            O <strong>CRF TCT Plus Latam Valves</strong> consolidou a união pioneira da maior autoridade mundial em pesquisa e educação em cardiologia intervencionista — a <em>Cardiovascular Research Foundation (CRF)</em> — com a liderança médica da <strong>SBHCI</strong> e da <strong>SOLACI</strong>.
-          </p>
-          <p style="margin-bottom: 0;">
-            Realizado com sucesso absoluto no Centro de Convenções Rebouças em São Paulo, o evento reuniu os maiores especialistas globais em doenças estruturais com discussões profundas de casos desafiadores, estudos clínicos e novas tecnologias percutâneas.
-          </p>
-        </div>
-
-        <div class="tct-pillars-grid">
-          <div class="tct-pillar-card">
-            <div class="pillar-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-            </div>
-            <h3 class="pillar-card-title">TAVI Avançado & Durabilidade</h3>
-            <p class="pillar-card-desc">
-              Discussão sobre seleção de dispositivos de nova geração, durabilidade em pacientes de baixo risco, acesso coronariano pós-TAVI e desafios anatômicos como aorta bicúspide.
-            </p>
+          <!-- Filtros de Dias Rápidos (Pills Categorias Modernas) -->
+          <div class="categories-bar" style="padding: 0 4px; margin-bottom: 6px; overflow-x: auto;">
+            <button type="button" class="category-pill active" data-tct-day="all">Todas as Gravações (62)</button>
+            <button type="button" class="category-pill" data-tct-day="d19">Dia 19 (16)</button>
+            <button type="button" class="category-pill" data-tct-day="d20">Dia 20 (29)</button>
+            <button type="button" class="category-pill" data-tct-day="d21">Dia 21 (17)</button>
           </div>
 
-          <div class="tct-pillar-card">
-            <div class="pillar-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="tctSessionsCarouselTrack">
+              <!-- Renderizado dinamicamente via js/tct-app.js -->
             </div>
-            <h3 class="pillar-card-title">Terapias Mitrais Transcateter</h3>
-            <p class="pillar-card-desc">
-              Reparo borda a borda (TEER) na insuficiência mitral primária e secundária, substituição valvar mitral transcateter (TMVR) e opções Valve-in-Valve / Valve-in-Ring.
-            </p>
+          </div>
+        </section>
+
+        <!-- 3. Fileira: Aulas & Apresentações Científicas (PPTX) -->
+        <section class="carousel-section" id="tctAulasSection">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Aulas & Apresentações Científicas (PPTX)</h2>
+              <span class="section-count-tag" id="tctAulasCountTag">22 Aulas</span>
+            </div>
+
+            <div class="section-controls">
+              <div class="carousel-nav-buttons">
+                <button type="button" class="carousel-nav-btn" id="prevTctAulasBtn" aria-label="Rolar para esquerda">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="carousel-nav-btn" id="nextTctAulasBtn" aria-label="Rolar para direita">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div class="tct-pillar-card">
-            <div class="pillar-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="tctAulasCarouselTrack">
+              <!-- Renderizado dinamicamente via js/tct-app.js -->
             </div>
-            <h3 class="pillar-card-title">Intervenção Tricúspide & Inovação</h3>
-            <p class="pillar-card-desc">
-              Abordagem intervencionista da valva tricúspide com reparo transcateter, substituição ortotópica e critérios de imagem intraoperatória com ecocardiografia 3D e ICE.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <!-- 4. Fileira: Casos ao Vivo & Live Cases in a Box -->
+        <section class="carousel-section" id="tctLiveSection">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Casos ao Vivo & Live Cases in a Box</h2>
+              <span class="section-count-tag">Procedimentos Valvares</span>
+            </div>
+
+            <div class="section-controls">
+              <div class="carousel-nav-buttons">
+                <button type="button" class="carousel-nav-btn" id="prevTctLiveBtn" aria-label="Rolar para esquerda">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="carousel-nav-btn" id="nextTctLiveBtn" aria-label="Rolar para direita">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="tctLiveCarouselTrack">
+              <!-- Renderizado dinamicamente via js/tct-app.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Fileira: Cobertura, Entrevistas & Depoimentos -->
+        <section class="carousel-section" id="tctCoverageSection">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Cobertura, Entrevistas & Depoimentos</h2>
+              <span class="section-count-tag">Especial TCT</span>
+            </div>
+
+            <div class="section-controls">
+              <div class="carousel-nav-buttons">
+                <button type="button" class="carousel-nav-btn" id="prevTctCoverageBtn" aria-label="Rolar para esquerda">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button type="button" class="carousel-nav-btn" id="nextTctCoverageBtn" aria-label="Rolar para direita">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="tctCoverageCarouselTrack">
+              <!-- Renderizado dinamicamente via js/tct-app.js -->
+            </div>
+          </div>
+        </section>
+
+      </main>
 
     </div>
+
+    <!-- ==========================================================================
+         4. Menu Mobile Flutuante (Bottom Navigation)
+         ========================================================================== -->
+    <nav class="floating-bottom-nav" aria-label="Navegação Rápida Mobile">
+      <ul class="bottom-nav-list">
+        <li>
+          <a href="/new" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li>
+          <a href="/new/congressos" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Congressos
+          </a>
+        </li>
+        <li>
+          <a href="/new/tct" class="bottom-nav-link active">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            TCT Latam
+          </a>
+        </li>
+        <li>
+          <a href="/new/solaci" class="bottom-nav-link">
+            <svg class="bottom-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            SOLACI
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <!-- ==========================================================================
          5. Footer Oficial
@@ -383,38 +425,51 @@
   </div>
 
   <!-- ==========================================================================
-       6. Modal do Player de Vídeo (Vimeo HD)
+       6. Modal do Player de Vídeo Cinema (Vimeo HD Oficial)
        ========================================================================== -->
-  <div class="tct-player-modal-backdrop" id="tctPlayerModal" role="dialog" aria-modal="true" aria-labelledby="tctModalSessionTitle">
-    <div class="tct-player-modal-dialog">
-      <div class="tct-modal-header">
+  <div class="player-modal-backdrop" id="playerModal" role="dialog" aria-modal="true" aria-labelledby="modalSessionTitle">
+    <div class="player-modal-dialog">
+      <div class="player-modal-header">
         <div class="modal-title-group">
-          <span class="tct-pill tct-pill-room" style="display: inline-block; margin-right: 8px;">Vimeo 1080p</span>
-          <h3 class="tct-modal-session-title" id="tctModalSessionTitle">Carregando Sessão...</h3>
+          <span class="modal-live-tag">Vimeo 1080p HD</span>
+          <h3 class="modal-session-title" id="modalSessionTitle">Carregando Sessão...</h3>
         </div>
-        <button type="button" class="tct-modal-close-btn" id="tctModalCloseBtn" aria-label="Fechar player">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar player">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
       </div>
 
-      <div class="tct-iframe-container" id="tctModalIframeContainer">
-        <!-- Iframe Vimeo HD injetado dinamicamente -->
+      <div class="player-iframe-container" id="playerIframeContainer">
+        <!-- Iframe Vimeo injetado dinamicamente -->
       </div>
 
-      <div class="tct-modal-footer">
-        <div class="tct-modal-meta-left">
-          <span class="tct-modal-speaker-name" id="tctModalSpeakerName">Palestrante</span>
-          <span id="tctModalRoomInfo">Detalhes da Sessão</span>
+      <div class="player-modal-footer">
+        <div class="modal-meta-left">
+          <span class="modal-speaker-name" id="modalSpeakerName">Palestrante</span>
+          <span class="modal-room-info" id="modalRoomInfo">Sala e detalhes</span>
         </div>
-        <button type="button" class="tct-btn-primary" style="flex: unset; padding: 0 16px; height: 34px;" onclick="closeTctVideoModal()">
-          Concluído
-        </button>
+
+        <div class="modal-actions-right">
+          <button type="button" class="modal-action-btn" id="modalCopyLinkBtn" title="Copiar link da sessão">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            Compartilhar
+          </button>
+          <button type="button" class="modal-action-btn primary" id="modalDoneBtn">
+            Concluído
+          </button>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Toast Notification Flutuante -->
+  <div class="tct-toast" id="tctToast" role="status" aria-live="polite"></div>
 
   <!-- ==========================================================================
        7. Drawer Lateral (Menu Hambúrguer)
@@ -422,32 +477,7 @@
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
 
   <aside class="app-drawer" id="appDrawer" aria-label="Menu Principal" aria-hidden="true">
-    <div class="drawer-header">
-      <div class="drawer-brand">
-        <img 
-          src="/assets/images/logo-cathlabflix-color.png" 
-          alt="CathlabFlix" 
-          class="drawer-logo logo-light" 
-          width="135" 
-          height="38"
-        >
-        <img 
-          src="/assets/images/logo-cathlabflix-white.png" 
-          alt="CathlabFlix" 
-          class="drawer-logo logo-blue" 
-          width="135" 
-          height="38"
-        >
-      </div>
-      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Fechar Menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-
-    <ul class="drawer-nav-list">
+    <ul class="dropdown-nav-list">
       <li class="dropdown-nav-item">
         <a href="/new" class="dropdown-nav-link drawer-nav-link">
           <span class="dropdown-link-left">
@@ -469,7 +499,7 @@
             </svg>
             <span>Congressos</span>
           </span>
-          <span class="dropdown-badge">OFICIAL</span>
+          <span class="dropdown-badge">HUB</span>
         </a>
       </li>
 
@@ -506,7 +536,7 @@
         <a href="/new/solaci" class="dropdown-nav-link drawer-nav-link">
           <span class="dropdown-link-left">
             <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
             <span>Congresso SOLACI 2026</span>
           </span>
@@ -523,7 +553,7 @@
             </svg>
             <span>TCT Plus Latam Valves</span>
           </span>
-          <span class="dropdown-badge novelty">GRAVAÇÕES</span>
+          <span class="dropdown-badge novelty">62 VÍDEOS</span>
         </a>
       </li>
 
@@ -557,6 +587,7 @@
 
     <div class="dropdown-divider"></div>
 
+    <!-- Seletor de Tema -->
     <div class="dropdown-theme-row">
       <div class="dropdown-theme-label">
         <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -575,20 +606,36 @@
 
       <div class="drawer-theme-switcher" role="radiogroup" aria-label="Escolha de tema">
         <button type="button" class="drawer-theme-btn active" data-theme-val="light" aria-checked="true" role="radio" title="Tema Claro">
-          <span class="drawer-theme-swatch swatch-light"></span>
+          <span class="drawer-theme-swatch swatch-light">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
           <span class="drawer-theme-name">Claro</span>
         </button>
         <button type="button" class="drawer-theme-btn" data-theme-val="blue" aria-checked="false" role="radio" title="Tema Azul Oficial">
-          <span class="drawer-theme-swatch swatch-blue"></span>
+          <span class="drawer-theme-swatch swatch-blue">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
           <span class="drawer-theme-name">Azul</span>
         </button>
       </div>
     </div>
   </aside>
 
-  <!-- Scripts Oficiais -->
+  <!-- Scripts Interativos Oficiais -->
   <script src="/js/modern-ui.js"></script>
-  <script src="/js/modern-search.js"></script>
+  <script src="/js/modern-search.js" defer></script>
   <script src="/js/tct-app.js"></script>
 </body>
 </html>
