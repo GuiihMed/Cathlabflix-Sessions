@@ -1,89 +1,606 @@
 /**
  * CathlabFlix Modern Agenda & Interactive Calendar
- * Design System: Frosted Glass / Soft UI + Expansão Vertical + Exportação de Agenda
+ * Agenda Oficial SBHCI 2027 & Integração Completa
  */
 
-// Estrutura de dados com metadados para sincronização e exportação de calendário
+// Agenda Oficial SBHCI 2027 Completa com Cursos, Congressos, Simpósios e Prova de Título
 const INITIAL_EVENTS = [
+  // ==========================================
+  // FEVEREIRO 2027
+  // ==========================================
   {
-    id: 'solaci-2026-destaque',
-    date: '2026-10-21',
-    startTime: '14:00',
-    endTime: '18:00',
-    title: 'Sessão Especial SOLACI SBHCI 2026',
-    subtitle: 'Debates sobre Intervenções Coronárias Complexas e Casos Ao Vivo',
-    time: '14:00 - 18:00',
-    category: 'Congresso',
-    color: 'red',
-    badge: 'LEMBRE-SE',
-    modality: 'Presencial e On-line',
-    location: 'Transmissão Oficial CathlabFlix',
-    actionUrl: '/new/solaci',
-    actionLabel: 'Acessar Congresso'
-  },
-  {
-    id: 'solaci-satelite-bifurcacoes',
-    date: '2026-10-21',
-    startTime: '18:30',
-    endTime: '19:45',
-    title: 'Simpósio Satélite: Tratamento de Bifurcações',
-    subtitle: 'Estratégias de Stent Único vs Culotte e Double Kissing Crush',
-    time: '18:30 - 19:45',
-    category: 'Congresso',
-    color: 'red',
-    badge: 'SIMPÓSIO',
-    modality: 'Sala de Transmissão 2',
-    location: 'CathlabFlix Ao Vivo',
-    actionUrl: '/new/solaci',
-    actionLabel: 'Acessar Simpósio'
-  },
-  {
-    id: 'webinar-sbhci-outubro',
-    date: '2026-10-09',
-    startTime: '19:00',
-    endTime: '20:30',
-    title: 'Webinar SBHCI: Atualizações em Terapias Estruturais',
-    subtitle: 'Discussão de casos de TAVI e Valve-in-Valve Mitral',
-    time: '19:00 - 20:30',
+    id: 'curso-atualizacao-hci-01',
+    date: '2027-02-01',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
     category: 'Webinar',
     color: 'blue',
-    badge: 'GRAVAÇÃO',
-    modality: 'Transmissão Online',
-    location: 'Plataforma CathlabFlix',
-    actionUrl: 'https://www.cathlabflix.org/destaques',
-    actionLabel: 'Ver Transmissão'
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
   },
   {
-    id: 'tct-highlights-replay',
-    date: '2026-10-15',
-    startTime: '20:00',
-    endTime: '21:30',
-    title: 'Debate TCT 2026: Principais Ensaios Clínicos',
-    subtitle: 'Análise crítica dos clinical trials e o impacto na prática clínica nacional',
-    time: '20:00 - 21:30',
-    category: 'Webinar',
-    color: 'blue',
-    badge: 'DEBATE',
-    modality: 'Ao Vivo com Perguntas',
-    location: 'CathlabFlix Streaming',
-    actionUrl: '/new/tct',
-    actionLabel: 'Ver Debate'
-  },
-  {
-    id: 'curso-intervencionistas-modulo',
-    date: '2026-10-28',
-    startTime: '09:00',
-    endTime: '12:00',
-    title: 'Curso para Intervencionistas em Formação',
-    subtitle: 'Módulo 2: Técnicas Fundamentais de Hemodinâmica e Acessos Vasculares',
-    time: '09:00 - 12:00',
+    id: 'tavi-certificacao-2027',
+    date: '2027-02-15',
+    endDate: '2027-12-15',
+    time: 'Fevereiro a Dezembro',
+    dateRangeLabel: 'FEV-DEZ',
+    title: 'Curso Teórico-Prático de Certificação em TAVI SBHCI/SBCCV 2027',
+    subtitle: 'Programa Oficial Conjunto SBHCI e SBCCV para Formação e Habilitação em TAVI',
     category: 'Curso',
     color: 'amber',
-    badge: 'AULA',
-    modality: 'On-demand & Exercícios',
-    location: 'CathlabFlix Academy',
-    actionUrl: 'https://www.cathlabflix.org/destaques',
-    actionLabel: 'Ver Conteúdo'
+    badge: 'CERTIFICAÇÃO',
+    modality: 'Teórico-Prático',
+    location: 'Centros Credenciados SBHCI / SBCCV',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Programa'
+  },
+  {
+    id: 'curso-atualizacao-hci-02',
+    date: '2027-02-22',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // MARÇO 2027
+  // ==========================================
+  {
+    id: 'curso-atualizacao-hci-03',
+    date: '2027-03-08',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'latam-valves-2027',
+    date: '2027-03-17',
+    endDate: '2027-03-19',
+    dates: ['2027-03-17', '2027-03-18', '2027-03-19'],
+    dateRangeLabel: '17 a 19',
+    startTime: '08:00',
+    endTime: '18:30',
+    time: '08:00 - 18:30 (17 a 19 de março)',
+    title: 'Latam Valves 2027 - The Structural Heart Summit',
+    subtitle: 'Maior Encontro Latino-Americano de Doenças Estruturais do Coração e Terapias Valvares',
+    category: 'Congresso',
+    color: 'red',
+    badge: 'OFICIAL',
+    modality: 'Presencial e On-line',
+    location: 'WTC Events Golden Hall - São Paulo, SP',
+    actionUrl: '/new/congressos',
+    actionLabel: 'Acessar Latam Valves'
+  },
+  {
+    id: 'curso-atualizacao-hci-04',
+    date: '2027-03-29',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // ABRIL 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-01',
+    date: '2027-04-02',
+    endDate: '2027-04-03',
+    dates: ['2027-04-02', '2027-04-03'],
+    dateRangeLabel: '2 e 3',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (2 e 3 de abril)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo I',
+    subtitle: 'Treinamento Prático e Casos Ao Vivo em Procedimentos Endovasculares',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital Semper (BH / MG)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-05',
+    date: '2027-04-12',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-06',
+    date: '2027-04-26',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // MAIO 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-02',
+    date: '2027-05-07',
+    endDate: '2027-05-08',
+    dates: ['2027-05-07', '2027-05-08'],
+    dateRangeLabel: '7 e 8',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (7 e 8 de maio)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo II',
+    subtitle: 'Técnicas Endovasculares Periféricas e Tratamento de Doença Arterial',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital Amecor (Cuiabá / MT)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-07',
+    date: '2027-05-10',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-08',
+    date: '2027-05-24',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // JUNHO 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-03',
+    date: '2027-06-04',
+    endDate: '2027-06-05',
+    dates: ['2027-06-04', '2027-06-05'],
+    dateRangeLabel: '4 e 5',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (4 e 5 de junho)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo III',
+    subtitle: 'Procedimentos Endovasculares Avançados e Casos Complexos',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital São Francisco e Hospital Semper (BH / MG)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-09',
+    date: '2027-06-07',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-10',
+    date: '2027-06-21',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // JULHO 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-04',
+    date: '2027-07-02',
+    endDate: '2027-07-03',
+    dates: ['2027-07-02', '2027-07-03'],
+    dateRangeLabel: '2 e 3',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (2 e 3 de julho)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo IV',
+    subtitle: 'Técnicas de Recanalização e Abordagem Multidisciplinar',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital Madre Teresa (BH / MG)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-11',
+    date: '2027-07-05',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-12',
+    date: '2027-07-19',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // AGOSTO 2027
+  // ==========================================
+  {
+    id: 'congresso-sbhci-2027',
+    date: '2027-08-04',
+    endDate: '2027-08-06',
+    dates: ['2027-08-04', '2027-08-05', '2027-08-06'],
+    dateRangeLabel: '4 a 6',
+    startTime: '08:00',
+    endTime: '19:00',
+    time: '08:00 - 19:00 (4 a 6 de agosto)',
+    title: 'Congresso da SBHCI 2027',
+    subtitle: 'Congresso Anual da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Congresso',
+    color: 'red',
+    badge: 'OFICIAL',
+    modality: 'Presencial e On-line',
+    location: 'CICB - Centro Internacional de Convenções do Brasil (Brasília, DF)',
+    actionUrl: '/new/congressos',
+    actionLabel: 'Acessar Congresso SBHCI'
+  },
+  {
+    id: 'curso-atualizacao-hci-13',
+    date: '2027-08-16',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-14',
+    date: '2027-08-30',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // SETEMBRO 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-06',
+    date: '2027-09-10',
+    endDate: '2027-09-11',
+    dates: ['2027-09-10', '2027-09-11'],
+    dateRangeLabel: '10 e 11',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (10 e 11 de setembro)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo VI',
+    subtitle: 'Abordagens Endovasculares e Acessos Alternativos em Hemodinâmica',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital Prof. Edgard Santos (Salvador / BA)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-15',
+    date: '2027-09-13',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-16',
+    date: '2027-09-27',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // OUTUBRO 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-07',
+    date: '2027-10-01',
+    endDate: '2027-10-02',
+    dates: ['2027-10-01', '2027-10-02'],
+    dateRangeLabel: '1 e 2',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (1 e 2 de outubro)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo VII',
+    subtitle: 'Tratamento Endovascular da Aorta e Doenças Vasculares Periféricas',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital Santa Casa (BH / MG)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-17',
+    date: '2027-10-04',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'curso-atualizacao-hci-18',
+    date: '2027-10-11',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'prova-titulo-sbhci-2027',
+    date: '2027-10-17',
+    startTime: '08:00',
+    endTime: '17:00',
+    time: '08:00 - 17:00 (17 de outubro)',
+    title: 'Prova de Título de Especialista SBHCI / AMB 2027',
+    subtitle: 'Exame Oficial Nacional de Obtenção do Título de Especialista em Hemodinâmica',
+    category: 'Congresso',
+    color: 'red',
+    badge: 'EXAME OFICIAL',
+    modality: 'Presencial',
+    location: 'Sede Oficial SBHCI / AMB',
+    actionUrl: 'https://sbhci.org.br',
+    actionLabel: 'Edital e Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-19',
+    date: '2027-10-25',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+
+  // ==========================================
+  // NOVEMBRO 2027
+  // ==========================================
+  {
+    id: 'endovascular-mod-08',
+    date: '2027-11-05',
+    endDate: '2027-11-06',
+    dates: ['2027-11-05', '2027-11-06'],
+    dateRangeLabel: '5 e 6',
+    startTime: '08:00',
+    endTime: '18:00',
+    time: '08:00 - 18:00 (5 e 6 de novembro)',
+    title: 'Curso de Aperfeiçoamento Endovascular - Módulo VIII',
+    subtitle: 'Módulo de Conclusão: Casos Clínicos Complexos e Procedimentos Ao Vivo',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'PRÁTICO',
+    modality: 'Presencial / Prático',
+    location: 'Hospital São Francisco (BH / MG)',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Detalhes'
+  },
+  {
+    id: 'curso-atualizacao-hci-20',
+    date: '2027-11-08',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    title: 'Curso de Atualização em HCI',
+    subtitle: 'Módulo de Encerramento do Programa de Atualização em Hemodinâmica 2027',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'ON-LINE',
+    modality: 'On-line',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Acessar Aula'
+  },
+  {
+    id: 'pci-plus-2027',
+    date: '2027-11-12',
+    endDate: '2027-11-13',
+    dates: ['2027-11-12', '2027-11-13'],
+    dateRangeLabel: '12 e 13',
+    startTime: '08:30',
+    endTime: '18:00',
+    time: '08:30 - 18:00 (12 e 13 de novembro)',
+    title: 'PCI Plus 2027',
+    subtitle: 'Simpósio Internacional de Intervenção Coronária Percutânea e Terapias Avançadas',
+    category: 'Congresso',
+    color: 'blue',
+    badge: 'OFICIAL',
+    modality: 'Presencial e On-line',
+    location: 'Rio de Janeiro, RJ',
+    actionUrl: '/new/congressos',
+    actionLabel: 'Acessar PCI Plus'
+  },
+  {
+    id: 'nursing-summit-2027',
+    date: '2027-11-13',
+    startTime: '08:30',
+    endTime: '17:30',
+    time: '08:30 - 17:30 (13 de novembro)',
+    title: 'Nursing Summit SBHCI 2027',
+    subtitle: 'Encontro Nacional de Enfermagem em Hemodinâmica e Cardiologia Intervencionista',
+    category: 'Congresso',
+    color: 'blue',
+    badge: 'SUMMIT',
+    modality: 'Presencial e On-line',
+    location: 'Rio de Janeiro / RJ',
+    actionUrl: '/new/congressos',
+    actionLabel: 'Acessar Summit'
   }
 ];
 
@@ -92,14 +609,14 @@ class ModernAgendaCalendar {
     this.container = document.getElementById(containerId);
     if (!this.container) return;
 
-    // Data inicial demonstrativa (Outubro 2026) com opção de navegar livremente
-    this.currentDate = new Date(2026, 9, 1); // Mês 9 = Outubro
-    this.today = new Date(); // Referência para indicador de hoje
-    this.selectedDateStr = '2026-10-21';
+    // Inicialização direta no início da Agenda Oficial 2027 (Fevereiro 2027)
+    this.currentDate = new Date(2027, 1, 1); // Mês 1 = Fevereiro de 2027
+    this.today = new Date();
+    this.selectedDateStr = '2027-02-01';
     this.activeFilter = 'all'; // all | Congresso | Webinar | Curso
     this.currentView = 'month'; // 'month' | 'list'
     this.events = options.events || INITIAL_EVENTS;
-    this.activeEventId = 'solaci-2026-destaque';
+    this.activeEventId = 'curso-atualizacao-hci-01';
 
     this.monthNames = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -136,7 +653,7 @@ class ModernAgendaCalendar {
         <!-- Topo da Agenda com Kicker e Alternador de Visão (Mês vs Lista) -->
         <div class="agenda-top-bar">
           <div class="agenda-header-titles">
-            <span class="agenda-kicker">AGENDA CATHLABFLIX</span>
+            <span class="agenda-kicker">AGENDA OFICIAL SBHCI 2027</span>
           </div>
 
           <div class="agenda-view-toggle" role="tablist" aria-label="Modo de visualização da agenda">
@@ -179,7 +696,7 @@ class ModernAgendaCalendar {
 
         <!-- Barra de Navegação do Mês (Visível no modo Calendário) -->
         <div class="agenda-header" id="agendaMonthHeader">
-          <h3 class="agenda-month-title" id="agendaMonthDisplay">Outubro 2026</h3>
+          <h3 class="agenda-month-title" id="agendaMonthDisplay">Fevereiro 2027</h3>
 
           <div class="agenda-nav-controls">
             <button type="button" class="agenda-nav-btn" id="agendaPrevMonthBtn" aria-label="Mês anterior" title="Mês anterior">
@@ -187,8 +704,8 @@ class ModernAgendaCalendar {
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </button>
-            <button type="button" class="agenda-today-btn" id="agendaTodayBtn" title="Ir para o mês atual">
-              Hoje
+            <button type="button" class="agenda-today-btn" id="agendaTodayBtn" title="Ir para Fevereiro 2027">
+              2027
             </button>
             <button type="button" class="agenda-nav-btn" id="agendaNextMonthBtn" aria-label="Próximo mês" title="Próximo mês">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -209,11 +726,11 @@ class ModernAgendaCalendar {
           </button>
           <button type="button" class="agenda-filter-chip ${this.activeFilter === 'Webinar' ? 'active' : ''}" data-filter="Webinar">
             <span class="chip-dot blue"></span>
-            Webinars
+            Atualização HCI
           </button>
           <button type="button" class="agenda-filter-chip ${this.activeFilter === 'Curso' ? 'active' : ''}" data-filter="Curso">
             <span class="chip-dot amber"></span>
-            Cursos
+            Cursos Práticos
           </button>
         </div>
 
@@ -299,8 +816,6 @@ class ModernAgendaCalendar {
       const eventsOnDay = this.getFilteredEventsForDate(dateStr);
       const hasEvent = eventsOnDay.length > 0;
       const isSelected = dateStr === this.selectedDateStr;
-
-      // Verificação do dia "Hoje"
       const isToday = this.isToday(year, month, day);
 
       let cellClasses = ['agenda-day-cell'];
@@ -359,13 +874,14 @@ class ModernAgendaCalendar {
 
     const itemsHtml = filteredEvents.map(event => {
       const parts = event.date.split('-');
-      const dayNum = parts[2];
+      const dayDisplay = event.dateRangeLabel || parts[2];
       const monthShort = this.monthShortNames[parseInt(parts[1], 10) - 1];
+      const isCompactDay = dayDisplay.length > 2;
 
       return `
         <div class="agenda-list-card ${event.color || 'red'}">
           <div class="agenda-list-card-date">
-            <span class="card-date-day">${dayNum}</span>
+            <span class="card-date-day ${isCompactDay ? 'compact' : ''}">${dayDisplay}</span>
             <span class="card-date-month">${monthShort}</span>
           </div>
 
@@ -393,6 +909,15 @@ class ModernAgendaCalendar {
                 </svg>
                 <span>${event.modality}</span>
               </div>
+              ${event.location ? `
+                <div class="list-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>${event.location}</span>
+                </div>
+              ` : ''}
             </div>
 
             <div class="agenda-list-card-actions">
@@ -452,7 +977,7 @@ class ModernAgendaCalendar {
 
   getFilteredEventsForDate(dateStr) {
     return this.events.filter(ev => {
-      const matchesDate = ev.date === dateStr;
+      const matchesDate = ev.date === dateStr || (ev.dates && ev.dates.includes(dateStr));
       if (!matchesDate) return false;
       if (this.activeFilter === 'all') return true;
       return ev.category === this.activeFilter;
@@ -522,13 +1047,15 @@ class ModernAgendaCalendar {
       `;
     }
 
+    const dayDisplay = activeEvent.dateRangeLabel ? `${activeEvent.dateRangeLabel} ${monthShort}` : `${dayNum} ${monthShort}`;
+
     inner.innerHTML = `
       <div class="agenda-event-detail-card ${colorClass}">
         <!-- Topo com badge, pill da data e botão fechar -->
         <div class="event-detail-top">
           <div class="event-date-pill">
-            <span class="event-pill-date">${dayNum} ${monthShort}</span>
-            <span class="event-pill-badge">${activeEvent.badge || 'LEMBRE-SE'}</span>
+            <span class="event-pill-date">${dayDisplay}</span>
+            <span class="event-pill-badge">${activeEvent.badge || 'OFICIAL'}</span>
           </div>
 
           <button type="button" class="event-detail-close-btn" id="eventDetailCloseBtn" title="Recolher detalhes" aria-label="Fechar detalhes do evento">
@@ -560,10 +1087,19 @@ class ModernAgendaCalendar {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
                 <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
               <span>${activeEvent.modality}</span>
             </div>
+
+            ${activeEvent.location ? `
+              <div class="event-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>${activeEvent.location}</span>
+              </div>
+            ` : ''}
           </div>
 
           <!-- Linha de Botões de Ação -->
@@ -684,39 +1220,41 @@ class ModernAgendaCalendar {
 
   generateGoogleCalendarUrl(event) {
     const dateClean = event.date.replace(/-/g, '');
-    const startH = (event.startTime || '14:00').replace(':', '') + '00';
+    const endDateClean = (event.endDate || event.date).replace(/-/g, '');
+    const startH = (event.startTime || '08:00').replace(':', '') + '00';
     const endH = (event.endTime || '18:00').replace(':', '') + '00';
-    const dates = `${dateClean}T${startH}/${dateClean}T${endH}`;
+    const dates = `${dateClean}T${startH}/${endDateClean}T${endH}`;
 
-    const title = encodeURIComponent(event.title || 'Evento CathlabFlix');
+    const title = encodeURIComponent(event.title || 'Evento SBHCI');
     const details = encodeURIComponent(
-      `${event.subtitle || ''}\n\nModalidade: ${event.modality || ''}\nTransmissão: ${event.location || ''}\nAcesso: ${window.location.origin}${event.actionUrl || ''}`
+      `${event.subtitle || ''}\n\nLocal: ${event.location || ''}\nModalidade: ${event.modality || ''}\nAcesso: ${window.location.origin}${event.actionUrl || ''}`
     );
-    const location = encodeURIComponent(event.modality || 'CathlabFlix Online');
+    const location = encodeURIComponent(event.location || event.modality || 'CathlabFlix Online');
 
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }
 
   downloadIcs(event) {
     const dateClean = event.date.replace(/-/g, '');
-    const startH = (event.startTime || '14:00').replace(':', '') + '00';
+    const endDateClean = (event.endDate || event.date).replace(/-/g, '');
+    const startH = (event.startTime || '08:00').replace(':', '') + '00';
     const endH = (event.endTime || '18:00').replace(':', '') + '00';
     const nowIso = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
     const icsContent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//CathlabFlix//Agenda SBHCI//PT',
+      'PRODID:-//CathlabFlix//Agenda Oficial SBHCI 2027//PT',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       'BEGIN:VEVENT',
       `UID:${event.id || 'event'}-${Date.now()}@cathlabflix.org`,
       `DTSTAMP:${nowIso}`,
       `DTSTART:${dateClean}T${startH}`,
-      `DTEND:${dateClean}T${endH}`,
-      `SUMMARY:${(event.title || 'Evento CathlabFlix').replace(/,/g, '\\,')}`,
-      `DESCRIPTION:${(event.subtitle || '').replace(/,/g, '\\,')}\\n\\nAcesso: ${window.location.origin}${event.actionUrl || ''}`,
-      `LOCATION:${(event.modality || 'CathlabFlix').replace(/,/g, '\\,')}`,
+      `DTEND:${endDateClean}T${endH}`,
+      `SUMMARY:${(event.title || 'Evento SBHCI').replace(/,/g, '\\,')}`,
+      `DESCRIPTION:${(event.subtitle || '').replace(/,/g, '\\,')}\\n\\nLocal: ${(event.location || '').replace(/,/g, '\\,')}\\nModalidade: ${(event.modality || '').replace(/,/g, '\\,')}`,
+      `LOCATION:${(event.location || event.modality || 'CathlabFlix').replace(/,/g, '\\,')}`,
       'STATUS:CONFIRMED',
       'END:VEVENT',
       'END:VCALENDAR'
@@ -726,7 +1264,7 @@ class ModernAgendaCalendar {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `${event.id || 'evento-cathlabflix'}.ics`);
+    link.setAttribute('download', `${event.id || 'evento-sbhci'}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -734,7 +1272,6 @@ class ModernAgendaCalendar {
   }
 
   attachExportMenuEvents() {
-    // Dropdowns no Drawer ou na Lista
     const triggers = this.container.querySelectorAll('#drawerExportTriggerBtn, .list-action-export-btn');
     triggers.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -745,7 +1282,6 @@ class ModernAgendaCalendar {
         if (!menu) return;
 
         const isOpen = menu.classList.contains('is-open');
-        // Fecha todos os outros menus primeiro
         this.container.querySelectorAll('.agenda-export-menu.is-open').forEach(m => m.classList.remove('is-open'));
 
         if (!isOpen) {
@@ -757,7 +1293,6 @@ class ModernAgendaCalendar {
       });
     });
 
-    // Cliques em itens que disparam download do .ics
     this.container.querySelectorAll('.export-menu-item[data-export]').forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -767,12 +1302,10 @@ class ModernAgendaCalendar {
         if (event) {
           this.downloadIcs(event);
         }
-        // Fecha menu
         this.container.querySelectorAll('.agenda-export-menu.is-open').forEach(m => m.classList.remove('is-open'));
       });
     });
 
-    // Fecha menus ao clicar fora
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.agenda-export-dropdown-wrapper')) {
         this.container.querySelectorAll('.agenda-export-menu.is-open').forEach(m => m.classList.remove('is-open'));
@@ -781,7 +1314,6 @@ class ModernAgendaCalendar {
   }
 
   attachEventListeners() {
-    // Alternância de Visão (Mês vs Lista)
     const monthViewBtn = document.getElementById('agendaViewMonthBtn');
     const listViewBtn = document.getElementById('agendaViewListBtn');
 
@@ -813,7 +1345,6 @@ class ModernAgendaCalendar {
       });
     }
 
-    // Navegação de Mês
     const prevBtn = document.getElementById('agendaPrevMonthBtn');
     const nextBtn = document.getElementById('agendaNextMonthBtn');
     const todayBtn = document.getElementById('agendaTodayBtn');
@@ -836,14 +1367,13 @@ class ModernAgendaCalendar {
 
     if (todayBtn) {
       todayBtn.addEventListener('click', () => {
-        const now = new Date();
-        this.currentDate = new Date(now.getFullYear(), now.getMonth(), 1);
+        // Retorna ao primeiro mês com evento da Agenda 2027 (Fevereiro 2027)
+        this.currentDate = new Date(2027, 1, 1);
         this.collapseEventDrawer();
         this.renderMonthDays();
       });
     }
 
-    // Chips de Filtro por Categoria
     const filterChips = this.container.querySelectorAll('.agenda-filter-chip');
     filterChips.forEach(chip => {
       chip.addEventListener('click', () => {
@@ -862,9 +1392,6 @@ class ModernAgendaCalendar {
     });
   }
 
-  /**
-   * Atualização de eventos sob demanda
-   */
   setEvents(newEvents) {
     this.events = newEvents;
     this.renderContent();
