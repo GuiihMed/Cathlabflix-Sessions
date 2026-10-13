@@ -38,7 +38,7 @@ const INITIAL_EVENTS = [
     badge: 'DEBATE',
     modality: 'Ao Vivo com Perguntas',
     location: 'CathlabFlix Streaming',
-    image: '/assets/images/banner-tct-2026.png',
+    image: 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png',
     actionUrl: '/new/tct',
     actionLabel: 'Ver Debate'
   },
@@ -55,7 +55,7 @@ const INITIAL_EVENTS = [
     badge: 'LEMBRE-SE',
     modality: 'Presencial e On-line',
     location: 'Transmissão Oficial CathlabFlix',
-    image: '/assets/images/banner-solaci-2026.png',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
     actionUrl: '/new/solaci',
     actionLabel: 'Acessar Congresso'
   },
@@ -1089,10 +1089,10 @@ class ModernAgendaCalendar {
     const cat = (event.category || '').toLowerCase();
 
     if (id.includes('tct') || title.includes('tct')) {
-      return '/assets/images/banner-tct-2026.png';
+      return 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png';
     }
     if (id.includes('solaci') || title.includes('solaci')) {
-      return '/assets/images/banner-solaci-2026.png';
+      return 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
     }
     if (title.includes('valves') || id.includes('valves')) {
       return '/assets/images/tct-latam-2026.png';
@@ -1113,7 +1113,7 @@ class ModernAgendaCalendar {
       return 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png';
     }
     if (cat === 'congresso' || title.includes('congresso') || title.includes('sbhci')) {
-      return '/assets/images/banner-solaci-2026.png';
+      return 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
     }
 
     return '/assets/images/og-cathlabflix.png';
