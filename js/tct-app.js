@@ -1329,7 +1329,7 @@ function attachCardClickEvents(track) {
       e.preventDefault();
       const id = btn.getAttribute('data-remove-id');
       if (id && window.ContinueWatchingManager) {
-        window.ContinueWatchingManager.removeItem(id);
+        window.ContinueWatchingManager.removeItem(id, 'tct');
       }
       renderContinueWatching();
       showTctToast('Item removido de Continue Assistindo');
@@ -1357,8 +1357,9 @@ function attachCardClickEvents(track) {
             category: session ? session.category : 'TCT 2026',
             poster: session ? session.poster : ((card.querySelector('.card-image') || {}).src || '/assets/images/tct-latam-2026.png'),
             duration: session ? session.duration : 'HD',
+            congress: 'tct',
             progress: 15
-          });
+          }, 'tct');
         }
         openVideoModal(sessionId);
       }
@@ -1389,7 +1390,7 @@ function renderContinueWatching() {
 
   let continueItems = [];
   if (window.ContinueWatchingManager) {
-    continueItems = window.ContinueWatchingManager.getList();
+    continueItems = window.ContinueWatchingManager.getList('tct');
   } else {
     continueItems = CONTINUE_WATCHING_TCT;
   }
@@ -1409,8 +1410,10 @@ function renderContinueWatching() {
 }
 
 // Sincroniza em tempo real com eventos de atualização do cookie
-window.addEventListener('cathlabflix:continueWatchingUpdated', () => {
-  renderContinueWatching();
+window.addEventListener('cathlabflix:continueWatchingUpdated', (e) => {
+  if (!e.detail || !e.detail.congress || e.detail.congress === 'tct') {
+    renderContinueWatching();
+  }
 });
 
 function renderTctSessions(dayFilter = 'all') {

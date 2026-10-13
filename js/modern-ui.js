@@ -559,12 +559,17 @@ function renderPptxCards() {
 }
 
 function initContinueWatching() {
+  // Se estivermos na página do TCT, tct-app.js assume o controle completo
+  if (window.location.pathname.includes('/tct') || window.location.pathname.includes('tct.html') || document.getElementById('tctSessionsCarouselTrack')) {
+    return;
+  }
+
   const track = document.getElementById('continueCarouselTrack');
   if (!track) return;
 
   let continueItems = [];
   if (window.ContinueWatchingManager) {
-    continueItems = window.ContinueWatchingManager.getList();
+    continueItems = window.ContinueWatchingManager.getList('solaci');
   } else {
     continueItems = FEATURED_SESSIONS.filter(s => s.progress > 0);
   }
@@ -584,7 +589,13 @@ function initContinueWatching() {
 }
 
 // Ouve atualizações de progresso para sincronizar a fileira em tempo real
-window.addEventListener('cathlabflix:continueWatchingUpdated', () => {
+window.addEventListener('cathlabflix:continueWatchingUpdated', (e) => {
+  if (window.location.pathname.includes('/tct') || window.location.pathname.includes('tct.html') || document.getElementById('tctSessionsCarouselTrack')) {
+    return;
+  }
+  if (e.detail && e.detail.congress && e.detail.congress !== 'solaci') {
+    return;
+  }
   initContinueWatching();
 });
 
@@ -643,7 +654,7 @@ function attachCardEvents(container) {
       e.preventDefault();
       const id = btn.getAttribute('data-remove-id');
       if (id && window.ContinueWatchingManager) {
-        window.ContinueWatchingManager.removeItem(id);
+        window.ContinueWatchingManager.removeItem(id, 'solaci');
       }
       initContinueWatching();
       showToast("Item removido de Continue Assistindo");
@@ -672,8 +683,9 @@ function attachCardEvents(container) {
           room,
           videoUrl,
           description,
-          poster: (card.querySelector('.card-image') || {}).src || '/assets/images/solaci-2026-gravacao.png'
-        });
+          poster: (card.querySelector('.card-image') || {}).src || '/assets/images/solaci-2026-gravacao.png',
+          congress: 'solaci'
+        }, 'solaci');
       }
 
       if (link) {

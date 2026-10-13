@@ -308,6 +308,7 @@ function loadSession(session, updateHistory = true) {
 
   // 7. Atualizar Cookie do Usuário em Continue Assistindo
   if (window.ContinueWatchingManager) {
+    const sessionCongress = getSessionCongress(session);
     window.ContinueWatchingManager.updateProgress({
       id: session.id,
       title: session.title,
@@ -318,11 +319,24 @@ function loadSession(session, updateHistory = true) {
       poster: session.poster,
       videoUrl: `https://player.vimeo.com/video/${session.vimeoId}`,
       link: `/new/player?id=${encodeURIComponent(session.id)}`,
+      congress: sessionCongress,
       progress: 15
-    });
+    }, sessionCongress);
   }
 
   startWatchProgressHeartbeat(session);
+}
+
+function getSessionCongress(session) {
+  if (!session) return 'solaci';
+  if (session.congress) {
+    const c = String(session.congress).toLowerCase();
+    if (c.includes('tct')) return 'tct';
+    if (c.includes('solaci')) return 'solaci';
+  }
+  if (session.id && String(session.id).startsWith('vimeo-1199')) return 'tct';
+  if (session.title && String(session.title).toLowerCase().includes('tct')) return 'tct';
+  return 'solaci';
 }
 
 let watchHeartbeatInterval = null;
@@ -331,9 +345,10 @@ function startWatchProgressHeartbeat(session) {
     clearInterval(watchHeartbeatInterval);
   }
 
+  const sessionCongress = getSessionCongress(session);
   let currentProgress = 15;
   if (window.ContinueWatchingManager) {
-    const existing = (window.ContinueWatchingManager.getList() || []).find(s => s.id === session.id);
+    const existing = (window.ContinueWatchingManager.getList(sessionCongress) || []).find(s => s.id === session.id);
     if (existing && existing.progress) {
       currentProgress = existing.progress;
     }
@@ -357,8 +372,9 @@ function startWatchProgressHeartbeat(session) {
           poster: session.poster,
           videoUrl: `https://player.vimeo.com/video/${session.vimeoId}`,
           link: `/new/player?id=${encodeURIComponent(session.id)}`,
+          congress: sessionCongress,
           progress: currentProgress
-        });
+        }, sessionCongress);
       }
     }
   }, 10000);
@@ -371,6 +387,7 @@ window.addEventListener('message', (event) => {
     if (data && data.event === 'timeupdate' && data.data && currentSession) {
       const percent = Math.round((data.data.percent || 0) * 100);
       if (percent > 0 && window.ContinueWatchingManager) {
+        const sessionCongress = getSessionCongress(currentSession);
         window.ContinueWatchingManager.updateProgress({
           id: currentSession.id,
           title: currentSession.title,
@@ -379,8 +396,9 @@ window.addEventListener('message', (event) => {
           room: currentSession.room,
           duration: currentSession.duration,
           poster: currentSession.poster,
+          congress: sessionCongress,
           progress: percent
-        });
+        }, sessionCongress);
       }
     }
   } catch {}
