@@ -417,10 +417,26 @@ function setupCarouselNav(prevBtnId, nextBtnId, trackId) {
 
 function createCardHTML(session, isContinueWatching = false) {
   const isSaved = isFavorite(session.id);
+  const progressPercent = typeof session.progress === 'number' ? session.progress : 35;
   const progressHTML = isContinueWatching ? `
     <div class="card-progress-bar">
-      <div class="card-progress-fill" style="width: ${session.progress || 35}%;"></div>
+      <div class="card-progress-fill" style="width: ${progressPercent}%;"></div>
     </div>
+  ` : '';
+
+  const removeBtnHTML = isContinueWatching ? `
+    <button 
+      type="button" 
+      class="card-remove-continue-btn" 
+      data-remove-id="${session.id}" 
+      title="Remover de Continue Assistindo" 
+      aria-label="Remover de Continue Assistindo"
+    >
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
   ` : '';
 
   return `
@@ -428,15 +444,17 @@ function createCardHTML(session, isContinueWatching = false) {
       class="content-card" 
       data-id="${session.id}"
       data-title="${escapeHTML(session.title)}"
-      data-speaker="${escapeHTML(session.speaker)}"
-      data-category="${escapeHTML(session.category)}"
-      data-room="${escapeHTML(session.room)}"
+      data-speaker="${escapeHTML(session.speaker || '')}"
+      data-category="${escapeHTML(session.category || '')}"
+      data-room="${escapeHTML(session.room || '')}"
       data-video="${session.videoUrl || ''}"
+      data-link="${session.link || ''}"
       data-description="${escapeHTML(session.description || '')}"
       tabindex="0"
       role="button"
       aria-label="Assistir ${escapeHTML(session.title)}"
     >
+      ${removeBtnHTML}
       <div class="card-thumbnail-wrapper">
         <img 
           src="${session.poster}" 
@@ -544,10 +562,31 @@ function initContinueWatching() {
   const track = document.getElementById('continueCarouselTrack');
   if (!track) return;
 
-  const continueItems = FEATURED_SESSIONS.filter(s => s.progress > 0);
+  let continueItems = [];
+  if (window.ContinueWatchingManager) {
+    continueItems = window.ContinueWatchingManager.getList();
+  } else {
+    continueItems = FEATURED_SESSIONS.filter(s => s.progress > 0);
+  }
+
+  if (!continueItems || continueItems.length === 0) {
+    track.innerHTML = `
+      <div class="carousel-empty-message">
+        <p>Nenhuma aula em andamento no momento.</p>
+        <span>Inicie qualquer transmissão ou aula para acompanhar seu progresso nesta fileira.</span>
+      </div>
+    `;
+    return;
+  }
+
   track.innerHTML = continueItems.map(s => createCardHTML(s, true)).join('');
   attachCardEvents(track);
 }
+
+// Ouve atualizações de progresso para sincronizar a fileira em tempo real
+window.addEventListener('cathlabflix:continueWatchingUpdated', () => {
+  initContinueWatching();
+});
 
 /* ==========================================================================
    6. Modal do Player de Vídeo (Vimeo Oficial)
@@ -597,10 +636,24 @@ function initVideoPlayerModal() {
 }
 
 function attachCardEvents(container) {
+  // Listener para remover do Continue Assistindo
+  container.querySelectorAll('.card-remove-continue-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const id = btn.getAttribute('data-remove-id');
+      if (id && window.ContinueWatchingManager) {
+        window.ContinueWatchingManager.removeItem(id);
+      }
+      initContinueWatching();
+      showToast("Item removido de Continue Assistindo");
+    });
+  });
+
   container.querySelectorAll('.content-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      // Se clicou no botão de favoritar, ignora abertura do player
-      if (e.target.closest('.card-favorite-btn')) return;
+      // Se clicou no botão de favoritar ou remover, ignora abertura do player
+      if (e.target.closest('.card-favorite-btn') || e.target.closest('.card-remove-continue-btn')) return;
 
       const id = card.getAttribute('data-id') || '';
       const title = card.getAttribute('data-title');
@@ -608,9 +661,30 @@ function attachCardEvents(container) {
       const room = card.getAttribute('data-room');
       const videoUrl = card.getAttribute('data-video');
       const description = card.getAttribute('data-description');
+      const link = card.getAttribute('data-link');
+
+      // Registra/atualiza no cookie de Continue Assistindo
+      if (id && window.ContinueWatchingManager) {
+        window.ContinueWatchingManager.updateProgress({
+          id,
+          title,
+          speaker,
+          room,
+          videoUrl,
+          description,
+          poster: (card.querySelector('.card-image') || {}).src || '/assets/images/solaci-2026-gravacao.png'
+        });
+      }
+
+      if (link) {
+        window.location.href = link;
+        return;
+      }
 
       if (videoUrl) {
         openPlayerModal({ id, title, speaker, room, videoUrl, description });
+      } else if (id) {
+        window.location.href = `/new/player?id=${encodeURIComponent(id)}`;
       }
     });
 

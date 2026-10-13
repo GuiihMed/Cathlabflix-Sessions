@@ -1160,10 +1160,26 @@ function updateFavoriteButtons() {
 
 function createCardHTML(session, isContinue = false) {
   const isSaved = getSavedFavorites().includes(session.id);
+  const progressPercent = typeof session.progress === 'number' ? session.progress : 35;
   const progressHTML = isContinue ? `
     <div class="card-progress-bar">
-      <div class="card-progress-fill" style="width: ${session.progress || 35}%;"></div>
+      <div class="card-progress-fill" style="width: ${progressPercent}%;"></div>
     </div>
+  ` : '';
+
+  const removeBtnHTML = isContinue ? `
+    <button 
+      type="button" 
+      class="card-remove-continue-btn" 
+      data-remove-id="${session.id}" 
+      title="Remover de Continue Assistindo" 
+      aria-label="Remover de Continue Assistindo"
+    >
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
   ` : '';
 
   return `
@@ -1174,6 +1190,7 @@ function createCardHTML(session, isContinue = false) {
       role="button"
       aria-label="Assistir ${escapeHTML(session.title)}"
     >
+      ${removeBtnHTML}
       <div class="card-thumbnail-wrapper">
         <img 
           src="${session.poster}" 
@@ -1304,6 +1321,21 @@ function createCoverageCardHTML(item) {
 
 function attachCardClickEvents(track) {
   if (!track) return;
+
+  // Remover do Continue Assistindo
+  track.querySelectorAll('.card-remove-continue-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      const id = btn.getAttribute('data-remove-id');
+      if (id && window.ContinueWatchingManager) {
+        window.ContinueWatchingManager.removeItem(id);
+      }
+      renderContinueWatching();
+      showTctToast('Item removido de Continue Assistindo');
+    });
+  });
+
   track.querySelectorAll('.content-card').forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.closest('.card-favorite-btn')) {
@@ -1311,8 +1343,23 @@ function attachCardClickEvents(track) {
         if (id) toggleFavorite(id);
         return;
       }
+      if (e.target.closest('.card-remove-continue-btn')) {
+        return;
+      }
       const sessionId = card.getAttribute('data-id');
       if (sessionId) {
+        const session = TCT_SESSIONS.find(s => s.id === sessionId);
+        if (window.ContinueWatchingManager) {
+          window.ContinueWatchingManager.updateProgress({
+            id: sessionId,
+            title: session ? session.title : (card.querySelector('.card-title') || {}).textContent || 'Sessão TCT',
+            speaker: session ? session.speaker : (card.querySelector('.card-speaker') || {}).textContent || 'Especialista TCT',
+            category: session ? session.category : 'TCT 2026',
+            poster: session ? session.poster : ((card.querySelector('.card-image') || {}).src || '/assets/images/tct-latam-2026.png'),
+            duration: session ? session.duration : 'HD',
+            progress: 15
+          });
+        }
         openVideoModal(sessionId);
       }
     });
@@ -1339,9 +1386,32 @@ function initTctCarousels() {
 function renderContinueWatching() {
   const track = document.getElementById('continueCarouselTrack');
   if (!track) return;
-  track.innerHTML = CONTINUE_WATCHING_TCT.map(s => createCardHTML(s, true)).join('');
+
+  let continueItems = [];
+  if (window.ContinueWatchingManager) {
+    continueItems = window.ContinueWatchingManager.getList();
+  } else {
+    continueItems = CONTINUE_WATCHING_TCT;
+  }
+
+  if (!continueItems || continueItems.length === 0) {
+    track.innerHTML = `
+      <div class="carousel-empty-message">
+        <p>Nenhuma sessão em andamento no momento.</p>
+        <span>Inicie qualquer gravação do TCT para acompanhar seu progresso nesta fileira.</span>
+      </div>
+    `;
+    return;
+  }
+
+  track.innerHTML = continueItems.map(s => createCardHTML(s, true)).join('');
   attachCardClickEvents(track);
 }
+
+// Sincroniza em tempo real com eventos de atualização do cookie
+window.addEventListener('cathlabflix:continueWatchingUpdated', () => {
+  renderContinueWatching();
+});
 
 function renderTctSessions(dayFilter = 'all') {
   const track = document.getElementById('tctSessionsCarouselTrack');
