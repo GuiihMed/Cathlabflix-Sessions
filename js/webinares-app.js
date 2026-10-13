@@ -189,7 +189,7 @@
 
     const pdfSidebarLink = document.getElementById('wbAiPdfLink');
     if (pdfSidebarLink) {
-      pdfSidebarLink.href = webinar.pdfUrl;
+      pdfSidebarLink.href = webinar.pdfUrl || (webinar.pdfs && webinar.pdfs[0] && webinar.pdfs[0].url) || '#';
     }
 
     // Preencher Conteúdo das Abas:
@@ -262,7 +262,15 @@
     // 6. Aba PDFs e Documentos
     const pdfsContainer = document.getElementById('wbPdfsContainer');
     if (pdfsContainer) {
-      pdfsContainer.innerHTML = `
+      const pdfList = (webinar.pdfs && webinar.pdfs.length > 0)
+        ? webinar.pdfs
+        : [{
+            title: webinar.pdfTitle || 'Material Científico em PDF',
+            url: webinar.pdfUrl,
+            desc: webinar.pdfDesc || 'Documento oficial complementar com esquemas anatômicos e dados de estudos clínicos.'
+          }];
+
+      pdfsContainer.innerHTML = pdfList.map(pdf => `
         <div class="pdf-download-card">
           <div class="pdf-info-left">
             <div class="pdf-icon-badge">
@@ -272,12 +280,12 @@
               </svg>
             </div>
             <div class="pdf-info-text">
-              <h4>${webinar.pdfTitle || 'Material Científico em PDF'}</h4>
-              <p>Documento oficial complementar com esquemas anatômicos e dados de estudos clínicos.</p>
+              <h4>${pdf.title}</h4>
+              <p>${pdf.desc || 'Documento oficial complementar com esquemas anatômicos e dados de estudos clínicos.'}</p>
             </div>
           </div>
           <div style="display: flex; gap: 8px;">
-            <a href="${webinar.pdfUrl}" target="_blank" rel="noopener noreferrer" class="wb-btn-primary">
+            <a href="${pdf.url}" target="_blank" rel="noopener noreferrer" class="wb-btn-primary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
@@ -287,7 +295,7 @@
             </a>
           </div>
         </div>
-      `;
+      `).join('');
     }
 
     // Sistema de Troca de Abas
