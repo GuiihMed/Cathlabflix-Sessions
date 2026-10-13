@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>CathlabFlix by SBHCI</title>
+  <meta name="description" content="Visualizador interativo de Webinares com IA da SBHCI: gravação de alta resolução, relatórios científicos, infográficos e quiz.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="video.other">
+  <meta property="og:title" content="Webinar Científico com IA | CathlabFlix by SBHCI">
+  <meta property="og:description" content="Assista à gravação completa com inteligência artificial, infográfico em alta resolução, relatório da aula e quiz clínico.">
+  <meta property="og:site_name" content="CathlabFlix by SBHCI">
+
+  <!-- Tipografia Inter Oficial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilos -->
+  <link rel="stylesheet" href="/css/modern-ui.css">
+  <link rel="stylesheet" href="/css/modern-hub.css">
+  <link rel="stylesheet" href="/css/webinares.css">
+
+  <!-- Detecção de Tema Anti-FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('cathlabflix-theme');
+        if (theme === 'blue') {
+          document.documentElement.setAttribute('data-theme', 'blue');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body class="theme-blue" data-theme="blue">
+
+  <div class="app-shell-root" id="webinarDetailContainer">
+
+    <!-- ==========================================================================
+         1. TopBar Oficial (Logo, Busca Expansível, Drawer e Seletor)
+         ========================================================================== -->
+    <header class="app-topbar" id="appTopbar">
+      <div class="topbar-left">
+        <a href="/new" class="topbar-brand" title="CathlabFlix Início">
+          <img 
+            src="/assets/images/logo-cathlabflix-color.png" 
+            alt="CathlabFlix" 
+            class="topbar-logo logo-light" 
+            width="145" 
+            height="42"
+          >
+          <img 
+            src="/assets/images/logo-cathlabflix-white.png" 
+            alt="CathlabFlix" 
+            class="topbar-logo logo-blue" 
+            width="145" 
+            height="42"
+          >
+        </a>
+      </div>
+
+      <div class="topbar-right">
+        <div class="header-search-module" id="headerSearchModule">
+          <div class="search-expandable-box" id="searchExpandableBox">
+            <button 
+              type="button" 
+              class="search-trigger-btn" 
+              id="searchTriggerBtn" 
+              data-tooltip="Busque no site"
+              aria-label="Busque no site" 
+              aria-expanded="false"
+            >
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
+            <div class="search-input-wrapper">
+              <input 
+                type="search" 
+                class="search-field-input" 
+                id="searchFieldInput" 
+                placeholder="Busque no site..." 
+                autocomplete="off"
+                spellcheck="false"
+                aria-label="Campo de busca interna"
+              >
+              <button type="button" class="search-close-btn" id="searchCloseBtn" aria-label="Limpar ou fechar busca" title="Fechar busca">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="search-dropdown-results" id="searchDropdownResults" role="region" aria-live="polite">
+            <div class="search-dropdown-content" id="searchDropdownContent"></div>
+          </div>
+        </div>
+
+        <button type="button" class="topbar-hamburger-btn" id="topbarHamburgerBtn" title="Menu Principal" aria-label="Abrir Menu Principal" aria-expanded="false" aria-controls="appDrawer">
+          <svg class="hamburger-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="6" x2="11" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="13" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         2. Área Principal do Webinar (Breadcrumb, Seletor, Player & Abas)
+         ========================================================================== -->
+    <main class="webinar-detail-wrapper">
+
+      <!-- Breadcrumbs -->
+      <nav class="webinar-breadcrumb" aria-label="Trilha de Navegação">
+        <a href="/new">Início</a>
+        <span class="sep">/</span>
+        <a href="/new/webinares">Webinares</a>
+        <span class="sep">/</span>
+        <span id="wbBreadcrumbCurrent" style="color: var(--wb-text-main); font-weight: 600;">Carregando...</span>
+      </nav>
+
+      <!-- Barra de Seleção Rápida entre os 4 Webinares -->
+      <div class="webinar-session-selector-bar">
+        <span class="wb-selector-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Outros Webinares:
+        </span>
+        <div class="wb-sessions-pill-list" id="wbSessionsPillList">
+          <!-- Injetado dinamicamente via /js/webinares-app.js -->
+        </div>
+      </div>
+
+      <!-- Cabeçalho do Webinar -->
+      <header class="webinar-detail-header">
+        <div class="webinar-detail-meta-row">
+          <span class="webinar-category-pill" id="wbCategory">Balões Farmacológicos</span>
+          <span style="font-size: 0.85rem; color: var(--wb-text-muted);" id="wbDate">Data</span>
+          <span style="font-size: 0.85rem; color: var(--wb-text-muted);">&bull;</span>
+          <span style="font-size: 0.85rem; color: var(--wb-text-muted);" id="wbDuration">Duração</span>
+          <span class="wb-feature-pill ai" style="margin-left: auto;">Recursos com IA Ativos</span>
+        </div>
+        <h1 class="webinar-detail-title" id="wbTitle">Carregando Webinar...</h1>
+      </header>
+
+      <!-- Grid Hero: Vídeo (68%) + Sidebar de IA (32%) -->
+      <section class="webinar-hero-media-grid" aria-label="Visualizador de Vídeo e Recursos de IA">
+        
+        <!-- Player de Vídeo Responsivo -->
+        <div class="webinar-video-wrapper" id="wbVideoWrapper">
+          <!-- Injetado dinamicamente com iframe do Vimeo -->
+        </div>
+
+        <!-- Sidebar Lateral de Ferramentas com IA -->
+        <aside class="webinar-ai-sidebar" aria-label="Ferramentas com Inteligência Artificial">
+          <h4 class="wb-ai-sidebar-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
+            Conteúdo com IA
+          </h4>
+
+          <div class="wb-ai-tools-list">
+            <!-- 1. Quiz -->
+            <a href="#quiz" class="wb-ai-tool-card" id="wbAiQuizLink" target="_blank" rel="noopener noreferrer">
+              <div class="wb-ai-tool-icon quiz">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div class="wb-ai-tool-content">
+                <h5>Quiz Clínico</h5>
+                <p>Avaliação instantânea de aprendizado</p>
+              </div>
+            </a>
+
+            <!-- 2. Flashcards -->
+            <a href="#" class="wb-ai-tool-card" id="wbAiFlashcardsLink" target="_blank" rel="noopener noreferrer">
+              <div class="wb-ai-tool-icon flashcards">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                </svg>
+              </div>
+              <div class="wb-ai-tool-content">
+                <h5>Flash Cards</h5>
+                <p>Revisão rápida de conceitos-chave</p>
+              </div>
+            </a>
+
+            <!-- 3. Pergunte ao NotebookLM -->
+            <a href="#" class="wb-ai-tool-card" id="wbAiNotebookLink" target="_blank" rel="noopener noreferrer">
+              <div class="wb-ai-tool-icon notebook">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div class="wb-ai-tool-content">
+                <h5>Pergunte ao NotebookLM</h5>
+                <p>Tire dúvidas direto com a IA do Google</p>
+              </div>
+            </a>
+
+            <!-- 4. Download PDF -->
+            <a href="#" class="wb-ai-tool-card" id="wbAiPdfLink" target="_blank" rel="noopener noreferrer">
+              <div class="wb-ai-tool-icon pdf">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
+                  <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+              </div>
+              <div class="wb-ai-tool-content">
+                <h5>Relatório em PDF</h5>
+                <p>Download do material esquematizado</p>
+              </div>
+            </a>
+          </div>
+        </aside>
+
+      </section>
+
+      <!-- ======================================================================
+           3. Sistema de Abas Multi-Conteúdo
+           ====================================================================== -->
+      <section class="webinar-tabs-container" aria-label="Conteúdo Detalhado do Webinar">
+        
+        <!-- Barra de Navegação de Abas -->
+        <nav class="webinar-tabs-nav" role="tablist">
+          <button type="button" class="wb-tab-button active" role="tab" aria-selected="true" aria-controls="panel-resumo" id="tab-resumo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Resumo
+          </button>
+
+          <button type="button" class="wb-tab-button" role="tab" aria-selected="false" aria-controls="panel-relatorio" id="tab-relatorio">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Relatório da Aula
+          </button>
+
+          <button type="button" class="wb-tab-button" role="tab" aria-selected="false" aria-controls="panel-infografico" id="tab-infografico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            Infográfico HD
+          </button>
+
+          <button type="button" class="wb-tab-button" role="tab" aria-selected="false" aria-controls="panel-audio" id="tab-audio">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+            Resumos em Áudio
+          </button>
+
+          <button type="button" class="wb-tab-button" role="tab" aria-selected="false" aria-controls="panel-quiz" id="tab-quiz">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            Quiz com IA
+          </button>
+
+          <button type="button" class="wb-tab-button" role="tab" aria-selected="false" aria-controls="panel-documentos" id="tab-documentos">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Documentos PDF
+          </button>
+        </nav>
+
+        <!-- Painel 1: Resumo Executivo -->
+        <div class="webinar-tab-panel active" id="panel-resumo" role="tabpanel" aria-labelledby="tab-resumo">
+          <!-- Injetado dinamicamente -->
+        </div>
+
+        <!-- Painel 2: Relatório da Aula -->
+        <div class="webinar-tab-panel" id="panel-relatorio" role="tabpanel" aria-labelledby="tab-relatorio">
+          <!-- Injetado dinamicamente -->
+        </div>
+
+        <!-- Painel 3: Infográfico HD com Zoom -->
+        <div class="webinar-tab-panel" id="panel-infografico" role="tabpanel" aria-labelledby="tab-infografico">
+          <div class="infographic-viewer-wrapper">
+            <div class="infographic-toolbar">
+              <span class="infographic-toolbar-title" id="wbInfographicTitle">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                Infográfico em Alta Resolução
+              </span>
+              <div class="infographic-controls">
+                <button type="button" class="infographic-ctrl-btn" id="wbZoomInBtn" title="Aumentar Zoom">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  Zoom +
+                </button>
+                <button type="button" class="infographic-ctrl-btn" id="wbZoomOutBtn" title="Diminuir Zoom">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  Zoom -
+                </button>
+                <button type="button" class="infographic-ctrl-btn" id="wbZoomResetBtn" title="Restaurar Tamanho">
+                  Reset
+                </button>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="infographic-ctrl-btn" id="wbInfographicDownload" title="Baixar Infográfico em HD">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Download HD
+                </a>
+              </div>
+            </div>
+
+            <div class="infographic-canvas-box" id="wbInfographicCanvas">
+              <img src="" alt="Infográfico Científico" class="infographic-full-img" id="wbInfographicImg">
+            </div>
+          </div>
+        </div>
+
+        <!-- Painel 4: Resumos em Áudio e Podcasts -->
+        <div class="webinar-tab-panel" id="panel-audio" role="tabpanel" aria-labelledby="tab-audio">
+          <div class="audio-player-list" id="wbAudiosContainer">
+            <!-- Injetado dinamicamente -->
+          </div>
+        </div>
+
+        <!-- Painel 5: Quiz Interativo com IA -->
+        <div class="webinar-tab-panel" id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz">
+          <div id="wbQuizContainer">
+            <!-- Injetado dinamicamente via /js/webinares-app.js -->
+          </div>
+        </div>
+
+        <!-- Painel 6: Documentos PDF -->
+        <div class="webinar-tab-panel" id="panel-documentos" role="tabpanel" aria-labelledby="tab-documentos">
+          <div id="wbPdfsContainer">
+            <!-- Injetado dinamicamente -->
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Drawer Menu -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="app-drawer" id="appDrawer" aria-label="Navegação Lateral Principal" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <img src="/assets/images/logo-cathlabflix-color.png" alt="CathlabFlix" class="drawer-logo logo-light" width="135" height="38">
+        <img src="/assets/images/logo-cathlabflix-white.png" alt="CathlabFlix" class="drawer-logo logo-blue" width="135" height="38">
+      </div>
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Fechar menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <ul class="dropdown-nav-list drawer-nav-list" role="menu">
+      <li class="dropdown-nav-item">
+        <a href="/new" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Início</span>
+          </span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/webinares" class="dropdown-nav-link drawer-nav-link active">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+            <span>Webinares com IA</span>
+          </span>
+          <span class="dropdown-badge novelty">NOVO</span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/congressos" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Congressos</span>
+          </span>
+          <span class="dropdown-badge">OFICIAL</span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/busca" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>Busca no Site</span>
+          </span>
+          <span class="dropdown-badge novelty">BUSCA</span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/posts" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"></path>
+              <path d="M18 14h4"></path>
+              <path d="M18 18h4"></path>
+              <path d="M18 10h4"></path>
+              <path d="M5 10h6"></path>
+              <path d="M5 14h6"></path>
+            </svg>
+            <span>Notícias & Posts</span>
+          </span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/solaci" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Congresso SOLACI 2026</span>
+          </span>
+          <span class="dropdown-badge">37</span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/tct" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>TCT Plus Latam Valves</span>
+          </span>
+          <span class="dropdown-badge novelty">GRAVAÇÕES</span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/player" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Player de Aula & Slides</span>
+          </span>
+          <span class="dropdown-badge novelty">NOVO</span>
+        </a>
+      </li>
+      <li class="dropdown-nav-item">
+        <a href="/new/aulas-solaci" class="dropdown-nav-link drawer-nav-link">
+          <span class="dropdown-link-left">
+            <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+            </svg>
+            <span>Aulas PPTX</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="dropdown-divider"></div>
+
+    <div class="dropdown-theme-row">
+      <div class="dropdown-theme-label">
+        <svg class="dropdown-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <span>Tema do Site</span>
+      </div>
+      <div class="drawer-theme-switcher" role="radiogroup" aria-label="Seletor de Tema">
+        <button type="button" class="drawer-theme-btn" data-theme-val="light" aria-checked="false" role="radio" title="Tema Claro">
+          <span class="drawer-theme-swatch swatch-light">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="drawer-theme-name">Claro</span>
+        </button>
+        <button type="button" class="drawer-theme-btn active" data-theme-val="blue" aria-checked="true" role="radio" title="Tema Azul Oficial">
+          <span class="drawer-theme-swatch swatch-blue">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="drawer-theme-name">Azul</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Scripts Interativos -->
+  <script src="/js/continue-watching.js"></script>
+  <script src="/js/modern-ui.js"></script>
+  <script src="/js/modern-search.js" defer></script>
+  <script src="/js/webinares-data.js"></script>
+  <script src="/js/webinares-app.js"></script>
+
+</body>
+</html>
