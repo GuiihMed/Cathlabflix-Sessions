@@ -804,6 +804,25 @@
   padding: 2px 4px;
 }
 
+.agenda-list-card-thumb {
+  width: 72px;
+  height: 52px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #020617;
+  border: 1px solid var(--color-border-subtle);
+  position: relative;
+}
+
+.agenda-list-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .card-date-day {
   font-size: 1.125rem;
   font-weight: 800;
@@ -957,7 +976,7 @@
 }
 
 .agenda-expandable-drawer.is-open {
-  max-height: 580px;
+  max-height: 850px;
   opacity: 1;
   margin-top: 18px;
   padding-top: 16px;
@@ -1073,6 +1092,67 @@
   background: var(--color-text-primary);
   color: #FFFFFF;
   border-color: transparent;
+}
+
+/* Imagem Banner do Evento na Gaveta */
+.event-detail-media {
+  position: relative;
+  width: 100%;
+  height: 145px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid var(--color-border-subtle);
+  margin: 4px 0 2px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.event-detail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.agenda-event-detail-card:hover .event-detail-img {
+  transform: scale(1.02);
+}
+
+.event-detail-media-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+}
+
+.event-detail-media-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+  .event-detail-media {
+    height: 125px;
+  }
+  .agenda-list-card-thumb {
+    width: 60px;
+    height: 48px;
+  }
 }
 
 .event-category-tag {
@@ -1472,6 +1552,11 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
+[data-theme="blue"] .agenda-list-card-thumb {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
 [data-theme="blue"] .agenda-list-card-title {
   color: #FFFFFF;
 }
@@ -1499,6 +1584,12 @@
   background: #010234;
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="blue"] .event-detail-media {
+  background: #062257;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="blue"] .agenda-drawer-tab-btn {

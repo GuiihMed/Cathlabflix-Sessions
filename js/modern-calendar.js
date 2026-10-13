@@ -21,6 +21,7 @@ const INITIAL_EVENTS = [
     badge: 'GRAVAÇÃO',
     modality: 'Transmissão Online',
     location: 'Plataforma CathlabFlix',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
     actionUrl: '/new/destaques',
     actionLabel: 'Ver Transmissão'
   },
@@ -37,6 +38,7 @@ const INITIAL_EVENTS = [
     badge: 'DEBATE',
     modality: 'Ao Vivo com Perguntas',
     location: 'CathlabFlix Streaming',
+    image: '/assets/images/banner-tct-2026.png',
     actionUrl: '/new/tct',
     actionLabel: 'Ver Debate'
   },
@@ -53,6 +55,7 @@ const INITIAL_EVENTS = [
     badge: 'LEMBRE-SE',
     modality: 'Presencial e On-line',
     location: 'Transmissão Oficial CathlabFlix',
+    image: '/assets/images/banner-solaci-2026.png',
     actionUrl: '/new/solaci',
     actionLabel: 'Acessar Congresso'
   },
@@ -69,6 +72,7 @@ const INITIAL_EVENTS = [
     badge: 'SIMPÓSIO',
     modality: 'Sala de Transmissão 2',
     location: 'CathlabFlix Ao Vivo',
+    image: '/assets/images/solaci-2026-gravacao.png',
     actionUrl: '/new/solaci',
     actionLabel: 'Acessar Simpósio'
   },
@@ -85,6 +89,7 @@ const INITIAL_EVENTS = [
     badge: 'AULA',
     modality: 'On-demand & Exercícios',
     location: 'CathlabFlix Academy',
+    image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
     actionUrl: '/new/destaques',
     actionLabel: 'Ver Conteúdo'
   },
@@ -972,12 +977,17 @@ class ModernAgendaCalendar {
       const dayDisplay = event.dateRangeLabel || parts[2];
       const monthShort = this.monthShortNames[parseInt(parts[1], 10) - 1];
       const isCompactDay = dayDisplay.length > 2;
+      const eventImg = this.getEventImage(event);
 
       return `
         <div class="agenda-list-card ${event.color || 'red'}">
           <div class="agenda-list-card-date">
             <span class="card-date-day ${isCompactDay ? 'compact' : ''}">${dayDisplay}</span>
             <span class="card-date-month">${monthShort}</span>
+          </div>
+
+          <div class="agenda-list-card-thumb">
+            <img src="${eventImg}" alt="${event.title}" loading="lazy" onerror="this.src='/assets/images/og-cathlabflix.png'">
           </div>
 
           <div class="agenda-list-card-content">
@@ -1070,6 +1080,45 @@ class ModernAgendaCalendar {
     );
   }
 
+  getEventImage(event) {
+    if (!event) return '/assets/images/og-cathlabflix.png';
+    if (event.image) return event.image;
+
+    const id = (event.id || '').toLowerCase();
+    const title = (event.title || '').toLowerCase();
+    const cat = (event.category || '').toLowerCase();
+
+    if (id.includes('tct') || title.includes('tct')) {
+      return '/assets/images/banner-tct-2026.png';
+    }
+    if (id.includes('solaci') || title.includes('solaci')) {
+      return '/assets/images/banner-solaci-2026.png';
+    }
+    if (title.includes('valves') || id.includes('valves')) {
+      return '/assets/images/tct-latam-2026.png';
+    }
+    if (title.includes('tavi') || id.includes('tavi') || title.includes('estruturais')) {
+      return 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png';
+    }
+    if (id.includes('pci') || title.includes('pci')) {
+      return '/assets/images/solaci-2026-confira.png';
+    }
+    if (id.includes('nursing') || title.includes('nursing')) {
+      return '/assets/images/solaci-2026-aulas.png';
+    }
+    if (id.includes('endovascular') || title.includes('endovascular') || id.includes('intervencionistas') || cat === 'curso') {
+      return 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png';
+    }
+    if (id.includes('atualizacao') || title.includes('atualização') || cat === 'webinar') {
+      return 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png';
+    }
+    if (cat === 'congresso' || title.includes('congresso') || title.includes('sbhci')) {
+      return '/assets/images/banner-solaci-2026.png';
+    }
+
+    return '/assets/images/og-cathlabflix.png';
+  }
+
   getFilteredEventsForDate(dateStr) {
     return this.events.filter(ev => {
       const matchesDate = ev.date === dateStr || (ev.dates && ev.dates.includes(dateStr));
@@ -1143,6 +1192,7 @@ class ModernAgendaCalendar {
     }
 
     const dayDisplay = activeEvent.dateRangeLabel ? `${activeEvent.dateRangeLabel} ${monthShort}` : `${dayNum} ${monthShort}`;
+    const eventImg = this.getEventImage(activeEvent);
 
     inner.innerHTML = `
       <div class="agenda-event-detail-card ${colorClass}">
@@ -1162,6 +1212,13 @@ class ModernAgendaCalendar {
         </div>
 
         ${tabsHtml}
+
+        <!-- Imagem Visual do Evento -->
+        <div class="event-detail-media">
+          <img src="${eventImg}" alt="${activeEvent.title}" class="event-detail-img" loading="lazy" onerror="this.src='/assets/images/og-cathlabflix.png'">
+          <div class="event-detail-media-gradient"></div>
+          <span class="event-detail-media-badge">${activeEvent.category}</span>
+        </div>
 
         <!-- Conteúdo do evento -->
         <div class="event-detail-body">
