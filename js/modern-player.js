@@ -305,7 +305,86 @@ function loadSession(session, updateHistory = true) {
     const newUrl = `${window.location.pathname}?id=${session.id}`;
     window.history.pushState({ sessionId: session.id }, session.title, newUrl);
   }
+
+  // 7. Atualizar Cookie do Usuário em Continue Assistindo
+  if (window.ContinueWatchingManager) {
+    window.ContinueWatchingManager.updateProgress({
+      id: session.id,
+      title: session.title,
+      speaker: session.speaker,
+      category: session.category,
+      room: session.room,
+      duration: session.duration,
+      poster: session.poster,
+      videoUrl: `https://player.vimeo.com/video/${session.vimeoId}`,
+      link: `/new/player?id=${encodeURIComponent(session.id)}`,
+      progress: 15
+    });
+  }
+
+  startWatchProgressHeartbeat(session);
 }
+
+let watchHeartbeatInterval = null;
+function startWatchProgressHeartbeat(session) {
+  if (watchHeartbeatInterval) {
+    clearInterval(watchHeartbeatInterval);
+  }
+
+  let currentProgress = 15;
+  if (window.ContinueWatchingManager) {
+    const existing = (window.ContinueWatchingManager.getList() || []).find(s => s.id === session.id);
+    if (existing && existing.progress) {
+      currentProgress = existing.progress;
+    }
+  }
+
+  watchHeartbeatInterval = setInterval(() => {
+    if (!currentSession || currentSession.id !== session.id) {
+      clearInterval(watchHeartbeatInterval);
+      return;
+    }
+    if (currentProgress < 95) {
+      currentProgress = Math.min(95, currentProgress + 3);
+      if (window.ContinueWatchingManager) {
+        window.ContinueWatchingManager.updateProgress({
+          id: session.id,
+          title: session.title,
+          speaker: session.speaker,
+          category: session.category,
+          room: session.room,
+          duration: session.duration,
+          poster: session.poster,
+          videoUrl: `https://player.vimeo.com/video/${session.vimeoId}`,
+          link: `/new/player?id=${encodeURIComponent(session.id)}`,
+          progress: currentProgress
+        });
+      }
+    }
+  }, 10000);
+}
+
+// Ouve mensagens de progresso do Vimeo Player (postMessage)
+window.addEventListener('message', (event) => {
+  try {
+    const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+    if (data && data.event === 'timeupdate' && data.data && currentSession) {
+      const percent = Math.round((data.data.percent || 0) * 100);
+      if (percent > 0 && window.ContinueWatchingManager) {
+        window.ContinueWatchingManager.updateProgress({
+          id: currentSession.id,
+          title: currentSession.title,
+          speaker: currentSession.speaker,
+          category: currentSession.category,
+          room: currentSession.room,
+          duration: currentSession.duration,
+          poster: currentSession.poster,
+          progress: percent
+        });
+      }
+    }
+  } catch {}
+});
 
 /**
  * Renderiza os cards de download de materiais (PPTX / PDF)
