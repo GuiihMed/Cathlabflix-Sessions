@@ -3,8 +3,92 @@
  * Agenda Oficial SBHCI 2027 & Integração Completa
  */
 
-// Agenda Oficial SBHCI 2027 Completa com Cursos, Congressos, Simpósios e Prova de Título
+// Agenda Oficial CathlabFlix: Eventos Vigentes 2026 e Agenda Anual SBHCI 2027
 const INITIAL_EVENTS = [
+  // ==========================================
+  // OUTUBRO 2026 (Transmissões e Congressos)
+  // ==========================================
+  {
+    id: 'webinar-sbhci-outubro',
+    date: '2026-10-09',
+    startTime: '19:00',
+    endTime: '20:30',
+    time: '19:00 - 20:30',
+    title: 'Webinar SBHCI: Atualizações em Terapias Estruturais',
+    subtitle: 'Discussão de casos de TAVI e Valve-in-Valve Mitral',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'GRAVAÇÃO',
+    modality: 'Transmissão Online',
+    location: 'Plataforma CathlabFlix',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Transmissão'
+  },
+  {
+    id: 'tct-highlights-replay',
+    date: '2026-10-15',
+    startTime: '20:00',
+    endTime: '21:30',
+    time: '20:00 - 21:30',
+    title: 'Debate TCT 2026: Principais Ensaios Clínicos',
+    subtitle: 'Análise crítica dos clinical trials e o impacto na prática clínica nacional',
+    category: 'Webinar',
+    color: 'blue',
+    badge: 'DEBATE',
+    modality: 'Ao Vivo com Perguntas',
+    location: 'CathlabFlix Streaming',
+    actionUrl: '/new/tct',
+    actionLabel: 'Ver Debate'
+  },
+  {
+    id: 'solaci-2026-destaque',
+    date: '2026-10-21',
+    startTime: '14:00',
+    endTime: '18:00',
+    time: '14:00 - 18:00',
+    title: 'Sessão Especial SOLACI SBHCI 2026',
+    subtitle: 'Debates sobre Intervenções Coronárias Complexas e Casos Ao Vivo',
+    category: 'Congresso',
+    color: 'red',
+    badge: 'LEMBRE-SE',
+    modality: 'Presencial e On-line',
+    location: 'Transmissão Oficial CathlabFlix',
+    actionUrl: '/new/solaci',
+    actionLabel: 'Acessar Congresso'
+  },
+  {
+    id: 'solaci-satelite-bifurcacoes',
+    date: '2026-10-21',
+    startTime: '18:30',
+    endTime: '19:45',
+    time: '18:30 - 19:45',
+    title: 'Simpósio Satélite: Tratamento de Bifurcações',
+    subtitle: 'Estratégias de Stent Único vs Culotte e Double Kissing Crush',
+    category: 'Congresso',
+    color: 'red',
+    badge: 'SIMPÓSIO',
+    modality: 'Sala de Transmissão 2',
+    location: 'CathlabFlix Ao Vivo',
+    actionUrl: '/new/solaci',
+    actionLabel: 'Acessar Simpósio'
+  },
+  {
+    id: 'curso-intervencionistas-modulo',
+    date: '2026-10-28',
+    startTime: '09:00',
+    endTime: '12:00',
+    time: '09:00 - 12:00',
+    title: 'Curso para Intervencionistas em Formação',
+    subtitle: 'Módulo 2: Técnicas Fundamentais de Hemodinâmica e Acessos Vasculares',
+    category: 'Curso',
+    color: 'amber',
+    badge: 'AULA',
+    modality: 'On-demand & Exercícios',
+    location: 'CathlabFlix Academy',
+    actionUrl: '/new/destaques',
+    actionLabel: 'Ver Conteúdo'
+  },
+
   // ==========================================
   // FEVEREIRO 2027
   // ==========================================
@@ -609,14 +693,23 @@ class ModernAgendaCalendar {
     this.container = document.getElementById(containerId);
     if (!this.container) return;
 
-    // Inicialização direta no início da Agenda Oficial 2027 (Fevereiro 2027)
-    this.currentDate = new Date(2027, 1, 1); // Mês 1 = Fevereiro de 2027
+    // Inicialização dinâmica no dia atual (hoje)
     this.today = new Date();
-    this.selectedDateStr = '2027-02-01';
+    this.currentDate = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
+
+    // Formata o dia atual no padrão YYYY-MM-DD
+    const todayYear = this.today.getFullYear();
+    const todayMonth = String(this.today.getMonth() + 1).padStart(2, '0');
+    const todayDay = String(this.today.getDate()).padStart(2, '0');
+    this.selectedDateStr = `${todayYear}-${todayMonth}-${todayDay}`;
+
     this.activeFilter = 'all'; // all | Congresso | Webinar | Curso
     this.currentView = 'month'; // 'month' | 'list'
     this.events = options.events || INITIAL_EVENTS;
-    this.activeEventId = 'curso-atualizacao-hci-01';
+
+    // Se houver evento no dia de hoje, pré-seleciona seu ID
+    const todayEvents = this.getFilteredEventsForDate(this.selectedDateStr);
+    this.activeEventId = todayEvents.length > 0 ? todayEvents[0].id : null;
 
     this.monthNames = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -638,11 +731,13 @@ class ModernAgendaCalendar {
     this.renderContent();
     this.attachEventListeners();
 
-    // Se houver data pré-selecionada com evento, abre a gaveta inicial
+    // Se houver evento no dia atual, abre a gaveta de detalhes; caso contrário, mantém recolhida
     if (this.currentView === 'month' && this.selectedDateStr) {
       const dayEvents = this.getFilteredEventsForDate(this.selectedDateStr);
       if (dayEvents.length > 0) {
         this.expandEventDrawer(dayEvents, this.selectedDateStr, this.activeEventId);
+      } else {
+        this.collapseEventDrawer();
       }
     }
   }
@@ -653,7 +748,7 @@ class ModernAgendaCalendar {
         <!-- Topo da Agenda com Kicker e Alternador de Visão (Mês vs Lista) -->
         <div class="agenda-top-bar">
           <div class="agenda-header-titles">
-            <span class="agenda-kicker">AGENDA OFICIAL SBHCI 2027</span>
+            <span class="agenda-kicker">AGENDA CATHLABFLIX</span>
           </div>
 
           <div class="agenda-view-toggle" role="tablist" aria-label="Modo de visualização da agenda">
@@ -696,7 +791,7 @@ class ModernAgendaCalendar {
 
         <!-- Barra de Navegação do Mês (Visível no modo Calendário) -->
         <div class="agenda-header" id="agendaMonthHeader">
-          <h3 class="agenda-month-title" id="agendaMonthDisplay">Fevereiro 2027</h3>
+          <h3 class="agenda-month-title" id="agendaMonthDisplay"></h3>
 
           <div class="agenda-nav-controls">
             <button type="button" class="agenda-nav-btn" id="agendaPrevMonthBtn" aria-label="Mês anterior" title="Mês anterior">
@@ -704,8 +799,8 @@ class ModernAgendaCalendar {
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
             </button>
-            <button type="button" class="agenda-today-btn" id="agendaTodayBtn" title="Ir para Fevereiro 2027">
-              2027
+            <button type="button" class="agenda-today-btn" id="agendaTodayBtn" title="Ir para o dia de hoje">
+              Hoje
             </button>
             <button type="button" class="agenda-nav-btn" id="agendaNextMonthBtn" aria-label="Próximo mês" title="Próximo mês">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1367,9 +1462,20 @@ class ModernAgendaCalendar {
 
     if (todayBtn) {
       todayBtn.addEventListener('click', () => {
-        // Retorna ao primeiro mês com evento da Agenda 2027 (Fevereiro 2027)
-        this.currentDate = new Date(2027, 1, 1);
-        this.collapseEventDrawer();
+        const now = new Date();
+        this.currentDate = new Date(now.getFullYear(), now.getMonth(), 1);
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        this.selectedDateStr = `${y}-${m}-${d}`;
+
+        const dayEvents = this.getFilteredEventsForDate(this.selectedDateStr);
+        if (dayEvents.length > 0) {
+          this.activeEventId = dayEvents[0].id;
+          this.expandEventDrawer(dayEvents, this.selectedDateStr, this.activeEventId);
+        } else {
+          this.collapseEventDrawer();
+        }
         this.renderMonthDays();
       });
     }
