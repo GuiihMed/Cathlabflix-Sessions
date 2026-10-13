@@ -149,16 +149,6 @@
     const durationEl = document.getElementById('wbDuration');
     if (durationEl) durationEl.textContent = webinar.duration;
 
-    // Renderizar Seletor Rápido de Sessões
-    const sessionsList = document.getElementById('wbSessionsPillList');
-    if (sessionsList) {
-      sessionsList.innerHTML = WEBINARES_DATA.map(item => `
-        <a href="/new/webinar?id=${item.id}" class="wb-session-pill ${item.id === webinar.id ? 'active' : ''}">
-          ${item.shortTitle}
-        </a>
-      `).join('');
-    }
-
     // Renderizar Player de Vídeo Principal (Vimeo 16:9 responsivo)
     const videoWrapper = document.getElementById('wbVideoWrapper');
     if (videoWrapper) {

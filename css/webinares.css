@@ -478,60 +478,6 @@
   opacity: 0.5;
 }
 
-/* Seletor rápido de webinares no topo */
-.webinar-session-selector-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: var(--wb-card-bg);
-  border: 1px solid var(--wb-card-border);
-  padding: 12px 18px;
-  border-radius: 12px;
-  margin-bottom: 24px;
-}
-
-.wb-selector-label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--wb-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.wb-sessions-pill-list {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 2px;
-}
-
-.wb-session-pill {
-  background: var(--wb-bg-subtle);
-  border: 1px solid var(--wb-card-border);
-  color: var(--wb-text-muted);
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 8px;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.wb-session-pill:hover {
-  color: var(--wb-text-main);
-  border-color: rgba(229, 9, 20, 0.4);
-}
-
-.wb-session-pill.active {
-  background: var(--wb-red);
-  color: #fff;
-  border-color: var(--wb-red);
-}
 
 /* Cabeçalho do Webinar */
 .webinar-detail-header {
