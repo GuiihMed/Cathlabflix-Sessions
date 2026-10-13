@@ -92,7 +92,7 @@
     "vimeoId": {
       "type": "string",
       "description": "ID numérico do vídeo no Vimeo",
-      "example": "1223707542"
+      "example": "1210589447"
     },
     "videoEmbedUrl": {
       "type": "string",

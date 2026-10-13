@@ -119,16 +119,16 @@ const NOVO_WEBINAR_TEMPLATE = {
   /**
    * ID numérico do vídeo hospedado no Vimeo (CathlabFlix Oficial)
    * @type {string}
-   * @example "1223707542"
+   * @example "1210589447"
    */
-  vimeoId: "1223707542",
+  vimeoId: "1210589447",
 
   /**
    * URL de incorporação direta do player
    * @type {string}
-   * @example "https://player.vimeo.com/video/1223707542"
+   * @example "https://player.vimeo.com/video/1210589447"
    */
-  videoEmbedUrl: "https://player.vimeo.com/video/1223707542",
+  videoEmbedUrl: "https://player.vimeo.com/video/1210589447",
 
   // --------------------------------------------------------------------------
   // 4. INFOGRÁFICO CIENTÍFICO EM ALTA RESOLUÇÃO (HD)
