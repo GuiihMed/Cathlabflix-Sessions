@@ -1,156 +1,2480 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="blue">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOLACI 2026 - Acesse os conteúdos | Cathlabflix Sessions</title>
-  <meta name="description" content="Grade de programação e exibidor dinâmico de aulas e transmissões do SOLACI SBHCI 2026 integrado à API do Vimeo com navegação por dias, salas e accordions responsivos 16:9.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Gravações SOLACI-SBHCI 2026 - CathlabFlix</title>
+  <meta name="description" content="Assista a todas as transmissões e sessões científicas gravadas do Congresso SOLACI-SBHCI 2026 com navegação por dias e salas.">
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://www.cathlabflix.org/">
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
 
-  <!-- Open Graph / Facebook / WhatsApp -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.cathlabflix.org/">
-  <meta property="og:title" content="SOLACI 2026 - Gravações | CathlabFlix Sessions">
-  <meta property="og:description" content="Grade de programação e exibidor dinâmico de aulas e transmissões do SOLACI SBHCI 2026.">
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://www.cathlabflix.org/solaci-gravacao">
+  <meta property="og:title" content="Gravações SOLACI-SBHCI 2026 - CathlabFlix Sessions">
+  <meta property="og:description" content="Transmissões e sessões científicas gravadas do Congresso SOLACI-SBHCI 2026.">
   <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
-  <meta property="og:image:secure_url" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="Logo CathlabFlix">
-  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/logo-cathlabflix.png">
-  <meta property="og:site_name" content="CathlabFlix by SBHCI">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://www.cathlabflix.org/">
-  <meta name="twitter:title" content="SOLACI 2026 - Gravações | CathlabFlix Sessions">
-  <meta name="twitter:description" content="Grade de programação e exibidor dinâmico de aulas e transmissões do SOLACI SBHCI 2026.">
-  <meta name="twitter:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
-
-  <!-- Tipografia Montserrat -->
+  <!-- Tipografia Montserrat Oficial SBHCI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Folhas de Estilos -->
-  <link rel="stylesheet" href="/css/variables.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       Layout 70% / 30% Assimétrico com Player 16:9 e Abas de Salas
+       ========================================================================== -->
+  <style>
+    /* 1. Variáveis de Design Tokens */
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #082b6e;
+      --color-surface-elevated: #0a2d72;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #B80710;
+      --color-primary-glow: rgba(229, 9, 20, 0.4);
+      --color-blue-accent: #38bdf8;
+      --color-blue-accent-glow: rgba(56, 189, 248, 0.35);
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 6px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 24px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --shadow-player: 0 16px 40px -8px rgba(0, 0, 0, 0.7), 0 0 24px rgba(6, 34, 87, 0.5);
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      background-color: var(--color-bg-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Container Principal */
+    .gravacao-main {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    /* Barra Superior com Botão Voltar ao SOLACI e Breadcrumb */
+    .top-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .back-to-solaci-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .back-to-solaci-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--color-blue-accent);
+      transform: translateX(-3px);
+    }
+
+    .breadcrumbs-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb-sep {
+      color: var(--color-text-tertiary);
+    }
+
+    .breadcrumb-highlight {
+      color: var(--color-blue-accent);
+      font-weight: 700;
+      max-width: 320px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Cabeçalho da Página */
+    .gravacao-header {
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .gravacao-title {
+      font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .gravacao-title-underline {
+      width: 72px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-blue-accent) 100%);
+      border-radius: 2px;
+      margin-bottom: 12px;
+    }
+
+    .gravacao-subtitle {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+      max-width: 860px;
+    }
+
+    /* ==========================================================================
+       GRID DO PLAYER (70% / 30%)
+       ========================================================================== */
+    .player-stage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(320px, 3.2fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Coluna Esquerda: Player 16:9, Metadados e Materiais (70%) */
+    .player-main-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 0;
+    }
+
+    /* Container do Vídeo com Proporção 16:9 Estrita */
+    .video-stage-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #020718;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-player);
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-stage-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-loading-placeholder {
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    /* Card de Metadados da Aula em Destaque */
+    .session-meta-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Linha de Badges */
+    .meta-badges-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 26px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .badge-day {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px var(--color-primary-glow);
+    }
+
+    .badge-room {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--color-blue-accent);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .badge-category {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .badge-time {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .badge-hd {
+      background: rgba(14, 165, 233, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(14, 165, 233, 0.4);
+    }
+
+    /* Título Principal */
+    .session-main-title {
+      font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+    }
+
+    /* Linha do Palestrante + Botões de Ação */
+    .session-speaker-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .speaker-profile-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .speaker-avatar-circle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0ea5e9 0%, #010234 100%);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9375rem;
+      font-weight: 800;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+
+    .speaker-info-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .speaker-display-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .speaker-affiliation-text {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* Ações Rápidas */
+    .session-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .action-pill-btn {
+      height: 40px;
+      padding: 0 16px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      background: rgba(1, 2, 52, 0.65);
+      color: #cbd5e1;
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .action-pill-btn:hover {
+      background: var(--color-surface-elevated);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .action-pill-btn.btn-slides {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border-color: var(--color-primary);
+      box-shadow: 0 3px 12px var(--color-primary-glow);
+    }
+
+    .action-pill-btn.btn-slides:hover {
+      background: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .action-pill-btn.saved {
+      background: rgba(229, 9, 20, 0.2);
+      color: #ff6b6b;
+      border-color: rgba(229, 9, 20, 0.5);
+    }
+
+    /* Bloco Sobre a Gravação */
+    .session-description-box {
+      padding-top: 4px;
+    }
+
+    .description-heading {
+      font-size: 0.8125rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--color-blue-accent);
+      margin-bottom: 8px;
+    }
+
+    .description-body {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Seção de Materiais Relacionados & Apresentações */
+    .related-materials-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 6px;
+    }
+
+    .materials-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .materials-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .material-card-banner {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .material-card-banner:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .material-card-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .material-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .material-card-icon.icon-aulas {
+      background: rgba(229, 9, 20, 0.16);
+      color: var(--color-primary);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .material-card-icon.icon-cobertura {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--color-blue-accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .material-card-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .material-card-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .material-card-sub {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+
+    .material-card-arrow {
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+      transition: transform var(--transition-fast);
+    }
+
+    .material-card-banner:hover .material-card-arrow {
+      color: var(--color-blue-accent);
+      transform: translateX(3px);
+    }
+
+    /* ==========================================================================
+       COLUNA DIREITA: PLAYLIST DA SESSÃO, DIAS E ABAS DAS SALAS (30%)
+       ========================================================================== */
+    .playlist-sidebar-column {
+      position: sticky;
+      top: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: calc(100vh - 40px);
+    }
+
+    .playlist-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .playlist-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .playlist-heading-text {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .playlist-count-pill {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      background: rgba(1, 2, 52, 0.7);
+      color: var(--color-blue-accent);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Nível 1: Abas dos Dias */
+    .filter-day-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .filter-day-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .day-tab-btn {
+      flex: 1;
+      min-width: 80px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      background: rgba(1, 2, 52, 0.65);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .day-tab-btn:hover {
+      background: var(--color-surface-hover);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .day-tab-btn.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border-color: var(--color-primary);
+      box-shadow: 0 2px 10px var(--color-primary-glow);
+    }
+
+    /* Nível 2: Abas das Salas */
+    .filter-room-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-room-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--color-text-tertiary);
+    }
+
+    .filter-room-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .filter-room-tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .room-tab-btn {
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .room-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .room-tab-btn.active {
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--color-blue-accent);
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 12px var(--color-blue-accent-glow);
+    }
+
+    .room-tab-count {
+      font-size: 0.625rem;
+      padding: 1px 5px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+    }
+
+    /* Campo de Busca Rápida */
+    .playlist-search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .playlist-search-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 34px 0 36px;
+      background: rgba(1, 2, 52, 0.7);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      color: #FFFFFF;
+      font-size: 0.8125rem;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+
+    .playlist-search-input:focus {
+      outline: none;
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      background: rgba(1, 2, 52, 0.9);
+    }
+
+    .playlist-search-input::placeholder {
+      color: var(--color-text-tertiary);
+    }
+
+    .search-icon-left {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-tertiary);
+      pointer-events: none;
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-text-tertiary);
+      cursor: pointer;
+      display: none;
+      padding: 4px;
+    }
+
+    .search-clear-btn:hover {
+      color: #FFFFFF;
+    }
+
+    /* Lista com Scroll Interno */
+    .playlist-scroll-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      padding-right: 4px;
+      flex: 1;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Card de Item na Playlist */
+    .playlist-item-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(1, 2, 52, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+      text-align: left;
+      user-select: none;
+    }
+
+    .playlist-item-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(2px);
+    }
+
+    .playlist-item-card.active {
+      background: rgba(229, 9, 20, 0.16);
+      border-color: rgba(229, 9, 20, 0.55);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Thumbnail do Card */
+    .playlist-thumb-box {
+      position: relative;
+      width: 96px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #020718;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .playlist-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .playlist-thumb-duration {
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #FFFFFF;
+      font-size: 0.5625rem;
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    .playlist-thumb-play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .playlist-item-card:hover .playlist-thumb-play-overlay,
+    .playlist-item-card.active .playlist-thumb-play-overlay {
+      opacity: 1;
+    }
+
+    .playlist-item-card.active .playlist-thumb-play-overlay {
+      background: rgba(229, 9, 20, 0.4);
+      color: #FFFFFF;
+    }
+
+    /* Conteúdo Textual do Card */
+    .playlist-item-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .playlist-now-playing-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.625rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ff4d4d;
+      letter-spacing: 0.5px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      animation: pulseAnimation 1.5s infinite;
+    }
+
+    @keyframes pulseAnimation {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .playlist-item-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .playlist-item-card.active .playlist-item-title {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .playlist-item-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 0.6875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .playlist-item-room-tag {
+      color: var(--color-blue-accent);
+      font-weight: 700;
+    }
+
+    .playlist-empty-state {
+      padding: 30px 16px;
+      text-align: center;
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Toast de Notificação Flutuante */
+    .toast-feedback {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 10000;
+      background: var(--color-surface);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--color-blue-accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-feedback.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE (TABLET & MOBILE)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .player-stage-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .playlist-sidebar-column {
+        position: static;
+        max-height: none;
+      }
+
+      .playlist-scroll-list {
+        max-height: 520px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gravacao-main {
+        padding: 16px 14px 44px;
+      }
+
+      .top-nav-bar {
+        margin-bottom: 16px;
+      }
+
+      .session-meta-card {
+        padding: 18px 16px;
+        border-radius: var(--radius-md);
+      }
+
+      .session-main-title {
+        font-size: 1.25rem;
+      }
+
+      .session-speaker-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .session-actions-group {
+        width: 100%;
+      }
+
+      .action-pill-btn {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .playlist-sidebar-column {
+        padding: 16px 14px;
+      }
+
+      .playlist-item-card {
+        padding: 8px 10px;
+      }
+
+      .playlist-thumb-box {
+        width: 84px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gravacao-title {
+        font-size: 1.45rem;
+      }
+
+      .materials-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ==========================================================================
-       Conteúdo Principal (Layout Oficial)
-       ========================================================================== -->
-  <main class="container">
-    
-    <!-- 1. Título 'Acesse os conteúdos' com traço magenta/rosa -->
-    <div class="content-header">
-      <h1 class="page-title">Acesse os conteúdos</h1>
-      <div class="title-underline"></div>
-    </div>
+  <div class="app-container">
+    <main class="gravacao-main" id="gravacaoMain">
 
-    <!-- 2. Card Principal do Evento -->
-    <div class="event-main-card">
-      
-      <!-- Nível 1: Abas dos Dias (Dia 29 | Dia 30 | Dia 31) -->
-      <div class="days-nav-wrapper">
-        <ul class="days-nav" id="daysNav" role="tablist">
-          <!-- Renderizado dinamicamente via JS -->
-        </ul>
-      </div>
+      <!-- 1. Barra de Navegação Superior -->
+      <nav class="top-nav-bar" aria-label="Navegação secundária">
+        <a href="https://www.cathlabflix.org/solaci" class="back-to-solaci-btn" target="_top" title="Voltar ao portal SOLACI-SBHCI 2026">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar ao SOLACI
+        </a>
 
-      <!-- Nível 2: Barra Horizontal de Salas (Heart Team | INCOR...) -->
-      <div class="rooms-nav-container">
-        <div class="rooms-nav-wrapper" id="roomsNavWrapper">
-          <ul class="rooms-nav" id="roomsNav" role="tablist">
-            <!-- Renderizado dinamicamente via JS -->
-          </ul>
+        <div class="breadcrumbs-wrap" aria-label="Trilha de navegação">
+          <span>CathlabFlix</span>
+          <span class="breadcrumb-sep">/</span>
+          <span>SOLACI-SBHCI 2026</span>
+          <span class="breadcrumb-sep">/</span>
+          <span>Gravações</span>
+          <span class="breadcrumb-sep">/</span>
+          <span class="breadcrumb-highlight" id="breadcrumbActiveTitle">Carregando...</span>
         </div>
-        
-        <button type="button" class="rooms-scroll-arrow" id="roomsScrollNext" title="Ver mais salas">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="9 18 15 12 9 6"></polyline>
-          </svg>
-        </button>
-      </div>
+      </nav>
 
-      <!-- Nível 3: Accordion de Vídeos (Cards Escuros com Iframe 16:9) -->
-      <div class="accordion-list" id="accordionContainer">
-        <!-- Renderizado dinamicamente via JS -->
-      </div>
+      <!-- 2. Cabeçalho Principal -->
+      <header class="gravacao-header">
+        <h1 class="gravacao-title">Gravações SOLACI-SBHCI 2026</h1>
+        <div class="gravacao-title-underline"></div>
+        <p class="gravacao-subtitle">
+          Assista às transmissões oficiais e sessões científicas gravadas em alta definição com navegação dinâmica por dias, salas e filtros em tempo real.
+        </p>
+      </header>
 
-    </div>
+      <!-- 3. Stage Principal (70% Player e Metadados / 30% Playlist e Abas de Salas) -->
+      <div class="player-stage-grid">
 
-  </main>
+        <!-- Coluna Esquerda: Player 16:9 + Metadados + Materiais (70%) -->
+        <section class="player-main-column" id="playerSection" aria-label="Vídeo e Detalhes da Aula">
 
-  <!-- ==========================================================================
-       Modal de Configuração da API do Vimeo (Opcional)
-       ========================================================================== -->
-  <div class="modal-backdrop" id="settingsModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="modalTitle">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-          Configuração da API do Vimeo
-        </h3>
-        <button type="button" class="modal-close-btn" id="btnCloseSettings" aria-label="Fechar modal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-
-      <form id="settingsForm">
-        <div class="modal-body">
-          <div class="form-switch-row">
-            <div>
-              <div class="form-label" style="color: #ffffff; margin-bottom: 2px;">Usar Dados Mockados (Simulação)</div>
-              <div class="form-hint">Ative para navegar e testar a interface sem necessidade de token ativo.</div>
+          <!-- A. Video Player 16:9 -->
+          <div class="video-stage-box" id="videoStageBox">
+            <div class="video-loading-placeholder" id="videoLoadingPlaceholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Carregando player de vídeo...
             </div>
-            <label style="cursor: pointer; display: flex; align-items: center;">
-              <input type="checkbox" id="toggleMockSwitch" style="width: 20px; height: 20px; accent-color: var(--accent-cyan);" checked>
-            </label>
+            <iframe 
+              id="vimeoPlayerIframe"
+              src=""
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Player de Gravação SOLACI-SBHCI 2026"
+              style="display: none;"
+            ></iframe>
           </div>
 
-          <div class="form-group">
-            <label for="tokenInput" class="form-label">Vimeo Personal Access Token (Bearer Token)</label>
+          <!-- B. Card de Informações e Metadados da Aula -->
+          <article class="session-meta-card" aria-label="Detalhes da sessão em evidência">
+            
+            <!-- Badges -->
+            <div class="meta-badges-row" id="sessionBadgesRow">
+              <span class="badge-pill badge-day" id="badgeDay">Dia 29</span>
+              <span class="badge-pill badge-room" id="badgeRoom">Heart Team</span>
+              <span class="badge-pill badge-category" id="badgeCategory">Sessão Científica</span>
+              <span class="badge-pill badge-time" id="badgeTime">14:00 - 15:00</span>
+              <span class="badge-pill badge-hd">1080p Vimeo HD</span>
+            </div>
+
+            <!-- Título da Sessão -->
+            <h2 class="session-main-title" id="sessionMainTitle">Carregando gravação...</h2>
+
+            <!-- Palestrante / Equipe & Ações -->
+            <div class="session-speaker-row">
+              <div class="speaker-profile-box">
+                <div class="speaker-avatar-circle" id="speakerAvatar">HT</div>
+                <div class="speaker-info-meta">
+                  <span class="speaker-display-name" id="speakerName">Heart Team SOLACI</span>
+                  <span class="speaker-affiliation-text" id="speakerAffiliation">Congresso SOLACI-SBHCI 2026</span>
+                </div>
+              </div>
+
+              <!-- Botões de Ação -->
+              <div class="session-actions-group">
+                <button type="button" class="action-pill-btn" id="btnFavorite" title="Adicionar à Minha Lista">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+                  <span id="btnFavoriteText">Minha Lista</span>
+                </button>
+
+                <button type="button" class="action-pill-btn" id="btnShare" title="Copiar link desta gravação">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                  </svg>
+                  Compartilhar
+                </button>
+
+                <a href="https://www.cathlabflix.org/aulas-solaci" class="action-pill-btn btn-slides" target="_top" title="Ver grade de aulas e baixar slides PPTX">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                  Grade de Aulas & PPTX
+                </a>
+              </div>
+            </div>
+
+            <!-- Descrição da Sessão -->
+            <div class="session-description-box">
+              <h3 class="description-heading">Sobre esta Gravação</h3>
+              <p class="description-body" id="sessionDescription">Carregando detalhes clínicos e discussão do procedimento...</p>
+            </div>
+
+          </article>
+
+          <!-- C. Materiais & Conteúdos Relacionados -->
+          <section class="related-materials-section" aria-label="Conteúdos e materiais complementares">
+            <div class="materials-title-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              Conteúdos & Materiais Complementares
+            </div>
+
+            <div class="materials-cards-grid">
+              
+              <!-- Card 1: Grade de Aulas & PPTX -->
+              <a href="https://www.cathlabflix.org/aulas-solaci" class="material-card-banner" target="_top" title="Acessar Grade de Aulas e Slides PPTX">
+                <div class="material-card-info">
+                  <div class="material-card-icon icon-aulas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                  </div>
+                  <div class="material-card-texts">
+                    <span class="material-card-title">Grade de Aulas & Slides</span>
+                    <span class="material-card-sub">Download oficial de apresentações PPTX</span>
+                  </div>
+                </div>
+                <svg class="material-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
+
+              <!-- Card 2: Cobertura Audiovisual -->
+              <a href="https://www.cathlabflix.org/solaci-cobertura" class="material-card-banner" target="_top" title="Acessar Cobertura Audiovisual Oficial">
+                <div class="material-card-info">
+                  <div class="material-card-icon icon-cobertura">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                  </div>
+                  <div class="material-card-texts">
+                    <span class="material-card-title">Cobertura Audiovisual</span>
+                    <span class="material-card-sub">Entrevistas e melhores momentos</span>
+                  </div>
+                </div>
+                <svg class="material-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
+
+            </div>
+          </section>
+
+        </section>
+
+        <!-- Coluna Direita: Playlist da Sessão com Abas de Salas e Filtro de Dias (30%) -->
+        <aside class="playlist-sidebar-column" aria-label="Playlist e Grade de Gravações">
+          
+          <!-- Cabeçalho da Playlist -->
+          <div class="playlist-header-row">
+            <div class="playlist-title-wrap">
+              <h3 class="playlist-heading-text">Gravações da Sessão</h3>
+              <span class="playlist-count-pill" id="playlistCounter">38 GRAVAÇÕES</span>
+            </div>
+          </div>
+
+          <!-- Nível 1: Abas dos Dias -->
+          <div class="filter-day-tabs" id="dayTabsContainer" role="tablist" aria-label="Filtrar gravações por dia">
+            <!-- Injetado dinamicamente via JS -->
+          </div>
+
+          <!-- Nível 2: Abas das Salas -->
+          <div class="filter-room-section">
+            <span class="filter-room-label">Salas do Evento:</span>
+            <div class="filter-room-tabs" id="roomTabsContainer" role="tablist" aria-label="Filtrar por sala">
+              <!-- Injetado dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Campo de Busca em Tempo Real -->
+          <div class="playlist-search-box">
+            <svg class="search-icon-left" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
             <input 
-              type="password" 
-              class="form-control" 
-              id="tokenInput" 
-              placeholder="Cole seu token de acesso da API do Vimeo aqui..." 
+              type="text" 
+              class="playlist-search-input" 
+              id="playlistSearchInput" 
+              placeholder="Buscar por tema, médico ou sala..." 
               autocomplete="off"
+              spellcheck="false"
+              aria-label="Buscar nas gravações"
             >
-            <div class="form-hint">
-              Para obter seu token, acesse <a href="https://developer.vimeo.com/apps" target="_blank" rel="noopener">developer.vimeo.com/apps</a>, crie uma aplicação e gere um Personal Access Token com escopo <code>private</code> e <code>video_files</code>.
-            </div>
+            <button type="button" class="search-clear-btn" id="searchClearBtn" aria-label="Limpar busca" title="Limpar busca">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
 
-          <div class="form-hint" style="background: rgba(56, 189, 248, 0.08); padding: 0.75rem; border: 1px solid rgba(56, 189, 248, 0.2);">
-            💡 <strong>Dica de Mapeamento:</strong> A lista de dias, salas e seus respectivos <code>folder_id</code> podem ser facilmente ajustados no arquivo <code>js/config.js</code>.
+          <!-- Lista de Gravações com Scroll Vertical Interno -->
+          <div class="playlist-scroll-list" id="playlistScrollList" role="list">
+            <!-- Cards injetados dinamicamente via JS -->
           </div>
-        </div>
 
-        <div class="modal-footer">
-          <button type="button" class="btn-secondary" id="btnCancelSettings">Cancelar</button>
-          <button type="submit" class="btn-primary">Salvar & Aplicar</button>
-        </div>
-      </form>
-    </div>
+        </aside>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast de Notificação Flutuante -->
+  <div id="toastFeedback" class="toast-feedback" role="status" aria-live="polite">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toastMessage">Link copiado para a área de transferência!</span>
   </div>
 
   <!-- ==========================================================================
-       Scripts JavaScript (Vanilla JS Modular)
+       JAVASCRIPT MODULAR EMBUTIDO
+       Base de Dados Completa com as 38 Gravações Reais e Controle de Estados
        ========================================================================== -->
-  <script src="/js/config.js?v=5"></script>
-  <script src="/js/vimeoService.js?v=5"></script>
-  <script src="/js/accordion.js?v=5"></script>
-  <script src="/js/app.js?v=5"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. BASE DE DADOS COMPLETA DAS 38 SESSÕES OFICIAIS DO CONGRESSO SOLACI-SBHCI 2026
+      const SESSIONS = [
+  {
+    "id": "1223775457",
+    "vimeoId": "1223775457",
+    "title": "Opening & Vision • The Future Of Interventional Cardiology 2026",
+    "rawName": "08-45 - 10-00 - Opening & Vision - The Future Of Interventional Cardiology 2026",
+    "time": "08:45 - 10:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "80 min",
+    "durationSecs": 4836,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (29 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223775456",
+    "vimeoId": "1223775456",
+    "title": "Lecture & National Live Case • Support • Meril Life Science",
+    "rawName": "10-00 - 11-00 - Lecture & National Live Case - Support - Meril Life Science",
+    "time": "10:00 - 11:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "62 min",
+    "durationSecs": 3771,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (29 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223776147",
+    "vimeoId": "1223776147",
+    "title": "Lecture & National Live Case • Support • Lepu",
+    "rawName": "11-00 - 12-00 - Lecture & National Live Case - Support - Lepu",
+    "time": "11:00 - 12:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "52 min",
+    "durationSecs": 3134,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Lepu Medical",
+    "category": "Caso ao Vivo Internacional",
+    "description": "Palestra e caso ao vivo internacional abordando novas plataformas farmacológicas e tecnologia Lepu Medical."
+  },
+  {
+    "id": "1223777350",
+    "vimeoId": "1223777350",
+    "title": "Scientific Talk • Advancing From Long-Term Evidence To Next-Generation Design • Support • Venus",
+    "rawName": "12-00 - 13-00 - Scientific Talk - Advancing From Long-Term Evidence To Next-Generation Design - Support - Venus",
+    "time": "12:00 - 13:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "59 min",
+    "durationSecs": 3598,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Venus Medtech",
+    "category": "Próteses Transcateter",
+    "description": "Simpósio científico com próteses valvares pulmonares e aórticas de nova geração com suporte Venus Medtech."
+  },
+  {
+    "id": "1223777407",
+    "vimeoId": "1223777407",
+    "title": "Lecture & International Case • Support • Medtronic",
+    "rawName": "13-00 - 14-00 - Lecture & International Case - Support - Medtronic",
+    "time": "13:00 - 14:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "57 min",
+    "durationSecs": 3423,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Medtronic",
+    "category": "TAVI & Doença Coronária",
+    "description": "Sessão oficial com casos internacionais e simpósio científico patrocinado pela Medtronic, focando em inovações em intervenção cardiovascular e TAVI."
+  },
+  {
+    "id": "1223778332",
+    "vimeoId": "1223778332",
+    "title": "Lecture & International Live Case • Support • Boston Scientific",
+    "rawName": "14-00 - 15-00 - Lecture & International Live Case - Support - Boston Scientific",
+    "time": "14:00 - 15:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "47 min",
+    "durationSecs": 2842,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Boston Scientific",
+    "category": "Aterectomia & Litotripsia",
+    "description": "Simpósio patrocinado pela Boston Scientific com caso ao vivo internacional, estratégias de aterectomia rotacional e preparo de lesões severamente calcificadas."
+  },
+  {
+    "id": "1223775461",
+    "vimeoId": "1223775461",
+    "title": "Pulmonary Embolism • From Risk Stratification To Advanced Therapies • Support • Penumbra",
+    "rawName": "15-30 - 16-00 - Pulmonary Embolism - From Risk Stratification To Advanced Therapies - Support - Penumbra",
+    "time": "15:30 - 16:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "28 min",
+    "durationSecs": 1719,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Penumbra",
+    "category": "Embolia Pulmonar & Trombectomia",
+    "description": "Estratificação de risco e terapias avançadas de aspiração mecânica e trombectomia em embolia pulmonar e trombose arterial."
+  },
+  {
+    "id": "1223777539",
+    "vimeoId": "1223777539",
+    "title": "Mechanical Circulatory Support • From High-Risk Pci To Cardiogenic Shock",
+    "rawName": "16-00 - 17-00 - Mechanical Circulatory Support - From High-Risk Pci To Cardiogenic Shock",
+    "time": "16:00 - 17:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "58 min",
+    "durationSecs": 3493,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (29 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223775458",
+    "vimeoId": "1223775458",
+    "title": "Coronary Physiology In Debate • Wires, Algorithms, And The Battle For Guidance",
+    "rawName": "17-00 - 18-00 - Coronary Physiology In Debate - Wires, Algorithms, And The Battle For Guidance",
+    "time": "17:00 - 18:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "59 min",
+    "durationSecs": 3563,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (29 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223775830",
+    "vimeoId": "1223775830",
+    "title": "Solaci-Sbhci Awards Ceremony",
+    "rawName": "18-00 - 19-00 - Solaci-Sbhci Awards Ceremony",
+    "time": "18:00 - 19:00",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "51 min",
+    "durationSecs": 3064,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "SOLACI-SBHCI 2026",
+    "category": "Sessão Solene & Premiação",
+    "description": "Cerimônia solene oficial de premiação dos melhores trabalhos científicos, temas livres e encerramento do Congresso SOLACI-SBHCI 2026."
+  },
+  {
+    "id": "1223768684",
+    "vimeoId": "1223768684",
+    "title": "Dr. Edgar",
+    "rawName": "Dr. Edgar",
+    "time": "",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424545",
+    "duration": "43 min",
+    "durationSecs": 2597,
+    "speaker": "Dr. Edgar Tay",
+    "initials": "ET",
+    "affiliation": "Heart Team Internacional",
+    "category": "Caso Clínico & Palestra",
+    "description": "Palestra internacional e discussão de caso desafiador com o Dr. Edgar Tay na sala Heart Team."
+  },
+  {
+    "id": "1223707530",
+    "vimeoId": "1223707530",
+    "title": "01 • SOLACI INCOR • Dr Carlos Campos",
+    "rawName": "01 - SOLACI INCOR - Dr Carlos Campos",
+    "time": "",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "INCOR",
+    "folderId": "30423156",
+    "duration": "24 min",
+    "durationSecs": 1444,
+    "speaker": "Dr. Carlos Campos",
+    "initials": "CC",
+    "affiliation": "INCOR - Instituto do Coração",
+    "category": "Coronária Complexa & Imagem",
+    "description": "Intervenção coronária complexa guiada por imagem intravascular (OCT e IVUS) conduzida pelo Dr. Carlos Campos no INCOR, com preparo de placa e otimização de stent."
+  },
+  {
+    "id": "1223707542",
+    "vimeoId": "1223707542",
+    "title": "02 • SOLACI INCOR • Dr Raul Arrieta • 003",
+    "rawName": "02 - SOLACI INCOR - Dr Raul Arrieta - 003",
+    "time": "",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "INCOR",
+    "folderId": "30423156",
+    "duration": "43 min",
+    "durationSecs": 2614,
+    "speaker": "Dr. Raul Arrieta",
+    "initials": "RA",
+    "affiliation": "INCOR - Instituto do Coração",
+    "category": "Cardiopatias Congênitas",
+    "description": "Transmissão do procedimento estrutural congênito realizado no INCOR pelo Dr. Raul Arrieta, demonstrando oclusores vasculares de nova geração e navegação ecocardiográfica."
+  },
+  {
+    "id": "1223707531",
+    "vimeoId": "1223707531",
+    "title": "03 • SOLACI INCOR • Dr Carlos Campos • 002",
+    "rawName": "03 - SOLACI INCOR - Dr Carlos Campos - 002",
+    "time": "",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "INCOR",
+    "folderId": "30423156",
+    "duration": "40 min",
+    "durationSecs": 2453,
+    "speaker": "Dr. Carlos Campos",
+    "initials": "CC",
+    "affiliation": "INCOR - Instituto do Coração",
+    "category": "Coronária Complexa & Imagem",
+    "description": "Intervenção coronária complexa guiada por imagem intravascular (OCT e IVUS) conduzida pelo Dr. Carlos Campos no INCOR, com preparo de placa e otimização de stent."
+  },
+  {
+    "id": "1223707532",
+    "vimeoId": "1223707532",
+    "title": "04 • SOLACI INCOR • Dr Raul Arrieta • 004",
+    "rawName": "04 - SOLACI INCOR - Dr Raul Arrieta - 004",
+    "time": "",
+    "dayId": "dia-29",
+    "dayLabel": "Dia 29",
+    "dayDate": "29 de Julho",
+    "room": "INCOR",
+    "folderId": "30423156",
+    "duration": "46 min",
+    "durationSecs": 2795,
+    "speaker": "Dr. Raul Arrieta",
+    "initials": "RA",
+    "affiliation": "INCOR - Instituto do Coração",
+    "category": "Cardiopatias Congênitas",
+    "description": "Transmissão do procedimento estrutural congênito realizado no INCOR pelo Dr. Raul Arrieta, demonstrando oclusores vasculares de nova geração e navegação ecocardiográfica."
+  },
+  {
+    "id": "1223788579",
+    "vimeoId": "1223788579",
+    "title": "From Calcium To Compliance • Contemporary Atherectomy Strategies",
+    "rawName": "08-00 - 09-00 - From Calcium To Compliance - Contemporary Atherectomy Strategies",
+    "time": "08:00 - 09:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "54 min",
+    "durationSecs": 3259,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (30 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223780656",
+    "vimeoId": "1223780656",
+    "title": "Live Case • Support • Microport",
+    "rawName": "09-00 - 10-00 - Live Case - Support - Microport",
+    "time": "09:00 - 10:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "71 min",
+    "durationSecs": 4287,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Microport",
+    "category": "Caso ao Vivo Coronário",
+    "description": "Transmissão de caso ao vivo com stents farmacológicos de hastes ultrafinas e suporte tecnológico Microport."
+  },
+  {
+    "id": "1223782743",
+    "vimeoId": "1223782743",
+    "title": "Non-Left Main Bifurcation Pci • Strategy, Devices, And Decision-Making At The Edge",
+    "rawName": "10-30 - 11-15 - Non-Left Main Bifurcation Pci - Strategy, Devices, And Decision-Making At The Edge",
+    "time": "10:30 - 11:15",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "48 min",
+    "durationSecs": 2908,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (30 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223782744",
+    "vimeoId": "1223782744",
+    "title": "National Live Case • Support • Shockwave",
+    "rawName": "11-15 - 12-00 - National Live Case - Support - Shockwave",
+    "time": "11:15 - 12:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "42 min",
+    "durationSecs": 2553,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Shockwave Medical",
+    "category": "Litotripsia Intravascular (IVL)",
+    "description": "Caso nacional ao vivo e simpósio prático de litotripsia intravascular (IVL) com Shockwave em lesões coronárias e periféricas calcificadas."
+  },
+  {
+    "id": "1223788580",
+    "vimeoId": "1223788580",
+    "title": "Scientific Talk • Modern Pci In Practice • See. Prep. Treat. From Strategy To Case Discussion • Support • Boston Sci",
+    "rawName": "12-00 - 13-00 - Scientific Talk - Modern Pci In Practice - See. Prep. Treat. From Strategy To Case Discussion - Support - Boston Sci",
+    "time": "12:00 - 13:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "45 min",
+    "durationSecs": 2736,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (30 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223788581",
+    "vimeoId": "1223788581",
+    "title": "Lecture & International Live Case • Support • Boston Scientific",
+    "rawName": "13-00 - 14-00 - Lecture & International Live Case - Support - Boston Scientific",
+    "time": "13:00 - 14:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "61 min",
+    "durationSecs": 3687,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Boston Scientific",
+    "category": "Aterectomia & Litotripsia",
+    "description": "Simpósio patrocinado pela Boston Scientific com caso ao vivo internacional, estratégias de aterectomia rotacional e preparo de lesões severamente calcificadas."
+  },
+  {
+    "id": "1223780659",
+    "vimeoId": "1223780659",
+    "title": "Shockwave Ivl In Complex Pci • From Procedural Strategy To Proven Clinical Impact • Support • Shockwave",
+    "rawName": "14-00 - 14-30 - Shockwave Ivl In Complex Pci - From Procedural Strategy To Proven Clinical Impact - Support - Shockwave",
+    "time": "14:00 - 14:30",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "35 min",
+    "durationSecs": 2108,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Shockwave Medical",
+    "category": "Litotripsia Intravascular (IVL)",
+    "description": "Caso nacional ao vivo e simpósio prático de litotripsia intravascular (IVL) com Shockwave em lesões coronárias e periféricas calcificadas."
+  },
+  {
+    "id": "1223780657",
+    "vimeoId": "1223780657",
+    "title": "Coronary Calcium Case Theater • Cracking The Toughest Lesions",
+    "rawName": "14-30 - 15-00 - Coronary Calcium Case Theater - Cracking The Toughest Lesions",
+    "time": "14:30 - 15:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "38 min",
+    "durationSecs": 2314,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (30 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223780658",
+    "vimeoId": "1223780658",
+    "title": "Joint Session Crf • Tavi Durability In 2026 • Evidence, Gaps, And What Comes Next",
+    "rawName": "16-15 - 17-00 - Joint Session Crf - Tavi Durability In 2026 - Evidence, Gaps, And What Comes Next",
+    "time": "16:15 - 17:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "46 min",
+    "durationSecs": 2764,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Joint Session SOLACI - CRF",
+    "category": "Durabilidade de TAVI",
+    "description": "Sessão conjunta SOLACI e Cardiovascular Research Foundation (CRF) debatendo durabilidade de TAVI em 2026, gaps de evidência e futuro da especialidade."
+  },
+  {
+    "id": "1223782745",
+    "vimeoId": "1223782745",
+    "title": "Updates In Mitral Valve-In-Valve Interventions & Live Case • Support • Edwards Lifesciences",
+    "rawName": "17-00 - 18-00 - Updates In Mitral Valve-In-Valve Interventions & Live Case - Support - Edwards Lifesciences",
+    "time": "17:00 - 18:00",
+    "dayId": "dia-30",
+    "dayLabel": "Dia 30",
+    "dayDate": "30 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424636",
+    "duration": "57 min",
+    "durationSecs": 3455,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Edwards Lifesciences",
+    "category": "Valve-in-Valve Mitral & TAVI",
+    "description": "Caso ao vivo e atualizações internacionais em intervenções percutâneas valvares e Valve-in-Valve Mitral com tecnologia Edwards Lifesciences."
+  },
+  {
+    "id": "1223783065",
+    "vimeoId": "1223783065",
+    "title": "Stable Cad And Multivessel Disease",
+    "rawName": "08-00 - 09-00 - Stable Cad And Multivessel Disease",
+    "time": "08:00 - 09:00",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "54 min",
+    "durationSecs": 3281,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (31 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223782937",
+    "vimeoId": "1223782937",
+    "title": "Lecture & Live Case",
+    "rawName": "09-00 - 10-00 - Lecture & Live Case",
+    "time": "09:00 - 10:00",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "64 min",
+    "durationSecs": 3848,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (31 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223784655",
+    "vimeoId": "1223784655",
+    "title": "The Future Of Pci • Technology, Intelligence, And The End Of Conventional Workflows • Part 2",
+    "rawName": "10-30 - 11-00 - The Future Of Pci - Technology, Intelligence, And The End Of Conventional Workflows - Part 2",
+    "time": "10:30 - 11:00",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "31 min",
+    "durationSecs": 1867,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (31 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223783349",
+    "vimeoId": "1223783349",
+    "title": "Scientific Talk • Crdn • Innovations In Cardiovascular Intervention • Support • Medtronic",
+    "rawName": "12-00 - 13-00 - Scientific Talk - Crdn - Innovations In Cardiovascular Intervention - Support - Medtronic",
+    "time": "12:00 - 13:00",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "56 min",
+    "durationSecs": 3371,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Medtronic",
+    "category": "TAVI & Doença Coronária",
+    "description": "Sessão oficial com casos internacionais e simpósio científico patrocinado pela Medtronic, focando em inovações em intervenção cardiovascular e TAVI."
+  },
+  {
+    "id": "1223782507",
+    "vimeoId": "1223782507",
+    "title": "Complex Acs Presentation",
+    "rawName": "13-00 - 13-30 - Complex Acs Presentation",
+    "time": "13:00 - 13:30",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "33 min",
+    "durationSecs": 2010,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (31 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223782508",
+    "vimeoId": "1223782508",
+    "title": "Boston Scientific Calcium Challenge",
+    "rawName": "13-30 - 13-56 - Boston Scientific Calcium Challenge",
+    "time": "13:30 - 13:56",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "8 min",
+    "durationSecs": 488,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Simpósio Boston Scientific",
+    "category": "Aterectomia & Litotripsia",
+    "description": "Simpósio patrocinado pela Boston Scientific com caso ao vivo internacional, estratégias de aterectomia rotacional e preparo de lesões severamente calcificadas."
+  },
+  {
+    "id": "1223782506",
+    "vimeoId": "1223782506",
+    "title": "Best Elca Cases Biomedical-Philips",
+    "rawName": "13-56 - 14-30 - Best Elca Cases Biomedical-Philips",
+    "time": "13:56 - 14:30",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "7 min",
+    "durationSecs": 474,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (31 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223782505",
+    "vimeoId": "1223782505",
+    "title": "Solaci-Sbhci Best Case And Abstract Award Cerimony",
+    "rawName": "15-00 - 16-15 - Solaci-Sbhci Best Case And Abstract Award Cerimony",
+    "time": "15:00 - 16:15",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "48 min",
+    "durationSecs": 2920,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "Congresso SOLACI-SBHCI 2026",
+    "category": "Sessão Científica",
+    "description": "Sessão oficial gravada no Congresso SOLACI-SBHCI 2026 na Heart Team (31 de Julho). Discussão de casos, procedimentos intervencionistas e atualização clínica."
+  },
+  {
+    "id": "1223784580",
+    "vimeoId": "1223784580",
+    "title": "Closing Ceremony",
+    "rawName": "16-15 - 16-30 - Closing Ceremony",
+    "time": "16:15 - 16:30",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Heart Team",
+    "folderId": "30424838",
+    "duration": "16 min",
+    "durationSecs": 1017,
+    "speaker": "Heart Team SOLACI",
+    "initials": "HT",
+    "affiliation": "SOLACI-SBHCI 2026",
+    "category": "Sessão Solene & Premiação",
+    "description": "Cerimônia solene oficial de premiação dos melhores trabalhos científicos, temas livres e encerramento do Congresso SOLACI-SBHCI 2026."
+  },
+  {
+    "id": "1223744925",
+    "vimeoId": "1223744925",
+    "title": "MEDITRONIC • 001",
+    "rawName": "MEDITRONIC - 001",
+    "time": "",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Dante Pazzanese",
+    "folderId": "30423313",
+    "duration": "48 min",
+    "durationSecs": 2895,
+    "speaker": "Heart Team Dante & Medtronic",
+    "initials": "DP",
+    "affiliation": "Instituto Dante Pazzanese",
+    "category": "TAVI & Valvar",
+    "description": "Procedimento de TAVI autoexpansível e discussão anatômica de casos complexos realizado no Instituto Dante Pazzanese em parceria com a Medtronic."
+  },
+  {
+    "id": "1223744924",
+    "vimeoId": "1223744924",
+    "title": "SMT • 002",
+    "rawName": "SMT - 002",
+    "time": "",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Dante Pazzanese",
+    "folderId": "30423313",
+    "duration": "34 min",
+    "durationSecs": 2085,
+    "speaker": "Equipe Dante Pazzanese & SMT",
+    "initials": "DP",
+    "affiliation": "Instituto Dante Pazzanese",
+    "category": "Bifurcações & Stents",
+    "description": "Tratamento de lesões coronárias bifurcadas e avaliação de scaffolds vasculares no Instituto Dante Pazzanese com suporte SMT."
+  },
+  {
+    "id": "1223744923",
+    "vimeoId": "1223744923",
+    "title": "DANTE • 003",
+    "rawName": "DANTE - 003",
+    "time": "",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Dante Pazzanese",
+    "folderId": "30423313",
+    "duration": "42 min",
+    "durationSecs": 2522,
+    "speaker": "Corpo Clínico Dante Pazzanese",
+    "initials": "DP",
+    "affiliation": "Instituto Dante Pazzanese",
+    "category": "Sessão Científica",
+    "description": "Casos selecionados e discussão clínica com o corpo docente e intervencionistas do Instituto Dante Pazzanese de Cardiologia."
+  },
+  {
+    "id": "1223744922",
+    "vimeoId": "1223744922",
+    "title": "MERIL • 004",
+    "rawName": "MERIL - 004",
+    "time": "",
+    "dayId": "dia-31",
+    "dayLabel": "Dia 31",
+    "dayDate": "31 de Julho",
+    "room": "Dante Pazzanese",
+    "folderId": "30423313",
+    "duration": "46 min",
+    "durationSecs": 2806,
+    "speaker": "Equipe Dante Pazzanese & Meril",
+    "initials": "DP",
+    "affiliation": "Instituto Dante Pazzanese",
+    "category": "TAVI & Balão Farmacológico",
+    "description": "Sessão com próteses valvares balão-expansíveis e novas tecnologias no Instituto Dante Pazzanese."
+  }
+];
+
+      // 2. CONFIGURAÇÃO DE DIAS E SALAS
+      const DAYS_CONFIG = [
+        { id: 'dia-29', label: 'Dia 29', date: '29 de Julho' },
+        { id: 'dia-30', label: 'Dia 30', date: '30 de Julho' },
+        { id: 'dia-31', label: 'Dia 31', date: '31 de Julho' },
+        { id: 'all',    label: 'Todos os Dias', date: 'Grade Completa' }
+      ];
+
+      // Pôster padrão para miniaturas
+      const DEFAULT_POSTER = 'https://cathlabflix-sessions.vercel.app/assets/images/solaci-2026-gravacao.png';
+
+      // 3. ESTADOS DA APLICAÇÃO
+      let currentSessionId = null;
+      let currentDay = 'dia-29';
+      let currentRoom = 'all';
+      let searchQuery = '';
+      let favorites = new Set();
+
+      // Recuperar favoritos salvos
+      try {
+        const saved = localStorage.getItem('cathlabflix-favorites');
+        if (saved) {
+          favorites = new Set(JSON.parse(saved));
+        }
+      } catch (e) {}
+
+      // Elementos do DOM
+      const dom = {
+        iframe: document.getElementById('vimeoPlayerIframe'),
+        placeholder: document.getElementById('videoLoadingPlaceholder'),
+        stageBox: document.getElementById('videoStageBox'),
+        mainTitle: document.getElementById('sessionMainTitle'),
+        breadcrumbTitle: document.getElementById('breadcrumbActiveTitle'),
+        badgeDay: document.getElementById('badgeDay'),
+        badgeRoom: document.getElementById('badgeRoom'),
+        badgeCategory: document.getElementById('badgeCategory'),
+        badgeTime: document.getElementById('badgeTime'),
+        speakerAvatar: document.getElementById('speakerAvatar'),
+        speakerName: document.getElementById('speakerName'),
+        speakerAffiliation: document.getElementById('speakerAffiliation'),
+        description: document.getElementById('sessionDescription'),
+        dayTabs: document.getElementById('dayTabsContainer'),
+        roomTabs: document.getElementById('roomTabsContainer'),
+        playlistList: document.getElementById('playlistScrollList'),
+        counter: document.getElementById('playlistCounter'),
+        searchInput: document.getElementById('playlistSearchInput'),
+        searchClear: document.getElementById('searchClearBtn'),
+        btnFavorite: document.getElementById('btnFavorite'),
+        btnFavoriteText: document.getElementById('btnFavoriteText'),
+        btnShare: document.getElementById('btnShare'),
+        toast: document.getElementById('toastFeedback'),
+        toastMsg: document.getElementById('toastMessage')
+      };
+
+      // 4. COMUNICAÇÃO DE RESIZE COM O IFRAME DO WIX
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+              type: 'cathlabflix-sessions-resize',
+              height: height + 35
+            }, '*');
+          }
+        } catch (e) {}
+      }
+
+      // 5. TOAST FEEDBACK
+      let toastTimer = null;
+      function showToast(msg) {
+        if (!dom.toast) return;
+        dom.toastMsg.textContent = msg;
+        dom.toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          dom.toast.classList.remove('show');
+        }, 3200);
+      }
+
+      // 6. RENDERIZAR ABAS DE DIAS
+      function renderDayTabs() {
+        dom.dayTabs.innerHTML = '';
+        DAYS_CONFIG.forEach(d => {
+          const count = d.id === 'all' 
+            ? SESSIONS.length 
+            : SESSIONS.filter(s => s.dayId === d.id).length;
+          
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `day-tab-btn ${currentDay === d.id ? 'active' : ''}`;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', currentDay === d.id ? 'true' : 'false');
+          btn.innerHTML = `${d.label} <span style="opacity: 0.75; font-size: 0.7rem;">(${count})</span>`;
+          btn.addEventListener('click', () => {
+            if (currentDay !== d.id) {
+              currentDay = d.id;
+              currentRoom = 'all'; // reseta a sala ao trocar de dia
+              renderDayTabs();
+              renderRoomTabs();
+              renderPlaylist();
+              sendResizeMessage();
+            }
+          });
+          dom.dayTabs.appendChild(btn);
+        });
+      }
+
+      // 7. RENDERIZAR ABAS DE SALAS
+      function renderRoomTabs() {
+        dom.roomTabs.innerHTML = '';
+
+        // Obter sessões do dia atual
+        const daySessions = currentDay === 'all' 
+          ? SESSIONS 
+          : SESSIONS.filter(s => s.dayId === currentDay);
+
+        // Obter salas únicas para este dia
+        const roomsMap = new Map();
+        daySessions.forEach(s => {
+          roomsMap.set(s.room, (roomsMap.get(s.room) || 0) + 1);
+        });
+
+        // Botão 'Todas as Salas'
+        const totalDayCount = daySessions.length;
+        const allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.className = `room-tab-btn ${currentRoom === 'all' ? 'active' : ''}`;
+        allBtn.setAttribute('role', 'tab');
+        allBtn.setAttribute('aria-selected', currentRoom === 'all' ? 'true' : 'false');
+        allBtn.innerHTML = `Todas as Salas <span class="room-tab-count">${totalDayCount}</span>`;
+        allBtn.addEventListener('click', () => {
+          if (currentRoom !== 'all') {
+            currentRoom = 'all';
+            renderRoomTabs();
+            renderPlaylist();
+            sendResizeMessage();
+          }
+        });
+        dom.roomTabs.appendChild(allBtn);
+
+        // Botões para cada sala
+        roomsMap.forEach((count, roomName) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `room-tab-btn ${currentRoom === roomName ? 'active' : ''}`;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', currentRoom === roomName ? 'true' : 'false');
+          btn.innerHTML = `${roomName} <span class="room-tab-count">${count}</span>`;
+          btn.addEventListener('click', () => {
+            if (currentRoom !== roomName) {
+              currentRoom = roomName;
+              renderRoomTabs();
+              renderPlaylist();
+              sendResizeMessage();
+            }
+          });
+          dom.roomTabs.appendChild(btn);
+        });
+      }
+
+      // 8. FILTRAGEM DAS SESSÕES
+      function getFilteredSessions() {
+        return SESSIONS.filter(session => {
+          // Filtro por dia
+          if (currentDay !== 'all' && session.dayId !== currentDay) {
+            return false;
+          }
+          // Filtro por sala
+          if (currentRoom !== 'all' && session.room !== currentRoom) {
+            return false;
+          }
+          // Filtro por busca
+          if (searchQuery.trim() !== '') {
+            const q = searchQuery.toLowerCase().trim();
+            const matchTitle = session.title.toLowerCase().includes(q);
+            const matchRaw = session.rawName.toLowerCase().includes(q);
+            const matchSpeaker = session.speaker.toLowerCase().includes(q);
+            const matchAffiliation = session.affiliation.toLowerCase().includes(q);
+            const matchCategory = session.category.toLowerCase().includes(q);
+            const matchRoom = session.room.toLowerCase().includes(q);
+            if (!matchTitle && !matchRaw && !matchSpeaker && !matchAffiliation && !matchCategory && !matchRoom) {
+              return false;
+            }
+          }
+          return true;
+        });
+      }
+
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // 9. RENDERIZAR PLAYLIST
+      function renderPlaylist() {
+        const filtered = getFilteredSessions();
+        dom.counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'GRAVAÇÃO' : 'GRAVAÇÕES'}`;
+        dom.playlistList.innerHTML = '';
+
+        if (filtered.length === 0) {
+          dom.playlistList.innerHTML = `
+            <div class="playlist-empty-state">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-tertiary)" stroke-width="1.8">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Nenhuma gravação encontrada com os filtros selecionados.</span>
+            </div>
+          `;
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        filtered.forEach(item => {
+          const isPlaying = (item.id === currentSessionId);
+          const card = document.createElement('div');
+          card.className = `playlist-item-card ${isPlaying ? 'active' : ''}`;
+          card.setAttribute('role', 'listitem');
+          card.setAttribute('data-id', item.id);
+
+          const timeHtml = item.time ? `<span>• ${escapeHTML(item.time)}</span>` : '';
+
+          card.innerHTML = `
+            <div class="playlist-thumb-box">
+              <img 
+                src="${DEFAULT_POSTER}" 
+                alt="${escapeHTML(item.title)}" 
+                class="playlist-thumb-img" 
+                loading="lazy"
+                width="96"
+                height="54"
+              >
+              <span class="playlist-thumb-duration">${item.duration}</span>
+              <div class="playlist-thumb-play-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+            </div>
+
+            <div class="playlist-item-details">
+              ${isPlaying ? `
+                <div class="playlist-now-playing-tag">
+                  <span class="pulse-dot"></span>
+                  Reproduzindo
+                </div>
+              ` : ''}
+              <div class="playlist-item-title" title="${escapeHTML(item.title)}">${escapeHTML(item.title)}</div>
+              <div class="playlist-item-meta-row">
+                <span class="playlist-item-room-tag">${escapeHTML(item.room)}</span>
+                <span>${escapeHTML(item.dayLabel)}</span>
+                ${timeHtml}
+              </div>
+            </div>
+          `;
+
+          card.addEventListener('click', () => {
+            playSession(item.id, true);
+          });
+
+          fragment.appendChild(card);
+        });
+
+        dom.playlistList.appendChild(fragment);
+      }
+
+      // 10. REPRODUZIR SESSÃO
+      function playSession(sessionId, shouldScroll) {
+        const session = SESSIONS.find(s => s.id === sessionId);
+        if (!session) return;
+
+        currentSessionId = session.id;
+
+        // Se a sessão selecionada pertencer a outro dia, sincronizar abas
+        if (currentDay !== 'all' && session.dayId !== currentDay) {
+          currentDay = session.dayId;
+          renderDayTabs();
+          renderRoomTabs();
+        } else if (currentRoom !== 'all' && session.room !== currentRoom) {
+          currentRoom = 'all';
+          renderRoomTabs();
+        }
+
+        // Atualizar Iframe do Vimeo
+        const embedUrl = `https://player.vimeo.com/video/${session.vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=544935&autoplay=1`;
+        
+        if (dom.iframe.src !== embedUrl) {
+          dom.iframe.src = embedUrl;
+          dom.iframe.style.display = 'block';
+          if (dom.placeholder) {
+            dom.placeholder.style.display = 'none';
+          }
+        }
+
+        // Atualizar Metadados
+        dom.mainTitle.textContent = session.title;
+        dom.breadcrumbTitle.textContent = session.title;
+        dom.badgeDay.textContent = session.dayLabel;
+        dom.badgeRoom.textContent = session.room;
+        dom.badgeCategory.textContent = session.category;
+        
+        if (session.time) {
+          dom.badgeTime.textContent = session.time;
+          dom.badgeTime.style.display = 'inline-flex';
+        } else {
+          dom.badgeTime.style.display = 'none';
+        }
+
+        dom.speakerAvatar.textContent = session.initials || 'HT';
+        dom.speakerName.textContent = session.speaker;
+        dom.speakerAffiliation.textContent = session.affiliation;
+        dom.description.textContent = session.description;
+
+        // Atualizar Favoritos
+        updateFavoriteButtonState();
+
+        // Atualizar estado ativo da playlist
+        renderPlaylist();
+
+        // Scroll suave no mobile se solicitado
+        if (shouldScroll && window.innerWidth <= 1024) {
+          const stage = document.getElementById('playerSection');
+          if (stage) {
+            stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+
+        // Atualizar URL sem recarregar a página
+        try {
+          const newUrl = new URL(window.location.href);
+          newUrl.searchParams.set('v', session.vimeoId);
+          window.history.replaceState({ id: session.vimeoId }, '', newUrl.toString());
+        } catch (e) {}
+
+        sendResizeMessage();
+      }
+
+      // 11. CONTROLE DE FAVORITOS (LOCALSTORAGE)
+      function updateFavoriteButtonState() {
+        if (!dom.btnFavorite) return;
+        const isFav = favorites.has(currentSessionId);
+        if (isFav) {
+          dom.btnFavorite.classList.add('saved');
+          dom.btnFavoriteText.textContent = 'Salvo na Lista';
+        } else {
+          dom.btnFavorite.classList.remove('saved');
+          dom.btnFavoriteText.textContent = 'Minha Lista';
+        }
+      }
+
+      function toggleFavorite() {
+        if (!currentSessionId) return;
+        if (favorites.has(currentSessionId)) {
+          favorites.delete(currentSessionId);
+          showToast('Removido da sua lista.');
+        } else {
+          favorites.add(currentSessionId);
+          showToast('Adicionado à sua lista com sucesso!');
+        }
+        try {
+          localStorage.setItem('cathlabflix-favorites', JSON.stringify(Array.from(favorites)));
+        } catch (e) {}
+        updateFavoriteButtonState();
+      }
+
+      // 12. COMPARTILHAR LINK DA GRAVAÇÃO
+      function shareSession() {
+        if (!currentSessionId) return;
+        const shareUrl = `https://www.cathlabflix.org/solaci-gravacao?v=${currentSessionId}`;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareUrl).then(() => {
+            showToast('Link da gravação copiado!');
+          }).catch(() => {
+            fallbackCopy(shareUrl);
+          });
+        } else {
+          fallbackCopy(shareUrl);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast('Link da gravação copiado!');
+        } catch (e) {
+          prompt('Copie o link abaixo:', text);
+        }
+        document.body.removeChild(ta);
+      }
+
+      // 13. BUSCA RÁPIDA
+      dom.searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (searchQuery.trim().length > 0) {
+          dom.searchClear.style.display = 'block';
+        } else {
+          dom.searchClear.style.display = 'none';
+        }
+        renderPlaylist();
+        sendResizeMessage();
+      });
+
+      dom.searchClear.addEventListener('click', () => {
+        dom.searchInput.value = '';
+        searchQuery = '';
+        dom.searchClear.style.display = 'none';
+        dom.searchInput.focus();
+        renderPlaylist();
+        sendResizeMessage();
+      });
+
+      dom.btnFavorite.addEventListener('click', toggleFavorite);
+      dom.btnShare.addEventListener('click', shareSession);
+
+      // 14. INICIALIZAÇÃO
+      window.addEventListener('load', () => {
+        renderDayTabs();
+        renderRoomTabs();
+
+        // Verificar se há parâmetro 'v' na URL para tocar um vídeo específico
+        let targetId = SESSIONS[0].id;
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const vParam = params.get('v');
+          if (vParam) {
+            const found = SESSIONS.find(s => s.vimeoId === vParam || s.id === vParam);
+            if (found) {
+              targetId = found.id;
+            }
+          }
+        } catch (e) {}
+
+        playSession(targetId, false);
+
+        setTimeout(sendResizeMessage, 300);
+        setTimeout(sendResizeMessage, 1200);
+        setTimeout(sendResizeMessage, 3000);
+      });
+
+      window.addEventListener('resize', sendResizeMessage);
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
+        ro.observe(document.body);
+      }
+
+    })();
+  </script>
 </body>
 </html>
