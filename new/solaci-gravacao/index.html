@@ -453,20 +453,13 @@
     /* Nível 1: Abas dos Dias */
     .filter-day-tabs {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-
-    .filter-day-tabs::-webkit-scrollbar {
-      display: none;
     }
 
     .day-tab-btn {
-      flex: 1;
-      min-width: 80px;
+      flex: 1 1 auto;
       padding: 8px 12px;
       border-radius: var(--radius-sm);
       font-size: 0.8125rem;
@@ -510,19 +503,13 @@
 
     .filter-room-tabs {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-    }
-
-    .filter-room-tabs::-webkit-scrollbar {
-      display: none;
     }
 
     .room-tab-btn {
-      padding: 6px 13px;
+      padding: 6px 14px;
       border-radius: var(--radius-pill);
       font-size: 0.75rem;
       font-weight: 700;
@@ -534,7 +521,7 @@
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
     }
 
     .room-tab-btn:hover {
@@ -548,14 +535,6 @@
       color: var(--color-blue-accent);
       border-color: var(--color-blue-accent);
       box-shadow: 0 0 12px var(--color-blue-accent-glow);
-    }
-
-    .room-tab-count {
-      font-size: 0.625rem;
-      padding: 1px 5px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.12);
-      color: inherit;
     }
 
     /* Campo de Busca Rápida */
@@ -1823,16 +1802,12 @@
       function renderDayTabs() {
         dom.dayTabs.innerHTML = '';
         DAYS_CONFIG.forEach(d => {
-          const count = d.id === 'all' 
-            ? SESSIONS.length 
-            : SESSIONS.filter(s => s.dayId === d.id).length;
-          
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.className = `day-tab-btn ${currentDay === d.id ? 'active' : ''}`;
           btn.setAttribute('role', 'tab');
           btn.setAttribute('aria-selected', currentDay === d.id ? 'true' : 'false');
-          btn.innerHTML = `${d.label} <span style="opacity: 0.75; font-size: 0.7rem;">(${count})</span>`;
+          btn.textContent = d.label;
           btn.addEventListener('click', () => {
             if (currentDay !== d.id) {
               currentDay = d.id;
@@ -1857,19 +1832,18 @@
           : SESSIONS.filter(s => s.dayId === currentDay);
 
         // Obter salas únicas para este dia
-        const roomsMap = new Map();
+        const roomsSet = new Set();
         daySessions.forEach(s => {
-          roomsMap.set(s.room, (roomsMap.get(s.room) || 0) + 1);
+          if (s.room) roomsSet.add(s.room);
         });
 
         // Botão 'Todas as Salas'
-        const totalDayCount = daySessions.length;
         const allBtn = document.createElement('button');
         allBtn.type = 'button';
         allBtn.className = `room-tab-btn ${currentRoom === 'all' ? 'active' : ''}`;
         allBtn.setAttribute('role', 'tab');
         allBtn.setAttribute('aria-selected', currentRoom === 'all' ? 'true' : 'false');
-        allBtn.innerHTML = `Todas as Salas <span class="room-tab-count">${totalDayCount}</span>`;
+        allBtn.textContent = 'Todas as Salas';
         allBtn.addEventListener('click', () => {
           if (currentRoom !== 'all') {
             currentRoom = 'all';
@@ -1881,13 +1855,13 @@
         dom.roomTabs.appendChild(allBtn);
 
         // Botões para cada sala
-        roomsMap.forEach((count, roomName) => {
+        roomsSet.forEach(roomName => {
           const btn = document.createElement('button');
           btn.type = 'button';
           btn.className = `room-tab-btn ${currentRoom === roomName ? 'active' : ''}`;
           btn.setAttribute('role', 'tab');
           btn.setAttribute('aria-selected', currentRoom === roomName ? 'true' : 'false');
-          btn.innerHTML = `${roomName} <span class="room-tab-count">${count}</span>`;
+          btn.textContent = roomName;
           btn.addEventListener('click', () => {
             if (currentRoom !== roomName) {
               currentRoom = roomName;
