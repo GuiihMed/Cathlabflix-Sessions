@@ -248,30 +248,19 @@
       box-shadow: 0 3px 10px rgba(229, 9, 20, 0.35);
     }
 
-    /* Nível 3: Barra de Ferramentas / Contador, Período & Busca */
+    /* Nível 3: Barra de Ferramentas / Período & Busca */
     .aulas-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 16px 20px;
+      padding: 14px 20px;
       background: var(--color-surface);
       border-bottom: 1px solid var(--color-border-subtle);
       flex-wrap: wrap;
     }
 
-    .aulas-count-badge {
-      font-size: 0.84375rem;
-      color: var(--color-text-secondary);
-      font-weight: 500;
-    }
-
-    .aulas-count-badge strong {
-      color: #FFFFFF;
-      font-weight: 700;
-    }
-
-    /* Seletor de Período (Todos | Manhã | Tarde) */
+    /* Seletor de Período (Manhã | Tarde) */
     .aulas-period-switch {
       display: inline-flex;
       align-items: center;
@@ -686,14 +675,13 @@
       flex-shrink: 0;
     }
 
-    .aulas-pptx-view-btn,
     .aulas-pptx-download-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 38px;
-      padding: 0 16px;
-      gap: 6px;
+      height: 40px;
+      padding: 0 20px;
+      gap: 8px;
       border-radius: var(--radius-pill);
       font-size: 0.8125rem;
       font-weight: 700;
@@ -701,26 +689,11 @@
       cursor: pointer;
       transition: all var(--transition-fast);
       font-family: inherit;
-    }
-
-    .aulas-pptx-view-btn {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--color-text-secondary);
-      border: 1px solid var(--color-border-subtle);
-    }
-
-    .aulas-pptx-view-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      color: #FFFFFF;
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
-    }
-
-    .aulas-pptx-download-btn {
       background: var(--color-primary);
       color: #FFFFFF;
       border: 1px solid var(--color-primary);
       box-shadow: 0 2px 8px rgba(229, 9, 20, 0.35);
+      white-space: nowrap;
     }
 
     .aulas-pptx-download-btn:hover {
@@ -760,23 +733,25 @@
       100% { background-position: -200% 0; }
     }
 
-    /* Responsividade */
+    /* Responsividade Moderna e Mobile Aprimorada */
     @media (max-width: 960px) {
       .aulas-toolbar {
         flex-direction: column;
         align-items: stretch;
         gap: 12px;
+        padding: 14px;
       }
       .aulas-period-switch {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr 1fr;
         box-sizing: border-box;
       }
       .aulas-period-btn {
         justify-content: center;
-        padding: 8px 6px;
-        font-size: 0.78125rem;
+        padding: 9px 8px;
+        font-size: 0.8125rem;
+        height: 40px;
       }
       .aulas-search-box {
         max-width: 100%;
@@ -785,52 +760,116 @@
 
     @media (max-width: 640px) {
       .aulas-page-main {
-        padding: 16px 12px 48px;
+        padding: 14px 10px 40px;
       }
       .aulas-top-nav-bar {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .aulas-header-title {
-        font-size: 1.45rem;
+        font-size: 1.35rem;
       }
       .aulas-day-tab {
-        padding: 10px 6px;
+        padding: 8px 4px;
+        min-height: 48px;
       }
       .aulas-day-tab .tab-name {
-        font-size: 0.84375rem;
+        font-size: 0.8125rem;
+        line-height: 1.2;
       }
       .aulas-day-tab .tab-sub {
         font-size: 0.6875rem;
+        white-space: nowrap;
+      }
+      .aulas-rooms-bar {
+        padding: 10px 12px;
+        gap: 6px;
+      }
+      .aulas-room-tab {
+        font-size: 0.75rem;
+        padding: 6px 12px;
       }
       .aulas-period-header {
         flex-direction: column;
         align-items: flex-start;
         padding: 12px 14px;
-        gap: 10px;
+        gap: 8px;
+      }
+      .aulas-period-title {
+        font-size: 1.0625rem;
+      }
+      .aulas-period-range-tag {
+        font-size: 0.6875rem;
+        padding: 2px 7px;
+      }
+      .aulas-period-desc {
+        font-size: 0.78125rem;
+        line-height: 1.4;
       }
       .aulas-period-header-right {
         width: 100%;
       }
       .aulas-period-count-pill {
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-        display: block;
-      }
-      .aulas-period-btn .period-btn-label {
+        display: inline-block;
         font-size: 0.75rem;
+        padding: 3px 10px;
       }
       .aulas-list-wrapper {
-        padding: 10px 12px 20px;
+        padding: 10px 10px 20px;
+        gap: 8px;
+      }
+      .aulas-accordion-header {
+        padding: 12px 14px;
+        gap: 10px;
+        min-height: 48px;
+      }
+      .aulas-item-title {
+        font-size: 0.875rem;
+        line-height: 1.35;
+      }
+      .aulas-header-meta {
+        gap: 6px;
+      }
+      .aula-time-badge, .aula-room-badge {
+        font-size: 0.6875rem;
+        padding: 2px 6px;
+      }
+      .aulas-accordion-body {
+        padding: 12px;
       }
       .aulas-pptx-card {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 12px;
+        padding: 12px 14px;
+      }
+      .aulas-pptx-info {
+        width: 100%;
       }
       .aulas-pptx-actions {
         width: 100%;
-        justify-content: flex-end;
+      }
+      .aulas-pptx-download-btn {
+        width: 100%;
+        height: 44px;
+        font-size: 0.875rem;
+        justify-content: center;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .aulas-page-main {
+        padding: 10px 8px 32px;
+      }
+      .aulas-header-title {
+        font-size: 1.25rem;
+      }
+      .aulas-back-link {
+        padding: 8px 14px;
+        font-size: 0.8125rem;
+      }
+      .aulas-search-input {
+        font-size: 0.8125rem;
       }
     }
   </style>
@@ -871,24 +910,11 @@
           <!-- Renderizado dinamicamente via JavaScript -->
         </div>
 
-        <!-- Nível 3: Barra de Ferramentas / Contador, Filtro de Período & Busca -->
+        <!-- Nível 3: Barra de Ferramentas / Filtro de Período & Busca -->
         <div class="aulas-toolbar" id="aulasToolbar">
-          <div class="aulas-count-badge" id="aulasCountBadge" aria-live="polite">
-            Carregando apresentações...
-          </div>
-
-          <!-- Filtro de Período: Todos | Manhã | Tarde -->
+          <!-- Filtro de Período: Manhã | Tarde -->
           <div class="aulas-period-switch" id="aulasPeriodSwitch" role="tablist" aria-label="Filtrar apresentações por período do dia">
-            <button type="button" class="aulas-period-btn active" data-period="all" role="tab" aria-selected="true" title="Exibir todas as apresentações">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-              <span class="period-btn-label">Todos</span>
-              <span class="period-btn-count" id="countAllPeriod">0</span>
-            </button>
-
-            <button type="button" class="aulas-period-btn" data-period="manha" role="tab" aria-selected="false" title="Exibir apenas apresentações da manhã (08:00 às 12:00)">
+            <button type="button" class="aulas-period-btn active" data-period="manha" role="tab" aria-selected="true" title="Exibir apenas apresentações da manhã (08:00 às 12:00)">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -964,7 +990,7 @@
       const state = {
         currentDayId: 'dia-29',
         currentRoomFilter: 'Todas as Salas',
-        currentPeriodFilter: 'all', // 'all' | 'manha' | 'tarde'
+        currentPeriodFilter: 'manha', // 'manha' | 'tarde'
         searchQuery: '',
         openAulaIds: new Set(),
         isLoading: true
@@ -1010,9 +1036,7 @@
           daysBar: document.getElementById('aulasDaysBar'),
           roomsBar: document.getElementById('aulasRoomsBar'),
           toolbar: document.getElementById('aulasToolbar'),
-          countBadge: document.getElementById('aulasCountBadge'),
           periodSwitch: document.getElementById('aulasPeriodSwitch'),
-          countAllPeriod: document.getElementById('countAllPeriod'),
           countManhaPeriod: document.getElementById('countManhaPeriod'),
           countTardePeriod: document.getElementById('countTardePeriod'),
           searchInput: document.getElementById('aulasSearchInput'),
@@ -1034,9 +1058,6 @@
           html += '<div class="aulas-skeleton"></div>';
         }
         dom.aulasContainer.innerHTML = html;
-        if (dom.countBadge) {
-          dom.countBadge.innerHTML = 'Sincronizando apresentações com o Google Drive...';
-        }
       }
 
       function bindEvents() {
@@ -1081,7 +1102,7 @@
           });
         }
 
-        // 4. Clique no Seletor de Período (Todos | Manhã | Tarde)
+        // 4. Clique no Seletor de Período (Manhã | Tarde)
         if (dom.periodSwitch) {
           dom.periodSwitch.addEventListener('click', (e) => {
             const btn = e.target.closest('.aulas-period-btn');
@@ -1094,7 +1115,7 @@
         // 5. Clique nos Accordions
         if (dom.aulasContainer) {
           dom.aulasContainer.addEventListener('click', (e) => {
-            if (e.target.closest('.aulas-pptx-download-btn') || e.target.closest('.aulas-pptx-view-btn')) {
+            if (e.target.closest('.aulas-pptx-download-btn')) {
               return;
             }
 
@@ -1115,8 +1136,21 @@
         state.currentRoomFilter = 'Todas as Salas';
         state.openAulaIds.clear();
 
+        // Se o período atual não tiver aulas no novo dia mas o outro tiver, alterna automaticamente
+        const currentDay = getCurrentDay();
+        if (currentDay && Array.isArray(currentDay.aulas)) {
+          const manhaCount = currentDay.aulas.filter(a => getAulaPeriod(a) === 'manha').length;
+          const tardeCount = currentDay.aulas.filter(a => getAulaPeriod(a) === 'tarde').length;
+          if (state.currentPeriodFilter === 'manha' && manhaCount === 0 && tardeCount > 0) {
+            state.currentPeriodFilter = 'tarde';
+          } else if (state.currentPeriodFilter === 'tarde' && tardeCount === 0 && manhaCount > 0) {
+            state.currentPeriodFilter = 'manha';
+          }
+        }
+
         renderDays();
         renderRooms();
+        updatePeriodButtons();
         renderAulas();
       }
 
@@ -1166,7 +1200,6 @@
           else countTarde++;
         });
 
-        if (dom.countAllPeriod) dom.countAllPeriod.textContent = String(roomFilteredAulas.length);
         if (dom.countManhaPeriod) dom.countManhaPeriod.textContent = String(countManha);
         if (dom.countTardePeriod) dom.countTardePeriod.textContent = String(countTarde);
       }
@@ -1221,19 +1254,7 @@
       }
 
       function renderToolbar(count, totalDayCount) {
-        if (!dom.countBadge) return;
-        const currentDay = getCurrentDay() || { name: 'Dia' };
-        const periodSuffix = state.currentPeriodFilter === 'manha' 
-          ? ' na Manhã' 
-          : (state.currentPeriodFilter === 'tarde' ? ' na Tarde' : '');
-
-        if (state.searchQuery) {
-          dom.countBadge.innerHTML = `<strong>${count}</strong> resultado(s) para "${escapeHTML(state.searchQuery)}"${periodSuffix}`;
-        } else if (state.currentRoomFilter !== 'Todas as Salas') {
-          dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações em <strong>${escapeHTML(state.currentRoomFilter)}</strong>${periodSuffix}`;
-        } else {
-          dom.countBadge.innerHTML = `<strong>${count}</strong> apresentações disponíveis no <strong>${escapeHTML(currentDay.name || 'Dia')}</strong>${periodSuffix}`;
-        }
+        // Texto de apresentações disponíveis removido conforme solicitado
       }
 
       function createAulaAccordionItem(aula) {
@@ -1289,25 +1310,12 @@
                 <span class="aulas-pptx-meta">Formato ${escapeHTML(fileFormat)} · Tamanho: ${escapeHTML(fileSize)}</span>
               </div>
               <div class="aulas-pptx-actions">
-                ${viewUrl ? `
-                  <a 
-                    href="${escapeHTML(viewUrl)}" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="aulas-pptx-view-btn" 
-                    title="Visualizar no Google Drive"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    <span>Visualizar</span>
-                  </a>
-                ` : ''}
                 <a 
                   href="${escapeHTML(downloadUrl)}" 
                   class="aulas-pptx-download-btn" 
                   title="Download ${escapeHTML(fileFormat)}" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   ${downloadUrl !== '#' ? 'download' : ''}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -1315,7 +1323,7 @@
                     <polyline points="7 10 12 15 17 10"></polyline>
                     <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
-                  <span>Download</span>
+                  <span>Download (${escapeHTML(fileFormat)})</span>
                 </a>
               </div>
             </div>
@@ -1416,13 +1424,13 @@
 
         updatePeriodCounts(roomFilteredAulas);
 
-        // 2. Filtra por busca e período
+        // 2. Filtra por busca e período (apenas 'manha' ou 'tarde')
         const query = state.searchQuery;
 
         const finalFilteredAulas = roomFilteredAulas.filter(aula => {
           // Filtro por período
           const period = getAulaPeriod(aula);
-          if (state.currentPeriodFilter !== 'all' && period !== state.currentPeriodFilter) {
+          if (period !== state.currentPeriodFilter) {
             return false;
           }
 
@@ -1442,28 +1450,13 @@
         renderToolbar(finalFilteredAulas.length, roomFilteredAulas.length);
 
         if (finalFilteredAulas.length === 0) {
-          renderEmpty('Nenhuma apresentação encontrada para os filtros aplicados.');
+          const periodoNome = state.currentPeriodFilter === 'manha' ? 'Manhã' : 'Tarde';
+          renderEmpty(`Nenhuma apresentação encontrada para o período da ${periodoNome}${query ? ' com os termos pesquisados' : ''}.`);
           return;
         }
 
-        // Separação por períodos (Manhã e Tarde)
-        const manhaAulas = finalFilteredAulas.filter(a => getAulaPeriod(a) === 'manha');
-        const tardeAulas = finalFilteredAulas.filter(a => getAulaPeriod(a) === 'tarde');
-
         const fragment = document.createDocumentFragment();
-
-        if (state.currentPeriodFilter === 'all') {
-          if (manhaAulas.length > 0) {
-            fragment.appendChild(createPeriodSectionElement('manha', manhaAulas));
-          }
-          if (tardeAulas.length > 0) {
-            fragment.appendChild(createPeriodSectionElement('tarde', tardeAulas));
-          }
-        } else if (state.currentPeriodFilter === 'manha' && manhaAulas.length > 0) {
-          fragment.appendChild(createPeriodSectionElement('manha', manhaAulas));
-        } else if (state.currentPeriodFilter === 'tarde' && tardeAulas.length > 0) {
-          fragment.appendChild(createPeriodSectionElement('tarde', tardeAulas));
-        }
+        fragment.appendChild(createPeriodSectionElement(state.currentPeriodFilter, finalFilteredAulas));
 
         dom.aulasContainer.appendChild(fragment);
         setTimeout(notifyResize, 50);
