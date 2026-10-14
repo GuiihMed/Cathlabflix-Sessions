@@ -909,13 +909,16 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .news-card-btn {
     width: auto !important;
-    min-width: 90px !important;
-    height: 25px !important;
+    min-width: 105px !important;
+    height: 32px !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    padding: 0 12px !important;
-    font-size: 0.625rem !important;
+    padding: 0 16px !important;
+    font-size: 0.75rem !important;
     font-weight: 700 !important;
+    gap: 6px !important;
     border-radius: var(--radius-pill) !important;
   }
 
@@ -1125,20 +1128,30 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   .event-detail-actions-row {
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 4px !important;
+    gap: 8px !important;
     width: 100% !important;
-    margin-top: 6px !important;
+    margin-top: 10px !important;
   }
 
   .event-detail-cta-btn {
     width: 100% !important;
     min-width: 0 !important;
-    height: 26px !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    padding: 0 10px !important;
-    font-size: 0.65rem !important;
+    padding: 0 16px !important;
+    font-size: 0.8125rem !important;
+    font-weight: 700 !important;
+    gap: 6px !important;
     border-radius: var(--radius-pill) !important;
+    letter-spacing: 0.2px !important;
+  }
+
+  .event-detail-cta-btn svg {
+    width: 14px !important;
+    height: 14px !important;
   }
 
   .agenda-export-dropdown-wrapper {
@@ -1149,12 +1162,21 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .event-export-trigger-btn {
     width: 100% !important;
-    height: 26px !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    padding: 0 10px !important;
-    font-size: 0.625rem !important;
+    padding: 0 14px !important;
+    font-size: 0.78125rem !important;
+    font-weight: 600 !important;
+    gap: 6px !important;
     border-radius: var(--radius-pill) !important;
+  }
+
+  .event-export-trigger-btn svg {
+    width: 14px !important;
+    height: 14px !important;
   }
 
   .agenda-export-menu {
@@ -1384,11 +1406,15 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .event-primary-btn {
     width: 100% !important;
-    height: 28px !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
     justify-content: center !important;
     text-align: center !important;
-    padding: 0 12px !important;
-    font-size: 0.6875rem !important;
+    padding: 0 16px !important;
+    font-size: 0.8125rem !important;
+    font-weight: 700 !important;
+    border-radius: var(--radius-pill) !important;
   }
 
   .embed-post-featured-media,
