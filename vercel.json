@@ -84,6 +84,30 @@
       "destination": "/new/cadastrar-evento.html"
     },
     {
+      "source": "/cadastrar-evento",
+      "destination": "/new/cadastrar-evento.html"
+    },
+    {
+      "source": "/embed-cadastrar-evento",
+      "destination": "/embed-cadastrar-evento.html"
+    },
+    {
+      "source": "/embed-eventos",
+      "destination": "/embed-eventos.html"
+    },
+    {
+      "source": "/eventos",
+      "destination": "/embed-eventos.html"
+    },
+    {
+      "source": "/new/eventos",
+      "destination": "/new/eventos.html"
+    },
+    {
+      "source": "/embed-evento-detalhe",
+      "destination": "/embed-evento-detalhe.html"
+    },
+    {
       "source": "/new/webinares",
       "destination": "/new/webinares.html"
     },
