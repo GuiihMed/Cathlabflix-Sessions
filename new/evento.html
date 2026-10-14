@@ -4,46 +4,1414 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Detalhes do Evento - CathlabFlix SBHCI</title>
-  <meta name="description" content="Informações completas sobre o evento oficial da SBHCI no CathlabFlix.">
+  <meta name="description" content="Informações completas sobre o evento da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista.">
 
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="/assets/images/favicon.png">
 
-  <!-- Tipografia Inter -->
+  <!-- Tipografia Montserrat Oficial SBHCI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Folhas de Estilo -->
-  <link rel="stylesheet" href="/css/modern-ui.css">
-  <link rel="stylesheet" href="/css/modern-events.css">
+  <style>
+    :root {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-elevated: #082b6e;
+      --color-surface-hover: #0c3685;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #B80710;
+      --color-blue-accent: #38bdf8;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-  <!-- Detecção de Tema Anti-FOUC -->
-  <script>
-    (function() {
-      try {
-        var theme = localStorage.getItem('cathlabflix-theme');
-        if (theme === 'blue') {
-          document.documentElement.setAttribute('data-theme', 'blue');
-        }
-      } catch (e) {}
-    })();
-  </script>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .event-embed-container {
+      width: 94%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 8px 60px;
+    }
+
+    @media (max-width: 768px) {
+      .event-embed-container {
+        width: 92% !important;
+        max-width: 440px !important;
+        padding: 14px 4px 40px !important;
+      }
+    }
+
+    /* Barra Superior de Navegação */
+    .event-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .event-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-subtle);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .event-back-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      transform: translateX(-2px);
+    }
+
+    .event-type-chip {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .badge-oficial {
+      background: #E50914;
+      color: #fff;
+    }
+
+    .badge-apoio {
+      background: #0284c7;
+      color: #fff;
+    }
+
+    .badge-eventos {
+      background: #7c3aed;
+      color: #fff;
+    }
+
+    /* Banner Hero 16:9 Widescreen */
+    .event-hero-banner {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #020b24;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 24px;
+    }
+
+    .event-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .event-hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(1, 2, 52, 0) 40%, rgba(1, 2, 52, 0.85) 100%);
+      pointer-events: none;
+    }
+
+    /* Conteúdo Principal do Artigo do Evento */
+    .event-article-body {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (max-width: 600px) {
+      .event-article-body {
+        padding: 20px 16px;
+      }
+    }
+
+    .event-header-section {
+      margin-bottom: 24px;
+    }
+
+    .event-main-title {
+      font-size: 1.75rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #fff;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 600px) {
+      .event-main-title {
+        font-size: 1.35rem;
+      }
+    }
+
+    .event-lead-subtitle {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Grid de Informações Chave (Data, Horário, Local) */
+    .event-info-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .event-info-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    .event-info-card {
+      background: var(--color-surface-elevated);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .info-card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-card-icon.red {
+      background: rgba(229, 9, 20, 0.15);
+      color: var(--color-primary);
+    }
+
+    .info-card-icon.blue {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--color-blue-accent);
+    }
+
+    .info-card-icon.amber {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+
+    .info-card-text {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .info-card-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-text-secondary);
+      margin-bottom: 2px;
+    }
+
+    .info-card-val {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Barra de Ações (Botão de Inscrição + Salvar na Agenda) */
+    .event-action-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 0;
+      margin-bottom: 28px;
+      border-top: 1px solid var(--color-border-subtle);
+      border-bottom: 1px solid var(--color-border-subtle);
+      flex-wrap: wrap;
+    }
+
+    .btn-registration-cta {
+      background: linear-gradient(135deg, #E50914, #c80812);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 800;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.4);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-registration-cta:hover {
+      background: linear-gradient(135deg, #f01420, #E50914);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(229, 9, 20, 0.55);
+    }
+
+    /* Menu Dropdown de Salvar na Agenda */
+    .agenda-export-dropdown-wrapper {
+      position: relative;
+    }
+
+    .btn-save-calendar {
+      background: var(--color-surface-elevated);
+      color: #fff;
+      border: 1px solid var(--color-border-subtle);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 11px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-save-calendar:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .agenda-export-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #041844;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      width: 210px;
+      display: none;
+      flex-direction: column;
+      z-index: 50;
+      overflow: hidden;
+      animation: fadeIn 0.15s ease-out;
+    }
+
+    .agenda-export-menu.is-open {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .export-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .export-menu-item:hover {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+    }
+
+    /* Seção Sobre o Evento */
+    .event-content-section {
+      margin-top: 10px;
+    }
+
+    .section-title {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 14px 0;
+      letter-spacing: -0.01em;
+    }
+
+    .event-description-text {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #cbd5e1;
+      margin-bottom: 28px;
+    }
+
+    .event-description-text p {
+      margin: 0 0 14px 0;
+    }
+
+    /* Caixa Institucional SBHCI */
+    .event-institution-box {
+      background: var(--color-surface-elevated);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    @media (max-width: 550px) {
+      .event-institution-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    .institution-logo-badge {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--color-primary);
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+    }
+
+    .institution-text h4 {
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 4px 0;
+    }
+
+    .institution-text p {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* Estado de Erro / Não Encontrado */
+    .event-not-found-card {
+      padding: 60px 20px;
+      text-align: center;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-subtle);
+    }
+  </style>
 </head>
 <body>
 
-  <main class="event-page-container" id="eventoDetailContainer">
-    <!-- Renderizado dinamicamente pelo js/evento-detail.js -->
+  <main class="event-embed-container" id="eventoDetailContainer">
     <div style="padding: 60px 20px; text-align: center; color: var(--color-text-secondary);">
       <p>Carregando informações do evento...</p>
     </div>
   </main>
 
-  <!-- Scripts -->
-  <script src="/js/events-data.js"></script>
-  <script src="/js/events-service.js"></script>
-  <script src="/js/evento-detail.js"></script>
+  <!-- Base de Dados Standalone + Serviço de Eventos Embutido -->
+  <script>
+/**
+ * CathlabFlix - Base de Dados Oficial de Eventos e Congressos SBHCI
+ * Compatível com Wix Data Collection e Armazenamento Local
+ */
+
+const INITIAL_EVENTS = [
+  // ==========================================
+  // OUTUBRO 2026
+  // ==========================================
+  {
+    id: 'webinar-sbhci-outubro',
+    title: 'Webinar SBHCI: Atualizações em Terapias Estruturais',
+    subtitle: 'Discussão de casos de TAVI e Valve-in-Valve Mitral com especialistas renomados.',
+    description: 'Neste webinar oficial da SBHCI, renomados intervencionistas debatem as melhores estratégias em intervenções valvares transcateter, com ênfase no planejamento tomográfico pré-TAVI, escolha de próteses balão-expansíveis versus autoexpansíveis e prevenção de oclusão coronariana em procedimentos Valve-in-Valve Mitral.',
+    date: '2026-10-09',
+    startTime: '19:00',
+    endTime: '20:30',
+    time: '19:00 - 20:30',
+    location: 'Plataforma CathlabFlix Streaming',
+    modality: 'Transmissão Online',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=webinar-sbhci-outubro',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'tct-highlights-replay',
+    title: 'Debate TCT 2026: Principais Ensaios Clínicos',
+    subtitle: 'Análise crítica dos clinical trials e o impacto na prática clínica nacional.',
+    description: 'Sessão especial de revisão dos trials apresentados no CRF TCT 2026. Discussão multidisciplinar sobre novas tecnologias em stents farmacológicos, balões farmacofóricos, intervenções tricúspides e dispositivos de proteção embólica cerebral.',
+    date: '2026-10-15',
+    startTime: '20:00',
+    endTime: '21:30',
+    time: '20:00 - 21:30',
+    location: 'CathlabFlix Streaming',
+    modality: 'Ao Vivo com Perguntas',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png',
+    actionUrl: '/new/evento?id=tct-highlights-replay',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'solaci-2026-destaque',
+    title: 'Sessão Especial SOLACI SBHCI 2026',
+    subtitle: 'Debates sobre Intervenções Coronárias Complexas e Casos Ao Vivo.',
+    description: 'Transmissão exclusiva dos melhores momentos e casos ao vivo do Congresso SOLACI-SBHCI 2026. Acompanhe a discussão detalhada de técnicas de bifurcação, intervenção guiada por imagem intracoronária (OCT e IVUS) e manejo de complicações na sala de hemodinâmica.',
+    date: '2026-10-21',
+    startTime: '14:00',
+    endTime: '18:00',
+    time: '14:00 - 18:00',
+    location: 'WTC Events Center - São Paulo, SP',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=solaci-2026-destaque',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'solaci-satelite-bifurcacoes',
+    title: 'Simpósio Satélite: Tratamento de Bifurcações',
+    subtitle: 'Estratégias de Stent Único vs Culotte e Double Kissing Crush.',
+    description: 'Simpósio temático focado em técnicas de alta precisão em bifurcações coronárias, com análise passo a passo de procedimentos gravados, indicações de DK-Crush, Mini-Crush e T/TAP, e o papel da fisiologia coronariana pré e pós-stent.',
+    date: '2026-10-21',
+    startTime: '18:30',
+    endTime: '19:45',
+    time: '18:30 - 19:45',
+    location: 'CathlabFlix Ao Vivo / Sala 2',
+    modality: 'Transmissão Online',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=solaci-satelite-bifurcacoes',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'curso-intervencionistas-modulo',
+    title: 'Curso para Intervencionistas em Formação',
+    subtitle: 'Módulo 2: Técnicas Fundamentais de Hemodinâmica e Acessos Vasculares.',
+    description: 'Capacitação dedicada a fellows e médicos residentes em cardiologia intervencionista. Inclui punção radial e femoral ecoguiada, prevenção e manejo de espasmo radial, cateterismo seletivo e princípios de radioproteção.',
+    date: '2026-10-28',
+    startTime: '09:00',
+    endTime: '12:00',
+    time: '09:00 - 12:00',
+    location: 'CathlabFlix Academy',
+    modality: 'On-demand & Exercícios',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Curso',
+    color: 'amber',
+    image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=curso-intervencionistas-modulo',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // FEVEREIRO 2027
+  // ==========================================
+  {
+    id: 'curso-atualizacao-hci-01',
+    title: 'Curso de Atualização em HCI - Módulo 1',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista.',
+    description: 'Primeiro encontro do Programa de Educação Médica Continuada 2027 da SBHCI. Foco em avanços farmacológicos adjuntos na intervenção coronária percutânea e novas diretrizes de antiagregação dupla.',
+    date: '2027-02-01',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    modality: 'On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=curso-atualizacao-hci-01',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'tavi-certificacao-2027',
+    title: 'Curso Teórico-Prático de Certificação em TAVI SBHCI/SBCCV 2027',
+    subtitle: 'Programa Oficial Conjunto SBHCI e SBCCV para Formação e Habilitação em TAVI.',
+    description: 'Curso anual intensivo de habilitação e certificação para implante percutâneo de válvula aórtica (TAVI), com treinamento prático em simuladores virtuais, dissecção cadavérica e acompanhamento de procedimentos in-loco.',
+    date: '2027-02-15',
+    endDate: '2027-12-15',
+    time: 'Fevereiro a Dezembro',
+    dateRangeLabel: 'FEV-DEZ',
+    location: 'Centros Credenciados SBHCI / SBCCV',
+    modality: 'Teórico-Prático Presencial',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Curso',
+    color: 'amber',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=tavi-certificacao-2027',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'curso-atualizacao-hci-02',
+    title: 'Curso de Atualização em HCI - Módulo 2',
+    subtitle: 'Intervenções em Oclusões Totais Crônicas (CTO) e Fisiologia Coronária.',
+    description: 'Módulo avançado discutindo o algoritmo híbrido para CTO, indicações de via retrógrada e antegrada, utilização de microcateteres específicos e avaliação com iFR/FFR.',
+    date: '2027-02-22',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    modality: 'On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=curso-atualizacao-hci-02',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // MARÇO 2027
+  // ==========================================
+  {
+    id: 'latam-valves-2027',
+    title: 'Latam Valves 2027 - The Structural Heart Summit',
+    subtitle: 'Maior Encontro Latino-Americano de Doenças Estruturais do Coração e Terapias Valvares.',
+    description: 'Edição histórica do Latam Valves reunindo cardiologistas intervencionistas, cirurgiões cardíacos e ecocardiografistas da América Latina e do mundo. Três dias intensos de transmissão ao vivo de casos estruturais complexos, debates de trials valvares e workshops práticos.',
+    date: '2027-03-17',
+    endDate: '2027-03-19',
+    dates: ['2027-03-17', '2027-03-18', '2027-03-19'],
+    dateRangeLabel: '17 a 19',
+    startTime: '08:00',
+    endTime: '18:30',
+    time: '08:00 - 18:30 (17 a 19 de março)',
+    location: 'WTC Events Golden Hall - São Paulo, SP',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png',
+    actionUrl: '/new/evento?id=latam-valves-2027',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // JUNHO 2027
+  // ==========================================
+  {
+    id: 'congresso-sbhci-2027',
+    title: 'Congresso SBHCI 2027',
+    subtitle: 'O Maior Encontro da Cardiologia Intervencionista Brasileira.',
+    description: 'O Congresso Anual da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista é o principal fórum científico da especialidade na América Latina. Apresentação de pesquisas inéditas, premiações científicas, arenas de inovação tecnológica e dezenas de casos editados e ao vivo.',
+    date: '2027-06-23',
+    endDate: '2027-06-25',
+    dates: ['2027-06-23', '2027-06-24', '2027-06-25'],
+    dateRangeLabel: '23 a 25',
+    startTime: '08:00',
+    endTime: '19:00',
+    time: '08:00 - 19:00 (23 a 25 de junho)',
+    location: 'Centro de Convenções de Goiânia, GO',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=congresso-sbhci-2027',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // AGOSTO 2027
+  // ==========================================
+  {
+    id: 'solaci-2027',
+    title: 'Congresso SOLACI 2027',
+    subtitle: 'Sociedade Latino-Americana de Cardiologia Intervencionista.',
+    description: 'Congresso oficial da SOLACI reunindo líderes mundiais da hemodinâmica para debater os rumos das intervenções cardiovasculares em países em desenvolvimento, inovações terapêuticas e programas conjuntos de educação.',
+    date: '2027-08-04',
+    endDate: '2027-08-06',
+    dates: ['2027-08-04', '2027-08-05', '2027-08-06'],
+    dateRangeLabel: '04 a 06',
+    startTime: '08:00',
+    endTime: '18:30',
+    time: '08:00 - 18:30 (04 a 06 de agosto)',
+    location: 'Buenos Aires, Argentina',
+    modality: 'Presencial com Transmissão',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=solaci-2027',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // NOVEMBRO 2027
+  // ==========================================
+  {
+    id: 'pci-plus-2027',
+    title: 'PCI Plus 2027',
+    subtitle: 'Simpósio Internacional de Intervenção Coronária Percutânea e Terapias Avançadas.',
+    description: 'Encontro técnico-científico dedicado exclusivamente à intervenção coronariana percutânea complexa, calcificação severa, litotripsia intravascular (IVL), aterectomia rotacional e suporte circulatório mecânico.',
+    date: '2027-11-12',
+    endDate: '2027-11-13',
+    dates: ['2027-11-12', '2027-11-13'],
+    dateRangeLabel: '12 e 13',
+    startTime: '08:30',
+    endTime: '18:00',
+    time: '08:30 - 18:00 (12 e 13 de novembro)',
+    location: 'Windsor Barra Hotel - Rio de Janeiro, RJ',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=pci-plus-2027',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'nursing-summit-2027',
+    title: 'Nursing Summit SBHCI 2027',
+    subtitle: 'Encontro Nacional de Enfermagem em Hemodinâmica e Cardiologia Intervencionista.',
+    description: 'Summit oficial do Departamento de Enfermagem da SBHCI, abordando protocolos assistenciais seguros, preparo de salas de procedimento, gestão de contraste e cuidados pós-punção arterial.',
+    date: '2027-11-13',
+    startTime: '08:30',
+    endTime: '17:30',
+    time: '08:30 - 17:30 (13 de novembro)',
+    location: 'Windsor Barra Hotel - Rio de Janeiro, RJ',
+    modality: 'Presencial e On-line',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Congresso',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=nursing-summit-2027',
+    actionLabel: 'Confira'
+  }
+];
+
+if (typeof window !== 'undefined') {
+  window.INITIAL_EVENTS = INITIAL_EVENTS;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { INITIAL_EVENTS };
+}
+
+</script>
+  <script>
+/**
+ * CathlabFlix Events Service
+ * Gerenciamento centralizado de eventos, persistência local, integração automática com Wix CMS / API e exportação de calendários (.ics / Google)
+ */
+
+(function(global) {
+  'use strict';
+
+  const STORAGE_KEY = 'cathlabflix_custom_events';
+  const API_ENDPOINT = '/api/wix-events';
+
+  const EventsService = {
+    /**
+     * Retorna todos os eventos combinando os eventos oficiais com os cadastrados via painel/Wix
+     */
+    getAllEvents() {
+      let baseList = [];
+      if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS)) {
+        baseList = window.INITIAL_EVENTS.slice();
+      } else if (typeof INITIAL_EVENTS !== 'undefined' && Array.isArray(INITIAL_EVENTS)) {
+        baseList = INITIAL_EVENTS.slice();
+      }
+
+      let customList = [];
+      try {
+        if (typeof localStorage !== 'undefined') {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            customList = JSON.parse(stored);
+          }
+        }
+      } catch (e) {
+        console.warn('[EventsService] Erro ao ler eventos customizados:', e);
+      }
+
+      // Mescla substituindo por ID se já existir ou adicionando novos no topo
+      const map = new Map();
+      baseList.forEach(ev => map.set(ev.id, ev));
+      customList.forEach(ev => map.set(ev.id, ev));
+
+      const merged = Array.from(map.values());
+      return merged.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    },
+
+    /**
+     * Busca um evento específico por ID ou slug
+     */
+    getEventById(id) {
+      if (!id) return null;
+      const cleanId = String(id).trim().toLowerCase();
+      const all = this.getAllEvents();
+      return all.find(ev => (ev.id && ev.id.toLowerCase() === cleanId) || (ev.slug && ev.slug.toLowerCase() === cleanId)) || null;
+    },
+
+    /**
+     * Sincroniza eventos remotos da API / Wix CMS
+     */
+    async syncFromRemote() {
+      try {
+        const res = await fetch(API_ENDPOINT);
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (data && data.success && Array.isArray(data.items)) {
+          // Atualiza lista em memória se aplicável
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('cathlabflix:remote-events-loaded', { detail: data.items }));
+          }
+          return data.items;
+        }
+      } catch (e) {
+        console.warn('[EventsService] Não foi possível sincronizar da API remota:', e);
+      }
+      return null;
+    },
+
+    /**
+     * Salva ou atualiza um evento no banco local (localStorage) e dispara envio automático para a API/Wix CMS
+     */
+    saveEvent(eventData) {
+      if (!eventData || !eventData.title || !eventData.date) {
+        throw new Error('Título e Data são campos obrigatórios para o evento.');
+      }
+
+      const id = eventData.id || this.slugify(eventData.title) + '-' + Date.now().toString(36);
+      
+      // Regra de replicação de data de início caso término esteja vazio
+      const startDate = eventData.date.trim();
+      const finalEndDate = eventData.endDate && eventData.endDate.trim() !== '' ? eventData.endDate.trim() : startDate;
+
+      // Mapeamento dos 3 tipos
+      const typeRaw = (eventData.type || 'evento').toLowerCase();
+      let finalType = 'evento';
+      let finalBadge = 'EVENTO OFICIAL SBHCI';
+      let finalColor = 'red';
+
+      if (typeRaw.includes('apoio')) {
+        finalType = 'apoio_sbhci';
+        finalBadge = 'APOIO SBHCI';
+        finalColor = 'blue';
+      } else if (typeRaw === 'eventos' || typeRaw === 'evento_geral') {
+        finalType = 'eventos';
+        finalBadge = 'EVENTOS';
+        finalColor = 'blue';
+      }
+
+      const regUrl = eventData.registrationUrl ? eventData.registrationUrl.trim() : '';
+
+      const normalized = {
+        id: id,
+        slug: id,
+        title: eventData.title.trim(),
+        subtitle: (eventData.subtitle || eventData.description || '').substring(0, 160),
+        description: eventData.description || eventData.subtitle || '',
+        date: startDate,
+        endDate: finalEndDate,
+        time: eventData.time ? eventData.time.trim() : 'Horário a definir',
+        location: eventData.location ? eventData.location.trim() : 'Plataforma CathlabFlix Streaming',
+        modality: eventData.modality || (eventData.location && eventData.location.toLowerCase().includes('wtc') ? 'Presencial e On-line' : 'Transmissão Online'),
+        type: finalType,
+        badge: finalBadge,
+        category: eventData.category || (finalType === 'apoio_sbhci' ? 'Apoio SBHCI' : (finalType === 'eventos' ? 'Eventos' : 'Congresso')),
+        color: finalColor,
+        image: eventData.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+        registrationUrl: regUrl,
+        actionUrl: regUrl || `/new/evento?id=${encodeURIComponent(id)}`,
+        actionLabel: 'Confira'
+      };
+
+      try {
+        if (typeof localStorage !== 'undefined') {
+          let customList = [];
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) customList = JSON.parse(stored);
+
+          const existingIdx = customList.findIndex(e => e.id === normalized.id);
+          if (existingIdx >= 0) {
+            customList[existingIdx] = normalized;
+          } else {
+            customList.push(normalized);
+          }
+
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(customList));
+        }
+
+        // Dispara evento global para re-renderizar instâncias ativas do calendário
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('cathlabflix:events-updated', { detail: normalized }));
+        }
+
+        // Sincronização automática em background com a API do Wix CMS
+        if (typeof fetch !== 'undefined') {
+          fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(normalized)
+          }).then(res => res.json()).then(resData => {
+            console.log('[EventsService] Evento sincronizado com a API:', resData);
+          }).catch(err => {
+            console.warn('[EventsService] Não foi possível sincronizar com o backend remoto agora (salvo localmente):', err);
+          });
+        }
+
+        return normalized;
+      } catch (err) {
+        console.error('[EventsService] Falha ao persistir evento:', err);
+        throw err;
+      }
+    },
+
+    /**
+     * Remove um evento personalizado do banco local
+     */
+    deleteEvent(id) {
+      try {
+        if (typeof localStorage !== 'undefined') {
+          let customList = [];
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) customList = JSON.parse(stored);
+
+          const filtered = customList.filter(e => e.id !== id);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+        }
+
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('cathlabflix:events-updated', { detail: { id, deleted: true } }));
+        }
+        return true;
+      } catch (err) {
+        console.error('[EventsService] Falha ao excluir evento:', err);
+        return false;
+      }
+    },
+
+    /**
+     * Retorna os eventos formatados para importação em Coleção de Dados do Wix (Wix Data Collection / CMS)
+     */
+    exportWixCollectionJSON() {
+      const events = this.getAllEvents();
+      return events.map(ev => ({
+        _id: ev.id,
+        title: ev.title,
+        subtitle: ev.subtitle,
+        description: ev.description,
+        date: ev.date,
+        endDate: ev.endDate || ev.date,
+        time: ev.time,
+        location: ev.location,
+        modality: ev.modality,
+        type: ev.type === 'apoio_sbhci' ? 'Apoio SBHCI' : (ev.type === 'eventos' ? 'Eventos' : 'Evento Oficial SBHCI'),
+        badge: ev.badge,
+        image: ev.image,
+        registrationUrl: ev.registrationUrl || '',
+        slug: ev.slug || ev.id
+      }));
+    },
+
+    /**
+     * Código Velo Backend para http-functions.js no Wix
+     */
+    generateWixVeloSnippet() {
+      return `// Wix Velo Backend (http-functions.js)
+// Coleção: "Eventos"
+import { ok, created, serverError } from 'wix-http-functions';
+import wixData from 'wix-data';
+
+// GET https://SEU-SITE-WIX/_functions/eventos
+export function get_eventos(request) {
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  };
+
+  return wixData.query('Eventos')
+    .ascending('date')
+    .find()
+    .then(results => {
+      options.body = {
+        success: true,
+        items: results.items
+      };
+      return ok(options);
+    })
+    .catch(error => {
+      options.body = { success: false, error: error.message };
+      return serverError(options);
+    });
+}
+
+// POST https://SEU-SITE-WIX/_functions/eventos
+export function post_eventos(request) {
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  };
+
+  return request.body.json()
+    .then(body => {
+      return wixData.insert('Eventos', body);
+    })
+    .then(result => {
+      options.body = { success: true, item: result };
+      return created(options);
+    })
+    .catch(error => {
+      options.body = { success: false, error: error.message };
+      return serverError(options);
+    });
+}`;
+    },
+
+    /**
+     * Cria slug amigável a partir do título
+     */
+    slugify(str) {
+      return String(str || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    },
+
+    /**
+     * Gera URL de adição para o Google Calendar
+     */
+    generateGoogleCalendarUrl(event) {
+      if (!event) return '#';
+      const title = encodeURIComponent(event.title || 'Evento CathlabFlix');
+      const details = encodeURIComponent((event.description || event.subtitle || '') + '\n\nMais informações: ' + (event.registrationUrl || 'https://cathlabflix-sessions.vercel.app'));
+      const location = encodeURIComponent(event.location || 'CathlabFlix Streaming');
+
+      const dateClean = (event.date || '').replace(/-/g, '');
+      const endDateClean = (event.endDate || event.date || '').replace(/-/g, '');
+      const startHour = (event.startTime || '09:00').replace(':', '');
+      const endHour = (event.endTime || '18:00').replace(':', '');
+
+      const startIso = `${dateClean}T${startHour}00Z`;
+      const endIso = `${endDateClean}T${endHour}00Z`;
+
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${startIso}/${endIso}`;
+    },
+
+    /**
+     * Gera e dispara download do arquivo .ics (Apple Agenda, Outlook, etc.)
+     */
+    downloadIcs(event, fileName) {
+      if (!event) return;
+      const dateClean = (event.date || '').replace(/-/g, '');
+      const endDateClean = (event.endDate || event.date || '').replace(/-/g, '');
+      const startHour = (event.startTime || '09:00').replace(':', '');
+      const endHour = (event.endTime || '18:00').replace(':', '');
+
+      const dtStart = `${dateClean}T${startHour}00`;
+      const dtEnd = `${endDateClean}T${endHour}00`;
+      const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//CathlabFlix SBHCI//Agenda Oficial//PT',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${event.id || 'event'}-${dateClean}@cathlabflix.org`,
+        `DTSTAMP:${now}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `SUMMARY:${event.title}`,
+        `DESCRIPTION:${(event.description || event.subtitle || '').replace(/\n/g, '\\n')}`,
+        `LOCATION:${event.location || 'CathlabFlix Streaming'}`,
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName || `${event.id || 'evento-cathlabflix'}.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+  };
+
+  // Exportação para escopo global e módulos
+  global.EventsService = EventsService;
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = EventsService;
+  }
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initEventoDetail();
+    });
+
+    function initEventoDetail() {
+      const container = document.getElementById('eventoDetailContainer');
+      if (!container) return;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get('id');
+
+      let event = null;
+
+      // 1. Tenta carregar pelo EventsService
+      if (typeof EventsService !== 'undefined' && typeof EventsService.getAllEvents === 'function') {
+        const all = EventsService.getAllEvents();
+        if (eventId) {
+          const clean = eventId.toLowerCase();
+          event = all.find(e => (e.id && e.id.toLowerCase() === clean) || (e.slug && e.slug.toLowerCase() === clean));
+        } else if (all.length > 0) {
+          // Se não passar ID, carrega o primeiro evento futuro
+          event = all[0];
+        }
+      }
+
+      // 2. Fallback direto para INITIAL_EVENTS
+      if (!event && typeof INITIAL_EVENTS !== 'undefined' && Array.isArray(INITIAL_EVENTS)) {
+        if (eventId) {
+          const clean = eventId.toLowerCase();
+          event = INITIAL_EVENTS.find(e => (e.id && e.id.toLowerCase() === clean) || (e.slug && e.slug.toLowerCase() === clean));
+        } else if (INITIAL_EVENTS.length > 0) {
+          event = INITIAL_EVENTS[0];
+        }
+      }
+
+      if (!event) {
+        renderNotFound(container, eventId);
+        return;
+      }
+
+      renderEvent(container, event);
+    }
+
+    function renderEvent(container, event) {
+      document.title = `${escapeHTML(event.title)} - CathlabFlix SBHCI`;
+
+      const isApoio = event.type === 'apoio_sbhci' || (event.badge && event.badge.includes('APOIO'));
+      const isGeral = event.type === 'eventos' || (event.badge && event.badge.toLowerCase() === 'eventos');
+      const typeBadgeLabel = isApoio ? 'Apoio SBHCI' : (isGeral ? 'Eventos' : 'Evento Oficial SBHCI');
+      const typeBadgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
+
+      const dateFormatted = formatDateString(event.date, event.endDate, event.dateRangeLabel);
+      const eventImg = event.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+
+      // REGRA CRÍTICA: Botão de inscrição só é renderizado se houver registrationUrl preenchida
+      const hasRegistrationUrl = Boolean(event.registrationUrl && event.registrationUrl.trim() !== '' && !event.registrationUrl.includes('evento?id='));
+
+      const googleCalUrl = typeof EventsService !== 'undefined' && typeof EventsService.generateGoogleCalendarUrl === 'function'
+        ? EventsService.generateGoogleCalendarUrl(event)
+        : '#';
+
+      container.innerHTML = `
+        <!-- Barra Superior de Navegação -->
+        <div class="event-nav-header">
+          <button type="button" class="event-back-btn" id="backBtn" title="Voltar para a Agenda">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Voltar para Eventos</span>
+          </button>
+          <span class="event-type-chip ${typeBadgeClass}">${typeBadgeLabel}</span>
+        </div>
+
+        <!-- Banner Hero 16:9 -->
+        <div class="event-hero-banner">
+          <img src="${eventImg}" alt="${escapeHTML(event.title)}" class="event-hero-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
+          <div class="event-hero-gradient"></div>
+        </div>
+
+        <!-- Corpo Principal do Evento -->
+        <article class="event-article-body">
+          <header class="event-header-section">
+            <h1 class="event-main-title">${escapeHTML(event.title)}</h1>
+            ${event.subtitle ? `<p class="event-lead-subtitle">${escapeHTML(event.subtitle)}</p>` : ''}
+          </header>
+
+          <!-- Grid de Informações: Data, Horário e Local -->
+          <section class="event-info-cards-grid" aria-label="Informações do Evento">
+            <div class="event-info-card">
+              <div class="info-card-icon red">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-label">Data</span>
+                <span class="info-card-val">${dateFormatted}</span>
+              </div>
+            </div>
+
+            <div class="event-info-card">
+              <div class="info-card-icon blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-label">Horário</span>
+                <span class="info-card-val">${escapeHTML(event.time || 'A definir')}</span>
+              </div>
+            </div>
+
+            <div class="event-info-card">
+              <div class="info-card-icon amber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-label">Local</span>
+                <span class="info-card-val">${escapeHTML(event.location || 'Plataforma CathlabFlix Streaming')}</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Barra de Ações -->
+          <section class="event-action-bar">
+            <!-- BOTÃO DE INSCRIÇÃO CONDICIONAL: se não houver link, não exibe nada -->
+            ${hasRegistrationUrl ? `
+              <a href="${escapeHTML(event.registrationUrl)}" class="btn-registration-cta" target="_blank" rel="noopener noreferrer">
+                <span>Inscrição no Site</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
+            ` : ''}
+
+            <!-- Menu Salvar na Agenda -->
+            <div class="agenda-export-dropdown-wrapper">
+              <button type="button" class="btn-save-calendar" id="saveCalendarBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Salvar na Agenda</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+
+              <div class="agenda-export-menu" id="calendarMenu">
+                <a href="${googleCalUrl}" target="_blank" rel="noopener noreferrer" class="export-menu-item">
+                  <span style="font-weight: 800; color: #4285F4;">G</span>
+                  Google Calendar
+                </a>
+                <button type="button" class="export-menu-item" id="exportAppleBtn">
+                  <span></span>
+                  Apple Agenda (.ics)
+                </button>
+                <button type="button" class="export-menu-item" id="exportOutlookBtn">
+                  <span style="color: #0078D4;">O</span>
+                  Outlook (.ics)
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Seção de Descrição do Evento (Opcional) -->
+          ${event.description ? `
+            <section class="event-content-section">
+              <h2 class="section-title">Sobre este Evento</h2>
+              <div class="event-description-text">
+                <p>${escapeHTML(event.description).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>
+              </div>
+            </section>
+          ` : ''}
+
+          <!-- Selo Institucional SBHCI -->
+          <div class="event-institution-box">
+            <div class="institution-logo-badge">SBHCI</div>
+            <div class="institution-text">
+              <h4>Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista</h4>
+              <p>Programa de Educação Médica Continuada e Difusão Científica Oficial.</p>
+            </div>
+          </div>
+        </article>
+      `;
+
+      // Listener de Voltar
+      const backBtn = document.getElementById('backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', () => {
+          if (window.history.length > 1) {
+            window.history.back();
+          } else {
+            window.location.href = '/embed-home.html';
+          }
+        });
+      }
+
+      // Listeners do Menu de Calendário
+      const saveCalBtn = document.getElementById('saveCalendarBtn');
+      const calMenu = document.getElementById('calendarMenu');
+
+      if (saveCalBtn && calMenu) {
+        saveCalBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          calMenu.classList.toggle('is-open');
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.agenda-export-dropdown-wrapper')) {
+            calMenu.classList.remove('is-open');
+          }
+        });
+
+        const appleBtn = document.getElementById('exportAppleBtn');
+        if (appleBtn && typeof EventsService !== 'undefined' && typeof EventsService.downloadIcs === 'function') {
+          appleBtn.addEventListener('click', () => {
+            EventsService.downloadIcs(event, `${event.id}.ics`);
+            calMenu.classList.remove('is-open');
+          });
+        }
+
+        const outlookBtn = document.getElementById('exportOutlookBtn');
+        if (outlookBtn && typeof EventsService !== 'undefined' && typeof EventsService.downloadIcs === 'function') {
+          outlookBtn.addEventListener('click', () => {
+            EventsService.downloadIcs(event, `${event.id}.ics`);
+            calMenu.classList.remove('is-open');
+          });
+        }
+      }
+    }
+
+    function renderNotFound(container, eventId) {
+      container.innerHTML = `
+        <div class="event-not-found-card">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--color-primary); margin-bottom: 16px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <h2 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 8px 0;">Evento não localizado</h2>
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary); margin: 0 0 20px 0;">
+            O evento solicitado ${eventId ? `(<code>${escapeHTML(eventId)}</code>)` : ''} não foi encontrado ou já foi encerrado.
+          </p>
+          <button type="button" class="event-back-btn" onclick="window.location.href='/embed-home.html'">
+            <span>Ir para a Agenda</span>
+          </button>
+        </div>
+      `;
+    }
+
+    function formatDateString(dateStr, endDateStr, dateRangeLabel) {
+      if (dateRangeLabel) return dateRangeLabel;
+      if (!dateStr) return 'Data a definir';
+
+      const months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+      const parts = dateStr.split('-');
+      const year = parts[0];
+      const month = months[parseInt(parts[1], 10) - 1];
+      const day = parseInt(parts[2], 10);
+
+      if (endDateStr && endDateStr !== dateStr) {
+        const endParts = endDateStr.split('-');
+        const endDay = parseInt(endParts[2], 10);
+        const endMonth = months[parseInt(endParts[1], 10) - 1];
+        if (parts[1] === endParts[1]) {
+          return `${day} a ${endDay} de ${month} de ${year}`;
+        }
+        return `${day} de ${month} a ${endDay} de ${endMonth} de ${year}`;
+      }
+
+      return `${day} de ${month} de ${year}`;
+    }
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+  </script>
 
 </body>
 </html>

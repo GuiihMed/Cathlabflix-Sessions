@@ -689,21 +689,14 @@
               </div>
             </div>
 
-            ${event.actionUrl && !event.actionUrl.includes('evento') ? `
-              <a href="${event.actionUrl}" class="event-primary-btn fill" target="_blank" rel="noopener noreferrer">
-                <span>Acessar Transmissão / Inscrição</span>
+            ${(event.registrationUrl || (event.actionUrl && !event.actionUrl.includes('evento'))) ? `
+              <a href="${event.registrationUrl || event.actionUrl}" class="event-primary-btn fill" target="_blank" rel="noopener noreferrer">
+                <span>Inscrição no Site</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </a>
-            ` : `
-              <a href="https://www.cathlabflix.org" class="event-primary-btn fill" target="_blank" rel="noopener noreferrer">
-                <span>Acessar Plataforma Oficial</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-            `}
+            ` : ''}
           </div>
         </section>
 
