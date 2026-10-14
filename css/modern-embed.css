@@ -45,11 +45,9 @@ body.embed-body {
    Barra Superior de Busca e Navegação Rápida
    ========================================================================== */
 .embed-top-bar-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  display: block;
   margin-bottom: 24px;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .embed-nav-pills {
