@@ -2097,12 +2097,56 @@ export function post_eventos(request) {
       });
 
       // 6. Renderização Visual dos Eventos Ativos com Capa (16:9)
+      function getActiveEventsList() {
+        let list = [];
+        try {
+          if (typeof EventsService !== 'undefined' && typeof EventsService.getAllEvents === 'function') {
+            list = EventsService.getAllEvents();
+          }
+        } catch (e) {
+          console.warn('[Events] Erro ao obter eventos de EventsService:', e);
+        }
+
+        // Fallback robusto se EventsService não retornou nada
+        if (!list || list.length === 0) {
+          if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS) && window.INITIAL_EVENTS.length > 0) {
+            list = window.INITIAL_EVENTS.slice();
+          } else if (typeof INITIAL_EVENTS !== 'undefined' && Array.isArray(INITIAL_EVENTS) && INITIAL_EVENTS.length > 0) {
+            list = INITIAL_EVENTS.slice();
+          }
+        }
+
+        // Mescla com eventos customizados do localStorage se existirem
+        try {
+          if (typeof localStorage !== 'undefined') {
+            const stored = localStorage.getItem('cathlabflix_custom_events');
+            if (stored) {
+              const custom = JSON.parse(stored);
+              if (Array.isArray(custom) && custom.length > 0) {
+                const map = new Map();
+                list.forEach(ev => map.set(ev.id || ev.slug, ev));
+                custom.forEach(ev => map.set(ev.id || ev.slug, ev));
+                list = Array.from(map.values());
+              }
+            }
+          }
+        } catch (err) {}
+
+        return list.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      }
+
       function renderActiveEvents() {
-        const events = EventsService.getAllEvents();
-        eventsCountPill.textContent = `${events.length} Eventos Cadastrados`;
+        const grid = document.getElementById('activeEventsGrid');
+        const countPill = document.getElementById('eventsCountPill');
+        if (!grid) return;
+
+        const events = getActiveEventsList();
+        if (countPill) {
+          countPill.textContent = `${events.length} Eventos Cadastrados`;
+        }
 
         if (events.length === 0) {
-          activeEventsGrid.innerHTML = `
+          grid.innerHTML = `
             <div style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: var(--color-text-secondary); background: var(--color-surface); border-radius: 12px; border: 1px dashed var(--color-border-subtle);">
               Nenhum evento ativo cadastrado no momento.
             </div>
@@ -2110,19 +2154,19 @@ export function post_eventos(request) {
           return;
         }
 
-        activeEventsGrid.innerHTML = events.map(ev => {
-          const isApoio = ev.type === 'apoio_sbhci';
-          const isGeral = ev.type === 'eventos';
+        grid.innerHTML = events.map(ev => {
+          const isApoio = (ev.type && ev.type.includes('apoio')) || (ev.badge && ev.badge.includes('APOIO'));
+          const isGeral = (ev.type && ev.type === 'eventos') || (ev.badge && ev.badge.toLowerCase() === 'eventos');
           const badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
           const badgeText = isApoio ? 'APOIO SBHCI' : (isGeral ? 'EVENTOS' : 'EVENTO OFICIAL SBHCI');
           const dateLabel = formatDateLabel(ev.date, ev.endDate);
           const eventImg = ev.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
-          const viewUrl = ev.registrationUrl || `/embed-evento-detalhe.html?id=${encodeURIComponent(ev.id)}`;
+          const eventId = ev.id || ev.slug || 'evento';
 
           return `
             <article class="active-event-card">
               <div class="active-card-cover-wrap">
-                <img src="${eventImg}" alt="${escapeHTML(ev.title)}" class="active-card-cover-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
+                <img src="${eventImg}" alt="${escapeHTML(ev.title || 'Evento')}" class="active-card-cover-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
                 <div class="active-card-badge">
                   <span class="badge-tag ${badgeClass}">${badgeText}</span>
                 </div>
@@ -2130,7 +2174,7 @@ export function post_eventos(request) {
 
               <div class="active-card-body">
                 <div class="active-card-date">${dateLabel}</div>
-                <h3 class="active-card-title">${escapeHTML(ev.title)}</h3>
+                <h3 class="active-card-title">${escapeHTML(ev.title || 'Sem título')}</h3>
 
                 <div class="active-card-meta">
                   <span>
@@ -2159,14 +2203,14 @@ export function post_eventos(request) {
                 </div>
 
                 <div class="active-card-footer">
-                  <a href="/embed-evento-detalhe.html?id=${encodeURIComponent(ev.id)}" target="_blank" class="active-card-view-btn">
+                  <a href="/embed-evento-detalhe.html?id=${encodeURIComponent(eventId)}" target="_blank" class="active-card-view-btn">
                     <span>Visualizar</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
                   </a>
 
-                  <button type="button" class="active-card-delete-btn" data-id="${ev.id}" title="Excluir evento">
+                  <button type="button" class="active-card-delete-btn" data-id="${eventId}" title="Excluir evento">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <polyline points="3 6 5 6 21 6"></polyline>
                       <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -2180,16 +2224,38 @@ export function post_eventos(request) {
         }).join('');
 
         // Listeners de exclusão
-        activeEventsGrid.querySelectorAll('.active-card-delete-btn').forEach(btn => {
+        grid.querySelectorAll('.active-card-delete-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             if (confirm('Tem certeza que deseja remover este evento?')) {
-              EventsService.deleteEvent(id);
+              if (typeof EventsService !== 'undefined' && typeof EventsService.deleteEvent === 'function') {
+                EventsService.deleteEvent(id);
+              }
               showToast('Evento excluído com sucesso.');
               renderActiveEvents();
             }
           });
         });
+      }
+
+      // Sincronização assíncrona com API remota
+      async function syncRemoteEvents() {
+        const endpoints = ['/api/wix-events', 'https://cathlabflix-sessions.vercel.app/api/wix-events'];
+        for (const ep of endpoints) {
+          try {
+            const res = await fetch(ep, { signal: AbortSignal.timeout(3000) });
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.success && Array.isArray(data.items) && data.items.length > 0) {
+                if (typeof window !== 'undefined') {
+                  window.INITIAL_EVENTS = data.items;
+                }
+                renderActiveEvents();
+                break;
+              }
+            }
+          } catch (e) {}
+        }
       }
 
       function showToast(msg) {
@@ -2229,6 +2295,7 @@ export function post_eventos(request) {
       updateTypeTag();
       updateLivePreview();
       renderActiveEvents();
+      syncRemoteEvents();
     });
   </script>
 

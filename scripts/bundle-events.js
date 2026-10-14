@@ -21,13 +21,15 @@ let cadastrarBundled = cadastrarSource
   .replace('<script src="/js/events-service.js"></script>', `<script>\n${eventsServiceCode}\n</script>`);
 
 fs.writeFileSync(path.join(ROOT_DIR, 'embed-cadastrar-evento.html'), cadastrarBundled, 'utf8');
+fs.writeFileSync(path.join(ROOT_DIR, 'cadastrar-evento.html'), cadastrarBundled, 'utf8');
+fs.writeFileSync(path.join(ROOT_DIR, 'new/cadastrar-evento.html'), cadastrarBundled, 'utf8');
 fs.writeFileSync(path.join(ROOT_DIR, 'new/embed-cadastrar-evento.html'), cadastrarBundled, 'utf8');
 
 const cadastrarDir = path.join(ROOT_DIR, 'new/cadastrar-evento');
 if (!fs.existsSync(cadastrarDir)) fs.mkdirSync(cadastrarDir, { recursive: true });
 fs.writeFileSync(path.join(cadastrarDir, 'index.html'), cadastrarBundled, 'utf8');
 
-console.log('✓ embed-cadastrar-evento.html gerado com sucesso!');
+console.log('✓ cadastrar-evento.html e embed-cadastrar-evento.html gerados com sucesso!');
 
 // 3. Empacotar embed-evento-detalhe.html
 const detalheSource = fs.readFileSync(path.join(ROOT_DIR, 'embed-evento-detalhe.html'), 'utf8');
