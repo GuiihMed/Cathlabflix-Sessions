@@ -801,34 +801,6 @@
       gap: 10px;
     }
 
-    /* Toast de Notificação Flutuante */
-    .toast-feedback {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 10000;
-      background: var(--color-surface);
-      color: #FFFFFF;
-      padding: 12px 20px;
-      border-radius: var(--radius-pill);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-      border: 1px solid var(--color-blue-accent);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      opacity: 0;
-      transform: translateY(20px);
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .toast-feedback.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     /* ==========================================================================
        RESPONSIVIDADE (TABLET & MOBILE)
        ========================================================================== */
@@ -962,25 +934,14 @@
 
             <!-- Botões de Ação -->
             <div class="session-actions-group">
-              <button type="button" class="action-pill-btn" id="btnShare" title="Copiar link desta gravação">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="18" cy="5" r="3"></circle>
-                  <circle cx="6" cy="12" r="3"></circle>
-                  <circle cx="18" cy="19" r="3"></circle>
-                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                </svg>
-                Compartilhar
-              </button>
-
-              <a href="https://www.cathlabflix.org/aulas-solaci" class="action-pill-btn btn-slides" target="_top" title="Ver grade de aulas e baixar slides PPTX">
+              <a href="https://www.cathlabflix.org/aulas-solaci" class="action-pill-btn btn-slides" target="_top" title="Ver grade de aulas">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
                   <line x1="16" y1="13" x2="8" y2="13"></line>
                   <line x1="16" y1="17" x2="8" y2="17"></line>
                 </svg>
-                Grade de Aulas & PPTX
+                Grade de Aulas
               </a>
             </div>
 
@@ -1095,14 +1056,6 @@
       </div>
 
     </main>
-  </div>
-
-  <!-- Toast de Notificação Flutuante -->
-  <div id="toastFeedback" class="toast-feedback" role="status" aria-live="polite">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="20 6 9 17 4 12"></polyline>
-    </svg>
-    <span id="toastMessage">Link copiado para a área de transferência!</span>
   </div>
 
   <!-- ==========================================================================
@@ -1870,10 +1823,7 @@
         roomTabs: document.getElementById('roomTabsContainer'),
         playlistList: document.getElementById('playlistScrollList'),
         searchInput: document.getElementById('playlistSearchInput'),
-        searchClear: document.getElementById('searchClearBtn'),
-        btnShare: document.getElementById('btnShare'),
-        toast: document.getElementById('toastFeedback'),
-        toastMsg: document.getElementById('toastMessage')
+        searchClear: document.getElementById('searchClearBtn')
       };
 
       // 4. COMUNICAÇÃO DE RESIZE COM O IFRAME DO WIX
@@ -1893,19 +1843,7 @@
         } catch (e) {}
       }
 
-      // 5. TOAST FEEDBACK
-      let toastTimer = null;
-      function showToast(msg) {
-        if (!dom.toast) return;
-        dom.toastMsg.textContent = msg;
-        dom.toast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => {
-          dom.toast.classList.remove('show');
-        }, 3200);
-      }
-
-      // 6. RENDERIZAR ABAS DE DIAS
+      // 5. RENDERIZAR ABAS DE DIAS
       function renderDayTabs() {
         dom.dayTabs.innerHTML = '';
         DAYS_CONFIG.forEach(d => {
@@ -1933,7 +1871,7 @@
         });
       }
 
-      // 7. RENDERIZAR ABAS DE SALAS
+      // 6. RENDERIZAR ABAS DE SALAS
       function renderRoomTabs() {
         dom.roomTabs.innerHTML = '';
 
@@ -1986,7 +1924,7 @@
         });
       }
 
-      // 8. FILTRAGEM DAS SESSÕES
+      // 7. FILTRAGEM DAS SESSÕES
       function getFilteredSessions() {
         return SESSIONS.filter(session => {
           // Filtro por dia
@@ -2024,7 +1962,7 @@
           .replace(/'/g, '&#039;');
       }
 
-      // 9. RENDERIZAR PLAYLIST
+      // 8. RENDERIZAR PLAYLIST
       function renderPlaylist() {
         const filtered = getFilteredSessions();
         dom.playlistList.innerHTML = '';
@@ -2097,7 +2035,7 @@
         dom.playlistList.appendChild(fragment);
       }
 
-      // 10. REPRODUZIR SESSÃO
+      // 9. REPRODUZIR SESSÃO
       function playSession(sessionId, shouldScroll) {
         const session = SESSIONS.find(s => s.id === sessionId);
         if (!session) return;
@@ -2159,39 +2097,7 @@
         sendResizeMessage();
       }
 
-      // 11. COMPARTILHAR LINK DA GRAVAÇÃO
-      function shareSession() {
-        if (!currentSessionId) return;
-        const shareUrl = `https://www.cathlabflix.org/solaci-gravacao?v=${currentSessionId}`;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(shareUrl).then(() => {
-            showToast('Link da gravação copiado!');
-          }).catch(() => {
-            fallbackCopy(shareUrl);
-          });
-        } else {
-          fallbackCopy(shareUrl);
-        }
-      }
-
-      function fallbackCopy(text) {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.focus();
-        ta.select();
-        try {
-          document.execCommand('copy');
-          showToast('Link da gravação copiado!');
-        } catch (e) {
-          prompt('Copie o link abaixo:', text);
-        }
-        document.body.removeChild(ta);
-      }
-
-      // 13. BUSCA RÁPIDA
+      // 10. BUSCA RÁPIDA
       dom.searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value;
         if (searchQuery.trim().length > 0) {
@@ -2212,9 +2118,7 @@
         sendResizeMessage();
       });
 
-      dom.btnShare.addEventListener('click', shareSession);
-
-      // 14. INICIALIZAÇÃO
+      // 11. INICIALIZAÇÃO
       window.addEventListener('load', () => {
         renderDayTabs();
         renderRoomTabs();
