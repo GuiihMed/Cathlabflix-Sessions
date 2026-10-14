@@ -151,7 +151,9 @@
    */
   async function fetchWixNews() {
     try {
-      const res = await fetch('/api/wix-news');
+      const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+      const endpoint = isLocal ? '/api/wix-news' : 'https://cathlabflix-sessions.vercel.app/api/wix-news';
+      const res = await fetch(endpoint);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       if (data.items && data.items.length > 0) {
@@ -229,7 +231,7 @@
             alt="${escapeHTML(item.title)}" 
             class="news-card-thumb" 
             loading="lazy"
-            onerror="this.src='/assets/images/og-cathlabflix.png'"
+            onerror="this.src='https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png'"
           >
           <span class="news-category-badge">${escapeHTML(item.category || 'Notícia')}</span>
         </a>
@@ -495,7 +497,7 @@
         </header>
 
         <div class="embed-post-featured-media">
-          <img src="${currentPost.image}" alt="${escapeHTML(currentPost.title)}" onerror="this.src='/assets/images/og-cathlabflix.png'">
+          <img src="${currentPost.image}" alt="${escapeHTML(currentPost.title)}" onerror="this.src='https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png'">
         </div>
 
         <div class="embed-post-content-body">
@@ -570,7 +572,7 @@
     container.innerHTML = `
       <div class="embed-event-reader">
         <div class="event-hero-banner">
-          <img src="${eventImg}" alt="${escapeHTML(event.title)}" class="event-hero-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
+          <img src="${eventImg}" alt="${escapeHTML(event.title)}" class="event-hero-img" onerror="this.src='https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png'">
           <div class="event-hero-gradient"></div>
           <div class="event-hero-meta-overlay">
             <span class="event-hero-modality">${escapeHTML(event.modality || 'Evento SBHCI')}</span>
@@ -693,7 +695,7 @@
 
           <div class="event-institution-box">
             <div class="institution-logo-wrap">
-              <img src="/assets/images/logo-cathlabflix-color.png" alt="SBHCI" width="130">
+              <img src="https://cathlabflix-sessions.vercel.app/assets/images/logo-cathlabflix-color.png" alt="SBHCI" width="130">
             </div>
             <div class="institution-text">
               <h4>Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista</h4>
