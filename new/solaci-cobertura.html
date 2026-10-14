@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Cobertura SOLACI-SBHCI 2026 - CathlabFlix</title>
+  <meta name="description" content="Acesse os conteúdos da cobertura completa do Congresso SOLACI-SBHCI 2026: Entrevistas com líderes de opinião, boletins diários e melhores momentos em vídeo.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cathlabflix.org/solaci-cobertura">
+  <meta property="og:title" content="Cobertura SOLACI-SBHCI 2026 - Acesse os Conteúdos">
+  <meta property="og:description" content="Entrevistas exclusivas, boletins diários e os melhores momentos do Congresso SOLACI-SBHCI 2026.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       ========================================================================== -->
+  <style>
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #0a2d72;
+      --color-surface-elevated: #0d3685;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #b80710;
+      --color-blue-accent: #38bdf8;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 4px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      background-color: var(--color-bg-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Estrutura Principal */
+    .cobertura-main {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    /* Top Bar com Botão Voltar ao SOLACI */
+    .top-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .back-solaci-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .back-solaci-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--color-blue-accent);
+      transform: translateX(-3px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
+    }
+
+    .back-solaci-btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition-fast);
+    }
+
+    .back-solaci-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .congress-tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--color-blue-accent);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      box-shadow: 0 0 10px var(--color-primary);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Cabeçalho Oficial: "Acesse os conteúdos" */
+    .section-title-wrap {
+      margin-bottom: 28px;
+    }
+
+    .page-title {
+      font-size: 2.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+    }
+
+    .page-title-underline {
+      width: 84px;
+      height: 4px;
+      background: linear-gradient(90deg, #E50914 0%, #ff4b55 100%);
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .page-subtitle {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0;
+    }
+
+    /* Barra de Filtros e Categorias */
+    .filters-bar {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Linha Superior dos Filtros: Tabs de Categoria */
+    .category-tabs-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .category-tabs-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cat-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .cat-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #FFFFFF;
+    }
+
+    .cat-tab-btn.active {
+      background: #E50914;
+      border-color: #E50914;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(229, 9, 20, 0.35);
+    }
+
+    .cat-tab-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.18);
+      font-size: 0.6875rem;
+      font-weight: 800;
+    }
+
+    .cat-tab-btn.active .cat-tab-count {
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    /* Campo de Busca Rápida */
+    .search-input-box {
+      position: relative;
+      min-width: 240px;
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .search-input-box input {
+      width: 100%;
+      background: rgba(1, 2, 52, 0.6);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 9px 36px 9px 16px;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .search-input-box input:focus {
+      border-color: var(--color-blue-accent);
+      background: rgba(1, 2, 52, 0.9);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .search-input-box input::placeholder {
+      color: var(--color-text-tertiary);
+    }
+
+    .search-input-box svg {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      color: var(--color-text-tertiary);
+      pointer-events: none;
+    }
+
+    /* Linha Inferior dos Filtros: Filtro por Dia */
+    .day-filters-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+    }
+
+    .day-filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+
+    .day-pill-btn {
+      background: transparent;
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .day-pill-btn:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .day-pill-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: var(--color-blue-accent);
+      color: var(--color-blue-accent);
+      font-weight: 700;
+    }
+
+    /* Grid de Vídeos da Cobertura */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
+    }
+
+    /* Card de Vídeo Vertical (9:16) */
+    .video-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.28s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7),
+                  0 0 24px rgba(56, 189, 248, 0.18);
+    }
+
+    /* Container da Imagem com proporção 9:16 */
+    .video-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 15.5;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .video-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .video-card:hover .video-thumb-img {
+      transform: scale(1.04);
+    }
+
+    /* Gradientes sobre a foto para legibilidade */
+    .video-thumb-overlay-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      background: linear-gradient(180deg, rgba(1, 2, 52, 0.75) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .video-thumb-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(0deg, rgba(1, 2, 52, 0.95) 0%, rgba(1, 2, 52, 0.6) 60%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Badges no topo do Card */
+    .card-top-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      z-index: 3;
+    }
+
+    .badge-category {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      color: #FFFFFF;
+      background: rgba(1, 2, 52, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .badge-category.cat-boletim {
+      background: rgba(229, 9, 20, 0.9);
+      border-color: #E50914;
+    }
+
+    .badge-category.cat-momentos {
+      background: rgba(14, 165, 233, 0.9);
+      border-color: #38bdf8;
+    }
+
+    .badge-category.cat-entrevista {
+      background: rgba(168, 85, 247, 0.9);
+      border-color: #c084fc;
+    }
+
+    .badge-day {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Botão Play Central (Hover) */
+    .card-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(229, 9, 20, 0.65);
+      z-index: 3;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-play-overlay svg {
+      width: 22px;
+      height: 22px;
+      fill: #FFFFFF;
+      margin-left: 3px;
+    }
+
+    .video-card:hover .card-play-overlay {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* Duração do Vídeo */
+    .card-duration-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 3;
+    }
+
+    /* Informações do Rodapé do Card */
+    .video-card-info {
+      padding: 14px 16px 16px;
+      background: var(--color-surface);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .video-card-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .video-card:hover .video-card-title {
+      color: var(--color-blue-accent);
+    }
+
+    .video-card-speaker {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .video-card-speaker svg {
+      width: 14px;
+      height: 14px;
+      color: var(--color-blue-accent);
+      flex-shrink: 0;
+    }
+
+    /* Estado Vazio (Nenhum resultado na busca) */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--color-border-subtle);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: var(--color-text-tertiary);
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .empty-state button {
+      background: var(--color-primary);
+      border: none;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .empty-state button:hover {
+      background: var(--color-primary-hover);
+    }
+
+    /* Faixa de Links Rápidos (Rodapé) */
+    .explore-strip {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .explore-strip-text h4 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .explore-strip-text p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .explore-strip-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .explore-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .explore-action-btn.btn-aulas {
+      background: #E50914;
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-aulas:hover {
+      background: var(--color-primary-hover);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .explore-action-btn.btn-gravacao {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-gravacao:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--color-blue-accent);
+      color: var(--color-blue-accent);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO VIMEO
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(1, 2, 52, 0.94);
+      backdrop-filter: blur(12px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-dialog {
+      background: #06193f;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.15);
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.94);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-modal.active .lightbox-dialog {
+      transform: scale(1);
+    }
+
+    .lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: #04122f;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .lightbox-title-area {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-right: 12px;
+      overflow: hidden;
+    }
+
+    .lightbox-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lightbox-speaker {
+      font-size: 0.75rem;
+      color: var(--color-blue-accent);
+      font-weight: 600;
+    }
+
+    .lightbox-close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .lightbox-close-btn:hover {
+      background: #E50914;
+      border-color: #E50914;
+      transform: rotate(90deg);
+    }
+
+    .lightbox-video-frame-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      max-height: 72vh;
+    }
+
+    .lightbox-video-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .lightbox-footer {
+      padding: 12px 18px;
+      background: #04122f;
+      border-top: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .lightbox-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .cobertura-main {
+        padding: 18px 14px 40px;
+      }
+
+      .page-title {
+        font-size: 1.625rem;
+      }
+
+      .filters-bar {
+        padding: 14px;
+        gap: 12px;
+      }
+
+      .category-tabs-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .category-tabs-group {
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .search-input-box {
+        max-width: 100%;
+      }
+
+      .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .explore-strip {
+        padding: 18px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .explore-strip-actions {
+        flex-direction: column;
+      }
+
+      .explore-action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .lightbox-dialog {
+        max-width: 96vw;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .videos-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <main class="cobertura-main">
+
+      <!-- 1. Barra de Navegação Superior (Botão Voltar) -->
+      <nav class="top-nav-bar" aria-label="Navegação da Cobertura">
+        <a href="https://www.cathlabflix.org/solaci" class="back-solaci-btn" title="Voltar ao portal oficial do SOLACI SBHCI 2026" target="_top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar ao SOLACI
+        </a>
+
+        <div class="congress-tag-badge">
+          <span class="pulse-dot"></span>
+          SOLACI-SBHCI 2026 • Cobertura Exclusiva
+        </div>
+      </nav>
+
+      <!-- 2. Cabeçalho Oficial: "Acesse os conteúdos" -->
+      <header class="section-title-wrap">
+        <h1 class="page-title">Acesse os conteúdos</h1>
+        <div class="page-title-underline"></div>
+        <p class="page-subtitle">
+          Confira na íntegra a cobertura audiovisual oficial do Congresso SOLACI-SBHCI 2026: entrevistas com especialistas, boletins informativos diários e os melhores momentos de cada jornada científica.
+        </p>
+      </header>
+
+      <!-- 3. Barra de Filtros e Busca Rápida -->
+      <section class="filters-bar" aria-label="Filtros de Vídeos">
+        
+        <!-- Linha 1: Categorias Principais + Busca -->
+        <div class="category-tabs-row">
+          <div class="category-tabs-group" role="tablist">
+            <button type="button" class="cat-tab-btn active" data-category="all" role="tab" aria-selected="true">
+              Todos os Conteúdos
+              <span class="cat-tab-count" id="countAll">25</span>
+            </button>
+            <button type="button" class="cat-tab-btn" data-category="entrevistas" role="tab" aria-selected="false">
+              Entrevistas
+              <span class="cat-tab-count" id="countEntrevistas">17</span>
+            </button>
+            <button type="button" class="cat-tab-btn" data-category="momentos" role="tab" aria-selected="false">
+              Melhores Momentos
+              <span class="cat-tab-count" id="countMomentos">5</span>
+            </button>
+            <button type="button" class="cat-tab-btn" data-category="boletim" role="tab" aria-selected="false">
+              Boletim Diário
+              <span class="cat-tab-count" id="countBoletim">3</span>
+            </button>
+          </div>
+
+          <div class="search-input-box">
+            <input type="text" id="videoSearchInput" placeholder="Buscar por médico ou tema..." aria-label="Buscar na cobertura">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Linha 2: Filtro por Dia do Evento -->
+        <div class="day-filters-row">
+          <span class="day-filter-label">Filtrar por dia:</span>
+          <button type="button" class="day-pill-btn active" data-day="all">Todos os Dias</button>
+          <button type="button" class="day-pill-btn" data-day="dia-1">Dia 1 (29/07)</button>
+          <button type="button" class="day-pill-btn" data-day="dia-2">Dia 2 (30/07)</button>
+          <button type="button" class="day-pill-btn" data-day="dia-3">Dia 3 (31/07)</button>
+        </div>
+
+      </section>
+
+      <!-- 4. Grid de Cards de Vídeo -->
+      <section class="videos-grid" id="videosGrid" aria-label="Galeria de vídeos da cobertura">
+        <!-- Renderizado dinamicamente via JS -->
+      </section>
+
+      <!-- 5. Faixa Inferior de Navegação Rápida -->
+      <aside class="explore-strip" aria-label="Mais conteúdos do SOLACI SBHCI 2026">
+        <div class="explore-strip-text">
+          <h4>Mais do Congresso SOLACI-SBHCI 2026</h4>
+          <p>Acesse o acervo completo de gravações das salas científicas e faça o download das apresentações de aulas em slides.</p>
+        </div>
+        <div class="explore-strip-actions">
+          <a href="https://www.cathlabflix.org/aulas-solaci" class="explore-action-btn btn-aulas" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Grade de Aulas & PPTX
+          </a>
+          <a href="https://www.cathlabflix.org/solaci" class="explore-action-btn btn-gravacao" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Gravações Científicas
+          </a>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO
+       ========================================================================== -->
+  <div class="lightbox-modal" id="videoModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-dialog">
+      <div class="lightbox-header">
+        <div class="lightbox-title-area">
+          <div class="lightbox-title" id="modalVideoTitle">Título do Vídeo</div>
+          <div class="lightbox-speaker" id="modalVideoSpeaker">Médico / Participante</div>
+        </div>
+        <button type="button" class="lightbox-close-btn" id="modalCloseBtn" aria-label="Fechar reprodutor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="lightbox-video-frame-wrap" id="modalIframeContainer">
+        <!-- Iframe do Vimeo inserido dinamicamente ao abrir -->
+      </div>
+
+      <div class="lightbox-footer">
+        <p class="lightbox-desc" id="modalVideoDesc">Descrição do vídeo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT MODULAR EMBUTIDO
+       ========================================================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. BANCO DE DADOS COMPLETO DA COBERTURA SOLACI-SBHCI 2026
+      const COBERTURA_DATA = [
+        // --- BOLETINS DIÁRIOS OFICIAIS (3 vídeos) ---
+        {
+          id: 'bol-1',
+          section: 'boletim',
+          category: 'Boletim Diário',
+          catClass: 'cat-boletim',
+          day: 'dia-1',
+          dayLabel: 'Dia 1 • 29/07',
+          title: 'Boletim Oficial - Dia 1',
+          speaker: 'Dra. Denise Pelegrini',
+          role: 'Apresentadora Oficial SBHCI',
+          videoId: '1220303291',
+          duration: '0:35',
+          poster: 'https://static.wixstatic.com/media/1d3d47_54cfd76527bf48c184faf1e1cd6a6f73~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_54cfd76527bf48c184faf1e1cd6a6f73~mv2.jpg',
+          description: 'Resumo dos acontecimentos, abertura solene e destaques do primeiro dia do Congresso SOLACI-SBHCI 2026.'
+        },
+        {
+          id: 'bol-2',
+          section: 'boletim',
+          category: 'Boletim Diário',
+          catClass: 'cat-boletim',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Boletim Oficial - Dia 2',
+          speaker: 'Dr. Thiago Marinho',
+          role: 'Apresentador Oficial SBHCI',
+          videoId: '1220303585',
+          duration: '0:35',
+          poster: 'https://static.wixstatic.com/media/1d3d47_5b9678604b524b8388cf665872bb4034~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_5b9678604b524b8388cf665872bb4034~mv2.jpg',
+          description: 'Casos ao vivo, principais debates científicos e sessões concorridas do segundo dia do encontro.'
+        },
+        {
+          id: 'bol-3',
+          section: 'boletim',
+          category: 'Boletim Diário',
+          catClass: 'cat-boletim',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Boletim Oficial - Dia 3',
+          speaker: 'Dr. Augusto Celso',
+          role: 'Apresentador Oficial SBHCI',
+          videoId: '1223349004',
+          duration: '0:58',
+          poster: 'https://static.wixstatic.com/media/1d3d47_fd4183ae1a0e4a3ca52a3c6e3054393c~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_fd4183ae1a0e4a3ca52a3c6e3054393c~mv2.jpg',
+          description: 'Conclusões, premiações científicas e o encerramento do maior congresso da especialidade na América Latina.'
+        },
+
+        // --- MELHORES MOMENTOS (5 vídeos) ---
+        {
+          id: 'mm-1',
+          section: 'momentos',
+          category: 'Melhores Momentos',
+          catClass: 'cat-momentos',
+          day: 'dia-1',
+          dayLabel: 'Dia 1 • 29/07',
+          title: 'Melhores Momentos - Dia 1',
+          speaker: 'Congresso SOLACI-SBHCI 2026',
+          role: 'Cobertura Audiovisual',
+          videoId: '1220290291',
+          duration: '0:51',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ad48cf5734724cbdb05cad2dbac4cf17~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_ad48cf5734724cbdb05cad2dbac4cf17~mv2.jpg',
+          description: 'A energia da abertura, recepção dos congressistas e as primeiras sessões de alto impacto.'
+        },
+        {
+          id: 'mm-2',
+          section: 'momentos',
+          category: 'Melhores Momentos',
+          catClass: 'cat-momentos',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Melhores Momentos - Dia 2 (Sessões)',
+          speaker: 'Congresso SOLACI-SBHCI 2026',
+          role: 'Cobertura Audiovisual',
+          videoId: '1220291215',
+          duration: '0:42',
+          poster: 'https://static.wixstatic.com/media/1d3d47_a9515c700df6413390357803a709a527~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_a9515c700df6413390357803a709a527~mv2.jpg',
+          description: 'Salas cheias, apresentações dinâmicas e intensa participação do público intervencionista.'
+        },
+        {
+          id: 'mm-3',
+          section: 'momentos',
+          category: 'Melhores Momentos',
+          catClass: 'cat-momentos',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Melhores Momentos - Dia 2 (Noite)',
+          speaker: 'Congresso SOLACI-SBHCI 2026',
+          role: 'Cobertura Audiovisual',
+          videoId: '1220291214',
+          duration: '0:48',
+          poster: 'https://static.wixstatic.com/media/1d3d47_8e13492ac95c45968f84901919e0ae2c~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_8e13492ac95c45968f84901919e0ae2c~mv2.jpg',
+          description: 'Networking, celebração e confraternização entre os especialistas da América Latina.'
+        },
+        {
+          id: 'mm-4',
+          section: 'momentos',
+          category: 'Melhores Momentos',
+          catClass: 'cat-momentos',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Melhores Momentos - Dia 3 (Plenárias)',
+          speaker: 'Congresso SOLACI-SBHCI 2026',
+          role: 'Cobertura Audiovisual',
+          videoId: '1220296029',
+          duration: '0:44',
+          poster: 'https://static.wixstatic.com/media/1d3d47_3ce31b79023f4b18ade764f10d700090~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_3ce31b79023f4b18ade764f10d700090~mv2.jpg',
+          description: 'Grandes debates científicos, novas diretrizes e inovações apresentadas nas plenárias.'
+        },
+        {
+          id: 'mm-5',
+          section: 'momentos',
+          category: 'Melhores Momentos',
+          catClass: 'cat-momentos',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Melhores Momentos - Encerramento',
+          speaker: 'Congresso SOLACI-SBHCI 2026',
+          role: 'Cobertura Audiovisual',
+          videoId: '1220296028',
+          duration: '0:40',
+          poster: 'https://static.wixstatic.com/media/1d3d47_4e4469faff514fa2afa6fe3da2029343~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_4e4469faff514fa2afa6fe3da2029343~mv2.jpg',
+          description: 'A cerimônia de premiação, encerramento oficial e comemoração do sucesso do congresso.'
+        },
+
+        // --- ENTREVISTAS - DIA 2 (4 vídeos) ---
+        {
+          id: 'ent-1',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dra. Tieta',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223411413',
+          duration: '0:43',
+          poster: 'https://static.wixstatic.com/media/1d3d47_2fac4c0213a74d9fa9ae3809cd3f61d0~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_2fac4c0213a74d9fa9ae3809cd3f61d0~mv2.jpg',
+          description: 'Visão prática sobre angioplastias complexas e avanços na cardiologia intervencionista.'
+        },
+        {
+          id: 'ent-2',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Adriano e Dra. Thais',
+          role: 'Especialistas Convidados',
+          videoId: '1223411414',
+          duration: '0:52',
+          poster: 'https://static.wixstatic.com/media/1d3d47_c411f2c0413e4f0ab28fafbb6116c164~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_c411f2c0413e4f0ab28fafbb6116c164~mv2.jpg',
+          description: 'Discussão sobre Heart Team e decisões conjuntas em casos estruturais desafiadores.'
+        },
+        {
+          id: 'ent-3',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Gentil',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223411412',
+          duration: '0:48',
+          poster: 'https://static.wixstatic.com/media/1d3d47_461671c6b3f14079a02b809a33aa1d3f~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_461671c6b3f14079a02b809a33aa1d3f~mv2.jpg',
+          description: 'Avanços em tecnologia de stents e farmacoterapia adjuvante no cateterismo.'
+        },
+        {
+          id: 'ent-4',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-2',
+          dayLabel: 'Dia 2 • 30/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Pablo Tomé',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223411411',
+          duration: '1:13',
+          poster: 'https://static.wixstatic.com/media/1d3d47_bc5c33568c0b429e9b30b69c92488cd5~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_bc5c33568c0b429e9b30b69c92488cd5~mv2.jpg',
+          description: 'Comentários sobre tendências globais e o futuro da especialidade no Brasil e região.'
+        },
+
+        // --- ENTREVISTAS - DIA 3 (13 vídeos) ---
+        {
+          id: 'ent-5',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Gilberto',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424005',
+          duration: '1:16',
+          poster: 'https://static.wixstatic.com/media/1d3d47_e05cd6ce081a4c9eb53757b4311c45e0~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_e05cd6ce081a4c9eb53757b4311c45e0~mv2.jpg',
+          description: 'Abordagem clínica em bifurcações coronárias e técnicas modernas de implante de stent.'
+        },
+        {
+          id: 'ent-6',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Carlos Campos',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424007',
+          duration: '1:22',
+          poster: 'https://static.wixstatic.com/media/1d3d47_2d7ec0831c99416c8bf5b34395070d82~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_2d7ec0831c99416c8bf5b34395070d82~mv2.jpg',
+          description: 'Desfechos clínicos em intervenções estruturais complexas e fisiologia coronária.'
+        },
+        {
+          id: 'ent-7',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Paulo Henrique',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424006',
+          duration: '1:39',
+          poster: 'https://static.wixstatic.com/media/1d3d47_35670b82eeae40209a0631dea23c97c6~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_35670b82eeae40209a0631dea23c97c6~mv2.jpg',
+          description: 'Principais conclusões extraídas dos grandes ensaios clínicos apresentados.'
+        },
+        {
+          id: 'ent-8',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Silvio Giopatto',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424013',
+          duration: '1:22',
+          poster: 'https://static.wixstatic.com/media/1d3d47_6abbde7fa677486caf8393bb6a36ef91~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_6abbde7fa677486caf8393bb6a36ef91~mv2.jpg',
+          description: 'Reflexões sobre a qualidade das sessões científicas e a participação expressiva da SBHCI.'
+        },
+        {
+          id: 'ent-9',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. André Labrunie',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424286',
+          duration: '1:09',
+          poster: 'https://static.wixstatic.com/media/1d3d47_a3d23ff66ffd4f74aa293f3b1f4d5d59~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_a3d23ff66ffd4f74aa293f3b1f4d5d59~mv2.jpg',
+          description: 'A importância da integração internacional entre SBHCI e SOLACI para o avanço da especialidade.'
+        },
+        {
+          id: 'ent-10',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dra. Karolina Mattos',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424307',
+          duration: '0:49',
+          poster: 'https://static.wixstatic.com/media/1d3d47_1f14643ab8784133a402603658f44d41~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_1f14643ab8784133a402603658f44d41~mv2.jpg',
+          description: 'O protagonismo feminino no laboratório de hemodinâmica e a evolução dos tratamentos percutâneos.'
+        },
+        {
+          id: 'ent-11',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dra. Gabriela e Dra. Deise',
+          role: 'Especialistas Convidadas',
+          videoId: '1223424308',
+          duration: '1:10',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ac8789d3bc9c4807bf438189ccc40411~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_ac8789d3bc9c4807bf438189ccc40411~mv2.jpg',
+          description: 'Cuidados perioperatórios, protocolos assistenciais e segurança no manejo de pacientes críticos.'
+        },
+        {
+          id: 'ent-12',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Rogério Sarmento',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424317',
+          duration: '1:05',
+          poster: 'https://static.wixstatic.com/media/1d3d47_666fb33956ad4d57a441399679001d36~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_666fb33956ad4d57a441399679001d36~mv2.jpg',
+          description: 'Panorama das novidades em intervenção coronária percutânea e o legado do congresso.'
+        },
+        {
+          id: 'ent-13',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Márcio Montenegro',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424514',
+          duration: '0:44',
+          poster: 'https://static.wixstatic.com/media/1d3d47_37f133925a3d40eca70fdb0ae2df80a2~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_37f133925a3d40eca70fdb0ae2df80a2~mv2.jpg',
+          description: 'Avaliação dos estudos mais impactantes e a translação do conhecimento para a rotina clínica.'
+        },
+        {
+          id: 'ent-14',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Marcelo Cantarelli',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424534',
+          duration: '0:48',
+          poster: 'https://static.wixstatic.com/media/1d3d47_1eeb72fe27024c10a9c06385e36bdeaa~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_1eeb72fe27024c10a9c06385e36bdeaa~mv2.jpg',
+          description: 'Técnicas de revascularização percutânea e novas evidências para intervenção em lesões graves.'
+        },
+        {
+          id: 'ent-15',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Carlos Eduardo',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424554',
+          duration: '0:36',
+          poster: 'https://static.wixstatic.com/media/1d3d47_64985509abbe4ce28c163b1ca4cb48e6~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_64985509abbe4ce28c163b1ca4cb48e6~mv2.jpg',
+          description: 'Formação continuada e oportunidades de aperfeiçoamento para novos intervencionistas.'
+        },
+        {
+          id: 'ent-16',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Dinaldo Oliveira',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424555',
+          duration: '0:44',
+          poster: 'https://static.wixstatic.com/media/1d3d47_a5a861479def457b954a5db3c1d4c598~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_a5a861479def457b954a5db3c1d4c598~mv2.jpg',
+          description: 'Experiência clínica, segurança de dispositivos e novidades em oclusão percutânea.'
+        },
+        {
+          id: 'ent-17',
+          section: 'entrevistas',
+          category: 'Entrevista',
+          catClass: 'cat-entrevista',
+          day: 'dia-3',
+          dayLabel: 'Dia 3 • 31/07',
+          title: 'Entrevista Exclusiva',
+          speaker: 'Dr. Luís Campos',
+          role: 'Cardiologista Intervencionista',
+          videoId: '1223424644',
+          duration: '0:28',
+          poster: 'https://static.wixstatic.com/media/1d3d47_90fa81eb0c3c4c1caeaccb692666b0bd~mv2.jpg/v1/fill/w_480,h_854,q_90,enc_avif,quality_auto/1d3d47_90fa81eb0c3c4c1caeaccb692666b0bd~mv2.jpg',
+          description: 'Considerações finais sobre o impacto do evento e confraternização da comunidade SBHCI.'
+        }
+      ];
+
+      // 2. ELEMENTOS DO DOM
+      const grid = document.getElementById('videosGrid');
+      const catTabBtns = document.querySelectorAll('.cat-tab-btn');
+      const dayPillBtns = document.querySelectorAll('.day-pill-btn');
+      const searchInput = document.getElementById('videoSearchInput');
+
+      // Elementos do Modal
+      const modal = document.getElementById('videoModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const modalIframeContainer = document.getElementById('modalIframeContainer');
+      const modalVideoTitle = document.getElementById('modalVideoTitle');
+      const modalVideoSpeaker = document.getElementById('modalVideoSpeaker');
+      const modalVideoDesc = document.getElementById('modalVideoDesc');
+
+      // Estado dos Filtros
+      let currentCategory = 'all';
+      let currentDay = 'all';
+      let currentSearchQuery = '';
+
+      // 3. COMUNICAÇÃO DE RESIZE PARA IFRAME WIX
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+              type: 'cathlabflix-sessions-resize',
+              height: height + 30
+            }, '*');
+          }
+        } catch (e) {}
+      }
+
+      // 4. ATUALIZAÇÃO DOS CONTADORES DE CATEGORIAS
+      function updateCategoryCounts() {
+        const countAll = document.getElementById('countAll');
+        const countEntrevistas = document.getElementById('countEntrevistas');
+        const countMomentos = document.getElementById('countMomentos');
+        const countBoletim = document.getElementById('countBoletim');
+
+        if (countAll) countAll.textContent = COBERTURA_DATA.length;
+        if (countEntrevistas) countEntrevistas.textContent = COBERTURA_DATA.filter(v => v.section === 'entrevistas').length;
+        if (countMomentos) countMomentos.textContent = COBERTURA_DATA.filter(v => v.section === 'momentos').length;
+        if (countBoletim) countBoletim.textContent = COBERTURA_DATA.filter(v => v.section === 'boletim').length;
+      }
+
+      // 5. RENDERIZAÇÃO DOS CARDS DE VÍDEO
+      function renderCards() {
+        const filtered = COBERTURA_DATA.filter(item => {
+          // Filtro por Categoria
+          if (currentCategory !== 'all' && item.section !== currentCategory) {
+            return false;
+          }
+          // Filtro por Dia
+          if (currentDay !== 'all' && item.day !== currentDay) {
+            return false;
+          }
+          // Filtro por Busca
+          if (currentSearchQuery.trim() !== '') {
+            const query = currentSearchQuery.toLowerCase().trim();
+            const titleMatch = item.title.toLowerCase().includes(query);
+            const speakerMatch = item.speaker.toLowerCase().includes(query);
+            const roleMatch = item.role.toLowerCase().includes(query);
+            const descMatch = item.description.toLowerCase().includes(query);
+            if (!titleMatch && !speakerMatch && !roleMatch && !descMatch) {
+              return false;
+            }
+          }
+          return true;
+        });
+
+        grid.innerHTML = '';
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <h3>Nenhum conteúdo encontrado</h3>
+              <p>Tente remover os filtros ou buscar por outros termos.</p>
+              <button type="button" id="btnResetFilters">Limpar Filtros</button>
+            </div>
+          `;
+          const resetBtn = document.getElementById('btnResetFilters');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', resetAllFilters);
+          }
+          sendResizeMessage();
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        filtered.forEach(video => {
+          const card = document.createElement('article');
+          card.className = 'video-card';
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+          card.setAttribute('aria-label', `Assistir vídeo: ${video.title} com ${video.speaker}`);
+
+          card.innerHTML = `
+            <div class="video-thumb-wrap">
+              <img 
+                src="${video.poster}" 
+                alt="${video.speaker} - ${video.title}" 
+                class="video-thumb-img"
+                loading="lazy"
+                width="280"
+                height="480"
+              >
+              <div class="video-thumb-overlay-top"></div>
+              <div class="video-thumb-overlay-bottom"></div>
+
+              <div class="card-top-badges">
+                <span class="badge-category ${video.catClass}">${video.category}</span>
+                <span class="badge-day">${video.dayLabel}</span>
+              </div>
+
+              <div class="card-play-overlay" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+
+              <div class="card-duration-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                ${video.duration}
+              </div>
+            </div>
+
+            <div class="video-card-info">
+              <h3 class="video-card-title">${video.title}</h3>
+              <div class="video-card-speaker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>${video.speaker}</span>
+              </div>
+            </div>
+          `;
+
+          // Eventos de clique e teclado
+          card.addEventListener('click', () => openVideoModal(video));
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openVideoModal(video);
+            }
+          });
+
+          fragment.appendChild(card);
+        });
+
+        grid.appendChild(fragment);
+        sendResizeMessage();
+      }
+
+      // 6. ABRIR E FECHAR MODAL LIGHTBOX DO VIMEO
+      function openVideoModal(video) {
+        modalVideoTitle.textContent = video.title;
+        modalVideoSpeaker.textContent = `${video.speaker} • ${video.role}`;
+        modalVideoDesc.textContent = video.description;
+
+        // Iframe oficial Vimeo com controles otimizados para vídeo vertical
+        modalIframeContainer.innerHTML = `
+          <iframe 
+            src="https://player.vimeo.com/video/${video.videoId}?autoplay=1&title=0&byline=0&portrait=0&color=E50914" 
+            title="${video.title} - ${video.speaker}" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+        `;
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeVideoModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        modalIframeContainer.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      // 7. EVENTOS DOS FILTROS E BUSCA
+      catTabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          catTabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          this.classList.add('active');
+          this.setAttribute('aria-selected', 'true');
+          currentCategory = this.getAttribute('data-category');
+          renderCards();
+        });
+      });
+
+      dayPillBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          dayPillBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentDay = this.getAttribute('data-day');
+          renderCards();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          currentSearchQuery = this.value;
+          renderCards();
+        });
+      }
+
+      function resetAllFilters() {
+        currentCategory = 'all';
+        currentDay = 'all';
+        currentSearchQuery = '';
+        if (searchInput) searchInput.value = '';
+
+        catTabBtns.forEach((b, i) => {
+          b.classList.toggle('active', i === 0);
+          b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        });
+
+        dayPillBtns.forEach((b, i) => {
+          b.classList.toggle('active', i === 0);
+        });
+
+        renderCards();
+      }
+
+      // Eventos do Modal
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeVideoModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeVideoModal();
+          }
+        });
+      }
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeVideoModal();
+        }
+      });
+
+      // 8. OBSERVER E EVENTOS DE REDIMENSIONAMENTO
+      window.addEventListener('resize', sendResizeMessage);
+      window.addEventListener('load', () => {
+        updateCategoryCounts();
+        renderCards();
+        setTimeout(sendResizeMessage, 300);
+        setTimeout(sendResizeMessage, 1200);
+      });
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
+        ro.observe(document.body);
+      }
+
+    })();
+  </script>
+</body>
+</html>

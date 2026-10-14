@@ -130,6 +130,22 @@
     {
       "source": "/solaci/aulas",
       "destination": "/new/aulas-solaci.html"
+    },
+    {
+      "source": "/embed-solaci-cobertura",
+      "destination": "/embed-solaci-cobertura.html"
+    },
+    {
+      "source": "/solaci-cobertura",
+      "destination": "/embed-solaci-cobertura.html"
+    },
+    {
+      "source": "/new/solaci-cobertura",
+      "destination": "/new/solaci-cobertura.html"
+    },
+    {
+      "source": "/new/embed-solaci-cobertura",
+      "destination": "/new/embed-solaci-cobertura.html"
     }
   ],
   "headers": [
