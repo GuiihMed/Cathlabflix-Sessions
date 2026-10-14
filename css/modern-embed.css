@@ -1,0 +1,146 @@
+/**
+ * CathlabFlix - Estilos Exclusivos para Embeds no Wix
+ * Versão otimizada sem cabeçalho, sem banner e sem rodapé
+ */
+
+body.embed-body {
+  margin: 0;
+  padding: 16px 20px 32px;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+.embed-main-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Barra de Busca Interna do Embed ("Busque em Notícias e Eventos...")
+   ========================================================================== */
+.embed-search-container {
+  margin-bottom: 24px;
+}
+
+.embed-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 4px 18px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.embed-search-bar:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.12), var(--shadow-md);
+  background: var(--color-bg-base);
+}
+
+.embed-search-icon {
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  margin-right: 12px;
+  transition: color var(--transition-fast);
+}
+
+.embed-search-bar:focus-within .embed-search-icon {
+  color: var(--color-primary);
+}
+
+.embed-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  padding: 10px 0;
+  font-family: inherit;
+  outline: none;
+}
+
+.embed-search-input::placeholder {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.embed-search-clear-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.embed-search-clear-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+}
+
+.embed-search-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 8px;
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.embed-search-count-badge {
+  background: rgba(229, 9, 20, 0.1);
+  color: var(--color-primary);
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+}
+
+/* ==========================================================================
+   Ajustes da Grade de 2 Colunas para Iframe/Embed
+   ========================================================================== */
+.embed-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 390px;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .embed-content-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+/* Tema Azul no Embed */
+[data-theme="blue"] body.embed-body {
+  background-color: #03051e;
+}
+
+[data-theme="blue"] .embed-search-bar {
+  background: #020627;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="blue"] .embed-search-bar:focus-within {
+  background: #050b38;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="blue"] .embed-search-clear-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+}

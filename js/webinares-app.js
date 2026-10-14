@@ -152,7 +152,11 @@
     // Renderizar Player de Vídeo Principal (Vimeo 16:9 responsivo)
     const videoWrapper = document.getElementById('wbVideoWrapper');
     if (videoWrapper) {
-      const vimeoUrl = `https://player.vimeo.com/video/${webinar.vimeoId}?autoplay=0&title=0&byline=0&portrait=0&color=e50914`;
+      let vimeoUrl = webinar.videoEmbedUrl || (webinar.vimeoId ? `https://player.vimeo.com/video/${webinar.vimeoId}` : '');
+      if (vimeoUrl && !vimeoUrl.includes('color=')) {
+        const sep = vimeoUrl.includes('?') ? '&' : '?';
+        vimeoUrl = `${vimeoUrl}${sep}autoplay=0&title=0&byline=0&portrait=0&color=e50914`;
+      }
       videoWrapper.innerHTML = `
         <iframe 
           src="${vimeoUrl}" 

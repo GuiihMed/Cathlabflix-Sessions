@@ -38,8 +38,8 @@ flowchart TD
 | `badge` | `string` | **Sim** | Etiqueta de destaque exibida no card do Hub. | `"Lançamento Oficial"`, `"Estudo Clínico"` |
 | `duration` | `string` | **Sim** | Duração total estimada da aula gravada. | `"1h 15m"` |
 | `thumbnail` | `string` | **Sim** | URL da imagem de capa (proporção 16:9 em alta definição). | `"https://static.wixstatic.com/...png"` |
-| `vimeoId` | `string` | **Sim** | ID numérico do vídeo hospedado no Vimeo. | `"1223707542"` |
-| `videoEmbedUrl` | `string` | **Sim** | URL de embed direto do Vimeo. | `"https://player.vimeo.com/video/1223707542"` |
+| `vimeoId` | `string` | **Sim** | ID numérico do vídeo hospedado no Vimeo. | `"1210589447"` |
+| `videoEmbedUrl` | `string` | **Sim** | URL de embed direto do Vimeo. | `"https://player.vimeo.com/video/1210589447"` |
 | `infographicUrl` | `string` | **Sim** | Imagem do infográfico oficial para o visualizador com zoom. | `"https://static.wixstatic.com/...png"` |
 | `infographicTitle`| `string` | Não | Título ou legenda explicativa do infográfico. | `"Ciência dos Balões Farmacológicos"` |
 | `pdfUrl` | `string` | **Sim** | Link para download do blueprint ou artigo oficial em PDF. | `"https://www.cathlabflix.org/_files/ugd/...pdf"` |

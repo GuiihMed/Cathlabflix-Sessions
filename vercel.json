@@ -62,6 +62,34 @@
     {
       "source": "/solaci/grava%C3%A7%C3%A3o",
       "destination": "/solaci/gravacao"
+    },
+    {
+      "source": "/new/embed-home",
+      "destination": "/new/embed-home.html"
+    },
+    {
+      "source": "/embed-home",
+      "destination": "/new/embed-home.html"
+    },
+    {
+      "source": "/new/evento",
+      "destination": "/new/evento.html"
+    },
+    {
+      "source": "/evento",
+      "destination": "/new/evento.html"
+    },
+    {
+      "source": "/new/cadastrar-evento",
+      "destination": "/new/cadastrar-evento.html"
+    },
+    {
+      "source": "/new/webinares",
+      "destination": "/new/webinares.html"
+    },
+    {
+      "source": "/new/webinar",
+      "destination": "/new/webinar.html"
     }
   ],
   "headers": [

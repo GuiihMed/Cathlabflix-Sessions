@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Detalhes do Evento - CathlabFlix SBHCI</title>
+  <meta name="description" content="Informações completas sobre o evento oficial da SBHCI no CathlabFlix.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png">
+
+  <!-- Tipografia Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilo -->
+  <link rel="stylesheet" href="/css/modern-ui.css">
+  <link rel="stylesheet" href="/css/modern-events.css">
+
+  <!-- Detecção de Tema Anti-FOUC -->
+  <script>
+    (function() {
+      try {
+        var theme = localStorage.getItem('cathlabflix-theme');
+        if (theme === 'blue') {
+          document.documentElement.setAttribute('data-theme', 'blue');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <main class="event-page-container" id="eventoDetailContainer">
+    <!-- Renderizado dinamicamente pelo js/evento-detail.js -->
+    <div style="padding: 60px 20px; text-align: center; color: var(--color-text-secondary);">
+      <p>Carregando informações do evento...</p>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="/js/events-data.js"></script>
+  <script src="/js/events-service.js"></script>
+  <script src="/js/evento-detail.js"></script>
+
+</body>
+</html>
