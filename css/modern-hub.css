@@ -166,12 +166,12 @@
     gap: 32px;
   }
 
-  /* No Mobile: Agenda posicionada acima de Notícias */
-  .hub-content-grid .hub-agenda-column {
+  /* No Mobile: Notícias acima e Agenda abaixo */
+  .hub-content-grid .hub-news-column {
     order: 1;
   }
 
-  .hub-content-grid .hub-news-column {
+  .hub-content-grid .hub-agenda-column {
     order: 2;
   }
 }
