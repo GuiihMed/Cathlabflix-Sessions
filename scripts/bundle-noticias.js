@@ -1,0 +1,1255 @@
+/**
+ * CathlabFlix - Script de Empacotamento 100% Standalone para Notícias & Notícias Internas (Embed Wix)
+ * Conecta automaticamente ao feed de posts do Wix via /api/wix-news.
+ * Gera arquivo único com zero dependências externas pronto para colar no iframe do Wix.
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const ROOT_DIR = path.resolve(__dirname, '..');
+
+// 1. Ler CSS base do sistema
+const cssUi = fs.readFileSync(path.join(ROOT_DIR, 'css/modern-ui.css'), 'utf8');
+const cssHub = fs.readFileSync(path.join(ROOT_DIR, 'css/modern-hub.css'), 'utf8');
+const cssPosts = fs.readFileSync(path.join(ROOT_DIR, 'css/modern-posts.css'), 'utf8');
+const cssEmbed = fs.readFileSync(path.join(ROOT_DIR, 'css/modern-embed.css'), 'utf8');
+
+// 2. CSS dedicado específico do Embed de Notícias (Mobile First + Tema Azul SBHCI)
+const customNoticiasCss = `
+/* ==========================================================================
+   Estilos Específicos do Embed Dedicado de Notícias & Notícias Internas
+   ========================================================================== */
+
+:root {
+  --color-bg-base: #010234;
+  --color-surface: #062257;
+  --color-surface-elevated: #0a2d72;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
+  --color-primary: #E50914;
+  --color-primary-hover: #B80710;
+  --color-border-subtle: rgba(255, 255, 255, 0.12);
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html, body.embed-noticias-body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: #010234 !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-family-base) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.embed-noticias-container {
+  width: 94%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 8px 36px;
+}
+
+@media (max-width: 768px) {
+  .embed-noticias-container {
+    width: 92% !important;
+    max-width: 420px !important;
+    padding: 12px 4px 28px !important;
+    margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .embed-noticias-container {
+    width: 90% !important;
+    max-width: 350px !important;
+  }
+}
+
+/* Painéis de Visualização SPA (Catálogo vs Leitor) */
+.noticias-view-panel {
+  display: none;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.noticias-view-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   VIEW 1: CATÁLOGO DE NOTÍCIAS
+   ========================================================================== */
+
+/* Barra de Busca de Notícias */
+.noticias-search-bar-wrap {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.noticias-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #020627;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-pill);
+  padding: 2px 16px;
+  transition: all 0.2s ease;
+}
+
+.noticias-search-box:focus-within {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+  background: #050b38;
+}
+
+.noticias-search-icon {
+  color: var(--color-text-secondary);
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.noticias-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 0;
+  outline: none;
+}
+
+.noticias-search-input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.noticias-search-clear {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.noticias-search-clear:hover {
+  color: #FFFFFF;
+}
+
+/* Cabeçalho do Catálogo */
+.noticias-feed-header {
+  margin-bottom: 20px;
+}
+
+.noticias-feed-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.noticias-feed-title {
+  font-size: 1.375rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .noticias-feed-title {
+    font-size: 1.125rem !important;
+  }
+}
+
+.noticias-feed-subtitle {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Pílulas de Filtro por Categoria */
+.noticias-category-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.noticias-category-pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #062257;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.noticias-category-pill:hover {
+  background: #0a2d72;
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.noticias-category-pill.active {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(229, 9, 20, 0.35);
+}
+
+/* Grade de Cards de Notícias */
+.noticias-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .noticias-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .noticias-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Card Individual de Notícia */
+.noticias-card {
+  background: #062257;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.noticias-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.noticias-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  max-height: none;
+  overflow: hidden;
+  background: #010234;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  cursor: pointer;
+}
+
+.noticias-card-thumb-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.noticias-card:hover .noticias-card-thumb-img {
+  transform: scale(1.02);
+}
+
+.noticias-card-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(10, 12, 16, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.4px;
+  z-index: 2;
+}
+
+.noticias-card-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .noticias-card-body {
+    padding: 12px 14px;
+  }
+}
+
+.noticias-card-date {
+  font-size: 0.6875rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.noticias-card-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #FFFFFF;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.noticias-card-title:hover {
+  color: #38bdf8;
+}
+
+.noticias-card-excerpt {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin: 0 0 6px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.noticias-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+.noticias-card-btn {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border: none;
+  height: 32px;
+  min-width: 105px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.noticias-card-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateX(2px);
+}
+
+/* Paginação do Feed */
+.noticias-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.noticias-page-btn {
+  background: #062257;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.noticias-page-btn:hover:not(.disabled) {
+  background: #0a2d72;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.noticias-page-btn.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  cursor: default;
+}
+
+.noticias-page-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   VIEW 2: LEITOR DA NOTÍCIA INTERNA (ARTIGO COMPLETO)
+   ========================================================================== */
+.noticias-reader-wrap {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.noticias-reader-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  flex-wrap: wrap;
+}
+
+.noticias-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #062257;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.noticias-back-btn:hover {
+  background: #0a2d72;
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: translateX(-2px);
+}
+
+.noticias-breadcrumbs {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.noticias-breadcrumbs a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.noticias-breadcrumbs a:hover {
+  color: #FFFFFF;
+}
+
+/* Cabeçalho do Artigo */
+.noticias-article-header {
+  margin-bottom: 22px;
+}
+
+.noticias-article-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.noticias-article-badge {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  position: static;
+}
+
+.noticias-article-date {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.noticias-article-title {
+  font-size: clamp(1.25rem, 3.2vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+}
+
+.noticias-article-lead {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Banner da Matéria */
+.noticias-article-banner-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #010234;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.noticias-article-banner-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Corpo do Artigo */
+.noticias-article-body {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #e2e8f0;
+  margin-bottom: 32px;
+}
+
+.noticias-article-body p {
+  margin: 0 0 18px 0;
+}
+
+/* Barra de Compartilhamento */
+.noticias-share-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.noticias-share-label {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.noticias-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #062257;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.noticias-share-btn:hover {
+  background: #0a2d72;
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.noticias-bottom-back-row {
+  padding-top: 10px;
+  text-align: center;
+}
+`;
+
+// 3. Script JS do Embed de Notícias (Conexão Automática ao Wix + Router SPA)
+const noticiasControllerJs = `
+(function(global) {
+  'use strict';
+
+  let allNews = [];
+  let filteredNews = [];
+  let activeCategory = 'all';
+  let searchQuery = '';
+  let currentPage = 1;
+  const POSTS_PER_PAGE = 6;
+  let currentPost = null;
+
+  const NoticiasRouter = {
+    currentView: 'list',
+
+    init() {
+      window.addEventListener('popstate', () => {
+        this.resolveRoute();
+      });
+      this.resolveRoute();
+    },
+
+    resolveRoute() {
+      const hash = window.location.hash || '';
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('post') || params.get('id');
+
+      if (postId) {
+        this.showPost(postId, false);
+        return;
+      }
+
+      if (hash.startsWith('#post')) {
+        const id = hash.split('id=')[1] || hash.replace('#post-', '').replace('#post=', '');
+        this.showPost(id, false);
+        return;
+      }
+
+      this.showList(false);
+    },
+
+    showList(pushState = true) {
+      this.currentView = 'list';
+      document.getElementById('viewPostsList').classList.add('active');
+      document.getElementById('viewPostDetail').classList.remove('active');
+
+      if (pushState) {
+        try {
+          if (window.history && window.history.pushState) {
+            window.history.pushState({ view: 'list' }, '', '#noticias');
+          }
+        } catch (e) {}
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      notifyHeight();
+    },
+
+    showPost(postId, pushState = true) {
+      this.currentView = 'post';
+      renderPostDetail(postId);
+      document.getElementById('viewPostsList').classList.remove('active');
+      document.getElementById('viewPostDetail').classList.add('active');
+
+      if (pushState) {
+        try {
+          if (window.history && window.history.pushState) {
+            window.history.pushState({ view: 'post', id: postId }, '#post?id=' + encodeURIComponent(postId));
+          }
+        } catch (e) {}
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      notifyHeight();
+    }
+  };
+
+  /**
+   * Comunicação de Auto-Resize para iframes do Wix
+   */
+  function notifyHeight() {
+    try {
+      const height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight
+      );
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'setHeight', height: height + 30 }, '*');
+      }
+    } catch (e) {}
+  }
+
+  window.addEventListener('resize', () => {
+    setTimeout(notifyHeight, 100);
+  });
+
+  /**
+   * Carregamento Automático ao Vivo via API / RSS do Wix
+   */
+  async function fetchWixNewsLive() {
+    try {
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const endpoint = isLocal ? '/api/wix-news' : 'https://cathlabflix-sessions.vercel.app/api/wix-news';
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+      const res = await fetch(endpoint, { signal: controller.signal });
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        const data = await res.json();
+        const items = data.items || [];
+        if (Array.isArray(items) && items.length > 0) {
+          allNews = items;
+          buildCategoryFilters();
+          applyFilters();
+          console.log('[CathlabFlix] ' + items.length + ' notícias carregadas ao vivo do Wix Blog.');
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn('[CathlabFlix] Carregando notícias de contingência local:', err.message);
+    }
+
+    // Se a requisição ao vivo falhar, utiliza os posts de contingência
+    allNews = getFallbackArticles();
+    buildCategoryFilters();
+    applyFilters();
+  }
+
+  /**
+   * Construção Dinâmica dos Filtros de Categoria
+   */
+  function buildCategoryFilters() {
+    const container = document.getElementById('noticiasCategoryBar');
+    if (!container) return;
+
+    const counts = { all: allNews.length };
+    allNews.forEach(item => {
+      const cat = (item.category || 'Notícias').trim();
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+
+    const categories = Object.keys(counts).filter(k => k !== 'all');
+
+    let html = '<button type="button" class="noticias-category-pill active" data-cat="all">Todas (' + counts.all + ')</button>';
+    categories.forEach(cat => {
+      html += '<button type="button" class="noticias-category-pill" data-cat="' + escapeHTML(cat) + '">' + escapeHTML(cat) + ' (' + counts[cat] + ')</button>';
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.noticias-category-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.noticias-category-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.getAttribute('data-cat');
+        currentPage = 1;
+        applyFilters();
+      });
+    });
+  }
+
+  /**
+   * Filtragem em Tempo Real (Busca + Categorias)
+   */
+  function applyFilters() {
+    filteredNews = allNews.filter(item => {
+      const matchesCat = (activeCategory === 'all') || (item.category === activeCategory);
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch = !q ||
+        (item.title && item.title.toLowerCase().includes(q)) ||
+        (item.description && item.description.toLowerCase().includes(q)) ||
+        (item.category && item.category.toLowerCase().includes(q));
+      return matchesCat && matchesSearch;
+    });
+
+    renderCardsGrid();
+    renderPagination();
+    notifyHeight();
+  }
+
+  /**
+   * Renderização dos Cards na Grade
+   */
+  function renderCardsGrid() {
+    const grid = document.getElementById('noticiasCardsGrid');
+    if (!grid) return;
+
+    if (filteredNews.length === 0) {
+      grid.innerHTML = '<div style="padding: 48px 20px; text-align: center; color: var(--color-text-secondary); width: 100%;"><p>Nenhuma publicação encontrada para sua busca.</p></div>';
+      return;
+    }
+
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    const pageItems = filteredNews.slice(start, start + POSTS_PER_PAGE);
+
+    grid.innerHTML = pageItems.map(item => {
+      const imgUrl = item.image || item.imageUrl || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
+      return \`
+        <article class="noticias-card" data-post-id="\${escapeHTML(item.id)}">
+          <div class="noticias-card-thumb-wrap" data-open-post="\${escapeHTML(item.id)}" title="\${escapeHTML(item.title)}">
+            <img src="\${escapeHTML(imgUrl)}" alt="\${escapeHTML(item.title)}" class="noticias-card-thumb-img" loading="lazy">
+            <span class="noticias-card-badge">\${escapeHTML(item.category || 'Notícia')}</span>
+          </div>
+          <div class="noticias-card-body">
+            <span class="noticias-card-date">\${escapeHTML(item.formattedDate || '')}</span>
+            <h3 class="noticias-card-title" data-open-post="\${escapeHTML(item.id)}">\${escapeHTML(item.title)}</h3>
+            <p class="noticias-card-excerpt">\${escapeHTML(item.description || '')}</p>
+            <div class="noticias-card-footer">
+              <button type="button" class="noticias-card-btn" data-open-post="\${escapeHTML(item.id)}" title="Confira">
+                <span>Confira</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </article>
+      \`;
+    }).join('');
+
+    grid.querySelectorAll('[data-open-post]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = el.getAttribute('data-open-post');
+        NoticiasRouter.showPost(id);
+      });
+    });
+  }
+
+  /**
+   * Paginação
+   */
+  function renderPagination() {
+    const nav = document.getElementById('noticiasPagination');
+    if (!nav) return;
+
+    const totalPages = Math.ceil(filteredNews.length / POSTS_PER_PAGE);
+    if (totalPages <= 1) {
+      nav.style.display = 'none';
+      return;
+    }
+
+    nav.style.display = 'flex';
+    let html = '';
+
+    html += '<button type="button" class="noticias-page-btn ' + (currentPage === 1 ? 'disabled' : '') + '" data-page="' + (currentPage - 1) + '" ' + (currentPage === 1 ? 'disabled' : '') + '>Anterior</button>';
+
+    for (let p = 1; p <= totalPages; p++) {
+      html += '<button type="button" class="noticias-page-btn ' + (p === currentPage ? 'active' : '') + '" data-page="' + p + '">' + p + '</button>';
+    }
+
+    html += '<button type="button" class="noticias-page-btn ' + (currentPage === totalPages ? 'disabled' : '') + '" data-page="' + (currentPage + 1) + '" ' + (currentPage === totalPages ? 'disabled' : '') + '>Próxima</button>';
+
+    nav.innerHTML = html;
+
+    nav.querySelectorAll('.noticias-page-btn:not(.disabled)').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentPage = parseInt(btn.getAttribute('data-page'), 10);
+        renderCardsGrid();
+        renderPagination();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        notifyHeight();
+      });
+    });
+  }
+
+  /**
+   * Renderização da Notícia Interna Completa (Leitor de Artigo)
+   */
+  function renderPostDetail(postId) {
+    const container = document.getElementById('postDetailContent');
+    if (!container) return;
+
+    currentPost = allNews.find(it => String(it.id) === String(postId) || it.slug === postId);
+    if (!currentPost && allNews.length > 0) {
+      currentPost = allNews[0];
+    }
+
+    if (!currentPost) {
+      container.innerHTML = '<div style="padding: 60px 20px; text-align: center;"><h2>Publicação não encontrada</h2><button type="button" class="noticias-back-btn" onclick="NoticiasRouter.showList()">Voltar para Notícias</button></div>';
+      return;
+    }
+
+    const paragraphs = getArticleParagraphs(currentPost);
+    const imgUrl = currentPost.image || currentPost.imageUrl || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
+
+    container.innerHTML = \`
+      <article class="noticias-reader-wrap">
+        <header class="noticias-article-header">
+          <div class="noticias-article-meta-row">
+            <span class="noticias-article-badge">\${escapeHTML(currentPost.category || 'Notícia')}</span>
+            <span class="noticias-article-date">\${escapeHTML(currentPost.formattedDate || '')}</span>
+          </div>
+
+          <h1 class="noticias-article-title">\${escapeHTML(currentPost.title)}</h1>
+          \${currentPost.description ? \`<p class="noticias-article-lead">\${escapeHTML(currentPost.description)}</p>\` : ''}
+        </header>
+
+        <div class="noticias-article-banner-wrap">
+          <img src="\${escapeHTML(imgUrl)}" alt="\${escapeHTML(currentPost.title)}" class="noticias-article-banner-img" onerror="this.src='https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png'">
+        </div>
+
+        <div class="noticias-article-body">
+          \${paragraphs.map(p => \`<p>\${p}</p>\`).join('')}
+        </div>
+
+        <div class="noticias-share-row">
+          <span class="noticias-share-label">Compartilhar:</span>
+          <button type="button" class="noticias-share-btn" id="shareCopyLinkBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copiar Link</span>
+          </button>
+          <a href="https://api.whatsapp.com/send?text=\${encodeURIComponent(currentPost.title + ' - ' + window.location.href)}" target="_blank" rel="noopener noreferrer" class="noticias-share-btn">
+            <span>WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="noticias-bottom-back-row">
+          <button type="button" class="noticias-back-btn" onclick="NoticiasRouter.showList()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Voltar para Todas as Notícias</span>
+          </button>
+        </div>
+      </article>
+    \`;
+
+    const copyBtn = document.getElementById('shareCopyLinkBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          copyBtn.innerHTML = '<span>✓ Link Copiado!</span>';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span>Copiar Link</span>';
+          }, 2000);
+        });
+      });
+    }
+
+    notifyHeight();
+  }
+
+  function getArticleParagraphs(post) {
+    if (post.fullBody && Array.isArray(post.fullBody) && post.fullBody.length) {
+      return post.fullBody;
+    }
+
+    const t = (post.title || '').toLowerCase();
+    if (t.includes('solaci')) {
+      return [
+        'Já estão disponíveis no CathlabFlix os conteúdos e principais discussões do Congresso SOLACI-SBHCI 2026, um dos maiores encontros de Cardiologia Intervencionista da América Latina. O evento reuniu especialistas internacionais no World Trade Center, em São Paulo (SP).',
+        'A disponibilização do material foi pensada para apoiar a educação médica continuada, reunindo as sessões gravadas na íntegra, debates de ensaios clínicos e discussões de casos de alta complexidade.',
+        'O acervo reforça o compromisso do CathlabFlix em centralizar o conhecimento de ponta e facilitar o acesso à atualização científica de excelência para hemodinamicistas e cardiologistas de todo o Brasil.'
+      ];
+    }
+    if (t.includes('curso') || t.includes('formação')) {
+      return [
+        'Já está disponível o Módulo 1 do Curso para Intervencionistas em Formação, iniciativa educacional desenvolvida para apoiar médicos em treinamento na área de Hemodinâmica e Cardiologia Intervencionista.',
+        'O curso foi estruturado para abordar os principais fundamentos da especialidade, reunindo aulas teóricas, conteúdos práticos e materiais de apoio voltados à formação técnica e científica dos participantes.',
+        'A proposta busca contribuir para o desenvolvimento das competências essenciais do especialista, com base nas melhores práticas clínicas e diretrizes atualizadas.'
+      ];
+    }
+    if (t.includes('tct') || t.includes('debate')) {
+      return [
+        'Acompanhe a cobertura dos clinical trials e principais inovações técnicas apresentadas no Transcatheter Cardiovascular Therapeutics (TCT).',
+        'O evento abordou novos dispositivos para intervenção coronária complexa, balões farmacofóricos, avanços em terapias estruturais aórticas e mitrais e técnicas de imagem intracoronária.',
+        'Assista às análises críticas e discussões aprofundadas com intervencionistas da SBHCI comentando a aplicabilidade prática dos dados na realidade nacional.'
+      ];
+    }
+    return [
+      post.description || 'Confira os detalhes completos desta publicação no CathlabFlix.',
+      'A iniciativa reforça a missão da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista (SBHCI) em promover a educação médica continuada e a difusão do conhecimento de excelência.',
+      'Para mais detalhes, materiais científicos e conteúdos em vídeo complementares, explore os canais dedicados da plataforma.'
+    ];
+  }
+
+  function getFallbackArticles() {
+    return [
+      {
+        id: 'solaci-2026-destaque',
+        slug: 'conteudos-do-congresso-solaci-sbhci-2026-ganham-destaque-com-cobertura-multiplataforma',
+        title: 'Conteúdos do Congresso SOLACI-SBHCI 2026 ganham destaque com cobertura multiplataforma',
+        description: 'Já estão disponíveis no CathlabFlix os conteúdos e principais discussões do Congresso SOLACI-SBHCI 2026, um dos maiores encontros de Cardiologia Intervencionista da América Latina.',
+        image: 'https://static.wixstatic.com/media/1d3d47_0e8baa2ca7354d62b8b17794f33d9e28~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+        category: 'Congresso',
+        formattedDate: '23 de set. de 2026'
+      },
+      {
+        id: 'curso-intervencionistas-formacao',
+        slug: 'curso-para-intervencionistas-em-formacao-inicia-com-foco-em-fundamentos-da-especialidade',
+        title: 'Curso para Intervencionistas em Formação inicia com foco em fundamentos da especialidade',
+        description: 'Já está disponível o Módulo 1 do Curso para Intervencionistas em Formação, iniciativa educacional desenvolvida para apoiar médicos em treinamento na área de Hemodinâmica e Cardiologia Intervencionista.',
+        image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+        category: 'Curso',
+        formattedDate: '11 de mai. de 2026'
+      },
+      {
+        id: 'cathlabflix-nova-era',
+        slug: 'cathlabflix-inaugura-nova-era-da-educacao-em-cardiologia-intervencionista',
+        title: 'CathlabFlix inaugura nova era da educação em Cardiologia Intervencionista',
+        description: 'Desenvolvida para centralizar conteúdos da especialidade em um único ambiente, a plataforma reúne aulas, apresentações e materiais complementares de alta qualidade.',
+        image: 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+        category: 'Institucional',
+        formattedDate: '11 de mai. de 2026'
+      },
+      {
+        id: 'webinar-valve-in-valve',
+        slug: 'valve-in-valve-mitral-ganha-destaque-em-conteudo-sobre-terapias-estruturais',
+        title: 'Valve-in-Valve Mitral ganha destaque em conteúdo sobre terapias estruturais',
+        description: 'O procedimento de Valve-in-Valve Mitral vem consolidando seu espaço como alternativa terapêutica para pacientes com disfunção de biopróteses mitrais.',
+        image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+        category: 'Webinar',
+        formattedDate: '11 de mai. de 2026'
+      },
+      {
+        id: 'webinar-sbhci-jovem',
+        slug: 'webinar-jovem-sbhci-promove-debate-sobre-desafios-da-carreira',
+        title: 'Webinar Jovem SBHCI promove debate sobre os primeiros passos na Cardiologia Intervencionista',
+        description: 'Encontro virtual abordou os desafios da transição para o mercado de trabalho, inserção em serviços de hemodinâmica e certificação profissional.',
+        image: 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png',
+        category: 'Webinar',
+        formattedDate: '11 de mai. de 2026'
+      }
+    ];
+  }
+
+  function escapeHTML(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // Inicialização
+  document.addEventListener('DOMContentLoaded', () => {
+    // Busca interativa
+    const searchInput = document.getElementById('noticiasSearchInput');
+    const clearBtn = document.getElementById('noticiasSearchClear');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value;
+        if (clearBtn) clearBtn.style.display = searchQuery ? 'flex' : 'none';
+        currentPage = 1;
+        applyFilters();
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchQuery = '';
+          clearBtn.style.display = 'none';
+          currentPage = 1;
+          applyFilters();
+          searchInput.focus();
+        }
+      });
+    }
+
+    // Inicializa Router e carrega notícias
+    NoticiasRouter.init();
+    fetchWixNewsLive();
+  });
+
+  global.NoticiasRouter = NoticiasRouter;
+
+})(window);
+`;
+
+// 4. Montar o HTML do Embed de Notícias
+const htmlTemplate = `<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Notícias & Publicações - CathlabFlix SBHCI</title>
+  <meta name="description" content="Embed oficial com todas as notícias, artigos científicos e coberturas institucionais da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista.">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Embutidos (Zero Dependência Externa) -->
+  <style>
+${customNoticiasCss}
+  </style>
+
+  <script>
+    document.documentElement.setAttribute("data-theme", "blue");
+  </script>
+</head>
+<body class="embed-noticias-body theme-blue" data-theme="blue">
+
+  <div class="embed-noticias-container">
+
+    <!-- ==========================================================================
+         VIEW 1: CATÁLOGO DE TODAS AS NOTÍCIAS & ARTIGOS
+         ========================================================================== -->
+    <section class="noticias-view-panel active" id="viewPostsList" aria-label="Catálogo de Notícias">
+      
+      <!-- Barra de Busca de Notícias -->
+      <div class="noticias-search-bar-wrap">
+        <div class="noticias-search-box">
+          <svg class="noticias-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="search" 
+            class="noticias-search-input" 
+            id="noticiasSearchInput" 
+            placeholder="Busque em notícias e publicações..." 
+            autocomplete="off" 
+            spellcheck="false"
+            aria-label="Busque em notícias e publicações"
+          >
+          <button type="button" class="noticias-search-clear" id="noticiasSearchClear" aria-label="Limpar busca" title="Limpar busca">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cabeçalho do Catálogo -->
+      <header class="noticias-feed-header">
+        <div class="noticias-feed-title-row">
+          <h2 class="noticias-feed-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary)">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Todas as Notícias & Artigos
+          </h2>
+        </div>
+        <p class="noticias-feed-subtitle">Publicações científicas, coberturas de congressos e atualizações institucionais da SBHCI</p>
+      </header>
+
+      <!-- Pílulas de Filtro por Categoria -->
+      <nav class="noticias-category-bar" id="noticiasCategoryBar" aria-label="Filtrar por Categoria"></nav>
+
+      <!-- Grade de Cards de Notícias -->
+      <main class="noticias-cards-grid" id="noticiasCardsGrid">
+        <div style="padding: 40px; text-align: center; color: var(--color-text-secondary); width: 100%;">
+          <p>Conectando e sincronizando com o Wix Blog...</p>
+        </div>
+      </main>
+
+      <!-- Paginação -->
+      <nav class="noticias-pagination" id="noticiasPagination" aria-label="Navegação entre páginas" style="display: none;"></nav>
+
+    </section>
+
+    <!-- ==========================================================================
+         VIEW 2: LEITOR DA NOTÍCIA INTERNA (ARTIGO COMPLETO)
+         ========================================================================== -->
+    <section class="noticias-view-panel" id="viewPostDetail" aria-label="Leitor da Notícia">
+      
+      <!-- Barra Superior com Botão de Voltar e Breadcrumbs -->
+      <nav class="noticias-reader-nav">
+        <button type="button" class="noticias-back-btn" onclick="NoticiasRouter.showList()" aria-label="Voltar para Notícias">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Voltar para Notícias</span>
+        </button>
+
+        <div class="noticias-breadcrumbs">
+          <a onclick="NoticiasRouter.showList()">Notícias</a>
+          <span>/</span>
+          <span>Artigo</span>
+        </div>
+      </nav>
+
+      <!-- Conteúdo do Post Renderizado Dinamicamente -->
+      <div id="postDetailContent"></div>
+
+    </section>
+
+  </div>
+
+  <!-- Scripts Embutidos (Zero Dependência Externa) -->
+  <script>
+${noticiasControllerJs}
+  </script>
+
+</body>
+</html>
+`;
+
+// 5. Salvar nos 3 destinos canônicos
+const targets = [
+  path.join(ROOT_DIR, 'new/embed-noticias.html'),
+  path.join(ROOT_DIR, 'new/embed-noticias/index.html'),
+  path.join(ROOT_DIR, 'embed-noticias.html')
+];
+
+targets.forEach(targetPath => {
+  const dir = path.dirname(targetPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+  fs.writeFileSync(targetPath, htmlTemplate, 'utf8');
+  console.log(`✅ Gerado: ${path.relative(ROOT_DIR, targetPath)} (${htmlTemplate.length} bytes)`);
+});

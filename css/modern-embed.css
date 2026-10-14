@@ -349,8 +349,29 @@ body.embed-body {
 .embed-post-badges-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 12px;
+  position: relative;
+}
+
+.embed-post-category-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  background: var(--color-primary) !important;
+  color: #FFFFFF !important;
+  font-size: 0.6875rem !important;
+  font-weight: 700 !important;
+  padding: 3px 10px !important;
+  border-radius: var(--radius-pill) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
+  position: static !important;
+}
+
+.embed-post-date-tag {
+  font-size: 0.8125rem !important;
+  color: var(--color-text-secondary) !important;
+  font-weight: 500 !important;
 }
 
 .embed-post-title {
