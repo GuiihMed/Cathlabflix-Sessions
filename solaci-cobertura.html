@@ -225,11 +225,11 @@
     .cat-tab-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--color-border-subtle);
       color: #FFFFFF;
-      padding: 9px 18px;
+      padding: 9px 20px;
       border-radius: var(--radius-pill);
       font-family: inherit;
       font-size: 0.875rem;
@@ -237,6 +237,7 @@
       cursor: pointer;
       transition: all var(--transition-fast);
       white-space: nowrap;
+      min-height: 40px;
     }
 
     .cat-tab-btn:hover {
@@ -250,23 +251,6 @@
       border-color: #E50914;
       color: #FFFFFF;
       box-shadow: 0 4px 12px rgba(229, 9, 20, 0.35);
-    }
-
-    .cat-tab-count {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: var(--radius-pill);
-      background: rgba(255, 255, 255, 0.18);
-      font-size: 0.6875rem;
-      font-weight: 800;
-    }
-
-    .cat-tab-btn.active .cat-tab-count {
-      background: rgba(0, 0, 0, 0.25);
     }
 
     /* Campo de Busca Rápida */
@@ -356,11 +340,11 @@
       font-weight: 700;
     }
 
-    /* Grid de Vídeos da Cobertura */
+    /* Grid de Vídeos da Cobertura - 3 Colunas no Desktop */
     .videos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
       margin-bottom: 40px;
     }
 
@@ -821,65 +805,235 @@
       margin: 0;
     }
 
-    /* Responsividade */
-    @media (max-width: 768px) {
+    /* Responsividade Moderna e Mobile Aprimorada */
+    @media (max-width: 1024px) {
+      .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 860px) {
       .cobertura-main {
-        padding: 18px 14px 40px;
+        padding: 20px 14px 40px;
       }
 
       .page-title {
-        font-size: 1.625rem;
+        font-size: 1.75rem;
+      }
+
+      .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .cobertura-main {
+        padding: 16px 12px 36px;
+      }
+
+      .top-nav-bar {
+        margin-bottom: 18px;
+        gap: 10px;
+      }
+
+      .back-solaci-btn {
+        padding: 8px 14px;
+        font-size: 0.8125rem;
+        min-height: 40px;
+      }
+
+      .congress-tag-badge {
+        font-size: 0.6875rem;
+        padding: 5px 10px;
+      }
+
+      .section-title-wrap {
+        margin-bottom: 20px;
+      }
+
+      .page-title {
+        font-size: 1.45rem;
+        margin-bottom: 8px;
+      }
+
+      .page-title-underline {
+        width: 64px;
+        height: 3px;
+        margin-bottom: 10px;
+      }
+
+      .page-subtitle {
+        font-size: 0.8125rem;
+        line-height: 1.5;
       }
 
       .filters-bar {
-        padding: 14px;
+        padding: 12px 14px;
         gap: 12px;
+        border-radius: var(--radius-md);
+        margin-bottom: 22px;
       }
 
       .category-tabs-row {
         flex-direction: column;
         align-items: stretch;
+        gap: 10px;
       }
 
       .category-tabs-group {
+        display: flex;
         overflow-x: auto;
         padding-bottom: 4px;
         -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        scrollbar-width: none;
+      }
+
+      .category-tabs-group::-webkit-scrollbar {
+        display: none;
+      }
+
+      .cat-tab-btn {
+        padding: 8px 16px;
+        font-size: 0.8125rem;
+        min-height: 38px;
+        flex-shrink: 0;
       }
 
       .search-input-box {
         max-width: 100%;
+        min-width: 100%;
+      }
+
+      .search-input-box input {
+        height: 42px;
+        font-size: 0.8125rem;
+        padding: 0 36px 0 14px;
+      }
+
+      .day-filters-row {
+        padding-top: 10px;
+        gap: 6px;
+      }
+
+      .day-filter-label {
+        font-size: 0.6875rem;
+      }
+
+      .day-pill-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        min-height: 34px;
       }
 
       .videos-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .video-card {
+        border-radius: var(--radius-md);
+      }
+
+      .card-top-badges {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        gap: 4px;
+      }
+
+      .badge-category {
+        font-size: 0.59375rem;
+        padding: 3px 6px;
+        letter-spacing: 0.2px;
+      }
+
+      .badge-day {
+        font-size: 0.59375rem;
+        padding: 3px 6px;
+      }
+
+      .card-play-overlay {
+        width: 42px;
+        height: 42px;
+      }
+
+      .card-play-overlay svg {
+        width: 16px;
+        height: 16px;
+        margin-left: 2px;
+      }
+
+      .card-duration-badge {
+        font-size: 0.6875rem;
+        padding: 2px 5px;
+        bottom: 8px;
+        right: 8px;
+      }
+
+      .video-card-info {
+        padding: 10px 10px 12px;
+        gap: 4px;
+      }
+
+      .video-card-title {
+        font-size: 0.8125rem;
+        line-height: 1.3;
+      }
+
+      .video-card-speaker {
+        font-size: 0.6875rem;
+      }
+
+      .video-card-speaker svg {
+        width: 12px;
+        height: 12px;
       }
 
       .explore-strip {
-        padding: 18px;
-        flex-direction: column;
-        align-items: stretch;
+        padding: 16px 14px;
+        border-radius: var(--radius-lg);
+        gap: 14px;
+      }
+
+      .explore-strip-text h4 {
+        font-size: 1rem;
+      }
+
+      .explore-strip-text p {
+        font-size: 0.78125rem;
       }
 
       .explore-strip-actions {
         flex-direction: column;
+        width: 100%;
+        gap: 8px;
       }
 
       .explore-action-btn {
         width: 100%;
         justify-content: center;
+        padding: 9px 14px;
+        font-size: 0.8125rem;
       }
 
       .lightbox-dialog {
-        max-width: 96vw;
+        max-width: 95vw;
+        border-radius: var(--radius-lg);
+      }
+
+      .lightbox-video-frame-wrap {
+        max-height: 68vh;
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 380px) {
       .videos-grid {
         grid-template-columns: 1fr;
-        max-width: 320px;
+        max-width: 300px;
         margin-left: auto;
         margin-right: auto;
       }
@@ -922,21 +1076,17 @@
         <!-- Linha 1: Categorias Principais + Busca -->
         <div class="category-tabs-row">
           <div class="category-tabs-group" role="tablist">
-            <button type="button" class="cat-tab-btn active" data-category="all" role="tab" aria-selected="true">
+            <button type="button" class="cat-tab-btn" data-category="all" role="tab" aria-selected="false">
               Todos os Conteúdos
-              <span class="cat-tab-count" id="countAll">25</span>
             </button>
             <button type="button" class="cat-tab-btn" data-category="entrevistas" role="tab" aria-selected="false">
               Entrevistas
-              <span class="cat-tab-count" id="countEntrevistas">17</span>
             </button>
-            <button type="button" class="cat-tab-btn" data-category="momentos" role="tab" aria-selected="false">
+            <button type="button" class="cat-tab-btn active" data-category="momentos" role="tab" aria-selected="true">
               Melhores Momentos
-              <span class="cat-tab-count" id="countMomentos">5</span>
             </button>
             <button type="button" class="cat-tab-btn" data-category="boletim" role="tab" aria-selected="false">
               Boletim Diário
-              <span class="cat-tab-count" id="countBoletim">3</span>
             </button>
           </div>
 
@@ -949,10 +1099,9 @@
           </div>
         </div>
 
-        <!-- Linha 2: Filtro por Dia do Evento -->
+        <!-- Linha 2: Filtro por Dia do Evento (Direto pelos Dias) -->
         <div class="day-filters-row">
-          <span class="day-filter-label">Filtrar por dia:</span>
-          <button type="button" class="day-pill-btn active" data-day="all">Todos os Dias</button>
+          <span class="day-filter-label">Dia:</span>
           <button type="button" class="day-pill-btn" data-day="dia-1">Dia 1 (29/07)</button>
           <button type="button" class="day-pill-btn" data-day="dia-2">Dia 2 (30/07)</button>
           <button type="button" class="day-pill-btn" data-day="dia-3">Dia 3 (31/07)</button>
@@ -1426,8 +1575,8 @@
       const modalVideoSpeaker = document.getElementById('modalVideoSpeaker');
       const modalVideoDesc = document.getElementById('modalVideoDesc');
 
-      // Estado dos Filtros
-      let currentCategory = 'all';
+      // Estado dos Filtros (Abre por padrão em Melhores Momentos)
+      let currentCategory = 'momentos';
       let currentDay = 'all';
       let currentSearchQuery = '';
 
@@ -1448,20 +1597,7 @@
         } catch (e) {}
       }
 
-      // 4. ATUALIZAÇÃO DOS CONTADORES DE CATEGORIAS
-      function updateCategoryCounts() {
-        const countAll = document.getElementById('countAll');
-        const countEntrevistas = document.getElementById('countEntrevistas');
-        const countMomentos = document.getElementById('countMomentos');
-        const countBoletim = document.getElementById('countBoletim');
-
-        if (countAll) countAll.textContent = COBERTURA_DATA.length;
-        if (countEntrevistas) countEntrevistas.textContent = COBERTURA_DATA.filter(v => v.section === 'entrevistas').length;
-        if (countMomentos) countMomentos.textContent = COBERTURA_DATA.filter(v => v.section === 'momentos').length;
-        if (countBoletim) countBoletim.textContent = COBERTURA_DATA.filter(v => v.section === 'boletim').length;
-      }
-
-      // 5. RENDERIZAÇÃO DOS CARDS DE VÍDEO
+      // 4. RENDERIZAÇÃO DOS CARDS DE VÍDEO
       function renderCards() {
         const filtered = COBERTURA_DATA.filter(item => {
           // Filtro por Categoria
@@ -1622,9 +1758,16 @@
 
       dayPillBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-          dayPillBtns.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          currentDay = this.getAttribute('data-day');
+          const selectedDay = this.getAttribute('data-day');
+          if (currentDay === selectedDay) {
+            // Se clicar no dia que já está ativo, desmarca para exibir todos os dias
+            currentDay = 'all';
+            this.classList.remove('active');
+          } else {
+            dayPillBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentDay = selectedDay;
+          }
           renderCards();
         });
       });
@@ -1637,18 +1780,19 @@
       }
 
       function resetAllFilters() {
-        currentCategory = 'all';
+        currentCategory = 'momentos';
         currentDay = 'all';
         currentSearchQuery = '';
         if (searchInput) searchInput.value = '';
 
-        catTabBtns.forEach((b, i) => {
-          b.classList.toggle('active', i === 0);
-          b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        catTabBtns.forEach((b) => {
+          const isMomentos = b.getAttribute('data-category') === 'momentos';
+          b.classList.toggle('active', isMomentos);
+          b.setAttribute('aria-selected', isMomentos ? 'true' : 'false');
         });
 
-        dayPillBtns.forEach((b, i) => {
-          b.classList.toggle('active', i === 0);
+        dayPillBtns.forEach((b) => {
+          b.classList.remove('active');
         });
 
         renderCards();
@@ -1676,7 +1820,6 @@
       // 8. OBSERVER E EVENTOS DE REDIMENSIONAMENTO
       window.addEventListener('resize', sendResizeMessage);
       window.addEventListener('load', () => {
-        updateCategoryCounts();
         renderCards();
         setTimeout(sendResizeMessage, 300);
         setTimeout(sendResizeMessage, 1200);
