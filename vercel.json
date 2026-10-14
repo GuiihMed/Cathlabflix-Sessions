@@ -114,6 +114,22 @@
     {
       "source": "/new/webinar",
       "destination": "/new/webinar.html"
+    },
+    {
+      "source": "/embed-aulas-solaci",
+      "destination": "/embed-aulas-solaci.html"
+    },
+    {
+      "source": "/new/embed-aulas-solaci",
+      "destination": "/new/embed-aulas-solaci.html"
+    },
+    {
+      "source": "/aulas-solaci",
+      "destination": "/new/aulas-solaci.html"
+    },
+    {
+      "source": "/solaci/aulas",
+      "destination": "/new/aulas-solaci.html"
     }
   ],
   "headers": [
