@@ -707,7 +707,7 @@
       gap: 6px;
     }
 
-    /* Seção de Eventos Ativos com Capa (Cards Visuais) */
+    /* Seção de Eventos Ativos em Lista com Capa e Paginação */
     .events-active-section {
       margin-top: 48px;
     }
@@ -730,142 +730,288 @@
       border-radius: var(--radius-pill);
     }
 
-    .active-events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+    /* Lista Vertical de Eventos (Layout em Linha) */
+    .active-events-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    @media (max-width: 640px) {
-      .active-events-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .active-event-card {
+    .active-event-list-item {
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
       border-radius: var(--radius-md);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: 18px;
+      align-items: center;
       transition: all var(--transition-fast);
-      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .active-event-card:hover {
+    .active-event-list-item:hover {
       border-color: rgba(56, 189, 248, 0.4);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      background: #082b6e;
+      transform: translateX(3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     }
 
-    .active-card-cover-wrap {
+    .active-list-cover-col {
+      width: 140px;
+      flex-shrink: 0;
+    }
+
+    .active-list-cover-wrap {
       width: 100%;
       aspect-ratio: 16 / 9;
-      position: relative;
-      background: #020d26;
+      border-radius: var(--radius-sm);
       overflow: hidden;
+      background: #020d26;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
     }
 
-    .active-card-cover-img {
+    .active-list-cover-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .active-card-badge {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 2;
-    }
-
-    .active-card-body {
-      padding: 16px;
+    .active-list-info-col {
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
+      gap: 6px;
+      min-width: 0;
     }
 
-    .active-card-date {
+    .active-list-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .active-list-date {
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--color-blue-accent);
-      margin-bottom: 6px;
       text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
 
-    .active-card-title {
+    .active-list-title {
       font-size: 0.9375rem;
       font-weight: 700;
-      color: #fff;
+      color: #FFFFFF;
+      margin: 0;
       line-height: 1.35;
-      margin: 0 0 8px 0;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    .active-card-meta {
+    .active-list-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       font-size: 0.75rem;
       color: var(--color-text-secondary);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 14px;
+      flex-wrap: wrap;
     }
 
-    .active-card-meta span {
+    .active-list-meta-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .meta-reg-available {
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .active-list-actions-col {
       display: flex;
       align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      gap: 10px;
+      flex-shrink: 0;
     }
 
-    .active-card-footer {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
-      border-top: 1px solid var(--color-border-subtle);
-    }
-
-    .active-card-view-btn {
-      color: var(--color-blue-accent);
+    .active-list-view-btn {
+      color: #FFFFFF;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
       font-size: 0.75rem;
       font-weight: 700;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
     }
 
-    .active-card-view-btn:hover {
-      text-decoration: underline;
+    .active-list-view-btn:hover {
+      background: #38bdf8;
+      color: #010234;
+      border-color: #38bdf8;
     }
 
-    .active-card-delete-btn {
-      background: none;
-      border: none;
+    .active-list-delete-btn {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
       color: #ef4444;
       font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 4px;
-      transition: background var(--transition-fast);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-fast);
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
+      font-family: inherit;
     }
 
-    .active-card-delete-btn:hover {
-      background: rgba(239, 68, 68, 0.15);
+    .active-list-delete-btn:hover {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: #ef4444;
+      color: #fca5a5;
+    }
+
+    /* Paginação da Lista (Limitada a 9 eventos) */
+    .events-pagination-bar {
+      margin-top: 24px;
+      padding: 14px 18px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pagination-info {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pagination-btn {
+      background: #031338;
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-primary);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78125rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+      background: #082b6e;
+      border-color: var(--color-blue-accent);
+      color: #38bdf8;
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .pagination-pages {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pagination-page-btn {
+      background: #031338;
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-primary);
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78125rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .pagination-page-btn:hover {
+      background: #082b6e;
+      border-color: var(--color-blue-accent);
+      color: #38bdf8;
+    }
+
+    .pagination-page-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+    }
+
+    .pagination-ellipsis {
+      color: var(--color-text-tertiary);
+      padding: 0 4px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .active-event-list-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 14px;
+      }
+
+      .active-list-cover-col {
+        width: 100%;
+      }
+
+      .active-list-cover-wrap {
+        aspect-ratio: 16 / 9;
+        max-height: 180px;
+      }
+
+      .active-list-actions-col {
+        width: 100%;
+        justify-content: flex-end;
+        padding-top: 10px;
+        border-top: 1px solid var(--color-border-subtle);
+      }
+
+      .events-pagination-bar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .pagination-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     .instructions-box {
@@ -1182,7 +1328,7 @@
 
     </div>
 
-    <!-- Seção de Eventos Ativos com Cards Visuais e Capa -->
+    <!-- Seção de Eventos Ativos em Lista com Paginação -->
     <section class="events-active-section">
       <div class="events-active-header">
         <h2 class="form-section-title" style="margin: 0;">
@@ -1194,8 +1340,29 @@
         <span class="events-count-pill" id="eventsCountPill">Carregando eventos...</span>
       </div>
 
-      <div class="active-events-grid" id="activeEventsGrid">
+      <!-- Lista de Eventos (Limitada a 9 por página) -->
+      <div class="active-events-list" id="activeEventsList">
         <!-- Renderizado dinamicamente via JavaScript -->
+      </div>
+
+      <!-- Barra de Paginação -->
+      <div class="events-pagination-bar" id="eventsPaginationBar" style="display: none;">
+        <div class="pagination-info" id="paginationInfo">Carregando paginação...</div>
+        <div class="pagination-controls">
+          <button type="button" class="pagination-btn" id="paginationPrevBtn" title="Página Anterior">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Anterior</span>
+          </button>
+          <div class="pagination-pages" id="paginationPages"></div>
+          <button type="button" class="pagination-btn" id="paginationNextBtn" title="Próxima Página">
+            <span>Próximo</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -2088,6 +2255,7 @@ export function post_eventos(request) {
           regUrlInput.value = '';
           descInput.value = '';
 
+          currentEventsPage = 1;
           renderActiveEvents();
           updateLivePreview();
 
@@ -2096,7 +2264,57 @@ export function post_eventos(request) {
         }
       });
 
-      // 6. Renderização Visual dos Eventos Ativos com Capa (16:9)
+      // 6. Paginação (Limitada a 9 eventos) e Renderização Visual dos Eventos Ativos em Lista
+      const EVENTS_PER_PAGE = 9;
+      let currentEventsPage = 1;
+
+      function scrollToEventsSection() {
+        const sec = document.querySelector('.events-active-section');
+        if (sec) {
+          sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+
+      function notifyParentResize() {
+        try {
+          if (window.parent && window.parent !== window) {
+            const height = Math.max(
+              document.documentElement.scrollHeight || 0,
+              document.body.scrollHeight || 0,
+              (document.querySelector('.admin-page-container')?.scrollHeight || 0) + 40
+            );
+            window.parent.postMessage({
+              type: 'cathlabflix-sessions-resize',
+              height: height
+            }, '*');
+          }
+        } catch (e) {}
+      }
+
+      function buildPaginationButtons(current, total) {
+        let buttons = '';
+        if (total <= 7) {
+          for (let i = 1; i <= total; i++) {
+            buttons += `<button type="button" class="pagination-page-btn ${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
+          }
+        } else {
+          buttons += `<button type="button" class="pagination-page-btn ${1 === current ? 'active' : ''}" data-page="1">1</button>`;
+          if (current > 3) {
+            buttons += `<span class="pagination-ellipsis">…</span>`;
+          }
+          const start = Math.max(2, current - 1);
+          const end = Math.min(total - 1, current + 1);
+          for (let i = start; i <= end; i++) {
+            buttons += `<button type="button" class="pagination-page-btn ${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
+          }
+          if (current < total - 2) {
+            buttons += `<span class="pagination-ellipsis">…</span>`;
+          }
+          buttons += `<button type="button" class="pagination-page-btn ${total === current ? 'active' : ''}" data-page="${total}">${total}</button>`;
+        }
+        return buttons;
+      }
+
       function getActiveEventsList() {
         let list = [];
         try {
@@ -2136,25 +2354,45 @@ export function post_eventos(request) {
       }
 
       function renderActiveEvents() {
-        const grid = document.getElementById('activeEventsGrid');
+        const listEl = document.getElementById('activeEventsList') || document.getElementById('activeEventsGrid');
         const countPill = document.getElementById('eventsCountPill');
-        if (!grid) return;
+        const paginationBar = document.getElementById('eventsPaginationBar');
+        const paginationInfo = document.getElementById('paginationInfo');
+        const paginationPages = document.getElementById('paginationPages');
+        const prevBtn = document.getElementById('paginationPrevBtn');
+        const nextBtn = document.getElementById('paginationNextBtn');
+
+        if (!listEl) return;
 
         const events = getActiveEventsList();
+        const total = events.length;
+
         if (countPill) {
-          countPill.textContent = `${events.length} Eventos Cadastrados`;
+          countPill.textContent = `${total} Eventos Cadastrados`;
         }
 
-        if (events.length === 0) {
-          grid.innerHTML = `
-            <div style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: var(--color-text-secondary); background: var(--color-surface); border-radius: 12px; border: 1px dashed var(--color-border-subtle);">
+        if (total === 0) {
+          listEl.innerHTML = `
+            <div style="padding: 40px 20px; text-align: center; color: var(--color-text-secondary); background: var(--color-surface); border-radius: 12px; border: 1px dashed var(--color-border-subtle);">
               Nenhum evento ativo cadastrado no momento.
             </div>
           `;
+          if (paginationBar) paginationBar.style.display = 'none';
+          notifyParentResize();
           return;
         }
 
-        grid.innerHTML = events.map(ev => {
+        // Cálculo de Paginação (9 eventos por página)
+        const totalPages = Math.ceil(total / EVENTS_PER_PAGE);
+        if (currentEventsPage > totalPages) currentEventsPage = totalPages;
+        if (currentEventsPage < 1) currentEventsPage = 1;
+
+        const startIndex = (currentEventsPage - 1) * EVENTS_PER_PAGE;
+        const endIndex = Math.min(startIndex + EVENTS_PER_PAGE, total);
+        const pagedEvents = events.slice(startIndex, endIndex);
+
+        // Renderização em Lista
+        listEl.innerHTML = pagedEvents.map(ev => {
           const isApoio = (ev.type && ev.type.includes('apoio')) || (ev.badge && ev.badge.includes('APOIO'));
           const isGeral = (ev.type && ev.type === 'eventos') || (ev.badge && ev.badge.toLowerCase() === 'eventos');
           const badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
@@ -2164,78 +2402,140 @@ export function post_eventos(request) {
           const eventId = ev.id || ev.slug || 'evento';
 
           return `
-            <article class="active-event-card">
-              <div class="active-card-cover-wrap">
-                <img src="${eventImg}" alt="${escapeHTML(ev.title || 'Evento')}" class="active-card-cover-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
-                <div class="active-card-badge">
-                  <span class="badge-tag ${badgeClass}">${badgeText}</span>
+            <article class="active-event-list-item">
+              <div class="active-list-cover-col">
+                <div class="active-list-cover-wrap">
+                  <img src="${eventImg}" alt="${escapeHTML(ev.title || 'Evento')}" class="active-list-cover-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
                 </div>
               </div>
 
-              <div class="active-card-body">
-                <div class="active-card-date">${dateLabel}</div>
-                <h3 class="active-card-title">${escapeHTML(ev.title || 'Sem título')}</h3>
-
-                <div class="active-card-meta">
+              <div class="active-list-info-col">
+                <div class="active-list-badge-row">
+                  <span class="badge-tag ${badgeClass}">${badgeText}</span>
+                  <span class="active-list-date">${dateLabel}</span>
+                </div>
+                <h3 class="active-list-title">${escapeHTML(ev.title || 'Sem título')}</h3>
+                <div class="active-list-meta-row">
                   <span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <circle cx="12" cy="12" r="10"></circle>
                       <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
                     ${escapeHTML(ev.time || 'Horário a definir')}
                   </span>
                   <span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                       <circle cx="12" cy="10" r="3"></circle>
                     </svg>
                     ${escapeHTML(ev.location || 'CathlabFlix Streaming')}
                   </span>
                   ${ev.registrationUrl ? `
-                    <span style="color: #38bdf8;">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <span class="meta-reg-available">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                       </svg>
-                      Inscrição vinculada
+                      Inscrição disponível
                     </span>
                   ` : ''}
                 </div>
+              </div>
 
-                <div class="active-card-footer">
-                  <a href="/embed-evento-detalhe.html?id=${encodeURIComponent(eventId)}" target="_blank" class="active-card-view-btn">
-                    <span>Visualizar</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                  </a>
-
-                  <button type="button" class="active-card-delete-btn" data-id="${eventId}" title="Excluir evento">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="3 6 5 6 21 6"></polyline>
-                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                    </svg>
-                    <span>Excluir</span>
-                  </button>
-                </div>
+              <div class="active-list-actions-col">
+                <a href="/embed-evento-detalhe.html?id=${encodeURIComponent(eventId)}" target="_blank" class="active-list-view-btn" title="Visualizar página de detalhes">
+                  <span>Visualizar</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+                <button type="button" class="active-list-delete-btn" data-id="${eventId}" title="Excluir evento">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  <span>Excluir</span>
+                </button>
               </div>
             </article>
           `;
         }).join('');
 
         // Listeners de exclusão
-        grid.querySelectorAll('.active-card-delete-btn').forEach(btn => {
+        listEl.querySelectorAll('.active-list-delete-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             if (confirm('Tem certeza que deseja remover este evento?')) {
               if (typeof EventsService !== 'undefined' && typeof EventsService.deleteEvent === 'function') {
                 EventsService.deleteEvent(id);
               }
+              if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS)) {
+                window.INITIAL_EVENTS = window.INITIAL_EVENTS.filter(e => (e.id || e.slug) !== id);
+              }
+              try {
+                if (typeof localStorage !== 'undefined') {
+                  const stored = localStorage.getItem('cathlabflix_custom_events');
+                  if (stored) {
+                    const custom = JSON.parse(stored);
+                    const filtered = custom.filter(e => (e.id || e.slug) !== id);
+                    localStorage.setItem('cathlabflix_custom_events', JSON.stringify(filtered));
+                  }
+                }
+              } catch (e) {}
+
               showToast('Evento excluído com sucesso.');
               renderActiveEvents();
             }
           });
         });
+
+        // Configuração e Exibição da Paginação
+        if (totalPages > 1) {
+          if (paginationBar) paginationBar.style.display = 'flex';
+          if (paginationInfo) {
+            paginationInfo.textContent = `Exibindo ${startIndex + 1}–${endIndex} de ${total} eventos (Página ${currentEventsPage} de ${totalPages})`;
+          }
+
+          if (prevBtn) {
+            prevBtn.disabled = currentEventsPage === 1;
+            prevBtn.onclick = () => {
+              if (currentEventsPage > 1) {
+                currentEventsPage--;
+                renderActiveEvents();
+                scrollToEventsSection();
+              }
+            };
+          }
+
+          if (nextBtn) {
+            nextBtn.disabled = currentEventsPage === totalPages;
+            nextBtn.onclick = () => {
+              if (currentEventsPage < totalPages) {
+                currentEventsPage++;
+                renderActiveEvents();
+                scrollToEventsSection();
+              }
+            };
+          }
+
+          if (paginationPages) {
+            paginationPages.innerHTML = buildPaginationButtons(currentEventsPage, totalPages);
+            paginationPages.querySelectorAll('.pagination-page-btn').forEach(btn => {
+              btn.addEventListener('click', () => {
+                const page = parseInt(btn.getAttribute('data-page'), 10);
+                if (page && page !== currentEventsPage) {
+                  currentEventsPage = page;
+                  renderActiveEvents();
+                  scrollToEventsSection();
+                }
+              });
+            });
+          }
+        } else {
+          if (paginationBar) paginationBar.style.display = 'none';
+        }
+
+        notifyParentResize();
       }
 
       // Sincronização assíncrona com API remota
