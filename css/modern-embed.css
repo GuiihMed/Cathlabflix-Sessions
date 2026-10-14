@@ -834,35 +834,43 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .wix-news-card {
     grid-template-columns: minmax(0, 1fr) !important;
-    border-radius: 8px !important;
+    border-radius: 16px !important;
     width: 100% !important;
     max-width: 100% !important;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+    overflow: hidden !important;
   }
 
   .news-card-thumb-wrapper {
+    position: relative !important;
     width: 100% !important;
-    height: 110px !important;
-    max-height: 110px !important;
-    min-height: 0 !important;
-    aspect-ratio: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
+    aspect-ratio: 16 / 9 !important;
     overflow: hidden !important;
+    border-top-left-radius: 16px !important;
+    border-top-right-radius: 16px !important;
+    background: #010234 !important;
   }
 
   .news-card-thumb {
     width: 100% !important;
-    height: 110px !important;
-    max-height: 110px !important;
+    height: 100% !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 9 !important;
     object-fit: cover !important;
     object-position: center !important;
+    display: block !important;
   }
 
   .news-category-badge {
-    font-size: 0.45rem !important;
-    padding: 1px 5px !important;
-    top: 6px !important;
-    left: 6px !important;
-    border-radius: 3px !important;
+    position: absolute !important;
+    font-size: 0.55rem !important;
+    padding: 2px 7px !important;
+    top: 8px !important;
+    left: 8px !important;
+    border-radius: 4px !important;
     letter-spacing: 0.4px !important;
   }
 
@@ -947,10 +955,10 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   .agenda-card-wrapper {
     position: static !important;
     padding: 10px 8px !important;
-    border-radius: 10px !important;
+    border-radius: 16px !important;
     width: 100% !important;
     max-width: 100% !important;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
   }
 
   .agenda-top-bar {
@@ -1177,7 +1185,7 @@ h1, h2, h3, h4, h5, h6, p, span, a {
     gap: 6px !important;
     width: 100% !important;
     max-width: 100% !important;
-    border-radius: 8px !important;
+    border-radius: 12px !important;
   }
 
   .agenda-list-card-media-col {
@@ -1385,8 +1393,11 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .embed-post-featured-media,
   .embed-post-featured-media img {
-    max-height: 130px !important;
-    border-radius: 8px !important;
+    max-height: none !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 14px !important;
+    object-fit: cover !important;
   }
 
   .embed-post-title {
@@ -1428,12 +1439,6 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   .wix-news-feed-list {
     gap: 20px !important;
   }
-
-  .news-card-thumb-wrapper,
-  .news-card-thumb {
-    height: 105px !important;
-    max-height: 105px !important;
-  }
 }
 
 /* Telas Ultra-Compactas (max-width: 380px) */
@@ -1466,12 +1471,6 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .agenda-event-detail-card {
     padding: 6px 4px !important;
-  }
-
-  .news-card-thumb-wrapper,
-  .news-card-thumb {
-    height: 95px !important;
-    max-height: 95px !important;
   }
 
   .news-card-title {
