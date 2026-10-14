@@ -94,14 +94,11 @@
       flex: 1;
     }
 
-    /* Barra Superior com Botão Voltar ao SOLACI e Breadcrumb */
+    /* Barra Superior com Botão Voltar ao SOLACI */
     .top-nav-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 22px;
-      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     .back-to-solaci-btn {
@@ -127,33 +124,10 @@
       transform: translateX(-3px);
     }
 
-    .breadcrumbs-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--color-text-secondary);
-      flex-wrap: wrap;
-    }
-
-    .breadcrumb-sep {
-      color: var(--color-text-tertiary);
-    }
-
-    .breadcrumb-highlight {
-      color: var(--color-blue-accent);
-      font-weight: 700;
-      max-width: 320px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     /* Cabeçalho da Página */
     .gravacao-header {
-      margin-bottom: 26px;
-      padding-bottom: 18px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--color-border-subtle);
     }
 
@@ -171,14 +145,6 @@
       height: 4px;
       background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-blue-accent) 100%);
       border-radius: 2px;
-      margin-bottom: 12px;
-    }
-
-    .gravacao-subtitle {
-      font-size: 0.9375rem;
-      color: var(--color-text-secondary);
-      line-height: 1.55;
-      max-width: 860px;
     }
 
     /* ==========================================================================
@@ -238,11 +204,11 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
       border-radius: var(--radius-lg);
-      padding: 24px 28px;
+      padding: 22px 26px;
       box-shadow: var(--shadow-card);
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
 
     /* Linha de Badges */
@@ -305,62 +271,13 @@
       letter-spacing: -0.015em;
     }
 
-    /* Linha do Palestrante + Botões de Ação */
-    .session-speaker-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--color-border-subtle);
-    }
-
-    .speaker-profile-box {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .speaker-avatar-circle {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #0ea5e9 0%, #010234 100%);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9375rem;
-      font-weight: 800;
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      flex-shrink: 0;
-    }
-
-    .speaker-info-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .speaker-display-name {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #FFFFFF;
-    }
-
-    .speaker-affiliation-text {
-      font-size: 0.8125rem;
-      color: var(--color-text-secondary);
-    }
-
     /* Ações Rápidas */
     .session-actions-group {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      padding-top: 4px;
     }
 
     .action-pill-btn {
@@ -406,26 +323,6 @@
       background: rgba(229, 9, 20, 0.2);
       color: #ff6b6b;
       border-color: rgba(229, 9, 20, 0.5);
-    }
-
-    /* Bloco Sobre a Gravação */
-    .session-description-box {
-      padding-top: 4px;
-    }
-
-    .description-heading {
-      font-size: 0.8125rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      color: var(--color-blue-accent);
-      margin-bottom: 8px;
-    }
-
-    .description-body {
-      font-size: 0.9375rem;
-      color: var(--color-text-secondary);
-      line-height: 1.65;
     }
 
     /* Seção de Materiais Relacionados & Apresentações */
@@ -558,26 +455,10 @@
       border-bottom: 1px solid var(--color-border-subtle);
     }
 
-    .playlist-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
     .playlist-heading-text {
       font-size: 1.125rem;
       font-weight: 800;
       color: #FFFFFF;
-    }
-
-    .playlist-count-pill {
-      font-size: 0.6875rem;
-      font-weight: 800;
-      background: rgba(1, 2, 52, 0.7);
-      color: var(--color-blue-accent);
-      padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(56, 189, 248, 0.3);
     }
 
     /* Nível 1: Abas dos Dias */
@@ -990,12 +871,6 @@
         font-size: 1.25rem;
       }
 
-      .session-speaker-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-      }
-
       .session-actions-group {
         width: 100%;
       }
@@ -1034,7 +909,7 @@
   <div class="app-container">
     <main class="gravacao-main" id="gravacaoMain">
 
-      <!-- 1. Barra de Navegação Superior -->
+      <!-- 1. Barra de Navegação Superior (Apenas Botão Voltar ao SOLACI) -->
       <nav class="top-nav-bar" aria-label="Navegação secundária">
         <a href="https://www.cathlabflix.org/solaci" class="back-to-solaci-btn" target="_top" title="Voltar ao portal SOLACI-SBHCI 2026">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1043,25 +918,12 @@
           </svg>
           Voltar ao SOLACI
         </a>
-
-        <div class="breadcrumbs-wrap" aria-label="Trilha de navegação">
-          <span>CathlabFlix</span>
-          <span class="breadcrumb-sep">/</span>
-          <span>SOLACI-SBHCI 2026</span>
-          <span class="breadcrumb-sep">/</span>
-          <span>Gravações</span>
-          <span class="breadcrumb-sep">/</span>
-          <span class="breadcrumb-highlight" id="breadcrumbActiveTitle">Carregando...</span>
-        </div>
       </nav>
 
-      <!-- 2. Cabeçalho Principal -->
+      <!-- 2. Cabeçalho Principal (Apenas Título) -->
       <header class="gravacao-header">
         <h1 class="gravacao-title">Gravações SOLACI-SBHCI 2026</h1>
         <div class="gravacao-title-underline"></div>
-        <p class="gravacao-subtitle">
-          Assista às transmissões oficiais e sessões científicas gravadas em alta definição com navegação dinâmica por dias, salas e filtros em tempo real.
-        </p>
       </header>
 
       <!-- 3. Stage Principal (70% Player e Metadados / 30% Playlist e Abas de Salas) -->
@@ -1103,52 +965,35 @@
             <!-- Título da Sessão -->
             <h2 class="session-main-title" id="sessionMainTitle">Carregando gravação...</h2>
 
-            <!-- Palestrante / Equipe & Ações -->
-            <div class="session-speaker-row">
-              <div class="speaker-profile-box">
-                <div class="speaker-avatar-circle" id="speakerAvatar">HT</div>
-                <div class="speaker-info-meta">
-                  <span class="speaker-display-name" id="speakerName">Heart Team SOLACI</span>
-                  <span class="speaker-affiliation-text" id="speakerAffiliation">Congresso SOLACI-SBHCI 2026</span>
-                </div>
-              </div>
+            <!-- Botões de Ação -->
+            <div class="session-actions-group">
+              <button type="button" class="action-pill-btn" id="btnFavorite" title="Adicionar à Minha Lista">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span id="btnFavoriteText">Minha Lista</span>
+              </button>
 
-              <!-- Botões de Ação -->
-              <div class="session-actions-group">
-                <button type="button" class="action-pill-btn" id="btnFavorite" title="Adicionar à Minha Lista">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                  <span id="btnFavoriteText">Minha Lista</span>
-                </button>
+              <button type="button" class="action-pill-btn" id="btnShare" title="Copiar link desta gravação">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                Compartilhar
+              </button>
 
-                <button type="button" class="action-pill-btn" id="btnShare" title="Copiar link desta gravação">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="18" cy="5" r="3"></circle>
-                    <circle cx="6" cy="12" r="3"></circle>
-                    <circle cx="18" cy="19" r="3"></circle>
-                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                  </svg>
-                  Compartilhar
-                </button>
-
-                <a href="https://www.cathlabflix.org/aulas-solaci" class="action-pill-btn btn-slides" target="_top" title="Ver grade de aulas e baixar slides PPTX">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                  </svg>
-                  Grade de Aulas & PPTX
-                </a>
-              </div>
-            </div>
-
-            <!-- Descrição da Sessão -->
-            <div class="session-description-box">
-              <h3 class="description-heading">Sobre esta Gravação</h3>
-              <p class="description-body" id="sessionDescription">Carregando detalhes clínicos e discussão do procedimento...</p>
+              <a href="https://www.cathlabflix.org/aulas-solaci" class="action-pill-btn btn-slides" target="_top" title="Ver grade de aulas e baixar slides PPTX">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                Grade de Aulas & PPTX
+              </a>
             </div>
 
           </article>
@@ -1213,10 +1058,7 @@
           
           <!-- Cabeçalho da Playlist -->
           <div class="playlist-header-row">
-            <div class="playlist-title-wrap">
-              <h3 class="playlist-heading-text">Gravações da Sessão</h3>
-              <span class="playlist-count-pill" id="playlistCounter">38 GRAVAÇÕES</span>
-            </div>
+            <h3 class="playlist-heading-text">Gravações da Sessão</h3>
           </div>
 
           <!-- Nível 1: Abas dos Dias -->
@@ -2041,19 +1883,13 @@
         placeholder: document.getElementById('videoLoadingPlaceholder'),
         stageBox: document.getElementById('videoStageBox'),
         mainTitle: document.getElementById('sessionMainTitle'),
-        breadcrumbTitle: document.getElementById('breadcrumbActiveTitle'),
         badgeDay: document.getElementById('badgeDay'),
         badgeRoom: document.getElementById('badgeRoom'),
         badgeCategory: document.getElementById('badgeCategory'),
         badgeTime: document.getElementById('badgeTime'),
-        speakerAvatar: document.getElementById('speakerAvatar'),
-        speakerName: document.getElementById('speakerName'),
-        speakerAffiliation: document.getElementById('speakerAffiliation'),
-        description: document.getElementById('sessionDescription'),
         dayTabs: document.getElementById('dayTabsContainer'),
         roomTabs: document.getElementById('roomTabsContainer'),
         playlistList: document.getElementById('playlistScrollList'),
-        counter: document.getElementById('playlistCounter'),
         searchInput: document.getElementById('playlistSearchInput'),
         searchClear: document.getElementById('searchClearBtn'),
         btnFavorite: document.getElementById('btnFavorite'),
@@ -2214,7 +2050,6 @@
       // 9. RENDERIZAR PLAYLIST
       function renderPlaylist() {
         const filtered = getFilteredSessions();
-        dom.counter.textContent = `${filtered.length} ${filtered.length === 1 ? 'GRAVAÇÃO' : 'GRAVAÇÕES'}`;
         dom.playlistList.innerHTML = '';
 
         if (filtered.length === 0) {
@@ -2315,7 +2150,6 @@
 
         // Atualizar Metadados
         dom.mainTitle.textContent = session.title;
-        dom.breadcrumbTitle.textContent = session.title;
         dom.badgeDay.textContent = session.dayLabel;
         dom.badgeRoom.textContent = session.room;
         dom.badgeCategory.textContent = session.category;
@@ -2326,11 +2160,6 @@
         } else {
           dom.badgeTime.style.display = 'none';
         }
-
-        dom.speakerAvatar.textContent = session.initials || 'HT';
-        dom.speakerName.textContent = session.speaker;
-        dom.speakerAffiliation.textContent = session.affiliation;
-        dom.description.textContent = session.description;
 
         // Atualizar Favoritos
         updateFavoriteButtonState();
