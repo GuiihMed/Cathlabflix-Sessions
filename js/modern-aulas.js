@@ -73,6 +73,7 @@
     renderSkeletons(5);
     updatePeriodButtons();
     bindEvents();
+    window.addEventListener('resize', notifyResize);
     loadAulasFromDriveApi();
   }
 
@@ -515,6 +516,7 @@
     }
 
     dom.aulasContainer.appendChild(fragment);
+    setTimeout(notifyResize, 50);
   }
 
   function toggleAula(aulaId) {
@@ -545,6 +547,7 @@
       const header = item.querySelector('.aulas-accordion-header');
       if (header) header.setAttribute('aria-expanded', 'true');
     }
+    setTimeout(notifyResize, 40);
   }
 
   function renderEmpty(message) {
@@ -557,13 +560,40 @@
     `;
   }
 
+  function notifyResize() {
+    try {
+      if (window.parent && window.parent !== window) {
+        const mainEl = document.getElementById('aulasMainContent');
+        const height = Math.max(
+          document.documentElement.scrollHeight || 0,
+          document.body.scrollHeight || 0,
+          (mainEl ? mainEl.scrollHeight + 40 : 0)
+        );
+        window.parent.postMessage({
+          type: 'cathlabflix-sessions-resize',
+          height: height
+        }, '*');
+      }
+    } catch (e) {}
+  }
+
   function getCurrentDay() {
     return scheduleData.days.find(d => d.id === state.currentDayId) || scheduleData.days[0] || null;
   }
 
   async function loadAulasFromDriveApi() {
     try {
-      const response = await fetch('/api/aulas');
+      let response;
+      try {
+        response = await fetch('/api/aulas');
+      } catch (e) {
+        response = null;
+      }
+
+      if (!response || !response.ok) {
+        response = await fetch('https://cathlabflix-sessions.vercel.app/api/aulas');
+      }
+
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
 
@@ -578,6 +608,7 @@
         renderDays();
         renderRooms();
         renderAulas();
+        notifyResize();
         return;
       }
     } catch (err) {
@@ -588,6 +619,7 @@
     renderDays();
     renderRooms();
     renderAulas();
+    notifyResize();
   }
 
   function escapeHTML(str) {
