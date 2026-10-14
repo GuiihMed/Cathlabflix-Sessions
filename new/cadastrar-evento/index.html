@@ -4,31 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Cadastrar Evento - CathlabFlix SBHCI</title>
-  <meta name="description" content="Painel interno para cadastro e gestão de eventos do calendário CathlabFlix e integração com Wix Data.">
+  <meta name="description" content="Painel de cadastro de eventos do calendário CathlabFlix integrado automaticamente ao Wix CMS.">
 
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <link rel="apple-touch-icon" href="/assets/images/favicon.png">
 
-  <!-- Tipografia Inter -->
+  <!-- Tipografia Montserrat Oficial SBHCI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Folhas de Estilo -->
-  <link rel="stylesheet" href="/css/modern-ui.css">
-  <link rel="stylesheet" href="/css/modern-hub.css">
-  <link rel="stylesheet" href="/css/modern-events.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    .admin-page-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 20px 64px;
+    :root {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-card: #082b6e;
+      --color-surface-hover: #0d3887;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #B80710;
+      --color-blue-accent: #38bdf8;
+      --color-success: #10b981;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-base);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .admin-page-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* Cabeçalho da Página */
     .admin-header {
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--color-border-subtle);
       display: flex;
@@ -38,11 +71,30 @@
       gap: 16px;
     }
 
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo-badge {
+      background: rgba(229, 9, 20, 0.15);
+      color: var(--color-primary);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      border: 1px solid rgba(229, 9, 20, 0.3);
+      text-transform: uppercase;
+    }
+
     .admin-header-title {
-      font-size: 1.75rem;
+      font-size: 1.625rem;
       font-weight: 800;
       color: var(--color-text-primary);
-      margin: 0 0 4px 0;
+      margin: 6px 0 2px 0;
+      letter-spacing: -0.02em;
     }
 
     .admin-header-sub {
@@ -51,33 +103,91 @@
       margin: 0;
     }
 
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
+    .header-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
     }
 
-    @media (max-width: 900px) {
+    .header-nav-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    /* Toast Notification de Sucesso Global */
+    .toast-alert {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 10000;
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-alert.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Grid Principal: Formulário + Preview */
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 960px) {
       .admin-grid {
         grid-template-columns: 1fr;
       }
     }
 
+    /* Cards e Superfícies Tema Azul */
     .form-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
     }
 
     .form-section-title {
       font-size: 1.125rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--color-text-primary);
       margin: 0 0 20px 0;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .form-section-title svg {
+      color: var(--color-primary);
     }
 
     .form-group {
@@ -85,34 +195,51 @@
     }
 
     .form-label {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-size: 0.8125rem;
       font-weight: 700;
       color: var(--color-text-primary);
       margin-bottom: 6px;
+      letter-spacing: 0.2px;
     }
 
     .form-label .required {
       color: var(--color-primary);
+      margin-left: 2px;
+    }
+
+    .form-label .optional-tag {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--color-text-tertiary);
     }
 
     .form-input, .form-select, .form-textarea {
       width: 100%;
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
       border: 1px solid var(--color-border-subtle);
-      background: var(--color-bg-base);
+      background: #031338;
       color: var(--color-text-primary);
       font-size: 0.875rem;
       font-family: inherit;
+      font-weight: 500;
       transition: all var(--transition-fast);
       box-sizing: border-box;
     }
 
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--color-text-tertiary);
+      font-weight: 400;
+    }
+
     .form-input:focus, .form-select:focus, .form-textarea:focus {
       outline: none;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+      border-color: var(--color-blue-accent);
+      background: #051b4d;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
     }
 
     .form-row-2 {
@@ -121,65 +248,228 @@
       gap: 14px;
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: 580px) {
       .form-row-2 {
         grid-template-columns: 1fr;
       }
     }
 
-    .type-radio-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 6px;
+    /* Dropdown de Tipo de Evento com Tags */
+    .type-select-wrapper {
+      position: relative;
     }
 
-    .type-radio-label {
+    .type-select-wrapper select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 40px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--color-text-secondary);
+    }
+
+    .type-pill-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .type-pill-oficial {
+      background: rgba(229, 9, 20, 0.15);
+      color: #ff4d4f;
+      border: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .type-pill-apoio {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .type-pill-eventos {
+      background: rgba(147, 51, 234, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(147, 51, 234, 0.3);
+    }
+
+    /* Área de Upload / Arrastar Imagem */
+    .image-dropzone {
+      position: relative;
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      padding: 24px 16px;
+      text-align: center;
+      background: rgba(3, 19, 56, 0.5);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      overflow: hidden;
+    }
+
+    .image-dropzone:hover, .image-dropzone.is-dragover {
+      border-color: var(--color-blue-accent);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .dropzone-file-input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .dropzone-content {
+      pointer-events: none;
+    }
+
+    .dropzone-icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 10px;
+      color: var(--color-blue-accent);
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--color-border-subtle);
-      background: var(--color-bg-base);
-      cursor: pointer;
+      justify-content: center;
+      background: rgba(56, 189, 248, 0.12);
+      border-radius: 50%;
+    }
+
+    .dropzone-title {
       font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin: 0 0 4px 0;
+    }
+
+    .dropzone-hint {
+      font-size: 0.75rem;
+      color: var(--color-text-tertiary);
+      margin: 0;
+    }
+
+    /* Overlay de Loading na Imagem */
+    .dropzone-loading-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 34, 87, 0.95);
+      backdrop-filter: blur(4px);
+      z-index: 10;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .dropzone-loading-overlay.is-active {
+      display: flex;
+    }
+
+    .spinner {
+      width: 34px;
+      height: 34px;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      border-top-color: var(--color-primary);
+      border-right-color: var(--color-blue-accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Notificação de Carregamento Bem Sucedido */
+    .dropzone-success-toast {
+      position: absolute;
+      inset: 0;
+      background: rgba(16, 185, 129, 0.96);
+      color: #fff;
+      z-index: 11;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9375rem;
+      font-weight: 800;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .dropzone-success-toast.is-active {
+      display: flex;
+    }
+
+    .dropzone-success-toast.fade-out {
+      animation: fadeOut 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.96); }
+    }
+
+    /* Thumbnails rápidos de Preset */
+    .preset-library-wrap {
+      margin-top: 10px;
+    }
+
+    .preset-label {
+      font-size: 0.6875rem;
       font-weight: 600;
-      transition: all var(--transition-fast);
-    }
-
-    .type-radio-label:has(input:checked) {
-      border-color: var(--color-primary);
-      background: rgba(229, 9, 20, 0.05);
-      color: var(--color-primary);
-    }
-
-    .type-radio-label input {
-      accent-color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-text-secondary);
+      margin-bottom: 6px;
+      display: block;
     }
 
     .preset-images-row {
       display: flex;
       gap: 8px;
-      margin-top: 8px;
       overflow-x: auto;
-      padding-bottom: 6px;
+      padding-bottom: 4px;
     }
 
     .preset-img-btn {
       flex-shrink: 0;
-      width: 70px;
-      height: 44px;
+      width: 68px;
+      height: 42px;
       border-radius: 6px;
       overflow: hidden;
       border: 2px solid transparent;
       cursor: pointer;
       background: #000;
       padding: 0;
+      transition: all var(--transition-fast);
     }
 
-    .preset-img-btn.active, .preset-img-btn:hover {
-      border-color: var(--color-primary);
+    .preset-img-btn:hover, .preset-img-btn.active {
+      border-color: var(--color-blue-accent);
+      transform: translateY(-2px);
     }
 
     .preset-img-btn img {
@@ -189,510 +479,1596 @@
       display: block;
     }
 
+    /* Botão de Salvar */
     .admin-btn-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 24px;
-      flex-wrap: wrap;
+      margin-top: 26px;
     }
 
     .btn-submit {
-      background: var(--color-primary);
+      width: 100%;
+      background: linear-gradient(135deg, #E50914, #c80812);
       color: #fff;
       border: none;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border-radius: var(--radius-pill);
-      font-size: 0.875rem;
-      font-weight: 700;
+      font-size: 0.9375rem;
+      font-weight: 800;
+      font-family: inherit;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 18px rgba(229, 9, 20, 0.4);
       transition: all var(--transition-fast);
     }
 
     .btn-submit:hover {
-      background: var(--color-primary-hover);
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #f01420, #E50914);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(229, 9, 20, 0.55);
     }
 
-    .btn-export {
-      background: var(--color-surface);
-      color: var(--color-text-primary);
-      border: 1px solid var(--color-border-subtle);
-      padding: 12px 20px;
-      border-radius: var(--radius-pill);
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all var(--transition-fast);
+    .btn-submit:active {
+      transform: translateY(0);
     }
 
-    .btn-export:hover {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-    }
-
-    /* Card de Preview */
+    /* Pré-visualização Lateral */
     .preview-sticky-wrap {
       position: sticky;
       top: 24px;
     }
 
-    .preview-box-title {
-      font-size: 0.875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--color-text-secondary);
+    .preview-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 12px;
     }
 
-    /* Modal de Exportação Wix */
-    .wix-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 9999;
-      display: none;
+    .preview-box-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .preview-live-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 20px;
+      gap: 5px;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.15);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
     }
 
-    .wix-modal-backdrop.is-open {
-      display: flex;
+    .preview-live-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
     }
 
-    .wix-modal-card {
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Card de Preview da Agenda */
+    .agenda-preview-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
-      border-radius: 16px;
-      max-width: 650px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-thumb-wrap {
       width: 100%;
-      padding: 24px;
-      box-shadow: var(--shadow-lg);
-      max-height: 90vh;
-      overflow-y: auto;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      background: #031338;
+      overflow: hidden;
     }
 
-    .code-block {
-      background: #020617;
-      color: #38bdf8;
-      padding: 14px;
-      border-radius: 8px;
-      font-family: monospace;
-      font-size: 0.8125rem;
-      overflow-x: auto;
-      max-height: 240px;
-      margin: 12px 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .alert-success {
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.3);
-      color: #15803d;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      margin-bottom: 20px;
-      display: none;
-    }
-
-    .table-events {
+    .preview-thumb-img {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      font-size: 0.8125rem;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
 
-    .table-events th, .table-events td {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--color-border-subtle);
-      text-align: left;
+    .preview-badge-overlay {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 2;
     }
 
-    .table-events th {
-      font-weight: 700;
-      color: var(--color-text-secondary);
-      text-transform: uppercase;
+    .badge-tag {
       font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-oficial {
+      background: #E50914;
+      color: #fff;
+    }
+
+    .badge-apoio {
+      background: #0284c7;
+      color: #fff;
+    }
+
+    .badge-eventos {
+      background: #7c3aed;
+      color: #fff;
+    }
+
+    .preview-content {
+      padding: 18px;
+    }
+
+    .preview-date-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-blue-accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .preview-title {
+      font-size: 1.0625rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.35;
+      margin: 0 0 10px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .preview-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .preview-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-meta-item svg {
+      flex-shrink: 0;
+      color: var(--color-blue-accent);
+    }
+
+    .preview-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 14px;
+      border-top: 1px solid var(--color-border-subtle);
+      flex-wrap: wrap;
+    }
+
+    .preview-reg-btn {
+      background: var(--color-primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preview-reg-btn:hover {
+      background: var(--color-primary-hover);
+    }
+
+    .preview-calendar-btn {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Seção de Eventos Ativos com Capa (Cards Visuais) */
+    .events-active-section {
+      margin-top: 48px;
+    }
+
+    .events-active-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .events-count-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-blue-accent);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .active-events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .active-events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .active-event-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .active-event-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .active-card-cover-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      position: relative;
+      background: #020d26;
+      overflow: hidden;
+    }
+
+    .active-card-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .active-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    .active-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .active-card-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-blue-accent);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .active-card-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+      margin: 0 0 8px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .active-card-meta {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 14px;
+    }
+
+    .active-card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .active-card-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .active-card-view-btn {
+      color: var(--color-blue-accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .active-card-view-btn:hover {
+      text-decoration: underline;
+    }
+
+    .active-card-delete-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: background var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .active-card-delete-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+    }
+
+    .instructions-box {
+      margin-top: 24px;
+      background: rgba(8, 43, 110, 0.4);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .instructions-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-blue-accent);
+      margin: 0 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .instructions-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin: 0;
     }
   </style>
 </head>
 <body>
+
+  <!-- Notificação Toast de Sucesso -->
+  <div class="toast-alert" id="toastAlert">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+    <span id="toastMessage">Evento salvo com sucesso e sincronizado ao Wix!</span>
+  </div>
 
   <div class="admin-page-container">
 
     <!-- Header do Painel -->
     <header class="admin-header">
       <div>
-        <h1 class="admin-header-title">Cadastro e Gestão de Eventos</h1>
-        <p class="admin-header-sub">Conecte seus eventos ao CathlabFlix e exporte para o Banco de Dados / CMS do Wix.</p>
+        <div class="header-branding">
+          <span class="header-logo-badge">SBHCI • CMS</span>
+          <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">Integração em Tempo Real</span>
+        </div>
+        <h1 class="admin-header-title">Cadastro de Eventos</h1>
+        <p class="admin-header-sub">Preencha os dados abaixo para publicar o evento no CathlabFlix e na coleção do Wix CMS.</p>
       </div>
 
-      <div style="display: flex; gap: 10px;">
-        <a href="/new/embed-home.html" class="event-back-btn" target="_blank" title="Ver Embed Home">
-          <span>Ver Embed Home ↗</span>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a href="/embed-noticias.html" class="header-nav-btn" target="_blank" title="Ver Notícias">
+          <span>Notícias ↗</span>
+        </a>
+        <a href="/embed-home.html" class="header-nav-btn" target="_blank" title="Ver Embed Home">
+          <span>Ver Agenda ↗</span>
         </a>
       </div>
     </header>
 
-    <div class="alert-success" id="successAlert">
-      ✓ Evento salvo com sucesso! O calendário e a lista de eventos foram atualizados automaticamente.
-    </div>
-
     <div class="admin-grid">
 
-      <!-- Formulário de Cadastro -->
+      <!-- Formulário de Cadastro Tema Azul -->
       <section class="form-card">
         <h2 class="form-section-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--color-primary)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
             <line x1="8" y1="2" x2="8" y2="6"></line>
             <line x1="3" y1="10" x2="21" y2="10"></line>
           </svg>
-          Dados do Novo Evento
+          Informações do Evento
         </h2>
 
         <form id="eventCreateForm">
-          <!-- Título -->
+
+          <!-- 1. Título do Evento -->
           <div class="form-group">
             <label class="form-label" for="eventTitle">
-              Título do Evento <span class="required">*</span>
+              <span>Título do Evento <span class="required">*</span></span>
             </label>
-            <input type="text" id="eventTitle" class="form-input" placeholder="Ex: Simpósio de Intervenção Estrutural SBHCI 2026" required>
+            <input type="text" id="eventTitle" class="form-input" placeholder="Titulo do evento" required autocomplete="off">
           </div>
 
-          <!-- Data e Horário -->
+          <!-- 2. Data de Início e Término (Opcional) -->
           <div class="form-row-2">
             <div class="form-group">
               <label class="form-label" for="eventDate">
-                Data do Evento <span class="required">*</span>
+                <span>Data de Início <span class="required">*</span></span>
               </label>
               <input type="date" id="eventDate" class="form-input" required>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="eventEndDate">
-                Data de Término (Opcional)
+                <span>Data de Término</span>
+                <span class="optional-tag">(Opcional)</span>
               </label>
-              <input type="date" id="eventEndDate" class="form-input">
+              <input type="date" id="eventEndDate" class="form-input" placeholder="Mesma da data de início se vazio">
             </div>
           </div>
 
+          <!-- 3. Horário e Local -->
           <div class="form-row-2">
             <div class="form-group">
               <label class="form-label" for="eventTime">
-                Horário <span class="required">*</span>
+                <span>Horário <span class="required">*</span></span>
               </label>
               <input type="text" id="eventTime" class="form-input" placeholder="Ex: 19:00 às 20:30" required>
             </div>
 
             <div class="form-group">
               <label class="form-label" for="eventLocation">
-                Local <span class="required">*</span>
+                <span>Local do Evento <span class="required">*</span></span>
               </label>
               <input type="text" id="eventLocation" class="form-input" placeholder="Ex: WTC Events Golden Hall - São Paulo, SP" required>
             </div>
           </div>
 
-          <!-- Tipo: Apoio SBHCI ou Apenas Evento -->
+          <!-- 4. Tipo do Evento (Dropdown com Tags) -->
+          <div class="form-group">
+            <label class="form-label" for="eventTypeSelect">
+              <span>Tipo do Evento <span class="required">*</span></span>
+            </label>
+            <div class="type-select-wrapper">
+              <select id="eventTypeSelect" class="form-select">
+                <option value="evento" selected>Evento Oficial SBHCI</option>
+                <option value="apoio_sbhci">Apoio SBHCI</option>
+                <option value="eventos">Eventos</option>
+              </select>
+              <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <div id="typeTagPreview" class="type-pill-indicator type-pill-oficial">
+              ● Evento Oficial SBHCI
+            </div>
+          </div>
+
+          <!-- 5. Upload / Inserir Imagem com Animação de Carregamento -->
           <div class="form-group">
             <label class="form-label">
-              Tipo de Evento <span class="required">*</span>
+              <span>Imagem de Capa (Banner 16:9) <span class="required">*</span></span>
             </label>
-            <div class="type-radio-group">
-              <label class="type-radio-label">
-                <input type="radio" name="eventType" value="evento" checked>
-                <span>Evento Oficial SBHCI</span>
-              </label>
-              <label class="type-radio-label">
-                <input type="radio" name="eventType" value="apoio_sbhci">
-                <span>Apoio SBHCI</span>
-              </label>
+
+            <!-- Dropzone com Drag and Drop -->
+            <div class="image-dropzone" id="imageDropzone">
+              <input type="file" id="imageFileInput" class="dropzone-file-input" accept="image/*">
+              
+              <!-- Conteúdo Visual Padrão -->
+              <div class="dropzone-content" id="dropzoneContent">
+                <div class="dropzone-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                </div>
+                <p class="dropzone-title">Arraste uma imagem aqui ou clique para selecionar</p>
+                <p class="dropzone-hint">Formatos suportados: PNG, JPG, WebP (Ideal: 1920x1080 px)</p>
+              </div>
+
+              <!-- Overlay com Spinner Animado -->
+              <div class="dropzone-loading-overlay" id="dropzoneLoading">
+                <div class="spinner"></div>
+                <span class="loading-text">Processando e carregando imagem no CMS...</span>
+              </div>
+
+              <!-- Notificação de Sucesso Temporária -->
+              <div class="dropzone-success-toast" id="dropzoneSuccess">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Carregamento bem-sucedido!</span>
+              </div>
+            </div>
+
+            <!-- Campo de URL direta gerado automaticamente -->
+            <div style="margin-top: 10px;">
+              <input type="url" id="eventImageUrl" class="form-input" placeholder="https://url-da-imagem..." value="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" required>
+            </div>
+
+            <!-- Biblioteca de Imagens Rápidas SBHCI -->
+            <div class="preset-library-wrap">
+              <span class="preset-label">Ou escolha uma imagem oficial da biblioteca:</span>
+              <div class="preset-images-row">
+                <button type="button" class="preset-img-btn active" data-url="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" title="Congresso SBHCI Oficial">
+                  <img src="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" alt="SOLACI SBHCI">
+                </button>
+                <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png" title="TCT Latam Summit">
+                  <img src="https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png" alt="TCT Summit">
+                </button>
+                <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" title="TAVI Estrutural">
+                  <img src="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" alt="TAVI Estrutural">
+                </button>
+                <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" title="Webinar Educacional">
+                  <img src="https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" alt="Webinar SBHCI">
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Imagem / Banner -->
+          <!-- 6. Botão para Inscrição (Link no site) -->
           <div class="form-group">
-            <label class="form-label" for="eventImage">
-              URL da Imagem / Banner <span class="required">*</span>
+            <label class="form-label" for="eventRegistrationUrl">
+              <span>Link do Botão de Inscrição</span>
+              <span class="optional-tag">(Opcional)</span>
             </label>
-            <input type="url" id="eventImage" class="form-input" placeholder="https://..." value="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" required>
-
-            <span style="font-size: 0.6875rem; color: var(--color-text-secondary); margin-top: 6px; display: block;">
-              Selecione uma imagem rápida oficial da biblioteca:
-            </span>
-            <div class="preset-images-row">
-              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" title="SOLACI SBHCI 2026">
-                <img src="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" alt="SOLACI">
-              </button>
-              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png" title="TCT Plus Latam Valves">
-                <img src="https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png" alt="TCT">
-              </button>
-              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" title="TAVI Estrutural">
-                <img src="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" alt="TAVI">
-              </button>
-              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" title="Webinar Geral">
-                <img src="https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" alt="Webinar">
-              </button>
-            </div>
-          </div>
-
-          <!-- Botão de Conferir / Link de Ação -->
-          <div class="form-group">
-            <label class="form-label" for="eventActionUrl">
-              Link do Botão "Confira" (Página do Evento)
-            </label>
-            <input type="text" id="eventActionUrl" class="form-input" placeholder="Automático (abre a página interna sobre o evento)">
+            <input type="url" id="eventRegistrationUrl" class="form-input" placeholder="https://exemplo.com.br/inscricao">
             <span style="font-size: 0.6875rem; color: var(--color-text-secondary); margin-top: 4px; display: block;">
-              Por padrão, cai automaticamente dentro da página interna do evento (<code>/new/evento?id=...</code>).
+              ℹ️ Se deixar este campo em branco, <strong>nenhum botão de inscrição será exibido</strong> na página do evento.
             </span>
           </div>
 
-          <!-- Descrição Detalhada -->
+          <!-- 7. Descrição do Evento (Opcional) -->
           <div class="form-group">
             <label class="form-label" for="eventDescription">
-              Descrição Completa do Evento <span class="required">*</span>
+              <span>Descrição do Evento</span>
+              <span class="optional-tag">(Opcional)</span>
             </label>
-            <textarea id="eventDescription" class="form-textarea" rows="4" placeholder="Descreva os temas abordados, palestrantes, comissão científica e programação..." required></textarea>
+            <textarea id="eventDescription" class="form-textarea" rows="4" placeholder="Descreva os temas abordados, programação científica, palestrantes convidados..."></textarea>
           </div>
 
-          <!-- Ações do Formulário -->
+          <!-- 8. Botão para Salvar (Conexão automática) -->
           <div class="admin-btn-row">
-            <button type="submit" class="btn-submit">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <button type="submit" class="btn-submit" id="saveEventBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
               <span>Salvar Evento</span>
             </button>
-
-            <button type="button" class="btn-export" id="openWixExportBtn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              <span>Exportar para Wix CMS</span>
-            </button>
           </div>
+
         </form>
       </section>
 
-      <!-- Live Preview -->
+      <!-- Live Preview Sticky Lateral -->
       <aside class="preview-sticky-wrap">
-        <div class="preview-box-title">Pré-visualização em Tempo Real (Próximos Eventos)</div>
-        <div id="cardPreviewContainer">
-          <!-- Renderizado via JS -->
+        <div class="preview-header-bar">
+          <div class="preview-box-title">Pré-visualização do Evento</div>
+          <div class="preview-live-badge">Ao Vivo</div>
         </div>
 
-        <div style="margin-top: 24px;" class="form-card">
-          <h3 style="font-size: 0.875rem; font-weight: 700; margin: 0 0 8px 0; color: var(--color-text-primary);">
-            Como funciona a conexão com o Wix:
-          </h3>
-          <p style="font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.5; margin: 0 0 12px 0;">
-            1. Qualquer evento salvo aqui fica ativo imediatamente no seu navegador e no embed do site.<br>
-            2. Ao clicar em <strong>"Exportar para Wix CMS"</strong>, você copia o JSON exato para alimentar a sua coleção <code>CathlabflixEvents</code> no painel Wix.
+        <div class="agenda-preview-card" id="livePreviewCard">
+          <div class="preview-thumb-wrap">
+            <img src="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" id="previewThumbImg" class="preview-thumb-img" alt="Capa">
+            <div class="preview-badge-overlay">
+              <span class="badge-tag badge-oficial" id="previewBadge">EVENTO OFICIAL SBHCI</span>
+            </div>
+          </div>
+
+          <div class="preview-content">
+            <div class="preview-date-row" id="previewDateText">
+              <span>DATA DO EVENTO</span>
+            </div>
+
+            <h3 class="preview-title" id="previewTitleText">Titulo do evento</h3>
+
+            <div class="preview-meta-row">
+              <div class="preview-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span id="previewTimeText">19:00 às 20:30</span>
+              </div>
+              <div class="preview-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span id="previewLocationText">WTC Events Golden Hall - São Paulo, SP</span>
+              </div>
+            </div>
+
+            <div class="preview-actions-row">
+              <!-- Botão condicional de Inscrição -->
+              <span class="preview-reg-btn" id="previewRegBtnWrap" style="display: none;">
+                <span>Inscrição no Site</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+
+              <span class="preview-calendar-btn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Salvar na Agenda</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="instructions-box">
+          <div class="instructions-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            Sincronização Automática
+          </div>
+          <p class="instructions-desc">
+            Cada evento salvo é publicado instantaneamente no seu navegador, gravado no cache e transmitido para o Wix CMS.
           </p>
         </div>
       </aside>
 
     </div>
 
-    <!-- Lista de Eventos Cadastrados -->
-    <section style="margin-top: 48px;" class="form-card">
-      <h2 class="form-section-title">Eventos Ativos na Plataforma</h2>
-      <div style="overflow-x: auto;">
-        <table class="table-events">
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Título</th>
-              <th>Tipo</th>
-              <th>Horário / Local</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody id="eventsTableBody">
-            <!-- Preenchido via JS -->
-          </tbody>
-        </table>
+    <!-- Seção de Eventos Ativos com Cards Visuais e Capa -->
+    <section class="events-active-section">
+      <div class="events-active-header">
+        <h2 class="form-section-title" style="margin: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Eventos Ativos na Plataforma
+        </h2>
+        <span class="events-count-pill" id="eventsCountPill">Carregando eventos...</span>
+      </div>
+
+      <div class="active-events-grid" id="activeEventsGrid">
+        <!-- Renderizado dinamicamente via JavaScript -->
       </div>
     </section>
 
   </div>
 
-  <!-- Modal Wix Data -->
-  <div class="wix-modal-backdrop" id="wixModalBackdrop">
-    <div class="wix-modal-card">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h3 style="margin: 0; font-size: 1.125rem; font-weight: 800;">Conexão Wix Data / CMS</h3>
-        <button type="button" id="closeWixModalBtn" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-secondary);">✕</button>
-      </div>
-
-      <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.5;">
-        Copie o JSON abaixo e importe diretamente no Gerenciador de Conteúdo do Wix (<strong>Wix CMS -> Importar CSV/JSON</strong>):
-      </p>
-
-      <pre class="code-block" id="wixJsonBlock"></pre>
-
-      <button type="button" class="btn-submit" id="copyWixJsonBtn" style="width: 100%; justify-content: center; margin-top: 10px;">
-        <span>Copiar JSON da Coleção</span>
-      </button>
-
-      <div style="margin-top: 20px;">
-        <h4 style="font-size: 0.875rem; font-weight: 700; margin: 0 0 6px 0;">Código Velo Backend (Opcional):</h4>
-        <pre class="code-block" id="wixVeloBlock"></pre>
-      </div>
-    </div>
-  </div>
-
   <!-- Scripts -->
-  <script src="/js/events-data.js"></script>
-  <script src="/js/events-service.js"></script>
+  <script>
+/**
+ * CathlabFlix - Base de Dados Oficial de Eventos e Congressos SBHCI
+ * Compatível com Wix Data Collection e Armazenamento Local
+ */
+
+const INITIAL_EVENTS = [
+  // ==========================================
+  // OUTUBRO 2026
+  // ==========================================
+  {
+    id: 'webinar-sbhci-outubro',
+    title: 'Webinar SBHCI: Atualizações em Terapias Estruturais',
+    subtitle: 'Discussão de casos de TAVI e Valve-in-Valve Mitral com especialistas renomados.',
+    description: 'Neste webinar oficial da SBHCI, renomados intervencionistas debatem as melhores estratégias em intervenções valvares transcateter, com ênfase no planejamento tomográfico pré-TAVI, escolha de próteses balão-expansíveis versus autoexpansíveis e prevenção de oclusão coronariana em procedimentos Valve-in-Valve Mitral.',
+    date: '2026-10-09',
+    startTime: '19:00',
+    endTime: '20:30',
+    time: '19:00 - 20:30',
+    location: 'Plataforma CathlabFlix Streaming',
+    modality: 'Transmissão Online',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=webinar-sbhci-outubro',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'tct-highlights-replay',
+    title: 'Debate TCT 2026: Principais Ensaios Clínicos',
+    subtitle: 'Análise crítica dos clinical trials e o impacto na prática clínica nacional.',
+    description: 'Sessão especial de revisão dos trials apresentados no CRF TCT 2026. Discussão multidisciplinar sobre novas tecnologias em stents farmacológicos, balões farmacofóricos, intervenções tricúspides e dispositivos de proteção embólica cerebral.',
+    date: '2026-10-15',
+    startTime: '20:00',
+    endTime: '21:30',
+    time: '20:00 - 21:30',
+    location: 'CathlabFlix Streaming',
+    modality: 'Ao Vivo com Perguntas',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png',
+    actionUrl: '/new/evento?id=tct-highlights-replay',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'solaci-2026-destaque',
+    title: 'Sessão Especial SOLACI SBHCI 2026',
+    subtitle: 'Debates sobre Intervenções Coronárias Complexas e Casos Ao Vivo.',
+    description: 'Transmissão exclusiva dos melhores momentos e casos ao vivo do Congresso SOLACI-SBHCI 2026. Acompanhe a discussão detalhada de técnicas de bifurcação, intervenção guiada por imagem intracoronária (OCT e IVUS) e manejo de complicações na sala de hemodinâmica.',
+    date: '2026-10-21',
+    startTime: '14:00',
+    endTime: '18:00',
+    time: '14:00 - 18:00',
+    location: 'WTC Events Center - São Paulo, SP',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=solaci-2026-destaque',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'solaci-satelite-bifurcacoes',
+    title: 'Simpósio Satélite: Tratamento de Bifurcações',
+    subtitle: 'Estratégias de Stent Único vs Culotte e Double Kissing Crush.',
+    description: 'Simpósio temático focado em técnicas de alta precisão em bifurcações coronárias, com análise passo a passo de procedimentos gravados, indicações de DK-Crush, Mini-Crush e T/TAP, e o papel da fisiologia coronariana pré e pós-stent.',
+    date: '2026-10-21',
+    startTime: '18:30',
+    endTime: '19:45',
+    time: '18:30 - 19:45',
+    location: 'CathlabFlix Ao Vivo / Sala 2',
+    modality: 'Transmissão Online',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=solaci-satelite-bifurcacoes',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'curso-intervencionistas-modulo',
+    title: 'Curso para Intervencionistas em Formação',
+    subtitle: 'Módulo 2: Técnicas Fundamentais de Hemodinâmica e Acessos Vasculares.',
+    description: 'Capacitação dedicada a fellows e médicos residentes em cardiologia intervencionista. Inclui punção radial e femoral ecoguiada, prevenção e manejo de espasmo radial, cateterismo seletivo e princípios de radioproteção.',
+    date: '2026-10-28',
+    startTime: '09:00',
+    endTime: '12:00',
+    time: '09:00 - 12:00',
+    location: 'CathlabFlix Academy',
+    modality: 'On-demand & Exercícios',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Curso',
+    color: 'amber',
+    image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=curso-intervencionistas-modulo',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // FEVEREIRO 2027
+  // ==========================================
+  {
+    id: 'curso-atualizacao-hci-01',
+    title: 'Curso de Atualização em HCI - Módulo 1',
+    subtitle: 'Módulo On-line de Atualização em Hemodinâmica e Cardiologia Intervencionista.',
+    description: 'Primeiro encontro do Programa de Educação Médica Continuada 2027 da SBHCI. Foco em avanços farmacológicos adjuntos na intervenção coronária percutânea e novas diretrizes de antiagregação dupla.',
+    date: '2027-02-01',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    modality: 'On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=curso-atualizacao-hci-01',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'tavi-certificacao-2027',
+    title: 'Curso Teórico-Prático de Certificação em TAVI SBHCI/SBCCV 2027',
+    subtitle: 'Programa Oficial Conjunto SBHCI e SBCCV para Formação e Habilitação em TAVI.',
+    description: 'Curso anual intensivo de habilitação e certificação para implante percutâneo de válvula aórtica (TAVI), com treinamento prático em simuladores virtuais, dissecção cadavérica e acompanhamento de procedimentos in-loco.',
+    date: '2027-02-15',
+    endDate: '2027-12-15',
+    time: 'Fevereiro a Dezembro',
+    dateRangeLabel: 'FEV-DEZ',
+    location: 'Centros Credenciados SBHCI / SBCCV',
+    modality: 'Teórico-Prático Presencial',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Curso',
+    color: 'amber',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=tavi-certificacao-2027',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'curso-atualizacao-hci-02',
+    title: 'Curso de Atualização em HCI - Módulo 2',
+    subtitle: 'Intervenções em Oclusões Totais Crônicas (CTO) e Fisiologia Coronária.',
+    description: 'Módulo avançado discutindo o algoritmo híbrido para CTO, indicações de via retrógrada e antegrada, utilização de microcateteres específicos e avaliação com iFR/FFR.',
+    date: '2027-02-22',
+    startTime: '19:30',
+    endTime: '21:00',
+    time: '19:30 - 21:00',
+    location: 'Plataforma CathlabFlix / SBHCI',
+    modality: 'On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Webinar',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=curso-atualizacao-hci-02',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // MARÇO 2027
+  // ==========================================
+  {
+    id: 'latam-valves-2027',
+    title: 'Latam Valves 2027 - The Structural Heart Summit',
+    subtitle: 'Maior Encontro Latino-Americano de Doenças Estruturais do Coração e Terapias Valvares.',
+    description: 'Edição histórica do Latam Valves reunindo cardiologistas intervencionistas, cirurgiões cardíacos e ecocardiografistas da América Latina e do mundo. Três dias intensos de transmissão ao vivo de casos estruturais complexos, debates de trials valvares e workshops práticos.',
+    date: '2027-03-17',
+    endDate: '2027-03-19',
+    dates: ['2027-03-17', '2027-03-18', '2027-03-19'],
+    dateRangeLabel: '17 a 19',
+    startTime: '08:00',
+    endTime: '18:30',
+    time: '08:00 - 18:30 (17 a 19 de março)',
+    location: 'WTC Events Golden Hall - São Paulo, SP',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png',
+    actionUrl: '/new/evento?id=latam-valves-2027',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // JUNHO 2027
+  // ==========================================
+  {
+    id: 'congresso-sbhci-2027',
+    title: 'Congresso SBHCI 2027',
+    subtitle: 'O Maior Encontro da Cardiologia Intervencionista Brasileira.',
+    description: 'O Congresso Anual da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista é o principal fórum científico da especialidade na América Latina. Apresentação de pesquisas inéditas, premiações científicas, arenas de inovação tecnológica e dezenas de casos editados e ao vivo.',
+    date: '2027-06-23',
+    endDate: '2027-06-25',
+    dates: ['2027-06-23', '2027-06-24', '2027-06-25'],
+    dateRangeLabel: '23 a 25',
+    startTime: '08:00',
+    endTime: '19:00',
+    time: '08:00 - 19:00 (23 a 25 de junho)',
+    location: 'Centro de Convenções de Goiânia, GO',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=congresso-sbhci-2027',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // AGOSTO 2027
+  // ==========================================
+  {
+    id: 'solaci-2027',
+    title: 'Congresso SOLACI 2027',
+    subtitle: 'Sociedade Latino-Americana de Cardiologia Intervencionista.',
+    description: 'Congresso oficial da SOLACI reunindo líderes mundiais da hemodinâmica para debater os rumos das intervenções cardiovasculares em países em desenvolvimento, inovações terapêuticas e programas conjuntos de educação.',
+    date: '2027-08-04',
+    endDate: '2027-08-06',
+    dates: ['2027-08-04', '2027-08-05', '2027-08-06'],
+    dateRangeLabel: '04 a 06',
+    startTime: '08:00',
+    endTime: '18:30',
+    time: '08:00 - 18:30 (04 a 06 de agosto)',
+    location: 'Buenos Aires, Argentina',
+    modality: 'Presencial com Transmissão',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Congresso',
+    color: 'red',
+    image: 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+    actionUrl: '/new/evento?id=solaci-2027',
+    actionLabel: 'Confira'
+  },
+
+  // ==========================================
+  // NOVEMBRO 2027
+  // ==========================================
+  {
+    id: 'pci-plus-2027',
+    title: 'PCI Plus 2027',
+    subtitle: 'Simpósio Internacional de Intervenção Coronária Percutânea e Terapias Avançadas.',
+    description: 'Encontro técnico-científico dedicado exclusivamente à intervenção coronariana percutânea complexa, calcificação severa, litotripsia intravascular (IVL), aterectomia rotacional e suporte circulatório mecânico.',
+    date: '2027-11-12',
+    endDate: '2027-11-13',
+    dates: ['2027-11-12', '2027-11-13'],
+    dateRangeLabel: '12 e 13',
+    startTime: '08:30',
+    endTime: '18:00',
+    time: '08:30 - 18:00 (12 e 13 de novembro)',
+    location: 'Windsor Barra Hotel - Rio de Janeiro, RJ',
+    modality: 'Presencial e On-line',
+    type: 'evento',
+    badge: 'EVENTO OFICIAL',
+    category: 'Congresso',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=pci-plus-2027',
+    actionLabel: 'Confira'
+  },
+  {
+    id: 'nursing-summit-2027',
+    title: 'Nursing Summit SBHCI 2027',
+    subtitle: 'Encontro Nacional de Enfermagem em Hemodinâmica e Cardiologia Intervencionista.',
+    description: 'Summit oficial do Departamento de Enfermagem da SBHCI, abordando protocolos assistenciais seguros, preparo de salas de procedimento, gestão de contraste e cuidados pós-punção arterial.',
+    date: '2027-11-13',
+    startTime: '08:30',
+    endTime: '17:30',
+    time: '08:30 - 17:30 (13 de novembro)',
+    location: 'Windsor Barra Hotel - Rio de Janeiro, RJ',
+    modality: 'Presencial e On-line',
+    type: 'apoio_sbhci',
+    badge: 'APOIO SBHCI',
+    category: 'Congresso',
+    color: 'blue',
+    image: 'https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png',
+    actionUrl: '/new/evento?id=nursing-summit-2027',
+    actionLabel: 'Confira'
+  }
+];
+
+if (typeof window !== 'undefined') {
+  window.INITIAL_EVENTS = INITIAL_EVENTS;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { INITIAL_EVENTS };
+}
+
+</script>
+  <script>
+/**
+ * CathlabFlix Events Service
+ * Gerenciamento centralizado de eventos, persistência local, integração automática com Wix CMS / API e exportação de calendários (.ics / Google)
+ */
+
+(function(global) {
+  'use strict';
+
+  const STORAGE_KEY = 'cathlabflix_custom_events';
+  const API_ENDPOINT = '/api/wix-events';
+
+  const EventsService = {
+    /**
+     * Retorna todos os eventos combinando os eventos oficiais com os cadastrados via painel/Wix
+     */
+    getAllEvents() {
+      let baseList = [];
+      if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS)) {
+        baseList = window.INITIAL_EVENTS.slice();
+      } else if (typeof INITIAL_EVENTS !== 'undefined' && Array.isArray(INITIAL_EVENTS)) {
+        baseList = INITIAL_EVENTS.slice();
+      }
+
+      let customList = [];
+      try {
+        if (typeof localStorage !== 'undefined') {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            customList = JSON.parse(stored);
+          }
+        }
+      } catch (e) {
+        console.warn('[EventsService] Erro ao ler eventos customizados:', e);
+      }
+
+      // Mescla substituindo por ID se já existir ou adicionando novos no topo
+      const map = new Map();
+      baseList.forEach(ev => map.set(ev.id, ev));
+      customList.forEach(ev => map.set(ev.id, ev));
+
+      const merged = Array.from(map.values());
+      return merged.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    },
+
+    /**
+     * Busca um evento específico por ID ou slug
+     */
+    getEventById(id) {
+      if (!id) return null;
+      const cleanId = String(id).trim().toLowerCase();
+      const all = this.getAllEvents();
+      return all.find(ev => (ev.id && ev.id.toLowerCase() === cleanId) || (ev.slug && ev.slug.toLowerCase() === cleanId)) || null;
+    },
+
+    /**
+     * Sincroniza eventos remotos da API / Wix CMS
+     */
+    async syncFromRemote() {
+      try {
+        const res = await fetch(API_ENDPOINT);
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (data && data.success && Array.isArray(data.items)) {
+          // Atualiza lista em memória se aplicável
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('cathlabflix:remote-events-loaded', { detail: data.items }));
+          }
+          return data.items;
+        }
+      } catch (e) {
+        console.warn('[EventsService] Não foi possível sincronizar da API remota:', e);
+      }
+      return null;
+    },
+
+    /**
+     * Salva ou atualiza um evento no banco local (localStorage) e dispara envio automático para a API/Wix CMS
+     */
+    saveEvent(eventData) {
+      if (!eventData || !eventData.title || !eventData.date) {
+        throw new Error('Título e Data são campos obrigatórios para o evento.');
+      }
+
+      const id = eventData.id || this.slugify(eventData.title) + '-' + Date.now().toString(36);
+      
+      // Regra de replicação de data de início caso término esteja vazio
+      const startDate = eventData.date.trim();
+      const finalEndDate = eventData.endDate && eventData.endDate.trim() !== '' ? eventData.endDate.trim() : startDate;
+
+      // Mapeamento dos 3 tipos
+      const typeRaw = (eventData.type || 'evento').toLowerCase();
+      let finalType = 'evento';
+      let finalBadge = 'EVENTO OFICIAL SBHCI';
+      let finalColor = 'red';
+
+      if (typeRaw.includes('apoio')) {
+        finalType = 'apoio_sbhci';
+        finalBadge = 'APOIO SBHCI';
+        finalColor = 'blue';
+      } else if (typeRaw === 'eventos' || typeRaw === 'evento_geral') {
+        finalType = 'eventos';
+        finalBadge = 'EVENTOS';
+        finalColor = 'blue';
+      }
+
+      const regUrl = eventData.registrationUrl ? eventData.registrationUrl.trim() : '';
+
+      const normalized = {
+        id: id,
+        slug: id,
+        title: eventData.title.trim(),
+        subtitle: (eventData.subtitle || eventData.description || '').substring(0, 160),
+        description: eventData.description || eventData.subtitle || '',
+        date: startDate,
+        endDate: finalEndDate,
+        time: eventData.time ? eventData.time.trim() : 'Horário a definir',
+        location: eventData.location ? eventData.location.trim() : 'Plataforma CathlabFlix Streaming',
+        modality: eventData.modality || (eventData.location && eventData.location.toLowerCase().includes('wtc') ? 'Presencial e On-line' : 'Transmissão Online'),
+        type: finalType,
+        badge: finalBadge,
+        category: eventData.category || (finalType === 'apoio_sbhci' ? 'Apoio SBHCI' : (finalType === 'eventos' ? 'Eventos' : 'Congresso')),
+        color: finalColor,
+        image: eventData.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
+        registrationUrl: regUrl,
+        actionUrl: regUrl || `/new/evento?id=${encodeURIComponent(id)}`,
+        actionLabel: 'Confira'
+      };
+
+      try {
+        if (typeof localStorage !== 'undefined') {
+          let customList = [];
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) customList = JSON.parse(stored);
+
+          const existingIdx = customList.findIndex(e => e.id === normalized.id);
+          if (existingIdx >= 0) {
+            customList[existingIdx] = normalized;
+          } else {
+            customList.push(normalized);
+          }
+
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(customList));
+        }
+
+        // Dispara evento global para re-renderizar instâncias ativas do calendário
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('cathlabflix:events-updated', { detail: normalized }));
+        }
+
+        // Sincronização automática em background com a API do Wix CMS
+        if (typeof fetch !== 'undefined') {
+          fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(normalized)
+          }).then(res => res.json()).then(resData => {
+            console.log('[EventsService] Evento sincronizado com a API:', resData);
+          }).catch(err => {
+            console.warn('[EventsService] Não foi possível sincronizar com o backend remoto agora (salvo localmente):', err);
+          });
+        }
+
+        return normalized;
+      } catch (err) {
+        console.error('[EventsService] Falha ao persistir evento:', err);
+        throw err;
+      }
+    },
+
+    /**
+     * Remove um evento personalizado do banco local
+     */
+    deleteEvent(id) {
+      try {
+        if (typeof localStorage !== 'undefined') {
+          let customList = [];
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) customList = JSON.parse(stored);
+
+          const filtered = customList.filter(e => e.id !== id);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+        }
+
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('cathlabflix:events-updated', { detail: { id, deleted: true } }));
+        }
+        return true;
+      } catch (err) {
+        console.error('[EventsService] Falha ao excluir evento:', err);
+        return false;
+      }
+    },
+
+    /**
+     * Retorna os eventos formatados para importação em Coleção de Dados do Wix (Wix Data Collection / CMS)
+     */
+    exportWixCollectionJSON() {
+      const events = this.getAllEvents();
+      return events.map(ev => ({
+        _id: ev.id,
+        title: ev.title,
+        subtitle: ev.subtitle,
+        description: ev.description,
+        date: ev.date,
+        endDate: ev.endDate || ev.date,
+        time: ev.time,
+        location: ev.location,
+        modality: ev.modality,
+        type: ev.type === 'apoio_sbhci' ? 'Apoio SBHCI' : (ev.type === 'eventos' ? 'Eventos' : 'Evento Oficial SBHCI'),
+        badge: ev.badge,
+        image: ev.image,
+        registrationUrl: ev.registrationUrl || '',
+        slug: ev.slug || ev.id
+      }));
+    },
+
+    /**
+     * Código Velo Backend para http-functions.js no Wix
+     */
+    generateWixVeloSnippet() {
+      return `// Wix Velo Backend (http-functions.js)
+// Coleção: "Eventos"
+import { ok, created, serverError } from 'wix-http-functions';
+import wixData from 'wix-data';
+
+// GET https://SEU-SITE-WIX/_functions/eventos
+export function get_eventos(request) {
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  };
+
+  return wixData.query('Eventos')
+    .ascending('date')
+    .find()
+    .then(results => {
+      options.body = {
+        success: true,
+        items: results.items
+      };
+      return ok(options);
+    })
+    .catch(error => {
+      options.body = { success: false, error: error.message };
+      return serverError(options);
+    });
+}
+
+// POST https://SEU-SITE-WIX/_functions/eventos
+export function post_eventos(request) {
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  };
+
+  return request.body.json()
+    .then(body => {
+      return wixData.insert('Eventos', body);
+    })
+    .then(result => {
+      options.body = { success: true, item: result };
+      return created(options);
+    })
+    .catch(error => {
+      options.body = { success: false, error: error.message };
+      return serverError(options);
+    });
+}`;
+    },
+
+    /**
+     * Cria slug amigável a partir do título
+     */
+    slugify(str) {
+      return String(str || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    },
+
+    /**
+     * Gera URL de adição para o Google Calendar
+     */
+    generateGoogleCalendarUrl(event) {
+      if (!event) return '#';
+      const title = encodeURIComponent(event.title || 'Evento CathlabFlix');
+      const details = encodeURIComponent((event.description || event.subtitle || '') + '\n\nMais informações: ' + (event.registrationUrl || 'https://cathlabflix-sessions.vercel.app'));
+      const location = encodeURIComponent(event.location || 'CathlabFlix Streaming');
+
+      const dateClean = (event.date || '').replace(/-/g, '');
+      const endDateClean = (event.endDate || event.date || '').replace(/-/g, '');
+      const startHour = (event.startTime || '09:00').replace(':', '');
+      const endHour = (event.endTime || '18:00').replace(':', '');
+
+      const startIso = `${dateClean}T${startHour}00Z`;
+      const endIso = `${endDateClean}T${endHour}00Z`;
+
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${startIso}/${endIso}`;
+    },
+
+    /**
+     * Gera e dispara download do arquivo .ics (Apple Agenda, Outlook, etc.)
+     */
+    downloadIcs(event, fileName) {
+      if (!event) return;
+      const dateClean = (event.date || '').replace(/-/g, '');
+      const endDateClean = (event.endDate || event.date || '').replace(/-/g, '');
+      const startHour = (event.startTime || '09:00').replace(':', '');
+      const endHour = (event.endTime || '18:00').replace(':', '');
+
+      const dtStart = `${dateClean}T${startHour}00`;
+      const dtEnd = `${endDateClean}T${endHour}00`;
+      const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//CathlabFlix SBHCI//Agenda Oficial//PT',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        `UID:${event.id || 'event'}-${dateClean}@cathlabflix.org`,
+        `DTSTAMP:${now}`,
+        `DTSTART:${dtStart}`,
+        `DTEND:${dtEnd}`,
+        `SUMMARY:${event.title}`,
+        `DESCRIPTION:${(event.description || event.subtitle || '').replace(/\n/g, '\\n')}`,
+        `LOCATION:${event.location || 'CathlabFlix Streaming'}`,
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName || `${event.id || 'evento-cathlabflix'}.ics`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(link.href);
+    }
+  };
+
+  // Exportação para escopo global e módulos
+  global.EventsService = EventsService;
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = EventsService;
+  }
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Elementos do Formulário
       const form = document.getElementById('eventCreateForm');
       const titleInput = document.getElementById('eventTitle');
       const dateInput = document.getElementById('eventDate');
+      const endDateInput = document.getElementById('eventEndDate');
       const timeInput = document.getElementById('eventTime');
       const locationInput = document.getElementById('eventLocation');
-      const imageInput = document.getElementById('eventImage');
+      const typeSelect = document.getElementById('eventTypeSelect');
+      const typeTagPreview = document.getElementById('typeTagPreview');
+      const imageDropzone = document.getElementById('imageDropzone');
+      const imageFileInput = document.getElementById('imageFileInput');
+      const imageUrlInput = document.getElementById('eventImageUrl');
+      const dropzoneLoading = document.getElementById('dropzoneLoading');
+      const dropzoneSuccess = document.getElementById('dropzoneSuccess');
+      const regUrlInput = document.getElementById('eventRegistrationUrl');
       const descInput = document.getElementById('eventDescription');
-      const actionUrlInput = document.getElementById('eventActionUrl');
-      const previewContainer = document.getElementById('cardPreviewContainer');
-      const tableBody = document.getElementById('eventsTableBody');
-      const successAlert = document.getElementById('successAlert');
 
-      // Define data padrão como amanhã
+      // Elementos do Preview Lateral
+      const previewThumbImg = document.getElementById('previewThumbImg');
+      const previewBadge = document.getElementById('previewBadge');
+      const previewDateText = document.getElementById('previewDateText');
+      const previewTitleText = document.getElementById('previewTitleText');
+      const previewTimeText = document.getElementById('previewTimeText');
+      const previewLocationText = document.getElementById('previewLocationText');
+      const previewRegBtnWrap = document.getElementById('previewRegBtnWrap');
+
+      // Elementos de Listagem
+      const activeEventsGrid = document.getElementById('activeEventsGrid');
+      const eventsCountPill = document.getElementById('eventsCountPill');
+      const toastAlert = document.getElementById('toastAlert');
+      const toastMessage = document.getElementById('toastMessage');
+
+      // 1. Data inicial padrão (amanhã)
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       const tomorrowStr = tomorrow.toISOString().split('T')[0];
       if (dateInput) dateInput.value = tomorrowStr;
-      if (timeInput) timeInput.value = '19:00 - 20:30';
-      if (locationInput) locationInput.value = 'CathlabFlix Streaming';
+      if (timeInput) timeInput.value = '19:00 às 20:30';
+      if (locationInput) locationInput.value = 'Plataforma CathlabFlix Streaming';
 
-      // Atualiza preview em tempo real
-      function updateLivePreview() {
-        const title = titleInput.value || 'Título do Evento em Prévia';
-        const date = dateInput.value || tomorrowStr;
-        const time = timeInput.value || '19:00 - 20:30';
-        const location = locationInput.value || 'CathlabFlix Streaming';
-        const image = imageInput.value || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
-        const isApoio = document.querySelector('input[name="eventType"]:checked').value === 'apoio_sbhci';
+      // Regra: se o usuário altera a data de início e a de término está vazia, preenche automaticamente
+      dateInput.addEventListener('change', () => {
+        if (!endDateInput.value) {
+          endDateInput.value = dateInput.value;
+        }
+        updateLivePreview();
+      });
 
-        const parts = date.split('-');
-        const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-        const day = parts[2] || '01';
-        const monthShort = months[parseInt(parts[1], 10) - 1] || 'OUT';
+      // 2. Manipulação do Dropdown de Tipo e Tags
+      function updateTypeTag() {
+        const val = typeSelect.value;
+        typeTagPreview.className = 'type-pill-indicator';
+        if (val === 'apoio_sbhci') {
+          typeTagPreview.classList.add('type-pill-apoio');
+          typeTagPreview.textContent = '● Apoio SBHCI';
+          previewBadge.className = 'badge-tag badge-apoio';
+          previewBadge.textContent = 'APOIO SBHCI';
+        } else if (val === 'eventos') {
+          typeTagPreview.classList.add('type-pill-eventos');
+          typeTagPreview.textContent = '● Eventos';
+          previewBadge.className = 'badge-tag badge-eventos';
+          previewBadge.textContent = 'EVENTOS';
+        } else {
+          typeTagPreview.classList.add('type-pill-oficial');
+          typeTagPreview.textContent = '● Evento Oficial SBHCI';
+          previewBadge.className = 'badge-tag badge-oficial';
+          previewBadge.textContent = 'EVENTO OFICIAL SBHCI';
+        }
+      }
+      typeSelect.addEventListener('change', () => {
+        updateTypeTag();
+        updateLivePreview();
+      });
 
-        previewContainer.innerHTML = `
-          <article class="agenda-list-card ${isApoio ? 'is-apoio' : 'is-oficial'}" style="margin: 0;">
-            <div class="agenda-list-card-media-col">
-              <div class="agenda-list-card-date">
-                <span class="card-date-day">${day}</span>
-                <span class="card-date-month">${monthShort}</span>
-              </div>
-              <div class="agenda-list-card-thumb">
-                <img src="${image}" alt="Preview" onerror="this.src='/assets/images/og-cathlabflix.png'">
-              </div>
-            </div>
+      // 3. Sistema de Upload / Drag & Drop de Imagem com Animação
+      function handleImageFile(file) {
+        if (!file || !file.type.startsWith('image/')) {
+          alert('Por favor, selecione um arquivo de imagem válido.');
+          return;
+        }
 
-            <div class="agenda-list-card-content">
-              <div class="agenda-list-card-badges">
-                <span class="card-type-badge ${isApoio ? 'badge-apoio' : 'badge-oficial'}">
-                  ${isApoio ? 'Apoio SBHCI' : 'Evento Oficial'}
-                </span>
-                <span class="card-modality-badge">On-line</span>
-              </div>
+        // Ativa animação de carregando (spinner)
+        dropzoneLoading.classList.add('is-active');
 
-              <h4 class="agenda-list-card-title">
-                <a href="#preview">${escapeHTML(title)}</a>
-              </h4>
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imgDataUrl = e.target.result;
 
-              <div class="agenda-list-card-meta">
-                <div class="list-meta-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                  <span>${escapeHTML(time)}</span>
-                </div>
-                <div class="list-meta-item">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                  <span>${escapeHTML(location)}</span>
-                </div>
-              </div>
+          // Simula upload de 1.2 segundos no CMS
+          setTimeout(() => {
+            dropzoneLoading.classList.remove('is-active');
 
-              <div class="agenda-list-card-actions">
-                <span class="list-action-cta-btn">
-                  <span>Confira</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </span>
-                <span class="list-action-export-btn">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  <span>Salvar</span>
-                </span>
-              </div>
-            </div>
-          </article>
-        `;
+            // Exibe notificação de sucesso temporária
+            dropzoneSuccess.classList.remove('fade-out');
+            dropzoneSuccess.classList.add('is-active');
+
+            // Atribui ao input de URL e atualiza preview
+            imageUrlInput.value = imgDataUrl;
+            previewThumbImg.src = imgDataUrl;
+
+            // Remove a notificação após 2 segundos e mantém a imagem exibindo
+            setTimeout(() => {
+              dropzoneSuccess.classList.add('fade-out');
+              setTimeout(() => {
+                dropzoneSuccess.classList.remove('is-active', 'fade-out');
+              }, 400);
+            }, 2000);
+
+            showToast('✓ Imagem carregada com sucesso!');
+          }, 1200);
+        };
+        reader.readAsDataURL(file);
       }
 
-      // Eventos de digitação
-      [titleInput, dateInput, timeInput, locationInput, imageInput, descInput].forEach(el => {
-        if (el) el.addEventListener('input', updateLivePreview);
-      });
-
-      document.querySelectorAll('input[name="eventType"]').forEach(el => {
-        el.addEventListener('change', updateLivePreview);
-      });
-
-      // Clique em presets de imagem
-      document.querySelectorAll('.preset-img-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          imageInput.value = btn.getAttribute('data-url');
-          updateLivePreview();
+      // Drag and drop events
+      ['dragenter', 'dragover'].forEach(eventName => {
+        imageDropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          imageDropzone.classList.add('is-dragover');
         });
       });
 
-      updateLivePreview();
-      renderEventsTable();
+      ['dragleave', 'drop'].forEach(eventName => {
+        imageDropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          imageDropzone.classList.remove('is-dragover');
+        });
+      });
 
-      // Envio do formulário
+      imageDropzone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files && files.length > 0) {
+          handleImageFile(files[0]);
+        }
+      });
+
+      imageFileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          handleImageFile(e.target.files[0]);
+        }
+      });
+
+      // Presets rápidos de imagem
+      document.querySelectorAll('.preset-img-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.preset-img-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const url = btn.getAttribute('data-url');
+          imageUrlInput.value = url;
+          previewThumbImg.src = url;
+        });
+      });
+
+      // 4. Atualização em Tempo Real do Preview
+      function updateLivePreview() {
+        const title = titleInput.value.trim() || 'Titulo do evento';
+        const date = dateInput.value || tomorrowStr;
+        const endDate = endDateInput.value || date;
+        const time = timeInput.value.trim() || '19:00 às 20:30';
+        const location = locationInput.value.trim() || 'Plataforma CathlabFlix Streaming';
+        const image = imageUrlInput.value.trim() || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+        const regUrl = regUrlInput.value.trim();
+
+        previewTitleText.textContent = title;
+        previewTimeText.textContent = time;
+        previewLocationText.textContent = location;
+        previewThumbImg.src = image;
+
+        // Formatação da data
+        previewDateText.textContent = formatDateLabel(date, endDate);
+
+        // Regra do Botão de Inscrição:
+        // Caso não tenha link, deixa sem nada exibindo no site
+        if (regUrl) {
+          previewRegBtnWrap.style.display = 'inline-flex';
+        } else {
+          previewRegBtnWrap.style.display = 'none';
+        }
+      }
+
+      [titleInput, dateInput, endDateInput, timeInput, locationInput, imageUrlInput, regUrlInput, descInput].forEach(el => {
+        if (el) el.addEventListener('input', updateLivePreview);
+      });
+
+      // 5. Envio do Formulário e Salvamento Automático
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
         const title = titleInput.value.trim();
         const date = dateInput.value;
-        const endDate = document.getElementById('eventEndDate').value || null;
+        // Regra: se não preencher término, replica data de início
+        const endDate = endDateInput.value.trim() ? endDateInput.value.trim() : date;
         const time = timeInput.value.trim();
         const location = locationInput.value.trim();
-        const type = document.querySelector('input[name="eventType"]:checked').value;
-        const image = imageInput.value.trim();
-        const desc = descInput.value.trim();
-        const customAction = actionUrlInput.value.trim();
+        const type = typeSelect.value;
+        const image = imageUrlInput.value.trim();
+        const registrationUrl = regUrlInput.value.trim();
+        const description = descInput.value.trim();
 
         try {
-          const newEvent = EventsService.saveEvent({
+          const savedEvent = EventsService.saveEvent({
             title,
             date,
             endDate,
@@ -700,91 +2076,160 @@
             location,
             type,
             image,
-            description: desc,
-            actionUrl: customAction || undefined
+            registrationUrl,
+            description
           });
 
-          // Mostra alerta
-          successAlert.style.display = 'block';
-          setTimeout(() => { successAlert.style.display = 'none'; }, 4000);
+          showToast('✓ Evento salvo com sucesso e sincronizado!');
 
-          // Limpa campos essenciais
+          // Limpa campos para o próximo cadastro
           titleInput.value = '';
+          endDateInput.value = '';
+          regUrlInput.value = '';
           descInput.value = '';
-          actionUrlInput.value = '';
 
-          renderEventsTable();
+          renderActiveEvents();
           updateLivePreview();
+
         } catch (err) {
           alert('Erro ao salvar evento: ' + err.message);
         }
       });
 
-      function renderEventsTable() {
+      // 6. Renderização Visual dos Eventos Ativos com Capa (16:9)
+      function renderActiveEvents() {
         const events = EventsService.getAllEvents();
-        tableBody.innerHTML = events.map(ev => {
+        eventsCountPill.textContent = `${events.length} Eventos Cadastrados`;
+
+        if (events.length === 0) {
+          activeEventsGrid.innerHTML = `
+            <div style="grid-column: 1 / -1; padding: 40px 20px; text-align: center; color: var(--color-text-secondary); background: var(--color-surface); border-radius: 12px; border: 1px dashed var(--color-border-subtle);">
+              Nenhum evento ativo cadastrado no momento.
+            </div>
+          `;
+          return;
+        }
+
+        activeEventsGrid.innerHTML = events.map(ev => {
           const isApoio = ev.type === 'apoio_sbhci';
+          const isGeral = ev.type === 'eventos';
+          const badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
+          const badgeText = isApoio ? 'APOIO SBHCI' : (isGeral ? 'EVENTOS' : 'EVENTO OFICIAL SBHCI');
+          const dateLabel = formatDateLabel(ev.date, ev.endDate);
+          const eventImg = ev.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+          const viewUrl = ev.registrationUrl || `/embed-evento-detalhe.html?id=${encodeURIComponent(ev.id)}`;
+
           return `
-            <tr>
-              <td><strong>${ev.date}</strong></td>
-              <td>${escapeHTML(ev.title)}</td>
-              <td>
-                <span class="card-type-badge ${isApoio ? 'badge-apoio' : 'badge-oficial'}">
-                  ${isApoio ? 'Apoio SBHCI' : 'Evento Oficial'}
-                </span>
-              </td>
-              <td>${escapeHTML(ev.time)}<br><small style="color:var(--color-text-secondary)">${escapeHTML(ev.location)}</small></td>
-              <td>
-                <a href="${ev.actionUrl || ('/new/evento?id=' + ev.id)}" target="_blank" style="color: var(--color-primary); font-weight: 700; text-decoration: none; margin-right: 12px;">Ver</a>
-                <button type="button" class="delete-btn" data-id="${ev.id}" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.75rem; text-decoration: underline;">Excluir</button>
-              </td>
-            </tr>
+            <article class="active-event-card">
+              <div class="active-card-cover-wrap">
+                <img src="${eventImg}" alt="${escapeHTML(ev.title)}" class="active-card-cover-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
+                <div class="active-card-badge">
+                  <span class="badge-tag ${badgeClass}">${badgeText}</span>
+                </div>
+              </div>
+
+              <div class="active-card-body">
+                <div class="active-card-date">${dateLabel}</div>
+                <h3 class="active-card-title">${escapeHTML(ev.title)}</h3>
+
+                <div class="active-card-meta">
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    ${escapeHTML(ev.time || 'Horário a definir')}
+                  </span>
+                  <span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    ${escapeHTML(ev.location || 'CathlabFlix Streaming')}
+                  </span>
+                  ${ev.registrationUrl ? `
+                    <span style="color: #38bdf8;">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                      </svg>
+                      Inscrição vinculada
+                    </span>
+                  ` : ''}
+                </div>
+
+                <div class="active-card-footer">
+                  <a href="/embed-evento-detalhe.html?id=${encodeURIComponent(ev.id)}" target="_blank" class="active-card-view-btn">
+                    <span>Visualizar</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </a>
+
+                  <button type="button" class="active-card-delete-btn" data-id="${ev.id}" title="Excluir evento">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                    <span>Excluir</span>
+                  </button>
+                </div>
+              </div>
+            </article>
           `;
         }).join('');
 
-        tableBody.querySelectorAll('.delete-btn').forEach(btn => {
+        // Listeners de exclusão
+        activeEventsGrid.querySelectorAll('.active-card-delete-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             if (confirm('Tem certeza que deseja remover este evento?')) {
               EventsService.deleteEvent(id);
-              renderEventsTable();
+              showToast('Evento excluído com sucesso.');
+              renderActiveEvents();
             }
           });
         });
       }
 
-      // Modal de Exportação Wix CMS
-      const modal = document.getElementById('wixModalBackdrop');
-      const openBtn = document.getElementById('openWixExportBtn');
-      const closeBtn = document.getElementById('closeWixModalBtn');
-      const copyBtn = document.getElementById('copyWixJsonBtn');
-      const jsonBlock = document.getElementById('wixJsonBlock');
-      const veloBlock = document.getElementById('wixVeloBlock');
+      function showToast(msg) {
+        toastMessage.textContent = msg;
+        toastAlert.classList.add('is-active');
+        setTimeout(() => {
+          toastAlert.classList.remove('is-active');
+        }, 3200);
+      }
 
-      openBtn.addEventListener('click', () => {
-        const wixData = EventsService.exportWixCollectionJSON();
-        jsonBlock.textContent = JSON.stringify(wixData, null, 2);
-        veloBlock.textContent = EventsService.generateWixVeloSnippet();
-        modal.classList.add('is-open');
-      });
+      function formatDateLabel(dateStr, endDateStr) {
+        if (!dateStr) return 'DATA A DEFINIR';
+        const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+        const parts = dateStr.split('-');
+        const year = parts[0];
+        const month = months[parseInt(parts[1], 10) - 1] || 'OUT';
+        const day = parts[2];
 
-      closeBtn.addEventListener('click', () => {
-        modal.classList.remove('is-open');
-      });
+        if (endDateStr && endDateStr !== dateStr) {
+          const endParts = endDateStr.split('-');
+          const endDay = endParts[2];
+          return `${day} A ${endDay} ${month} ${year}`;
+        }
+        return `${day} ${month} ${year}`;
+      }
 
-      copyBtn.addEventListener('click', () => {
-        const text = jsonBlock.textContent;
-        navigator.clipboard.writeText(text).then(() => {
-          copyBtn.textContent = '✓ JSON Copiado com Sucesso!';
-          setTimeout(() => { copyBtn.textContent = 'Copiar JSON da Coleção'; }, 2500);
-        });
-      });
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+
+      // Inicializa visualizações
+      updateTypeTag();
+      updateLivePreview();
+      renderActiveEvents();
     });
-
-    function escapeHTML(str) {
-      if (!str) return '';
-      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
   </script>
 
 </body>

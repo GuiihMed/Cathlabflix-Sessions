@@ -7061,13 +7061,14 @@ if (typeof module !== 'undefined' && module.exports) {
 
 /**
  * CathlabFlix Events Service
- * Gerenciamento centralizado de eventos, persistência local, integração com Wix Data e exportação de calendários (.ics / Google)
+ * Gerenciamento centralizado de eventos, persistência local, integração automática com Wix CMS / API e exportação de calendários (.ics / Google)
  */
 
 (function(global) {
   'use strict';
 
   const STORAGE_KEY = 'cathlabflix_custom_events';
+  const API_ENDPOINT = '/api/wix-events';
 
   const EventsService = {
     /**
@@ -7109,11 +7110,32 @@ if (typeof module !== 'undefined' && module.exports) {
       if (!id) return null;
       const cleanId = String(id).trim().toLowerCase();
       const all = this.getAllEvents();
-      return all.find(ev => ev.id.toLowerCase() === cleanId) || null;
+      return all.find(ev => (ev.id && ev.id.toLowerCase() === cleanId) || (ev.slug && ev.slug.toLowerCase() === cleanId)) || null;
     },
 
     /**
-     * Salva ou atualiza um evento no banco local (localStorage)
+     * Sincroniza eventos remotos da API / Wix CMS
+     */
+    async syncFromRemote() {
+      try {
+        const res = await fetch(API_ENDPOINT);
+        if (!res.ok) return null;
+        const data = await res.json();
+        if (data && data.success && Array.isArray(data.items)) {
+          // Atualiza lista em memória se aplicável
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('cathlabflix:remote-events-loaded', { detail: data.items }));
+          }
+          return data.items;
+        }
+      } catch (e) {
+        console.warn('[EventsService] Não foi possível sincronizar da API remota:', e);
+      }
+      return null;
+    },
+
+    /**
+     * Salva ou atualiza um evento no banco local (localStorage) e dispara envio automático para a API/Wix CMS
      */
     saveEvent(eventData) {
       if (!eventData || !eventData.title || !eventData.date) {
@@ -7121,24 +7143,47 @@ if (typeof module !== 'undefined' && module.exports) {
       }
 
       const id = eventData.id || this.slugify(eventData.title) + '-' + Date.now().toString(36);
-      const isApoio = eventData.type === 'apoio_sbhci' || eventData.type === 'apoio';
+      
+      // Regra de replicação de data de início caso término esteja vazio
+      const startDate = eventData.date.trim();
+      const finalEndDate = eventData.endDate && eventData.endDate.trim() !== '' ? eventData.endDate.trim() : startDate;
+
+      // Mapeamento dos 3 tipos
+      const typeRaw = (eventData.type || 'evento').toLowerCase();
+      let finalType = 'evento';
+      let finalBadge = 'EVENTO OFICIAL SBHCI';
+      let finalColor = 'red';
+
+      if (typeRaw.includes('apoio')) {
+        finalType = 'apoio_sbhci';
+        finalBadge = 'APOIO SBHCI';
+        finalColor = 'blue';
+      } else if (typeRaw === 'eventos' || typeRaw === 'evento_geral') {
+        finalType = 'eventos';
+        finalBadge = 'EVENTOS';
+        finalColor = 'blue';
+      }
+
+      const regUrl = eventData.registrationUrl ? eventData.registrationUrl.trim() : '';
 
       const normalized = {
         id: id,
+        slug: id,
         title: eventData.title.trim(),
         subtitle: (eventData.subtitle || eventData.description || '').substring(0, 160),
-        description: eventData.description || eventData.subtitle || 'Detalhes sobre o evento da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista.',
-        date: eventData.date,
-        endDate: eventData.endDate || null,
-        time: eventData.time || 'Horário a definir',
-        location: eventData.location || 'Transmissão Oficial CathlabFlix',
+        description: eventData.description || eventData.subtitle || '',
+        date: startDate,
+        endDate: finalEndDate,
+        time: eventData.time ? eventData.time.trim() : 'Horário a definir',
+        location: eventData.location ? eventData.location.trim() : 'Plataforma CathlabFlix Streaming',
         modality: eventData.modality || (eventData.location && eventData.location.toLowerCase().includes('wtc') ? 'Presencial e On-line' : 'Transmissão Online'),
-        type: isApoio ? 'apoio_sbhci' : 'evento',
-        badge: isApoio ? 'APOIO SBHCI' : 'EVENTO OFICIAL',
-        category: eventData.category || (isApoio ? 'Apoio SBHCI' : 'Congresso'),
-        color: isApoio ? 'blue' : 'red',
+        type: finalType,
+        badge: finalBadge,
+        category: eventData.category || (finalType === 'apoio_sbhci' ? 'Apoio SBHCI' : (finalType === 'eventos' ? 'Eventos' : 'Congresso')),
+        color: finalColor,
         image: eventData.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png',
-        actionUrl: eventData.actionUrl || `/new/evento?id=${encodeURIComponent(id)}`,
+        registrationUrl: regUrl,
+        actionUrl: regUrl || `/new/evento?id=${encodeURIComponent(id)}`,
         actionLabel: 'Confira'
       };
 
@@ -7161,6 +7206,19 @@ if (typeof module !== 'undefined' && module.exports) {
         // Dispara evento global para re-renderizar instâncias ativas do calendário
         if (typeof window !== 'undefined') {
           window.dispatchEvent(new CustomEvent('cathlabflix:events-updated', { detail: normalized }));
+        }
+
+        // Sincronização automática em background com a API do Wix CMS
+        if (typeof fetch !== 'undefined') {
+          fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(normalized)
+          }).then(res => res.json()).then(resData => {
+            console.log('[EventsService] Evento sincronizado com a API:', resData);
+          }).catch(err => {
+            console.warn('[EventsService] Não foi possível sincronizar com o backend remoto agora (salvo localmente):', err);
+          });
         }
 
         return normalized;
@@ -7204,35 +7262,74 @@ if (typeof module !== 'undefined' && module.exports) {
         title: ev.title,
         subtitle: ev.subtitle,
         description: ev.description,
-        eventDate: ev.date,
-        endDate: ev.endDate || '',
-        timeText: ev.time,
+        date: ev.date,
+        endDate: ev.endDate || ev.date,
+        time: ev.time,
         location: ev.location,
         modality: ev.modality,
-        eventType: ev.type === 'apoio_sbhci' ? 'Apoio SBHCI' : 'Evento Oficial',
+        type: ev.type === 'apoio_sbhci' ? 'Apoio SBHCI' : (ev.type === 'eventos' ? 'Eventos' : 'Evento Oficial SBHCI'),
         badge: ev.badge,
-        bannerImage: ev.image,
-        actionUrl: ev.actionUrl,
-        buttonText: 'Confira'
+        image: ev.image,
+        registrationUrl: ev.registrationUrl || '',
+        slug: ev.slug || ev.id
       }));
     },
 
     /**
-     * Gera snippet de código Velo (Wix Code) para backend ou página
+     * Código Velo Backend para http-functions.js no Wix
      */
     generateWixVeloSnippet() {
-      return `// Wix Velo Backend: Integração de Eventos CathlabFlix
+      return `// Wix Velo Backend (http-functions.js)
+// Coleção: "Eventos"
+import { ok, created, serverError } from 'wix-http-functions';
 import wixData from 'wix-data';
 
-export async function getCathlabflixEvents() {
-  const results = await wixData.query('CathlabflixEvents')
-    .ascending('eventDate')
-    .find();
-  return results.items;
+// GET https://SEU-SITE-WIX/_functions/eventos
+export function get_eventos(request) {
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  };
+
+  return wixData.query('Eventos')
+    .ascending('date')
+    .find()
+    .then(results => {
+      options.body = {
+        success: true,
+        items: results.items
+      };
+      return ok(options);
+    })
+    .catch(error => {
+      options.body = { success: false, error: error.message };
+      return serverError(options);
+    });
 }
 
-export async function insertEvent(eventItem) {
-  return await wixData.insert('CathlabflixEvents', eventItem);
+// POST https://SEU-SITE-WIX/_functions/eventos
+export function post_eventos(request) {
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    }
+  };
+
+  return request.body.json()
+    .then(body => {
+      return wixData.insert('Eventos', body);
+    })
+    .then(result => {
+      options.body = { success: true, item: result };
+      return created(options);
+    })
+    .catch(error => {
+      options.body = { success: false, error: error.message };
+      return serverError(options);
+    });
 }`;
     },
 
@@ -7240,7 +7337,7 @@ export async function insertEvent(eventItem) {
      * Cria slug amigável a partir do título
      */
     slugify(str) {
-      return String(str)
+      return String(str || '')
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '')
         .toLowerCase()
@@ -7255,15 +7352,16 @@ export async function insertEvent(eventItem) {
     generateGoogleCalendarUrl(event) {
       if (!event) return '#';
       const title = encodeURIComponent(event.title || 'Evento CathlabFlix');
-      const details = encodeURIComponent((event.subtitle || event.description || '') + '\n\nMais informações: https://cathlabflix-sessions.vercel.app' + (event.actionUrl || ''));
-      const location = encodeURIComponent(event.location || 'CathlabFlix');
+      const details = encodeURIComponent((event.description || event.subtitle || '') + '\n\nMais informações: ' + (event.registrationUrl || 'https://cathlabflix-sessions.vercel.app'));
+      const location = encodeURIComponent(event.location || 'CathlabFlix Streaming');
 
       const dateClean = (event.date || '').replace(/-/g, '');
+      const endDateClean = (event.endDate || event.date || '').replace(/-/g, '');
       const startHour = (event.startTime || '09:00').replace(':', '');
       const endHour = (event.endTime || '18:00').replace(':', '');
 
       const startIso = `${dateClean}T${startHour}00Z`;
-      const endIso = `${dateClean}T${endHour}00Z`;
+      const endIso = `${endDateClean}T${endHour}00Z`;
 
       return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}&dates=${startIso}/${endIso}`;
     },
@@ -7274,11 +7372,12 @@ export async function insertEvent(eventItem) {
     downloadIcs(event, fileName) {
       if (!event) return;
       const dateClean = (event.date || '').replace(/-/g, '');
+      const endDateClean = (event.endDate || event.date || '').replace(/-/g, '');
       const startHour = (event.startTime || '09:00').replace(':', '');
       const endHour = (event.endTime || '18:00').replace(':', '');
 
       const dtStart = `${dateClean}T${startHour}00`;
-      const dtEnd = `${dateClean}T${endHour}00`;
+      const dtEnd = `${endDateClean}T${endHour}00`;
       const now = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
       const icsContent = [
@@ -7293,7 +7392,7 @@ export async function insertEvent(eventItem) {
         `DTSTART:${dtStart}`,
         `DTEND:${dtEnd}`,
         `SUMMARY:${event.title}`,
-        `DESCRIPTION:${(event.subtitle || event.description || '').replace(/\n/g, '\\n')}`,
+        `DESCRIPTION:${(event.description || event.subtitle || '').replace(/\n/g, '\\n')}`,
         `LOCATION:${event.location || 'CathlabFlix Streaming'}`,
         'STATUS:CONFIRMED',
         'END:VEVENT',
@@ -9614,21 +9713,14 @@ window.ModernAgendaCalendar = ModernAgendaCalendar;
               </div>
             </div>
 
-            ${event.actionUrl && !event.actionUrl.includes('evento') ? `
-              <a href="${event.actionUrl}" class="event-primary-btn fill" target="_blank" rel="noopener noreferrer">
-                <span>Acessar Transmissão / Inscrição</span>
+            ${(event.registrationUrl || (event.actionUrl && !event.actionUrl.includes('evento'))) ? `
+              <a href="${event.registrationUrl || event.actionUrl}" class="event-primary-btn fill" target="_blank" rel="noopener noreferrer">
+                <span>Inscrição no Site</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="9 18 15 12 9 6"></polyline>
                 </svg>
               </a>
-            ` : `
-              <a href="https://www.cathlabflix.org" class="event-primary-btn fill" target="_blank" rel="noopener noreferrer">
-                <span>Acessar Plataforma Oficial</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-            `}
+            ` : ''}
           </div>
         </section>
 
