@@ -161,8 +161,18 @@
 
 @media (max-width: 860px) {
   .hub-content-grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 32px;
+  }
+
+  /* No Mobile: Agenda posicionada acima de Notícias */
+  .hub-content-grid .hub-agenda-column {
+    order: 1;
+  }
+
+  .hub-content-grid .hub-news-column {
+    order: 2;
   }
 }
 
