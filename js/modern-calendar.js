@@ -708,9 +708,22 @@ class ModernAgendaCalendar {
     const todayDay = String(this.today.getDate()).padStart(2, '0');
     this.selectedDateStr = `${todayYear}-${todayMonth}-${todayDay}`;
 
-    this.activeFilter = 'all'; // all | Congresso | Webinar | Curso
-    this.currentView = 'month'; // 'month' | 'list'
-    this.events = options.events || INITIAL_EVENTS;
+    this.activeFilter = 'all';
+    this.currentView = options.initialView || 'month'; // 'month' | 'list'
+    this.searchQuery = options.searchQuery || '';
+
+    // Carrega eventos do EventsService se disponível, ou options.events, ou INITIAL_EVENTS
+    if (options.events && Array.isArray(options.events)) {
+      this.events = options.events;
+    } else if (typeof EventsService !== 'undefined' && typeof EventsService.getAllEvents === 'function') {
+      this.events = EventsService.getAllEvents();
+    } else if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS)) {
+      this.events = window.INITIAL_EVENTS;
+    } else if (typeof INITIAL_EVENTS !== 'undefined' && Array.isArray(INITIAL_EVENTS)) {
+      this.events = INITIAL_EVENTS;
+    } else {
+      this.events = [];
+    }
 
     // Se houver evento no dia de hoje, pré-seleciona seu ID
     const todayEvents = this.getFilteredEventsForDate(this.selectedDateStr);
@@ -729,6 +742,21 @@ class ModernAgendaCalendar {
     this.dayNames = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 
     this.init();
+
+    // Ouvinte para recarregar quando eventos forem adicionados/excluídos no painel
+    if (typeof window !== 'undefined') {
+      window.addEventListener('cathlabflix:events-updated', () => {
+        if (typeof EventsService !== 'undefined') {
+          this.events = EventsService.getAllEvents();
+        }
+        this.renderContent();
+      });
+    }
+  }
+
+  setSearchQuery(q) {
+    this.searchQuery = (q || '').trim().toLowerCase();
+    this.renderContent();
   }
 
   init() {
@@ -750,12 +778,8 @@ class ModernAgendaCalendar {
   renderSkeleton() {
     this.container.innerHTML = `
       <div class="agenda-card-wrapper">
-        <!-- Topo da Agenda com Kicker e Alternador de Visão (Mês vs Lista) -->
+        <!-- Topo da Agenda com Alternador de Visão (Mês vs Próximos) -->
         <div class="agenda-top-bar">
-          <div class="agenda-header-titles">
-            <span class="agenda-kicker">AGENDA CATHLABFLIX</span>
-          </div>
-
           <div class="agenda-view-toggle" role="tablist" aria-label="Modo de visualização da agenda">
             <button 
               type="button" 
@@ -813,25 +837,6 @@ class ModernAgendaCalendar {
               </svg>
             </button>
           </div>
-        </div>
-
-        <!-- Chips de Filtro por Categoria (Serve como legenda e filtro interativo) -->
-        <div class="agenda-filters-row" role="group" aria-label="Filtrar por categoria">
-          <button type="button" class="agenda-filter-chip ${this.activeFilter === 'all' ? 'active' : ''}" data-filter="all">
-            Todos
-          </button>
-          <button type="button" class="agenda-filter-chip ${this.activeFilter === 'Congresso' ? 'active' : ''}" data-filter="Congresso">
-            <span class="chip-dot red"></span>
-            Congressos
-          </button>
-          <button type="button" class="agenda-filter-chip ${this.activeFilter === 'Webinar' ? 'active' : ''}" data-filter="Webinar">
-            <span class="chip-dot blue"></span>
-            Atualização HCI
-          </button>
-          <button type="button" class="agenda-filter-chip ${this.activeFilter === 'Curso' ? 'active' : ''}" data-filter="Curso">
-            <span class="chip-dot amber"></span>
-            Cursos Práticos
-          </button>
         </div>
 
         <!-- Área Principal de Conteúdo Dinâmico -->
@@ -957,8 +962,18 @@ class ModernAgendaCalendar {
 
     // Filtra e ordena eventos cronologicamente
     let filteredEvents = this.events.slice();
-    if (this.activeFilter !== 'all') {
-      filteredEvents = filteredEvents.filter(ev => ev.category === this.activeFilter);
+
+    if (this.searchQuery) {
+      const q = this.searchQuery;
+      filteredEvents = filteredEvents.filter(ev => 
+        (ev.title && ev.title.toLowerCase().includes(q)) ||
+        (ev.subtitle && ev.subtitle.toLowerCase().includes(q)) ||
+        (ev.description && ev.description.toLowerCase().includes(q)) ||
+        (ev.location && ev.location.toLowerCase().includes(q)) ||
+        (ev.time && ev.time.toLowerCase().includes(q)) ||
+        (ev.date && ev.date.includes(q)) ||
+        (ev.badge && ev.badge.toLowerCase().includes(q))
+      );
     }
 
     filteredEvents.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -966,7 +981,7 @@ class ModernAgendaCalendar {
     if (filteredEvents.length === 0) {
       listWrapper.innerHTML = `
         <div class="agenda-list-empty">
-          <p>Nenhum evento encontrado nesta categoria.</p>
+          <p>${this.searchQuery ? `Nenhum evento encontrado para "${this.searchQuery}".` : 'Nenhum próximo evento encontrado.'}</p>
         </div>
       `;
       return;
@@ -976,28 +991,34 @@ class ModernAgendaCalendar {
       const parts = event.date.split('-');
       const dayDisplay = event.dateRangeLabel || parts[2];
       const monthShort = this.monthShortNames[parseInt(parts[1], 10) - 1];
-      const isCompactDay = dayDisplay.length > 2;
+      const isCompactDay = String(dayDisplay).length > 2;
       const eventImg = this.getEventImage(event);
+      const isApoio = event.type === 'apoio_sbhci' || (event.badge && event.badge.includes('APOIO'));
+      const badgeText = isApoio ? 'Apoio SBHCI' : 'Evento Oficial';
+      const badgeClass = isApoio ? 'badge-apoio' : 'badge-oficial';
+      const actionUrl = event.actionUrl || `/new/evento?id=${encodeURIComponent(event.id)}`;
 
       return `
-        <div class="agenda-list-card ${event.color || 'red'}">
-          <div class="agenda-list-card-date">
-            <span class="card-date-day ${isCompactDay ? 'compact' : ''}">${dayDisplay}</span>
-            <span class="card-date-month">${monthShort}</span>
-          </div>
-
-          <div class="agenda-list-card-thumb">
-            <img src="${eventImg}" alt="${event.title}" loading="lazy" onerror="this.src='/assets/images/og-cathlabflix.png'">
+        <article class="agenda-list-card ${isApoio ? 'is-apoio' : 'is-oficial'}" data-event-id="${event.id}">
+          <div class="agenda-list-card-media-col">
+            <div class="agenda-list-card-date">
+              <span class="card-date-day ${isCompactDay ? 'compact' : ''}">${dayDisplay}</span>
+              <span class="card-date-month">${monthShort}</span>
+            </div>
+            <div class="agenda-list-card-thumb">
+              <img src="${eventImg}" alt="${event.title}" loading="lazy" onerror="this.src='/assets/images/og-cathlabflix.png'">
+            </div>
           </div>
 
           <div class="agenda-list-card-content">
             <div class="agenda-list-card-badges">
-              <span class="card-category-badge ${event.color || 'red'}">${event.category}</span>
-              ${event.badge ? `<span class="card-status-badge">${event.badge}</span>` : ''}
+              <span class="card-type-badge ${badgeClass}">${badgeText}</span>
+              ${event.modality ? `<span class="card-modality-badge">${event.modality}</span>` : ''}
             </div>
 
-            <h4 class="agenda-list-card-title">${event.title}</h4>
-            <p class="agenda-list-card-subtitle">${event.subtitle}</p>
+            <h4 class="agenda-list-card-title">
+              <a href="${actionUrl}" title="${event.title}">${event.title}</a>
+            </h4>
 
             <div class="agenda-list-card-meta">
               <div class="list-meta-item">
@@ -1006,13 +1027,6 @@ class ModernAgendaCalendar {
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
                 <span>${event.time}</span>
-              </div>
-              <div class="list-meta-item">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                </svg>
-                <span>${event.modality}</span>
               </div>
               ${event.location ? `
                 <div class="list-meta-item">
@@ -1025,19 +1039,17 @@ class ModernAgendaCalendar {
               ` : ''}
             </div>
 
+            <!-- Botões de Ação: Estritamente Confira e Salvar -->
             <div class="agenda-list-card-actions">
-              ${event.actionUrl ? `
-                <a href="${event.actionUrl}" class="list-action-cta-btn">
-                  ${event.actionLabel || 'Acessar'}
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </a>
-              ` : ''}
+              <a href="${actionUrl}" class="list-action-cta-btn" title="Confira os detalhes deste evento">
+                <span>Confira</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
 
-              <!-- Botão Salvar na Agenda Dropdown -->
               <div class="agenda-export-dropdown-wrapper">
-                <button type="button" class="list-action-export-btn" data-event-id="${event.id}">
+                <button type="button" class="list-action-export-btn" data-event-id="${event.id}" title="Salvar na agenda" aria-haspopup="true" aria-expanded="false">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                     <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -1063,7 +1075,7 @@ class ModernAgendaCalendar {
               </div>
             </div>
           </div>
-        </div>
+        </article>
       `;
     }).join('');
 
@@ -1123,8 +1135,20 @@ class ModernAgendaCalendar {
     return this.events.filter(ev => {
       const matchesDate = ev.date === dateStr || (ev.dates && ev.dates.includes(dateStr));
       if (!matchesDate) return false;
-      if (this.activeFilter === 'all') return true;
-      return ev.category === this.activeFilter;
+
+      if (this.searchQuery) {
+        const q = this.searchQuery;
+        const matchesQuery = (
+          (ev.title && ev.title.toLowerCase().includes(q)) ||
+          (ev.subtitle && ev.subtitle.toLowerCase().includes(q)) ||
+          (ev.description && ev.description.toLowerCase().includes(q)) ||
+          (ev.location && ev.location.toLowerCase().includes(q)) ||
+          (ev.badge && ev.badge.toLowerCase().includes(q))
+        );
+        if (!matchesQuery) return false;
+      }
+
+      return true;
     });
   }
 
@@ -1256,14 +1280,12 @@ class ModernAgendaCalendar {
 
           <!-- Linha de Botões de Ação -->
           <div class="event-detail-actions-row">
-            ${activeEvent.actionUrl ? `
-              <a href="${activeEvent.actionUrl}" class="event-detail-cta-btn">
-                ${activeEvent.actionLabel || 'Acessar Detalhes'}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </a>
-            ` : ''}
+            <a href="${activeEvent.actionUrl || ('/new/evento?id=' + encodeURIComponent(activeEvent.id))}" class="event-detail-cta-btn" title="Confira os detalhes do evento">
+              <span>Confira</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
 
             <!-- Botão com Menu de Exportação de Agenda -->
             <div class="agenda-export-dropdown-wrapper">
@@ -1537,22 +1559,6 @@ class ModernAgendaCalendar {
       });
     }
 
-    const filterChips = this.container.querySelectorAll('.agenda-filter-chip');
-    filterChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const filter = chip.getAttribute('data-filter');
-        this.activeFilter = filter;
-
-        filterChips.forEach(c => c.classList.toggle('active', c === chip));
-
-        if (this.currentView === 'month') {
-          this.collapseEventDrawer();
-          this.renderMonthDays();
-        } else {
-          this.renderUpcomingList();
-        }
-      });
-    });
   }
 
   setEvents(newEvents) {

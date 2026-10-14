@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Cadastrar Evento - CathlabFlix SBHCI</title>
+  <meta name="description" content="Painel interno para cadastro e gestão de eventos do calendário CathlabFlix e integração com Wix Data.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png">
+
+  <!-- Tipografia Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Folhas de Estilo -->
+  <link rel="stylesheet" href="/css/modern-ui.css">
+  <link rel="stylesheet" href="/css/modern-hub.css">
+  <link rel="stylesheet" href="/css/modern-events.css">
+
+  <style>
+    .admin-page-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    .admin-header {
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .admin-header-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      margin: 0 0 4px 0;
+    }
+
+    .admin-header-sub {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .form-section-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin: 0 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 6px;
+    }
+
+    .form-label .required {
+      color: var(--color-primary);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--color-border-subtle);
+      background: var(--color-bg-base);
+      color: var(--color-text-primary);
+      font-size: 0.875rem;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+      box-sizing: border-box;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.15);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 550px) {
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .type-radio-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .type-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--color-border-subtle);
+      background: var(--color-bg-base);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .type-radio-label:has(input:checked) {
+      border-color: var(--color-primary);
+      background: rgba(229, 9, 20, 0.05);
+      color: var(--color-primary);
+    }
+
+    .type-radio-label input {
+      accent-color: var(--color-primary);
+    }
+
+    .preset-images-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .preset-img-btn {
+      flex-shrink: 0;
+      width: 70px;
+      height: 44px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      background: #000;
+      padding: 0;
+    }
+
+    .preset-img-btn.active, .preset-img-btn:hover {
+      border-color: var(--color-primary);
+    }
+
+    .preset-img-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .admin-btn-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-submit {
+      background: var(--color-primary);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-submit:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-export {
+      background: var(--color-surface);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-subtle);
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-export:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    /* Card de Preview */
+    .preview-sticky-wrap {
+      position: sticky;
+      top: 24px;
+    }
+
+    .preview-box-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-text-secondary);
+      margin-bottom: 12px;
+    }
+
+    /* Modal de Exportação Wix */
+    .wix-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .wix-modal-backdrop.is-open {
+      display: flex;
+    }
+
+    .wix-modal-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 16px;
+      max-width: 650px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .code-block {
+      background: #020617;
+      color: #38bdf8;
+      padding: 14px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.8125rem;
+      overflow-x: auto;
+      max-height: 240px;
+      margin: 12px 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #15803d;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .table-events {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 0.8125rem;
+    }
+
+    .table-events th, .table-events td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      text-align: left;
+    }
+
+    .table-events th {
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      font-size: 0.6875rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page-container">
+
+    <!-- Header do Painel -->
+    <header class="admin-header">
+      <div>
+        <h1 class="admin-header-title">Cadastro e Gestão de Eventos</h1>
+        <p class="admin-header-sub">Conecte seus eventos ao CathlabFlix e exporte para o Banco de Dados / CMS do Wix.</p>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <a href="/new/embed-home.html" class="event-back-btn" target="_blank" title="Ver Embed Home">
+          <span>Ver Embed Home ↗</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="alert-success" id="successAlert">
+      ✓ Evento salvo com sucesso! O calendário e a lista de eventos foram atualizados automaticamente.
+    </div>
+
+    <div class="admin-grid">
+
+      <!-- Formulário de Cadastro -->
+      <section class="form-card">
+        <h2 class="form-section-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="color: var(--color-primary)">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Dados do Novo Evento
+        </h2>
+
+        <form id="eventCreateForm">
+          <!-- Título -->
+          <div class="form-group">
+            <label class="form-label" for="eventTitle">
+              Título do Evento <span class="required">*</span>
+            </label>
+            <input type="text" id="eventTitle" class="form-input" placeholder="Ex: Simpósio de Intervenção Estrutural SBHCI 2026" required>
+          </div>
+
+          <!-- Data e Horário -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="eventDate">
+                Data do Evento <span class="required">*</span>
+              </label>
+              <input type="date" id="eventDate" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="eventEndDate">
+                Data de Término (Opcional)
+              </label>
+              <input type="date" id="eventEndDate" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="eventTime">
+                Horário <span class="required">*</span>
+              </label>
+              <input type="text" id="eventTime" class="form-input" placeholder="Ex: 19:00 às 20:30" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="eventLocation">
+                Local <span class="required">*</span>
+              </label>
+              <input type="text" id="eventLocation" class="form-input" placeholder="Ex: WTC Events Golden Hall - São Paulo, SP" required>
+            </div>
+          </div>
+
+          <!-- Tipo: Apoio SBHCI ou Apenas Evento -->
+          <div class="form-group">
+            <label class="form-label">
+              Tipo de Evento <span class="required">*</span>
+            </label>
+            <div class="type-radio-group">
+              <label class="type-radio-label">
+                <input type="radio" name="eventType" value="evento" checked>
+                <span>Evento Oficial SBHCI</span>
+              </label>
+              <label class="type-radio-label">
+                <input type="radio" name="eventType" value="apoio_sbhci">
+                <span>Apoio SBHCI</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Imagem / Banner -->
+          <div class="form-group">
+            <label class="form-label" for="eventImage">
+              URL da Imagem / Banner <span class="required">*</span>
+            </label>
+            <input type="url" id="eventImage" class="form-input" placeholder="https://..." value="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" required>
+
+            <span style="font-size: 0.6875rem; color: var(--color-text-secondary); margin-top: 6px; display: block;">
+              Selecione uma imagem rápida oficial da biblioteca:
+            </span>
+            <div class="preset-images-row">
+              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" title="SOLACI SBHCI 2026">
+                <img src="https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png" alt="SOLACI">
+              </button>
+              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png" title="TCT Plus Latam Valves">
+                <img src="https://static.wixstatic.com/media/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_7bdabcd75dea485aa9d845dd2e292447~mv2.png" alt="TCT">
+              </button>
+              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" title="TAVI Estrutural">
+                <img src="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" alt="TAVI">
+              </button>
+              <button type="button" class="preset-img-btn" data-url="https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" title="Webinar Geral">
+                <img src="https://static.wixstatic.com/media/a8daef_06fc0a89d72d4a05ad4f78d62ae31021~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png" alt="Webinar">
+              </button>
+            </div>
+          </div>
+
+          <!-- Botão de Conferir / Link de Ação -->
+          <div class="form-group">
+            <label class="form-label" for="eventActionUrl">
+              Link do Botão "Confira" (Página do Evento)
+            </label>
+            <input type="text" id="eventActionUrl" class="form-input" placeholder="Automático (abre a página interna sobre o evento)">
+            <span style="font-size: 0.6875rem; color: var(--color-text-secondary); margin-top: 4px; display: block;">
+              Por padrão, cai automaticamente dentro da página interna do evento (<code>/new/evento?id=...</code>).
+            </span>
+          </div>
+
+          <!-- Descrição Detalhada -->
+          <div class="form-group">
+            <label class="form-label" for="eventDescription">
+              Descrição Completa do Evento <span class="required">*</span>
+            </label>
+            <textarea id="eventDescription" class="form-textarea" rows="4" placeholder="Descreva os temas abordados, palestrantes, comissão científica e programação..." required></textarea>
+          </div>
+
+          <!-- Ações do Formulário -->
+          <div class="admin-btn-row">
+            <button type="submit" class="btn-submit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Salvar Evento</span>
+            </button>
+
+            <button type="button" class="btn-export" id="openWixExportBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Exportar para Wix CMS</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Live Preview -->
+      <aside class="preview-sticky-wrap">
+        <div class="preview-box-title">Pré-visualização em Tempo Real (Próximos Eventos)</div>
+        <div id="cardPreviewContainer">
+          <!-- Renderizado via JS -->
+        </div>
+
+        <div style="margin-top: 24px;" class="form-card">
+          <h3 style="font-size: 0.875rem; font-weight: 700; margin: 0 0 8px 0; color: var(--color-text-primary);">
+            Como funciona a conexão com o Wix:
+          </h3>
+          <p style="font-size: 0.8125rem; color: var(--color-text-secondary); line-height: 1.5; margin: 0 0 12px 0;">
+            1. Qualquer evento salvo aqui fica ativo imediatamente no seu navegador e no embed do site.<br>
+            2. Ao clicar em <strong>"Exportar para Wix CMS"</strong>, você copia o JSON exato para alimentar a sua coleção <code>CathlabflixEvents</code> no painel Wix.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Lista de Eventos Cadastrados -->
+    <section style="margin-top: 48px;" class="form-card">
+      <h2 class="form-section-title">Eventos Ativos na Plataforma</h2>
+      <div style="overflow-x: auto;">
+        <table class="table-events">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Título</th>
+              <th>Tipo</th>
+              <th>Horário / Local</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="eventsTableBody">
+            <!-- Preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal Wix Data -->
+  <div class="wix-modal-backdrop" id="wixModalBackdrop">
+    <div class="wix-modal-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0; font-size: 1.125rem; font-weight: 800;">Conexão Wix Data / CMS</h3>
+        <button type="button" id="closeWixModalBtn" style="background: none; border: none; font-size: 1.25rem; cursor: pointer; color: var(--color-text-secondary);">✕</button>
+      </div>
+
+      <p style="font-size: 0.875rem; color: var(--color-text-secondary); line-height: 1.5;">
+        Copie o JSON abaixo e importe diretamente no Gerenciador de Conteúdo do Wix (<strong>Wix CMS -> Importar CSV/JSON</strong>):
+      </p>
+
+      <pre class="code-block" id="wixJsonBlock"></pre>
+
+      <button type="button" class="btn-submit" id="copyWixJsonBtn" style="width: 100%; justify-content: center; margin-top: 10px;">
+        <span>Copiar JSON da Coleção</span>
+      </button>
+
+      <div style="margin-top: 20px;">
+        <h4 style="font-size: 0.875rem; font-weight: 700; margin: 0 0 6px 0;">Código Velo Backend (Opcional):</h4>
+        <pre class="code-block" id="wixVeloBlock"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/events-data.js"></script>
+  <script src="/js/events-service.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('eventCreateForm');
+      const titleInput = document.getElementById('eventTitle');
+      const dateInput = document.getElementById('eventDate');
+      const timeInput = document.getElementById('eventTime');
+      const locationInput = document.getElementById('eventLocation');
+      const imageInput = document.getElementById('eventImage');
+      const descInput = document.getElementById('eventDescription');
+      const actionUrlInput = document.getElementById('eventActionUrl');
+      const previewContainer = document.getElementById('cardPreviewContainer');
+      const tableBody = document.getElementById('eventsTableBody');
+      const successAlert = document.getElementById('successAlert');
+
+      // Define data padrão como amanhã
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const tomorrowStr = tomorrow.toISOString().split('T')[0];
+      if (dateInput) dateInput.value = tomorrowStr;
+      if (timeInput) timeInput.value = '19:00 - 20:30';
+      if (locationInput) locationInput.value = 'CathlabFlix Streaming';
+
+      // Atualiza preview em tempo real
+      function updateLivePreview() {
+        const title = titleInput.value || 'Título do Evento em Prévia';
+        const date = dateInput.value || tomorrowStr;
+        const time = timeInput.value || '19:00 - 20:30';
+        const location = locationInput.value || 'CathlabFlix Streaming';
+        const image = imageInput.value || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+        const isApoio = document.querySelector('input[name="eventType"]:checked').value === 'apoio_sbhci';
+
+        const parts = date.split('-');
+        const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+        const day = parts[2] || '01';
+        const monthShort = months[parseInt(parts[1], 10) - 1] || 'OUT';
+
+        previewContainer.innerHTML = `
+          <article class="agenda-list-card ${isApoio ? 'is-apoio' : 'is-oficial'}" style="margin: 0;">
+            <div class="agenda-list-card-media-col">
+              <div class="agenda-list-card-date">
+                <span class="card-date-day">${day}</span>
+                <span class="card-date-month">${monthShort}</span>
+              </div>
+              <div class="agenda-list-card-thumb">
+                <img src="${image}" alt="Preview" onerror="this.src='/assets/images/og-cathlabflix.png'">
+              </div>
+            </div>
+
+            <div class="agenda-list-card-content">
+              <div class="agenda-list-card-badges">
+                <span class="card-type-badge ${isApoio ? 'badge-apoio' : 'badge-oficial'}">
+                  ${isApoio ? 'Apoio SBHCI' : 'Evento Oficial'}
+                </span>
+                <span class="card-modality-badge">On-line</span>
+              </div>
+
+              <h4 class="agenda-list-card-title">
+                <a href="#preview">${escapeHTML(title)}</a>
+              </h4>
+
+              <div class="agenda-list-card-meta">
+                <div class="list-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span>${escapeHTML(time)}</span>
+                </div>
+                <div class="list-meta-item">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span>${escapeHTML(location)}</span>
+                </div>
+              </div>
+
+              <div class="agenda-list-card-actions">
+                <span class="list-action-cta-btn">
+                  <span>Confira</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+                <span class="list-action-export-btn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span>Salvar</span>
+                </span>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      // Eventos de digitação
+      [titleInput, dateInput, timeInput, locationInput, imageInput, descInput].forEach(el => {
+        if (el) el.addEventListener('input', updateLivePreview);
+      });
+
+      document.querySelectorAll('input[name="eventType"]').forEach(el => {
+        el.addEventListener('change', updateLivePreview);
+      });
+
+      // Clique em presets de imagem
+      document.querySelectorAll('.preset-img-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          imageInput.value = btn.getAttribute('data-url');
+          updateLivePreview();
+        });
+      });
+
+      updateLivePreview();
+      renderEventsTable();
+
+      // Envio do formulário
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const title = titleInput.value.trim();
+        const date = dateInput.value;
+        const endDate = document.getElementById('eventEndDate').value || null;
+        const time = timeInput.value.trim();
+        const location = locationInput.value.trim();
+        const type = document.querySelector('input[name="eventType"]:checked').value;
+        const image = imageInput.value.trim();
+        const desc = descInput.value.trim();
+        const customAction = actionUrlInput.value.trim();
+
+        try {
+          const newEvent = EventsService.saveEvent({
+            title,
+            date,
+            endDate,
+            time,
+            location,
+            type,
+            image,
+            description: desc,
+            actionUrl: customAction || undefined
+          });
+
+          // Mostra alerta
+          successAlert.style.display = 'block';
+          setTimeout(() => { successAlert.style.display = 'none'; }, 4000);
+
+          // Limpa campos essenciais
+          titleInput.value = '';
+          descInput.value = '';
+          actionUrlInput.value = '';
+
+          renderEventsTable();
+          updateLivePreview();
+        } catch (err) {
+          alert('Erro ao salvar evento: ' + err.message);
+        }
+      });
+
+      function renderEventsTable() {
+        const events = EventsService.getAllEvents();
+        tableBody.innerHTML = events.map(ev => {
+          const isApoio = ev.type === 'apoio_sbhci';
+          return `
+            <tr>
+              <td><strong>${ev.date}</strong></td>
+              <td>${escapeHTML(ev.title)}</td>
+              <td>
+                <span class="card-type-badge ${isApoio ? 'badge-apoio' : 'badge-oficial'}">
+                  ${isApoio ? 'Apoio SBHCI' : 'Evento Oficial'}
+                </span>
+              </td>
+              <td>${escapeHTML(ev.time)}<br><small style="color:var(--color-text-secondary)">${escapeHTML(ev.location)}</small></td>
+              <td>
+                <a href="${ev.actionUrl || ('/new/evento?id=' + ev.id)}" target="_blank" style="color: var(--color-primary); font-weight: 700; text-decoration: none; margin-right: 12px;">Ver</a>
+                <button type="button" class="delete-btn" data-id="${ev.id}" style="background: none; border: none; color: #ef4444; cursor: pointer; font-size: 0.75rem; text-decoration: underline;">Excluir</button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        tableBody.querySelectorAll('.delete-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            if (confirm('Tem certeza que deseja remover este evento?')) {
+              EventsService.deleteEvent(id);
+              renderEventsTable();
+            }
+          });
+        });
+      }
+
+      // Modal de Exportação Wix CMS
+      const modal = document.getElementById('wixModalBackdrop');
+      const openBtn = document.getElementById('openWixExportBtn');
+      const closeBtn = document.getElementById('closeWixModalBtn');
+      const copyBtn = document.getElementById('copyWixJsonBtn');
+      const jsonBlock = document.getElementById('wixJsonBlock');
+      const veloBlock = document.getElementById('wixVeloBlock');
+
+      openBtn.addEventListener('click', () => {
+        const wixData = EventsService.exportWixCollectionJSON();
+        jsonBlock.textContent = JSON.stringify(wixData, null, 2);
+        veloBlock.textContent = EventsService.generateWixVeloSnippet();
+        modal.classList.add('is-open');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('is-open');
+      });
+
+      copyBtn.addEventListener('click', () => {
+        const text = jsonBlock.textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.textContent = '✓ JSON Copiado com Sucesso!';
+          setTimeout(() => { copyBtn.textContent = 'Copiar JSON da Coleção'; }, 2500);
+        });
+      });
+    });
+
+    function escapeHTML(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+  </script>
+
+</body>
+</html>
