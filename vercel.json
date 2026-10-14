@@ -146,6 +146,22 @@
     {
       "source": "/new/embed-solaci-cobertura",
       "destination": "/new/embed-solaci-cobertura.html"
+    },
+    {
+      "source": "/embed-solaci-gravacao",
+      "destination": "/embed-solaci-gravacao.html"
+    },
+    {
+      "source": "/solaci-gravacao",
+      "destination": "/embed-solaci-gravacao.html"
+    },
+    {
+      "source": "/new/solaci-gravacao",
+      "destination": "/new/solaci-gravacao.html"
+    },
+    {
+      "source": "/new/embed-solaci-gravacao",
+      "destination": "/new/embed-solaci-gravacao.html"
     }
   ],
   "headers": [
