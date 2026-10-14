@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="blue">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
@@ -26,19 +26,24 @@
   <link rel="stylesheet" href="/css/modern-ui.css">
   <link rel="stylesheet" href="/css/modern-hub.css">
 
-  <!-- Detecção de Tema Anti-FOUC -->
+  <!-- Tema Azul Oficial Padrão (#010234 / #062257) -->
   <script>
     (function() {
       try {
-        var theme = localStorage.getItem('cathlabflix-theme');
-        if (theme === 'blue') {
+        var params = new URLSearchParams(window.location.search);
+        var qTheme = params.get('theme');
+        if (qTheme === 'light') {
+          document.documentElement.removeAttribute('data-theme');
+        } else {
           document.documentElement.setAttribute('data-theme', 'blue');
         }
-      } catch (e) {}
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'blue');
+      }
     })();
   </script>
 </head>
-<body>
+<body class="theme-blue" data-theme="blue">
 
   <div class="app-container">
 
