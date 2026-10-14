@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Podcasts - CathlabFlix</title>
+  <meta name="description" content="Acesse os podcasts oficiais de congressos e cursos da CathlabFlix e SBHCI: debates especializados em cardiologia intervencionista.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cathlabflix.org/podcast">
+  <meta property="og:title" content="Podcasts - CathlabFlix">
+  <meta property="og:description" content="Acesse os podcasts dos congressos e cursos oficiais da SBHCI e parceiros.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       ========================================================================== -->
+  <style>
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #0a2d72;
+      --color-surface-elevated: #0d3685;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #b80710;
+      --color-blue-accent: #38bdf8;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 4px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      background-color: var(--color-bg-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Estrutura Principal */
+    .podcast-hub-main {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    /* Cabeçalho Oficial */
+    .section-title-wrap {
+      margin-bottom: 32px;
+    }
+
+    .page-title {
+      font-size: 2.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+    }
+
+    .page-title-underline {
+      width: 84px;
+      height: 4px;
+      background: linear-gradient(90deg, #E50914 0%, #ff4b55 100%);
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .page-subtitle {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 820px;
+      margin: 0;
+    }
+
+    /* Grade de Podcasts por Congresso / Curso */
+    .podcast-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 420px));
+      gap: 26px;
+      margin-bottom: 40px;
+    }
+
+    /* Card de Congresso / Curso */
+    .congress-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.28s ease;
+      cursor: pointer;
+    }
+
+    .congress-card-link:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75),
+                  0 0 24px rgba(56, 189, 248, 0.2);
+    }
+
+    /* Container de Imagem */
+    .congress-card-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 488 / 275;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .congress-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .congress-card-link:hover .congress-card-img {
+      transform: scale(1.04);
+    }
+
+    /* Overlay no Hover */
+    .congress-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(1, 2, 52, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .congress-card-link:hover .congress-card-overlay {
+      opacity: 1;
+    }
+
+    .congress-play-indicator {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 28px rgba(229, 9, 20, 0.8);
+      transform: scale(0.9);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .congress-card-link:hover .congress-play-indicator {
+      transform: scale(1.05);
+    }
+
+    .congress-play-indicator svg {
+      width: 22px;
+      height: 22px;
+      fill: #FFFFFF;
+      margin-left: 3px;
+    }
+
+    /* Faixa de Links Rápidos (Rodapé) */
+    .explore-strip {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .explore-strip-text h4 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .explore-strip-text p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .explore-strip-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .explore-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .explore-action-btn.btn-aulas {
+      background: #E50914;
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-aulas:hover {
+      background: var(--color-primary-hover);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .explore-action-btn.btn-cobertura {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-cobertura:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--color-blue-accent);
+      color: var(--color-blue-accent);
+      transform: translateY(-2px);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .podcast-hub-main {
+        padding: 20px 14px 44px;
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+      }
+
+      .podcast-hub-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 18px;
+      }
+
+      .explore-strip {
+        padding: 18px 16px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .explore-strip-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .explore-action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .podcast-hub-main {
+        padding: 16px 12px 36px;
+      }
+
+      .page-title {
+        font-size: 1.45rem;
+        margin-bottom: 8px;
+      }
+
+      .page-title-underline {
+        width: 64px;
+        height: 3px;
+        margin-bottom: 10px;
+      }
+
+      .page-subtitle {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+      }
+
+      .podcast-hub-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <main class="podcast-hub-main" id="podcastHubMain">
+
+      <!-- 1. Cabeçalho Oficial -->
+      <header class="section-title-wrap">
+        <h1 class="page-title">Podcasts</h1>
+        <div class="page-title-underline"></div>
+        <p class="page-subtitle">
+          Selecione o congresso ou curso desejado para acessar os episódios completos de podcast com grandes especialistas da cardiologia intervencionista.
+        </p>
+      </header>
+
+      <!-- 2. Grade de Imagens dos Podcasts de Congressos / Cursos -->
+      <section class="podcast-hub-grid" id="podcastHubGrid" aria-label="Lista de podcasts por evento">
+        <!-- Renderizado dinamicamente via JavaScript -->
+      </section>
+
+      <!-- 3. Faixa Inferior de Navegação Rápida -->
+      <aside class="explore-strip" aria-label="Mais conteúdos CathlabFlix">
+        <div class="explore-strip-text">
+          <h4>Mais do Congresso SOLACI-SBHCI 2026</h4>
+          <p>Confira a cobertura audiovisual oficial e a grade completa de aulas com apresentações em slides para download.</p>
+        </div>
+        <div class="explore-strip-actions">
+          <a href="https://www.cathlabflix.org/aulas-solaci" class="explore-action-btn btn-aulas" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Grade de Aulas & PPTX
+          </a>
+          <a href="https://www.cathlabflix.org/solaci-cobertura" class="explore-action-btn btn-cobertura" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Cobertura Audiovisual
+          </a>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT MODULAR EMBUTIDO
+       ========================================================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. BANCO DE DADOS DOS PODCASTS DE CURSOS / CONGRESSOS
+      const CONGRESS_PODCASTS = [
+        {
+          id: 'solaci-2026',
+          title: 'SOLACI-SBHCI 2026 • Podcasts Oficiais',
+          image: 'https://static.wixstatic.com/media/1d3d47_38b006aa52de49c697463e5ea117a9c4~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PODCAST.png',
+          link: 'https://www.cathlabflix.org/solaci-podcast'
+        }
+      ];
+
+      // 2. COMUNICAÇÃO DE RESIZE PARA IFRAME WIX
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+              type: 'cathlabflix-sessions-resize',
+              height: height + 30
+            }, '*');
+          }
+        } catch (e) {}
+      }
+
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // 3. RENDERIZAÇÃO DOS CARDS
+      function renderCards() {
+        const grid = document.getElementById('podcastHubGrid');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+
+        CONGRESS_PODCASTS.forEach(item => {
+          const cardLink = document.createElement('a');
+          cardLink.href = item.link;
+          cardLink.target = '_top';
+          cardLink.className = 'congress-card-link';
+          cardLink.title = item.title;
+          cardLink.setAttribute('aria-label', item.title);
+
+          cardLink.innerHTML = `
+            <div class="congress-card-thumb-wrap">
+              <img 
+                src="${escapeHTML(item.image)}" 
+                alt="${escapeHTML(item.title)}" 
+                class="congress-card-img"
+                loading="lazy"
+                width="488"
+                height="275"
+              >
+              <div class="congress-card-overlay">
+                <div class="congress-play-indicator" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          `;
+
+          fragment.appendChild(cardLink);
+        });
+
+        grid.appendChild(fragment);
+        sendResizeMessage();
+      }
+
+      // 4. OBSERVERS E EVENTOS DE INICIALIZAÇÃO
+      window.addEventListener('resize', sendResizeMessage);
+      window.addEventListener('load', () => {
+        renderCards();
+        setTimeout(sendResizeMessage, 300);
+        setTimeout(sendResizeMessage, 1200);
+      });
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
+        ro.observe(document.body);
+      }
+
+    })();
+  </script>
+</body>
+</html>
