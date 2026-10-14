@@ -33,10 +33,10 @@ const htmlTemplate = `<!DOCTYPE html>
   <title>Notícias & Agenda de Eventos - CathlabFlix SBHCI</title>
   <meta name="description" content="Embed oficial com as notícias em destaque, catálogo de publicações e agenda interativa de eventos da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista.">
 
-  <!-- Tipografia Inter -->
+  <!-- Tipografia Montserrat Oficial SBHCI -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Estilos Embutidos (Zero Dependência Externa) -->
   <style>
