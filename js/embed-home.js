@@ -125,6 +125,16 @@
         safePushState({ view: 'event', id: params.id }, `#evento?id=${params.id}`);
       }
 
+      // Oculta a barra de busca superior na visualização interna de artigo ou evento
+      const topBar = document.querySelector('.embed-top-bar-container');
+      if (topBar) {
+        if (viewName === 'post' || viewName === 'event') {
+          topBar.style.display = 'none';
+        } else {
+          topBar.style.display = 'block';
+        }
+      }
+
       // Rola para o topo suavemente
       window.scrollTo({ top: 0, behavior: 'smooth' });
       notifyIframeHeight();
@@ -498,8 +508,8 @@
       <article class="embed-post-reader">
         <header class="embed-post-reader-header">
           <div class="embed-post-badges-row">
-            <span class="news-category-badge">${escapeHTML(currentPost.category || 'Notícia')}</span>
-            <span style="font-size: 0.8125rem; color: var(--color-text-secondary);">${escapeHTML(currentPost.formattedDate || '')}</span>
+            <span class="embed-post-category-tag">${escapeHTML(currentPost.category || 'Notícia')}</span>
+            <span class="embed-post-date-tag">${escapeHTML(currentPost.formattedDate || '')}</span>
           </div>
 
           <h1 class="embed-post-title">${escapeHTML(currentPost.title)}</h1>
