@@ -4,7 +4,8 @@
  */
 
 // Agenda Oficial CathlabFlix: Eventos Vigentes 2026 e Agenda Anual SBHCI 2027
-const INITIAL_EVENTS = [
+if (typeof window !== 'undefined' && !window.INITIAL_EVENTS) {
+  window.INITIAL_EVENTS = [
   // ==========================================
   // OUTUBRO 2026 (Transmissões e Congressos)
   // ==========================================
@@ -692,42 +693,59 @@ const INITIAL_EVENTS = [
     actionLabel: 'Acessar Summit'
   }
 ];
+}
 
 class ModernAgendaCalendar {
   constructor(containerId, options = {}) {
     this.container = document.getElementById(containerId);
     if (!this.container) return;
 
-    // Inicialização dinâmica no dia atual (hoje)
-    this.today = new Date();
-    this.currentDate = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
-
-    // Formata o dia atual no padrão YYYY-MM-DD
-    const todayYear = this.today.getFullYear();
-    const todayMonth = String(this.today.getMonth() + 1).padStart(2, '0');
-    const todayDay = String(this.today.getDate()).padStart(2, '0');
-    this.selectedDateStr = `${todayYear}-${todayMonth}-${todayDay}`;
-
     this.activeFilter = 'all';
     this.currentView = options.initialView || 'month'; // 'month' | 'list'
     this.searchQuery = options.searchQuery || '';
 
-    // Carrega eventos do EventsService se disponível, ou options.events, ou INITIAL_EVENTS
+    // 1. Carrega eventos do EventsService se disponível, ou options.events, ou window.INITIAL_EVENTS
     if (options.events && Array.isArray(options.events)) {
       this.events = options.events;
     } else if (typeof EventsService !== 'undefined' && typeof EventsService.getAllEvents === 'function') {
       this.events = EventsService.getAllEvents();
     } else if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS)) {
       this.events = window.INITIAL_EVENTS;
-    } else if (typeof INITIAL_EVENTS !== 'undefined' && Array.isArray(INITIAL_EVENTS)) {
-      this.events = INITIAL_EVENTS;
     } else {
       this.events = [];
     }
 
-    // Se houver evento no dia de hoje, pré-seleciona seu ID
-    const todayEvents = this.getFilteredEventsForDate(this.selectedDateStr);
-    this.activeEventId = todayEvents.length > 0 ? todayEvents[0].id : null;
+    // 2. Data de referência de Hoje
+    this.today = new Date();
+    const todayYear = this.today.getFullYear();
+    const todayMonth = String(this.today.getMonth() + 1).padStart(2, '0');
+    const todayDay = String(this.today.getDate()).padStart(2, '0');
+    const todayStr = `${todayYear}-${todayMonth}-${todayDay}`;
+
+    // 3. Determina o mês e evento inicial inteligente:
+    // Se o mês atual tiver eventos, abre nele.
+    // Caso contrário, abre no primeiro mês que tiver eventos para a agenda NUNCA ficar vazia!
+    let targetEvent = null;
+    const currentMonthPrefix = `${todayYear}-${todayMonth}`;
+    const eventsThisMonth = this.events.filter(e => e.date && e.date.startsWith(currentMonthPrefix));
+
+    if (eventsThisMonth.length > 0) {
+      targetEvent = eventsThisMonth.find(e => e.date >= todayStr) || eventsThisMonth[0];
+    } else if (this.events.length > 0) {
+      const upcoming = this.events.slice().sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      targetEvent = upcoming.find(e => e.date >= todayStr) || upcoming[0];
+    }
+
+    if (targetEvent && targetEvent.date) {
+      const parts = targetEvent.date.split('-');
+      this.currentDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, 1);
+      this.selectedDateStr = targetEvent.date;
+      this.activeEventId = targetEvent.id;
+    } else {
+      this.currentDate = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
+      this.selectedDateStr = todayStr;
+      this.activeEventId = null;
+    }
 
     this.monthNames = [
       'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -764,9 +782,21 @@ class ModernAgendaCalendar {
     this.renderContent();
     this.attachEventListeners();
 
-    // Se houver evento no dia atual, abre a gaveta de detalhes; caso contrário, mantém recolhida
-    if (this.currentView === 'month' && this.selectedDateStr) {
-      const dayEvents = this.getFilteredEventsForDate(this.selectedDateStr);
+    // Se houver evento na data selecionada ou no mês, abre a gaveta de detalhes imediatamente
+    if (this.currentView === 'month') {
+      let dayEvents = this.selectedDateStr ? this.getFilteredEventsForDate(this.selectedDateStr) : [];
+      if (dayEvents.length === 0) {
+        const mYear = this.currentDate.getFullYear();
+        const mMonth = String(this.currentDate.getMonth() + 1).padStart(2, '0');
+        const mPrefix = `${mYear}-${mMonth}`;
+        const monthEvs = this.events.filter(e => e.date && e.date.startsWith(mPrefix));
+        if (monthEvs.length > 0) {
+          this.selectedDateStr = monthEvs[0].date;
+          this.activeEventId = monthEvs[0].id;
+          dayEvents = [monthEvs[0]];
+        }
+      }
+
       if (dayEvents.length > 0) {
         this.expandEventDrawer(dayEvents, this.selectedDateStr, this.activeEventId);
       } else {

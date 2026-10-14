@@ -134,17 +134,27 @@
   global.EmbedRouter = EmbedRouter;
 
   /**
-   * Inicialização Principal
+   * Inicialização Principal Instantânea (Compatível com Wix Embed e Sandboxes)
    */
-  document.addEventListener('DOMContentLoaded', async () => {
-    await fetchWixNews();
+  function startEmbedApp() {
+    allNewsItems = getLocalFallbackNews();
     initCalendarComponent();
     initPersistentSearch();
     initNavPills();
     initIframeAutoResize();
-
     EmbedRouter.init();
-  });
+
+    fetchWixNews().then(() => {
+      if (EmbedRouter.currentView === 'home') renderHomeNewsFeed();
+      if (EmbedRouter.currentView === 'posts') renderAllPostsView();
+    }).catch(() => {});
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startEmbedApp);
+  } else {
+    startEmbedApp();
+  }
 
   /**
    * 1. Busca e Normalização de Notícias do Wix
