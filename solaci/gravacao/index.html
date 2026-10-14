@@ -319,11 +319,6 @@
       transform: translateY(-2px);
     }
 
-    .action-pill-btn.saved {
-      background: rgba(229, 9, 20, 0.2);
-      color: #ff6b6b;
-      border-color: rgba(229, 9, 20, 0.5);
-    }
 
     /* Seção de Materiais Relacionados & Apresentações */
     .related-materials-section {
@@ -967,13 +962,6 @@
 
             <!-- Botões de Ação -->
             <div class="session-actions-group">
-              <button type="button" class="action-pill-btn" id="btnFavorite" title="Adicionar à Minha Lista">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-                <span id="btnFavoriteText">Minha Lista</span>
-              </button>
-
               <button type="button" class="action-pill-btn" id="btnShare" title="Copiar link desta gravação">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="18" cy="5" r="3"></circle>
@@ -1867,15 +1855,6 @@
       let currentDay = 'dia-29';
       let currentRoom = 'all';
       let searchQuery = '';
-      let favorites = new Set();
-
-      // Recuperar favoritos salvos
-      try {
-        const saved = localStorage.getItem('cathlabflix-favorites');
-        if (saved) {
-          favorites = new Set(JSON.parse(saved));
-        }
-      } catch (e) {}
 
       // Elementos do DOM
       const dom = {
@@ -1892,8 +1871,6 @@
         playlistList: document.getElementById('playlistScrollList'),
         searchInput: document.getElementById('playlistSearchInput'),
         searchClear: document.getElementById('searchClearBtn'),
-        btnFavorite: document.getElementById('btnFavorite'),
-        btnFavoriteText: document.getElementById('btnFavoriteText'),
         btnShare: document.getElementById('btnShare'),
         toast: document.getElementById('toastFeedback'),
         toastMsg: document.getElementById('toastMessage')
@@ -2161,9 +2138,6 @@
           dom.badgeTime.style.display = 'none';
         }
 
-        // Atualizar Favoritos
-        updateFavoriteButtonState();
-
         // Atualizar estado ativo da playlist
         renderPlaylist();
 
@@ -2185,35 +2159,7 @@
         sendResizeMessage();
       }
 
-      // 11. CONTROLE DE FAVORITOS (LOCALSTORAGE)
-      function updateFavoriteButtonState() {
-        if (!dom.btnFavorite) return;
-        const isFav = favorites.has(currentSessionId);
-        if (isFav) {
-          dom.btnFavorite.classList.add('saved');
-          dom.btnFavoriteText.textContent = 'Salvo na Lista';
-        } else {
-          dom.btnFavorite.classList.remove('saved');
-          dom.btnFavoriteText.textContent = 'Minha Lista';
-        }
-      }
-
-      function toggleFavorite() {
-        if (!currentSessionId) return;
-        if (favorites.has(currentSessionId)) {
-          favorites.delete(currentSessionId);
-          showToast('Removido da sua lista.');
-        } else {
-          favorites.add(currentSessionId);
-          showToast('Adicionado à sua lista com sucesso!');
-        }
-        try {
-          localStorage.setItem('cathlabflix-favorites', JSON.stringify(Array.from(favorites)));
-        } catch (e) {}
-        updateFavoriteButtonState();
-      }
-
-      // 12. COMPARTILHAR LINK DA GRAVAÇÃO
+      // 11. COMPARTILHAR LINK DA GRAVAÇÃO
       function shareSession() {
         if (!currentSessionId) return;
         const shareUrl = `https://www.cathlabflix.org/solaci-gravacao?v=${currentSessionId}`;
@@ -2266,7 +2212,6 @@
         sendResizeMessage();
       });
 
-      dom.btnFavorite.addEventListener('click', toggleFavorite);
       dom.btnShare.addEventListener('click', shareSession);
 
       // 14. INICIALIZAÇÃO
