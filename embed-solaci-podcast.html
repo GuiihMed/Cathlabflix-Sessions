@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Podcasts SOLACI-SBHCI 2026 - CathlabFlix</title>
+  <meta name="description" content="Acesse os episódios completos do podcast oficial do Congresso SOLACI-SBHCI 2026: discussões especializadas sobre hemodinâmica, cardiologia intervencionista e temas de ponta.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cathlabflix.org/solaci-podcast">
+  <meta property="og:title" content="Podcasts SOLACI-SBHCI 2026 - CathlabFlix">
+  <meta property="og:description" content="Debates aprofundados sobre cardiologia intervencionista, TAVI, intervenções coronarianas complexas e fisiologia moderna.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       ========================================================================== -->
+  <style>
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #0a2d72;
+      --color-surface-elevated: #0d3685;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #b80710;
+      --color-blue-accent: #38bdf8;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 4px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      background-color: var(--color-bg-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Estrutura Principal */
+    .podcast-main {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    /* Top Bar com Botão Voltar ao SOLACI */
+    .top-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .back-solaci-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .back-solaci-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--color-blue-accent);
+      transform: translateX(-3px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
+    }
+
+    .back-solaci-btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition-fast);
+    }
+
+    .back-solaci-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+    /* Cabeçalho Oficial: "Acesse os conteúdos" */
+    .section-title-wrap {
+      margin-bottom: 28px;
+    }
+
+    .page-title {
+      font-size: 2.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+    }
+
+    .page-title-underline {
+      width: 84px;
+      height: 4px;
+      background: linear-gradient(90deg, #E50914 0%, #ff4b55 100%);
+      border-radius: var(--radius-pill);
+      margin-bottom: 14px;
+    }
+
+    .page-subtitle {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 820px;
+      margin: 0;
+    }
+
+    /* Barra de Busca e Filtros */
+    .podcast-toolbar {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+    }
+
+    .search-box-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .search-box-wrap svg.search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--color-text-tertiary);
+      pointer-events: none;
+    }
+
+    .search-box-input {
+      width: 100%;
+      height: 46px;
+      background: rgba(1, 2, 52, 0.7);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 0 42px 0 46px;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .search-box-input:focus {
+      border-color: var(--color-blue-accent);
+      background: rgba(1, 2, 52, 0.95);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+    }
+
+    .search-box-input::placeholder {
+      color: var(--color-text-tertiary);
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition-fast);
+    }
+
+    .search-clear-btn:hover {
+      background: var(--color-primary);
+    }
+
+    .search-clear-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .results-count-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      background: rgba(1, 2, 52, 0.5);
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-subtle);
+      white-space: nowrap;
+    }
+
+    .results-count-badge strong {
+      color: var(--color-blue-accent);
+      font-weight: 800;
+    }
+
+    /* Grid de Episódios do Podcast (3 Colunas no Desktop) */
+    .podcast-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    /* Card de Episódio */
+    .podcast-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.28s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .podcast-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7),
+                  0 0 24px rgba(56, 189, 248, 0.15);
+    }
+
+    /* Thumbnail 16:9 */
+    .podcast-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .podcast-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .podcast-card:hover .podcast-thumb-img {
+      transform: scale(1.04);
+    }
+
+    .podcast-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(1, 2, 52, 0.3) 0%, rgba(1, 2, 52, 0.75) 100%);
+      pointer-events: none;
+    }
+
+    /* Badges no topo da Thumbnail */
+    .thumb-badges-row {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .badge-episode {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      color: #FFFFFF;
+      background: #E50914;
+      box-shadow: 0 2px 8px rgba(229, 9, 20, 0.4);
+    }
+
+    .badge-source {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(1, 2, 52, 0.85);
+      backdrop-filter: blur(6px);
+      color: var(--color-blue-accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Botão Play Hover */
+    .card-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 24px rgba(229, 9, 20, 0.6);
+      z-index: 3;
+      opacity: 0.9;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #FFFFFF;
+      margin-left: 3px;
+    }
+
+    .podcast-card:hover .card-play-btn {
+      transform: translate(-50%, -50%) scale(1.08);
+      background: #E50914;
+      box-shadow: 0 0 32px rgba(229, 9, 20, 0.85);
+      opacity: 1;
+    }
+
+    /* Conteúdo Textual do Card */
+    .podcast-card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 12px;
+    }
+
+    .podcast-episode-title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.7em;
+    }
+
+    .podcast-card:hover .podcast-episode-title {
+      color: var(--color-blue-accent);
+    }
+
+    /* Destaque para o Tema da Aula */
+    .podcast-theme-pill {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-sm);
+      font-size: 0.78125rem;
+      color: #e0f2fe;
+      line-height: 1.4;
+    }
+
+    .podcast-theme-pill svg {
+      width: 15px;
+      height: 15px;
+      color: var(--color-blue-accent);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .podcast-theme-pill strong {
+      color: var(--color-blue-accent);
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    .podcast-desc-text {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    /* Ações do Card */
+    .podcast-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .action-play-btn {
+      flex: 1;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: 1px solid var(--color-primary);
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(229, 9, 20, 0.35);
+    }
+
+    .action-play-btn:hover {
+      background: var(--color-primary-hover);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .action-play-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .action-youtube-btn {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .action-youtube-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .action-youtube-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Estado Vazio */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 20px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--color-border-subtle);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: var(--color-text-tertiary);
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .empty-state p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .empty-state button {
+      background: var(--color-primary);
+      border: none;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .empty-state button:hover {
+      background: var(--color-primary-hover);
+    }
+
+    /* Faixa de Links Rápidos (Rodapé) */
+    .explore-strip {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .explore-strip-text h4 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+    }
+
+    .explore-strip-text p {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin: 0;
+    }
+
+    .explore-strip-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .explore-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .explore-action-btn.btn-aulas {
+      background: #E50914;
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-aulas:hover {
+      background: var(--color-primary-hover);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .explore-action-btn.btn-cobertura {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-cobertura:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--color-blue-accent);
+      color: var(--color-blue-accent);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO / PODCAST YOUTUBE
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(1, 2, 52, 0.94);
+      backdrop-filter: blur(12px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-dialog {
+      background: #06193f;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.15);
+      width: 100%;
+      max-width: 860px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.94);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-modal.active .lightbox-dialog {
+      transform: scale(1);
+    }
+
+    .lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: #04122f;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .lightbox-title-area {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding-right: 12px;
+      overflow: hidden;
+    }
+
+    .lightbox-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lightbox-theme {
+      font-size: 0.8125rem;
+      color: var(--color-blue-accent);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lightbox-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .lightbox-close-btn:hover {
+      background: #E50914;
+      border-color: #E50914;
+      transform: rotate(90deg);
+    }
+
+    .lightbox-video-frame-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .lightbox-video-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .lightbox-footer {
+      padding: 14px 20px;
+      background: #04122f;
+      border-top: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .lightbox-desc {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+      margin: 0;
+      flex: 1;
+    }
+
+    .lightbox-yt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78125rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: background var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .lightbox-yt-link:hover {
+      background: var(--color-primary);
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE E MOBILE APRIMORADA
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .podcast-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .podcast-main {
+        padding: 20px 14px 44px;
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+      }
+
+      .podcast-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 14px;
+      }
+
+      .search-box-wrap {
+        min-width: 100%;
+      }
+
+      .results-count-badge {
+        align-self: flex-start;
+      }
+
+      .podcast-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .explore-strip {
+        padding: 18px 16px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .explore-strip-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .explore-action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .podcast-main {
+        padding: 16px 12px 36px;
+      }
+
+      .top-nav-bar {
+        margin-bottom: 18px;
+      }
+
+      .back-solaci-btn {
+        padding: 8px 14px;
+        font-size: 0.8125rem;
+        min-height: 40px;
+      }
+
+      .section-title-wrap {
+        margin-bottom: 20px;
+      }
+
+      .page-title {
+        font-size: 1.45rem;
+        margin-bottom: 8px;
+      }
+
+      .page-title-underline {
+        width: 64px;
+        height: 3px;
+        margin-bottom: 10px;
+      }
+
+      .page-subtitle {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+      }
+
+      .podcast-toolbar {
+        padding: 12px;
+        border-radius: var(--radius-md);
+        margin-bottom: 22px;
+      }
+
+      .search-box-input {
+        height: 42px;
+        font-size: 0.8125rem;
+        padding: 0 36px 0 40px;
+      }
+
+      .search-box-wrap svg.search-icon {
+        left: 14px;
+        width: 16px;
+        height: 16px;
+      }
+
+      .results-count-badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+      }
+
+      .podcast-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 30px;
+      }
+
+      .podcast-card-body {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .podcast-episode-title {
+        font-size: 0.95rem;
+        min-height: auto;
+      }
+
+      .podcast-theme-pill {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+      }
+
+      .podcast-desc-text {
+        font-size: 0.78125rem;
+        line-height: 1.45;
+      }
+
+      .action-play-btn {
+        height: 42px;
+        font-size: 0.8125rem;
+      }
+
+      .action-youtube-btn {
+        width: 42px;
+        height: 42px;
+      }
+
+      .lightbox-dialog {
+        max-width: 96vw;
+        border-radius: var(--radius-lg);
+      }
+
+      .lightbox-header {
+        padding: 12px 16px;
+      }
+
+      .lightbox-title {
+        font-size: 0.95rem;
+      }
+
+      .lightbox-theme {
+        font-size: 0.75rem;
+      }
+
+      .lightbox-footer {
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .lightbox-desc {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <main class="podcast-main" id="podcastMainContent">
+
+      <!-- 1. Barra de Navegação Superior (Botão Voltar) -->
+      <nav class="top-nav-bar" aria-label="Navegação do Podcast">
+        <a href="https://www.cathlabflix.org/solaci" class="back-solaci-btn" title="Voltar ao portal oficial do SOLACI SBHCI 2026" target="_top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar ao SOLACI
+        </a>
+      </nav>
+
+      <!-- 2. Cabeçalho Oficial: "Acesse os conteúdos" -->
+      <header class="section-title-wrap">
+        <h1 class="page-title">Acesse os conteúdos</h1>
+        <div class="page-title-underline"></div>
+        <p class="page-subtitle">
+          Acompanhe na íntegra a série oficial de podcasts do Congresso SOLACI-SBHCI 2026: discussões de alto nível com especialistas sobre avanços práticos, técnicas em intervenções complexas, TAVI e fisiologia coronariana.
+        </p>
+      </header>
+
+      <!-- 3. Barra de Busca e Filtros -->
+      <section class="podcast-toolbar" aria-label="Busca de episódios">
+        <div class="search-box-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="podcastSearchInput" 
+            class="search-box-input" 
+            placeholder="Buscar por nome do episódio ou tema da aula..." 
+            autocomplete="off"
+            aria-label="Buscar por nome do episódio ou tema da aula"
+          >
+          <button type="button" class="search-clear-btn" id="searchClearBtn" aria-label="Limpar busca">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="results-count-badge" id="resultsCountBadge">
+          <span id="resultsCountText">Carregando episódios...</span>
+        </div>
+      </section>
+
+      <!-- 4. Grid de Episódios -->
+      <section class="podcast-grid" id="podcastGrid" aria-label="Galeria de episódios do podcast">
+        <!-- Renderizado dinamicamente via JS -->
+      </section>
+
+      <!-- 5. Faixa Inferior de Navegação Rápida -->
+      <aside class="explore-strip" aria-label="Mais conteúdos do SOLACI SBHCI 2026">
+        <div class="explore-strip-text">
+          <h4>Mais do Congresso SOLACI-SBHCI 2026</h4>
+          <p>Confira a cobertura em vídeo, entrevistas exclusivas e acesse a grade de apresentações para download.</p>
+        </div>
+        <div class="explore-strip-actions">
+          <a href="https://www.cathlabflix.org/aulas-solaci" class="explore-action-btn btn-aulas" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Grade de Aulas & PPTX
+          </a>
+          <a href="https://www.cathlabflix.org/solaci-cobertura" class="explore-action-btn btn-cobertura" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Cobertura Audiovisual
+          </a>
+        </div>
+      </aside>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO DO PODCAST
+       ========================================================================== -->
+  <div class="lightbox-modal" id="podcastModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-dialog">
+      <div class="lightbox-header">
+        <div class="lightbox-title-area">
+          <div class="lightbox-title" id="modalEpisodeTitle">Título do Episódio</div>
+          <div class="lightbox-theme" id="modalEpisodeTheme">Tema da Aula</div>
+        </div>
+        <button type="button" class="lightbox-close-btn" id="modalCloseBtn" aria-label="Fechar reprodutor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="lightbox-video-frame-wrap" id="modalIframeContainer">
+        <!-- Iframe do YouTube inserido dinamicamente ao abrir -->
+      </div>
+
+      <div class="lightbox-footer">
+        <p class="lightbox-desc" id="modalEpisodeDesc">Sinopse do episódio.</p>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="lightbox-yt-link" id="modalDirectLink">
+          Assistir no YouTube
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT MODULAR EMBUTIDO
+       ========================================================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. BANCO DE DADOS OFICIAL DE PODCASTS SOLACI-SBHCI 2026 (SBHCICAST)
+      const PODCAST_EPISODES = [
+        {
+          id: 'ep-1',
+          episodeNumber: 1,
+          episodeLabel: 'Episódio 1',
+          title: 'O Futuro da Hemodinâmica',
+          theme: 'Inovações, Inteligência Artificial e Novas Fronteiras na Cardiologia Intervencionista',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '45 min',
+          videoId: 'cvHRZlhEPs0',
+          videoUrl: 'https://youtu.be/cvHRZlhEPs0',
+          poster: 'https://static.wixstatic.com/media/1d3d47_2f59db22e02e40708546ddd17dc4cbd6~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_2f59db22e02e40708546ddd17dc4cbd6~mv2.jpg',
+          description: 'Discussão abrangente sobre as transformações tecnológicas na sala de hemodinâmica, integração de inteligência artificial, novos biomateriais e as perspectivas de evolução da cardiologia intervencionista.'
+        },
+        {
+          id: 'ep-2',
+          episodeNumber: 2,
+          episodeLabel: 'Episódio 2',
+          title: 'Hipertensão Pulmonar Tromboembólica Crônica',
+          theme: 'Manejo Clínico, Angioplastia Pulmonar por Balão (BPA) e Critérios de Indicação',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '52 min',
+          videoId: 'UTLCKEYZfDE',
+          videoUrl: 'https://www.youtube.com/watch?v=UTLCKEYZfDE',
+          poster: 'https://static.wixstatic.com/media/1d3d47_4cc87406cff445779292e3a585b5a91b~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_4cc87406cff445779292e3a585b5a91b~mv2.jpg',
+          description: 'Diagnóstico precoce, estratificação hemodinâmica invasiva, técnica de angioplastia por balão de artérias pulmonares (BPA) e o papel do tratamento multimodal na HPTEC.'
+        },
+        {
+          id: 'ep-3',
+          episodeNumber: 3,
+          episodeLabel: 'Episódio 3',
+          title: 'Estratégias Complexas em Coronárias',
+          theme: 'Oclusão Total Crônica (CTO), Bifurcações e Lesões de Tronco de Coronária Esquerda',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '48 min',
+          videoId: '4bpt-9mQJ8U',
+          videoUrl: 'https://youtu.be/4bpt-9mQJ8U',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg',
+          description: 'Abordagens avançadas para anatomias coronarianas de alta complexidade: técnicas anterógradas e retrógradas em CTO, preparo de bifurcações e condutas em lesão de TCE.'
+        },
+        {
+          id: 'ep-4',
+          episodeNumber: 4,
+          episodeLabel: 'Episódio 4',
+          title: 'TAVI em Válvula Aórtica Bicúspide',
+          theme: 'Desafios Anatômicos, Fenótipos e Seleção de Próteses Transcateter',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '50 min',
+          videoId: '_vPDh5xGEaM',
+          videoUrl: 'https://youtu.be/_vPDh5xGEaM',
+          poster: 'https://static.wixstatic.com/media/1d3d47_f630e2da51b644ef81f7f875444fc7ce~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_f630e2da51b644ef81f7f875444fc7ce~mv2.jpg',
+          description: 'Particularidades do implante transcateter de valva aórtica (TAVI) na anatomia bicúspide: dimensionamento por angiotomografia, prevenção de complicações anulares e durabilidade clínica.'
+        },
+        {
+          id: 'ep-5',
+          episodeNumber: 5,
+          episodeLabel: 'Episódio 5',
+          title: 'Modificação de Placas Calcificadas',
+          theme: 'Litotripsia Intravascular (IVL), Aterectomia Rotacional e Balões Especiais',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '42 min',
+          videoId: '4bpt-9mQJ8U',
+          videoUrl: 'https://youtu.be/4bpt-9mQJ8U',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg',
+          description: 'Algoritmo contemporâneo para lesões gravemente calcificadas: indicações comparativas entre litotripsia por ondas de choque (IVL), aterectomia rotacional e balões super alta pressão.'
+        },
+        {
+          id: 'ep-6',
+          episodeNumber: 6,
+          episodeLabel: 'Episódio 6',
+          title: 'O Futuro das Intervenções Complexas',
+          theme: 'Suporte Circulatório Mecânico, Proteção Hemodinâmica e Procedimentos CHIP',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '54 min',
+          videoId: '4bpt-9mQJ8U',
+          videoUrl: 'https://youtu.be/4bpt-9mQJ8U',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg',
+          description: 'Uso estratégico de dispositivos de assistência ventricular mecânica durante angioplastias coronárias complexas de alto risco e condutas no choque cardiogênico.'
+        },
+        {
+          id: 'ep-7',
+          episodeNumber: 7,
+          episodeLabel: 'Episódio 7',
+          title: 'Fisiologia Coronariana Moderna',
+          theme: 'Avaliação Funcional Invasiva (FFR, iFR, RFR) e Microcirculação Coronariana (IMR, CFR)',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '47 min',
+          videoId: '4bpt-9mQJ8U',
+          videoUrl: 'https://youtu.be/4bpt-9mQJ8U',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg',
+          description: 'Fundamentos e evidências da avaliação fisiológica coronariana: índices hiperêmicos versus em repouso, diagnóstico da disfunção microvascular e tomada de decisão guiada por função.'
+        },
+        {
+          id: 'ep-8',
+          episodeNumber: 8,
+          episodeLabel: 'Episódio 8',
+          title: 'Abordagem Combinada',
+          theme: 'Tratamento Multidisciplinar, Procedimentos Híbridos e Tomada de Decisão em Heart Team',
+          speaker: 'SBHCICAST • TV SBHCI',
+          duration: '46 min',
+          videoId: '4bpt-9mQJ8U',
+          videoUrl: 'https://youtu.be/4bpt-9mQJ8U',
+          poster: 'https://static.wixstatic.com/media/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg/v1/fill/w_837,h_471,q_90,enc_avif,quality_auto/1d3d47_ef01fb18960e4b549ce95a162f210877~mv2.jpg',
+          description: 'Integração cirúrgica e intervencionista na sala híbrida: revascularizações híbridas, tratamento concomitante coronário e valvar, e a atuação sinérgica do Heart Team na tomada de decisão.'
+        }
+      ];
+
+      // 2. ELEMENTOS DO DOM
+      const grid = document.getElementById('podcastGrid');
+      const searchInput = document.getElementById('podcastSearchInput');
+      const searchClearBtn = document.getElementById('searchClearBtn');
+      const resultsCountText = document.getElementById('resultsCountText');
+
+      // Modal Lightbox
+      const modal = document.getElementById('podcastModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const modalIframeContainer = document.getElementById('modalIframeContainer');
+      const modalEpisodeTitle = document.getElementById('modalEpisodeTitle');
+      const modalEpisodeTheme = document.getElementById('modalEpisodeTheme');
+      const modalEpisodeDesc = document.getElementById('modalEpisodeDesc');
+      const modalDirectLink = document.getElementById('modalDirectLink');
+
+      let currentQuery = '';
+
+      // 3. COMUNICAÇÃO DE RESIZE PARA IFRAME WIX
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+              type: 'cathlabflix-sessions-resize',
+              height: height + 30
+            }, '*');
+          }
+        } catch (e) {}
+      }
+
+      // Função de escape para prevenir XSS
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // 4. RENDERIZAÇÃO DOS CARDS
+      function renderEpisodes() {
+        const query = currentQuery.trim().toLowerCase();
+
+        const filtered = PODCAST_EPISODES.filter(ep => {
+          if (!query) return true;
+          // Busca por nome do episódio
+          const titleMatch = (ep.title || '').toLowerCase().includes(query);
+          const labelMatch = (ep.episodeLabel || '').toLowerCase().includes(query);
+          // Busca por tema da aula
+          const themeMatch = (ep.theme || '').toLowerCase().includes(query);
+          // Busca complementar por descrição e speaker
+          const descMatch = (ep.description || '').toLowerCase().includes(query);
+          const speakerMatch = (ep.speaker || '').toLowerCase().includes(query);
+
+          return titleMatch || labelMatch || themeMatch || descMatch || speakerMatch;
+        });
+
+        // Atualiza o contador de resultados
+        if (resultsCountText) {
+          if (query) {
+            resultsCountText.innerHTML = `Exibindo <strong>${filtered.length}</strong> de ${PODCAST_EPISODES.length} episódios`;
+          } else {
+            resultsCountText.innerHTML = `Total de <strong>${PODCAST_EPISODES.length}</strong> episódios disponíveis`;
+          }
+        }
+
+        grid.innerHTML = '';
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <h3>Nenhum episódio encontrado</h3>
+              <p>Não encontramos nenhum episódio para os termos pesquisados: "<strong>${escapeHTML(currentQuery)}</strong>".</p>
+              <button type="button" id="btnResetSearch">Limpar Busca</button>
+            </div>
+          `;
+          const resetBtn = document.getElementById('btnResetSearch');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+              searchInput.value = '';
+              currentQuery = '';
+              if (searchClearBtn) searchClearBtn.style.display = 'none';
+              renderEpisodes();
+              searchInput.focus();
+            });
+          }
+          sendResizeMessage();
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        filtered.forEach(ep => {
+          const card = document.createElement('article');
+          card.className = 'podcast-card';
+          card.setAttribute('aria-label', `${ep.episodeLabel}: ${ep.title}`);
+
+          card.innerHTML = `
+            <div class="podcast-thumb-wrap" role="button" tabindex="0" title="Assistir ${escapeHTML(ep.title)}" aria-label="Assistir ${escapeHTML(ep.title)}">
+              <img 
+                src="${escapeHTML(ep.poster)}" 
+                alt="${escapeHTML(ep.title)}" 
+                class="podcast-thumb-img"
+                loading="lazy"
+                width="837"
+                height="471"
+              >
+              <div class="podcast-thumb-overlay"></div>
+
+              <div class="thumb-badges-row">
+                <span class="badge-episode">${escapeHTML(ep.episodeLabel)}</span>
+                <span class="badge-source">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
+                  </svg>
+                  ${escapeHTML(ep.duration)}
+                </span>
+              </div>
+
+              <div class="card-play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+            </div>
+
+            <div class="podcast-card-body">
+              <h3 class="podcast-episode-title" title="${escapeHTML(ep.title)}">${escapeHTML(ep.title)}</h3>
+
+              <div class="podcast-theme-pill" title="Tema da Aula: ${escapeHTML(ep.theme)}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <div>
+                  <strong>Tema da Aula:</strong>${escapeHTML(ep.theme)}
+                </div>
+              </div>
+
+              <p class="podcast-desc-text">${escapeHTML(ep.description)}</p>
+
+              <div class="podcast-card-actions">
+                <button type="button" class="action-play-btn" data-action="play">
+                  <svg viewBox="0 0 24 24">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  Assistir Episódio
+                </button>
+                <a 
+                  href="${escapeHTML(ep.videoUrl)}" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="action-youtube-btn" 
+                  title="Abrir no YouTube em nova guia"
+                  aria-label="Abrir ${escapeHTML(ep.title)} no YouTube"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          `;
+
+          // Eventos de clique para abrir o modal
+          const thumbWrap = card.querySelector('.podcast-thumb-wrap');
+          const playBtn = card.querySelector('[data-action="play"]');
+
+          const openHandler = () => openEpisodeModal(ep);
+
+          thumbWrap.addEventListener('click', openHandler);
+          thumbWrap.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openHandler();
+            }
+          });
+
+          playBtn.addEventListener('click', openHandler);
+
+          fragment.appendChild(card);
+        });
+
+        grid.appendChild(fragment);
+        sendResizeMessage();
+      }
+
+      // 5. ABRIR E FECHAR MODAL LIGHTBOX
+      function openEpisodeModal(ep) {
+        modalEpisodeTitle.textContent = `${ep.episodeLabel}: ${ep.title}`;
+        modalEpisodeTheme.textContent = `Tema da Aula: ${ep.theme}`;
+        modalEpisodeDesc.textContent = ep.description;
+        modalDirectLink.href = ep.videoUrl;
+
+        modalIframeContainer.innerHTML = `
+          <iframe 
+            src="https://www.youtube.com/embed/${ep.videoId}?autoplay=1&rel=0&modestbranding=1" 
+            title="${escapeHTML(ep.title)}" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+        `;
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeEpisodeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        modalIframeContainer.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      // 6. EVENTOS DE BUSCA
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          currentQuery = this.value;
+          if (searchClearBtn) {
+            searchClearBtn.style.display = currentQuery.trim() ? 'flex' : 'none';
+          }
+          renderEpisodes();
+        });
+      }
+
+      if (searchClearBtn && searchInput) {
+        searchClearBtn.addEventListener('click', function() {
+          searchInput.value = '';
+          currentQuery = '';
+          searchClearBtn.style.display = 'none';
+          renderEpisodes();
+          searchInput.focus();
+        });
+      }
+
+      // Eventos do Modal
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeEpisodeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeEpisodeModal();
+          }
+        });
+      }
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeEpisodeModal();
+        }
+      });
+
+      // 7. OBSERVER E RESIZE
+      window.addEventListener('resize', sendResizeMessage);
+      window.addEventListener('load', () => {
+        renderEpisodes();
+        setTimeout(sendResizeMessage, 300);
+        setTimeout(sendResizeMessage, 1200);
+      });
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
+        ro.observe(document.body);
+      }
+
+    })();
+  </script>
+</body>
+</html>
