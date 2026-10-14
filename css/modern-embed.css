@@ -46,8 +46,14 @@ body.embed-body {
    ========================================================================== */
 .embed-top-bar-container {
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 34px;
   width: 100%;
+}
+
+.wix-news-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
 .embed-nav-pills {
@@ -310,19 +316,21 @@ body.embed-body {
 .embed-posts-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 32px;
 }
 
 @media (max-width: 960px) {
   .embed-posts-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
   }
 }
 
 @media (max-width: 600px) {
   .embed-posts-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
@@ -660,38 +668,6 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   word-break: break-word !important;
 }
 
-/* Telas Tablets e Médias (max-width: 1080px) */
-@media (max-width: 1080px) {
-  .embed-content-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 28px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* No Mobile e Tablet: Agenda posicionada acima de Notícias */
-  .hub-agenda-column {
-    order: 1 !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .hub-news-column {
-    order: 2 !important;
-    min-width: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-  }
-}
-
-/* ==========================================================================
-   8. OTIMIZAÇÃO E RESPONSIVIDADE MOBILE RIGOROSA (Compacto + Montserrat)
-   Suporte a dispositivos móveis a partir de 320px de largura e iframes Wix
-   ========================================================================== */
-
 /* Tipografia Montserrat Global */
 body.embed-body,
 button,
@@ -746,10 +722,14 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
 /* Telas Tablets e Médias (max-width: 1080px) */
 @media (max-width: 1080px) {
+  .embed-top-bar-container {
+    margin-bottom: 28px !important;
+  }
+
   .embed-content-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 20px !important;
+    gap: 32px !important;
     width: 100% !important;
     max-width: 100% !important;
   }
@@ -769,6 +749,10 @@ h1, h2, h3, h4, h5, h6, p, span, a {
     width: 100% !important;
     max-width: 100% !important;
   }
+
+  .wix-news-feed-list {
+    gap: 24px !important;
+  }
 }
 
 /* Telas Mobile Padrão (max-width: 768px) - Escala Ultra-Compacta e Equilibrada */
@@ -784,7 +768,7 @@ h1, h2, h3, h4, h5, h6, p, span, a {
   }
 
   .embed-top-bar-container {
-    margin-bottom: 8px !important;
+    margin-bottom: 24px !important;
   }
 
   .embed-search-wrapper {
@@ -816,7 +800,7 @@ h1, h2, h3, h4, h5, h6, p, span, a {
     max-width: 100% !important;
     flex-wrap: wrap !important;
     gap: 4px !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 16px !important;
     padding-bottom: 3px !important;
     border-bottom-width: 1px !important;
   }
@@ -844,7 +828,7 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   /* Cards de Notícias em Destaque Ultra-Compactos */
   .wix-news-feed-list {
-    gap: 10px !important;
+    gap: 22px !important;
     width: 100% !important;
   }
 
@@ -1433,6 +1417,18 @@ h1, h2, h3, h4, h5, h6, p, span, a {
     margin: 0 auto !important;
   }
 
+  .embed-top-bar-container {
+    margin-bottom: 22px !important;
+  }
+
+  .column-heading-wrapper {
+    margin-bottom: 14px !important;
+  }
+
+  .wix-news-feed-list {
+    gap: 20px !important;
+  }
+
   .news-card-thumb-wrapper,
   .news-card-thumb {
     height: 105px !important;
@@ -1450,6 +1446,18 @@ h1, h2, h3, h4, h5, h6, p, span, a {
     width: 92% !important;
     max-width: 310px !important;
     margin: 0 auto !important;
+  }
+
+  .embed-top-bar-container {
+    margin-bottom: 18px !important;
+  }
+
+  .column-heading-wrapper {
+    margin-bottom: 12px !important;
+  }
+
+  .wix-news-feed-list {
+    gap: 16px !important;
   }
 
   .agenda-card-wrapper {

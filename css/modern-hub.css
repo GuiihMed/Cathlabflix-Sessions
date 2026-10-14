@@ -231,7 +231,7 @@
 .wix-news-feed-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
 }
 
 .wix-news-card {
