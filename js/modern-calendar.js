@@ -1047,7 +1047,7 @@ class ModernAgendaCalendar {
             </div>
 
             <h4 class="agenda-list-card-title">
-              <a href="${actionUrl}" title="${event.title}">${event.title}</a>
+              <a href="https://www.cathlabflix.org/eventos" target="_top" title="${event.title}">${event.title}</a>
             </h4>
 
             <div class="agenda-list-card-meta">
@@ -1071,7 +1071,7 @@ class ModernAgendaCalendar {
 
             <!-- Botões de Ação: Estritamente Confira e Salvar -->
             <div class="agenda-list-card-actions">
-              <a href="${actionUrl}" class="list-action-cta-btn" title="Confira os detalhes deste evento">
+              <a href="https://www.cathlabflix.org/eventos" target="_top" class="list-action-cta-btn" title="Confira todos os eventos">
                 <span>Confira</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                   <polyline points="9 18 15 12 9 6"></polyline>
@@ -1310,7 +1310,7 @@ class ModernAgendaCalendar {
 
           <!-- Linha de Botões de Ação -->
           <div class="event-detail-actions-row">
-            <a href="${activeEvent.actionUrl || ('/new/evento?id=' + encodeURIComponent(activeEvent.id))}" class="event-detail-cta-btn" title="Confira os detalhes do evento">
+            <a href="https://www.cathlabflix.org/eventos" target="_top" class="event-detail-cta-btn" title="Confira todos os eventos">
               <span>Confira</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>

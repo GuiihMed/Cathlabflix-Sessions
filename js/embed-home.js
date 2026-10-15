@@ -380,9 +380,24 @@
         initialView: 'month'
       });
 
-      // Intercepta cliques de "Confira" gerados pelo calendário para abrir o evento internamente
+      // Redireciona cliques de "Confira" gerados pelo calendário para a página de eventos
       calendarContainer.addEventListener('click', (e) => {
-        const link = e.target.closest('a[href*="/new/evento"], a[href^="#evento"], .list-action-cta-btn, .event-detail-cta-btn');
+        const confiraBtn = e.target.closest('.list-action-cta-btn, .event-detail-cta-btn, a[href*="cathlabflix.org/eventos"]');
+        if (confiraBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          const targetUrl = 'https://www.cathlabflix.org/eventos';
+          try {
+            if (window.top && window.top !== window) {
+              window.top.location.href = targetUrl;
+              return;
+            }
+          } catch (err) {}
+          window.location.href = targetUrl;
+          return;
+        }
+
+        const link = e.target.closest('a[href*="/new/evento"], a[href^="#evento"]');
         if (link) {
           const href = link.getAttribute('href') || '';
           let eventId = null;
@@ -397,7 +412,13 @@
           if (eventId) {
             e.preventDefault();
             e.stopPropagation();
-            EmbedRouter.navigateTo('event', { id: decodeURIComponent(eventId) });
+            try {
+              if (window.top && window.top !== window) {
+                window.top.location.href = 'https://www.cathlabflix.org/eventos';
+                return;
+              }
+            } catch (err) {}
+            window.location.href = 'https://www.cathlabflix.org/eventos';
           }
         }
       });
@@ -414,36 +435,10 @@
 
     if (!gridContainer) return;
 
-    // Categorias dinâmicas
-    if (categoryRow && categoryRow.children.length <= 1) {
-      const cats = new Set();
-      allNewsItems.forEach(it => { if (it.category) cats.add(it.category.trim()); });
-
-      let catHtml = `
-        <button type="button" class="embed-category-pill ${activeCategoryFilter === 'all' ? 'active' : ''}" data-cat="all">
-          Todos (${allNewsItems.length})
-        </button>
-      `;
-
-      Array.from(cats).forEach(cat => {
-        const count = allNewsItems.filter(it => it.category === cat).length;
-        catHtml += `
-          <button type="button" class="embed-category-pill ${activeCategoryFilter === cat ? 'active' : ''}" data-cat="${escapeHTML(cat)}">
-            ${escapeHTML(cat)} (${count})
-          </button>
-        `;
-      });
-
-      categoryRow.innerHTML = catHtml;
-
-      categoryRow.querySelectorAll('.embed-category-pill').forEach(btn => {
-        btn.addEventListener('click', () => {
-          activeCategoryFilter = btn.getAttribute('data-cat');
-          categoryRow.querySelectorAll('.embed-category-pill').forEach(b => b.classList.toggle('active', b === btn));
-          allPostsPage = 1;
-          renderAllPostsView();
-        });
-      });
+    // Categorias dinâmicas (Desativado temporariamente conforme solicitação)
+    if (categoryRow) {
+      categoryRow.style.display = 'none';
+      categoryRow.innerHTML = '';
     }
 
     // Filtragem por categoria e busca
