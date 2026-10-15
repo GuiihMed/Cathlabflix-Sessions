@@ -878,34 +878,9 @@
       display: block;
     }
 
-    /* Rodapé institucional sutil */
+    /* Rodapé institucional removido */
     .newsletter-footer-info {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid var(--color-border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.75rem;
-      color: var(--color-text-secondary);
-    }
-
-    .footer-links-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .footer-link {
-      color: var(--color-text-secondary);
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    .footer-link:hover {
-      color: #FFFFFF;
+      display: none !important;
     }
   </style>
 </head>
@@ -1004,7 +979,6 @@
             <button type="button" class="year-pill-btn" data-year="arquivo" role="tab" aria-selected="false">Arquivo Histórico</button>
           </div>
 
-          <span class="results-count-text" id="results-count" style="display: none;"></span>
         </div>
       </section>
 
@@ -1012,18 +986,6 @@
       <section class="newsletter-grid" id="newsletter-grid" aria-label="Catálogo de Newsletters">
         <!-- Inserido dinamicamente via JavaScript -->
       </section>
-
-      <!-- 6. Rodapé da Página -->
-      <footer class="newsletter-footer-info">
-        <div>
-          CathlabFlix by SBHCI • Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista
-        </div>
-        <div class="footer-links-row">
-          <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Política de Privacidade</a>
-          <span>•</span>
-          <a href="https://www.sbhci.org.br" target="_blank" rel="noopener noreferrer" class="footer-link">sbhci.org.br</a>
-        </div>
-      </footer>
 
     </main>
   </div>
