@@ -270,7 +270,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      margin-top: 28px;
+      margin-top: 0;
     }
 
     .materials-title-wrap {
@@ -725,17 +725,36 @@
        ========================================================================== */
     @media (max-width: 1024px) {
       .player-stage-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 22px;
       }
 
+      .player-main-column {
+        display: contents;
+      }
+
+      .video-stage-box {
+        order: 1;
+      }
+
+      .session-meta-card {
+        order: 2;
+      }
+
       .playlist-sidebar-column {
+        order: 3;
         position: static;
         max-height: none;
       }
 
       .playlist-scroll-list {
         max-height: 500px;
+      }
+
+      .related-materials-section {
+        order: 4;
+        margin-top: 0;
       }
     }
 
@@ -845,7 +864,7 @@
       }
 
       .related-materials-section {
-        margin-top: 20px;
+        margin-top: 0;
         gap: 12px;
       }
 
@@ -1038,7 +1057,7 @@
       }
 
       .related-materials-section {
-        margin-top: 14px;
+        margin-top: 0;
         gap: 8px;
       }
 
@@ -1151,6 +1170,41 @@
 
           </article>
 
+          <!-- C. Conteúdos & Materiais Complementares (Junto à caixa de tema no desktop) -->
+          <section class="related-materials-section" aria-label="Conteúdos e materiais complementares">
+            <div class="materials-title-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              Conteúdos & Materiais Complementares
+            </div>
+
+            <div class="materials-cards-grid">
+              
+              <!-- Card: Grade de Aulas & PPTX -->
+              <a href="https://www.cathlabflix.org/solaci-aulas" class="material-card-banner" target="_top" title="Acessar Grade de Aulas e Slides PPTX">
+                <div class="material-card-info">
+                  <div class="material-card-icon icon-aulas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                  </div>
+                  <div class="material-card-texts">
+                    <span class="material-card-title">Grade de Aulas & Slides</span>
+                    <span class="material-card-sub">Download oficial de apresentações PPTX</span>
+                  </div>
+                </div>
+                <svg class="material-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
+
+            </div>
+          </section>
+
         </section>
 
         <!-- Coluna Direita: Playlist da Sessão com Abas de Salas e Filtro de Dias (30%) -->
@@ -1205,41 +1259,6 @@
         </aside>
 
       </div>
-
-      <!-- 4. Conteúdos & Materiais Complementares (Posicionado abaixo de Gravações da Sessão) -->
-      <section class="related-materials-section" aria-label="Conteúdos e materiais complementares">
-        <div class="materials-title-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-          </svg>
-          Conteúdos & Materiais Complementares
-        </div>
-
-        <div class="materials-cards-grid">
-          
-          <!-- Card: Grade de Aulas & PPTX -->
-          <a href="https://www.cathlabflix.org/solaci-aulas" class="material-card-banner" target="_top" title="Acessar Grade de Aulas e Slides PPTX">
-            <div class="material-card-info">
-              <div class="material-card-icon icon-aulas">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                </svg>
-              </div>
-              <div class="material-card-texts">
-                <span class="material-card-title">Grade de Aulas & Slides</span>
-                <span class="material-card-sub">Download oficial de apresentações PPTX</span>
-              </div>
-            </div>
-            <svg class="material-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </a>
-
-        </div>
-      </section>
 
     </main>
   </div>
@@ -2262,7 +2281,7 @@
 
         // Scroll suave no mobile se solicitado
         if (shouldScroll && window.innerWidth <= 1024) {
-          const stage = document.getElementById('playerSection');
+          const stage = document.getElementById('videoStageBox') || document.getElementById('playerSection');
           if (stage) {
             stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
