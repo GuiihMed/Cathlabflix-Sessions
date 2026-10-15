@@ -479,13 +479,18 @@
       display: block;
     }
 
-    /* Botão de Salvar */
+    /* Botão de Salvar e Ações */
     .admin-btn-row {
       margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
     .btn-submit {
-      width: 100%;
+      flex: 1;
+      min-width: 200px;
       background: linear-gradient(135deg, #E50914, #c80812);
       color: #fff;
       border: none;
@@ -511,6 +516,29 @@
 
     .btn-submit:active {
       transform: translateY(0);
+    }
+
+    .btn-cancel-edit {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 14px 22px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .btn-cancel-edit:hover {
+      background: rgba(239, 68, 68, 0.18);
+      color: #fca5a5;
+      border-color: rgba(239, 68, 68, 0.4);
     }
 
     /* Pré-visualização Lateral */
@@ -840,6 +868,7 @@
       flex-shrink: 0;
     }
 
+    .active-list-edit-btn,
     .active-list-view-btn {
       color: #FFFFFF;
       background: rgba(56, 189, 248, 0.15);
@@ -853,12 +882,72 @@
       padding: 7px 12px;
       border-radius: var(--radius-sm);
       transition: all var(--transition-fast);
+      cursor: pointer;
+      font-family: inherit;
     }
 
+    .active-list-edit-btn:hover,
     .active-list-view-btn:hover {
       background: #38bdf8;
       color: #010234;
       border-color: #38bdf8;
+      transform: translateY(-1px);
+    }
+
+    .editing-banner {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .editing-banner-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .editing-banner-text strong {
+      color: #FFFFFF;
+      max-width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    .btn-cancel-edit-pill {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .btn-cancel-edit-pill:hover {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+
+    .active-event-list-item.is-editing {
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.08);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
     }
 
     .active-list-delete-btn {
@@ -1078,7 +1167,7 @@
 
       <!-- Formulário de Cadastro Tema Azul -->
       <section class="form-card">
-        <h2 class="form-section-title">
+        <h2 class="form-section-title" id="formSectionTitle">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
             <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -1087,6 +1176,17 @@
           </svg>
           Informações do Evento
         </h2>
+
+        <div class="editing-banner" id="editingBanner" style="display: none;">
+          <div class="editing-banner-text">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Modo de Edição: <strong id="editingEventTitle"></strong></span>
+          </div>
+          <button type="button" class="btn-cancel-edit-pill" id="cancelEditTopBtn">Cancelar Edição</button>
+        </div>
 
         <form id="eventCreateForm">
 
@@ -1243,7 +1343,14 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-              <span>Salvar Evento</span>
+              <span id="saveBtnText">Salvar Evento</span>
+            </button>
+            <button type="button" class="btn-cancel-edit" id="cancelEditBtn" style="display: none;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Cancelar Edição</span>
             </button>
           </div>
 
@@ -2219,7 +2326,143 @@ export function post_eventos(request) {
         if (el) el.addEventListener('input', updateLivePreview);
       });
 
-      // 5. Envio do Formulário e Salvamento Automático
+      // Estado de Edição de Evento
+      let editingEventId = null;
+
+      function startEditEvent(id) {
+        const events = getActiveEventsList();
+        const ev = events.find(e => (e.id || e.slug) === id);
+        if (!ev) {
+          alert('Evento não encontrado para edição.');
+          return;
+        }
+
+        editingEventId = id;
+
+        // Preenche campos do formulário com os dados existentes
+        if (titleInput) titleInput.value = ev.title || '';
+        if (dateInput) dateInput.value = ev.date || '';
+        if (endDateInput) endDateInput.value = ev.endDate || ev.date || '';
+        if (timeInput) timeInput.value = ev.time || '';
+        if (locationInput) locationInput.value = ev.location || '';
+        
+        // Mapeia o tipo do evento
+        let typeVal = 'evento';
+        if (ev.type === 'apoio_sbhci') typeVal = 'apoio_sbhci';
+        else if (ev.type === 'eventos' || ev.type === 'evento_geral') typeVal = 'eventos';
+        if (typeSelect) {
+          typeSelect.value = typeVal;
+          updateTypeTag();
+        }
+
+        if (imageUrlInput) imageUrlInput.value = ev.image || '';
+        if (regUrlInput) regUrlInput.value = ev.registrationUrl || '';
+        if (descInput) descInput.value = ev.description || ev.subtitle || '';
+
+        // Atualiza presets visuais se coincidir
+        document.querySelectorAll('.preset-img-btn').forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-url') === ev.image);
+        });
+
+        // Atualiza preview em tempo real
+        updateLivePreview();
+
+        // Altera interface para Modo de Edição
+        const formTitle = document.getElementById('formSectionTitle');
+        if (formTitle) {
+          formTitle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            Editar Evento
+          `;
+        }
+
+        const editingBanner = document.getElementById('editingBanner');
+        const editingEventTitle = document.getElementById('editingEventTitle');
+        if (editingBanner && editingEventTitle) {
+          editingEventTitle.textContent = ev.title || 'Evento';
+          editingBanner.style.display = 'flex';
+        }
+
+        const saveBtnText = document.getElementById('saveBtnText');
+        if (saveBtnText) saveBtnText.textContent = 'Salvar Alterações';
+
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        if (cancelEditBtn) cancelEditBtn.style.display = 'inline-flex';
+
+        // Re-renderiza para destacar o item sendo editado na lista
+        renderActiveEvents();
+
+        // Scroll suave até o formulário de edição
+        const formCard = document.querySelector('.form-card');
+        if (formCard) {
+          formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        if (titleInput) titleInput.focus();
+        showToast('Modo de edição ativado. Altere os dados e clique em "Salvar Alterações".');
+      }
+
+      function cancelEdit() {
+        editingEventId = null;
+
+        // Limpa campos para o próximo cadastro
+        if (titleInput) titleInput.value = '';
+        if (endDateInput) endDateInput.value = '';
+        if (regUrlInput) regUrlInput.value = '';
+        if (descInput) descInput.value = '';
+        if (dateInput) dateInput.value = tomorrowStr;
+        if (timeInput) timeInput.value = '19:00 às 20:30';
+        if (locationInput) locationInput.value = 'Plataforma CathlabFlix Streaming';
+        if (typeSelect) {
+          typeSelect.value = 'evento';
+          updateTypeTag();
+        }
+
+        const formTitle = document.getElementById('formSectionTitle');
+        if (formTitle) {
+          formTitle.innerHTML = `
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Informações do Evento
+          `;
+        }
+
+        const editingBanner = document.getElementById('editingBanner');
+        if (editingBanner) editingBanner.style.display = 'none';
+
+        const saveBtnText = document.getElementById('saveBtnText');
+        if (saveBtnText) saveBtnText.textContent = 'Salvar Evento';
+
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        if (cancelEditBtn) cancelEditBtn.style.display = 'none';
+
+        updateLivePreview();
+        renderActiveEvents();
+      }
+
+      const cancelEditBtn = document.getElementById('cancelEditBtn');
+      if (cancelEditBtn) {
+        cancelEditBtn.addEventListener('click', () => {
+          cancelEdit();
+          showToast('Edição cancelada.');
+        });
+      }
+
+      const cancelEditTopBtn = document.getElementById('cancelEditTopBtn');
+      if (cancelEditTopBtn) {
+        cancelEditTopBtn.addEventListener('click', () => {
+          cancelEdit();
+          showToast('Edição cancelada.');
+        });
+      }
+
+      // 5. Envio do Formulário e Salvamento / Atualização Automática
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -2235,7 +2478,7 @@ export function post_eventos(request) {
         const description = descInput.value.trim();
 
         try {
-          const savedEvent = EventsService.saveEvent({
+          const eventPayload = {
             title,
             date,
             endDate,
@@ -2245,19 +2488,33 @@ export function post_eventos(request) {
             image,
             registrationUrl,
             description
-          });
+          };
 
-          showToast('✓ Evento salvo com sucesso e sincronizado!');
+          if (editingEventId) {
+            eventPayload.id = editingEventId;
+            eventPayload.slug = editingEventId;
+          }
 
-          // Limpa campos para o próximo cadastro
-          titleInput.value = '';
-          endDateInput.value = '';
-          regUrlInput.value = '';
-          descInput.value = '';
+          const savedEvent = EventsService.saveEvent(eventPayload);
 
-          currentEventsPage = 1;
-          renderActiveEvents();
-          updateLivePreview();
+          // Atualiza também window.INITIAL_EVENTS em memória se existir
+          if (typeof window !== 'undefined' && Array.isArray(window.INITIAL_EVENTS)) {
+            if (editingEventId) {
+              const idx = window.INITIAL_EVENTS.findIndex(e => (e.id || e.slug) === editingEventId);
+              if (idx >= 0) {
+                window.INITIAL_EVENTS[idx] = savedEvent;
+              } else {
+                window.INITIAL_EVENTS.unshift(savedEvent);
+              }
+            } else {
+              window.INITIAL_EVENTS.unshift(savedEvent);
+            }
+          }
+
+          const isEdit = !!editingEventId;
+          showToast(isEdit ? '✓ Evento atualizado com sucesso e sincronizado!' : '✓ Evento salvo com sucesso e sincronizado!');
+
+          cancelEdit(); // Limpa campos e desativa modo de edição
 
         } catch (err) {
           alert('Erro ao salvar evento: ' + err.message);
@@ -2400,9 +2657,10 @@ export function post_eventos(request) {
           const dateLabel = formatDateLabel(ev.date, ev.endDate);
           const eventImg = ev.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
           const eventId = ev.id || ev.slug || 'evento';
+          const isItemEditing = editingEventId && (ev.id === editingEventId || ev.slug === editingEventId);
 
           return `
-            <article class="active-event-list-item">
+            <article class="active-event-list-item ${isItemEditing ? 'is-editing' : ''}">
               <div class="active-list-cover-col">
                 <div class="active-list-cover-wrap">
                   <img src="${eventImg}" alt="${escapeHTML(ev.title || 'Evento')}" class="active-list-cover-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
@@ -2443,12 +2701,13 @@ export function post_eventos(request) {
               </div>
 
               <div class="active-list-actions-col">
-                <a href="/embed-evento-detalhe.html?id=${encodeURIComponent(eventId)}" target="_blank" class="active-list-view-btn" title="Visualizar página de detalhes">
-                  <span>Visualizar</span>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <polyline points="9 18 15 12 9 6"></polyline>
+                <button type="button" class="active-list-edit-btn" data-id="${eventId}" title="Editar evento">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                   </svg>
-                </a>
+                  <span>Editar</span>
+                </button>
                 <button type="button" class="active-list-delete-btn" data-id="${eventId}" title="Excluir evento">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <polyline points="3 6 5 6 21 6"></polyline>
@@ -2461,11 +2720,22 @@ export function post_eventos(request) {
           `;
         }).join('');
 
+        // Listeners de edição
+        listEl.querySelectorAll('.active-list-edit-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            startEditEvent(id);
+          });
+        });
+
         // Listeners de exclusão
         listEl.querySelectorAll('.active-list-delete-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             if (confirm('Tem certeza que deseja remover este evento?')) {
+              if (editingEventId === id) {
+                cancelEdit();
+              }
               if (typeof EventsService !== 'undefined' && typeof EventsService.deleteEvent === 'function') {
                 EventsService.deleteEvent(id);
               }
