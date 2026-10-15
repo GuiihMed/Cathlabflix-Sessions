@@ -300,13 +300,7 @@
 }
 
 .event-institution-box {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
-  border-radius: 12px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-subtle);
+  display: none !important;
 }
 
 .institution-logo-wrap {
