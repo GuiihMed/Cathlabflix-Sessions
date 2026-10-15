@@ -379,7 +379,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      max-height: calc(100vh - 40px);
+      box-sizing: border-box;
     }
 
     .playlist-header-row {
@@ -545,7 +545,9 @@
       flex-direction: column;
       gap: 8px;
       overflow-y: auto;
-      max-height: 420px;
+      flex: 1;
+      min-height: 0;
+      max-height: 455px;
       padding-right: 6px;
       scrollbar-width: thin;
       scrollbar-color: rgba(56, 189, 248, 0.45) rgba(255, 255, 255, 0.05);
@@ -751,10 +753,11 @@
         order: 3;
         position: static;
         max-height: none;
+        height: auto !important;
       }
 
       .playlist-scroll-list {
-        max-height: 420px;
+        max-height: 420px !important;
       }
 
       .related-materials-section {
@@ -843,7 +846,7 @@
       }
 
       .playlist-scroll-list {
-        max-height: 380px;
+        max-height: 380px !important;
         gap: 6px;
       }
 
@@ -1016,7 +1019,7 @@
       }
 
       .playlist-scroll-list {
-        max-height: 320px;
+        max-height: 320px !important;
         gap: 5px;
       }
 
@@ -2024,6 +2027,8 @@
         iframe: document.getElementById('vimeoPlayerIframe'),
         placeholder: document.getElementById('videoLoadingPlaceholder'),
         stageBox: document.getElementById('videoStageBox'),
+        metaCard: document.querySelector('.session-meta-card'),
+        playlistSidebar: document.querySelector('.playlist-sidebar-column'),
         mainTitle: document.getElementById('sessionMainTitle'),
         badgeDay: document.getElementById('badgeDay'),
         badgeRoom: document.getElementById('badgeRoom'),
@@ -2036,7 +2041,38 @@
         searchClear: document.getElementById('searchClearBtn')
       };
 
-      // 4. COMUNICAÇÃO DE RESIZE COM O IFRAME DO WIX
+      // 4. ALINHAMENTO AUTOMÁTICO DAS CAIXAS NO DESKTOP
+      // Garante que a base da playlist coincida exatamente com a base da caixa de tema
+      function alignStageBoxes() {
+        if (window.innerWidth <= 1024) {
+          if (dom.playlistSidebar) {
+            dom.playlistSidebar.style.height = '';
+          }
+          if (dom.playlistList) {
+            dom.playlistList.style.maxHeight = '';
+          }
+          return;
+        }
+
+        const stageBox = dom.stageBox || document.getElementById('videoStageBox');
+        const metaCard = dom.metaCard || document.querySelector('.session-meta-card');
+        const sidebar = dom.playlistSidebar || document.querySelector('.playlist-sidebar-column');
+
+        if (stageBox && metaCard && sidebar) {
+          const videoTop = stageBox.getBoundingClientRect().top;
+          const metaBottom = metaCard.getBoundingClientRect().bottom;
+          const targetHeight = Math.round(metaBottom - videoTop);
+
+          if (targetHeight > 300) {
+            sidebar.style.height = `${targetHeight}px`;
+            if (dom.playlistList) {
+              dom.playlistList.style.maxHeight = 'none';
+            }
+          }
+        }
+      }
+
+      // 5. COMUNICAÇÃO DE RESIZE COM O IFRAME DO WIX
       function sendResizeMessage() {
         try {
           const height = Math.max(
@@ -2071,6 +2107,7 @@
               renderRoomTabs();
               renderPlaylist();
               if (dom.playlistList) dom.playlistList.scrollTop = 0;
+              alignStageBoxes();
               sendResizeMessage();
             }
           });
@@ -2106,6 +2143,7 @@
             renderRoomTabs();
             renderPlaylist();
             if (dom.playlistList) dom.playlistList.scrollTop = 0;
+            alignStageBoxes();
             sendResizeMessage();
           }
         });
@@ -2125,6 +2163,7 @@
               renderRoomTabs();
               renderPlaylist();
               if (dom.playlistList) dom.playlistList.scrollTop = 0;
+              alignStageBoxes();
               sendResizeMessage();
             }
           });
@@ -2308,6 +2347,7 @@
           window.history.replaceState({ id: session.vimeoId }, '', newUrl.toString());
         } catch (e) {}
 
+        alignStageBoxes();
         sendResizeMessage();
       }
 
@@ -2321,6 +2361,7 @@
         }
         renderPlaylist();
         if (dom.playlistList) dom.playlistList.scrollTop = 0;
+        alignStageBoxes();
         sendResizeMessage();
       });
 
@@ -2331,6 +2372,7 @@
         dom.searchInput.focus();
         renderPlaylist();
         if (dom.playlistList) dom.playlistList.scrollTop = 0;
+        alignStageBoxes();
         sendResizeMessage();
       });
 
@@ -2353,20 +2395,31 @@
         } catch (e) {}
 
         playSession(targetId, false);
+        alignStageBoxes();
 
-        setTimeout(sendResizeMessage, 300);
-        setTimeout(sendResizeMessage, 1200);
-        setTimeout(sendResizeMessage, 3000);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 150);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 400);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 1200);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 3000);
       });
 
-      window.addEventListener('resize', sendResizeMessage);
+      window.addEventListener('resize', () => {
+        alignStageBoxes();
+        sendResizeMessage();
+      });
 
       if ('ResizeObserver' in window) {
         const ro = new ResizeObserver(() => {
+          alignStageBoxes();
           sendResizeMessage();
         });
+        const mainCol = document.getElementById('playerSection');
+        if (mainCol) ro.observe(mainCol);
         ro.observe(document.body);
       }
+
+      // Alinhamento imediato preventivo
+      alignStageBoxes();
 
     })();
   </script>
