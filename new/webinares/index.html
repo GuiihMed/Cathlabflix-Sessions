@@ -413,73 +413,50 @@
       margin-bottom: 24px;
     }
 
-    .wb-detail-badges {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
+    .wb-detail-page-title {
+      font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 0;
+      line-height: 1.2;
     }
 
-    .wb-badge-category {
-      background: var(--color-blue-soft);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--color-blue-accent);
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-    }
-
-    .wb-badge-highlight {
-      background: var(--color-primary-soft);
-      border: 1px solid rgba(229, 9, 20, 0.3);
-      color: var(--color-primary);
-      font-size: 0.75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
+    .wb-title-red-bar {
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
+      margin-top: 8px;
+      margin-bottom: 20px;
+      border-radius: 2px;
     }
 
     .wb-detail-title {
-      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-      font-weight: 900;
-      line-height: 1.25;
+      font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.3;
       color: #FFFFFF;
-      letter-spacing: -0.02em;
-      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+      margin: 0 0 4px;
     }
 
-    .wb-detail-meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      font-size: 0.8rem;
-      color: var(--color-text-secondary);
+    /* Grid do Palco Principal (Vídeo + Ações na Direita) */
+    .wb-detail-stage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.82fr) minmax(260px, 1fr);
+      gap: 20px;
+      align-items: stretch;
+      margin-bottom: 32px;
     }
 
-    .wb-meta-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Player Principal 16:9 */
     .wb-video-stage {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #000000;
-      border-radius: var(--radius-xl);
+      border-radius: var(--radius-lg, 12px);
       overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--color-border-subtle);
-      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--color-border-subtle, rgba(255, 255, 255, 0.12));
     }
 
     .wb-video-iframe {
@@ -489,107 +466,147 @@
       display: block;
     }
 
-    /* Barra de Ações Rápidas de IA (NotebookLM & Documentos) */
-    .wb-ai-actions-bar {
+    /* Pilha Vertical de Ações na Direita */
+    .wb-side-actions-stack {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 28px;
-      padding: 14px 18px;
-      background: rgba(6, 34, 87, 0.6);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      height: 100%;
     }
 
-    .wb-ai-action-btn {
+    .wb-side-action-card {
+      background: #07153d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .wb-side-action-card:hover {
+      background: #0d276b;
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      color: #FFFFFF;
+    }
+
+    .wb-side-action-card svg {
+      flex-shrink: 0;
+      color: #FFFFFF;
+    }
+
+    /* Seção: Resumos e Conteúdos de IA */
+    .wb-ai-section {
+      margin-top: 10px;
+    }
+
+    .wb-ai-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .wb-ai-section-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wb-ai-section-title {
+      font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .wb-sponsor-card {
+      background: #FFFFFF;
+      border-radius: 8px;
+      padding: 6px 16px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--color-border-subtle);
-      color: #FFFFFF;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 9px 16px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      white-space: nowrap;
+      justify-content: center;
+      min-width: 150px;
+      height: 56px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
 
-    .wb-ai-action-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: var(--color-blue-accent);
-      color: var(--color-blue-accent);
-      transform: translateY(-2px);
+    .wb-sponsor-logo {
+      max-height: 42px;
+      max-width: 160px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
-    .wb-ai-action-btn.btn-notebook {
-      background: linear-gradient(135deg, rgba(66, 133, 244, 0.2) 0%, rgba(219, 68, 85, 0.2) 100%);
-      border-color: rgba(66, 133, 244, 0.4);
-    }
-
-    .wb-ai-action-btn.btn-notebook:hover {
-      background: linear-gradient(135deg, rgba(66, 133, 244, 0.35) 0%, rgba(219, 68, 85, 0.35) 100%);
-      border-color: #4285F4;
-      color: #FFFFFF;
-    }
-
-    .wb-ai-action-btn.btn-pdf {
-      background: var(--color-primary-soft);
-      border-color: rgba(229, 9, 20, 0.3);
-    }
-
-    .wb-ai-action-btn.btn-pdf:hover {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
-      color: #FFFFFF;
-    }
-
-    /* ==========================================================================
-       4. SISTEMA DE ABAS OFICIAL (TABS)
-       ========================================================================== */
-    .wb-tabs-nav {
+    /* Grid de Abas em 2 Linhas */
+    .wb-tabs-grid {
       display: flex;
-      align-items: center;
-      gap: 6px;
-      overflow-x: auto;
-      border-bottom: 1px solid var(--color-border-subtle);
-      margin-bottom: 24px;
-      padding-bottom: 4px;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .wb-tabs-row {
+      display: grid;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .wb-tabs-row-1 {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .wb-tabs-row-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .wb-tab-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      border: none;
-      border-bottom: 3px solid transparent;
-      color: var(--color-text-secondary);
+      background: #07153d;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
       font-family: inherit;
       font-size: 0.88rem;
-      font-weight: 700;
-      padding: 12px 18px;
+      font-weight: 600;
+      padding: 12px 14px;
+      border-radius: 6px;
       cursor: pointer;
+      text-align: center;
       white-space: nowrap;
-      transition: all var(--transition-fast);
-      margin-bottom: -4px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .wb-tab-btn:hover {
+      background: #0d276b;
+      border-color: rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
     }
 
     .wb-tab-btn.active {
-      color: var(--color-primary);
-      border-bottom-color: var(--color-primary);
+      background: #FFFFFF !important;
+      color: #010234 !important;
+      border-color: #FFFFFF !important;
+      font-weight: 700 !important;
     }
 
     /* Painéis das Abas */
@@ -1099,39 +1116,43 @@
     }
 
     /* Regras Mobile Especializadas */
+    @media (max-width: 860px) {
+      .wb-detail-stage-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .wb-tabs-row-1 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .wb-tabs-row-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       .wb-detail-title {
-        font-size: 1.35rem;
-      }
-      .wb-tabs-nav {
-        gap: 4px;
-        padding-bottom: 4px;
+        font-size: 1.25rem;
       }
       .wb-tab-btn {
-        font-size: 0.78rem;
-        padding: 8px 12px;
-      }
-      .wb-ai-actions-bar {
-        padding: 10px;
-        gap: 8px;
-        overflow-x: auto;
-      }
-      .wb-ai-action-btn {
-        font-size: 0.75rem;
-        padding: 7px 12px;
-      }
-      .wb-quiz-wrap {
-        padding: 16px 12px;
-      }
-      .wb-quiz-intro h3 {
-        font-size: 1.15rem;
-      }
-      .wb-quiz-q-text {
-        font-size: 0.92rem;
-      }
-      .wb-quiz-option-btn {
         font-size: 0.82rem;
         padding: 10px 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wb-tabs-row-1 {
+        grid-template-columns: 1fr;
+      }
+      .wb-tab-btn {
+        font-size: 0.8rem;
+        padding: 9px 12px;
+      }
+      .wb-ai-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .wb-sponsor-card {
+        align-self: flex-start;
       }
     }
 
@@ -1218,184 +1239,180 @@
         </button>
       </div>
 
-      <!-- Cabeçalho do Webinar -->
+      <!-- Cabeçalho do Detalhe (Webinares + Linha Vermelha + Título do Webinar) -->
       <header class="wb-detail-header">
-        <div class="wb-detail-badges">
-          <span class="wb-badge-category" id="dtCategoryBadge">Balões Farmacológicos</span>
-          <span class="wb-badge-highlight" id="dtHighlightBadge">Lançamento Oficial</span>
-        </div>
-        <h2 class="wb-detail-title" id="dtTitle">Título do Webinar</h2>
-        <div class="wb-detail-meta-row">
-          <span class="wb-meta-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-            </svg>
-            <span id="dtDate">15 de Julho de 2026</span>
-          </span>
-          <span class="wb-meta-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span id="dtDuration">1h 08m</span>
-          </span>
-          <span class="wb-meta-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-            </svg>
-            <span>SBHCI Intervenção</span>
-          </span>
-        </div>
+        <h1 class="wb-detail-page-title">Webinares</h1>
+        <div class="wb-title-red-bar"></div>
+        <h2 class="wb-detail-title" id="dtTitle">Lançamento Magic Touch</h2>
       </header>
 
-      <!-- Player de Vídeo Principal 16:9 -->
-      <div class="wb-video-stage" id="dtVideoWrapper">
-        <!-- Iframe Vimeo injetado dinamicamente -->
+      <!-- Grid Principal do Topo: Vídeo 16:9 + 4 Cards de Ações Rápidas na Direita -->
+      <div class="wb-detail-stage-grid">
+        <!-- Coluna Esquerda: Player Vimeo -->
+        <div class="wb-video-stage" id="dtVideoWrapper">
+          <!-- Iframe Vimeo injetado dinamicamente -->
+        </div>
+
+        <!-- Coluna Direita: Cards Verticais de Ações -->
+        <div class="wb-side-actions-stack">
+          <a href="#wbAiSection" class="wb-side-action-card" id="dtSideBtnAiContent">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Conteúdo com IA</span>
+          </a>
+
+          <a href="#" class="wb-side-action-card" id="dtSideBtnQuiz" target="_blank" rel="noopener noreferrer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <path d="M16 11l2 2-6 6H10v-2l6-6z"></path>
+              <path d="M18 2l2 2-1 1-2-2 1-1z"></path>
+            </svg>
+            <span>Quiz</span>
+          </a>
+
+          <a href="#" class="wb-side-action-card" id="dtSideBtnFlashcards" target="_blank" rel="noopener noreferrer">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <polygon points="12 8 13.5 11.5 17 12 14.5 14.5 15 18 12 16.2 9 18 9.5 14.5 7 12 10.5 11.5 12 8"></polygon>
+            </svg>
+            <span>Flash Cards</span>
+          </a>
+
+          <a href="#" class="wb-side-action-card" id="dtSideBtnNotebook" target="_blank" rel="noopener noreferrer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              <path d="M12 6c1.5 0 3 1.2 3 3s-1.5 3-3 3"></path>
+              <path d="M12 9c-1.5 0-3-1.2-3-3s1.5-3 3-3"></path>
+            </svg>
+            <span>Pergunte ao NotebookLM</span>
+          </a>
+        </div>
       </div>
 
-      <!-- Barra de Ações Rápidas de IA / NotebookLM -->
-      <div class="wb-ai-actions-bar">
-        <a href="#" class="wb-ai-action-btn btn-notebook" id="dtBtnNotebookLm" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-          </svg>
-          Pergunte ao NotebookLM
-        </a>
-
-        <a href="#" class="wb-ai-action-btn" id="dtBtnQuizIa" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-          Quiz Clínico IA
-        </a>
-
-        <a href="#" class="wb-ai-action-btn" id="dtBtnFlashcardsIa" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-          </svg>
-          Flashcards IA
-        </a>
-
-        <a href="#" class="wb-ai-action-btn btn-pdf" id="dtBtnPdfDownload" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          Baixar PDF da Aula
-        </a>
-      </div>
-
-      <!-- Abas Oficiais -->
-      <nav class="wb-tabs-nav" id="wbTabsNav">
-        <button type="button" class="wb-tab-btn active" data-tab="tab-resumo">📋 Resumo Executivo</button>
-        <button type="button" class="wb-tab-btn" data-tab="tab-relatorio">📖 Relatório da Aula</button>
-        <button type="button" class="wb-tab-btn" data-tab="tab-infografico">🖼️ Infográfico HD</button>
-        <button type="button" class="wb-tab-btn" data-tab="tab-audios">🎧 Áudios & Podcasts</button>
-        <button type="button" class="wb-tab-btn" data-tab="tab-video-ai">🎬 Análise com IA</button>
-        <button type="button" class="wb-tab-btn" data-tab="tab-pdfs">📁 PDFs & Slides</button>
-        <button type="button" class="wb-tab-btn" data-tab="tab-quiz">🧠 Quiz Interativo</button>
-      </nav>
-
-      <!-- Painel 1: Resumo -->
-      <section class="wb-tab-panel active" id="tab-resumo">
-        <div class="wb-prose-content" id="dtSummaryContent">
-          <!-- Injetado dinamicamente -->
-        </div>
-      </section>
-
-      <!-- Painel 2: Relatório da Aula -->
-      <section class="wb-tab-panel" id="tab-relatorio">
-        <div class="wb-prose-content" id="dtReportContent">
-          <!-- Injetado dinamicamente -->
-        </div>
-      </section>
-
-      <!-- Painel 3: Infográfico HD -->
-      <section class="wb-tab-panel" id="tab-infografico">
-        <div class="wb-infographic-container">
-          <div class="wb-infographic-actions">
-            <a href="#" class="wb-btn-primary" id="dtInfographicOpenHd" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-              Abrir Imagem em Alta Resolução
-            </a>
-            <a href="#" class="wb-btn-secondary" id="dtInfographicDownload" target="_blank" download>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              Baixar Infográfico
-            </a>
+      <!-- Seção: Resumos e Conteúdos de IA -->
+      <div class="wb-ai-section" id="wbAiSection">
+        <!-- Cabeçalho da Seção com Logo do Patrocinador na Direita -->
+        <div class="wb-ai-section-header">
+          <div class="wb-ai-section-title-wrap">
+            <h3 class="wb-ai-section-title">Resumos e conteúdos de IA</h3>
+            <div class="wb-title-red-bar"></div>
           </div>
-          <div class="wb-infographic-wrap">
-            <img src="" alt="Infográfico Oficial" class="wb-infographic-img" id="dtInfographicImg" loading="lazy">
+          <div class="wb-sponsor-card" id="dtSponsorCard">
+            <img src="" alt="Patrocinador Oficial" id="dtSponsorImg" class="wb-sponsor-logo">
           </div>
         </div>
-      </section>
 
-      <!-- Painel 4: Áudios & Podcasts -->
-      <section class="wb-tab-panel" id="tab-audios">
-        <div class="wb-audios-list" id="dtAudiosList">
-          <!-- Injetado dinamicamente -->
-        </div>
-      </section>
+        <!-- Grade de Abas em 2 Linhas -->
+        <nav class="wb-tabs-grid" id="wbTabsNav">
+          <div class="wb-tabs-row wb-tabs-row-1">
+            <button type="button" class="wb-tab-btn active" data-tab="tab-resumo">Resumo</button>
+            <button type="button" class="wb-tab-btn" data-tab="tab-relatorio">Relatório da aula</button>
+            <button type="button" class="wb-tab-btn" data-tab="tab-infografico">Infográfico</button>
+            <button type="button" class="wb-tab-btn" data-tab="tab-audio-resumo">Resumo em Áudio</button>
+            <button type="button" class="wb-tab-btn" data-tab="tab-audio-debate">Debate em Podcast</button>
+          </div>
+          <div class="wb-tabs-row wb-tabs-row-2">
+            <button type="button" class="wb-tab-btn" data-tab="tab-apresentacao">Apresentação com IA</button>
+            <button type="button" class="wb-tab-btn" data-tab="tab-video-ai">Vídeo de análise com IA</button>
+          </div>
+        </nav>
 
-      <!-- Painel 5: Vídeo de Análise com IA -->
-      <section class="wb-tab-panel" id="tab-video-ai">
-        <div class="wb-ai-video-box">
-          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-            <div>
-              <h3 style="font-size: 1.25rem; font-weight: 800; color: #FFFFFF; margin-bottom: 4px;">Vídeo de Análise Científica com IA</h3>
-              <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Resumo audiovisual dinâmico estruturado por inteligência artificial com os pontos cruciais do webinar.</p>
+        <!-- Container de Conteúdo das Abas -->
+        <div class="wb-tab-content-container">
+          <!-- Painel 1: Resumo -->
+          <section class="wb-tab-panel active" id="tab-resumo">
+            <div class="wb-prose-content" id="dtSummaryContent">
+              <!-- Injetado dinamicamente -->
             </div>
-            <a href="#" class="wb-btn-primary" id="dtVideoAiDownload" target="_blank" download>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              Baixar Vídeo MP4
-            </a>
-          </div>
-          <div class="wb-ai-video-player-wrap">
-            <video class="wb-ai-video-player" id="dtVideoAiPlayer" controls playsinline preload="metadata">
-              Seu navegador não suporta reprodução de vídeo HTML5.
-            </video>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <!-- Painel 6: PDFs & Slides -->
-      <section class="wb-tab-panel" id="tab-pdfs">
-        <div class="wb-pdfs-grid" id="dtPdfsGrid">
-          <!-- Injetado dinamicamente -->
-        </div>
-      </section>
+          <!-- Painel 2: Relatório da Aula -->
+          <section class="wb-tab-panel" id="tab-relatorio">
+            <div class="wb-prose-content" id="dtReportContent">
+              <!-- Injetado dinamicamente -->
+            </div>
+          </section>
 
-      <!-- Painel 7: Quiz Interativo com IA -->
-      <section class="wb-tab-panel" id="tab-quiz">
-        <div class="wb-quiz-wrap">
-          <div class="wb-quiz-intro">
-            <h3>Quiz de Fixação Clínica com Inteligência Artificial</h3>
-            <p>Teste seus conhecimentos com questões elaboradas sobre as principais evidências científicas e condutas técnicas abordadas neste webinar.</p>
-          </div>
-          <div class="wb-quiz-items" id="dtQuizItems">
-            <!-- Injetado dinamicamente -->
-          </div>
+          <!-- Painel 3: Infográfico HD -->
+          <section class="wb-tab-panel" id="tab-infografico">
+            <div class="wb-infographic-container">
+              <div class="wb-infographic-actions">
+                <a href="#" class="wb-btn-primary" id="dtInfographicOpenHd" target="_blank" rel="noopener noreferrer">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  Abrir Imagem em Alta Resolução
+                </a>
+                <a href="#" class="wb-btn-secondary" id="dtInfographicDownload" target="_blank" download>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Baixar Infográfico
+                </a>
+              </div>
+              <div class="wb-infographic-wrap">
+                <img src="" alt="Infográfico Oficial" class="wb-infographic-img" id="dtInfographicImg" loading="lazy">
+              </div>
+            </div>
+          </section>
+
+          <!-- Painel 4: Resumo em Áudio -->
+          <section class="wb-tab-panel" id="tab-audio-resumo">
+            <div class="wb-audios-list" id="dtAudioResumoBox">
+              <!-- Injetado dinamicamente -->
+            </div>
+          </section>
+
+          <!-- Painel 5: Debate em Podcast -->
+          <section class="wb-tab-panel" id="tab-audio-debate">
+            <div class="wb-audios-list" id="dtAudioDebateBox">
+              <!-- Injetado dinamicamente -->
+            </div>
+          </section>
+
+          <!-- Painel 6: Apresentação com IA -->
+          <section class="wb-tab-panel" id="tab-apresentacao">
+            <div class="wb-presentation-wrap" id="dtPresentationBox">
+              <!-- Injetado dinamicamente -->
+            </div>
+          </section>
+
+          <!-- Painel 7: Vídeo de Análise com IA -->
+          <section class="wb-tab-panel" id="tab-video-ai">
+            <div class="wb-ai-video-box">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div>
+                  <h4 style="font-size: 1.15rem; font-weight: 700; color: #FFFFFF; margin-bottom: 4px;">Vídeo de Análise Científica com IA</h4>
+                  <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">Resumo audiovisual dinâmico estruturado por inteligência artificial com os pontos cruciais do webinar.</p>
+                </div>
+                <a href="#" class="wb-btn-primary" id="dtVideoAiDownload" target="_blank" download>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Baixar Vídeo MP4
+                </a>
+              </div>
+              <div class="wb-ai-video-player-wrap">
+                <video class="wb-ai-video-player" id="dtVideoAiPlayer" controls playsinline preload="metadata">
+                  Seu navegador não suporta reprodução de vídeo HTML5.
+                </video>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
 
     </section>
 
@@ -1411,6 +1428,9 @@
     slug: "15-07-26-lacamento-magic-touch",
     title: "Lançamento Magic Touch - A nova era dos balões farmacológicos",
     shortTitle: "15/07/26 - Lançamento Magic Touch",
+    internalTitle: "Lançamento Magic Touch",
+    sponsor: "SCITECH Innovation for Life",
+    sponsorLogo: "https://static.wixstatic.com/media/1d3d47_e2a3d4c685244f2da27fc11338278716~mv2.png",
     date: "15/07/2026",
     dateISO: "2026-07-15",
     dateFormatted: "15 de Julho de 2026",
@@ -1461,13 +1481,9 @@
       }
     ],
     summary: `
-      <p class="webinar-lead">O webinar promovido pela SBHCI marca o lançamento no Brasil do <strong>Magic Touch</strong>, um balão farmacológico revestido com sirolimus, e destaca a estratégia de <em>"não deixar nada para trás"</em> (<em>leave nothing behind</em>) para permitir a recuperação endotelial e preservar a fisiologia e a pulsatilidade arterial.</p>
+      <p>O webinar promovido pela SBHCI marca o lançamento no Brasil do Magic Touch, um balão farmacológico revestido com cirolimos, e destaca a estratégia de "não deixar nada para trás" (leave nothing behind) para permitir a recuperação endotelial e preservar a fisiologia e a pulsatilidade arterial. Uma distinção fundamental abordada é que os balões farmacológicos não possuem efeito de classe, havendo diferenças bioquímicas importantes entre os fármacos utilizados. Enquanto o paclitaxel atua de forma citotóxica e irreversível, induzindo a morte celular na transição da fase G2 para M, o cirolimos age na fase G1 com um efeito citostático, reversível e propriedades anti-inflamatórias potentes, oferecendo uma janela terapêutica muito mais ampla. Como o cirolimos apresenta maior dificuldade natural de penetração e retenção na parede vascular, o Magic Touch utiliza uma tecnologia inovadora de nanocarreadores de fosfolipídios para encapsular e transferir a droga, garantindo sua ação no vaso por até 120 dias.</p>
 
-      <p>Uma distinção fundamental abordada é que os balões farmacológicos não possuem efeito de classe, havendo diferenças bioquímicas importantes entre os fármacos utilizados. Enquanto o paclitaxel atua de forma citotóxica e irreversível, induzindo a morte celular na transição da fase G2 para M, o sirolimus age na fase G1 com um efeito citostático, reversível e propriedades anti-inflamatórias potentes, oferecendo uma janela terapêutica muito mais ampla. Como o sirolimus apresenta maior dificuldade natural de penetração e retenção na parede vascular, o Magic Touch utiliza uma tecnologia inovadora de nanocarreadores de fosfolipídios para encapsular e transferir a droga, garantindo sua ação no vaso por até 120 dias.</p>
-
-      <p>Na prática clínica, o sucesso do tratamento com balões farmacológicos depende crucialmente de um rigoroso preparo da lesão, processo que os especialistas comparam à preparação cuidadosa de uma parede antes da pintura. Recomenda-se o uso inicial de balões não complacentes numa relação balão-vaso de 1:1, sendo o uso de <em>cutting balloons</em> ou dispositivos especializados (como litotripsia) essencial para lidar com o recolhimento elástico (recoil) em casos de reestenose intra-stent e calcificações.</p>
-
-      <p>O uso de imagem intravascular (como IVUS ou OCT) é fortemente recomendado para avaliar as características da placa e orientar o preparo adequado. Após o preparo, a decisão final de aplicar o balão farmacológico em vez de um stent baseia-se em critérios angiográficos estritos: é necessário haver um fluxo preservado e ausência de dissecções que limitem o fluxo sanguíneo. Ensaios clínicos em andamento, como o TRANSFORM 2, têm expandido as evidências para o uso desses balões não apenas em vasos finos, mas também no tratamento de lesões de novo em vasos maiores.</p>
+      <p>Na prática clínica, o sucesso do tratamento com balões farmacológicos depende crucialmente de um rigoroso preparo da lesão, processo que os especialistas comparam à preparação cuidadosa de uma parede antes da pintura. Recomenda-se o uso inicial de balões não complacentes numa relação balão-vaso de 1:1, sendo o uso de cutting balloons ou dispositivos especializados (como litotripsia) essencial para lidar com o recolhimento elástico (recoil) em casos de reestenose intra-stent e calcificações. O uso de imagem intravascular (como IVUS ou OCT) é fortemente recomendado para avaliar as características da placa e orientar o preparo adequado. Após o preparo, a decisão final de aplicar o balão farmacológico em vez de um stent baseia-se em critérios angiográficos estritos: é necessário haver um fluxo preservado e ausência de dissecções que limitem o fluxo sanguíneo. Ensaios clínicos em andamento, como o TRANSFORM 2, têm expandido as evidências para o uso desses balões não apenas em vasos finos, mas também no tratamento de lesões de novo em vasos maiores.</p>
     `,
     fullReport: `
       <h3>Comparação Teórica e Mecanismos de Ação: Sirolimus vs. Paclitaxel</h3>
@@ -1567,6 +1583,9 @@
     slug: "01-06-26-da-evidencia-ao-paciente",
     title: "Da evidência ao paciente: a jornada do AGENT™ DCB",
     shortTitle: "01/06/26 - Da evidência ao paciente",
+    internalTitle: "Da evidência ao paciente: a jornada do AGENT™ DCB",
+    sponsor: "Boston Scientific",
+    sponsorLogo: "https://static.wixstatic.com/media/1d3d47_036b5d9b33604ebab2be4b3d7bc77559~mv2.png",
     date: "01/06/2026",
     dateISO: "2026-06-01",
     dateFormatted: "01 de Junho de 2026",
@@ -1729,6 +1748,9 @@
     slug: "valve-in-valve-mitral",
     title: "Valve in valve Mitral: da prática ao randomizado - o Marco Brasileiro do Surviv",
     shortTitle: "27/04/26 - Valve in valve Mitral",
+    internalTitle: "Valve in valve Mitral: da prática ao randomizado",
+    sponsor: "Edwards Lifesciences",
+    sponsorLogo: "https://static.wixstatic.com/media/1d3d47_6f6ebc5d83924df68848369773aeb3e5~mv2.jpeg",
     date: "27/04/2026",
     dateISO: "2026-04-27",
     dateFormatted: "27 de Abril de 2026",
@@ -1936,6 +1958,9 @@
     slug: "23-03-2026-webinar-jovem-sbhci",
     title: "Webinar SBHCI Jovem - Inovações e Estratégias em Intervenção Estrutural",
     shortTitle: "Webinar SBHCI Jovem - 23/03/2026",
+    internalTitle: "Webinar SBHCI Jovem - Inovações e Estratégias em Intervenção Estrutural",
+    sponsor: "SBHCI",
+    sponsorLogo: "https://static.wixstatic.com/media/1d3d47_1b76bd500d6b4ce3a6c53d98595198ec~mv2.png",
     date: "23/03/2026",
     dateISO: "2026-03-23",
     dateFormatted: "23 de Março de 2026",
@@ -2283,74 +2308,114 @@
 
         currentWebinar = webinar;
 
-        // Atualiza textos do cabeçalho
-        document.getElementById('dtTitle').textContent = webinar.title;
-        document.getElementById('dtCategoryBadge').textContent = webinar.category;
-        document.getElementById('dtHighlightBadge').textContent = webinar.badge;
-        document.getElementById('dtDate').textContent = webinar.dateFormatted;
-        document.getElementById('dtDuration').textContent = webinar.duration;
+        // Atualiza título da página interna
+        const dtTitleEl = document.getElementById('dtTitle');
+        if (dtTitleEl) {
+          dtTitleEl.textContent = webinar.internalTitle || webinar.title;
+        }
 
         // Injeta Player Vimeo Oficial
         const vimeoWrapper = document.getElementById('dtVideoWrapper');
-        let vimeoSrc = `https://player.vimeo.com/video/${webinar.vimeoId}?color=e50914&title=0&byline=0&portrait=0`;
-        vimeoWrapper.innerHTML = `
-          <iframe 
-            src="${vimeoSrc}" 
-            class="wb-video-iframe" 
-            frameborder="0" 
-            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin"
-            title="${escapeHTML(webinar.title)}"
-          ></iframe>
-        `;
+        if (vimeoWrapper) {
+          const vimeoSrc = `https://player.vimeo.com/video/${webinar.vimeoId}?color=e50914&title=0&byline=0&portrait=0`;
+          vimeoWrapper.innerHTML = `
+            <iframe 
+              src="${vimeoSrc}" 
+              class="wb-video-iframe" 
+              frameborder="0" 
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="${escapeHTML(webinar.internalTitle || webinar.title)}"
+            ></iframe>
+          `;
+        }
 
-        // Atualiza Ações Rápidas de IA
-        const btnNotebook = document.getElementById('dtBtnNotebookLm');
-        btnNotebook.href = webinar.notebookLm.notebookUrl;
+        // Configura as 4 ações laterais (na coluna direita do vídeo)
+        const sideBtnAiContent = document.getElementById('dtSideBtnAiContent');
+        if (sideBtnAiContent) {
+          sideBtnAiContent.onclick = (e) => {
+            e.preventDefault();
+            const aiSec = document.getElementById('wbAiSection');
+            if (aiSec) aiSec.scrollIntoView({ behavior: 'smooth' });
+          };
+        }
 
-        const btnQuiz = document.getElementById('dtBtnQuizIa');
-        btnQuiz.href = webinar.notebookLm.quizUrl;
+        const sideBtnQuiz = document.getElementById('dtSideBtnQuiz');
+        if (sideBtnQuiz) {
+          sideBtnQuiz.href = (webinar.notebookLm && webinar.notebookLm.quizUrl) ? webinar.notebookLm.quizUrl : '#';
+        }
 
-        const btnFlash = document.getElementById('dtBtnFlashcardsIa');
-        btnFlash.href = webinar.notebookLm.flashcardsUrl;
+        const sideBtnFlashcards = document.getElementById('dtSideBtnFlashcards');
+        if (sideBtnFlashcards) {
+          sideBtnFlashcards.href = (webinar.notebookLm && webinar.notebookLm.flashcardsUrl) ? webinar.notebookLm.flashcardsUrl : '#';
+        }
 
-        const btnPdf = document.getElementById('dtBtnPdfDownload');
-        btnPdf.href = webinar.pdfUrl;
+        const sideBtnNotebook = document.getElementById('dtSideBtnNotebook');
+        if (sideBtnNotebook) {
+          sideBtnNotebook.href = (webinar.notebookLm && webinar.notebookLm.notebookUrl) ? webinar.notebookLm.notebookUrl : '#';
+        }
+
+        // Patrocinador Oficial na seção de IA
+        const sponsorCard = document.getElementById('dtSponsorCard');
+        const sponsorImg = document.getElementById('dtSponsorImg');
+        if (sponsorCard && sponsorImg) {
+          if (webinar.sponsorLogo) {
+            sponsorImg.src = webinar.sponsorLogo;
+            sponsorImg.alt = webinar.sponsor || 'Patrocinador';
+            sponsorCard.style.display = 'inline-flex';
+          } else {
+            sponsorCard.style.display = 'none';
+          }
+        }
 
         // Aba 1: Resumo
-        document.getElementById('dtSummaryContent').innerHTML = webinar.summary || '<p>Resumo em processamento.</p>';
+        const summaryEl = document.getElementById('dtSummaryContent');
+        if (summaryEl) {
+          summaryEl.innerHTML = webinar.summary || '<p>Resumo em processamento.</p>';
+        }
 
-        // Aba 2: Relatório
-        document.getElementById('dtReportContent').innerHTML = webinar.fullReport || '<p>Relatório da aula em elaboração.</p>';
+        // Aba 2: Relatório da aula
+        const reportEl = document.getElementById('dtReportContent');
+        if (reportEl) {
+          reportEl.innerHTML = webinar.fullReport || '<p>Relatório da aula em elaboração.</p>';
+        }
 
         // Aba 3: Infográfico
         const infoImg = document.getElementById('dtInfographicImg');
         const infoOpenHd = document.getElementById('dtInfographicOpenHd');
         const infoDownload = document.getElementById('dtInfographicDownload');
-        infoImg.src = webinar.infographicUrl;
-        infoOpenHd.href = webinar.infographicUrl;
-        infoDownload.href = webinar.infographicUrl;
-
-        // Aba 4: Áudios & Podcasts
-        renderAudiosList(webinar.audios);
-
-        // Aba 5: Vídeo de Análise IA
-        const videoAiPlayer = document.getElementById('dtVideoAiPlayer');
-        const videoAiDownload = document.getElementById('dtVideoAiDownload');
-        if (webinar.videoAiUrl) {
-          videoAiPlayer.src = webinar.videoAiUrl;
-          videoAiDownload.href = webinar.videoAiUrl;
-          videoAiDownload.style.display = 'inline-flex';
-        } else {
-          videoAiPlayer.removeAttribute('src');
-          videoAiDownload.style.display = 'none';
+        if (infoImg && infoOpenHd && infoDownload) {
+          infoImg.src = webinar.infographicUrl || '';
+          infoOpenHd.href = webinar.infographicUrl || '#';
+          infoDownload.href = webinar.infographicUrl || '#';
         }
 
-        // Aba 6: PDFs & Slides
-        renderPdfsGrid(webinar);
+        // Aba 4: Resumo em Áudio
+        const audioResumo = (webinar.audios && webinar.audios.length > 0) ? webinar.audios[0] : null;
+        renderSingleAudio('dtAudioResumoBox', audioResumo, 'Resumo em Áudio');
 
-        // Aba 7: Quiz Interativo
-        renderQuizQuestions(webinar.quiz);
+        // Aba 5: Debate em Podcast
+        const audioDebate = (webinar.audios && webinar.audios.length > 1) 
+          ? webinar.audios[1] 
+          : (webinar.audios && webinar.audios[0] ? webinar.audios[0] : null);
+        renderSingleAudio('dtAudioDebateBox', audioDebate, 'Debate em Podcast');
+
+        // Aba 6: Apresentação com IA
+        renderPresentationBox(webinar);
+
+        // Aba 7: Vídeo de Análise com IA
+        const videoAiPlayer = document.getElementById('dtVideoAiPlayer');
+        const videoAiDownload = document.getElementById('dtVideoAiDownload');
+        if (videoAiPlayer && videoAiDownload) {
+          if (webinar.videoAiUrl) {
+            videoAiPlayer.src = webinar.videoAiUrl;
+            videoAiDownload.href = webinar.videoAiUrl;
+            videoAiDownload.style.display = 'inline-flex';
+          } else {
+            videoAiPlayer.removeAttribute('src');
+            videoAiDownload.style.display = 'none';
+          }
+        }
 
         // Resetar para a primeira aba (Resumo)
         switchTab('tab-resumo');
@@ -2378,10 +2443,12 @@
         if (activeAudioElement) {
           activeAudioElement.pause();
           activeAudioElement = null;
+          activeAudioPlayBtn = null;
         }
 
         // Limpa player de vídeo para parar o som
-        document.getElementById('dtVideoWrapper').innerHTML = '';
+        const vimeoWrapper = document.getElementById('dtVideoWrapper');
+        if (vimeoWrapper) vimeoWrapper.innerHTML = '';
         const videoAi = document.getElementById('dtVideoAiPlayer');
         if (videoAi) videoAi.pause();
 
@@ -2410,35 +2477,37 @@
         notifyParentResize();
       }
 
-      // 7. RENDERIZAR ÁUDIOS & PODCASTS INTERATIVOS
-      function renderAudiosList(audios) {
-        const container = document.getElementById('dtAudiosList');
-        if (!container || !audios || audios.length === 0) {
-          container.innerHTML = '<p style="color: var(--color-text-secondary);">Nenhum áudio disponível no momento.</p>';
+      // 7. RENDERIZAR PLAYER DE ÁUDIO DEDICADO POR ABA
+      function renderSingleAudio(containerId, audio, defaultType = 'Áudio') {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (!audio) {
+          container.innerHTML = '<p style="color: var(--color-text-secondary); padding: 20px;">Nenhum áudio disponível para esta seção no momento.</p>';
           return;
         }
 
-        container.innerHTML = audios.map((audio, idx) => `
-          <div class="wb-audio-card" id="card-${audio.id || idx}">
+        const trackId = audio.id || containerId;
+        container.innerHTML = `
+          <div class="wb-audio-card" id="card-${trackId}">
             <div class="wb-audio-card-header">
               <div class="wb-audio-track-info">
-                <h4>${escapeHTML(audio.title ? audio.title.replace(/_/g, ' ') : 'Áudio Oficial')}</h4>
+                <h4>${escapeHTML(audio.title ? audio.title.replace(/_/g, ' ') : defaultType)}</h4>
                 <div class="wb-audio-track-meta">${escapeHTML(audio.artist || 'CathlabFlix SBHCI')} &bull; ${escapeHTML(audio.duration || '')}</div>
               </div>
-              <span class="wb-audio-type-pill">${escapeHTML(audio.type || 'Áudio')}</span>
+              <span class="wb-audio-type-pill">${escapeHTML(audio.type || defaultType)}</span>
             </div>
 
-            ${audio.desc ? `<p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0;">${escapeHTML(audio.desc)}</p>` : ''}
+            ${audio.desc ? `<p style="font-size: 0.85rem; color: var(--color-text-secondary); margin: 0 0 14px;">${escapeHTML(audio.desc)}</p>` : ''}
 
             <div class="wb-audio-player-controls">
-              <button type="button" class="wb-audio-play-btn" data-audio-src="${escapeHTML(audio.url || '')}" data-track-id="${audio.id || idx}" aria-label="Reproduzir áudio">
+              <button type="button" class="wb-audio-play-btn" data-audio-src="${escapeHTML(audio.url || '')}" aria-label="Reproduzir áudio">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
               </button>
 
               <div class="wb-audio-scrubber-wrap">
-                <input type="range" class="wb-audio-range-slider" min="0" max="100" value="0" data-track-id="${audio.id || idx}">
+                <input type="range" class="wb-audio-range-slider" min="0" max="100" value="0">
                 <div class="wb-audio-timer-row">
                   <span class="curr-time">00:00</span>
                   <span class="total-time">${escapeHTML(audio.duration || '00:00')}</span>
@@ -2457,26 +2526,16 @@
               ` : ''}
             </div>
           </div>
-        `).join('');
+        `;
 
-        // Inicializar lógica de reprodução HTML5 Audio
-        initAudioEngine();
-      }
+        const playBtn = container.querySelector('.wb-audio-play-btn');
+        const slider = container.querySelector('.wb-audio-range-slider');
+        const currTimeEl = container.querySelector('.curr-time');
+        const totalTimeEl = container.querySelector('.total-time');
 
-      function initAudioEngine() {
-        const playButtons = document.querySelectorAll('.wb-audio-play-btn');
-
-        playButtons.forEach(btn => {
-          btn.addEventListener('click', function() {
-            const audioSrc = this.getAttribute('data-audio-src');
-            if (!audioSrc) return;
-
-            const card = this.closest('.wb-audio-card');
-            const slider = card.querySelector('.wb-audio-range-slider');
-            const currTimeEl = card.querySelector('.curr-time');
-            const totalTimeEl = card.querySelector('.total-time');
-
-            // Se este botão já estiver tocando: pausa
+        if (playBtn && audio.url) {
+          playBtn.addEventListener('click', function() {
+            // Se este botão já estiver ativo e tocando/pausado
             if (activeAudioElement && activeAudioPlayBtn === this) {
               if (!activeAudioElement.paused) {
                 activeAudioElement.pause();
@@ -2488,7 +2547,7 @@
               return;
             }
 
-            // Para áudio anterior se houver
+            // Para áudio anterior
             if (activeAudioElement) {
               activeAudioElement.pause();
               if (activeAudioPlayBtn) {
@@ -2496,48 +2555,48 @@
               }
             }
 
-            // Cria novo áudio
-            const audio = new Audio(audioSrc);
-            activeAudioElement = audio;
+            const sound = new Audio(audio.url);
+            activeAudioElement = sound;
             activeAudioPlayBtn = this;
 
-            audio.addEventListener('loadedmetadata', () => {
-              const mins = Math.floor(audio.duration / 60);
-              const secs = Math.floor(audio.duration % 60);
+            sound.addEventListener('loadedmetadata', () => {
+              const mins = Math.floor(sound.duration / 60);
+              const secs = Math.floor(sound.duration % 60);
               totalTimeEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             });
 
-            audio.addEventListener('timeupdate', () => {
-              if (audio.duration) {
-                const pct = (audio.currentTime / audio.duration) * 100;
+            sound.addEventListener('timeupdate', () => {
+              if (sound.duration) {
+                const pct = (sound.currentTime / sound.duration) * 100;
                 slider.value = pct;
-                const cMins = Math.floor(audio.currentTime / 60);
-                const cSecs = Math.floor(audio.currentTime % 60);
+                const cMins = Math.floor(sound.currentTime / 60);
+                const cSecs = Math.floor(sound.currentTime % 60);
                 currTimeEl.textContent = `${String(cMins).padStart(2, '0')}:${String(cSecs).padStart(2, '0')}`;
               }
             });
 
-            audio.addEventListener('ended', () => {
-              btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+            sound.addEventListener('ended', () => {
+              playBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
               slider.value = 0;
               currTimeEl.textContent = '00:00';
             });
 
             slider.addEventListener('input', () => {
-              if (audio.duration) {
-                audio.currentTime = (slider.value / 100) * audio.duration;
+              if (sound.duration) {
+                sound.currentTime = (slider.value / 100) * sound.duration;
               }
             });
 
-            audio.play();
+            sound.play();
             this.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
           });
-        });
+        }
       }
 
-      // 8. RENDERIZAR PDFs & SLIDES
-      function renderPdfsGrid(webinar) {
-        const grid = document.getElementById('dtPdfsGrid');
+      // 8. RENDERIZAR APRESENTAÇÃO COM IA (PDFs)
+      function renderPresentationBox(webinar) {
+        const container = document.getElementById('dtPresentationBox');
+        if (!container) return;
         const pdfList = (webinar.pdfs && webinar.pdfs.length > 0)
           ? webinar.pdfs
           : [{
@@ -2546,85 +2605,34 @@
               desc: 'Documento oficial completo com tabelas analíticas e protocolos técnicos de intervenção.'
             }];
 
-        grid.innerHTML = pdfList.map(pdf => `
-          <div class="wb-pdf-card">
-            <div class="wb-pdf-card-top">
-              <div class="wb-pdf-icon-badge">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                </svg>
+        container.innerHTML = `
+          <div class="wb-pdfs-grid">
+            ${pdfList.map(pdf => `
+              <div class="wb-pdf-card">
+                <div class="wb-pdf-card-top">
+                  <div class="wb-pdf-icon-badge">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="wb-pdf-card-title">${escapeHTML(pdf.title)}</h4>
+                  </div>
+                </div>
+                <p class="wb-pdf-card-desc">${escapeHTML(pdf.desc || 'Material científico de apoio para estudo continuado.')}</p>
+                <a href="${escapeHTML(pdf.url)}" target="_blank" rel="noopener noreferrer" class="wb-btn-primary" style="margin-top: auto;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Baixar Documento (PDF)
+                </a>
               </div>
-              <div>
-                <h4 class="wb-pdf-card-title">${escapeHTML(pdf.title)}</h4>
-              </div>
-            </div>
-            <p class="wb-pdf-card-desc">${escapeHTML(pdf.desc || 'Material científico de apoio para estudo continuado.')}</p>
-            <a href="${escapeHTML(pdf.url)}" target="_blank" rel="noopener noreferrer" class="wb-btn-primary" style="margin-top: auto;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-              Baixar Documento (PDF)
-            </a>
+            `).join('')}
           </div>
-        `).join('');
-      }
-
-      // 9. RENDERIZAR QUIZ INTERATIVO
-      function renderQuizQuestions(quiz) {
-        const container = document.getElementById('dtQuizItems');
-        if (!container || !quiz || quiz.length === 0) {
-          container.innerHTML = '<p style="color: var(--color-text-secondary);">Nenhuma pergunta cadastrada para este webinar.</p>';
-          return;
-        }
-
-        container.innerHTML = quiz.map((q, qIndex) => `
-          <div class="wb-quiz-question-card" data-q-index="${qIndex}">
-            <div class="wb-quiz-q-num">Questão ${qIndex + 1} de ${quiz.length}</div>
-            <div class="wb-quiz-q-text">${escapeHTML(q.question)}</div>
-            <div class="wb-quiz-options">
-              ${q.options.map((opt, optIndex) => `
-                <button type="button" class="wb-quiz-option-btn" data-q="${qIndex}" data-opt="${optIndex}">
-                  <span style="font-weight: 700; color: var(--color-blue-accent);">${String.fromCharCode(65 + optIndex)}.</span>
-                  <span>${escapeHTML(opt)}</span>
-                </button>
-              `).join('')}
-            </div>
-            <div class="wb-quiz-explanation" id="expl-${qIndex}">
-              <strong>Explicação Clínica:</strong> ${escapeHTML(q.explanation)}
-            </div>
-          </div>
-        `).join('');
-
-        // Eventos de clique nas opções
-        container.querySelectorAll('.wb-quiz-option-btn').forEach(btn => {
-          btn.addEventListener('click', function() {
-            const qIdx = parseInt(this.getAttribute('data-q'), 10);
-            const optIdx = parseInt(this.getAttribute('data-opt'), 10);
-            const questionData = quiz[qIdx];
-            const card = this.closest('.wb-quiz-question-card');
-            const allOpts = card.querySelectorAll('.wb-quiz-option-btn');
-            const expl = card.querySelector('.wb-quiz-explanation');
-
-            // Desabilita opções após a resposta
-            allOpts.forEach(b => b.disabled = true);
-
-            if (optIdx === questionData.correctIndex) {
-              this.classList.add('correct');
-            } else {
-              this.classList.add('wrong');
-              allOpts[questionData.correctIndex].classList.add('correct');
-            }
-
-            if (expl) {
-              expl.classList.add('show');
-            }
-
-            notifyParentResize();
-          });
-        });
+        `;
       }
 
       // 10. INICIALIZAÇÃO E EVENTOS
