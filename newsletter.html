@@ -668,97 +668,41 @@
       }
     }
 
-    .card-topics-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
-    }
-
-    .card-topic-item {
-      font-size: 0.75rem;
-      line-height: 1.4;
-      color: var(--color-text-secondary);
-      position: relative;
-      padding-left: 12px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .card-topic-item::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--color-primary);
-      font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      .card-topic-item {
-        font-size: 0.6875rem !important;
-      }
-    }
-
     /* Ações do Card */
     .card-actions-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding-top: 10px;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .btn-read-edition {
-      flex: 1;
+      width: 100%;
       background: var(--color-primary);
       color: #FFFFFF;
       border: none;
-      height: 34px;
-      padding: 0 14px;
+      height: 38px;
+      padding: 0 16px;
       border-radius: var(--radius-pill);
       font-family: inherit;
-      font-size: 0.75rem;
+      font-size: 0.8125rem;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       cursor: pointer;
       text-decoration: none;
       transition: all var(--transition-fast);
-      box-shadow: 0 2px 8px var(--color-primary-glow);
+      box-shadow: 0 4px 12px var(--color-primary-glow);
     }
 
     .btn-read-edition:hover {
       background: var(--color-primary-hover);
-      transform: translateY(-1px);
-    }
-
-    .btn-quick-preview {
-      background: rgba(255, 255, 255, 0.08);
-      color: #FFFFFF;
-      border: 1px solid var(--color-border-subtle);
-      height: 34px;
-      width: 34px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      flex-shrink: 0;
-    }
-
-    .btn-quick-preview:hover {
-      background: var(--color-surface-hover);
-      border-color: rgba(56, 189, 248, 0.5);
-      color: var(--color-blue-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--color-primary-glow);
     }
 
     /* ==========================================================================
@@ -1560,10 +1504,6 @@
           card.className = 'newsletter-card';
           card.setAttribute('data-id', item.id);
 
-          const topicsHTML = item.topics.slice(0, 3).map(topic => `
-            <li class="card-topic-item" title="${escapeHTML(topic)}">${escapeHTML(topic)}</li>
-          `).join('');
-
           card.innerHTML = `
             <div class="card-cover-wrap" data-url="${escapeHTML(item.url)}" data-edition="${escapeHTML(item.edition)}" data-title="${escapeHTML(item.title)}">
               <img class="card-cover-img" src="${escapeHTML(item.cover)}" alt="Capa da edição ${escapeHTML(item.edition)}" loading="lazy">
@@ -1573,7 +1513,7 @@
 
             <div class="card-body">
               <div class="card-date-row">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="16" y1="2" x2="16" y2="6"></line>
                   <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -1584,39 +1524,22 @@
 
               <h3 class="card-title">${escapeHTML(item.title)}</h3>
 
-              <ul class="card-topics-list">
-                ${topicsHTML}
-              </ul>
-
               <div class="card-actions-row">
                 <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="btn-read-edition" title="Acessar o informativo completo">
                   <span>Acessar Edição</span>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </a>
-                <button type="button" class="btn-quick-preview" title="Pré-visualizar nesta página" data-url="${escapeHTML(item.url)}" data-edition="${escapeHTML(item.edition)}" data-title="${escapeHTML(item.title)}">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                </button>
               </div>
             </div>
           `;
 
-          // Clique na capa ou no botão de pré-visualização abre modal
+          // Clique na capa abre diretamente a edição
           const coverWrap = card.querySelector('.card-cover-wrap');
-          const previewBtn = card.querySelector('.btn-quick-preview');
-
           coverWrap.addEventListener('click', () => {
-            openModal(item);
-          });
-
-          previewBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openModal(item);
+            window.open(item.url, '_blank', 'noopener,noreferrer');
           });
 
           dom.grid.appendChild(card);
