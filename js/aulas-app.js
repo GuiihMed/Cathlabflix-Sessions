@@ -266,8 +266,8 @@
             <a 
               href="${escapeHtml(downloadUrl)}" 
               class="aulas-pptx-download-btn" 
-              title="Baixar ${escapeHtml(fileFormat)} (${escapeHtml(fileName)})"
-              aria-label="Baixar ${escapeHtml(fileFormat)}"
+              title="Baixar"
+              aria-label="Baixar"
               data-aula-id="${aula.id}"
               target="_blank"
               rel="noopener noreferrer"
