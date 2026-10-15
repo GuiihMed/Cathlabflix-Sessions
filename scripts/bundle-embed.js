@@ -113,7 +113,7 @@ ${combinedCss}
               </svg>
               Em Destaque
             </h2>
-            <a href="#noticias" class="column-heading-link" data-route-view="posts" title="Ver todas as notícias e publicações">
+            <a href="https://www.cathlabflix.org/noticias" target="_top" class="column-heading-link" title="Ver todas as notícias e publicações">
               <span>Ver todas</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -143,6 +143,12 @@ ${combinedCss}
               </svg>
               Agenda Eventos
             </h2>
+            <a href="https://www.cathlabflix.org/eventos" target="_top" class="column-heading-link" title="Ver todos os eventos e congressos">
+              <span>Ver todos</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
           </div>
 
           <!-- Componente do Calendário Interativo -->
@@ -173,12 +179,12 @@ ${combinedCss}
       </div>
 
       <div class="embed-posts-header">
-        <h1 class="embed-posts-title">Todas as Notícias & Artigos</h1>
+        <h1 class="embed-posts-title">Todas as Notícias</h1>
         <p class="embed-posts-subtitle">Publicações científicas, coberturas de congressos e atualizações institucionais da SBHCI</p>
       </div>
 
-      <!-- Filtro por Categorias -->
-      <div class="embed-category-pills-row" id="embedCategoryPillsRow"></div>
+      <!-- Filtro por Categorias (Oculto temporariamente) -->
+      <div class="embed-category-pills-row" id="embedCategoryPillsRow" style="display: none;"></div>
 
       <!-- Grade Responsiva de Publicações (3 Colunas) -->
       <div class="embed-posts-grid" id="allPostsGrid">
