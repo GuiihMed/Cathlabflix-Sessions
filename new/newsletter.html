@@ -988,7 +988,7 @@
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="newsletter-search" class="search-input" placeholder="Pesquisar por edição (#20, #19...), tema (TAVI, Mitral, Denervação...) ou data..." aria-label="Pesquisar newsletters">
+            <input type="text" id="newsletter-search" class="search-input" placeholder="Pesquisar por edição ou ano..." aria-label="Pesquisar por edição ou ano">
             <button type="button" id="newsletter-clear" class="search-clear" aria-label="Limpar busca">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1418,14 +1418,12 @@
           if (activeYearFilter === '2024' && item.year !== 2024) return false;
           if (activeYearFilter === 'arquivo' && item.year >= 2024) return false;
 
-          // Filtro por busca
+          // Filtro por busca (edição ou ano)
           if (searchQuery.trim() !== '') {
             const q = searchQuery.toLowerCase().trim();
-            const matchEdition = item.edition.toLowerCase().includes(q);
-            const matchTitle = item.title.toLowerCase().includes(q);
-            const matchDate = item.date.toLowerCase().includes(q);
-            const matchTopics = item.topics.some(t => t.toLowerCase().includes(q));
-            if (!matchEdition && !matchTitle && !matchDate && !matchTopics) {
+            const matchEdition = item.edition.toLowerCase().includes(q) || String(item.id) === q || item.title.toLowerCase().includes(q);
+            const matchYear = String(item.year).includes(q) || item.date.toLowerCase().includes(q);
+            if (!matchEdition && !matchYear) {
               return false;
             }
           }
@@ -1460,7 +1458,7 @@
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
               <h3 class="empty-state-title">Nenhuma newsletter encontrada</h3>
-              <p class="empty-state-text">Não encontramos resultados para "${escapeHTML(searchQuery)}". Tente buscar por número de edição (#20, #19...) ou outros termos como TAVI, Mitral, Denervação.</p>
+              <p class="empty-state-text">Não encontramos resultados para "${escapeHTML(searchQuery)}". Tente buscar pelo número da edição (#20, #19...) ou ano (2025, 2024...).</p>
               <button type="button" class="empty-state-reset-btn" id="empty-state-reset">Limpar Filtros e Busca</button>
             </div>
           `;
