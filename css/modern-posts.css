@@ -240,13 +240,7 @@
 }
 
 .posts-meta-counter {
-  font-size: 0.84375rem;
-  color: var(--color-text-tertiary);
-  font-weight: 500;
-}
-
-.posts-meta-counter strong {
-  color: var(--color-text-primary);
+  display: none !important;
 }
 
 /* 5. Grade de Posts (3 a 4 colunas em telas grandes, 2 em médias, 1 em mobile) */
