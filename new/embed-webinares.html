@@ -107,36 +107,6 @@
       margin-bottom: 28px;
     }
 
-    .wb-catalog-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--color-primary-soft);
-      border: 1px solid rgba(229, 9, 20, 0.3);
-      color: var(--color-primary);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 12px;
-    }
-
-    .wb-catalog-badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--color-primary);
-      box-shadow: 0 0 8px var(--color-primary);
-      animation: pulseDot 2s infinite;
-    }
-
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
     .wb-catalog-title {
       font-size: clamp(1.8rem, 3.5vw, 2.5rem);
       font-weight: 900;
@@ -153,16 +123,10 @@
       max-width: 820px;
     }
 
-    /* Barra de Busca e Filtros */
+    /* Barra de Busca */
     .wb-toolbar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 32px;
-      background: rgba(6, 34, 87, 0.5);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 16px 20px;
+      width: 100%;
+      margin-bottom: 28px;
     }
 
     .wb-search-box {
@@ -221,50 +185,6 @@
 
     .wb-search-clear:hover {
       color: #FFFFFF;
-    }
-
-    /* Filtros por Categoria (Pills) */
-    .wb-filters-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-
-    .wb-filters-row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .wb-filter-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--color-border-subtle);
-      color: var(--color-text-secondary);
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 7px 16px;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all var(--transition-fast);
-    }
-
-    .wb-filter-pill:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #FFFFFF;
-      border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    .wb-filter-pill.active {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
-      color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.35);
     }
 
     /* Grid de Webinares */
@@ -1260,17 +1180,13 @@
          ======================================================================== -->
     <section class="wb-view-panel active" id="webinaresCatalogView">
       <header class="wb-catalog-header">
-        <div class="wb-catalog-badge">
-          <span class="wb-catalog-badge-dot"></span>
-          Conteúdo Científico Oficial SBHCI
-        </div>
         <h1 class="wb-catalog-title">Webinares SBHCI 2026</h1>
         <p class="wb-catalog-subtitle">
           Explore aulas completas, discussões cirúrgicas de ponta e materiais com Inteligência Artificial: relatórios clínicos, infográficos de alta resolução, podcasts e quizzes interativos.
         </p>
       </header>
 
-      <!-- Barra de Busca e Filtros -->
+      <!-- Barra de Busca -->
       <div class="wb-toolbar">
         <div class="wb-search-box">
           <span class="wb-search-icon">
@@ -1293,13 +1209,6 @@
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
-        </div>
-
-        <div class="wb-filters-row">
-          <button type="button" class="wb-filter-pill active" data-filter="all">Todos os Webinares</button>
-          <button type="button" class="wb-filter-pill" data-filter="baloes">Balões Farmacológicos</button>
-          <button type="button" class="wb-filter-pill" data-filter="estrutural">Intervenção Estrutural</button>
-          <button type="button" class="wb-filter-pill" data-filter="jovem">SBHCI Jovem</button>
         </div>
       </div>
 
@@ -2237,7 +2146,6 @@
       'use strict';
 
       // Estado da Aplicação
-      let currentFilter = 'all';
       let searchQuery = '';
       let currentWebinar = null;
       let activeAudioElement = null;
@@ -2249,7 +2157,6 @@
       const cardsGrid = document.getElementById('wbCardsGrid');
       const searchInput = document.getElementById('wbSearchInput');
       const searchClearBtn = document.getElementById('wbSearchClear');
-      const filterPills = document.querySelectorAll('.wb-filter-pill');
       const backToCatalogBtn = document.getElementById('wbBackToCatalogBtn');
       const tabButtons = document.querySelectorAll('.wb-tab-btn');
       const tabPanels = document.querySelectorAll('.wb-tab-panel');
@@ -2294,14 +2201,13 @@
         const q = searchQuery.toLowerCase().trim();
 
         const filtered = WEBINARES_DATA.filter(item => {
-          const matchesCategory = (currentFilter === 'all') || (item.categorySlug === currentFilter);
           const matchesSearch = !q || 
             (item.title && item.title.toLowerCase().includes(q)) ||
             (item.category && item.category.toLowerCase().includes(q)) ||
             (item.dateFormatted && item.dateFormatted.toLowerCase().includes(q)) ||
             (item.badge && item.badge.toLowerCase().includes(q));
 
-          return matchesCategory && matchesSearch;
+          return matchesSearch;
         });
 
         if (filtered.length === 0) {
@@ -2312,18 +2218,16 @@
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
               <h3>Nenhum webinar encontrado</h3>
-              <p>Tente outros termos de busca ou selecione outra categoria.</p>
-              <button type="button" class="wb-btn-primary" id="wbResetSearchBtn">Limpar Filtros</button>
+              <p>Tente outros termos de busca.</p>
+              <button type="button" class="wb-btn-primary" id="wbResetSearchBtn">Limpar Busca</button>
             </div>
           `;
           const resetBtn = document.getElementById('wbResetSearchBtn');
           if (resetBtn) {
             resetBtn.addEventListener('click', () => {
               searchQuery = '';
-              currentFilter = 'all';
               if (searchInput) searchInput.value = '';
               if (searchClearBtn) searchClearBtn.style.display = 'none';
-              filterPills.forEach(p => p.classList.toggle('active', p.dataset.filter === 'all'));
               renderCatalog();
             });
           }
@@ -2792,16 +2696,6 @@
             searchInput.focus();
           });
         }
-
-        // Filtros por Categoria
-        filterPills.forEach(pill => {
-          pill.addEventListener('click', function() {
-            filterPills.forEach(p => p.classList.remove('active'));
-            this.classList.add('active');
-            currentFilter = this.getAttribute('data-filter') || 'all';
-            renderCatalog();
-          });
-        });
 
         // Botão Voltar ao Catálogo
         if (backToCatalogBtn) {
