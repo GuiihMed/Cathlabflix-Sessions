@@ -615,8 +615,7 @@ body.theme-blue,
 }
 
 [data-theme="blue"] .event-institution-box {
-  background: #062257;
-  border-color: rgba(255, 255, 255, 0.12);
+  display: none !important;
 }
 
 [data-theme="blue"] .institution-text h4 {

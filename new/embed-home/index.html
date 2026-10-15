@@ -4956,13 +4956,7 @@ input {
 }
 
 .event-institution-box {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
-  border-radius: 12px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-subtle);
+  display: none !important;
 }
 
 .institution-logo-wrap {
@@ -9703,16 +9697,6 @@ window.ModernAgendaCalendar = ModernAgendaCalendar;
           <h2 class="section-title">Sobre este Evento</h2>
           <div class="event-description-text">
             <p>${escapeHTML(event.description || event.subtitle || 'Detalhes sobre a programação oficial da SBHCI.')}</p>
-          </div>
-
-          <div class="event-institution-box">
-            <div class="institution-logo-wrap">
-              <img src="https://cathlabflix-sessions.vercel.app/assets/images/logo-cathlabflix-color.png" alt="SBHCI" width="130">
-            </div>
-            <div class="institution-text">
-              <h4>Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista</h4>
-              <p>Este evento integra a grade de Educação Médica Continuada e Difusão Científica do CathlabFlix.</p>
-            </div>
           </div>
         </section>
       </div>

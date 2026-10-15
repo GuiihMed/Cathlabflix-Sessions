@@ -706,16 +706,6 @@
           <div class="event-description-text">
             <p>${escapeHTML(event.description || event.subtitle || 'Detalhes sobre a programação oficial da SBHCI.')}</p>
           </div>
-
-          <div class="event-institution-box">
-            <div class="institution-logo-wrap">
-              <img src="https://cathlabflix-sessions.vercel.app/assets/images/logo-cathlabflix-color.png" alt="SBHCI" width="130">
-            </div>
-            <div class="institution-text">
-              <h4>Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista</h4>
-              <p>Este evento integra a grade de Educação Médica Continuada e Difusão Científica do CathlabFlix.</p>
-            </div>
-          </div>
         </section>
       </div>
     `;

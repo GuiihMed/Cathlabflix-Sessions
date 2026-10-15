@@ -398,22 +398,9 @@
       margin: 0 0 14px 0;
     }
 
-    /* Caixa Institucional SBHCI */
+    /* Caixa Institucional SBHCI (Removida conforme solicitacao) */
     .event-institution-box {
-      background: var(--color-surface-elevated);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    @media (max-width: 550px) {
-      .event-institution-box {
-        flex-direction: column;
-        text-align: center;
-      }
+      display: none !important;
     }
 
     .institution-logo-badge {
@@ -1302,15 +1289,6 @@ export function post_eventos(request) {
               </div>
             </section>
           ` : ''}
-
-          <!-- Selo Institucional SBHCI -->
-          <div class="event-institution-box">
-            <div class="institution-logo-badge">SBHCI</div>
-            <div class="institution-text">
-              <h4>Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista</h4>
-              <p>Programa de Educação Médica Continuada e Difusão Científica Oficial.</p>
-            </div>
-          </div>
         </article>
       `;
 
