@@ -339,25 +339,12 @@
             <span class="aulas-pptx-meta">Formato ${escapeHTML(fileFormat)} · Tamanho: ${escapeHTML(fileSize)}</span>
           </div>
           <div class="aulas-pptx-actions">
-            ${viewUrl ? `
-              <a 
-                href="${escapeHTML(viewUrl)}" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="aulas-pptx-view-btn" 
-                title="Visualizar no Google Drive"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-                <span>Visualizar</span>
-              </a>
-            ` : ''}
             <a 
               href="${escapeHTML(downloadUrl)}" 
               class="aulas-pptx-download-btn" 
-              title="Download ${escapeHTML(fileFormat)}" 
+              title="Baixar ${escapeHTML(fileFormat)}" 
+              target="_blank"
+              rel="noopener noreferrer"
               ${downloadUrl !== '#' ? 'download' : ''}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -365,7 +352,7 @@
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              <span>Download</span>
+              <span>Baixar</span>
             </a>
           </div>
         </div>

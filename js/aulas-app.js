@@ -263,25 +263,14 @@
             <span class="aulas-pptx-meta">Download ${escapeHtml(fileFormat)} · ${escapeHtml(fileSize)}</span>
           </div>
           <div class="aulas-pptx-actions">
-            ${viewUrl ? `
-              <a 
-                href="${escapeHtml(viewUrl)}" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="aulas-pptx-view-btn" 
-                title="Visualizar Apresentação no Google Drive"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </a>
-            ` : ''}
             <a 
               href="${escapeHtml(downloadUrl)}" 
               class="aulas-pptx-download-btn" 
               title="Baixar ${escapeHtml(fileFormat)} (${escapeHtml(fileName)})"
+              aria-label="Baixar ${escapeHtml(fileFormat)}"
               data-aula-id="${aula.id}"
+              target="_blank"
+              rel="noopener noreferrer"
               ${downloadUrl !== '#' ? 'download' : ''}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
