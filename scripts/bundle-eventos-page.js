@@ -204,12 +204,7 @@ const htmlContent = `<!DOCTYPE html>
     }
 
     .eventos-count-badge {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--color-blue-accent);
-      background: rgba(56, 189, 248, 0.12);
-      padding: 4px 12px;
-      border-radius: var(--radius-pill);
+      display: none !important;
     }
 
     .eventos-feed-subtitle {
@@ -804,7 +799,7 @@ const htmlContent = `<!DOCTYPE html>
           <h1 class="eventos-feed-title">
             <span>Agenda de Eventos & Congressos</span>
           </h1>
-          <span class="eventos-count-badge" id="eventosCountBadge">Carregando...</span>
+          <span class="eventos-count-badge" id="eventosCountBadge" style="display: none;"></span>
         </div>
         <p class="eventos-feed-subtitle">Confira a programação científica completa da SBHCI e parceiros oficiais.</p>
       </header>
@@ -938,7 +933,10 @@ ${eventsDataCode}
         const countBadge = document.getElementById('eventosCountBadge');
         if (!grid) return;
 
-        countBadge.textContent = filteredEvents.length === 1 ? '1 evento' : \`\${filteredEvents.length} eventos\`;
+        if (countBadge) {
+          countBadge.style.display = 'none';
+          countBadge.textContent = '';
+        }
 
         if (filteredEvents.length === 0) {
           grid.innerHTML = \`
