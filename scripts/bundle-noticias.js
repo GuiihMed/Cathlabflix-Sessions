@@ -767,36 +767,14 @@ const noticiasControllerJs = `
   }
 
   /**
-   * Construção Dinâmica dos Filtros de Categoria
+   * Construção Dinâmica dos Filtros de Categoria (Desativado temporariamente conforme solicitação)
    */
   function buildCategoryFilters() {
     const container = document.getElementById('noticiasCategoryBar');
-    if (!container) return;
-
-    const counts = { all: allNews.length };
-    allNews.forEach(item => {
-      const cat = (item.category || 'Notícias').trim();
-      counts[cat] = (counts[cat] || 0) + 1;
-    });
-
-    const categories = Object.keys(counts).filter(k => k !== 'all');
-
-    let html = '<button type="button" class="noticias-category-pill active" data-cat="all">Todas (' + counts.all + ')</button>';
-    categories.forEach(cat => {
-      html += '<button type="button" class="noticias-category-pill" data-cat="' + escapeHTML(cat) + '">' + escapeHTML(cat) + ' (' + counts[cat] + ')</button>';
-    });
-
-    container.innerHTML = html;
-
-    container.querySelectorAll('.noticias-category-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        container.querySelectorAll('.noticias-category-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        activeCategory = btn.getAttribute('data-cat');
-        currentPage = 1;
-        applyFilters();
-      });
-    });
+    if (container) {
+      container.style.display = 'none';
+      container.innerHTML = '';
+    }
   }
 
   /**
@@ -1180,14 +1158,14 @@ ${customNoticiasCss}
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary)">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
-            Todas as Notícias & Artigos
+            Todas as Notícias
           </h2>
         </div>
         <p class="noticias-feed-subtitle">Publicações científicas, coberturas de congressos e atualizações institucionais da SBHCI</p>
       </header>
 
-      <!-- Pílulas de Filtro por Categoria -->
-      <nav class="noticias-category-bar" id="noticiasCategoryBar" aria-label="Filtrar por Categoria"></nav>
+      <!-- Pílulas de Filtro por Categoria (Oculto temporariamente) -->
+      <nav class="noticias-category-bar" id="noticiasCategoryBar" aria-label="Filtrar por Categoria" style="display: none;"></nav>
 
       <!-- Grade de Cards de Notícias -->
       <main class="noticias-cards-grid" id="noticiasCardsGrid">
