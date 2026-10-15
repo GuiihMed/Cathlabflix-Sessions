@@ -59,6 +59,10 @@
       padding: 0;
     }
 
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -140,27 +144,27 @@
     }
 
     .page-title {
-      font-size: 2.125rem;
+      font-size: clamp(1.4rem, 2.8vw, 1.85rem);
       font-weight: 800;
       color: #FFFFFF;
       letter-spacing: -0.5px;
-      line-height: 1.2;
-      margin: 0 0 12px 0;
+      line-height: 1.22;
+      margin: 0 0 10px 0;
     }
 
     .page-title-underline {
-      width: 84px;
+      width: 72px;
       height: 4px;
       background: linear-gradient(90deg, #E50914 0%, #ff4b55 100%);
       border-radius: var(--radius-pill);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .page-subtitle {
-      font-size: 0.9375rem;
+      font-size: 0.85rem;
       color: var(--color-text-secondary);
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.55;
       max-width: 800px;
       margin: 0;
     }
@@ -998,12 +1002,13 @@
       }
     }
 
-    @media (max-width: 380px) {
+    @media (max-width: 480px) {
       .videos-grid {
         grid-template-columns: 1fr;
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
+        gap: 16px;
+      }
+      .page-title {
+        font-size: 1.3rem;
       }
     }
   </style>

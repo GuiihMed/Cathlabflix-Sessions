@@ -41,6 +41,10 @@
       box-sizing: border-box;
     }
 
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -56,13 +60,19 @@
     .admin-page-container {
       max-width: 1140px;
       margin: 0 auto;
-      padding: 32px 20px 80px;
+      padding: 24px 16px 60px;
+    }
+
+    @media (max-width: 640px) {
+      .admin-page-container {
+        padding: 16px 12px 40px;
+      }
     }
 
     /* Cabeçalho da Página */
     .admin-header {
-      margin-bottom: 28px;
-      padding-bottom: 20px;
+      margin-bottom: 24px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--color-border-subtle);
       display: flex;
       align-items: center;
@@ -90,7 +100,7 @@
     }
 
     .admin-header-title {
-      font-size: 1.625rem;
+      font-size: 1.38rem;
       font-weight: 800;
       color: var(--color-text-primary);
       margin: 6px 0 2px 0;
@@ -98,7 +108,7 @@
     }
 
     .admin-header-sub {
-      font-size: 0.875rem;
+      font-size: 0.82rem;
       color: var(--color-text-secondary);
       margin: 0;
     }
