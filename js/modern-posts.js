@@ -145,15 +145,8 @@ function applyFilters() {
 function updateCounterDisplay() {
   const counterEl = document.getElementById('postsMetaCounter');
   if (!counterEl) return;
-
-  const count = filteredPosts.length;
-  if (count === 0) {
-    counterEl.innerHTML = 'Nenhuma publicação encontrada';
-  } else if (count === 1) {
-    counterEl.innerHTML = '<strong>1</strong> publicação encontrada';
-  } else {
-    counterEl.innerHTML = `<strong>${count}</strong> publicações encontradas`;
-  }
+  counterEl.style.display = 'none';
+  counterEl.innerHTML = '';
 }
 
 /**

@@ -324,9 +324,7 @@
     }
 
     .results-count-text {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--color-text-secondary);
+      display: none !important;
     }
 
     /* ==========================================================================
@@ -1006,7 +1004,7 @@
             <button type="button" class="year-pill-btn" data-year="arquivo" role="tab" aria-selected="false">Arquivo Histórico</button>
           </div>
 
-          <span class="results-count-text" id="results-count">Exibindo 20 edições</span>
+          <span class="results-count-text" id="results-count" style="display: none;"></span>
         </div>
       </section>
 
@@ -1448,7 +1446,10 @@
 
         // Atualizar contador
         const total = items.length;
-        dom.resultsCount.textContent = total === 1 ? 'Exibindo 1 edição' : `Exibindo ${total} edições`;
+        if (dom.resultsCount) {
+          dom.resultsCount.style.display = 'none';
+          dom.resultsCount.textContent = '';
+        }
 
         if (total === 0) {
           dom.grid.innerHTML = `
