@@ -247,25 +247,6 @@
       height: 12px;
     }
 
-    .results-count-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--color-text-secondary);
-      background: rgba(1, 2, 52, 0.5);
-      padding: 8px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--color-border-subtle);
-      white-space: nowrap;
-    }
-
-    .results-count-badge strong {
-      color: var(--color-blue-accent);
-      font-weight: 800;
-    }
-
     /* Grid de Episódios do Podcast (3 Colunas no Desktop) */
     .podcast-grid {
       display: grid;
@@ -788,10 +769,6 @@
         min-width: 100%;
       }
 
-      .results-count-badge {
-        align-self: flex-start;
-      }
-
       .podcast-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
@@ -865,11 +842,6 @@
         left: 14px;
         width: 16px;
         height: 16px;
-      }
-
-      .results-count-badge {
-        font-size: 0.75rem;
-        padding: 6px 12px;
       }
 
       .podcast-grid {
@@ -1009,10 +981,6 @@
             </svg>
           </button>
         </div>
-
-        <div class="results-count-badge" id="resultsCountBadge">
-          <span id="resultsCountText">Carregando episódios...</span>
-        </div>
       </section>
 
       <!-- 4. Grid de Episódios -->
@@ -1139,7 +1107,6 @@
       const grid = document.getElementById('podcastGrid');
       const searchInput = document.getElementById('podcastSearchInput');
       const searchClearBtn = document.getElementById('searchClearBtn');
-      const resultsCountText = document.getElementById('resultsCountText');
 
       // Player de Reprodução Integrado na Página (Substitui o popup)
       const playerStage = document.getElementById('podcastPlayerStage');
@@ -1196,15 +1163,6 @@
 
           return titleMatch || labelMatch || themeMatch || descMatch || speakerMatch;
         });
-
-        // Atualiza o contador de resultados
-        if (resultsCountText) {
-          if (query) {
-            resultsCountText.innerHTML = `Exibindo <strong>${filtered.length}</strong> de ${PODCAST_EPISODES.length} episódios`;
-          } else {
-            resultsCountText.innerHTML = `Total de <strong>${PODCAST_EPISODES.length}</strong> episódios disponíveis`;
-          }
-        }
 
         grid.innerHTML = '';
 
