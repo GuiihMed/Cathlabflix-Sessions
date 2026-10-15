@@ -243,9 +243,10 @@
   }
 
   function generateNewsCardHtml(item) {
+    const newsPageUrl = 'https://www.cathlabflix.org/noticias';
     return `
       <article class="wix-news-card" data-post-id="${item.id}">
-        <a href="#post?id=${encodeURIComponent(item.id)}" class="news-card-thumb-wrapper" data-nav-post="${item.id}" title="${escapeHTML(item.title)}">
+        <a href="${newsPageUrl}" target="_top" class="news-card-thumb-wrapper" title="${escapeHTML(item.title)}">
           <img 
             src="${item.image}" 
             alt="${escapeHTML(item.title)}" 
@@ -262,7 +263,7 @@
           </div>
 
           <h3 class="news-card-title">
-            <a href="#post?id=${encodeURIComponent(item.id)}" data-nav-post="${item.id}" title="${escapeHTML(item.title)}">
+            <a href="${newsPageUrl}" target="_top" title="${escapeHTML(item.title)}">
               ${escapeHTML(item.title)}
             </a>
           </h3>
@@ -270,12 +271,12 @@
           <p class="news-card-excerpt">${escapeHTML(item.description)}</p>
 
           <div class="news-card-footer">
-            <button type="button" class="news-card-btn" data-nav-post="${item.id}" title="Confira">
+            <a href="${newsPageUrl}" target="_top" class="news-card-btn" title="Confira">
               <span>Confira</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </article>
