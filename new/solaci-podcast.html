@@ -398,13 +398,15 @@
       opacity: 1;
     }
 
-    /* Conteúdo Textual do Card */
+    /* Conteúdo Textual do Card Simplificado (Apenas Título e Ação) */
     .podcast-card-body {
       padding: 18px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       flex: 1;
-      gap: 12px;
+      min-height: 140px;
+      gap: 14px;
     }
 
     .podcast-episode-title {
@@ -424,59 +426,35 @@
       color: var(--color-blue-accent);
     }
 
-    /* Destaque para o Tema da Aula */
-    .podcast-theme-pill {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      padding: 8px 12px;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      border-radius: var(--radius-sm);
-      font-size: 0.78125rem;
-      color: #e0f2fe;
-      line-height: 1.4;
+    /* Estado Ativo do Card (Em Reprodução no Player) */
+    .podcast-card.active-playing {
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 24px rgba(56, 189, 248, 0.35);
     }
 
-    .podcast-theme-pill svg {
-      width: 15px;
-      height: 15px;
+    .podcast-card.active-playing .podcast-episode-title {
       color: var(--color-blue-accent);
-      flex-shrink: 0;
-      margin-top: 1px;
     }
 
-    .podcast-theme-pill strong {
-      color: var(--color-blue-accent);
-      font-weight: 700;
-      margin-right: 4px;
+    .podcast-card.active-playing .action-play-btn {
+      background: #0284c7;
+      border-color: #0284c7;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.4);
     }
 
-    .podcast-desc-text {
-      font-size: 0.8125rem;
-      color: var(--color-text-secondary);
-      line-height: 1.5;
-      margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      flex: 1;
-    }
-
-    /* Ações do Card */
+    /* Ações do Card - Botão Assistir Episódio Ocupando Largura Total */
     .podcast-card-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      width: 100%;
       margin-top: auto;
-      padding-top: 14px;
+      padding-top: 12px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .action-play-btn {
-      flex: 1;
-      height: 40px;
+      width: 100%;
+      height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -486,7 +464,7 @@
       border: 1px solid var(--color-primary);
       border-radius: var(--radius-pill);
       font-family: inherit;
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       font-weight: 700;
       cursor: pointer;
       transition: all var(--transition-fast);
@@ -503,34 +481,6 @@
       width: 14px;
       height: 14px;
       fill: currentColor;
-    }
-
-    .action-youtube-btn {
-      width: 40px;
-      height: 40px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-pill);
-      color: var(--color-text-secondary);
-      text-decoration: none;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      flex-shrink: 0;
-    }
-
-    .action-youtube-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(56, 189, 248, 0.5);
-      color: #FFFFFF;
-      transform: translateY(-1px);
-    }
-
-    .action-youtube-btn svg {
-      width: 18px;
-      height: 18px;
     }
 
     /* Estado Vazio */
@@ -651,155 +601,161 @@
     }
 
     /* ==========================================================================
-       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO / PODCAST YOUTUBE
+       PLAYER COMPLETO INTEGRADO NA PÁGINA (SUBSTITUI O MODAL POPUP)
        ========================================================================== */
-    .lightbox-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(1, 2, 52, 0.94);
-      backdrop-filter: blur(12px);
-      z-index: 999999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-
-    .lightbox-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .lightbox-dialog {
-      background: #06193f;
-      border: 1px solid rgba(56, 189, 248, 0.3);
+    .podcast-player-stage {
+      background: #041434;
+      border: 1px solid rgba(56, 189, 248, 0.35);
       border-radius: var(--radius-xl);
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.15);
-      width: 100%;
-      max-width: 860px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(56, 189, 248, 0.12);
+      margin-bottom: 30px;
+      overflow: hidden;
+      scroll-margin-top: 24px;
+      animation: stageFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes stageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .player-stage-inner {
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      transform: scale(0.94);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 100%;
     }
 
-    .lightbox-modal.active .lightbox-dialog {
-      transform: scale(1);
-    }
-
-    .lightbox-header {
+    .player-stage-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
-      background: #04122f;
+      gap: 16px;
+      padding: 18px 24px;
+      background: #030e26;
       border-bottom: 1px solid var(--color-border-subtle);
     }
 
-    .lightbox-title-area {
+    .player-stage-title-wrap {
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      padding-right: 12px;
+      gap: 4px;
       overflow: hidden;
     }
 
-    .lightbox-title {
-      font-size: 1.05rem;
+    .player-stage-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--color-blue-accent);
+    }
+
+    .player-stage-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
+      animation: pulseStageDot 1.6s infinite ease-in-out;
+    }
+
+    @keyframes pulseStageDot {
+      0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+      }
+      50% {
+        transform: scale(1.25);
+        opacity: 1;
+      }
+    }
+
+    .player-stage-title {
+      font-size: 1.15rem;
       font-weight: 800;
       color: #FFFFFF;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin: 0;
+      line-height: 1.35;
+      word-break: break-word;
     }
 
-    .lightbox-theme {
-      font-size: 0.8125rem;
-      color: var(--color-blue-accent);
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .lightbox-close-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+    .player-stage-close-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--color-border-subtle);
       color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 700;
       cursor: pointer;
       transition: all var(--transition-fast);
       flex-shrink: 0;
     }
 
-    .lightbox-close-btn:hover {
+    .player-stage-close-btn:hover {
       background: #E50914;
       border-color: #E50914;
-      transform: rotate(90deg);
+      color: #FFFFFF;
+      transform: translateY(-1px);
     }
 
-    .lightbox-video-frame-wrap {
+    .player-stage-video-box {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #000;
+      overflow: hidden;
     }
 
-    .lightbox-video-frame-wrap iframe {
+    .player-stage-video-box iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
     }
 
-    .lightbox-footer {
-      padding: 14px 20px;
-      background: #04122f;
-      border-top: 1px solid var(--color-border-subtle);
+    .player-stage-footer {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding: 12px 24px;
+      background: #030e26;
+      border-top: 1px solid var(--color-border-subtle);
     }
 
-    .lightbox-desc {
-      font-size: 0.8125rem;
-      color: var(--color-text-secondary);
-      line-height: 1.45;
-      margin: 0;
-      flex: 1;
-    }
-
-    .lightbox-yt-link {
+    .player-stage-yt-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.78125rem;
+      font-size: 0.8125rem;
       font-weight: 700;
       color: #FFFFFF;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      padding: 7px 14px;
       border-radius: var(--radius-pill);
       text-decoration: none;
-      transition: background var(--transition-fast);
-      white-space: nowrap;
+      transition: all var(--transition-fast);
     }
 
-    .lightbox-yt-link:hover {
-      background: var(--color-primary);
+    .player-stage-yt-link:hover {
+      background: #E50914;
+      border-color: #E50914;
+      color: #FFFFFF;
+      transform: translateY(-1px);
     }
 
     /* ==========================================================================
@@ -932,51 +888,39 @@
         min-height: auto;
       }
 
-      .podcast-theme-pill {
-        font-size: 0.75rem;
-        padding: 6px 10px;
-      }
-
-      .podcast-desc-text {
-        font-size: 0.78125rem;
-        line-height: 1.45;
-      }
-
       .action-play-btn {
         height: 42px;
         font-size: 0.8125rem;
       }
 
-      .action-youtube-btn {
-        width: 42px;
-        height: 42px;
-      }
-
-      .lightbox-dialog {
-        max-width: 96vw;
+      .podcast-player-stage {
+        margin-bottom: 22px;
         border-radius: var(--radius-lg);
       }
 
-      .lightbox-header {
-        padding: 12px 16px;
-      }
-
-      .lightbox-title {
-        font-size: 0.95rem;
-      }
-
-      .lightbox-theme {
-        font-size: 0.75rem;
-      }
-
-      .lightbox-footer {
-        padding: 12px 16px;
+      .player-stage-header {
+        padding: 14px 16px;
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
       }
 
-      .lightbox-desc {
-        font-size: 0.75rem;
+      .player-stage-close-btn {
+        align-self: flex-end;
+      }
+
+      .player-stage-title {
+        font-size: 1.05rem;
+      }
+
+      .player-stage-footer {
+        padding: 10px 16px;
+        justify-content: center;
+      }
+
+      .player-stage-yt-link {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
@@ -1006,6 +950,43 @@
         </p>
       </header>
 
+      <!-- 2.1 Player de Vídeo Completo Integrado na Página -->
+      <section class="podcast-player-stage" id="podcastPlayerStage" style="display: none;" aria-label="Player de reprodução do episódio">
+        <div class="player-stage-inner">
+          <div class="player-stage-header">
+            <div class="player-stage-title-wrap">
+              <span class="player-stage-badge">
+                <span class="player-stage-dot"></span>
+                Reproduzindo Episódio
+              </span>
+              <h2 class="player-stage-title" id="playerStageTitle">Título do Episódio</h2>
+            </div>
+            <button type="button" class="player-stage-close-btn" id="playerCloseBtn" aria-label="Fechar reprodutor" title="Fechar reprodutor">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Fechar</span>
+            </button>
+          </div>
+
+          <div class="player-stage-video-box" id="playerStageVideoBox">
+            <!-- Iframe do YouTube inserido dinamicamente ao clicar no episódio -->
+          </div>
+
+          <div class="player-stage-footer">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="player-stage-yt-link" id="playerStageYtLink">
+              Assistir diretamente no YouTube
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- 3. Barra de Busca e Filtros -->
       <section class="podcast-toolbar" aria-label="Busca de episódios">
         <div class="search-box-wrap">
@@ -1017,9 +998,9 @@
             type="text" 
             id="podcastSearchInput" 
             class="search-box-input" 
-            placeholder="Buscar por nome do episódio ou tema da aula..." 
+            placeholder="Buscar por episódio..." 
             autocomplete="off"
-            aria-label="Buscar por nome do episódio ou tema da aula"
+            aria-label="Buscar por episódio"
           >
           <button type="button" class="search-clear-btn" id="searchClearBtn" aria-label="Limpar busca">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1063,42 +1044,6 @@
       </aside>
 
     </main>
-  </div>
-
-  <!-- ==========================================================================
-       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO DO PODCAST
-       ========================================================================== -->
-  <div class="lightbox-modal" id="podcastModal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="lightbox-dialog">
-      <div class="lightbox-header">
-        <div class="lightbox-title-area">
-          <div class="lightbox-title" id="modalEpisodeTitle">Título do Episódio</div>
-          <div class="lightbox-theme" id="modalEpisodeTheme">Tema da Aula</div>
-        </div>
-        <button type="button" class="lightbox-close-btn" id="modalCloseBtn" aria-label="Fechar reprodutor">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-
-      <div class="lightbox-video-frame-wrap" id="modalIframeContainer">
-        <!-- Iframe do YouTube inserido dinamicamente ao abrir -->
-      </div>
-
-      <div class="lightbox-footer">
-        <p class="lightbox-desc" id="modalEpisodeDesc">Sinopse do episódio.</p>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="lightbox-yt-link" id="modalDirectLink">
-          Assistir no YouTube
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- ==========================================================================
@@ -1222,16 +1167,15 @@
       const searchClearBtn = document.getElementById('searchClearBtn');
       const resultsCountText = document.getElementById('resultsCountText');
 
-      // Modal Lightbox
-      const modal = document.getElementById('podcastModal');
-      const modalCloseBtn = document.getElementById('modalCloseBtn');
-      const modalIframeContainer = document.getElementById('modalIframeContainer');
-      const modalEpisodeTitle = document.getElementById('modalEpisodeTitle');
-      const modalEpisodeTheme = document.getElementById('modalEpisodeTheme');
-      const modalEpisodeDesc = document.getElementById('modalEpisodeDesc');
-      const modalDirectLink = document.getElementById('modalDirectLink');
+      // Player de Reprodução Integrado na Página (Substitui o popup)
+      const playerStage = document.getElementById('podcastPlayerStage');
+      const playerCloseBtn = document.getElementById('playerCloseBtn');
+      const playerStageVideoBox = document.getElementById('playerStageVideoBox');
+      const playerStageTitle = document.getElementById('playerStageTitle');
+      const playerStageYtLink = document.getElementById('playerStageYtLink');
 
       let currentQuery = '';
+      let currentPlayingEpId = null;
 
       // 3. COMUNICAÇÃO DE RESIZE PARA IFRAME WIX
       function sendResizeMessage() {
@@ -1319,9 +1263,11 @@
         const fragment = document.createDocumentFragment();
 
         filtered.forEach(ep => {
+          const isPlaying = (currentPlayingEpId === ep.id);
           const card = document.createElement('article');
-          card.className = 'podcast-card';
-          card.setAttribute('aria-label', `${ep.episodeLabel}: ${ep.title}`);
+          card.className = 'podcast-card' + (isPlaying ? ' active-playing' : '');
+          card.dataset.episodeId = ep.id;
+          card.setAttribute('aria-label', ep.title);
 
           card.innerHTML = `
             <div class="podcast-thumb-wrap" role="button" tabindex="0" title="Assistir ${escapeHTML(ep.title)}" aria-label="Assistir ${escapeHTML(ep.title)}">
@@ -1335,16 +1281,6 @@
               >
               <div class="podcast-thumb-overlay"></div>
 
-              <div class="thumb-badges-row">
-                <span class="badge-episode">${escapeHTML(ep.episodeLabel)}</span>
-                <span class="badge-source">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/>
-                  </svg>
-                  ${escapeHTML(ep.duration)}
-                </span>
-              </div>
-
               <div class="card-play-btn" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -1355,18 +1291,6 @@
             <div class="podcast-card-body">
               <h3 class="podcast-episode-title" title="${escapeHTML(ep.title)}">${escapeHTML(ep.title)}</h3>
 
-              <div class="podcast-theme-pill" title="Tema da Aula: ${escapeHTML(ep.theme)}">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-                <div>
-                  <strong>Tema da Aula:</strong>${escapeHTML(ep.theme)}
-                </div>
-              </div>
-
-              <p class="podcast-desc-text">${escapeHTML(ep.description)}</p>
-
               <div class="podcast-card-actions">
                 <button type="button" class="action-play-btn" data-action="play">
                   <svg viewBox="0 0 24 24">
@@ -1374,27 +1298,15 @@
                   </svg>
                   Assistir Episódio
                 </button>
-                <a 
-                  href="${escapeHTML(ep.videoUrl)}" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  class="action-youtube-btn" 
-                  title="Abrir no YouTube em nova guia"
-                  aria-label="Abrir ${escapeHTML(ep.title)} no YouTube"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                </a>
               </div>
             </div>
           `;
 
-          // Eventos de clique para abrir o modal
+          // Eventos de clique para abrir o player integrado e rolar suavemente até ele
           const thumbWrap = card.querySelector('.podcast-thumb-wrap');
           const playBtn = card.querySelector('[data-action="play"]');
 
-          const openHandler = () => openEpisodeModal(ep);
+          const openHandler = () => playEpisode(ep, true);
 
           thumbWrap.addEventListener('click', openHandler);
           thumbWrap.addEventListener('keydown', (e) => {
@@ -1413,32 +1325,72 @@
         sendResizeMessage();
       }
 
-      // 5. ABRIR E FECHAR MODAL LIGHTBOX
-      function openEpisodeModal(ep) {
-        modalEpisodeTitle.textContent = `${ep.episodeLabel}: ${ep.title}`;
-        modalEpisodeTheme.textContent = `Tema da Aula: ${ep.theme}`;
-        modalEpisodeDesc.textContent = ep.description;
-        modalDirectLink.href = ep.videoUrl;
+      // 5. REPRODUÇÃO NO PLAYER INTEGRADO E SCROLL SUAVE
+      function playEpisode(ep, shouldScroll = true) {
+        if (!ep || !playerStage) return;
 
-        modalIframeContainer.innerHTML = `
-          <iframe 
-            src="https://www.youtube.com/embed/${ep.videoId}?autoplay=1&rel=0&modestbranding=1" 
-            title="${escapeHTML(ep.title)}" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-          ></iframe>
-        `;
+        currentPlayingEpId = ep.id;
 
-        modal.classList.add('active');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        if (playerStageTitle) {
+          playerStageTitle.textContent = ep.title;
+        }
+
+        if (playerStageYtLink) {
+          playerStageYtLink.href = ep.videoUrl;
+        }
+
+        if (playerStageVideoBox) {
+          playerStageVideoBox.innerHTML = `
+            <iframe 
+              src="https://www.youtube.com/embed/${ep.videoId}?autoplay=1&rel=0&modestbranding=1" 
+              title="${escapeHTML(ep.title)}" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+            ></iframe>
+          `;
+        }
+
+        playerStage.style.display = 'block';
+
+        // Atualiza destaque visual dos cards
+        document.querySelectorAll('.podcast-card').forEach(card => {
+          if (card.dataset.episodeId === ep.id) {
+            card.classList.add('active-playing');
+          } else {
+            card.classList.remove('active-playing');
+          }
+        });
+
+        sendResizeMessage();
+
+        // Leva suavemente até a aula / player no topo
+        if (shouldScroll) {
+          setTimeout(() => {
+            playerStage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.parent && window.parent !== window) {
+              try {
+                window.parent.postMessage({ type: 'cathlabflix-scroll-to-player' }, '*');
+              } catch (e) {}
+            }
+          }, 60);
+        }
       }
 
-      function closeEpisodeModal() {
-        modal.classList.remove('active');
-        modal.setAttribute('aria-hidden', 'true');
-        modalIframeContainer.innerHTML = '';
-        document.body.style.overflow = '';
+      function closePlayerStage() {
+        if (!playerStage) return;
+
+        if (playerStageVideoBox) {
+          playerStageVideoBox.innerHTML = '';
+        }
+
+        playerStage.style.display = 'none';
+        currentPlayingEpId = null;
+
+        document.querySelectorAll('.podcast-card').forEach(card => {
+          card.classList.remove('active-playing');
+        });
+
+        sendResizeMessage();
       }
 
       // 6. EVENTOS DE BUSCA
@@ -1462,22 +1414,14 @@
         });
       }
 
-      // Eventos do Modal
-      if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeEpisodeModal);
-      }
-
-      if (modal) {
-        modal.addEventListener('click', function(e) {
-          if (e.target === modal) {
-            closeEpisodeModal();
-          }
-        });
+      // Eventos do Player Integrado
+      if (playerCloseBtn) {
+        playerCloseBtn.addEventListener('click', closePlayerStage);
       }
 
       window.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-          closeEpisodeModal();
+        if (e.key === 'Escape' && playerStage && playerStage.style.display !== 'none') {
+          closePlayerStage();
         }
       });
 
@@ -1487,6 +1431,18 @@
         renderEpisodes();
         setTimeout(sendResizeMessage, 300);
         setTimeout(sendResizeMessage, 1200);
+
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const vParam = urlParams.get('v');
+          const epParam = urlParams.get('ep');
+          if (vParam || epParam) {
+            const found = PODCAST_EPISODES.find(ep => ep.videoId === vParam || String(ep.episodeNumber) === epParam);
+            if (found) {
+              playEpisode(found, false);
+            }
+          }
+        } catch (e) {}
       });
 
       if ('ResizeObserver' in window) {
