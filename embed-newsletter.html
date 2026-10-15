@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Newsletters & Boletins SBHCI - CathlabFlix</title>
+  <meta name="description" content="Acesse todas as edições oficiais da Newsletter SBHCI News: artigos comentados, ensaios clínicos, diretrizes e inovações em cardiologia intervencionista.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cathlabflix.org/newsletter">
+  <meta property="og:title" content="Newsletters & Boletins SBHCI - CathlabFlix">
+  <meta property="og:description" content="Edições completas do informativo oficial SBHCI News com artigos comentados e casos clínicos.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       Zero Dependências Externas - Totalmente Otimizado para Embed Wix
+       ========================================================================== -->
+  <style>
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #082b6e;
+      --color-surface-elevated: #0a2d72;
+      --color-surface-dark: #02071f;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #B80710;
+      --color-primary-glow: rgba(229, 9, 20, 0.35);
+      --color-blue-accent: #38bdf8;
+      --color-blue-accent-glow: rgba(56, 189, 248, 0.25);
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.35);
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .newsletter-app-container {
+      min-height: 100vh;
+      background-color: var(--color-bg-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Container Principal Centralizado */
+    .newsletter-main {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .newsletter-main {
+        padding: 16px 12px 40px !important;
+      }
+    }
+
+    /* ==========================================================================
+       BARRA DE NAVEGAÇÃO SUPERIOR
+       ========================================================================== */
+    .top-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .back-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--color-blue-accent);
+      transform: translateX(-3px);
+    }
+
+    .external-sbhci-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      transition: all var(--transition-fast);
+    }
+
+    .external-sbhci-link:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* ==========================================================================
+       CABEÇALHO DA PÁGINA (DESIGN SYSTEM SBHCI)
+       ========================================================================== */
+    .newsletter-header {
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .newsletter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(229, 9, 20, 0.15);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      color: #ff6b72;
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 10px;
+    }
+
+    .newsletter-title {
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    /* Linha decorativa vermelha sólida oficial SBHCI */
+    .newsletter-title-underline {
+      width: 72px;
+      height: 4px;
+      background: var(--color-primary);
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+
+    .newsletter-subtitle {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .newsletter-title {
+        font-size: 1.35rem !important;
+      }
+      .newsletter-subtitle {
+        font-size: 0.78125rem !important;
+        line-height: 1.5 !important;
+      }
+    }
+
+    /* ==========================================================================
+       BARRA DE CONTROLES: BUSCA, FILTROS E TOTALIZADOR
+       ========================================================================== */
+    .controls-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      align-items: center;
+      background: var(--color-surface-dark);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 0 16px;
+      transition: all 0.2s ease;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+      background: #040c2e;
+    }
+
+    .search-icon {
+      color: var(--color-text-secondary);
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 10px 0;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--color-text-secondary);
+    }
+
+    .search-clear {
+      background: none;
+      border: none;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      padding: 4px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: color 0.15s ease;
+    }
+
+    .search-clear:hover {
+      color: #FFFFFF;
+    }
+
+    /* Pílulas de Filtro por Ano / Período */
+    .filter-pills-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .year-pills-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .year-pill-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+
+    .year-pill-btn:hover {
+      background: var(--color-surface-hover);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .year-pill-btn.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border-color: var(--color-primary);
+      box-shadow: 0 2px 8px var(--color-primary-glow);
+    }
+
+    .results-count-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    /* ==========================================================================
+       BANNER DE DESTAQUE: EQUIPE SBHCI NEWS & ARTIGOS COMENTADOS
+       ========================================================================== */
+    .editorial-spotlight-card {
+      background: linear-gradient(135deg, #062257 0%, #031436 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+      gap: 28px;
+      align-items: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .editorial-spotlight-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .editorial-content-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .editorial-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--color-blue-accent);
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      align-self: flex-start;
+    }
+
+    .editorial-headline {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .editorial-description {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .editorial-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .editorial-btn-primary {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 12px var(--color-primary-glow);
+    }
+
+    .editorial-btn-primary:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .editorial-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+
+    .editorial-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Thumbnail / Card de Vídeo da Equipe */
+    .editorial-media-col {
+      position: relative;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .editorial-media-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .editorial-media-col:hover img {
+      transform: scale(1.03);
+    }
+
+    .editorial-media-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(2, 6, 23, 0.85) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 12px 16px;
+    }
+
+    .editorial-media-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (max-width: 900px) {
+      .editorial-spotlight-card {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 20px;
+      }
+      .editorial-headline {
+        font-size: 1.125rem;
+      }
+    }
+
+    /* ==========================================================================
+       GRADE DE CARDS DE NEWSLETTERS
+       ========================================================================== */
+    .newsletter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      width: 100%;
+    }
+
+    @media (min-width: 1200px) {
+      .newsletter-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 1199px) and (min-width: 769px) {
+      .newsletter-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) and (min-width: 520px) {
+      .newsletter-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 519px) {
+      .newsletter-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    /* Card Individual de Edição */
+    .newsletter-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+    }
+
+    .newsletter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    /* Envoltório da Capa da Revista */
+    .card-cover-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #02071f;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .card-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .newsletter-card:hover .card-cover-img {
+      transform: scale(1.03);
+    }
+
+    /* Badges sobre a capa */
+    .card-badge-edition {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(1, 2, 52, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.6875rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      letter-spacing: 0.4px;
+      z-index: 2;
+    }
+
+    .card-badge-latest {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      font-size: 0.625rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      letter-spacing: 0.5px;
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(229, 9, 20, 0.4);
+    }
+
+    /* Corpo de Metadados do Card */
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .card-body {
+        padding: 12px 14px !important;
+        gap: 8px !important;
+      }
+    }
+
+    .card-date-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.3;
+      color: #FFFFFF;
+      margin: 0;
+      transition: color 0.15s ease;
+    }
+
+    .newsletter-card:hover .card-title {
+      color: var(--color-blue-accent);
+    }
+
+    @media (max-width: 768px) {
+      .card-title {
+        font-size: 0.875rem !important;
+      }
+    }
+
+    .card-topics-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .card-topic-item {
+      font-size: 0.75rem;
+      line-height: 1.4;
+      color: var(--color-text-secondary);
+      position: relative;
+      padding-left: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-topic-item::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .card-topic-item {
+        font-size: 0.6875rem !important;
+      }
+    }
+
+    /* Ações do Card */
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-read-edition {
+      flex: 1;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: none;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px var(--color-primary-glow);
+    }
+
+    .btn-read-edition:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-quick-preview {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+      height: 34px;
+      width: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .btn-quick-preview:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--color-blue-accent);
+    }
+
+    /* ==========================================================================
+       EMPTY STATE (BUSCA SEM RESULTADOS)
+       ========================================================================== */
+    .empty-state-wrap {
+      grid-column: 1 / -1;
+      background: var(--color-surface);
+      border: 1px dashed var(--color-border-strong);
+      border-radius: var(--radius-lg);
+      padding: 48px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .empty-state-icon {
+      color: var(--color-text-tertiary);
+      margin-bottom: 4px;
+    }
+
+    .empty-state-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 0;
+    }
+
+    .empty-state-text {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      max-width: 450px;
+      margin: 0;
+    }
+
+    .empty-state-reset-btn {
+      margin-top: 8px;
+      background: var(--color-surface-elevated);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .empty-state-reset-btn:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    /* ==========================================================================
+       MODAL DE LEITURA EMBUTIDA (QUICK PREVIEW)
+       ========================================================================== */
+    .newsletter-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 2, 52, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    .newsletter-modal-overlay.active {
+      display: flex;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .newsletter-modal-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-strong);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 900px;
+      height: 90vh;
+      max-height: 820px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 14px 20px;
+      background: var(--color-surface-dark);
+      border-bottom: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .modal-edition-badge {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      font-size: 0.6875rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: var(--radius-xs);
+    }
+
+    .modal-title-text {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-open-new-tab {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      text-decoration: none;
+      border: 1px solid var(--color-border-subtle);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+    }
+
+    .modal-open-new-tab:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: var(--color-blue-accent);
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    .modal-iframe-container {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      position: relative;
+    }
+
+    .modal-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Rodapé institucional sutil */
+    .newsletter-footer-info {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+    }
+
+    .footer-links-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-link {
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-link:hover {
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+
+<body class="newsletter-body">
+  <div class="newsletter-app-container">
+    <main class="newsletter-main">
+
+      <!-- 1. Barra de Navegação Superior -->
+      <nav class="top-nav-bar" aria-label="Navegação da Página">
+        <a href="https://www.cathlabflix.org" target="_top" class="back-btn" title="Retornar à página inicial do CathlabFlix">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Voltar ao Início</span>
+        </a>
+
+        <a href="https://www.sbhci.org.br/ultimas-newsletters" target="_blank" rel="noopener noreferrer" class="external-sbhci-link">
+          <span>Portal SBHCI Oficial</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- 2. Cabeçalho Oficial da Página (Design System SBHCI) -->
+      <header class="newsletter-header">
+        <div class="newsletter-tag">SBHCI News • Publicações Científicas</div>
+        <h1 class="newsletter-title">Newsletters & Informativos SBHCI</h1>
+        <div class="newsletter-title-underline"></div>
+        <p class="newsletter-subtitle">
+          Acompanhe todas as edições do boletim oficial com artigos comentados, ensaios clínicos contemporâneos, diretrizes e inovações científicas em cardiologia intervencionista e hemodinâmica.
+        </p>
+      </header>
+
+      <!-- 3. Spotlight Editorial: Equipe SBHCI News & Artigos Comentados -->
+      <section class="editorial-spotlight-card" aria-label="Apresentação dos Editores SBHCI News">
+        <div class="editorial-content-col">
+          <span class="editorial-badge">Corpo Editorial • Curadoria Especializada</span>
+          <h2 class="editorial-headline">Equipe SBHCI News: Artigos Comentados</h2>
+          <p class="editorial-description">
+            Conheça o time de editores da Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista responsável pela curadoria científica e análise crítica dos maiores estudos dos periódicos internacionais (JACC, Circulation, EuroIntervention e RBCI).
+          </p>
+          <div class="editorial-actions-row">
+            <a href="https://www.sbhci.org.br/blog/categories/artigos-comentados" target="_blank" rel="noopener noreferrer" class="editorial-btn-primary">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+              <span>Ver Artigos Comentados</span>
+            </a>
+            <a href="https://www.sbhci.org.br/blog/categories/caso-cl%C3%ADnico" target="_blank" rel="noopener noreferrer" class="editorial-btn-secondary">
+              <span>Casos Clínicos</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="editorial-media-col" title="Equipe Editorial SBHCI News">
+          <img src="https://static.wixstatic.com/media/1d3d47_7e79306eb5d146e1bd61b2f02c95a74cf003.jpg/v1/fill/w_600,h_338,q_90,enc_avif,quality_auto/1d3d47_7e79306eb5d146e1bd61b2f02c95a74cf003.jpg" alt="Equipe de Editores da Newsletter SBHCI" loading="lazy">
+          <div class="editorial-media-overlay">
+            <span class="editorial-media-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Time Editorial SBHCI News
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Controles: Busca em Tempo Real e Filtros de Ano -->
+      <section class="controls-panel" aria-label="Filtros e Busca de Newsletters">
+        <div class="search-row">
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="newsletter-search" class="search-input" placeholder="Pesquisar por edição (#20, #19...), tema (TAVI, Mitral, Denervação...) ou data..." aria-label="Pesquisar newsletters">
+            <button type="button" id="newsletter-clear" class="search-clear" aria-label="Limpar busca">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-pills-row">
+          <div class="year-pills-wrap" id="year-filter-pills" role="tablist" aria-label="Filtrar por ano">
+            <button type="button" class="year-pill-btn active" data-year="all" role="tab" aria-selected="true">Todas as Edições</button>
+            <button type="button" class="year-pill-btn" data-year="2025" role="tab" aria-selected="false">Ano 2025</button>
+            <button type="button" class="year-pill-btn" data-year="2024" role="tab" aria-selected="false">Ano 2024</button>
+            <button type="button" class="year-pill-btn" data-year="arquivo" role="tab" aria-selected="false">Arquivo Histórico</button>
+          </div>
+
+          <span class="results-count-text" id="results-count">Exibindo 20 edições</span>
+        </div>
+      </section>
+
+      <!-- 5. Grade de Cards de Edições -->
+      <section class="newsletter-grid" id="newsletter-grid" aria-label="Catálogo de Newsletters">
+        <!-- Inserido dinamicamente via JavaScript -->
+      </section>
+
+      <!-- 6. Rodapé da Página -->
+      <footer class="newsletter-footer-info">
+        <div>
+          CathlabFlix by SBHCI • Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista
+        </div>
+        <div class="footer-links-row">
+          <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener noreferrer" class="footer-link">Política de Privacidade</a>
+          <span>•</span>
+          <a href="https://www.sbhci.org.br" target="_blank" rel="noopener noreferrer" class="footer-link">sbhci.org.br</a>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <!-- 7. Modal de Leitura Embutida (Quick Preview) -->
+  <div class="newsletter-modal-overlay" id="newsletter-modal" role="dialog" aria-modal="true" aria-label="Visualizador de Newsletter">
+    <div class="newsletter-modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-edition-badge" id="modal-badge">#20</span>
+          <span class="modal-title-text" id="modal-title">Informativo SBHCI</span>
+        </div>
+        <div class="modal-actions">
+          <a href="#" target="_blank" rel="noopener noreferrer" id="modal-external-link" class="modal-open-new-tab" title="Abrir em aba cheia">
+            <span>Abrir no Navegador</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <button type="button" class="modal-close-btn" id="modal-close" aria-label="Fechar leitor">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-iframe-container">
+        <iframe id="modal-iframe" class="modal-iframe" src="about:blank" title="Conteúdo da Newsletter" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT COMPLETO: CATÁLOGO, BUSCA, FILTROS, MODAL E RESIZE WIX
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. DATASET OFICIAL DAS NEWSLETTERS SBHCI NEWS (#01 a #20)
+      const NEWSLETTERS = [
+        {
+          id: 20,
+          edition: '#20',
+          isLatest: true,
+          date: '17 de Dezembro de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #20',
+          cover: 'https://static.wixstatic.com/media/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg',
+          url: 'https://campanhadigital.app/w/m93QQuVErycyhPXS763hmU2g',
+          topics: [
+            'TAVI em anatomia hostil: tratamento de válvula aórtica bicúspide com grande anel e calcificação',
+            'Hybrid vs. Norwood: análise do banco de dados NPC-QIC para abordagem ideal de alto risco',
+            'Resultados após TEER na regurgitação mitral secundária atrial',
+            'Desfechos em 6 anos da troca valvar aórtica cirúrgica vs. transcateter em baixo risco'
+          ]
+        },
+        {
+          id: 19,
+          edition: '#19',
+          isLatest: false,
+          date: '29 de Outubro de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #19',
+          cover: 'https://static.wixstatic.com/media/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg',
+          url: 'https://campanhadigital.app/w/KIslCf33s5wz3y892NotVj6Q',
+          topics: [
+            'Segunda denervação renal em paciente com recidiva de hipertensão arterial resistente',
+            'TCW Trial: implante transcateter de valva aórtica e intervenção coronária guiada',
+            'Eficácia e segurança da anticoagulação vs. trombólise dirigida por cateter',
+            'Desfechos da troca valvar aórtica precoce vs. tardia na estenose aórtica grave'
+          ]
+        },
+        {
+          id: 18,
+          edition: '#18',
+          isLatest: false,
+          date: '24 de Setembro de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #18',
+          cover: 'https://static.wixstatic.com/media/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg',
+          url: 'https://campanhadigital.app/w/FUD0NCqyL3wTs892nDwh763892gw',
+          topics: [
+            'Duplo implante TAVI associado a Valve-in-Valve Mitral em paciente de alto risco',
+            'Revascularização completa em idosos com infarto e lesões não culpadas complexas',
+            'Reparo transcateter de borda a borda da valva tricúspide (T-TEER)',
+            'Pós-dilatação rotineira com volume nominal para otimização de válvulas balão-expansíveis'
+          ]
+        },
+        {
+          id: 17,
+          edition: '#17',
+          isLatest: false,
+          date: '15 de Agosto de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #17',
+          cover: 'https://static.wixstatic.com/media/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg',
+          url: 'https://campanhadigital.app/w/ymA4WlQvdVGqoUgiD892tKVQ',
+          topics: [
+            'Reparo transcateter da valva mitral com sistema Pascal em idosa frágil',
+            'Resultados de 24 meses do estudo SPYRAL HTN na denervação renal',
+            'Administração de heparina no primeiro contato médico versus sala de hemodinâmica',
+            'ICP guiada por imagem intravascular versus CRM para doença coronária complexa'
+          ]
+        },
+        {
+          id: 16,
+          edition: '#16',
+          isLatest: false,
+          date: '11 de Julho de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #16',
+          cover: 'https://static.wixstatic.com/media/963fe2_98cf124bb30346a0850f276cf6a3a4a6~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://campanhadigital.app/w/PeRNZVRU892763dnZ2OAxQMobA',
+          topics: [
+            'Intervenção coronariana percutânea em bifurcações: técnicas de stent único vs duplo',
+            'Aterectomia rotacional e litotripsia intravascular (IVL) em calcificações graves',
+            'Novidades em proteção embólica cerebral durante procedimentos transcateter'
+          ]
+        },
+        {
+          id: 15,
+          edition: '#15',
+          isLatest: false,
+          date: '30 de Maio de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #15',
+          cover: 'https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://campanhadigital.app/w/PeRNZVRU892763dnZ2OAxQMobA',
+          topics: [
+            'Manejo contemporâneo de lesões não protegidas do tronco da coronária esquerda',
+            'Oclusão percutânea do apêndice atrial esquerdo na prevenção de AVC',
+            'Desafios hemodinâmicos e tomada de decisão em pacientes plurivalvares'
+          ]
+        },
+        {
+          id: 14,
+          edition: '#14',
+          isLatest: false,
+          date: '17 de Abril de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #14',
+          cover: 'https://static.wixstatic.com/media/963fe2_8dca9b6dde5a4bf792552faff8e1d008~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://campanhadigital.app/w/KBKT5wR99BK7e44FPUjKJA',
+          topics: [
+            'Estratégias de monoterapia e desescalonamento antiplaquetário pós-angioplastia',
+            'Novas plataformas de stents bioabsorvíveis e eluidores de fármacos',
+            'Avaliação funcional microvascular coronária: IMR e CFR na prática clínica'
+          ]
+        },
+        {
+          id: 13,
+          edition: '#13',
+          isLatest: false,
+          date: '28 de Fevereiro de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #13',
+          cover: 'https://static.wixstatic.com/media/1d3d47_c325a033589849889db3ce135bb4dd87~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png',
+          url: 'https://sendy.wdcom.com.br/w/GI7DCpmcPyImqGBfVS7O6w',
+          topics: [
+            'Algoritmo de abordagem retrógrada e anterógrada em oclusões coronárias crônicas (CTO)',
+            'Via de acesso radial distal (tabaqueira anatômica) e desfechos vasculares',
+            'Casos complexos comentados pela comunidade de cardiologia intervencionista'
+          ]
+        },
+        {
+          id: 12,
+          edition: '#12',
+          isLatest: false,
+          date: '29 de Janeiro de 2025',
+          year: 2025,
+          title: 'Informativo SBHCI #12',
+          cover: 'https://static.wixstatic.com/media/1d3d47_04e8bf81050d4aab805e09bd3d94d06d~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png',
+          url: 'https://sendy.wdcom.com.br/w/1H72XoUBTrlKXWqkhfclaQ',
+          topics: [
+            'Otimização do implante de stents com tomografia de coerência óptica (OCT)',
+            'Ultra-som intracoronário (IVUS) na redução de trombose de stent e revascularização',
+            'Discussão clínica de casos desafiadores do laboratório de cateterismo'
+          ]
+        },
+        {
+          id: 11,
+          edition: '#11',
+          isLatest: false,
+          date: '18 de Dezembro de 2024',
+          year: 2024,
+          title: 'Informativo SBHCI #11',
+          cover: 'https://static.wixstatic.com/media/1d3d47_00ea7268fc1a45bdb9c23a2ed816d543~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://sendy.wdcom.com.br/w/Qe4XpHJDzv4I1V11nZZOyw',
+          topics: [
+            'Retrospectiva dos principais ensaios clínicos do ano na cardiologia invasiva',
+            'Avanços na intervenção transcateter da valva aórtica e mitral',
+            'Artigos científicos mais lidos e comentados pelos membros da SBHCI'
+          ]
+        },
+        {
+          id: 10,
+          edition: '#10',
+          isLatest: false,
+          date: '30 de Outubro de 2024',
+          year: 2024,
+          title: 'Informativo SBHCI #10',
+          cover: 'https://static.wixstatic.com/media/1d3d47_00ea7268fc1a45bdb9c23a2ed816d543~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://sendy.wdcom.com.br/w/9FVujzssKE767aIlKq4FJw',
+          topics: [
+            'Intervenção coronária percutânea em choque cardiogênico e suporte circulatório mecânico',
+            'Manejo de complicações no laboratório de hemodinâmica',
+            'Revisões dos principais guidelines internacionais'
+          ]
+        },
+        {
+          id: 9,
+          edition: '#09',
+          isLatest: false,
+          date: '28 de Agosto de 2024',
+          year: 2024,
+          title: 'Informativo SBHCI #09',
+          cover: 'https://static.wixstatic.com/media/963fe2_8dca9b6dde5a4bf792552faff8e1d008~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://sendy.wdcom.com.br/w/3BFFhzgxHQKVIHdYIY5LQQ',
+          topics: [
+            'Intervenções percutâneas em cardiopatias congênitas no adulto: CIA, FOP e PCA',
+            'Fechamento percutâneo de leak perivalvar',
+            'Atualização dos centros de formação da SBHCI'
+          ]
+        },
+        {
+          id: 8,
+          edition: '#08',
+          isLatest: false,
+          date: '26 de Junho de 2024',
+          year: 2024,
+          title: 'Informativo SBHCI #08',
+          cover: 'https://static.wixstatic.com/media/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg',
+          url: 'https://sendy.wdcom.com.br/w/diZk3JPhtgDpyBH3h5B892uQ',
+          topics: [
+            'Tratamento transcateter da insuficiência tricúspide com próteses dedicadas',
+            'Revascularização coronariana em síndromes coronarianas agudas',
+            'Artigos comentados de impacto clínico'
+          ]
+        },
+        {
+          id: 7,
+          edition: '#07',
+          isLatest: false,
+          date: '24 de Abril de 2024',
+          year: 2024,
+          title: 'Informativo SBHCI #07',
+          cover: 'https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://sendy.wdcom.com.br/w/473YN4B0aSz4FxMp763ALWEw',
+          topics: [
+            'Proteção radiológica e novas tecnologias para redução de dose ao operador',
+            'Fisiologia coronária não hiperêmica (iFR, RFR, dPR)',
+            'Casos desafiadores da semana'
+          ]
+        },
+        {
+          id: 6,
+          edition: '#06',
+          isLatest: false,
+          date: '28 de Fevereiro de 2024',
+          year: 2024,
+          title: 'Informativo SBHCI #06',
+          cover: 'https://static.wixstatic.com/media/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg',
+          url: 'https://sendy.wdcom.com.br/w/uA763shasR9AG7iXBXzhyXtg',
+          topics: [
+            'Atualização de critérios para indicação de TAVI em pacientes assintomáticos',
+            'Seleção de próteses autoexpansíveis vs. balão-expansíveis',
+            'Comentários editoriais sobre novas publicações'
+          ]
+        },
+        {
+          id: 5,
+          edition: '#05',
+          isLatest: false,
+          date: 'Ano 2023',
+          year: 2023,
+          title: 'Informativo SBHCI #05',
+          cover: 'https://static.wixstatic.com/media/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg',
+          url: 'https://sendy.wdcom.com.br/w/Gi3wHlfGlCb56kdZz7631Ehg',
+          topics: [
+            'Evolução dos stents farmacológicos e espessura das hastes',
+            'Abordagem de lesões de bifurcação e técnica de DK-Crush',
+            'Destaques dos congressos internacionais'
+          ]
+        },
+        {
+          id: 4,
+          edition: '#04',
+          isLatest: false,
+          date: 'Ano 2023',
+          year: 2023,
+          title: 'Informativo SBHCI #04',
+          cover: 'https://static.wixstatic.com/media/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg',
+          url: 'https://sendy.wdcom.com.br/w/lmEFFURdzg18fXgu2ivKzQ',
+          topics: [
+            'Intervenção coronária percutânea guiada por fisiologia vs. angiografia',
+            'Casos clínicos em hemodinâmica pediátrica e congênita',
+            'Discussão editorial e artigos recomendados'
+          ]
+        },
+        {
+          id: 3,
+          edition: '#03',
+          isLatest: false,
+          date: 'Ano 2023',
+          year: 2023,
+          title: 'Informativo SBHCI #03',
+          cover: 'https://static.wixstatic.com/media/963fe2_98cf124bb30346a0850f276cf6a3a4a6~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://sendy.wdcom.com.br/w/4iZezn763763SgP763VsJVNaKX0Q',
+          topics: [
+            'Manejo de reestenose intra-stent e balões farmacológicos (DCB)',
+            'Denervação renal como adjuvante no tratamento da hipertensão',
+            'Artigos comentados da SBHCI'
+          ]
+        },
+        {
+          id: 2,
+          edition: '#02',
+          isLatest: false,
+          date: 'Ano 2023',
+          year: 2023,
+          title: 'Informativo SBHCI #02',
+          cover: 'https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
+          url: 'https://sendy.wdcom.com.br/w/bq8Z6afEO9jvFsnprfDvFQ',
+          topics: [
+            'Aspectos práticos do acesso vascular femoral e dispositivos de oclusão',
+            'Intervenção estrutural: próteses percutâneas aórticas de nova geração',
+            'Comentários da literatura'
+          ]
+        },
+        {
+          id: 1,
+          edition: '#01',
+          isLatest: false,
+          date: 'Ano 2023',
+          year: 2023,
+          title: 'Informativo SBHCI #01',
+          cover: 'https://static.wixstatic.com/media/1d3d47_c325a033589849889db3ce135bb4dd87~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png',
+          url: 'https://sendy.wdcom.com.br/w/6E5c763gAC8Df2Q8ZKLOYGRg',
+          topics: [
+            'Lançamento oficial do informativo SBHCI News e projeto de Artigos Comentados',
+            'Grandes ensaios clínicos e o futuro da intervenção percutânea no Brasil',
+            'Apresentação dos objetivos editoriais e diretrizes científicas'
+          ]
+        }
+      ];
+
+      // 2. ELEMENTOS DO DOM
+      const dom = {
+        grid: document.getElementById('newsletter-grid'),
+        searchInput: document.getElementById('newsletter-search'),
+        searchClear: document.getElementById('newsletter-clear'),
+        yearPills: document.querySelectorAll('.year-pill-btn'),
+        resultsCount: document.getElementById('results-count'),
+        modal: document.getElementById('newsletter-modal'),
+        modalBadge: document.getElementById('modal-badge'),
+        modalTitle: document.getElementById('modal-title'),
+        modalIframe: document.getElementById('modal-iframe'),
+        modalExternalLink: document.getElementById('modal-external-link'),
+        modalClose: document.getElementById('modal-close')
+      };
+
+      // 3. ESTADO DA APLICAÇÃO
+      let activeYearFilter = 'all';
+      let searchQuery = '';
+
+      // 4. PROTOCOLO DE REDIMENSIONAMENTO WIX IFRAME (BIDIRECIONAL)
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'setHeight', height: height + 35 }, '*');
+            window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height + 35 }, '*');
+          }
+        } catch (e) {}
+      }
+
+      // 5. FILTRAGEM DO DATASET
+      function getFilteredNewsletters() {
+        return NEWSLETTERS.filter(item => {
+          // Filtro por ano
+          if (activeYearFilter === '2025' && item.year !== 2025) return false;
+          if (activeYearFilter === '2024' && item.year !== 2024) return false;
+          if (activeYearFilter === 'arquivo' && item.year >= 2024) return false;
+
+          // Filtro por busca
+          if (searchQuery.trim() !== '') {
+            const q = searchQuery.toLowerCase().trim();
+            const matchEdition = item.edition.toLowerCase().includes(q);
+            const matchTitle = item.title.toLowerCase().includes(q);
+            const matchDate = item.date.toLowerCase().includes(q);
+            const matchTopics = item.topics.some(t => t.toLowerCase().includes(q));
+            if (!matchEdition && !matchTitle && !matchDate && !matchTopics) {
+              return false;
+            }
+          }
+          return true;
+        });
+      }
+
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // 6. RENDERIZAR CARDS
+      function renderGrid() {
+        const items = getFilteredNewsletters();
+        dom.grid.innerHTML = '';
+
+        // Atualizar contador
+        const total = items.length;
+        dom.resultsCount.textContent = total === 1 ? 'Exibindo 1 edição' : `Exibindo ${total} edições`;
+
+        if (total === 0) {
+          dom.grid.innerHTML = `
+            <div class="empty-state-wrap">
+              <svg class="empty-state-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <h3 class="empty-state-title">Nenhuma newsletter encontrada</h3>
+              <p class="empty-state-text">Não encontramos resultados para "${escapeHTML(searchQuery)}". Tente buscar por número de edição (#20, #19...) ou outros termos como TAVI, Mitral, Denervação.</p>
+              <button type="button" class="empty-state-reset-btn" id="empty-state-reset">Limpar Filtros e Busca</button>
+            </div>
+          `;
+
+          const resetBtn = document.getElementById('empty-state-reset');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+              searchQuery = '';
+              dom.searchInput.value = '';
+              dom.searchClear.style.display = 'none';
+              activeYearFilter = 'all';
+              dom.yearPills.forEach(p => p.classList.toggle('active', p.getAttribute('data-year') === 'all'));
+              renderGrid();
+              sendResizeMessage();
+            });
+          }
+
+          sendResizeMessage();
+          return;
+        }
+
+        items.forEach(item => {
+          const card = document.createElement('article');
+          card.className = 'newsletter-card';
+          card.setAttribute('data-id', item.id);
+
+          const topicsHTML = item.topics.slice(0, 3).map(topic => `
+            <li class="card-topic-item" title="${escapeHTML(topic)}">${escapeHTML(topic)}</li>
+          `).join('');
+
+          card.innerHTML = `
+            <div class="card-cover-wrap" data-url="${escapeHTML(item.url)}" data-edition="${escapeHTML(item.edition)}" data-title="${escapeHTML(item.title)}">
+              <img class="card-cover-img" src="${escapeHTML(item.cover)}" alt="Capa da edição ${escapeHTML(item.edition)}" loading="lazy">
+              <span class="card-badge-edition">${escapeHTML(item.edition)}</span>
+              ${item.isLatest ? '<span class="card-badge-latest">Última Edição</span>' : ''}
+            </div>
+
+            <div class="card-body">
+              <div class="card-date-row">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>${escapeHTML(item.date)}</span>
+              </div>
+
+              <h3 class="card-title">${escapeHTML(item.title)}</h3>
+
+              <ul class="card-topics-list">
+                ${topicsHTML}
+              </ul>
+
+              <div class="card-actions-row">
+                <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="btn-read-edition" title="Acessar o informativo completo">
+                  <span>Acessar Edição</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+                <button type="button" class="btn-quick-preview" title="Pré-visualizar nesta página" data-url="${escapeHTML(item.url)}" data-edition="${escapeHTML(item.edition)}" data-title="${escapeHTML(item.title)}">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `;
+
+          // Clique na capa ou no botão de pré-visualização abre modal
+          const coverWrap = card.querySelector('.card-cover-wrap');
+          const previewBtn = card.querySelector('.btn-quick-preview');
+
+          coverWrap.addEventListener('click', () => {
+            openModal(item);
+          });
+
+          previewBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openModal(item);
+          });
+
+          dom.grid.appendChild(card);
+        });
+
+        sendResizeMessage();
+      }
+
+      // 7. CONTROLE DO MODAL DE PRÉ-VISUALIZAÇÃO
+      function openModal(item) {
+        dom.modalBadge.textContent = item.edition;
+        dom.modalTitle.textContent = item.title;
+        dom.modalExternalLink.href = item.url;
+        dom.modalIframe.src = item.url;
+        dom.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        dom.modal.classList.remove('active');
+        dom.modalIframe.src = 'about:blank';
+        document.body.style.overflow = '';
+      }
+
+      dom.modalClose.addEventListener('click', closeModal);
+
+      dom.modal.addEventListener('click', (e) => {
+        if (e.target === dom.modal) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dom.modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+
+      // 8. EVENTOS DE BUSCA E FILTROS
+      dom.searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        dom.searchClear.style.display = searchQuery ? 'flex' : 'none';
+        renderGrid();
+      });
+
+      dom.searchClear.addEventListener('click', () => {
+        dom.searchInput.value = '';
+        searchQuery = '';
+        dom.searchClear.style.display = 'none';
+        dom.searchInput.focus();
+        renderGrid();
+      });
+
+      dom.yearPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const year = pill.getAttribute('data-year');
+          if (activeYearFilter !== year) {
+            activeYearFilter = year;
+            dom.yearPills.forEach(p => {
+              const isActive = p === pill;
+              p.classList.toggle('active', isActive);
+              p.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+            renderGrid();
+          }
+        });
+      });
+
+      // 9. INICIALIZAÇÃO E OBSERVAÇÃO DE REDIMENSIONAMENTO
+      window.addEventListener('load', () => {
+        renderGrid();
+        setTimeout(sendResizeMessage, 300);
+        setTimeout(sendResizeMessage, 1200);
+        setTimeout(sendResizeMessage, 3000);
+      });
+
+      window.addEventListener('resize', sendResizeMessage);
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
+        ro.observe(document.body);
+      }
+
+    })();
+  </script>
+</body>
+</html>
