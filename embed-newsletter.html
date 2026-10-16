@@ -1159,30 +1159,55 @@
         }
       ];
 
-      // Array dinâmico que pode ser alimentado em tempo real pelo Wix CMS (Coleção "informativos")
-      let newslettersData = [...STATIC_NEWSLETTERS];
-
       // Converte URLs do Wix Media (wix:image://...) para URLs públicas https://static.wixstatic.com/media/...
       function formatWixImageUrl(imgUrl) {
         if (!imgUrl) return '';
-        if (typeof imgUrl === 'string' && imgUrl.startsWith('wix:image://v1/')) {
+        if (typeof imgUrl === 'object') {
+          imgUrl = imgUrl.src || imgUrl.url || '';
+        }
+        if (typeof imgUrl !== 'string') return '';
+        imgUrl = imgUrl.trim();
+        if (imgUrl.startsWith('wix:image://v1/')) {
           const parts = imgUrl.replace('wix:image://v1/', '').split('/');
           const fileId = parts[0];
+          return 'https://static.wixstatic.com/media/' + fileId;
+        }
+        if (imgUrl.startsWith('wix:image://')) {
+          const stripped = imgUrl.replace('wix:image://', '');
+          const fileId = stripped.split('/')[1] || stripped.split('/')[0];
           return 'https://static.wixstatic.com/media/' + fileId;
         }
         return imgUrl;
       }
 
-      // Normaliza itens vindos da coleção "informativos" do Wix (ou do fallback local)
-      // Campos oficiais da coleção no Wix CMS:
-      // 1. Title (Texto)
-      // 2. data (Data)
-      // 3. imagem_url (Imagem)
-      // 4. informativo_url (Link / URL)
-      function normalizeWixItem(item, index) {
-        const titleStr = item.Title || item.title || 'Informativo SBHCI';
+      // Converte URLs de documentos Wix (wix:document://...) para URLs públicas https://static.wixstatic.com/ugd/...
+      function formatWixDocumentUrl(docUrl) {
+        if (!docUrl) return '#';
+        if (typeof docUrl === 'object') {
+          docUrl = docUrl.src || docUrl.url || '#';
+        }
+        if (typeof docUrl !== 'string') return '#';
+        docUrl = docUrl.trim();
+        if (docUrl.startsWith('wix:document://v1/')) {
+          const parts = docUrl.replace('wix:document://v1/', '').split('/');
+          const fileId = parts[0];
+          return 'https://static.wixstatic.com/ugd/' + fileId;
+        }
+        return docUrl;
+      }
 
-        let dateVal = item.data;
+      // Normaliza itens vindos da coleção "informativos" do Wix (ou do fallback local)
+      // Mapeia exclusivamente os 4 campos da coleção Wix:
+      // 1. Title (ou title, titulo)
+      // 2. data (ou date)
+      // 3. imagem_url (ou imagem, image, capa)
+      // 4. informativo_url (ou url, link)
+      function normalizeWixItem(item, index) {
+        if (!item || typeof item !== 'object') return null;
+
+        const titleStr = item.Title || item.title || item.titulo || item.Titulo || 'Informativo SBHCI';
+
+        let dateVal = item.data !== undefined ? item.data : (item.date !== undefined ? item.date : item._createdDate);
         let dateStr = 'Data não informada';
         let yearNum = null;
 
@@ -1191,36 +1216,50 @@
             yearNum = dateVal.getFullYear();
             dateStr = dateVal.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
           } else if (typeof dateVal === 'string') {
-            if (dateVal.includes('T') && !isNaN(new Date(dateVal).getTime())) {
-              const d = new Date(dateVal);
-              yearNum = d.getFullYear();
-              dateStr = d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+            const trimmed = dateVal.trim();
+            const parsedD = new Date(trimmed);
+            if (!isNaN(parsedD.getTime()) && (trimmed.includes('T') || trimmed.includes('-') || (trimmed.includes('/') && trimmed.length >= 8))) {
+              yearNum = parsedD.getFullYear();
+              dateStr = parsedD.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
             } else {
-              dateStr = dateVal;
-              const matchYear = dateVal.match(/\b(20\d\d)\b/);
+              dateStr = trimmed;
+              const matchYear = trimmed.match(/\b(20\d\d)\b/);
               if (matchYear) yearNum = parseInt(matchYear[1], 10);
             }
           }
         }
 
-        const coverUrl = formatWixImageUrl(item.imagem_url || item.image || item.capa) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
-        const targetUrl = item.informativo_url || item.url || item.link || '#';
+        const rawCover = item.imagem_url || item.imagem || item.Imagem || item.image || item.Image || item.capa || item.cover || '';
+        const coverUrl = formatWixImageUrl(rawCover) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
+
+        const rawUrl = item.informativo_url || item.Informativo_url || item.url || item.Url || item.link || item.Link || item.arquivo || item.pdf || '#';
+        const targetUrl = formatWixDocumentUrl(rawUrl);
 
         return {
           id: item._id || item.id || (index + 1),
           title: titleStr,
+          Title: titleStr,
           date: dateStr,
+          data: dateStr,
           year: yearNum,
           cover: coverUrl,
-          url: targetUrl
+          imagem_url: coverUrl,
+          url: targetUrl,
+          informativo_url: targetUrl
         };
       }
 
+      // Array dinâmico inicializado com o fallback local devidamente normalizado
+      let newslettersData = STATIC_NEWSLETTERS.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
+
       function setNewslettersFromWix(items) {
         if (!Array.isArray(items) || items.length === 0) return;
-        newslettersData = items.map((it, idx) => normalizeWixItem(it, idx));
-        renderGrid();
-        sendResizeMessage();
+        const normalized = items.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
+        if (normalized.length > 0) {
+          newslettersData = normalized;
+          renderGrid();
+          sendResizeMessage();
+        }
       }
 
       // 2. ELEMENTOS DO DOM
@@ -1260,6 +1299,8 @@
       // 5. FILTRAGEM DO DATASET (CAMPOS Title E data)
       function getFilteredNewsletters() {
         return newslettersData.filter(item => {
+          if (!item) return false;
+
           // Filtro por ano (extraído do campo data)
           if (activeYearFilter === '2025' && item.year !== 2025) return false;
           if (activeYearFilter === '2024' && item.year !== 2024) return false;
@@ -1268,9 +1309,9 @@
           // Filtro por busca (Title ou data)
           if (searchQuery.trim() !== '') {
             const q = searchQuery.toLowerCase().trim();
-            const matchTitle = item.title.toLowerCase().includes(q);
-            const matchDate = item.date.toLowerCase().includes(q);
-            if (!matchTitle && !matchDate) {
+            const titleVal = String(item.title || item.Title || '').toLowerCase();
+            const dateVal = String(item.date || item.data || '').toLowerCase();
+            if (!titleVal.includes(q) && !dateVal.includes(q)) {
               return false;
             }
           }
@@ -1333,14 +1374,20 @@
         items.forEach(item => {
           const card = document.createElement('article');
           card.className = 'newsletter-card';
-          card.setAttribute('data-id', item.id);
+          card.setAttribute('data-id', item.id || '');
+
+          const itemTitle = item.title || item.Title || item.titulo || 'Informativo SBHCI';
+          const itemCover = item.cover || item.imagem_url || item.imagem || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
+          const itemDate = item.date || item.data || '';
+          const itemUrl = item.url || item.informativo_url || '#';
 
           card.innerHTML = `
-            <div class="card-cover-wrap" data-url="${escapeHTML(item.url)}" data-title="${escapeHTML(item.title)}">
-              <img class="card-cover-img" src="${escapeHTML(item.cover)}" alt="${escapeHTML(item.title)}" loading="lazy">
+            <div class="card-cover-wrap" data-url="${escapeHTML(itemUrl)}" data-title="${escapeHTML(itemTitle)}">
+              <img class="card-cover-img" src="${escapeHTML(itemCover)}" alt="${escapeHTML(itemTitle)}" loading="lazy" onerror="this.onerror=null; this.src='https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';">
             </div>
 
             <div class="card-body">
+              ${itemDate ? `
               <div class="card-date-row">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -1348,13 +1395,14 @@
                   <line x1="8" y1="2" x2="8" y2="6"></line>
                   <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
-                <span>${escapeHTML(item.date)}</span>
+                <span>${escapeHTML(itemDate)}</span>
               </div>
+              ` : ''}
 
-              <h3 class="card-title">${escapeHTML(item.title)}</h3>
+              <h3 class="card-title">${escapeHTML(itemTitle)}</h3>
 
               <div class="card-actions-row">
-                <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="btn-read-edition" title="Acessar o informativo completo">
+                <a href="${escapeHTML(itemUrl)}" target="_blank" rel="noopener noreferrer" class="btn-read-edition" title="Acessar o informativo completo">
                   <span>Acessar Informativo</span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -1367,11 +1415,13 @@
 
           // Clique na capa abre diretamente o link do informativo
           const coverWrap = card.querySelector('.card-cover-wrap');
-          coverWrap.addEventListener('click', () => {
-            if (item.url && item.url !== '#') {
-              window.open(item.url, '_blank', 'noopener,noreferrer');
-            }
-          });
+          if (coverWrap) {
+            coverWrap.addEventListener('click', () => {
+              if (itemUrl && itemUrl !== '#') {
+                window.open(itemUrl, '_blank', 'noopener,noreferrer');
+              }
+            });
+          }
 
           dom.grid.appendChild(card);
         });
@@ -1450,8 +1500,25 @@
 
       window.addEventListener('message', function (event) {
         if (!event.data) return;
-        const data = event.data;
-        if (data.type === 'SET_NEWSLETTERS' || data.type === 'INIT_NEWSLETTERS' || data.type === 'newsletter-data') {
+        let data = event.data;
+
+        // Se os dados vierem em string (JSON stringificado pelo Velo)
+        if (typeof data === 'string') {
+          try {
+            data = JSON.parse(data);
+          } catch (e) {
+            return;
+          }
+        }
+
+        // Caso 1: Velo enviou um array direto $w('#htmlEmbed').postMessage(results.items)
+        if (Array.isArray(data) && data.length > 0) {
+          setNewslettersFromWix(data);
+          return;
+        }
+
+        // Caso 2: Velo enviou um objeto com propriedade items ou data
+        if (data && typeof data === 'object') {
           const items = data.items || data.data;
           if (Array.isArray(items) && items.length > 0) {
             setNewslettersFromWix(items);
