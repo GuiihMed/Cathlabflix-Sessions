@@ -695,6 +695,98 @@
     }
 
     /* ==========================================================================
+       PAGINAÇÃO (12 ITENS POR PÁGINA)
+       ========================================================================== */
+    .newsletter-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+
+    .pagination-btn {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: var(--radius-pill);
+      background: var(--color-surface);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+      background: var(--color-surface-elevated);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .pagination-btn.active {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 4px 14px var(--color-primary-glow);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      border-color: transparent;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .pagination-dots {
+      color: var(--color-text-secondary);
+      padding: 0 6px;
+      font-size: 0.875rem;
+      user-select: none;
+    }
+
+    .pagination-info {
+      width: 100%;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 600px) {
+      .newsletter-pagination {
+        gap: 6px;
+        margin-top: 30px;
+        padding-top: 20px;
+      }
+      .pagination-btn {
+        min-width: 36px;
+        height: 36px;
+        padding: 0 10px;
+        font-size: 0.75rem;
+      }
+      .pagination-prev .btn-text,
+      .pagination-next .btn-text {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
        EMPTY STATE (BUSCA SEM RESULTADOS)
        ========================================================================== */
     .empty-state-wrap {
@@ -994,6 +1086,11 @@
         <!-- Inserido dinamicamente via JavaScript -->
       </section>
 
+      <!-- 6. Paginação (12 itens por página) -->
+      <nav class="newsletter-pagination" id="newsletter-pagination" aria-label="Navegação entre páginas" style="display: none;">
+        <!-- Inserido dinamicamente via JavaScript -->
+      </nav>
+
     </main>
   </div>
 
@@ -1257,6 +1354,7 @@
         const normalized = items.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
         if (normalized.length > 0) {
           newslettersData = normalized;
+          currentPage = 1;
           renderGrid();
           sendResizeMessage();
         }
@@ -1265,6 +1363,7 @@
       // 2. ELEMENTOS DO DOM
       const dom = {
         grid: document.getElementById('newsletter-grid'),
+        pagination: document.getElementById('newsletter-pagination'),
         searchInput: document.getElementById('newsletter-search'),
         searchClear: document.getElementById('newsletter-clear'),
         yearPills: document.querySelectorAll('.year-pill-btn'),
@@ -1277,7 +1376,9 @@
         modalClose: document.getElementById('modal-close')
       };
 
-      // 3. ESTADO DA APLICAÇÃO
+      // 3. ESTADO DA APLICAÇÃO (12 ITENS POR PÁGINA)
+      const ITEMS_PER_PAGE = 12;
+      let currentPage = 1;
       let activeYearFilter = 'all';
       let searchQuery = '';
 
@@ -1329,13 +1430,19 @@
           .replace(/'/g, '&#039;');
       }
 
-      // 6. RENDERIZAR CARDS (EXCLUSIVAMENTE COM: imagem_url, data, Title, informativo_url)
+      // 6. RENDERIZAR CARDS (LIMITANDO EM 12 POR PÁGINA)
       function renderGrid() {
         const items = getFilteredNewsletters();
         dom.grid.innerHTML = '';
 
         // Atualizar contador
         const total = items.length;
+        const totalPages = Math.ceil(total / ITEMS_PER_PAGE) || 1;
+
+        if (currentPage > totalPages) {
+          currentPage = 1;
+        }
+
         if (dom.resultsCount) {
           dom.resultsCount.style.display = 'none';
           dom.resultsCount.textContent = '';
@@ -1354,6 +1461,11 @@
             </div>
           `;
 
+          if (dom.pagination) {
+            dom.pagination.innerHTML = '';
+            dom.pagination.style.display = 'none';
+          }
+
           const resetBtn = document.getElementById('empty-state-reset');
           if (resetBtn) {
             resetBtn.addEventListener('click', () => {
@@ -1362,6 +1474,7 @@
               dom.searchClear.style.display = 'none';
               activeYearFilter = 'all';
               dom.yearPills.forEach(p => p.classList.toggle('active', p.getAttribute('data-year') === 'all'));
+              currentPage = 1;
               renderGrid();
               sendResizeMessage();
             });
@@ -1371,7 +1484,12 @@
           return;
         }
 
-        items.forEach(item => {
+        // Fatiamento por página (máximo 12 itens por página)
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const pagedItems = items.slice(startIndex, endIndex);
+
+        pagedItems.forEach(item => {
           const card = document.createElement('article');
           card.className = 'newsletter-card';
           card.setAttribute('data-id', item.id || '');
@@ -1426,10 +1544,130 @@
           dom.grid.appendChild(card);
         });
 
+        // Renderizar controles de paginação
+        renderPagination(total, totalPages);
+
         sendResizeMessage();
       }
 
-      // 7. CONTROLE DO MODAL DE PRÉ-VISUALIZAÇÃO
+      // 7. CONTROLES DE PAGINAÇÃO (MÁXIMO 12 POR PÁGINA)
+      function renderPagination(totalItems, totalPages) {
+        if (!dom.pagination) return;
+
+        if (totalPages <= 1) {
+          dom.pagination.innerHTML = '';
+          dom.pagination.style.display = 'none';
+          return;
+        }
+
+        dom.pagination.style.display = 'flex';
+        dom.pagination.innerHTML = '';
+
+        // Botão Anterior
+        const prevBtn = document.createElement('button');
+        prevBtn.type = 'button';
+        prevBtn.className = 'pagination-btn pagination-prev';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.setAttribute('aria-label', 'Página anterior');
+        prevBtn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span class="btn-text">Anterior</span>
+        `;
+        prevBtn.addEventListener('click', () => {
+          if (currentPage > 1) {
+            goToPage(currentPage - 1);
+          }
+        });
+        dom.pagination.appendChild(prevBtn);
+
+        // Gera os números de páginas
+        const pagesToDisplay = getPageNumbers(currentPage, totalPages);
+
+        pagesToDisplay.forEach(p => {
+          if (p === '...') {
+            const dots = document.createElement('span');
+            dots.className = 'pagination-dots';
+            dots.textContent = '...';
+            dom.pagination.appendChild(dots);
+          } else {
+            const pageBtn = document.createElement('button');
+            pageBtn.type = 'button';
+            pageBtn.className = 'pagination-btn' + (p === currentPage ? ' active' : '');
+            pageBtn.setAttribute('aria-label', `Ir para página ${p}`);
+            if (p === currentPage) {
+              pageBtn.setAttribute('aria-current', 'page');
+            }
+            pageBtn.textContent = p;
+            pageBtn.addEventListener('click', () => {
+              if (p !== currentPage) {
+                goToPage(p);
+              }
+            });
+            dom.pagination.appendChild(pageBtn);
+          }
+        });
+
+        // Botão Próxima
+        const nextBtn = document.createElement('button');
+        nextBtn.type = 'button';
+        nextBtn.className = 'pagination-btn pagination-next';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.setAttribute('aria-label', 'Próxima página');
+        nextBtn.innerHTML = `
+          <span class="btn-text">Próxima</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        `;
+        nextBtn.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            goToPage(currentPage + 1);
+          }
+        });
+        dom.pagination.appendChild(nextBtn);
+
+        // Texto informativo
+        const startNum = (currentPage - 1) * ITEMS_PER_PAGE + 1;
+        const endNum = Math.min(currentPage * ITEMS_PER_PAGE, totalItems);
+        const info = document.createElement('div');
+        info.className = 'pagination-info';
+        info.textContent = `Exibindo ${startNum} a ${endNum} de ${totalItems} informativos (Página ${currentPage} de ${totalPages})`;
+        dom.pagination.appendChild(info);
+      }
+
+      function goToPage(page) {
+        currentPage = page;
+        renderGrid();
+
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (dom.grid) {
+            dom.grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'scrollToTop' }, '*');
+          }
+        } catch (e) {}
+
+        sendResizeMessage();
+      }
+
+      function getPageNumbers(current, total) {
+        if (total <= 7) {
+          return Array.from({ length: total }, (_, i) => i + 1);
+        }
+        if (current <= 4) {
+          return [1, 2, 3, 4, 5, '...', total];
+        }
+        if (current >= total - 3) {
+          return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+        }
+        return [1, '...', current - 1, current, current + 1, '...', total];
+      }
+
+      // 8. CONTROLE DO MODAL DE PRÉ-VISUALIZAÇÃO
       function openModal(item) {
         if (dom.modalBadge) dom.modalBadge.style.display = 'none';
         dom.modalTitle.textContent = item.title;
@@ -1459,10 +1697,11 @@
         }
       });
 
-      // 8. EVENTOS DE BUSCA E FILTROS
+      // 9. EVENTOS DE BUSCA E FILTROS
       dom.searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value;
         dom.searchClear.style.display = searchQuery ? 'flex' : 'none';
+        currentPage = 1;
         renderGrid();
       });
 
@@ -1471,6 +1710,7 @@
         searchQuery = '';
         dom.searchClear.style.display = 'none';
         dom.searchInput.focus();
+        currentPage = 1;
         renderGrid();
       });
 
@@ -1484,6 +1724,7 @@
               p.classList.toggle('active', isActive);
               p.setAttribute('aria-selected', isActive ? 'true' : 'false');
             });
+            currentPage = 1;
             renderGrid();
           }
         });
