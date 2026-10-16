@@ -1032,8 +1032,8 @@
     (function () {
       'use strict';
 
-      // 1. DATASET OFICIAL DAS NEWSLETTERS SBHCI NEWS (#01 a #20)
-      const NEWSLETTERS = [
+      // 1. DATASET OFICIAL DAS NEWSLETTERS SBHCI NEWS (#01 a #20) (FALLBACK LOCAL)
+      const STATIC_NEWSLETTERS = [
         {
           id: 20,
           edition: '#20',
@@ -1340,6 +1340,63 @@
         }
       ];
 
+      // Array dinâmico que pode ser alimentado em tempo real pelo Wix CMS (Coleção "informativos")
+      let newslettersData = [...STATIC_NEWSLETTERS];
+
+      // Converte URLs do Wix Media (wix:image://...) para URLs públicas https://static.wixstatic.com/media/...
+      function formatWixImageUrl(imgUrl) {
+        if (!imgUrl) return '';
+        if (typeof imgUrl === 'string' && imgUrl.startsWith('wix:image://v1/')) {
+          const parts = imgUrl.replace('wix:image://v1/', '').split('/');
+          const fileId = parts[0];
+          return 'https://static.wixstatic.com/media/' + fileId;
+        }
+        return imgUrl;
+      }
+
+      // Normaliza itens vindos da coleção "informativos" do Wix
+      function normalizeWixItem(item, index) {
+        const editionRaw = item.edicao || item.edition || item.numero || item.number || ('#' + (item.id || (index + 1)));
+        const editionStr = String(editionRaw).startsWith('#') ? String(editionRaw) : ('#' + editionRaw);
+
+        let dateStr = item.data || item.date;
+        let yearNum = item.ano || item.year;
+
+        if (!dateStr && item._createdDate) {
+          const d = new Date(item._createdDate);
+          dateStr = d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+          if (!yearNum) yearNum = d.getFullYear();
+        }
+
+        if (!yearNum && dateStr) {
+          const matchYear = String(dateStr).match(/\b(20\d\d)\b/);
+          if (matchYear) yearNum = parseInt(matchYear[1], 10);
+        }
+
+        const titleStr = item.titulo || item.title || item.nome || ('Informativo SBHCI ' + editionStr);
+        const coverUrl = formatWixImageUrl(item.capa || item.cover || item.imagem || item.image || item.foto) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
+        const targetUrl = item.link || item.url || item.arquivo || item.pdf || '#';
+
+        return {
+          id: item._id || item.id || (index + 1),
+          edition: editionStr,
+          isLatest: item.isLatest !== undefined ? Boolean(item.isLatest) : (index === 0),
+          date: dateStr || 'Data não informada',
+          year: Number(yearNum) || 2025,
+          title: titleStr,
+          cover: coverUrl,
+          url: targetUrl,
+          topics: Array.isArray(item.topics) ? item.topics : (Array.isArray(item.topicos) ? item.topicos : [])
+        };
+      }
+
+      function setNewslettersFromWix(items) {
+        if (!Array.isArray(items) || items.length === 0) return;
+        newslettersData = items.map((it, idx) => normalizeWixItem(it, idx));
+        renderGrid();
+        sendResizeMessage();
+      }
+
       // 2. ELEMENTOS DO DOM
       const dom = {
         grid: document.getElementById('newsletter-grid'),
@@ -1376,7 +1433,7 @@
 
       // 5. FILTRAGEM DO DATASET
       function getFilteredNewsletters() {
-        return NEWSLETTERS.filter(item => {
+        return newslettersData.filter(item => {
           // Filtro por ano
           if (activeYearFilter === '2025' && item.year !== 2025) return false;
           if (activeYearFilter === '2024' && item.year !== 2024) return false;
@@ -1556,9 +1613,47 @@
         });
       });
 
-      // 9. INICIALIZAÇÃO E OBSERVAÇÃO DE REDIMENSIONAMENTO
+      // 9. INTEGRAÇÃO WIX VELO (COLEÇÃO "informativos")
+      function requestWixData() {
+        try {
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'REQUEST_NEWSLETTERS', collection: 'informativos' }, '*');
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener('message', function (event) {
+        if (!event.data) return;
+        const data = event.data;
+        if (data.type === 'SET_NEWSLETTERS' || data.type === 'INIT_NEWSLETTERS' || data.type === 'newsletter-data') {
+          const items = data.items || data.data;
+          if (Array.isArray(items) && items.length > 0) {
+            setNewslettersFromWix(items);
+          }
+        }
+      });
+
+      // Suporte a carregamento direto via API REST (se fornecida via query param ?api=URL)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const apiUrl = urlParams.get('api') || urlParams.get('endpoint');
+        if (apiUrl) {
+          fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+              const items = data.items || data;
+              if (Array.isArray(items) && items.length > 0) {
+                setNewslettersFromWix(items);
+              }
+            })
+            .catch(err => console.error('Erro ao buscar dados da coleção informativos:', err));
+        }
+      } catch (err) {}
+
+      // 10. INICIALIZAÇÃO E OBSERVAÇÃO DE REDIMENSIONAMENTO
       window.addEventListener('load', () => {
         renderGrid();
+        requestWixData();
         setTimeout(sendResizeMessage, 300);
         setTimeout(sendResizeMessage, 1200);
         setTimeout(sendResizeMessage, 3000);
