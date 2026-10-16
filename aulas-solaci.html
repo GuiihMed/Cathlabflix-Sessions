@@ -86,10 +86,10 @@
 
     /* Estrutura Principal */
     .aulas-page-main {
-      width: 100%;
-      max-width: 1320px;
+      width: 96%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 20px 60px;
+      padding: 24px 12px 60px;
       box-sizing: border-box;
       flex: 1;
     }
@@ -127,18 +127,25 @@
 
     /* Cabeçalho Apenas com Título */
     .aulas-hero-header {
-      margin-bottom: 28px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--color-border-subtle);
+      margin-bottom: 24px;
     }
 
     .aulas-header-title {
-      font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-      font-weight: 800;
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 900;
       letter-spacing: -0.02em;
       color: #FFFFFF;
       margin: 0;
-      line-height: 1.25;
+      line-height: 1.2;
+    }
+
+    .red-line {
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border-radius: 2px;
     }
 
     /* Card Principal de Apresentações */
@@ -899,6 +906,7 @@
       <!-- Cabeçalho (Apenas Título) -->
       <header class="aulas-hero-header">
         <h1 class="aulas-header-title">Grade de Aulas e Apresentações</h1>
+        <div class="red-line"></div>
       </header>
 
       <!-- Card Principal de Apresentações -->

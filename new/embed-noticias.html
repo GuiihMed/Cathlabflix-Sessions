@@ -56,10 +56,10 @@ button, input, select, textarea {
 }
 
 .embed-noticias-container {
-  width: 94%;
-  max-width: 1100px;
+  width: 96%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 8px 36px;
+  padding: 20px 8px 60px;
 }
 
 @media (max-width: 768px) {
@@ -96,6 +96,29 @@ button, input, select, textarea {
    VIEW 1: CATÁLOGO DE NOTÍCIAS
    ========================================================================== */
 
+/* Cabeçalho do Catálogo */
+.noticias-catalog-header {
+  margin-bottom: 24px;
+}
+
+.page-title {
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.red-line {
+  width: 50px;
+  height: 3px;
+  background: var(--color-primary, #E50914);
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border-radius: 2px;
+}
+
 /* Barra de Busca de Notícias */
 .noticias-search-bar-wrap {
   width: 100%;
@@ -109,20 +132,23 @@ button, input, select, textarea {
   background: #020627;
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-pill);
-  padding: 2px 16px;
+  padding: 0 16px;
+  min-height: 48px;
   transition: all 0.2s ease;
 }
 
 .noticias-search-box:focus-within {
-  border-color: #0284c7;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
-  background: #050b38;
+  border-color: var(--color-blue-accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  background: #030a38;
 }
 
 .noticias-search-icon {
   color: var(--color-text-secondary);
-  margin-right: 10px;
+  margin-right: 12px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 
 .noticias-search-input {
@@ -131,9 +157,9 @@ button, input, select, textarea {
   background: transparent;
   color: #FFFFFF;
   font-family: inherit;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  padding: 8px 0;
+  padding: 12px 0;
   outline: none;
 }
 
@@ -647,6 +673,12 @@ button, input, select, textarea {
          ========================================================================== -->
     <section class="noticias-view-panel active" id="viewPostsList" aria-label="Catálogo de Notícias">
       
+      <!-- Cabeçalho do Catálogo -->
+      <header class="noticias-catalog-header">
+        <h1 class="page-title">Notícias & Publicações SBHCI</h1>
+        <div class="red-line"></div>
+      </header>
+
       <!-- Barra de Busca de Notícias -->
       <div class="noticias-search-bar-wrap">
         <div class="noticias-search-box">
@@ -819,6 +851,8 @@ button, input, select, textarea {
       );
       if (window.parent && window.parent !== window) {
         window.parent.postMessage({ type: 'setHeight', height: height + 30 }, '*');
+        window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height + 30 }, '*');
+        window.parent.postMessage({ type: 'cathlabflix:resize', height: height + 30 }, '*');
       }
     } catch (e) {}
   }

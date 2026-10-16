@@ -85,12 +85,19 @@
 
     /* Estrutura Principal */
     .cobertura-main {
-      width: 100%;
-      max-width: 1280px;
+      width: 96%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 20px 60px;
+      padding: 24px 12px 60px;
       box-sizing: border-box;
       flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .cobertura-main {
+        width: 100% !important;
+        padding: 16px 12px 40px !important;
+      }
     }
 
     /* Top Bar com Botão Voltar ao SOLACI */
@@ -144,24 +151,25 @@
     }
 
     .page-title {
-      font-size: clamp(1.4rem, 2.8vw, 1.85rem);
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
       font-weight: 800;
       color: #FFFFFF;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.02em;
       line-height: 1.22;
-      margin: 0 0 10px 0;
+      margin: 0 0 8px 0;
     }
 
     .page-title-underline {
-      width: 72px;
-      height: 4px;
-      background: linear-gradient(90deg, #E50914 0%, #ff4b55 100%);
-      border-radius: var(--radius-pill);
-      margin-bottom: 12px;
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
+      border-radius: 2px;
+      margin-top: 8px;
+      margin-bottom: 16px;
     }
 
     .page-subtitle {
-      font-size: 0.85rem;
+      font-size: clamp(0.85rem, 1.4vw, 0.95rem);
       color: var(--color-text-secondary);
       font-weight: 400;
       line-height: 1.55;

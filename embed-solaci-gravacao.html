@@ -90,12 +90,19 @@
 
     /* Container Principal */
     .gravacao-main {
-      width: 100%;
-      max-width: 1400px;
+      width: 96%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 20px 60px;
+      padding: 24px 12px 60px;
       box-sizing: border-box;
       flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .gravacao-main {
+        width: 100% !important;
+        padding: 16px 12px 40px !important;
+      }
     }
 
     /* Barra Superior com Botão Voltar ao SOLACI */
@@ -136,7 +143,7 @@
     }
 
     .gravacao-title {
-      font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
       font-weight: 900;
       letter-spacing: -0.02em;
       color: #FFFFFF;
@@ -145,10 +152,12 @@
     }
 
     .gravacao-title-underline {
-      width: 64px;
-      height: 4px;
-      background: var(--color-primary);
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
       border-radius: 2px;
+      margin-top: 8px;
+      margin-bottom: 16px;
     }
 
     /* ==========================================================================

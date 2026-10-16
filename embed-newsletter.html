@@ -89,16 +89,17 @@
 
     /* Container Principal Centralizado */
     .newsletter-main {
-      width: 100%;
-      max-width: 1320px;
+      width: 96%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 24px 20px 60px;
+      padding: 24px 12px 60px;
       box-sizing: border-box;
       flex: 1;
     }
 
     @media (max-width: 768px) {
       .newsletter-main {
+        width: 100% !important;
         padding: 16px 12px 40px !important;
       }
     }
@@ -176,11 +177,12 @@
 
     /* Linha decorativa vermelha sólida oficial SBHCI */
     .newsletter-title-underline {
-      width: 64px;
-      height: 4px;
-      background: var(--color-primary);
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
       border-radius: 2px;
-      margin-bottom: 12px;
+      margin-top: 8px;
+      margin-bottom: 16px;
     }
 
     .newsletter-subtitle {
@@ -225,17 +227,18 @@
       min-width: 260px;
       display: flex;
       align-items: center;
-      background: var(--color-surface-dark);
-      border: 1px solid var(--color-border-subtle);
+      background: #020627;
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--radius-pill);
       padding: 0 16px;
+      min-height: 48px;
       transition: all 0.2s ease;
     }
 
     .search-box:focus-within {
       border-color: var(--color-blue-accent);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
-      background: #040c2e;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      background: #030a38;
     }
 
     .search-icon {
