@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>NotebookLM - CathlabFlix</title>
+  <meta name="description" content="Acesse os cadernos e materiais inteligentes no NotebookLM dos Webinares SBHCI.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #0a2d72;
+      --color-surface-card: #04173d;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #b80710;
+      --color-blue-accent: #38bdf8;
+      --color-blue-soft: rgba(56, 189, 248, 0.15);
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --radius-pill: 9999px;
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden !important;
+    }
+
+    .container {
+      width: 96%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 12px 60px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: 100%;
+        padding: 16px 12px 40px;
+      }
+    }
+
+    /* Cabeçalho da Seção */
+    .header-section {
+      margin-bottom: 28px;
+    }
+
+    .page-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .red-line {
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary);
+      margin-top: 8px;
+      border-radius: 2px;
+    }
+
+    /* Grid de Cards */
+    .notebooklm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 768px) {
+      .notebooklm-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* Card NotebookLM */
+    .notebook-card {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+      cursor: pointer;
+    }
+
+    .notebook-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.45);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(56, 189, 248, 0.35);
+    }
+
+    .notebook-card:focus-visible {
+      outline: 2px solid var(--color-blue-accent);
+      outline-offset: 4px;
+    }
+
+    /* Imagem de Capa */
+    .notebook-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .notebook-card:hover .notebook-cover-img {
+      transform: scale(1.025);
+    }
+
+    /* Overlay no Hover */
+    .notebook-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(1, 2, 52, 0.82) 0%, rgba(1, 2, 52, 0.25) 55%, transparent 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 16px 20px;
+      opacity: 0;
+      transition: opacity var(--transition-base);
+      pointer-events: none;
+    }
+
+    .notebook-card:hover .notebook-overlay,
+    .notebook-card:focus-visible .notebook-overlay {
+      opacity: 1;
+    }
+
+    /* Badge de Ação */
+    .btn-notebook-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.45);
+      transform: translateY(6px);
+      transition: transform var(--transition-base), background-color var(--transition-fast);
+      letter-spacing: 0.2px;
+    }
+
+    .notebook-card:hover .btn-notebook-action {
+      transform: translateY(0);
+    }
+
+    .btn-notebook-action svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.2;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="header-section">
+      <h1 class="page-title">NotebookLM</h1>
+      <div class="red-line"></div>
+    </header>
+
+    <div class="notebooklm-grid">
+      <!-- Card 1 -->
+      <a href="https://notebooklm.google.com/notebook/3f8ec930-656a-436b-af1b-fe8329d93f57?pli=1&amp;authuser=0&amp;pageId=none" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="notebook-card" 
+         aria-label="Acessar NotebookLM: Webinar SBHCI - Valve in valve Mitral">
+        <img class="notebook-cover-img" 
+             src="https://static.wixstatic.com/media/a8daef_ac4b37c632b249dda903a904b90b6b29~mv2.jpg/v1/fill/w_488,h_275,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/thumb%20(1)%202.jpg" 
+             alt="Webinar SBHCI - Valve in valve Mitral: da prática ao randomizado - o Marco Brasileiro do SurViv" 
+             loading="lazy">
+        <div class="notebook-overlay">
+          <span class="btn-notebook-action">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Acessar NotebookLM
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="https://notebooklm.google.com/notebook/3f8ec930-656a-436b-af1b-fe8329d93f57?pli=1&amp;authuser=0&amp;pageId=none" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="notebook-card" 
+         aria-label="Acessar NotebookLM: Webinar SBHCI Jovem">
+        <img class="notebook-cover-img" 
+             src="https://static.wixstatic.com/media/a8daef_a738f34dc0394993922f0f6871591c61~mv2.jpg/v1/fill/w_488,h_275,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/a8daef_a738f34dc0394993922f0f6871591c61~mv2.jpg" 
+             alt="Webinar SBHCI Jovem" 
+             loading="lazy">
+        <div class="notebook-overlay">
+          <span class="btn-notebook-action">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Acessar NotebookLM
+          </span>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    function notifyParentResize() {
+      try {
+        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+        window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height }, '*');
+        window.parent.postMessage({ type: 'cathlabflix:resize', height: height }, '*');
+      } catch (e) {}
+    }
+
+    window.addEventListener('load', notifyParentResize);
+    window.addEventListener('resize', notifyParentResize);
+
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(notifyParentResize).observe(document.body);
+    }
+
+    // Notificar redimensionamento após o carregamento das imagens
+    document.querySelectorAll('img').forEach(function(img) {
+      if (img.complete) {
+        notifyParentResize();
+      } else {
+        img.addEventListener('load', notifyParentResize);
+        img.addEventListener('error', notifyParentResize);
+      }
+    });
+
+    // Responder a requisições ativas de altura vindas do Wix
+    window.addEventListener('message', function(event) {
+      if (event.data && (event.data.type === 'cathlabflix:request-height' || event.data.type === 'request-height')) {
+        notifyParentResize();
+      }
+    });
+  </script>
+</body>
+</html>

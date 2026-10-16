@@ -218,6 +218,22 @@
     {
       "source": "/modulo",
       "destination": "/embed-modulo.html"
+    },
+    {
+      "source": "/notebooklm",
+      "destination": "/embed-notebooklm.html"
+    },
+    {
+      "source": "/embed-notebooklm",
+      "destination": "/embed-notebooklm.html"
+    },
+    {
+      "source": "/new/notebooklm",
+      "destination": "/new/embed-notebooklm.html"
+    },
+    {
+      "source": "/new/embed-notebooklm",
+      "destination": "/new/embed-notebooklm.html"
     }
   ],
   "headers": [
