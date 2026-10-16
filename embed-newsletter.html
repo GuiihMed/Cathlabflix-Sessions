@@ -968,7 +968,7 @@
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input type="text" id="newsletter-search" class="search-input" placeholder="Pesquisar por edição ou ano..." aria-label="Pesquisar por edição ou ano">
+            <input type="text" id="newsletter-search" class="search-input" placeholder="Buscar por título ou data..." aria-label="Buscar por título ou data">
             <button type="button" id="newsletter-clear" class="search-clear" aria-label="Limpar busca">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1038,308 +1038,124 @@
       // 1. DATASET OFICIAL DAS NEWSLETTERS SBHCI NEWS (#01 a #20) (FALLBACK LOCAL)
       const STATIC_NEWSLETTERS = [
         {
-          id: 20,
-          edition: '#20',
-          isLatest: true,
-          date: '17 de Dezembro de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #20',
-          cover: 'https://static.wixstatic.com/media/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg',
-          url: 'https://campanhadigital.app/w/m93QQuVErycyhPXS763hmU2g',
-          topics: [
-            'TAVI em anatomia hostil: tratamento de válvula aórtica bicúspide com grande anel e calcificação',
-            'Hybrid vs. Norwood: análise do banco de dados NPC-QIC para abordagem ideal de alto risco',
-            'Resultados após TEER na regurgitação mitral secundária atrial',
-            'Desfechos em 6 anos da troca valvar aórtica cirúrgica vs. transcateter em baixo risco'
-          ]
+          Title: "Informativo SBHCI #20",
+          data: "17 de Dezembro de 2025",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg",
+          informativo_url: "https://campanhadigital.app/w/m93QQuVErycyhPXS763hmU2g"
         },
         {
-          id: 19,
-          edition: '#19',
-          isLatest: false,
-          date: '29 de Outubro de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #19',
-          cover: 'https://static.wixstatic.com/media/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg',
-          url: 'https://campanhadigital.app/w/KIslCf33s5wz3y892NotVj6Q',
-          topics: [
-            'Segunda denervação renal em paciente com recidiva de hipertensão arterial resistente',
-            'TCW Trial: implante transcateter de valva aórtica e intervenção coronária guiada',
-            'Eficácia e segurança da anticoagulação vs. trombólise dirigida por cateter',
-            'Desfechos da troca valvar aórtica precoce vs. tardia na estenose aórtica grave'
-          ]
+          Title: "Informativo SBHCI #19",
+          data: "29 de Outubro de 2025",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg",
+          informativo_url: "https://campanhadigital.app/w/KIslCf33s5wz3y892NotVj6Q"
         },
         {
-          id: 18,
-          edition: '#18',
-          isLatest: false,
-          date: '24 de Setembro de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #18',
-          cover: 'https://static.wixstatic.com/media/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg',
-          url: 'https://campanhadigital.app/w/FUD0NCqyL3wTs892nDwh763892gw',
-          topics: [
-            'Duplo implante TAVI associado a Valve-in-Valve Mitral em paciente de alto risco',
-            'Revascularização completa em idosos com infarto e lesões não culpadas complexas',
-            'Reparo transcateter de borda a borda da valva tricúspide (T-TEER)',
-            'Pós-dilatação rotineira com volume nominal para otimização de válvulas balão-expansíveis'
-          ]
+          Title: "Informativo SBHCI #18",
+          data: "24 de Setembro de 2025",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg",
+          informativo_url: "https://campanhadigital.app/w/FUD0NCqyL3wTs892nDwh763892gw"
         },
         {
-          id: 17,
-          edition: '#17',
-          isLatest: false,
-          date: '15 de Agosto de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #17',
-          cover: 'https://static.wixstatic.com/media/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg',
-          url: 'https://campanhadigital.app/w/ymA4WlQvdVGqoUgiD892tKVQ',
-          topics: [
-            'Reparo transcateter da valva mitral com sistema Pascal em idosa frágil',
-            'Resultados de 24 meses do estudo SPYRAL HTN na denervação renal',
-            'Administração de heparina no primeiro contato médico versus sala de hemodinâmica',
-            'ICP guiada por imagem intravascular versus CRM para doença coronária complexa'
-          ]
+          Title: "Informativo SBHCI #17",
+          data: "15 de Agosto de 2025",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg",
+          informativo_url: "https://campanhadigital.app/w/ymA4WlQvdVGqoUgiD892tKVQ"
         },
         {
-          id: 16,
-          edition: '#16',
-          isLatest: false,
-          date: '11 de Julho de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #16',
-          cover: 'https://static.wixstatic.com/media/963fe2_98cf124bb30346a0850f276cf6a3a4a6~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://campanhadigital.app/w/PeRNZVRU892763dnZ2OAxQMobA',
-          topics: [
-            'Intervenção coronariana percutânea em bifurcações: técnicas de stent único vs duplo',
-            'Aterectomia rotacional e litotripsia intravascular (IVL) em calcificações graves',
-            'Novidades em proteção embólica cerebral durante procedimentos transcateter'
-          ]
+          Title: "Informativo SBHCI #16",
+          data: "11 de Julho de 2025",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_98cf124bb30346a0850f276cf6a3a4a6~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://campanhadigital.app/w/PeRNZVRU892763dnZ2OAxQMobA"
         },
         {
-          id: 15,
-          edition: '#15',
-          isLatest: false,
-          date: '30 de Maio de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #15',
-          cover: 'https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://campanhadigital.app/w/PeRNZVRU892763dnZ2OAxQMobA',
-          topics: [
-            'Manejo contemporâneo de lesões não protegidas do tronco da coronária esquerda',
-            'Oclusão percutânea do apêndice atrial esquerdo na prevenção de AVC',
-            'Desafios hemodinâmicos e tomada de decisão em pacientes plurivalvares'
-          ]
+          Title: "Informativo SBHCI #15",
+          data: "30 de Maio de 2025",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://campanhadigital.app/w/PeRNZVRU892763dnZ2OAxQMobA"
         },
         {
-          id: 14,
-          edition: '#14',
-          isLatest: false,
-          date: '17 de Abril de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #14',
-          cover: 'https://static.wixstatic.com/media/963fe2_8dca9b6dde5a4bf792552faff8e1d008~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://campanhadigital.app/w/KBKT5wR99BK7e44FPUjKJA',
-          topics: [
-            'Estratégias de monoterapia e desescalonamento antiplaquetário pós-angioplastia',
-            'Novas plataformas de stents bioabsorvíveis e eluidores de fármacos',
-            'Avaliação funcional microvascular coronária: IMR e CFR na prática clínica'
-          ]
+          Title: "Informativo SBHCI #14",
+          data: "17 de Abril de 2025",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_8dca9b6dde5a4bf792552faff8e1d008~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://campanhadigital.app/w/KBKT5wR99BK7e44FPUjKJA"
         },
         {
-          id: 13,
-          edition: '#13',
-          isLatest: false,
-          date: '28 de Fevereiro de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #13',
-          cover: 'https://static.wixstatic.com/media/1d3d47_c325a033589849889db3ce135bb4dd87~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png',
-          url: 'https://sendy.wdcom.com.br/w/GI7DCpmcPyImqGBfVS7O6w',
-          topics: [
-            'Algoritmo de abordagem retrógrada e anterógrada em oclusões coronárias crônicas (CTO)',
-            'Via de acesso radial distal (tabaqueira anatômica) e desfechos vasculares',
-            'Casos complexos comentados pela comunidade de cardiologia intervencionista'
-          ]
+          Title: "Informativo SBHCI #13",
+          data: "28 de Fevereiro de 2025",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_c325a033589849889db3ce135bb4dd87~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png",
+          informativo_url: "https://sendy.wdcom.com.br/w/GI7DCpmcPyImqGBfVS7O6w"
         },
         {
-          id: 12,
-          edition: '#12',
-          isLatest: false,
-          date: '29 de Janeiro de 2025',
-          year: 2025,
-          title: 'Informativo SBHCI #12',
-          cover: 'https://static.wixstatic.com/media/1d3d47_04e8bf81050d4aab805e09bd3d94d06d~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png',
-          url: 'https://sendy.wdcom.com.br/w/1H72XoUBTrlKXWqkhfclaQ',
-          topics: [
-            'Otimização do implante de stents com tomografia de coerência óptica (OCT)',
-            'Ultra-som intracoronário (IVUS) na redução de trombose de stent e revascularização',
-            'Discussão clínica de casos desafiadores do laboratório de cateterismo'
-          ]
+          Title: "Informativo SBHCI #12",
+          data: "29 de Janeiro de 2025",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_04e8bf81050d4aab805e09bd3d94d06d~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png",
+          informativo_url: "https://sendy.wdcom.com.br/w/1H72XoUBTrlKXWqkhfclaQ"
         },
         {
-          id: 11,
-          edition: '#11',
-          isLatest: false,
-          date: '18 de Dezembro de 2024',
-          year: 2024,
-          title: 'Informativo SBHCI #11',
-          cover: 'https://static.wixstatic.com/media/1d3d47_00ea7268fc1a45bdb9c23a2ed816d543~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://sendy.wdcom.com.br/w/Qe4XpHJDzv4I1V11nZZOyw',
-          topics: [
-            'Retrospectiva dos principais ensaios clínicos do ano na cardiologia invasiva',
-            'Avanços na intervenção transcateter da valva aórtica e mitral',
-            'Artigos científicos mais lidos e comentados pelos membros da SBHCI'
-          ]
+          Title: "Informativo SBHCI #11",
+          data: "18 de Dezembro de 2024",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_00ea7268fc1a45bdb9c23a2ed816d543~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/Qe4XpHJDzv4I1V11nZZOyw"
         },
         {
-          id: 10,
-          edition: '#10',
-          isLatest: false,
-          date: '30 de Outubro de 2024',
-          year: 2024,
-          title: 'Informativo SBHCI #10',
-          cover: 'https://static.wixstatic.com/media/1d3d47_00ea7268fc1a45bdb9c23a2ed816d543~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://sendy.wdcom.com.br/w/9FVujzssKE767aIlKq4FJw',
-          topics: [
-            'Intervenção coronária percutânea em choque cardiogênico e suporte circulatório mecânico',
-            'Manejo de complicações no laboratório de hemodinâmica',
-            'Revisões dos principais guidelines internacionais'
-          ]
+          Title: "Informativo SBHCI #10",
+          data: "30 de Outubro de 2024",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_00ea7268fc1a45bdb9c23a2ed816d543~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/9FVujzssKE767aIlKq4FJw"
         },
         {
-          id: 9,
-          edition: '#09',
-          isLatest: false,
-          date: '28 de Agosto de 2024',
-          year: 2024,
-          title: 'Informativo SBHCI #09',
-          cover: 'https://static.wixstatic.com/media/963fe2_8dca9b6dde5a4bf792552faff8e1d008~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://sendy.wdcom.com.br/w/3BFFhzgxHQKVIHdYIY5LQQ',
-          topics: [
-            'Intervenções percutâneas em cardiopatias congênitas no adulto: CIA, FOP e PCA',
-            'Fechamento percutâneo de leak perivalvar',
-            'Atualização dos centros de formação da SBHCI'
-          ]
+          Title: "Informativo SBHCI #09",
+          data: "28 de Agosto de 2024",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_8dca9b6dde5a4bf792552faff8e1d008~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/3BFFhzgxHQKVIHdYIY5LQQ"
         },
         {
-          id: 8,
-          edition: '#08',
-          isLatest: false,
-          date: '26 de Junho de 2024',
-          year: 2024,
-          title: 'Informativo SBHCI #08',
-          cover: 'https://static.wixstatic.com/media/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg',
-          url: 'https://sendy.wdcom.com.br/w/diZk3JPhtgDpyBH3h5B892uQ',
-          topics: [
-            'Tratamento transcateter da insuficiência tricúspide com próteses dedicadas',
-            'Revascularização coronariana em síndromes coronarianas agudas',
-            'Artigos comentados de impacto clínico'
-          ]
+          Title: "Informativo SBHCI #08",
+          data: "26 de Junho de 2024",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_62d52690ddb342b6adbb3bc73dd519fb~mv2.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/diZk3JPhtgDpyBH3h5B892uQ"
         },
         {
-          id: 7,
-          edition: '#07',
-          isLatest: false,
-          date: '24 de Abril de 2024',
-          year: 2024,
-          title: 'Informativo SBHCI #07',
-          cover: 'https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://sendy.wdcom.com.br/w/473YN4B0aSz4FxMp763ALWEw',
-          topics: [
-            'Proteção radiológica e novas tecnologias para redução de dose ao operador',
-            'Fisiologia coronária não hiperêmica (iFR, RFR, dPR)',
-            'Casos desafiadores da semana'
-          ]
+          Title: "Informativo SBHCI #07",
+          data: "24 de Abril de 2024",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/473YN4B0aSz4FxMp763ALWEw"
         },
         {
-          id: 6,
-          edition: '#06',
-          isLatest: false,
-          date: '28 de Fevereiro de 2024',
-          year: 2024,
-          title: 'Informativo SBHCI #06',
-          cover: 'https://static.wixstatic.com/media/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg',
-          url: 'https://sendy.wdcom.com.br/w/uA763shasR9AG7iXBXzhyXtg',
-          topics: [
-            'Atualização de critérios para indicação de TAVI em pacientes assintomáticos',
-            'Seleção de próteses autoexpansíveis vs. balão-expansíveis',
-            'Comentários editoriais sobre novas publicações'
-          ]
+          Title: "Informativo SBHCI #06",
+          data: "28 de Fevereiro de 2024",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_64d482297ad841109c0ecf1245a6bba2~mv2.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/uA763shasR9AG7iXBXzhyXtg"
         },
         {
-          id: 5,
-          edition: '#05',
-          isLatest: false,
-          date: 'Ano 2023',
-          year: 2023,
-          title: 'Informativo SBHCI #05',
-          cover: 'https://static.wixstatic.com/media/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg',
-          url: 'https://sendy.wdcom.com.br/w/Gi3wHlfGlCb56kdZz7631Ehg',
-          topics: [
-            'Evolução dos stents farmacológicos e espessura das hastes',
-            'Abordagem de lesões de bifurcação e técnica de DK-Crush',
-            'Destaques dos congressos internacionais'
-          ]
+          Title: "Informativo SBHCI #05",
+          data: "Ano 2023",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_0332f147396b4da58305878eb308adc9~mv2.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/Gi3wHlfGlCb56kdZz7631Ehg"
         },
         {
-          id: 4,
-          edition: '#04',
-          isLatest: false,
-          date: 'Ano 2023',
-          year: 2023,
-          title: 'Informativo SBHCI #04',
-          cover: 'https://static.wixstatic.com/media/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg',
-          url: 'https://sendy.wdcom.com.br/w/lmEFFURdzg18fXgu2ivKzQ',
-          topics: [
-            'Intervenção coronária percutânea guiada por fisiologia vs. angiografia',
-            'Casos clínicos em hemodinâmica pediátrica e congênita',
-            'Discussão editorial e artigos recomendados'
-          ]
+          Title: "Informativo SBHCI #04",
+          data: "Ano 2023",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1d3d47_b8106d1537dc4a37999e8efff508ba58~mv2.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/lmEFFURdzg18fXgu2ivKzQ"
         },
         {
-          id: 3,
-          edition: '#03',
-          isLatest: false,
-          date: 'Ano 2023',
-          year: 2023,
-          title: 'Informativo SBHCI #03',
-          cover: 'https://static.wixstatic.com/media/963fe2_98cf124bb30346a0850f276cf6a3a4a6~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://sendy.wdcom.com.br/w/4iZezn763763SgP763VsJVNaKX0Q',
-          topics: [
-            'Manejo de reestenose intra-stent e balões farmacológicos (DCB)',
-            'Denervação renal como adjuvante no tratamento da hipertensão',
-            'Artigos comentados da SBHCI'
-          ]
+          Title: "Informativo SBHCI #03",
+          data: "Ano 2023",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_98cf124bb30346a0850f276cf6a3a4a6~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/4iZezn763763SgP763VsJVNaKX0Q"
         },
         {
-          id: 2,
-          edition: '#02',
-          isLatest: false,
-          date: 'Ano 2023',
-          year: 2023,
-          title: 'Informativo SBHCI #02',
-          cover: 'https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg',
-          url: 'https://sendy.wdcom.com.br/w/bq8Z6afEO9jvFsnprfDvFQ',
-          topics: [
-            'Aspectos práticos do acesso vascular femoral e dispositivos de oclusão',
-            'Intervenção estrutural: próteses percutâneas aórticas de nova geração',
-            'Comentários da literatura'
-          ]
+          Title: "Informativo SBHCI #02",
+          data: "Ano 2023",
+          imagem_url: "https://static.wixstatic.com/media/963fe2_72f0dca68ce94e14aa139219bb5d7303~mv2.jpg/v1/fill/w_400,h_533,al_c,q_80,enc_avif,quality_auto/1565897207.jpg",
+          informativo_url: "https://sendy.wdcom.com.br/w/bq8Z6afEO9jvFsnprfDvFQ"
         },
         {
-          id: 1,
-          edition: '#01',
-          isLatest: false,
-          date: 'Ano 2023',
-          year: 2023,
-          title: 'Informativo SBHCI #01',
-          cover: 'https://static.wixstatic.com/media/1d3d47_c325a033589849889db3ce135bb4dd87~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png',
-          url: 'https://sendy.wdcom.com.br/w/6E5c763gAC8Df2Q8ZKLOYGRg',
-          topics: [
-            'Lançamento oficial do informativo SBHCI News e projeto de Artigos Comentados',
-            'Grandes ensaios clínicos e o futuro da intervenção percutânea no Brasil',
-            'Apresentação dos objetivos editoriais e diretrizes científicas'
-          ]
+          Title: "Informativo SBHCI #01",
+          data: "Ano 2023",
+          imagem_url: "https://static.wixstatic.com/media/1d3d47_c325a033589849889db3ce135bb4dd87~mv2.png/v1/fill/w_400,h_533,al_c,q_85,enc_avif,quality_auto/1565897207.png",
+          informativo_url: "https://sendy.wdcom.com.br/w/6E5c763gAC8Df2Q8ZKLOYGRg"
         }
       ];
 
@@ -1357,39 +1173,46 @@
         return imgUrl;
       }
 
-      // Normaliza itens vindos da coleção "informativos" do Wix
+      // Normaliza itens vindos da coleção "informativos" do Wix (ou do fallback local)
+      // Campos oficiais da coleção no Wix CMS:
+      // 1. Title (Texto)
+      // 2. data (Data)
+      // 3. imagem_url (Imagem)
+      // 4. informativo_url (Link / URL)
       function normalizeWixItem(item, index) {
-        const editionRaw = item.edicao || item.edition || item.numero || item.number || ('#' + (item.id || (index + 1)));
-        const editionStr = String(editionRaw).startsWith('#') ? String(editionRaw) : ('#' + editionRaw);
+        const titleStr = item.Title || item.title || 'Informativo SBHCI';
 
-        let dateStr = item.data || item.date;
-        let yearNum = item.ano || item.year;
+        let dateVal = item.data;
+        let dateStr = 'Data não informada';
+        let yearNum = null;
 
-        if (!dateStr && item._createdDate) {
-          const d = new Date(item._createdDate);
-          dateStr = d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
-          if (!yearNum) yearNum = d.getFullYear();
+        if (dateVal) {
+          if (dateVal instanceof Date) {
+            yearNum = dateVal.getFullYear();
+            dateStr = dateVal.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+          } else if (typeof dateVal === 'string') {
+            if (dateVal.includes('T') && !isNaN(new Date(dateVal).getTime())) {
+              const d = new Date(dateVal);
+              yearNum = d.getFullYear();
+              dateStr = d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+            } else {
+              dateStr = dateVal;
+              const matchYear = dateVal.match(/\b(20\d\d)\b/);
+              if (matchYear) yearNum = parseInt(matchYear[1], 10);
+            }
+          }
         }
 
-        if (!yearNum && dateStr) {
-          const matchYear = String(dateStr).match(/\b(20\d\d)\b/);
-          if (matchYear) yearNum = parseInt(matchYear[1], 10);
-        }
-
-        const titleStr = item.titulo || item.title || item.nome || ('Informativo SBHCI ' + editionStr);
-        const coverUrl = formatWixImageUrl(item.capa || item.cover || item.imagem || item.image || item.foto) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
-        const targetUrl = item.link || item.url || item.arquivo || item.pdf || '#';
+        const coverUrl = formatWixImageUrl(item.imagem_url || item.image || item.capa) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
+        const targetUrl = item.informativo_url || item.url || item.link || '#';
 
         return {
           id: item._id || item.id || (index + 1),
-          edition: editionStr,
-          isLatest: item.isLatest !== undefined ? Boolean(item.isLatest) : (index === 0),
-          date: dateStr || 'Data não informada',
-          year: Number(yearNum) || 2025,
           title: titleStr,
+          date: dateStr,
+          year: yearNum,
           cover: coverUrl,
-          url: targetUrl,
-          topics: Array.isArray(item.topics) ? item.topics : (Array.isArray(item.topicos) ? item.topicos : [])
+          url: targetUrl
         };
       }
 
@@ -1434,20 +1257,20 @@
         } catch (e) {}
       }
 
-      // 5. FILTRAGEM DO DATASET
+      // 5. FILTRAGEM DO DATASET (CAMPOS Title E data)
       function getFilteredNewsletters() {
         return newslettersData.filter(item => {
-          // Filtro por ano
+          // Filtro por ano (extraído do campo data)
           if (activeYearFilter === '2025' && item.year !== 2025) return false;
           if (activeYearFilter === '2024' && item.year !== 2024) return false;
-          if (activeYearFilter === 'arquivo' && item.year >= 2024) return false;
+          if (activeYearFilter === 'arquivo' && item.year && item.year >= 2024) return false;
 
-          // Filtro por busca (edição ou ano)
+          // Filtro por busca (Title ou data)
           if (searchQuery.trim() !== '') {
             const q = searchQuery.toLowerCase().trim();
-            const matchEdition = item.edition.toLowerCase().includes(q) || String(item.id) === q || item.title.toLowerCase().includes(q);
-            const matchYear = String(item.year).includes(q) || item.date.toLowerCase().includes(q);
-            if (!matchEdition && !matchYear) {
+            const matchTitle = item.title.toLowerCase().includes(q);
+            const matchDate = item.date.toLowerCase().includes(q);
+            if (!matchTitle && !matchDate) {
               return false;
             }
           }
@@ -1465,7 +1288,7 @@
           .replace(/'/g, '&#039;');
       }
 
-      // 6. RENDERIZAR CARDS
+      // 6. RENDERIZAR CARDS (EXCLUSIVAMENTE COM: imagem_url, data, Title, informativo_url)
       function renderGrid() {
         const items = getFilteredNewsletters();
         dom.grid.innerHTML = '';
@@ -1484,8 +1307,8 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <h3 class="empty-state-title">Nenhuma newsletter encontrada</h3>
-              <p class="empty-state-text">Não encontramos resultados para "${escapeHTML(searchQuery)}". Tente buscar pelo número da edição (#20, #19...) ou ano (2025, 2024...).</p>
+              <h3 class="empty-state-title">Nenhum informativo encontrado</h3>
+              <p class="empty-state-text">Não encontramos resultados para "${escapeHTML(searchQuery)}". Tente buscar por outro termo ou data.</p>
               <button type="button" class="empty-state-reset-btn" id="empty-state-reset">Limpar Filtros e Busca</button>
             </div>
           `;
@@ -1513,10 +1336,8 @@
           card.setAttribute('data-id', item.id);
 
           card.innerHTML = `
-            <div class="card-cover-wrap" data-url="${escapeHTML(item.url)}" data-edition="${escapeHTML(item.edition)}" data-title="${escapeHTML(item.title)}">
-              <img class="card-cover-img" src="${escapeHTML(item.cover)}" alt="Capa da edição ${escapeHTML(item.edition)}" loading="lazy">
-              <span class="card-badge-edition">${escapeHTML(item.edition)}</span>
-              ${item.isLatest ? '<span class="card-badge-latest">Última Edição</span>' : ''}
+            <div class="card-cover-wrap" data-url="${escapeHTML(item.url)}" data-title="${escapeHTML(item.title)}">
+              <img class="card-cover-img" src="${escapeHTML(item.cover)}" alt="${escapeHTML(item.title)}" loading="lazy">
             </div>
 
             <div class="card-body">
@@ -1534,7 +1355,7 @@
 
               <div class="card-actions-row">
                 <a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer" class="btn-read-edition" title="Acessar o informativo completo">
-                  <span>Acessar Edição</span>
+                  <span>Acessar Informativo</span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -1544,10 +1365,12 @@
             </div>
           `;
 
-          // Clique na capa abre diretamente a edição
+          // Clique na capa abre diretamente o link do informativo
           const coverWrap = card.querySelector('.card-cover-wrap');
           coverWrap.addEventListener('click', () => {
-            window.open(item.url, '_blank', 'noopener,noreferrer');
+            if (item.url && item.url !== '#') {
+              window.open(item.url, '_blank', 'noopener,noreferrer');
+            }
           });
 
           dom.grid.appendChild(card);
@@ -1558,7 +1381,7 @@
 
       // 7. CONTROLE DO MODAL DE PRÉ-VISUALIZAÇÃO
       function openModal(item) {
-        dom.modalBadge.textContent = item.edition;
+        if (dom.modalBadge) dom.modalBadge.style.display = 'none';
         dom.modalTitle.textContent = item.title;
         dom.modalExternalLink.href = item.url;
         dom.modalIframe.src = item.url;
