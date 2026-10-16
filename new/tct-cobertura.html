@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Cobertura Oficial TCT Plus Latam Valves 2026 - CathlabFlix</title>
-  <meta name="description" content="Acesse os destaques, entrevistas exclusivas com especialistas internacionais e depoimentos da liderança do CRF TCT Plus Latam Valves 2026.">
+  <meta name="description" content="Acesse os conteúdos da cobertura completa do Congresso CRF TCT Plus Latam Valves 2026: Entrevistas com líderes de opinião, boletins diários e melhores momentos em vídeo.">
 
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.cathlabflix.org/tct-cobertura">
   <meta property="og:title" content="Cobertura Oficial TCT Plus Latam Valves 2026 - CathlabFlix">
-  <meta property="og:description" content="Destaques, entrevistas exclusivas e depoimentos oficiais do CRF TCT Plus Latam Valves 2026.">
+  <meta property="og:description" content="Entrevistas exclusivas, boletins diários e os melhores momentos do CRF TCT Plus Latam Valves 2026.">
   <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
 
   <!-- Tipografia Montserrat Oficial SBHCI -->
@@ -22,19 +22,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       ========================================================================== -->
   <style>
     :root, [data-theme="blue"] {
       --color-bg-base: #010234;
       --color-surface: #062257;
-      --color-surface-hover: #082b6e;
-      --color-surface-elevated: #0a2d72;
+      --color-surface-hover: #0a2d72;
+      --color-surface-elevated: #0d3685;
       --color-text-primary: #FFFFFF;
       --color-text-secondary: #94a3b8;
       --color-text-tertiary: #64748b;
       --color-primary: #E50914;
-      --color-primary-hover: #B80710;
+      --color-primary-hover: #b80710;
       --color-blue-accent: #38bdf8;
-      --color-blue-accent-glow: rgba(56, 189, 248, 0.35);
       --color-border-subtle: rgba(255, 255, 255, 0.12);
       --color-border-strong: rgba(255, 255, 255, 0.22);
       --radius-xs: 4px;
@@ -81,6 +83,7 @@
       flex-direction: column;
     }
 
+    /* Estrutura Principal */
     .cobertura-main {
       width: 96%;
       max-width: 1200px;
@@ -90,15 +93,24 @@
       flex: 1;
     }
 
-    /* Top Bar */
+    @media (max-width: 768px) {
+      .cobertura-main {
+        width: 100% !important;
+        padding: 16px 12px 40px !important;
+      }
+    }
+
+    /* Top Bar com Botão Voltar ao TCT Plus */
     .top-nav-bar {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      margin-bottom: 20px;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
-    .back-solaci-btn {
+    .back-portal-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -114,24 +126,36 @@
       box-shadow: var(--shadow-sm);
     }
 
-    .back-solaci-btn:hover {
+    .back-portal-btn:hover {
       background: var(--color-surface-hover);
       border-color: rgba(56, 189, 248, 0.5);
       color: var(--color-blue-accent);
       transform: translateX(-3px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.2);
     }
 
-    /* Cabeçalho */
+    .back-portal-btn svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition-fast);
+    }
+
+    .back-portal-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+
+    /* Cabeçalho Oficial: "Acesse os conteúdos" */
     .section-title-wrap {
       margin-bottom: 28px;
     }
 
     .page-title {
       font-size: clamp(1.4rem, 2.8vw, 2rem);
-      font-weight: 900;
+      font-weight: 800;
       color: #FFFFFF;
       letter-spacing: -0.02em;
-      line-height: 1.2;
+      line-height: 1.22;
       margin: 0 0 8px 0;
     }
 
@@ -141,7 +165,7 @@
       background: var(--color-primary, #E50914);
       border-radius: 2px;
       margin-top: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .page-subtitle {
@@ -153,7 +177,7 @@
       margin: 0;
     }
 
-    /* Barra de Filtros e Busca */
+    /* Barra de Filtros e Categorias */
     .filters-bar {
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
@@ -161,11 +185,18 @@
       padding: 16px 20px;
       margin-bottom: 30px;
       display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Linha Superior dos Filtros: Tabs de Categoria */
+    .category-tabs-row {
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
-      box-shadow: var(--shadow-sm);
     }
 
     .category-tabs-group {
@@ -179,45 +210,39 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid var(--color-border-subtle);
       color: #FFFFFF;
-      padding: 9px 18px;
+      padding: 9px 20px;
       border-radius: var(--radius-pill);
       font-family: inherit;
-      font-size: 0.8125rem;
-      font-weight: 700;
+      font-size: 0.875rem;
+      font-weight: 600;
       cursor: pointer;
       transition: all var(--transition-fast);
       white-space: nowrap;
+      min-height: 40px;
     }
 
     .cat-tab-btn:hover {
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(56, 189, 248, 0.4);
+      color: #FFFFFF;
     }
 
     .cat-tab-btn.active {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
+      background: #E50914;
+      border-color: #E50914;
       color: #FFFFFF;
       box-shadow: 0 4px 12px rgba(229, 9, 20, 0.35);
     }
 
-    .cat-tab-count {
-      font-size: 0.6875rem;
-      padding: 1px 6px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    /* Campo de Busca */
+    /* Campo de Busca Rápida */
     .search-input-box {
       position: relative;
       min-width: 240px;
       flex: 1;
-      max-width: 340px;
+      max-width: 320px;
     }
 
     .search-input-box input {
@@ -236,7 +261,7 @@
     .search-input-box input:focus {
       border-color: var(--color-blue-accent);
       background: rgba(1, 2, 52, 0.9);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
     }
 
     .search-input-box input::placeholder {
@@ -254,212 +279,744 @@
       pointer-events: none;
     }
 
-    /* Grid de Cobertura */
-    .cobertura-grid {
+    /* Linha Inferior dos Filtros: Filtro por Dia */
+    .day-filters-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+    }
+
+    .day-filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+
+    .day-pill-btn {
+      background: transparent;
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .day-pill-btn:hover {
+      background: rgba(56, 189, 248, 0.08);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .day-pill-btn.active {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: var(--color-blue-accent);
+      color: var(--color-blue-accent);
+      font-weight: 700;
+    }
+
+    /* Grid de Vídeos da Cobertura - 3 Colunas no Desktop */
+    .videos-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       margin-bottom: 40px;
     }
 
-    /* Card Genérico de Cobertura */
-    .cobertura-card {
+    /* Card de Vídeo Vertical (9:16) */
+    .video-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      box-shadow: var(--shadow-card);
-      transition: all var(--transition-base);
       position: relative;
+      cursor: pointer;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+                  box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.28s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7),
+                  0 0 24px rgba(56, 189, 248, 0.18);
+    }
+
+    /* Container da Imagem com proporção 9:16 */
+    .video-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 15.5;
+      background: #000;
       overflow: hidden;
     }
 
-    .cobertura-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), 0 0 24px rgba(56, 189, 248, 0.18);
+    .video-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.4s ease;
     }
 
-    .card-top-tag-row {
+    .video-card:hover .video-thumb-img {
+      transform: scale(1.04);
+    }
+
+    /* Gradientes sobre a foto para legibilidade */
+    .video-thumb-overlay-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      background: linear-gradient(180deg, rgba(1, 2, 52, 0.75) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .video-thumb-overlay-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(0deg, rgba(1, 2, 52, 0.95) 0%, rgba(1, 2, 52, 0.6) 60%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Badges no topo do Card */
+    .card-top-badges {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 8px;
+      z-index: 3;
     }
 
-    .card-type-tag {
+    .badge-category {
       font-size: 0.6875rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.5px;
       padding: 4px 10px;
       border-radius: var(--radius-pill);
-    }
-
-    .tag-highlight {
-      background: rgba(56, 189, 248, 0.18);
-      color: var(--color-blue-accent);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-    }
-
-    .tag-interview {
-      background: rgba(229, 9, 20, 0.2);
-      color: #ff6b6b;
-      border: 1px solid rgba(229, 9, 20, 0.35);
-    }
-
-    .tag-testimonial {
-      background: rgba(251, 191, 36, 0.18);
-      color: #FBBF24;
-      border: 1px solid rgba(251, 191, 36, 0.35);
-    }
-
-    .cobertura-card-title {
-      font-size: 1.0625rem;
-      font-weight: 800;
       color: #FFFFFF;
-      line-height: 1.35;
-      margin: 0;
+      background: rgba(1, 2, 52, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .cobertura-card-desc {
-      font-size: 0.84375rem;
-      color: var(--color-text-secondary);
-      line-height: 1.55;
-      margin: 0;
-      flex: 1;
+    .badge-category.cat-boletim {
+      background: rgba(229, 9, 20, 0.9);
+      border-color: #E50914;
     }
 
-    /* Bloco Específico de Depoimento */
-    .testimonial-quote-wrap {
-      position: relative;
-      padding-left: 14px;
-      border-left: 3px solid #FBBF24;
-      margin: 4px 0;
+    .badge-category.cat-momentos {
+      background: rgba(14, 165, 233, 0.9);
+      border-color: #38bdf8;
     }
 
-    .testimonial-quote-text {
-      font-size: 0.875rem;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.95);
-      line-height: 1.55;
+    .badge-category.cat-entrevista {
+      background: rgba(2, 132, 199, 0.9);
+      border-color: #38bdf8;
     }
 
-    .author-info-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    .badge-day {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    .author-avatar-badge {
-      width: 40px;
-      height: 40px;
+    /* Botão Play Central (Hover) */
+    .card-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #09132c 0%, #062257 100%);
-      border: 1px solid rgba(56, 189, 248, 0.4);
+      background: rgba(229, 9, 20, 0.95);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.875rem;
-      font-weight: 800;
+      box-shadow: 0 0 25px rgba(229, 9, 20, 0.65);
+      z-index: 3;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-play-overlay svg {
+      width: 22px;
+      height: 22px;
+      fill: #FFFFFF;
+      margin-left: 3px;
+    }
+
+    .video-card:hover .card-play-overlay {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    /* Duração do Vídeo */
+    .card-duration-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 3;
+    }
+
+    /* Informações do Rodapé do Card */
+    .video-card-info {
+      padding: 14px 16px 16px;
+      background: var(--color-surface);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .video-card-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .video-card:hover .video-card-title {
+      color: var(--color-blue-accent);
+    }
+
+    .video-card-speaker {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .video-card-speaker svg {
+      width: 14px;
+      height: 14px;
       color: var(--color-blue-accent);
       flex-shrink: 0;
     }
 
-    .author-details {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    /* Estado Vazio (Nenhum resultado na busca) */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--color-surface);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--color-border-subtle);
     }
 
-    .author-name {
-      font-size: 0.875rem;
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: var(--color-text-tertiary);
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.125rem;
       font-weight: 700;
       color: #FFFFFF;
+      margin-bottom: 8px;
     }
 
-    .author-role {
-      font-size: 0.75rem;
+    .empty-state p {
+      font-size: 0.875rem;
       color: var(--color-text-secondary);
+      margin-bottom: 20px;
     }
 
-    /* Entrevista Bloco */
-    .interview-topic-block {
-      background: rgba(1, 2, 52, 0.45);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .interview-topic-label {
-      font-size: 0.6875rem;
+    .empty-state button {
+      background: var(--color-primary);
+      border: none;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.875rem;
       font-weight: 700;
-      color: #ff6b6b;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: block;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .empty-state button:hover {
+      background: var(--color-primary-hover);
+    }
+
+    /* Faixa de Links Rápidos (Rodapé) */
+    .explore-strip {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .explore-strip-text h4 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
       margin-bottom: 4px;
     }
 
-    .interview-topic-text {
-      font-size: 0.8125rem;
+    .explore-strip-text p {
+      font-size: 0.875rem;
       color: var(--color-text-secondary);
-      line-height: 1.45;
       margin: 0;
     }
 
-    /* Empty state */
-    .cobertura-empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 48px 20px;
-      color: var(--color-text-secondary);
-      font-size: 0.9375rem;
-      background: var(--color-surface);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border-subtle);
+    .explore-strip-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    /* Responsividade */
-    @media (max-width: 992px) {
-      .cobertura-grid {
+    .explore-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .explore-action-btn.btn-aulas {
+      background: #E50914;
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-aulas:hover {
+      background: var(--color-primary-hover);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .explore-action-btn.btn-gravacao {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+    }
+
+    .explore-action-btn.btn-gravacao:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--color-blue-accent);
+      color: var(--color-blue-accent);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO VIMEO
+       ========================================================================== */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(1, 2, 52, 0.94);
+      backdrop-filter: blur(12px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-dialog {
+      background: #06193f;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(56, 189, 248, 0.15);
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.94);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-modal.active .lightbox-dialog {
+      transform: scale(1);
+    }
+
+    .lightbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: #04122f;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .lightbox-title-area {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-right: 12px;
+      overflow: hidden;
+    }
+
+    .lightbox-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lightbox-speaker {
+      font-size: 0.75rem;
+      color: var(--color-blue-accent);
+      font-weight: 600;
+    }
+
+    .lightbox-close-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .lightbox-close-btn:hover {
+      background: #E50914;
+      border-color: #E50914;
+      transform: rotate(90deg);
+    }
+
+    .lightbox-video-frame-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #000;
+      max-height: 72vh;
+    }
+
+    .lightbox-video-frame-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .lightbox-footer {
+      padding: 12px 18px;
+      background: #04122f;
+      border-top: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .lightbox-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Responsividade Moderna e Mobile Aprimorada */
+    @media (max-width: 1024px) {
+      .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .cobertura-main {
+        padding: 20px 14px 40px;
+      }
+
+      .page-title {
+        font-size: 1.75rem;
+      }
+
+      .videos-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-      .filters-bar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .category-tabs-group {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
-      }
-      .search-input-box {
-        max-width: 100%;
+        gap: 16px;
       }
     }
 
     @media (max-width: 640px) {
       .cobertura-main {
-        padding: 16px 12px 40px !important;
+        padding: 16px 12px 36px;
       }
-      .cobertura-grid {
+
+      .top-nav-bar {
+        margin-bottom: 18px;
+        gap: 10px;
+      }
+
+      .back-portal-btn {
+        padding: 8px 14px;
+        font-size: 0.8125rem;
+        min-height: 40px;
+      }
+
+
+      .section-title-wrap {
+        margin-bottom: 20px;
+      }
+
+      .page-title {
+        font-size: 1.45rem;
+        margin-bottom: 8px;
+      }
+
+      .page-title-underline {
+        width: 64px;
+        height: 3px;
+        margin-bottom: 10px;
+      }
+
+      .page-subtitle {
+        font-size: 0.8125rem;
+        line-height: 1.5;
+      }
+
+      .filters-bar {
+        padding: 12px 14px;
+        gap: 12px;
+        border-radius: var(--radius-md);
+        margin-bottom: 22px;
+      }
+
+      .category-tabs-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .category-tabs-group {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        scrollbar-width: none;
+      }
+
+      .category-tabs-group::-webkit-scrollbar {
+        display: none;
+      }
+
+      .cat-tab-btn {
+        padding: 8px 16px;
+        font-size: 0.8125rem;
+        min-height: 38px;
+        flex-shrink: 0;
+      }
+
+      .search-input-box {
+        max-width: 100%;
+        min-width: 100%;
+      }
+
+      .search-input-box input {
+        height: 42px;
+        font-size: 0.8125rem;
+        padding: 0 36px 0 14px;
+      }
+
+      .day-filters-row {
+        padding-top: 10px;
+        gap: 6px;
+      }
+
+      .day-filter-label {
+        font-size: 0.6875rem;
+      }
+
+      .day-pill-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        min-height: 34px;
+      }
+
+      .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .video-card {
+        border-radius: var(--radius-md);
+      }
+
+      .card-top-badges {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        gap: 4px;
+      }
+
+      .badge-category {
+        font-size: 0.59375rem;
+        padding: 3px 6px;
+        letter-spacing: 0.2px;
+      }
+
+      .badge-day {
+        font-size: 0.59375rem;
+        padding: 3px 6px;
+      }
+
+      .card-play-overlay {
+        width: 42px;
+        height: 42px;
+      }
+
+      .card-play-overlay svg {
+        width: 16px;
+        height: 16px;
+        margin-left: 2px;
+      }
+
+      .card-duration-badge {
+        font-size: 0.6875rem;
+        padding: 2px 5px;
+        bottom: 8px;
+        right: 8px;
+      }
+
+      .video-card-info {
+        padding: 10px 10px 12px;
+        gap: 4px;
+      }
+
+      .video-card-title {
+        font-size: 0.8125rem;
+        line-height: 1.3;
+      }
+
+      .video-card-speaker {
+        font-size: 0.6875rem;
+      }
+
+      .video-card-speaker svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .explore-strip {
+        padding: 16px 14px;
+        border-radius: var(--radius-lg);
+        gap: 14px;
+      }
+
+      .explore-strip-text h4 {
+        font-size: 1rem;
+      }
+
+      .explore-strip-text p {
+        font-size: 0.78125rem;
+      }
+
+      .explore-strip-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .explore-action-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 14px;
+        font-size: 0.8125rem;
+      }
+
+      .lightbox-dialog {
+        max-width: 95vw;
+        border-radius: var(--radius-lg);
+      }
+
+      .lightbox-video-frame-wrap {
+        max-height: 68vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .videos-grid {
         grid-template-columns: 1fr;
         gap: 16px;
       }
-      .cobertura-card {
-        padding: 18px;
-      }
-      .cat-tab-btn {
-        padding: 8px 14px;
-        font-size: 0.75rem;
+      .page-title {
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -467,195 +1024,412 @@
 <body>
 
   <div class="app-container">
-    <main class="cobertura-main" id="coberturaMainContent">
+    <main class="cobertura-main">
 
-      <!-- Botão Voltar ao TCT Plus -->
-      <nav class="top-nav-bar" aria-label="Navegação secundária">
-        <a href="https://www.cathlabflix.org/tct" class="back-solaci-btn" target="_top" title="Voltar ao portal TCT Plus Latam Valves 2026">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 1. Barra de Navegação Superior (Botão Voltar) -->
+      <nav class="top-nav-bar" aria-label="Navegação da Cobertura">
+        <a href="https://www.cathlabflix.org/tct" class="back-portal-btn" title="Voltar ao portal oficial do TCT Plus Latam Valves 2026" target="_top">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
           </svg>
-          <span>Voltar ao TCT Plus</span>
+          Voltar ao TCT Plus
         </a>
       </nav>
 
-      <!-- Cabeçalho Oficial -->
+      <!-- 2. Cabeçalho Oficial: "Acesse os conteúdos" -->
       <header class="section-title-wrap">
-        <h1 class="page-title">Cobertura Oficial TCT Plus Latam Valves 2026</h1>
+        <h1 class="page-title">Acesse os conteúdos</h1>
         <div class="page-title-underline"></div>
-        <p class="page-subtitle">Acompanhe os principais destaques, entrevistas exclusivas com especialistas internacionais e depoimentos da liderança científica do congresso.</p>
+        <p class="page-subtitle">
+          Confira na íntegra a cobertura audiovisual oficial do CRF TCT Plus Latam Valves 2026: entrevistas com especialistas, boletins informativos diários e os melhores momentos de cada jornada científica.
+        </p>
       </header>
 
-      <!-- Barra de Filtros e Busca -->
-      <section class="filters-bar" aria-label="Filtros de conteúdo">
-        <div class="category-tabs-group" id="categoryTabsGroup" role="tablist">
-          <button type="button" class="cat-tab-btn active" data-category="all" role="tab" aria-selected="true">
-            <span>Todos os Conteúdos</span>
-            <span class="cat-tab-count" id="countAll">9</span>
-          </button>
-          <button type="button" class="cat-tab-btn" data-category="destaques" role="tab" aria-selected="false">
-            <span>Destaques</span>
-            <span class="cat-tab-count" id="countHighlights">3</span>
-          </button>
-          <button type="button" class="cat-tab-btn" data-category="entrevistas" role="tab" aria-selected="false">
-            <span>Entrevistas</span>
-            <span class="cat-tab-count" id="countInterviews">3</span>
-          </button>
-          <button type="button" class="cat-tab-btn" data-category="depoimentos" role="tab" aria-selected="false">
-            <span>Depoimentos</span>
-            <span class="cat-tab-count" id="countTestimonials">3</span>
-          </button>
+      <!-- 3. Barra de Filtros e Busca Rápida -->
+      <section class="filters-bar" aria-label="Filtros de Vídeos">
+        
+        <!-- Linha 1: Categorias Principais + Busca -->
+        <div class="category-tabs-row">
+          <div class="category-tabs-group" role="tablist">
+            <button type="button" class="cat-tab-btn" data-category="all" role="tab" aria-selected="false">
+              Todos os Conteúdos
+            </button>
+            <button type="button" class="cat-tab-btn" data-category="entrevistas" role="tab" aria-selected="false">
+              Entrevistas
+            </button>
+            <button type="button" class="cat-tab-btn active" data-category="momentos" role="tab" aria-selected="true">
+              Melhores Momentos
+            </button>
+            <button type="button" class="cat-tab-btn" data-category="boletim" role="tab" aria-selected="false">
+              Boletim Diário
+            </button>
+          </div>
+
+          <div class="search-input-box">
+            <input type="text" id="videoSearchInput" placeholder="Buscar por médico ou tema..." aria-label="Buscar na cobertura">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
         </div>
 
-        <div class="search-input-box">
-          <input 
-            type="text" 
-            id="searchInput" 
-            placeholder="Buscar por médico, tema ou palavra-chave..." 
-            autocomplete="off" 
-            spellcheck="false"
-            aria-label="Buscar na cobertura"
-          >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
+        <!-- Linha 2: Filtro por Dia do Evento (Direto pelos Dias) -->
+        <div class="day-filters-row">
+          <span class="day-filter-label">Dia:</span>
+          <button type="button" class="day-pill-btn" data-day="dia-1">Dia 1 (19/03)</button>
+          <button type="button" class="day-pill-btn" data-day="dia-2">Dia 2 (20/03)</button>
+          <button type="button" class="day-pill-btn" data-day="dia-3">Dia 3 (21/03)</button>
         </div>
+
       </section>
 
-      <!-- Grid com os Cards de Cobertura -->
-      <section class="cobertura-grid" id="coberturaGrid" aria-label="Grade de conteúdos da cobertura">
-        <!-- Injetado dinamicamente via JS -->
+      <!-- 4. Grid de Cards de Vídeo -->
+      <section class="videos-grid" id="videosGrid" aria-label="Galeria de vídeos da cobertura">
+        <!-- Renderizado dinamicamente via JS -->
       </section>
+
+      <!-- 5. Faixa Inferior de Navegação Rápida -->
+      <aside class="explore-strip" aria-label="Mais conteúdos do CRF TCT Plus Latam Valves 2026">
+        <div class="explore-strip-text">
+          <h4>Mais do Congresso TCT Plus Latam Valves 2026</h4>
+          <p>Acesse o acervo completo de gravações das salas científicas e faça o download das apresentações de aulas em slides.</p>
+        </div>
+        <div class="explore-strip-actions">
+          <a href="https://www.cathlabflix.org/tct-aulas" class="explore-action-btn btn-aulas" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            Grade de Aulas & PPTX
+          </a>
+          <a href="https://www.cathlabflix.org/tctlatam-gravacao" class="explore-action-btn btn-gravacao" target="_top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Gravações Científicas
+          </a>
+        </div>
+      </aside>
 
     </main>
   </div>
 
+  <!-- ==========================================================================
+       MODAL LIGHTBOX - REPRODUTOR DE VÍDEO
+       ========================================================================== -->
+  <div class="lightbox-modal" id="videoModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="lightbox-dialog">
+      <div class="lightbox-header">
+        <div class="lightbox-title-area">
+          <div class="lightbox-title" id="modalVideoTitle">Título do Vídeo</div>
+          <div class="lightbox-speaker" id="modalVideoSpeaker">Médico / Participante</div>
+        </div>
+        <button type="button" class="lightbox-close-btn" id="modalCloseBtn" aria-label="Fechar reprodutor">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="lightbox-video-frame-wrap" id="modalIframeContainer">
+        <!-- Iframe do Vimeo inserido dinamicamente ao abrir -->
+      </div>
+
+      <div class="lightbox-footer">
+        <p class="lightbox-desc" id="modalVideoDesc">Descrição do vídeo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT MODULAR EMBUTIDO
+       ========================================================================== -->
   <script>
-    (function () {
+    (function() {
       'use strict';
 
-      const COBERTURA_RAW = {
-  "highlights": [
-    {
-      "title": "Heart Team & Casos Ao Vivo Internacionais",
-      "desc": "Transmissões de procedimentos complexos em tempo real diretamente do InCor, Dante Pazzanese, Clínica Alemana (Santiago) e Piedmont Heart Institute (Atlanta), demonstrando abordagens de TAVI, ViV e reparo mitral/tricúspide.",
-      "tag": "Casos Ao Vivo"
-    },
-    {
-      "title": "Debates Globais sobre Durabilidade de Próteses Transcateter",
-      "desc": "Painéis aprofundados com Dr. Nicolas Van Mieghem, Dr. Pedro Villablanca e lideranças da SBHCI debatendo degeneração valvar, Redo TAVI e estratégias de preservação coronariana.",
-      "tag": "TAVI & Valvar"
-    },
-    {
-      "title": "Inovação e Terapias Borda a Borda (TEER)",
-      "desc": "Apresentação de novos dispositivos e técnicas de imagem multimodal ecocardiográfica 3D/ICE para tratamento percutâneo da insuficiência mitral e tricúspide com Dr. Rebecca Hahn e Dr. Susheel Kodali.",
-      "tag": "Estrutural Mitral & Tricúspide"
-    }
-  ],
-  "testimonials": [
-    {
-      "author": "Dr. Nicolas Van Mieghem",
-      "role": "Erasmus MC, Roterdã",
-      "quote": "O TCT Plus Latam Valves consolidou um nível científico e de discussão técnica comparável aos maiores fóruns mundiais da cardiologia estrutural."
-    },
-    {
-      "author": "Dra. Rebecca Hahn",
-      "role": "Columbia University / CRF",
-      "quote": "A integração entre a imagem multimodal e o intervencionismo na América Latina está em um patamar de excelência impressionante."
-    },
-    {
-      "author": "Dr. José Airton de Arruda",
-      "role": "SBHCI / Coordenação Científica",
-      "quote": "Uma edição histórica reunindo centenas de intervencionistas com compartilhamento de casos reais e aprendizado prático de alto impacto."
-    }
-  ],
-  "interviews": [
-    {
-      "title": "Entrevista Especial: O Futuro da Intervenção Tricúspide",
-      "interviewee": "Dr. Juan F. Granada (CRF / Nova York)",
-      "topic": "Avanços em substituição ortotópica e novos ensaios clínicos globais."
-    },
-    {
-      "title": "Entrevista Especial: Desafios Anatômicos em Redo TAVI",
-      "interviewee": "Dr. Pedro Villablanca (Henry Ford Health)",
-      "topic": "Planejamento tomográfico, prevenção de obstrução de óstios coronários e seleção de valvas."
-    },
-    {
-      "title": "Entrevista Especial: Inteligência Artificial e Doenças Estruturais",
-      "interviewee": "Dr. Henrique Ribeiro (InCor / HCor)",
-      "topic": "Como ferramentas de IA auxiliam no dimensionamento pré-operatório e desfechos clínicos."
-    }
-  ]
-};
+      // 1. BANCO DE DADOS COMPLETO DA COBERTURA TCT PLUS LATAM VALVES 2026
+      const COBERTURA_DATA = [
+  {
+    "id": "bol-1",
+    "section": "boletim",
+    "category": "Boletim Diário",
+    "catClass": "cat-boletim",
+    "day": "dia-1",
+    "dayLabel": "Dia 1 • 19/03",
+    "title": "Boletim Oficial - Dia 1: Abertura e Sessões Valvares",
+    "speaker": "TCT Latam Faculty",
+    "role": "Apresentador Oficial TCT",
+    "videoId": "1199850312",
+    "duration": "1:02",
+    "poster": "https://i.vimeocdn.com/video/2166797305-7407be2d205f1dbfebb11cafef064a41bc7e807709ca6719f92039abc8d5cb38-d_1920x1080?&r=pad&region=us",
+    "description": "Abertura oficial, recepção dos intervencionistas e destaques das primeiras plenárias do CRF TCT Plus Latam Valves 2026."
+  },
+  {
+    "id": "bol-2",
+    "section": "boletim",
+    "category": "Boletim Diário",
+    "catClass": "cat-boletim",
+    "day": "dia-2",
+    "dayLabel": "Dia 2 • 20/03",
+    "title": "Boletim Oficial - Dia 2: Heart Team e Casos Ao Vivo",
+    "speaker": "TCT Latam Faculty",
+    "role": "Apresentador Oficial TCT",
+    "videoId": "1200085010",
+    "duration": "0:58",
+    "poster": "https://i.vimeocdn.com/video/2167088271-4047f6cb960b7e93ec88da8c583b3a750846649436d342f52bac901bab0715ae-d_1920x1080?&r=pad&region=us",
+    "description": "Resumo das transmissões internacionais ao vivo, debates de casos clínicos complexos e novas tecnologias valvares em debate."
+  },
+  {
+    "id": "bol-3",
+    "section": "boletim",
+    "category": "Boletim Diário",
+    "catClass": "cat-boletim",
+    "day": "dia-3",
+    "dayLabel": "Dia 3 • 21/03",
+    "title": "Boletim Oficial - Dia 3: Conclusões e Encerramento",
+    "speaker": "TCT Latam Faculty",
+    "role": "Apresentador Oficial TCT",
+    "videoId": "1200127298",
+    "duration": "1:10",
+    "poster": "https://i.vimeocdn.com/video/2167141916-036ad9d6cb97bf0a10632008241508710fea48aadfc47e475eb80cea6982c646-d_1920x1080?&r=pad&region=us",
+    "description": "Premiação de melhores casos, principais conclusões e cerimônia de encerramento do TCT Plus Latam Valves 2026."
+  },
+  {
+    "id": "mm-1",
+    "section": "momentos",
+    "category": "Melhores Momentos",
+    "catClass": "cat-momentos",
+    "day": "dia-1",
+    "dayLabel": "Dia 1 • 19/03",
+    "title": "Melhores Momentos - Dia 1 (Procedimentos Valvares)",
+    "speaker": "Congresso TCT Plus Latam Valves 2026",
+    "role": "Cobertura Audiovisual",
+    "videoId": "1199850334",
+    "duration": "0:45",
+    "poster": "https://i.vimeocdn.com/video/2166790808-9ad1d5779ab28315dd26de6f89d4759f40c75034079fc8ae369fac36410e2780-d_1920x1080?&r=pad&region=us",
+    "description": "Os momentos mais marcantes do primeiro dia com foco em técnicas avançadas de Redo TAVI."
+  },
+  {
+    "id": "mm-2",
+    "section": "momentos",
+    "category": "Melhores Momentos",
+    "catClass": "cat-momentos",
+    "day": "dia-1",
+    "dayLabel": "Dia 1 • 19/03",
+    "title": "Melhores Momentos - Dia 1 (TAV-in-TAV ao Vivo)",
+    "speaker": "Congresso TCT Plus Latam Valves 2026",
+    "role": "Cobertura Audiovisual",
+    "videoId": "1199852487",
+    "duration": "0:52",
+    "poster": "https://i.vimeocdn.com/video/2166796259-aa77d71e9e66a33cc26e02a7607f26162679e1410893fa430ab50b3b28a95a23-d_1920x1080?&r=pad&region=us",
+    "description": "Proteção de tronco coronário e procedimentos estruturais de alto risco apresentados ao vivo."
+  },
+  {
+    "id": "mm-3",
+    "section": "momentos",
+    "category": "Melhores Momentos",
+    "catClass": "cat-momentos",
+    "day": "dia-2",
+    "dayLabel": "Dia 2 • 20/03",
+    "title": "Melhores Momentos - Dia 2 (Intervenções Mitrais e Tricúspides)",
+    "speaker": "Congresso TCT Plus Latam Valves 2026",
+    "role": "Cobertura Audiovisual",
+    "videoId": "1200085012",
+    "duration": "0:48",
+    "poster": "https://i.vimeocdn.com/video/2167087499-4d0f94363a169f406b06d1f8fbd153535e5183450f1a0b58270232a5358b5aba-d_1920x1080?&r=pad&region=us",
+    "description": "Discussão técnica sobre durabilidade de dispositivos, anatomias desafiadoras e inovação estrutural."
+  },
+  {
+    "id": "mm-4",
+    "section": "momentos",
+    "category": "Melhores Momentos",
+    "catClass": "cat-momentos",
+    "day": "dia-3",
+    "dayLabel": "Dia 3 • 21/03",
+    "title": "Melhores Momentos - Dia 3 (TEER e Novas Tecnologias)",
+    "speaker": "Congresso TCT Plus Latam Valves 2026",
+    "role": "Cobertura Audiovisual",
+    "videoId": "1200114684",
+    "duration": "0:49",
+    "poster": "https://i.vimeocdn.com/video/2167137226-563457d55061825f6e219b9ca521c527ea485ba7a34293a3962979c387a179df-d_1920x1080?&r=pad&region=us",
+    "description": "Apresentação de dispositivos de reparo borda a borda e casos ao vivo transmitidos do Cazaquistão e Santiago."
+  },
+  {
+    "id": "mm-5",
+    "section": "momentos",
+    "category": "Melhores Momentos",
+    "catClass": "cat-momentos",
+    "day": "dia-3",
+    "dayLabel": "Dia 3 • 21/03",
+    "title": "Melhores Momentos - Premiação e Encerramento",
+    "speaker": "Congresso TCT Plus Latam Valves 2026",
+    "role": "Cobertura Audiovisual",
+    "videoId": "1200127298",
+    "duration": "0:41",
+    "poster": "https://i.vimeocdn.com/video/2167141916-036ad9d6cb97bf0a10632008241508710fea48aadfc47e475eb80cea6982c646-d_1920x1080?&r=pad&region=us",
+    "description": "Premiação da competição de melhores casos clínicos e celebração da união SBHCI e CRF."
+  },
+  {
+    "id": "ent-1",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-1",
+    "dayLabel": "Dia 1 • 19/03",
+    "title": "Entrevista Exclusiva: Degeneração Valvar pós-TAVI",
+    "speaker": "Dr. Nicolas Van Mieghem",
+    "role": "Erasmus MC, Roterdã",
+    "videoId": "1199845538",
+    "duration": "1:15",
+    "poster": "https://i.vimeocdn.com/video/2166780332-c4f3a48b23e2029c060efc5d616fbe7026a6b1b76928514e810126f1cdd2f07e-d_1920x1080?&r=pad&region=us",
+    "description": "Comentários sobre a durabilidade dos folhetos, trombose subclínica e conduta pós-TAVI."
+  },
+  {
+    "id": "ent-2",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-1",
+    "dayLabel": "Dia 1 • 19/03",
+    "title": "Entrevista Exclusiva: Estratégias e Escolha de Prótese em Redo TAVI",
+    "speaker": "Dr. Pedro Villablanca",
+    "role": "Henry Ford Health",
+    "videoId": "1199850334",
+    "duration": "1:28",
+    "poster": "https://i.vimeocdn.com/video/2166790808-9ad1d5779ab28315dd26de6f89d4759f40c75034079fc8ae369fac36410e2780-d_1920x1080?&r=pad&region=us",
+    "description": "Visão técnica sobre anatomias desafiadoras, risco de oclusão coronariana e seleção ideal de valva expansível por balão vs autoexpansível."
+  },
+  {
+    "id": "ent-3",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-1",
+    "dayLabel": "Dia 1 • 19/03",
+    "title": "Entrevista Exclusiva: O Futuro da Substituição Valvar Tricúspide",
+    "speaker": "Dr. Juan F. Granada",
+    "role": "CRF / Nova York",
+    "videoId": "1199846887",
+    "duration": "1:12",
+    "poster": "https://i.vimeocdn.com/video/2166784650-660db8e29fe2dfe024cab68e1adbf35ad6174fa78cd8b9f69a4bd64cc7447c7d-d_1920x1080?&r=pad&region=us",
+    "description": "Novas fronteiras em substituição ortotópica tricúspide transcateter e os próximos passos dos trials internacionais."
+  },
+  {
+    "id": "ent-4",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-2",
+    "dayLabel": "Dia 2 • 20/03",
+    "title": "Entrevista Exclusiva: Imagem Multimodal no Planejamento Estrutural",
+    "speaker": "Dra. Rebecca Hahn",
+    "role": "Columbia University / CRF",
+    "videoId": "1199846888",
+    "duration": "1:34",
+    "poster": "https://i.vimeocdn.com/video/2166784650-660db8e29fe2dfe024cab68e1adbf35ad6174fa78cd8b9f69a4bd64cc7447c7d-d_1920x1080?&r=pad&region=us",
+    "description": "Integração entre ecocardiograma 3D transesofágico, tomografia e fluoroscopia em intervenções valvares complexas."
+  },
+  {
+    "id": "ent-5",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-2",
+    "dayLabel": "Dia 2 • 20/03",
+    "title": "Entrevista Exclusiva: Desafios Anatômicos em Pacientes Jovens",
+    "speaker": "Dr. Jianfeng Luo",
+    "role": "Zhongshan Hospital",
+    "videoId": "1199846888",
+    "duration": "1:08",
+    "poster": "https://i.vimeocdn.com/video/2166784650-660db8e29fe2dfe024cab68e1adbf35ad6174fa78cd8b9f69a4bd64cc7447c7d-d_1920x1080?&r=pad&region=us",
+    "description": "Abordagem em valvas bicúspides e anatomias aórticas de alta complexidade em pacientes de menor risco cirúrgico."
+  },
+  {
+    "id": "ent-6",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-2",
+    "dayLabel": "Dia 2 • 20/03",
+    "title": "Entrevista Exclusiva: Casos Ao Vivo e Técnicas de TAV-in-TAV",
+    "speaker": "Dr. Fábio Sândoli de Brito Jr.",
+    "role": "InCor / Hospital Sírio-Libanês",
+    "videoId": "1199852487",
+    "duration": "1:21",
+    "poster": "https://i.vimeocdn.com/video/2166796259-aa77d71e9e66a33cc26e02a7607f26162679e1410893fa430ab50b3b28a95a23-d_1920x1080?&r=pad&region=us",
+    "description": "Técnicas de proteção coronária e considerações práticas para implante seguro de prótese sobre prótese degenerada."
+  },
+  {
+    "id": "ent-7",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-3",
+    "dayLabel": "Dia 3 • 21/03",
+    "title": "Entrevista Exclusiva: BASILICA e Modificação de Folhetos",
+    "speaker": "Dr. Susheel Kodali",
+    "role": "Columbia University Medical Center",
+    "videoId": "1200128219",
+    "duration": "1:42",
+    "poster": "https://i.vimeocdn.com/video/2167143685-1900db7b60e425bfa74942232e6c071112a1d4e6b64d4ab726ea4b185b25c2ed-d_1920x1080?&r=pad&region=us",
+    "description": "Procedimentos transcateter de laceração de folhetos aórticos para prevenir obstrução coronariana em TAV-in-TAV."
+  },
+  {
+    "id": "ent-8",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-3",
+    "dayLabel": "Dia 3 • 21/03",
+    "title": "Entrevista Exclusiva: LAMPOON e Intervenções Mitrais Complexas",
+    "speaker": "Dr. Gagan Singh",
+    "role": "UC Davis Health",
+    "videoId": "1200128067",
+    "duration": "1:19",
+    "poster": "https://i.vimeocdn.com/video/2167143139-14998fda4890dc9e0e8035c19a6da227d1f807ea4df591eb8be5525002fc2554-d_1920x1080?&r=pad&region=us",
+    "description": "Técnicas inovadoras de laceração do folheto mitral anterior para prevenir obstrução da via de saída do ventrículo esquerdo."
+  },
+  {
+    "id": "ent-9",
+    "section": "entrevistas",
+    "category": "Entrevista",
+    "catClass": "cat-entrevista",
+    "day": "dia-3",
+    "dayLabel": "Dia 3 • 21/03",
+    "title": "Entrevista Exclusiva: IA e o Futuro da Cardiologia Intervencionista",
+    "speaker": "Dr. Henrique Ribeiro",
+    "role": "InCor / HCor",
+    "videoId": "1200114685",
+    "duration": "1:25",
+    "poster": "https://i.vimeocdn.com/video/2167125219-c18a998c2032b7606bd10befce828c541aac48596a4a037f9532fd091f42fc09-d_1920x1080?&r=pad&region=us",
+    "description": "Como ferramentas de inteligência artificial estão transformando o dimensionamento, a simulação computacional e os desfechos."
+  }
+];
 
-      // Normalizar itens em formato unificado
-      const ALL_ITEMS = [];
+      // 2. ELEMENTOS DO DOM
+      const grid = document.getElementById('videosGrid');
+      const catTabBtns = document.querySelectorAll('.cat-tab-btn');
+      const dayPillBtns = document.querySelectorAll('.day-pill-btn');
+      const searchInput = document.getElementById('videoSearchInput');
 
-      (COBERTURA_RAW.highlights || []).forEach((h, i) => {
-        ALL_ITEMS.push({
-          id: 'highlight-' + (i + 1),
-          type: 'destaques',
-          typeLabel: 'Destaque Científico',
-          tag: h.tag || 'Casos Ao Vivo',
-          tagClass: 'tag-highlight',
-          title: h.title,
-          desc: h.desc,
-          badgeText: 'DESTAQUE',
-          author: null,
-          role: null,
-          quote: null,
-          interviewee: null,
-          topic: null
-        });
-      });
+      // Elementos do Modal
+      const modal = document.getElementById('videoModal');
+      const modalCloseBtn = document.getElementById('modalCloseBtn');
+      const modalIframeContainer = document.getElementById('modalIframeContainer');
+      const modalVideoTitle = document.getElementById('modalVideoTitle');
+      const modalVideoSpeaker = document.getElementById('modalVideoSpeaker');
+      const modalVideoDesc = document.getElementById('modalVideoDesc');
 
-      (COBERTURA_RAW.interviews || []).forEach((it, i) => {
-        ALL_ITEMS.push({
-          id: 'interview-' + (i + 1),
-          type: 'entrevistas',
-          typeLabel: 'Entrevista Especial',
-          tag: 'Entrevista',
-          tagClass: 'tag-interview',
-          title: it.title,
-          interviewee: it.interviewee,
-          topic: it.topic,
-          badgeText: 'ENTREVISTA',
-          desc: it.topic,
-          author: it.interviewee,
-          role: 'Especialista Convidado',
-          quote: null
-        });
-      });
+      // Estado dos Filtros (Abre por padrão em Melhores Momentos)
+      let currentCategory = 'momentos';
+      let currentDay = 'all';
+      let currentSearchQuery = '';
 
-      (COBERTURA_RAW.testimonials || []).forEach((t, i) => {
-        ALL_ITEMS.push({
-          id: 'testimonial-' + (i + 1),
-          type: 'depoimentos',
-          typeLabel: 'Depoimento da Liderança',
-          tag: 'Liderança TCT',
-          tagClass: 'tag-testimonial',
-          title: t.author,
-          author: t.author,
-          role: t.role,
-          quote: t.quote,
-          badgeText: 'DEPOIMENTO',
-          desc: t.quote,
-          interviewee: null,
-          topic: null
-        });
-      });
-
-      let currentCategory = 'all';
-      let searchQuery = '';
-
-      const dom = {
-        grid: document.getElementById('coberturaGrid'),
-        buttons: document.querySelectorAll('.cat-tab-btn'),
-        searchInput: document.getElementById('searchInput')
-      };
-
+      // 3. COMUNICAÇÃO DE RESIZE PARA IFRAME WIX
       function sendResizeMessage() {
         try {
           const height = Math.max(
@@ -670,161 +1444,241 @@
         } catch (e) {}
       }
 
-      function escapeHTML(str) {
-        if (!str) return '';
-        return str
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
-      }
-
-      function getInitials(name) {
-        if (!name) return 'TC';
-        const clean = name.replace(/Dr\.?|Dra\.?/gi, '').trim();
-        const parts = clean.split(/\s+/);
-        if (parts.length >= 2) {
-          return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-        }
-        return clean.substring(0, 2).toUpperCase();
-      }
-
-      function createCardHTML(item) {
-        if (item.type === 'depoimentos') {
-          return `
-            <article class="cobertura-card" data-type="depoimentos">
-              <div class="card-top-tag-row">
-                <span class="card-type-tag ${item.tagClass}">${escapeHTML(item.badgeText)}</span>
-                <span style="font-size: 0.6875rem; color: #FBBF24; font-weight: 700;">★ DEPOIMENTO OFICIAL</span>
-              </div>
-              <div class="testimonial-quote-wrap">
-                <p class="testimonial-quote-text">"${escapeHTML(item.quote)}"</p>
-              </div>
-              <div class="author-info-block">
-                <div class="author-avatar-badge" style="border-color: rgba(251, 191, 36, 0.4); color: #FBBF24;">
-                  ${getInitials(item.author)}
-                </div>
-                <div class="author-details">
-                  <span class="author-name">${escapeHTML(item.author)}</span>
-                  <span class="author-role">${escapeHTML(item.role)}</span>
-                </div>
-              </div>
-            </article>
-          `;
-        }
-
-        if (item.type === 'entrevistas') {
-          return `
-            <article class="cobertura-card" data-type="entrevistas">
-              <div class="card-top-tag-row">
-                <span class="card-type-tag ${item.tagClass}">${escapeHTML(item.badgeText)}</span>
-                <span style="font-size: 0.6875rem; color: #ff6b6b; font-weight: 700;">LATAM & GLOBAL</span>
-              </div>
-              <h3 class="cobertura-card-title">${escapeHTML(item.title)}</h3>
-              <div class="interview-topic-block">
-                <span class="interview-topic-label">Tema em Debate:</span>
-                <p class="interview-topic-text">${escapeHTML(item.topic)}</p>
-              </div>
-              <div class="author-info-block">
-                <div class="author-avatar-badge" style="border-color: rgba(229, 9, 20, 0.4); color: #ff6b6b;">
-                  ${getInitials(item.interviewee)}
-                </div>
-                <div class="author-details">
-                  <span class="author-name">${escapeHTML(item.interviewee)}</span>
-                  <span class="author-role">Entrevista Oficial TCT Plus</span>
-                </div>
-              </div>
-            </article>
-          `;
-        }
-
-        // Destaques
-        return `
-          <article class="cobertura-card" data-type="destaques">
-            <div class="card-top-tag-row">
-              <span class="card-type-tag ${item.tagClass}">${escapeHTML(item.tag)}</span>
-              <span style="font-size: 0.6875rem; color: var(--color-blue-accent); font-weight: 700;">DESTAQUE</span>
-            </div>
-            <h3 class="cobertura-card-title">${escapeHTML(item.title)}</h3>
-            <p class="cobertura-card-desc">${escapeHTML(item.desc)}</p>
-            <div class="author-info-block">
-              <div class="author-avatar-badge">TCT</div>
-              <div class="author-details">
-                <span class="author-name">TCT Plus Latam Valves 2026</span>
-                <span class="author-role">Cobertura & Inovação Científica</span>
-              </div>
-            </div>
-          </article>
-        `;
-      }
-
-      function renderGrid() {
-        const q = searchQuery.toLowerCase().trim();
-
-        const filtered = ALL_ITEMS.filter(item => {
-          if (currentCategory !== 'all' && item.type !== currentCategory) {
+      // 4. RENDERIZAÇÃO DOS CARDS DE VÍDEO
+      function renderCards() {
+        const filtered = COBERTURA_DATA.filter(item => {
+          // Filtro por Categoria
+          if (currentCategory !== 'all' && item.section !== currentCategory) {
             return false;
           }
-          if (q.length > 0) {
-            const matchTitle = (item.title || '').toLowerCase().includes(q);
-            const matchDesc = (item.desc || '').toLowerCase().includes(q);
-            const matchAuthor = (item.author || '').toLowerCase().includes(q);
-            const matchRole = (item.role || '').toLowerCase().includes(q);
-            const matchTopic = (item.topic || '').toLowerCase().includes(q);
-            if (!matchTitle && !matchDesc && !matchAuthor && !matchRole && !matchTopic) {
+          // Filtro por Dia
+          if (currentDay !== 'all' && item.day !== currentDay) {
+            return false;
+          }
+          // Filtro por Busca
+          if (currentSearchQuery.trim() !== '') {
+            const query = currentSearchQuery.toLowerCase().trim();
+            const titleMatch = item.title.toLowerCase().includes(query);
+            const speakerMatch = item.speaker.toLowerCase().includes(query);
+            const roleMatch = item.role.toLowerCase().includes(query);
+            const descMatch = item.description.toLowerCase().includes(query);
+            if (!titleMatch && !speakerMatch && !roleMatch && !descMatch) {
               return false;
             }
           }
           return true;
         });
 
+        grid.innerHTML = '';
+
         if (filtered.length === 0) {
-          dom.grid.innerHTML = `
-            <div class="cobertura-empty-state">
-              <p>Nenhum conteúdo encontrado na cobertura para a busca realizada.</p>
+          grid.innerHTML = `
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <h3>Nenhum conteúdo encontrado</h3>
+              <p>Tente remover os filtros ou buscar por outros termos.</p>
+              <button type="button" id="btnResetFilters">Limpar Filtros</button>
             </div>
           `;
-        } else {
-          dom.grid.innerHTML = filtered.map(item => createCardHTML(item)).join('');
+          const resetBtn = document.getElementById('btnResetFilters');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', resetAllFilters);
+          }
+          sendResizeMessage();
+          return;
         }
 
+        const fragment = document.createDocumentFragment();
+
+        filtered.forEach(video => {
+          const card = document.createElement('article');
+          card.className = 'video-card';
+          card.setAttribute('role', 'button');
+          card.setAttribute('tabindex', '0');
+          card.setAttribute('aria-label', `Assistir vídeo: ${video.title} com ${video.speaker}`);
+
+          card.innerHTML = `
+            <div class="video-thumb-wrap">
+              <img 
+                src="${video.poster}" 
+                alt="${video.speaker} - ${video.title}" 
+                class="video-thumb-img"
+                loading="lazy"
+                width="280"
+                height="480"
+              >
+              <div class="video-thumb-overlay-top"></div>
+              <div class="video-thumb-overlay-bottom"></div>
+
+              <div class="card-top-badges">
+                <span class="badge-category ${video.catClass}">${video.category}</span>
+                <span class="badge-day">${video.dayLabel}</span>
+              </div>
+
+              <div class="card-play-overlay" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+
+              <div class="card-duration-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                ${video.duration}
+              </div>
+            </div>
+
+            <div class="video-card-info">
+              <h3 class="video-card-title">${video.title}</h3>
+              <div class="video-card-speaker">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>${video.speaker}</span>
+              </div>
+            </div>
+          `;
+
+          // Eventos de clique e teclado
+          card.addEventListener('click', () => openVideoModal(video));
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openVideoModal(video);
+            }
+          });
+
+          fragment.appendChild(card);
+        });
+
+        grid.appendChild(fragment);
         sendResizeMessage();
       }
 
-      // Event listeners
-      dom.buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          dom.buttons.forEach(b => {
+      // 6. ABRIR E FECHAR MODAL LIGHTBOX DO VIMEO
+      function openVideoModal(video) {
+        modalVideoTitle.textContent = video.title;
+        modalVideoSpeaker.textContent = `${video.speaker} • ${video.role}`;
+        modalVideoDesc.textContent = video.description;
+
+        // Iframe oficial Vimeo com controles otimizados para vídeo vertical
+        modalIframeContainer.innerHTML = `
+          <iframe 
+            src="https://player.vimeo.com/video/${video.videoId}?autoplay=1&title=0&byline=0&portrait=0&color=E50914" 
+            title="${video.title} - ${video.speaker}" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            allowfullscreen
+          ></iframe>
+        `;
+
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeVideoModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        modalIframeContainer.innerHTML = '';
+        document.body.style.overflow = '';
+      }
+
+      // 7. EVENTOS DOS FILTROS E BUSCA
+      catTabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          catTabBtns.forEach(b => {
             b.classList.remove('active');
             b.setAttribute('aria-selected', 'false');
           });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
-          currentCategory = btn.dataset.category;
-          renderGrid();
+          this.classList.add('active');
+          this.setAttribute('aria-selected', 'true');
+          currentCategory = this.getAttribute('data-category');
+          renderCards();
         });
       });
 
-      dom.searchInput.addEventListener('input', (e) => {
-        searchQuery = e.target.value;
-        renderGrid();
+      dayPillBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const selectedDay = this.getAttribute('data-day');
+          if (currentDay === selectedDay) {
+            // Se clicar no dia que já está ativo, desmarca para exibir todos os dias
+            currentDay = 'all';
+            this.classList.remove('active');
+          } else {
+            dayPillBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentDay = selectedDay;
+          }
+          renderCards();
+        });
       });
 
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          currentSearchQuery = this.value;
+          renderCards();
+        });
+      }
+
+      function resetAllFilters() {
+        currentCategory = 'momentos';
+        currentDay = 'all';
+        currentSearchQuery = '';
+        if (searchInput) searchInput.value = '';
+
+        catTabBtns.forEach((b) => {
+          const isMomentos = b.getAttribute('data-category') === 'momentos';
+          b.classList.toggle('active', isMomentos);
+          b.setAttribute('aria-selected', isMomentos ? 'true' : 'false');
+        });
+
+        dayPillBtns.forEach((b) => {
+          b.classList.remove('active');
+        });
+
+        renderCards();
+      }
+
+      // Eventos do Modal
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeVideoModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function(e) {
+          if (e.target === modal) {
+            closeVideoModal();
+          }
+        });
+      }
+
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeVideoModal();
+        }
+      });
+
+      // 8. OBSERVER E EVENTOS DE REDIMENSIONAMENTO
+      window.addEventListener('resize', sendResizeMessage);
       window.addEventListener('load', () => {
-        renderGrid();
-        sendResizeMessage();
+        renderCards();
         setTimeout(sendResizeMessage, 300);
         setTimeout(sendResizeMessage, 1200);
-        setTimeout(sendResizeMessage, 3000);
       });
 
-      window.addEventListener('resize', sendResizeMessage);
-
       if ('ResizeObserver' in window) {
-        const ro = new ResizeObserver(sendResizeMessage);
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
         ro.observe(document.body);
       }
+
     })();
   </script>
 </body>
