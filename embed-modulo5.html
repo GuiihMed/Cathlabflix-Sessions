@@ -669,6 +669,150 @@
       transform: translateY(-2px);
     }
 
+        /* Action Buttons in Cards (Infográficos & Docs) */
+    .infografico-btn-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .btn-card-action {
+      flex: 1;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 700;
+      font-family: inherit;
+      color: #FFFFFF !important;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none !important;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      box-sizing: border-box;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .btn-card-action svg {
+      color: currentColor;
+      stroke: currentColor;
+      flex-shrink: 0;
+    }
+
+    .btn-card-action:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+    }
+
+    .btn-card-action:active {
+      transform: translateY(0);
+    }
+
+    .btn-card-action.btn-card-primary {
+      background: var(--color-primary, #E50914) !important;
+      border-color: var(--color-primary, #E50914) !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 2px 10px rgba(229, 9, 20, 0.35);
+    }
+
+    .btn-card-action.btn-card-primary:hover {
+      background: var(--color-primary-hover, #b80710) !important;
+      border-color: var(--color-primary-hover, #b80710) !important;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* Grid: Docs (Apresentações IA e Slides Originais) */
+    .docs-grid, .docs-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+      width: 100%;
+    }
+
+    .doc-card, .doc-item-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: all var(--transition-fast);
+    }
+
+    .doc-card:hover, .doc-item-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .doc-card .btn-card-action, .doc-item-card .btn-card-action {
+      flex: 0 0 auto;
+      height: 34px;
+      padding: 0 16px;
+    }
+
+    .doc-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(229, 9, 20, 0.14);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .doc-icon-wrap.pdf {
+      background: rgba(56, 189, 248, 0.14);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: var(--color-blue-accent);
+    }
+
+    .doc-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .doc-tag, .doc-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ff4d58;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .doc-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 0;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     /* Grid: Infográficos */
     .infograficos-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -812,39 +956,6 @@
     }
     .video-ia-footer {
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
-    }
-
-    /* Docs (Apresentações IA & Slides Originais) */
-    .docs-cards-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 16px; width: 100%;
-    }
-    .doc-item-card {
-      background: var(--color-surface); border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-md); padding: 18px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-      display: flex; align-items: center; justify-content: space-between; gap: 14px;
-      transition: all var(--transition-fast);
-    }
-    .doc-item-card:hover {
-      border-color: rgba(56, 189, 248, 0.4); transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
-    }
-    .doc-icon-wrap {
-      width: 44px; height: 44px; border-radius: 10px; background: rgba(229, 9, 20, 0.15);
-      color: var(--color-primary); display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; border: 1px solid rgba(229, 9, 20, 0.3);
-    }
-    .doc-icon-wrap.pdf {
-      background: rgba(56, 189, 248, 0.15); color: var(--color-blue-accent);
-      border-color: rgba(56, 189, 248, 0.3);
-    }
-    .doc-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-    .doc-title {
-      font-size: 14px; font-weight: 700; color: #ffffff;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .doc-sub {
-      font-size: 12px; font-weight: 500; color: var(--color-text-secondary);
     }
 
     /* Lightbox Modal */
