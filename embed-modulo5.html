@@ -1337,6 +1337,61 @@
       font-weight: 700;
       color: #ffffff;
     }
+    /* Empty State para Conteúdos de IA (Módulo 5) */
+    .ia-empty-state {
+      background: var(--color-surface);
+      border: 1px dashed var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 56px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 12px 0 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+    .ia-empty-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-blue-accent);
+      margin-bottom: 4px;
+    }
+    .ia-empty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(229, 9, 20, 0.15);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      color: #ff4d58;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+    .ia-empty-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+    .ia-empty-desc {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      max-width: 560px;
+      line-height: 1.6;
+      margin: 0;
+    }
 </style>
 </head>
 <body>
@@ -1672,631 +1727,253 @@
 
     <!-- IA Panels Container -->
     <div class="ia-panels-wrap">
-      
-        <section class="ia-panel active" id="tab-infograficos">
-          <div class="infograficos-grid">
-            
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_147f82ca90a9474f9e480dfa21abf74d~mv2.png', 'Infográfico 1 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_147f82ca90a9474f9e480dfa21abf74d~mv2.png" alt="Infográfico 1" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 1</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_147f82ca90a9474f9e480dfa21abf74d~mv2.png', 'Infográfico 1 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_147f82ca90a9474f9e480dfa21abf74d~mv2.png" download="Infografico_modulo5_1.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_252732aa54394102a04c1a4eda1bdca7~mv2.png', 'Infográfico 2 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_252732aa54394102a04c1a4eda1bdca7~mv2.png" alt="Infográfico 2" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 2</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_252732aa54394102a04c1a4eda1bdca7~mv2.png', 'Infográfico 2 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_252732aa54394102a04c1a4eda1bdca7~mv2.png" download="Infografico_modulo5_2.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_365c2c4d3f14411fb4615b38cd906926~mv2.png', 'Infográfico 3 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_365c2c4d3f14411fb4615b38cd906926~mv2.png" alt="Infográfico 3" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 3</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_365c2c4d3f14411fb4615b38cd906926~mv2.png', 'Infográfico 3 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_365c2c4d3f14411fb4615b38cd906926~mv2.png" download="Infografico_modulo5_3.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_44c955823ddf472285854fe07d69ee43~mv2.png', 'Infográfico 4 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_44c955823ddf472285854fe07d69ee43~mv2.png" alt="Infográfico 4" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 4</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_44c955823ddf472285854fe07d69ee43~mv2.png', 'Infográfico 4 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_44c955823ddf472285854fe07d69ee43~mv2.png" download="Infografico_modulo5_4.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_5118f63df50b4df5acda16fc2e86c2db~mv2.png', 'Infográfico 5 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_5118f63df50b4df5acda16fc2e86c2db~mv2.png" alt="Infográfico 5" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 5</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_5118f63df50b4df5acda16fc2e86c2db~mv2.png', 'Infográfico 5 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_5118f63df50b4df5acda16fc2e86c2db~mv2.png" download="Infografico_modulo5_5.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_65231c2b904d4529a24ce05e65c22aa1~mv2.png', 'Infográfico 6 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_65231c2b904d4529a24ce05e65c22aa1~mv2.png" alt="Infográfico 6" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 6</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_65231c2b904d4529a24ce05e65c22aa1~mv2.png', 'Infográfico 6 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_65231c2b904d4529a24ce05e65c22aa1~mv2.png" download="Infografico_modulo5_6.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="infografico-card">
-              <div class="infografico-thumb-wrap" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_f2cb34e496b649deacd85a1aacdb5fb6~mv2.png', 'Infográfico 7 - Módulo 5')">
-                <img src="https://static.wixstatic.com/media/1d3d47_f2cb34e496b649deacd85a1aacdb5fb6~mv2.png" alt="Infográfico 7" class="infografico-thumb" loading="lazy">
-                <div class="infografico-overlay">
-                  <span class="btn-zoom">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                    Visualizar
-                  </span>
-                </div>
-              </div>
-              <div class="infografico-card-footer">
-                <span class="infografico-card-title">Infográfico 7</span>
-                <div class="infografico-btn-group">
-                  <button type="button" class="btn-card-action" onclick="openLightbox('https://static.wixstatic.com/media/1d3d47_f2cb34e496b649deacd85a1aacdb5fb6~mv2.png', 'Infográfico 7 - Módulo 5')">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    Visualizar
-                  </button>
-                  <a href="https://static.wixstatic.com/media/1d3d47_f2cb34e496b649deacd85a1aacdb5fb6~mv2.png" download="Infografico_modulo5_7.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    Baixar
-                  </a>
-                </div>
-              </div>
-            </article>
-          </div>
-        </section>
-        <section class="ia-panel" id="tab-relatorio">
-          <div class="report-box">
-            <div class="report-top-bar">
-              <div class="report-header-text">
-                <span class="report-badge">DOCUMENTO CLÍNICO SBHCI</span>
-                <h4 class="report-title">Módulo 5 - Intervenções Estruturais</h4>
-              </div>
-              <button type="button" class="btn-secondary btn-copy" onclick="copyReportText()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                Copiar Texto
-              </button>
-            </div>
-            <div class="report-content" id="reportContentArea">
-              <p class="font_8 wixui-rich-text__text" style="text-align:justify; font-size:16px;"><span style="font-weight:normal;" class="wixui-rich-text__text"><span style="font-family:montserrat,sans-serif;" class="wixui-rich-text__text"><span class="color_36 wixui-rich-text__text"><span style="font-weight:bold;" class="wixui-rich-text__text">Sum&aacute;rio Executivo</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-O aumento da expectativa de vida e a expans&atilde;o dos procedimentos de revasculariza&ccedil;&atilde;o em pacientes idosos elevaram significativamente a complexidade das interven&ccedil;&otilde;es coron&aacute;rias percut&acirc;neas (ICP). Este documento sintetiza as diretrizes mais recentes para o tratamento de estenoses gravemente calcificadas e as particularidades das interven&ccedil;&otilde;es em pacientes com hist&oacute;rico de cirurgia de revasculariza&ccedil;&atilde;o mioc&aacute;rdica (CRM).<br class="wixui-rich-text__text">
-Os pontos centrais incluem a necessidade imperativa de diagn&oacute;stico preciso via imagem intravascular (IVUS ou OCT), uma vez que a angiografia convencional subestima consistentemente a carga de c&aacute;lcio. A sele&ccedil;&atilde;o de ferramentas &mdash; como aterectomia rotacional ou orbital, litotripsia intravascular (IVL) e bal&otilde;es especializados &mdash; deve ser ditada pela morfologia do c&aacute;lcio. Em paralelo, novos dados sugerem uma mudan&ccedil;a de paradigma no tratamento de pacientes p&oacute;s-cir&uacute;rgicos, onde a interven&ccedil;&atilde;o direta em enxertos de veia safena pode apresentar resultados superiores &agrave; interven&ccedil;&atilde;o em vasos nativos complexos em cen&aacute;rios espec&iacute;ficos.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">An&aacute;lise de Estenoses Coron&aacute;rias Gravemente Calcificadas</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-A calcifica&ccedil;&atilde;o coron&aacute;ria &eacute; um processo complexo envolvendo apoptose de macr&oacute;fagos e diferencia&ccedil;&atilde;o de c&eacute;lulas musculares lisas em fen&oacute;tipo osteobl&aacute;stico. Sua presen&ccedil;a reduz a complac&ecirc;ncia vascular e imp&otilde;e desafios t&eacute;cnicos severos, como dificuldade na entrega de dispositivos e expans&atilde;o incompleta de stents.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">Avalia&ccedil;&atilde;o por Imagem</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">Angiografia Coron&aacute;ria Invasiva (ICA): </span>Embora seja o padr&atilde;o inicial, a ICA tem baixa sensibilidade e reprodutibilidade para detectar c&aacute;lcio. A gravidade &eacute; classificada como moderada (densidades radiopacas vis&iacute;veis apenas em movimento) ou grave (vis&iacute;veis sem contraste e em ambos os lados da parede arterial).<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Angiotomografia Computadorizada Coron&aacute;ria (CCTA): M&eacute;todo n&atilde;o invasivo eficaz para mapear a distribui&ccedil;&atilde;o global do c&aacute;lcio. Um escore de c&aacute;lcio por les&atilde;o &ge;453 &eacute; preditor de les&otilde;es indilat&aacute;veis.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Ultrassom Intravascular (IVUS): Detecta o c&aacute;lcio como uma &aacute;rea de alta ecogenicidade com sombra ac&uacute;stica. Permite quantificar o arco circunferencial e o comprimento, mas n&atilde;o a espessura.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Tomografia de Coer&ecirc;ncia &Oacute;ptica (OCT): Oferece maior resolu&ccedil;&atilde;o e, por ser luz infravermelha, penetra no c&aacute;lcio, permitindo a medi&ccedil;&atilde;o precisa da espessura, &aacute;rea e volume tridimensional, exceto em placas extremamente espessas.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">Ferramentas de Modifica&ccedil;&atilde;o de Placa</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Bal&otilde;es de Corte (Cutting) e Pontua&ccedil;&atilde;o (Scoring): Utilizam micro l&acirc;minas ou elementos de pontua&ccedil;&atilde;o para criar fraturas na placa com press&otilde;es de insufla&ccedil;&atilde;o menores.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Bal&otilde;es de Super Alta Press&atilde;o (SHP): Capazes de atingir at&eacute; 35-50 atm, s&atilde;o &uacute;teis em les&otilde;es conc&ecirc;ntricas cruz&aacute;veis, mas sua rigidez pode limitar a entrega.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Aterectomia Rotacional (RA): Utiliza uma ogiva com diamantes em alta rota&ccedil;&atilde;o (135.000 a 180.000 rpm) para abla&ccedil;&atilde;o diferencial de tecido inel&aacute;stico. &Eacute; a ferramenta de escolha para les&otilde;es n&atilde;o cruz&aacute;veis por bal&atilde;o ou microcateter.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Aterectomia Orbital (OA): Atua de forma bidirecional e utiliza for&ccedil;a centr&iacute;fuga para aumentar o di&acirc;metro da &oacute;rbita da coroa, sendo eficaz em vasos maiores e reduzindo limita&ccedil;&otilde;es de vi&eacute;s do fio guia.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Litotripsia Intravascular (IVL): Utiliza ondas de choque ac&uacute;sticas para fraturar o c&aacute;lcio intimal e medial de forma circunferencial e transmural, preservando os tecidos moles. &Eacute; indicada especialmente para c&aacute;lcio profundo e n&oacute;dulos calcificados.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">Interven&ccedil;&otilde;es em Enxertos e Pacientes P&oacute;s-Revasculariza&ccedil;&atilde;o Cir&uacute;rgica</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-A revasculariza&ccedil;&atilde;o secund&aacute;ria &eacute; inerentemente mais desafiadora devido &agrave; aterosclerose mais agressiva, les&otilde;es difusas e m&uacute;ltiplas comorbidades dos pacientes.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">Fases da Fal&ecirc;ncia de Enxertos Venosos</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Fase Aguda (at&eacute; 30 dias): Predom&iacute;nio de trombose, muitas vezes relacionada a quest&otilde;es peroperat&oacute;rias. O tratamento de escolha preferencial &eacute; o vaso nativo para evitar risco de perfura&ccedil;&atilde;o de suturas recentes.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-M&eacute;dio Prazo (30 dias a 1 ano): Predom&iacute;nio de hiperplasia intimal.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Fase Tardia (ap&oacute;s 1 ano): Marcada pela degenera&ccedil;&atilde;o do conduto e aterosclerose acelerada. Estima-se que 68% dos enxertos de veia safena estejam oclu&iacute;dos ap&oacute;s 10 anos.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-<span style="font-weight:bold;" class="wixui-rich-text__text">Particularidades T&eacute;cnicas por Tipo de Enxerto</span><br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Art&eacute;ria Mam&aacute;ria: Raramente desenvolve aterosclerose. Exige proje&ccedil;&otilde;es craniais para imagem e o uso de extensores de cateter para evitar les&atilde;o ostial.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Enxerto de Veia Safena (SVG): Apresenta alto risco de emboliza&ccedil;&atilde;o distal, slow-flow e no-reflow. Recomenda-se evitar a pr&eacute;-dilata&ccedil;&atilde;o, optando pelo implante de stent direto para aprisionar os debris contra a parede do vaso. O uso de dispositivos de prote&ccedil;&atilde;o distal &eacute; indicado em casos selecionados de alta complexidade.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-O Estudo Proctor e a Mudan&ccedil;a de Estrat&eacute;gia<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Tradicionalmente, as diretrizes (Classe 2A, N&iacute;vel B) recomendam tratar o vaso nativo em vez do enxerto. No entanto, o estudo Proctor Trial introduziu novas evid&ecirc;ncias:<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-O estudo comparou a ICP no vaso nativo versus no enxerto de safena.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-A ICP no vaso nativo resultou em procedimentos mais longos, maior uso de contraste, maior n&uacute;mero de stents e maior tempo de fluoroscopia devido &agrave; alta preval&ecirc;ncia de oclus&otilde;es cr&ocirc;nicas e calcifica&ccedil;&atilde;o severa.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Resultados de MACE: Em 360 dias, a taxa de eventos adversos maiores (MACE) foi significativamente menor no grupo que tratou o enxerto (18%) comparado ao vaso nativo (34%).<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Conclus&atilde;o: Tratar o enxerto pode ser mais vantajoso em cen&aacute;rios onde a anatomia do vaso nativo &eacute; proibitivamente complexa.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Melhores Pr&aacute;ticas e Recomenda&ccedil;&otilde;es de Consenso<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Acesso Vascular: O acesso radial &eacute; fortemente recomendado para reduzir complica&ccedil;&otilde;es hemorr&aacute;gicas, especialmente em pacientes idosos com alto risco de sangramento.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Prepara&ccedil;&atilde;o de Les&atilde;o: Nunca realizar o stenting direto em les&otilde;es moderada ou gravemente calcificadas. A falha na dilata&ccedil;&atilde;o de um bal&atilde;o (efeito &quot;dog-boning&quot;) deve disparar imediatamente o uso de t&eacute;cnicas avan&ccedil;adas (ateretomia ou IVL).<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Uso de Imagem Intravascular: Crucial para avaliar a carga de c&aacute;lcio antes do stent e garantir a expans&atilde;o e aposi&ccedil;&atilde;o adequadas ap&oacute;s o implante. A incapacidade de cruzar com um cateter de imagem &eacute;, por si s&oacute;, um indicativo da necessidade de aterectomia.</span></span></span></p>
 
-<p class="font_8 wixui-rich-text__text" style="text-align:justify; font-size:16px;"><br class="wixui-rich-text__text">
-<span style="font-weight:normal;" class="wixui-rich-text__text"><span style="font-family:montserrat,sans-serif;" class="wixui-rich-text__text"><span class="color_36 wixui-rich-text__text">Otimiza&ccedil;&atilde;o do Stent: Utilizar sistemas de realce angiogr&aacute;fico (stent boost) e bal&otilde;es de alta press&atilde;o para garantir que o l&uacute;men final seja otimizado, minimizando o risco de trombose e reestenose.<br class="wixui-rich-text__text">
-<br class="wixui-rich-text__text">
-Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;ria (DAPT) obrigat&oacute;ria e o pr&eacute;-tratamento adequado s&atilde;o essenciais para reduzir eventos tromb&oacute;ticos periprocedimento.</span></span></span></p>
+      <!-- ==========================================================================
+           CONTEÚDOS DE INTELIGÊNCIA ARTIFICIAL - MÓDULO 5 (INTERVENÇÕES ESTRUTURAIS)
+           ==========================================================================
+           GUIA DE INSERÇÃO PARA IA / DESENVOLVEDOR:
+           Os conteúdos abaixo foram limpos pois estavam incorretos (pertenciam a outro módulo).
+           Para inserir novos conteúdos, remova o elemento .ia-empty-state da respectiva
+           aba e utilize os templates HTML documentados dentro de cada seção.
+           ========================================================================== -->
+      
+      <!-- 1. ABA INFOGRÁFICOS -->
+      <section class="ia-panel active" id="tab-infograficos">
+        <div class="ia-empty-state">
+          <div class="ia-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <span class="ia-empty-badge">Em Processamento</span>
+          <h4 class="ia-empty-title">Infográficos em Elaboração</h4>
+          <p class="ia-empty-desc">Os infográficos de alta resolução com os pontos-chave das aulas do Módulo 5 (Intervenções Estruturais) estão em desenvolvimento e serão disponibilizados aqui em breve.</p>
+        </div>
+
+        <!-- ================================================================
+             TEMPLATE PARA INSERÇÃO DE INFOGRÁFICOS (MÓDULO 5):
+             Para adicionar infográficos, remova o .ia-empty-state acima e use:
+        ================================================================
+        <div class="infograficos-grid">
+          <article class="infografico-card">
+            <div class="infografico-thumb-wrap" onclick="openLightbox('URL_DA_IMAGEM', 'Infográfico 1 - Módulo 5')">
+              <img src="URL_DA_IMAGEM" alt="Infográfico 1" class="infografico-thumb" loading="lazy">
+              <div class="infografico-overlay">
+                <span class="btn-zoom">Visualizar</span>
+              </div>
+            </div>
+            <div class="infografico-card-footer">
+              <span class="infografico-card-title">Infográfico 1 - Título da Aula</span>
+              <div class="infografico-btn-group">
+                <button type="button" class="btn-card-action" onclick="openLightbox('URL_DA_IMAGEM', 'Infográfico 1 - Módulo 5')">Visualizar</button>
+                <a href="URL_DA_IMAGEM" download="Infografico_modulo5_1.png" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary">Baixar</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        ================================================================ -->
+      </section>
+
+      <!-- 2. ABA RELATÓRIO DO MÓDULO -->
+      <section class="ia-panel" id="tab-relatorio">
+        <div class="ia-empty-state">
+          <div class="ia-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <span class="ia-empty-badge">Em Síntese</span>
+          <h4 class="ia-empty-title">Relatório Clínico em Elaboração</h4>
+          <p class="ia-empty-desc">O documento clínico estruturado e o sumário executivo com as evidências do Módulo 5 (Intervenções Estruturais) estão sendo sintetizados pela inteligência artificial e validados pela equipe médica.</p>
+        </div>
+
+        <!-- ================================================================
+             TEMPLATE PARA INSERÇÃO DE RELATÓRIO CLÍNICO (MÓDULO 5):
+             Para adicionar o relatório, remova o .ia-empty-state acima e use:
+        ================================================================
+        <div class="report-box">
+          <div class="report-top-bar">
+            <div class="report-header-text">
+              <span class="report-badge">DOCUMENTO CLÍNICO SBHCI</span>
+              <h4 class="report-title">Módulo 5 - Intervenções Estruturais</h4>
+            </div>
+            <button type="button" class="btn-secondary btn-copy" onclick="copyReportText()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copiar Texto
+            </button>
+          </div>
+          <div class="report-content" id="reportContentArea">
+            <p style="text-align:justify; font-size:16px;"><strong>Sumário Executivo</strong><br><br>Insira aqui o texto formatado do relatório do Módulo 5...</p>
+          </div>
+        </div>
+        ================================================================ -->
+      </section>
+
+      <!-- 3. ABA RESUMOS EM ÁUDIO -->
+      <section class="ia-panel" id="tab-resumos">
+        <div class="ia-empty-state">
+          <div class="ia-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+          </div>
+          <span class="ia-empty-badge">Em Produção</span>
+          <h4 class="ia-empty-title">Resumos em Áudio em Gravação</h4>
+          <p class="ia-empty-desc">Os áudios explicativos com os pontos essenciais de cada aula do Módulo 5 estão sendo gravados e estarão disponíveis para reprodução e download em breve.</p>
+        </div>
+
+        <!-- ================================================================
+             TEMPLATE PARA INSERÇÃO DE ÁUDIOS (MÓDULO 5):
+             Para adicionar faixas de áudio, remova o .ia-empty-state acima e use:
+        ================================================================
+        <div class="audios-list">
+          <div class="audio-card">
+            <div class="audio-card-header">
+              <div class="audio-track-info">
+                <span class="audio-pill">Resumo em Áudio</span>
+                <h4 class="audio-track-title">Aula 1 - Título da Aula</h4>
+                <span class="audio-duration-meta">Duração: 02:15</span>
+              </div>
+              <a href="URL_DO_MP3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar MP3
+              </a>
+            </div>
+            <div class="custom-audio-player" data-src="URL_DO_MP3">
+              <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
+                <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              <span class="audio-time current-time">00:00</span>
+              <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
+              <span class="audio-time total-time">02:15</span>
+              <audio preload="none" src="URL_DO_MP3"></audio>
             </div>
           </div>
-        </section>
-        <section class="ia-panel" id="tab-resumos">
-          <div class="audios-list">
-            
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 1 - Quando_o_stent_realmente_salva_vidas</h4>
-                  <span class="audio-duration-meta">Duração: 01:43</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:43</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 2 - Radial_e_microcâmeras_no_infarto_sem_supra</h4>
-                  <span class="audio-duration-meta">Duração: 01:51</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:51</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 4 - Quando_desobstruir_todas_as_artérias_no_infarto</h4>
-                  <span class="audio-duration-meta">Duração: 01:36</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:36</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 5 - A_evolução_dos_stents_coronários</h4>
-                  <span class="audio-duration-meta">Duração: 01:46</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:46</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 6 - Stents_ultrafinos_e_polímeros_que_desaparecem</h4>
-                  <span class="audio-duration-meta">Duração: 01:56</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:56</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 7 - Curar_o_coração_sem_deixar_rastros</h4>
-                  <span class="audio-duration-meta">Duração: 01:42</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:42</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 8 - Tratamento_do_choque_cardiogênico_além_da_pressão</h4>
-                  <span class="audio-duration-meta">Duração: 01:53</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:53</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3"></audio>
-              </div>
-            </div>
-            <div class="audio-card">
-              <div class="audio-card-header">
-                <div class="audio-track-info">
-                  <span class="audio-pill">Resumo em Áudio</span>
-                  <h4 class="audio-track-title">Aula 9 - Como_resolver_as_piores_complicações_na_angioplastia</h4>
-                  <span class="audio-duration-meta">Duração: 01:32</span>
-                </div>
-                <a href="https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3" download target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar áudio">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  Baixar MP3
-                </a>
-              </div>
-              <div class="custom-audio-player" data-src="https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3">
-                <button type="button" class="audio-play-btn" aria-label="Tocar áudio">
-                  <svg class="icon-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  <svg class="icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                </button>
-                <span class="audio-time current-time">00:00</span>
-                <input type="range" class="audio-seeker" value="0" min="0" max="100" step="0.1" aria-label="Progresso do áudio">
-                <span class="audio-time total-time">01:32</span>
-                <audio preload="none" src="https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3"></audio>
-              </div>
-            </div>
+        </div>
+        ================================================================ -->
+      </section>
+
+      <!-- 4. ABA VÍDEO DE ANÁLISE IA -->
+      <section class="ia-panel" id="tab-video-ia">
+        <div class="ia-empty-state">
+          <div class="ia-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
           </div>
-        </section>
-        <section class="ia-panel" id="tab-video-ia">
-          <div class="video-ia-box">
-            <div class="video-ia-header">
-              <span class="video-ia-badge">ANÁLISE AVANÇADA POR INTELIGÊNCIA ARTIFICIAL</span>
-              <h4 class="video-ia-title">Vídeo Síntese: Módulo 5 - Intervenções Estruturais</h4>
-            </div>
-            <div class="video-ia-player-wrap">
-              <video class="video-ia-element" controls preload="metadata" poster="https://static.wixstatic.com/media/1d3d47_bb12be820123459f837a3962413faf27~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(1).png">
-                <source src="https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4" type="video/mp4">
-                Seu navegador não suporta reprodução de vídeos MP4.
-              </video>
-            </div>
-            <div class="video-ia-footer">
-              <a href="https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4" download="Analise_IA_modulo5.mp4" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar Vídeo MP4
-              </a>
-            </div>
+          <span class="ia-empty-badge">Em Produção</span>
+          <h4 class="ia-empty-title">Vídeo Síntese com IA em Renderização</h4>
+          <p class="ia-empty-desc">O vídeo síntese multimídia com a análise integrada de todas as intervenções estruturais do Módulo 5 será publicado aqui em breve.</p>
+        </div>
+
+        <!-- ================================================================
+             TEMPLATE PARA INSERÇÃO DE VÍDEO IA (MÓDULO 5):
+             Para adicionar o vídeo de análise, remova o .ia-empty-state acima e use:
+        ================================================================
+        <div class="video-ia-box">
+          <div class="video-ia-header">
+            <span class="video-ia-badge">ANÁLISE AVANÇADA POR INTELIGÊNCIA ARTIFICIAL</span>
+            <h4 class="video-ia-title">Vídeo Síntese: Módulo 5 - Intervenções Estruturais</h4>
           </div>
-        </section>
-        <section class="ia-panel" id="tab-ia-docs">
-          <div class="docs-grid">
-            
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 1</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_da70b831f4e0476186cf6b7875a85120.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 2</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_37c36070801545b0a3e171b4315ff6a0.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 2">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 3</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_1c4564912aaf4faba2e7a2b27aecac29.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 3">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 4</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_7fc5ae21c4a64a298e57f44cb80f9075.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 4">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 5</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_ffff52be95bf4817b38315e2840a01f9.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 5">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 6</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_dbe4de0ba158422e9754d4ee9944ac41.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 6">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 7</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_c444a8aa728941e1973402c852abc393.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 7">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 8</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_4d9b85cb717f46088ab529c61ce93d1b.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 8">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag">PDF • Inteligência Artificial</span>
-                <h4 class="doc-title">Aula 9</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_19b56b8bfb574aaaab226d604ee40d39.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 9">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
+          <div class="video-ia-player-wrap">
+            <video class="video-ia-element" controls preload="metadata" poster="URL_DO_POSTER">
+              <source src="URL_DO_VIDEO_MP4" type="video/mp4">
+              Seu navegador não suporta reprodução de vídeos MP4.
+            </video>
           </div>
-        </section>
-        <section class="ia-panel" id="tab-orig-docs">
-          <div class="docs-grid">
-            
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag" style="color: #f59e0b;">PPTX • Apresentação</span>
-                <h4 class="doc-title">Aula 1</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_7fbd3e8c197c4e28a5a82315a7d5623b.pptx?dn=Aula%201_Henrique_Valvoplastia_Mitral_2026.pptx" target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar Aula 1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
-            <div class="doc-card">
-              <div class="doc-icon-wrap">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              </div>
-              <div class="doc-info">
-                <span class="doc-tag" style="color: #38bdf8;">PDF • Slide Original</span>
-                <h4 class="doc-title">Aula 9</h4>
-              </div>
-              <a href="https://www.cathlabflix.org/_files/ugd/1d3d47_9c3c83e0bd214fada8b70c0245ba3196.pdf" target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar Aula 9">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Baixar
-              </a>
-            </div>
+          <div class="video-ia-footer">
+            <a href="URL_DO_VIDEO_MP4" download="Analise_IA_modulo5.mp4" target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Baixar Vídeo MP4
+            </a>
           </div>
-        </section>
+        </div>
+        ================================================================ -->
+      </section>
+
+      <!-- 5. ABA APRESENTAÇÕES COM IA -->
+      <section class="ia-panel" id="tab-ia-docs">
+        <div class="ia-empty-state">
+          <div class="ia-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <span class="ia-empty-badge">Em Preparação</span>
+          <h4 class="ia-empty-title">Apresentações com IA em Preparação</h4>
+          <p class="ia-empty-desc">Os resumos em formato de apresentação PDF gerados com IA para cada aula do Módulo 5 serão adicionados aqui em breve.</p>
+        </div>
+
+        <!-- ================================================================
+             TEMPLATE PARA INSERÇÃO DE APRESENTAÇÕES IA (PDF) (MÓDULO 5):
+             Para adicionar documentos/slides IA, remova o .ia-empty-state acima e use:
+        ================================================================
+        <div class="docs-grid">
+          <div class="doc-card">
+            <div class="doc-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="doc-info">
+              <span class="doc-tag">PDF • Inteligência Artificial</span>
+              <h4 class="doc-title">Aula 1 - Título da Aula</h4>
+            </div>
+            <a href="URL_DO_PDF" target="_blank" rel="noopener noreferrer" class="btn-card-action btn-card-primary" aria-label="Baixar Aula 1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Baixar
+            </a>
+          </div>
+        </div>
+        ================================================================ -->
+      </section>
+
+      <!-- 6. ABA SLIDES ORIGINAIS -->
+      <section class="ia-panel" id="tab-orig-docs">
+        <div class="ia-empty-state">
+          <div class="ia-empty-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+          </div>
+          <span class="ia-empty-badge">Em Preparação</span>
+          <h4 class="ia-empty-title">Slides Originais em Preparação</h4>
+          <p class="ia-empty-desc">Os slides originais dos palestrantes do Módulo 5 (PPTX / PDF) serão adicionados para download nesta seção assim que disponibilizados pelos docentes.</p>
+        </div>
+
+        <!-- ================================================================
+             TEMPLATE PARA INSERÇÃO DE SLIDES ORIGINAIS (MÓDULO 5):
+             Para adicionar os slides originais, remova o .ia-empty-state acima e use:
+        ================================================================
+        <div class="docs-grid">
+          <div class="doc-card">
+            <div class="doc-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div class="doc-info">
+              <span class="doc-tag" style="color: #38bdf8;">PDF • Slide Original</span>
+              <h4 class="doc-title">Aula 1 - Título da Aula</h4>
+            </div>
+            <a href="URL_DO_SLIDE" target="_blank" rel="noopener noreferrer" class="btn-card-action" aria-label="Baixar Slide Aula 1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Baixar
+            </a>
+          </div>
+        </div>
+        ================================================================ -->
+      </section>
+
     </div>
   </main>
 
