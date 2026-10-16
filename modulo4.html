@@ -115,16 +115,20 @@
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
     }
 
-    /* Dynamic Aula Title */
+    /* Dynamic Aula Title & Professor */
     .aula-title-block {
       text-align: center; max-width: 940px; margin: 0 auto 34px; padding: 0 12px;
     }
     .aula-title-heading {
-      font-size: 15.5px; font-weight: 700; color: #ffffff; line-height: 1.45; letter-spacing: 0.3px;
-      text-transform: uppercase;
+      font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.45; letter-spacing: 0.3px;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .aula-professor-text {
+      font-size: 14.5px; font-weight: 500; color: #94a3b8; line-height: 1.4; margin-top: 4px;
     }
     @media (max-width: 640px) {
       .aula-title-heading { font-size: 14px; line-height: 1.4; }
+      .aula-professor-text { font-size: 13px; }
     }
 
     /* Resumos e Conteúdos de IA Section */
@@ -487,12 +491,6 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    /* Footer Nav */
-    .nav-footer {
-      display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px;
-      margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--color-border-subtle);
-    }
-
     /* Lightbox Modal */
     .lightbox-modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -582,7 +580,8 @@
 
     <!-- Dynamic Aula Info / Subtitle -->
     <div class="aula-title-block">
-      <h2 class="aula-title-heading" id="currentAulaTitle">Introdução e Boas-vindas Tannas Jatene (GO)</h2>
+      <h2 class="aula-title-heading" id="currentAulaTitle">Introdução e Boas-vindas</h2>
+      <p class="aula-professor-text" id="currentAulaProfessor">Palestrante: Tannas Jatene (GO)</p>
     </div>
 
     <!-- IA Section Header -->
@@ -1078,18 +1077,6 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
           </div>
         </section>
     </div>
-
-    <!-- Navigation Footer -->
-    <nav class="nav-footer" aria-label="Navegação de Retorno">
-      <a href="https://www.cathlabflix.org/curso-para-residentes" class="btn-secondary" target="_top">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        Voltar para Módulos
-      </a>
-      <a href="https://www.cathlabflix.org" class="btn-secondary" target="_top">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Página Inicial
-      </a>
-    </nav>
   </main>
 
   <!-- Lightbox Modal -->
@@ -1111,7 +1098,7 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
 
   <script>
     // Aulas Data for dynamic player
-    const AULAS_DATA = [{"tabId": "comp-mto97w2n", "label": "Abertura", "videoUrl": "https://vimeo.com/1224100037", "title": "Introdução e Boas-vindas Tannas Jatene (GO)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>"}, {"tabId": "comp-mto97w2x2", "label": "Aula 1", "videoUrl": "https://vimeo.com/1224108303", "title": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Rodrigo Nieckel da Costa (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTERATRIAL: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rodrigo Nieckel da Costa (SP)</span></span></span></span></h1>"}, {"tabId": "comp-mto97w30", "label": "Aula 2", "videoUrl": "https://vimeo.com/1224101875", "title": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Raul Arieta (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTER VENTRICULAR: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Raul Arieta (SP)</span></span></span></span></h1>"}, {"tabId": "comp-mto97w323", "label": "Aula 3", "videoUrl": "https://vimeo.com/1224100501", "title": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS Palestrante: Mauricio Jaramillo (DF)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">FORAME OVAL PERVIO: ESCORES, INDICA&Ccedil;&Atilde;O DE FECHAMENTO E TIPS AND TRICKS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Mauricio Jaramillo (DF)</span></span></span></span></h1>"}, {"tabId": "comp-mto97w345", "label": "Aula 4 e 5", "videoUrl": "https://vimeo.com/1224109568", "title": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS Palestrante: Renata Mattos Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">PERSIST&Ecirc;NCIA DO CANAL ARTERIAL: DIAGN&Oacute;STICO E CONDUTA DO REC&Eacute;M NASCIDO AO ADULTO / COARCTA&Ccedil;&Atilde;O DE AORTA: DIAGN&Oacute;STICO, INDICA&Ccedil;&Atilde;O DE INTERVEN&Ccedil;&Atilde;O E DISPOSITIVOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Renata Mattos Silva (RJ)</span></span></span></span></h1>"}, {"tabId": "comp-mto97w391", "label": "Aula 6", "videoUrl": "https://vimeo.com/1224106128", "title": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES Palestrante: Eduardo Kei Marquesini Washizu (MG)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, T&Eacute;CNICAS E COMPLICA&Ccedil;&Otilde;ES</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>"}, {"tabId": "comp-mto97w37", "label": "Aula 7", "videoUrl": "https://vimeo.com/1221573836", "title": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS Palestrante: Carlos Eduardo Diniz Couto (MG)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DOEN&Ccedil;A CAROT&Iacute;DEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS T&Eacute;CNICOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Carlos Eduardo Diniz Couto (MG)</span></span></span></span></h1>"}];
+    const AULAS_DATA = [{"tabId": "comp-mto97w2n", "label": "Abertura", "videoUrl": "https://vimeo.com/1224100037", "title": "Introdução e Boas-vindas Tannas Jatene (GO)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>", "theme": "Introdução e Boas-vindas", "prof": "Palestrante: Tannas Jatene (GO)"}, {"tabId": "comp-mto97w2x2", "label": "Aula 1", "videoUrl": "https://vimeo.com/1224108303", "title": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Rodrigo Nieckel da Costa (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTERATRIAL: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rodrigo Nieckel da Costa (SP)</span></span></span></span></h1>", "theme": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO", "prof": "Palestrante: Rodrigo Nieckel da Costa (SP)"}, {"tabId": "comp-mto97w30", "label": "Aula 2", "videoUrl": "https://vimeo.com/1224101875", "title": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Raul Arieta (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTER VENTRICULAR: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Raul Arieta (SP)</span></span></span></span></h1>", "theme": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO", "prof": "Palestrante: Raul Arieta (SP)"}, {"tabId": "comp-mto97w323", "label": "Aula 3", "videoUrl": "https://vimeo.com/1224100501", "title": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS Palestrante: Mauricio Jaramillo (DF)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">FORAME OVAL PERVIO: ESCORES, INDICA&Ccedil;&Atilde;O DE FECHAMENTO E TIPS AND TRICKS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Mauricio Jaramillo (DF)</span></span></span></span></h1>", "theme": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS", "prof": "Palestrante: Mauricio Jaramillo (DF)"}, {"tabId": "comp-mto97w345", "label": "Aula 4 e 5", "videoUrl": "https://vimeo.com/1224109568", "title": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS Palestrante: Renata Mattos Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">PERSIST&Ecirc;NCIA DO CANAL ARTERIAL: DIAGN&Oacute;STICO E CONDUTA DO REC&Eacute;M NASCIDO AO ADULTO / COARCTA&Ccedil;&Atilde;O DE AORTA: DIAGN&Oacute;STICO, INDICA&Ccedil;&Atilde;O DE INTERVEN&Ccedil;&Atilde;O E DISPOSITIVOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Renata Mattos Silva (RJ)</span></span></span></span></h1>", "theme": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS", "prof": "Palestrante: Renata Mattos Silva (RJ)"}, {"tabId": "comp-mto97w391", "label": "Aula 6", "videoUrl": "https://vimeo.com/1224106128", "title": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES Palestrante: Eduardo Kei Marquesini Washizu (MG)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, T&Eacute;CNICAS E COMPLICA&Ccedil;&Otilde;ES</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>", "theme": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES", "prof": "Palestrante: Eduardo Kei Marquesini Washizu (MG)"}, {"tabId": "comp-mto97w37", "label": "Aula 7", "videoUrl": "https://vimeo.com/1221573836", "title": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS Palestrante: Carlos Eduardo Diniz Couto (MG)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DOEN&Ccedil;A CAROT&Iacute;DEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS T&Eacute;CNICOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Carlos Eduardo Diniz Couto (MG)</span></span></span></span></h1>", "theme": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS", "prof": "Palestrante: Carlos Eduardo Diniz Couto (MG)"}];
 
     // Parent iframe auto-resizing
     function notifyParentResize() {
@@ -1130,7 +1117,8 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
     // Aula Selector
     const aulaButtons = document.querySelectorAll('.aula-btn');
     const vimeoIframe = document.getElementById('mainVimeoPlayer');
-    const aulaTitleDisplay = document.getElementById('aulaTitleDisplay');
+    const currentAulaTitle = document.getElementById('currentAulaTitle');
+    const currentAulaProfessor = document.getElementById('currentAulaProfessor');
 
     aulaButtons.forEach(btn => {
       btn.addEventListener('click', function() {
@@ -1148,9 +1136,13 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
           vimeoIframe.src = `https://player.vimeo.com/video/${vId}?autoplay=1&dnt=1`;
         }
 
-        // Update subtitle
-        if (aulaTitleDisplay) {
-          aulaTitleDisplay.textContent = aula.title;
+        // Update Theme and Professor cleanly
+        if (currentAulaTitle) {
+          currentAulaTitle.textContent = aula.theme || aula.title;
+        }
+        if (currentAulaProfessor) {
+          currentAulaProfessor.textContent = aula.prof || '';
+          currentAulaProfessor.style.display = aula.prof ? 'block' : 'none';
         }
 
         notifyParentResize();
@@ -1228,7 +1220,6 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
 
       if (playBtn && audio) {
         playBtn.addEventListener('click', () => {
-          // Pause all other audios first
           document.querySelectorAll('audio').forEach(a => {
             if (a !== audio && !a.paused) {
               a.pause();

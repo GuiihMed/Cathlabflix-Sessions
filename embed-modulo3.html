@@ -115,16 +115,20 @@
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
     }
 
-    /* Dynamic Aula Title */
+    /* Dynamic Aula Title & Professor */
     .aula-title-block {
       text-align: center; max-width: 940px; margin: 0 auto 34px; padding: 0 12px;
     }
     .aula-title-heading {
-      font-size: 15.5px; font-weight: 700; color: #ffffff; line-height: 1.45; letter-spacing: 0.3px;
-      text-transform: uppercase;
+      font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.45; letter-spacing: 0.3px;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .aula-professor-text {
+      font-size: 14.5px; font-weight: 500; color: #94a3b8; line-height: 1.4; margin-top: 4px;
     }
     @media (max-width: 640px) {
       .aula-title-heading { font-size: 14px; line-height: 1.4; }
+      .aula-professor-text { font-size: 13px; }
     }
 
     /* Resumos e Conteúdos de IA Section */
@@ -487,12 +491,6 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
 
-    /* Footer Nav */
-    .nav-footer {
-      display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px;
-      margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--color-border-subtle);
-    }
-
     /* Lightbox Modal */
     .lightbox-modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -582,7 +580,8 @@
 
     <!-- Dynamic Aula Info / Subtitle -->
     <div class="aula-title-block">
-      <h2 class="aula-title-heading" id="currentAulaTitle">AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)</h2>
+      <h2 class="aula-title-heading" id="currentAulaTitle">AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências</h2>
+      <p class="aula-professor-text" id="currentAulaProfessor">Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)</p>
     </div>
 
     <!-- IA Section Header -->
@@ -1264,18 +1263,6 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
           </div>
         </section>
     </div>
-
-    <!-- Navigation Footer -->
-    <nav class="nav-footer" aria-label="Navegação de Retorno">
-      <a href="https://www.cathlabflix.org/curso-para-residentes" class="btn-secondary" target="_top">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        Voltar para Módulos
-      </a>
-      <a href="https://www.cathlabflix.org" class="btn-secondary" target="_top">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Página Inicial
-      </a>
-    </nav>
   </main>
 
   <!-- Lightbox Modal -->
@@ -1297,7 +1284,7 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
 
   <script>
     // Aulas Data for dynamic player
-    const AULAS_DATA = [{"tabId": "comp-mr6lbry81", "label": "Aula 1", "videoUrl": "https://vimeo.com/1205798677", "title": "AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - Les&otilde;es de Bifurca&ccedil;&atilde;o: Defini&ccedil;&otilde;es, T&eacute;cnicas e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Henrique Magalh&atilde;es Craveiro de Melo (SP)</span></span></span></span></h1>"}, {"tabId": "comp-mr6lbryj", "label": "Aula 2", "videoUrl": "https://vimeo.com/1205798266", "title": "AULA 2 - Lesões Calcificadas: Impacto Clínico e Métodos de Modificação de Placa Palestrante: Pedro Felipe Gomes Nicz (PR)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Les&otilde;es Calcificadas: Impacto Cl&iacute;nico e M&eacute;todos de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Felipe Gomes Nicz (PR)</span></span></span></span></h1>"}, {"tabId": "comp-mr6lbryl5", "label": "Aula 3", "videoUrl": "https://vimeo.com/1205797678", "title": "AULA 3 - Oclusão Total Crônica: Definição, Principais Técnicas e Algoritmo Híbrido Palestrante: Alexandre Schaan de Quadros (RS)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Oclus&atilde;o Total Cr&ocirc;nica: Defini&ccedil;&atilde;o, Principais T&eacute;cnicas e Algoritmo H&iacute;brido</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alexandre Schaan de Quadros (RS)</span></span></span></span></h1>"}, {"tabId": "comp-mr6lbryo", "label": "Aula 4", "videoUrl": "https://vimeo.com/1205797677", "title": "AULA 4 - ICP em Enxertos (Safena/Mamária): Particularidades e Evidências Palestrante: Daniel Peralta e Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - ICP em Enxertos (Safena/Mam&aacute;ria): Particularidades e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Daniel Peralta e Silva (RJ)</span></span></span></span></h1>"}, {"tabId": "comp-mr6lbryq4", "label": "Aula 5", "videoUrl": "https://vimeo.com/1205797851", "title": "SIMPÓSIO SATÉLITE TERUMO ‐ ICP Complexa na Prática Moderna: do Planejamento à Escolha da Plataforma e Otimização dos Resultados Palestrante: Louis Nakayama Ohe (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE TERUMO ‐ ICP Complexa na Pr&aacute;tica Moderna: do Planejamento &agrave; Escolha da Plataforma e Otimiza&ccedil;&atilde;o dos Resultados</span><br class=\"wixui-rich-text__text\">\nPalestrante: Louis Nakayama Ohe (SP)</span></span></span></span></h1>"}, {"tabId": "comp-mr6lbryv", "label": "Aula 6", "videoUrl": "https://vimeo.com/1205797676", "title": "Imagem Intracoronária: USIC e OCT – Das Técnicas às Diretrizes Palestrante: José de Ribamar Costa Junior (MA)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Imagem Intracoron&aacute;ria: USIC e OCT &ndash; Das T&eacute;cnicas &agrave;s Diretrizes</span><br class=\"wixui-rich-text__text\">\nPalestrante: Jos&eacute; de Ribamar Costa Junior (MA)</span></span></span></span></h1>"}, {"tabId": "comp-mr6lbrys6", "label": "Aula 7", "videoUrl": "https://vimeo.com/1205798986", "title": "Fisiologia no Laboratório de Hemodinâmica: Métodos, Indicações e Evidências Palestrante: Felipe Souza Maia da Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fisiologia no Laborat&oacute;rio de Hemodin&acirc;mica: M&eacute;todos, Indica&ccedil;&otilde;es e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Felipe Souza Maia da Silva (RJ)</span></span></span></span></h1>"}];
+    const AULAS_DATA = [{"tabId": "comp-mr6lbry81", "label": "Aula 1", "videoUrl": "https://vimeo.com/1205798677", "title": "AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - Les&otilde;es de Bifurca&ccedil;&atilde;o: Defini&ccedil;&otilde;es, T&eacute;cnicas e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Henrique Magalh&atilde;es Craveiro de Melo (SP)</span></span></span></span></h1>", "theme": "AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências", "prof": "Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)"}, {"tabId": "comp-mr6lbryj", "label": "Aula 2", "videoUrl": "https://vimeo.com/1205798266", "title": "AULA 2 - Lesões Calcificadas: Impacto Clínico e Métodos de Modificação de Placa Palestrante: Pedro Felipe Gomes Nicz (PR)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Les&otilde;es Calcificadas: Impacto Cl&iacute;nico e M&eacute;todos de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Felipe Gomes Nicz (PR)</span></span></span></span></h1>", "theme": "AULA 2 - Lesões Calcificadas: Impacto Clínico e Métodos de Modificação de Placa", "prof": "Palestrante: Pedro Felipe Gomes Nicz (PR)"}, {"tabId": "comp-mr6lbryl5", "label": "Aula 3", "videoUrl": "https://vimeo.com/1205797678", "title": "AULA 3 - Oclusão Total Crônica: Definição, Principais Técnicas e Algoritmo Híbrido Palestrante: Alexandre Schaan de Quadros (RS)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Oclus&atilde;o Total Cr&ocirc;nica: Defini&ccedil;&atilde;o, Principais T&eacute;cnicas e Algoritmo H&iacute;brido</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alexandre Schaan de Quadros (RS)</span></span></span></span></h1>", "theme": "AULA 3 - Oclusão Total Crônica: Definição, Principais Técnicas e Algoritmo Híbrido", "prof": "Palestrante: Alexandre Schaan de Quadros (RS)"}, {"tabId": "comp-mr6lbryo", "label": "Aula 4", "videoUrl": "https://vimeo.com/1205797677", "title": "AULA 4 - ICP em Enxertos (Safena/Mamária): Particularidades e Evidências Palestrante: Daniel Peralta e Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - ICP em Enxertos (Safena/Mam&aacute;ria): Particularidades e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Daniel Peralta e Silva (RJ)</span></span></span></span></h1>", "theme": "AULA 4 - ICP em Enxertos (Safena/Mamária): Particularidades e Evidências", "prof": "Palestrante: Daniel Peralta e Silva (RJ)"}, {"tabId": "comp-mr6lbryq4", "label": "Aula 5", "videoUrl": "https://vimeo.com/1205797851", "title": "SIMPÓSIO SATÉLITE TERUMO ‐ ICP Complexa na Prática Moderna: do Planejamento à Escolha da Plataforma e Otimização dos Resultados Palestrante: Louis Nakayama Ohe (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE TERUMO ‐ ICP Complexa na Pr&aacute;tica Moderna: do Planejamento &agrave; Escolha da Plataforma e Otimiza&ccedil;&atilde;o dos Resultados</span><br class=\"wixui-rich-text__text\">\nPalestrante: Louis Nakayama Ohe (SP)</span></span></span></span></h1>", "theme": "SIMPÓSIO SATÉLITE TERUMO ‐ ICP Complexa na Prática Moderna: do Planejamento à Escolha da Plataforma e Otimização dos Resultados", "prof": "Palestrante: Louis Nakayama Ohe (SP)"}, {"tabId": "comp-mr6lbryv", "label": "Aula 6", "videoUrl": "https://vimeo.com/1205797676", "title": "Imagem Intracoronária: USIC e OCT – Das Técnicas às Diretrizes Palestrante: José de Ribamar Costa Junior (MA)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Imagem Intracoron&aacute;ria: USIC e OCT &ndash; Das T&eacute;cnicas &agrave;s Diretrizes</span><br class=\"wixui-rich-text__text\">\nPalestrante: Jos&eacute; de Ribamar Costa Junior (MA)</span></span></span></span></h1>", "theme": "Imagem Intracoronária: USIC e OCT – Das Técnicas às Diretrizes", "prof": "Palestrante: José de Ribamar Costa Junior (MA)"}, {"tabId": "comp-mr6lbrys6", "label": "Aula 7", "videoUrl": "https://vimeo.com/1205798986", "title": "Fisiologia no Laboratório de Hemodinâmica: Métodos, Indicações e Evidências Palestrante: Felipe Souza Maia da Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fisiologia no Laborat&oacute;rio de Hemodin&acirc;mica: M&eacute;todos, Indica&ccedil;&otilde;es e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Felipe Souza Maia da Silva (RJ)</span></span></span></span></h1>", "theme": "Fisiologia no Laboratório de Hemodinâmica: Métodos, Indicações e Evidências", "prof": "Palestrante: Felipe Souza Maia da Silva (RJ)"}];
 
     // Parent iframe auto-resizing
     function notifyParentResize() {
@@ -1316,7 +1303,8 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
     // Aula Selector
     const aulaButtons = document.querySelectorAll('.aula-btn');
     const vimeoIframe = document.getElementById('mainVimeoPlayer');
-    const aulaTitleDisplay = document.getElementById('aulaTitleDisplay');
+    const currentAulaTitle = document.getElementById('currentAulaTitle');
+    const currentAulaProfessor = document.getElementById('currentAulaProfessor');
 
     aulaButtons.forEach(btn => {
       btn.addEventListener('click', function() {
@@ -1334,9 +1322,13 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
           vimeoIframe.src = `https://player.vimeo.com/video/${vId}?autoplay=1&dnt=1`;
         }
 
-        // Update subtitle
-        if (aulaTitleDisplay) {
-          aulaTitleDisplay.textContent = aula.title;
+        // Update Theme and Professor cleanly
+        if (currentAulaTitle) {
+          currentAulaTitle.textContent = aula.theme || aula.title;
+        }
+        if (currentAulaProfessor) {
+          currentAulaProfessor.textContent = aula.prof || '';
+          currentAulaProfessor.style.display = aula.prof ? 'block' : 'none';
         }
 
         notifyParentResize();
@@ -1414,7 +1406,6 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
 
       if (playBtn && audio) {
         playBtn.addEventListener('click', () => {
-          // Pause all other audios first
           document.querySelectorAll('audio').forEach(a => {
             if (a !== audio && !a.paused) {
               a.pause();

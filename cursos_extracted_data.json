@@ -14,56 +14,72 @@
         "label": "Abertura",
         "videoUrl": "https://vimeo.com/1187384730",
         "title": "ABERTURA: INTRODUÇÃO AO CURSO PARA INTERVENCIONISTAS EM FORMAÇÃO 2026 Professores: José Airton Arruda (ES) e Silvio Gioppato (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ABERTURA: INTRODU&Ccedil;&Atilde;O AO CURSO PARA INTERVENCIONISTAS EM FORMA&Ccedil;&Atilde;O 2026</span><br class=\"wixui-rich-text__text\">\nProfessores: Jos&eacute; Airton Arruda (ES) e Silvio Gioppato (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ABERTURA: INTRODU&Ccedil;&Atilde;O AO CURSO PARA INTERVENCIONISTAS EM FORMA&Ccedil;&Atilde;O 2026</span><br class=\"wixui-rich-text__text\">\nProfessores: Jos&eacute; Airton Arruda (ES) e Silvio Gioppato (SP)</span></span></span></span></h1>",
+        "theme": "ABERTURA: INTRODUÇÃO AO CURSO PARA INTERVENCIONISTAS EM FORMAÇÃO 2026",
+        "prof": "Professores: José Airton Arruda (ES) e Silvio Gioppato (SP)"
       },
       {
         "tabId": "comp-molt58kl",
         "label": "Aula 1",
         "videoUrl": "https://vimeo.com/1187386169",
         "title": "AULA 1 - HISTÓRIA DA HEMODINÂMICA E CARDIOLOGIA INTERVENCIONISTA Professor: Dr. Gilberto Lahorgue Nunes (RS)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - HIST&Oacute;RIA DA HEMODIN&Acirc;MICA E CARDIOLOGIA INTERVENCIONISTA</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Gilberto Lahorgue Nunes (RS)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - HIST&Oacute;RIA DA HEMODIN&Acirc;MICA E CARDIOLOGIA INTERVENCIONISTA</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Gilberto Lahorgue Nunes (RS)</span></span></span></span></h1>",
+        "theme": "AULA 1 - HISTÓRIA DA HEMODINÂMICA E CARDIOLOGIA INTERVENCIONISTA",
+        "prof": "Professor: Dr. Gilberto Lahorgue Nunes (RS)"
       },
       {
         "tabId": "comp-molt5vzo",
         "label": "Aula 2",
         "videoUrl": "https://vimeo.com/1187391540",
         "title": "AULA 2 - ANATOMIA CORONÁRIA, PROJEÇÕES ANGIOGRÁFICAS E ANOMALIAS DE CORONÁRIAS Professor: Dr. Lucas Lodi Junqueira (MG)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - ANATOMIA CORON&Aacute;RIA, PROJE&Ccedil;&Otilde;ES ANGIOGR&Aacute;FICAS E ANOMALIAS DE CORON&Aacute;RIAS</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Lucas Lodi Junqueira (MG)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - ANATOMIA CORON&Aacute;RIA, PROJE&Ccedil;&Otilde;ES ANGIOGR&Aacute;FICAS E ANOMALIAS DE CORON&Aacute;RIAS</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Lucas Lodi Junqueira (MG)</span></span></span></span></h1>",
+        "theme": "AULA 2 - ANATOMIA CORONÁRIA, PROJEÇÕES ANGIOGRÁFICAS E ANOMALIAS DE CORONÁRIAS",
+        "prof": "Professor: Dr. Lucas Lodi Junqueira (MG)"
       },
       {
         "tabId": "comp-molt83r9",
         "label": "Aula 3",
         "videoUrl": "https://vimeo.com/1187379799",
         "title": "AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE Professor: Dr. Décio Salvadori Júnior (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. D&eacute;cio Salvadori J&uacute;nior (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. D&eacute;cio Salvadori J&uacute;nior (SP)</span></span></span></span></h1>",
+        "theme": "AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE",
+        "prof": "Professor: Dr. Décio Salvadori Júnior (SP)"
       },
       {
         "tabId": "comp-moltc0dh",
         "label": "Aula 4",
         "videoUrl": "https://vimeo.com/1187351407",
         "title": "AULA 4 - NOÇÕES BÁSICAS DE RADIAÇÕES IONIZANTES, FORMAÇÃO DA IMAGEM E PROTEÇÃO RADIOLÓGICA Professor: Dr. Silvio Gioppato (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - NO&Ccedil;&Otilde;ES B&Aacute;SICAS DE RADIA&Ccedil;&Otilde;ES IONIZANTES, FORMA&Ccedil;&Atilde;O DA IMAGEM E PROTE&Ccedil;&Atilde;O RADIOL&Oacute;GICA</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Silvio Gioppato (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - NO&Ccedil;&Otilde;ES B&Aacute;SICAS DE RADIA&Ccedil;&Otilde;ES IONIZANTES, FORMA&Ccedil;&Atilde;O DA IMAGEM E PROTE&Ccedil;&Atilde;O RADIOL&Oacute;GICA</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Silvio Gioppato (SP)</span></span></span></span></h1>",
+        "theme": "AULA 4 - NOÇÕES BÁSICAS DE RADIAÇÕES IONIZANTES, FORMAÇÃO DA IMAGEM E PROTEÇÃO RADIOLÓGICA",
+        "prof": "Professor: Dr. Silvio Gioppato (SP)"
       },
       {
         "tabId": "comp-moltdkpy",
         "label": "Aula 5",
         "videoUrl": "https://vimeo.com/1187358635",
         "title": "AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E TÉCNICA DE ACESSOS ARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICAÇÕES NO ACESSO VASCULAR; DISPOSITIVOS DE OCLUSÃO VASCULAR Professor: Dr. Eduardo Kei Marquesini Washizu (MG)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E T&Eacute;CNICA DE ACESSOS<br class=\"wixui-rich-text__text\">\nARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICA&Ccedil;&Otilde;ES NO ACESSO<br class=\"wixui-rich-text__text\">\nVASCULAR; DISPOSITIVOS DE OCLUS&Atilde;O VASCULAR</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E T&Eacute;CNICA DE ACESSOS<br class=\"wixui-rich-text__text\">\nARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICA&Ccedil;&Otilde;ES NO ACESSO<br class=\"wixui-rich-text__text\">\nVASCULAR; DISPOSITIVOS DE OCLUS&Atilde;O VASCULAR</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>",
+        "theme": "AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E TÉCNICA DE ACESSOS ARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICAÇÕES NO ACESSO VASCULAR; DISPOSITIVOS DE OCLUSÃO VASCULAR",
+        "prof": "Professor: Dr. Eduardo Kei Marquesini Washizu (MG)"
       },
       {
         "tabId": "comp-moltfp0j",
         "label": "Aula 6",
         "videoUrl": "https://vimeo.com/1187367883",
         "title": "AULA 6 - EVOLUÇÃO DA TERAPIA ANTITROMBÓTICA ADJUNTA: O QUE VOCÊ PRECISA SABER Professor: Dr. Pedro Beraldo de Andrade (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 6 - EVOLU&Ccedil;&Atilde;O DA TERAPIA ANTITROMB&Oacute;TICA ADJUNTA: O QUE VOC&Ecirc; PRECISA SABER</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Pedro Beraldo de Andrade (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 6 - EVOLU&Ccedil;&Atilde;O DA TERAPIA ANTITROMB&Oacute;TICA ADJUNTA: O QUE VOC&Ecirc; PRECISA SABER</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Pedro Beraldo de Andrade (SP)</span></span></span></span></h1>",
+        "theme": "AULA 6 - EVOLUÇÃO DA TERAPIA ANTITROMBÓTICA ADJUNTA: O QUE VOCÊ PRECISA SABER",
+        "prof": "Professor: Dr. Pedro Beraldo de Andrade (SP)"
       },
       {
         "tabId": "comp-molth90i",
         "label": "Aula 7",
         "videoUrl": "https://vimeo.com/1187373859",
         "title": "AULA 7 - INDICAÇÕES E CONTRAINDICAÇÕES DE CATETERISMO CARDÍACO DIAGNÓSTICO Professor: Dr. Andre Labrunie (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 7 - INDICA&Ccedil;&Otilde;ES E CONTRAINDICA&Ccedil;&Otilde;ES DE CATETERISMO CARD&Iacute;ACO DIAGN&Oacute;STICO</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Andre Labrunie (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 7 - INDICA&Ccedil;&Otilde;ES E CONTRAINDICA&Ccedil;&Otilde;ES DE CATETERISMO CARD&Iacute;ACO DIAGN&Oacute;STICO</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Andre Labrunie (SP)</span></span></span></span></h1>",
+        "theme": "AULA 7 - INDICAÇÕES E CONTRAINDICAÇÕES DE CATETERISMO CARDÍACO DIAGNÓSTICO",
+        "prof": "Professor: Dr. Andre Labrunie (SP)"
       }
     ],
     "videoIA": "https://video.wixstatic.com/video/1d3d47_0452e19fb31048fdb8e988fae0a89fa9/720p/mp4/file.mp4",
@@ -255,63 +271,81 @@
         "label": "Aula 1",
         "videoUrl": "https://vimeo.com/1197457024",
         "title": "AULA 1 - O papel da revascularização percutânea na doença coronária estável ‐ da lesão uniarterial ao tronco da coronária esquerda Professor: Stefano Garzon (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - O papel da revasculariza&ccedil;&atilde;o percut&acirc;nea na doen&ccedil;a &nbsp;coron&aacute;ria est&aacute;vel ‐&nbsp;da les&atilde;o uniarterial ao tronco da coron&aacute;ria esquerda</span><br class=\"wixui-rich-text__text\">\nProfessor: Stefano Garzon (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - O papel da revasculariza&ccedil;&atilde;o percut&acirc;nea na doen&ccedil;a &nbsp;coron&aacute;ria est&aacute;vel ‐&nbsp;da les&atilde;o uniarterial ao tronco da coron&aacute;ria esquerda</span><br class=\"wixui-rich-text__text\">\nProfessor: Stefano Garzon (SP)</span></span></span></span></h1>",
+        "theme": "AULA 1 - O papel da revascularização percutânea na doença coronária estável ‐ da lesão uniarterial ao tronco da coronária esquerda",
+        "prof": "Professor: Stefano Garzon (SP)"
       },
       {
         "tabId": "comp-mpyka24y11",
         "label": "Aula 2",
         "videoUrl": "https://vimeo.com/1197457025",
         "title": "AULA 2 - Estado da arte no manejo da SCA sem supra ST ‐ o que dizem os últimos guidelines Professor: Antônio Fernando Diniz Freire (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Estado da arte no manejo da SCA sem supra ST ‐ o que dizem os &uacute;ltimos guidelines&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Ant&ocirc;nio Fernando Diniz Freire (SP)&nbsp;</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Estado da arte no manejo da SCA sem supra ST ‐ o que dizem os &uacute;ltimos guidelines&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Ant&ocirc;nio Fernando Diniz Freire (SP)&nbsp;</span></span></span></span></h1>",
+        "theme": "AULA 2 - Estado da arte no manejo da SCA sem supra ST ‐ o que dizem os últimos guidelines",
+        "prof": "Professor: Antônio Fernando Diniz Freire (SP)"
       },
       {
         "tabId": "comp-mpyka24z13",
         "label": "Aula 3",
         "videoUrl": "https://vimeo.com/1197459002",
         "title": "AULA 3 - Estado da arte no manejo do IAM com supra de ST – o que dizem os últimos guidelines Professor: Felipe Mateus Teixeira Bezerra (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Estado da arte no manejo do IAM com supra de ST &ndash; o&nbsp; que dizem os &uacute;ltimos guidelines&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Felipe Mateus Teixeira Bezerra (SP)&nbsp;</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Estado da arte no manejo do IAM com supra de ST &ndash; o&nbsp; que dizem os &uacute;ltimos guidelines&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Felipe Mateus Teixeira Bezerra (SP)&nbsp;</span></span></span></span></h1>",
+        "theme": "AULA 3 - Estado da arte no manejo do IAM com supra de ST – o que dizem os últimos guidelines",
+        "prof": "Professor: Felipe Mateus Teixeira Bezerra (SP)"
       },
       {
         "tabId": "comp-mpyka25017",
         "label": "Aula 4",
         "videoUrl": "https://vimeo.com/1197459035",
         "title": "AULA 4 - Revascularização completa vs culpada: evidências atuais Professor: Micheli Zano Galon (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - Revasculariza&ccedil;&atilde;o completa vs culpada: evid&ecirc;ncias atuais&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Micheli Zano Galon (SP)&nbsp;</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - Revasculariza&ccedil;&atilde;o completa vs culpada: evid&ecirc;ncias atuais&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Micheli Zano Galon (SP)&nbsp;</span></span></span></span></h1>",
+        "theme": "AULA 4 - Revascularização completa vs culpada: evidências atuais",
+        "prof": "Professor: Micheli Zano Galon (SP)"
       },
       {
         "tabId": "comp-mpyka2523",
         "label": "Aula 5",
         "videoUrl": "https://vimeo.com/1197459657",
         "title": "SIMPÓSIO SATÉLITE MERIL ‐ Evolução dos stents e metodologia de imagens Professores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE MERIL ‐&nbsp;Evolu&ccedil;&atilde;o dos stents e&nbsp;metodologia de imagens&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessores: Louis Nakayama Ohe (SP) e&nbsp;Daniel Bandeira (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE MERIL ‐&nbsp;Evolu&ccedil;&atilde;o dos stents e&nbsp;metodologia de imagens&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessores: Louis Nakayama Ohe (SP) e&nbsp;Daniel Bandeira (SP)</span></span></span></span></h1>",
+        "theme": "SIMPÓSIO SATÉLITE MERIL ‐ Evolução dos stents e metodologia de imagens",
+        "prof": "Professores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)"
       },
       {
         "tabId": "comp-mq18vcgu",
         "label": "Aula 6",
         "videoUrl": "https://vimeo.com/1197461669",
         "title": "SIMPÓSIO SATÉLITE MERIL ‐ Evolução dos stents e metodologia de imagens Professores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE MERIL ‐ Evolu&ccedil;&atilde;o dos stents e metodologia de imagens&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE MERIL ‐ Evolu&ccedil;&atilde;o dos stents e metodologia de imagens&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)</span></span></span></span></h1>",
+        "theme": "SIMPÓSIO SATÉLITE MERIL ‐ Evolução dos stents e metodologia de imagens",
+        "prof": "Professores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)"
       },
       {
         "tabId": "comp-mpyka254",
         "label": "Aula 7",
         "videoUrl": "https://vimeo.com/1197465935",
         "title": "AULA 7 - Novas tecnologias Professor: Louis Nakayama Ohe (SP) José Henrique Delamain (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 7 - Novas tecnologias&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Louis Nakayama Ohe (SP) Jos&eacute; Henrique Delamain (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 7 - Novas tecnologias&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Louis Nakayama Ohe (SP) Jos&eacute; Henrique Delamain (SP)</span></span></span></span></h1>",
+        "theme": "AULA 7 - Novas tecnologias",
+        "prof": "Professor: Louis Nakayama Ohe (SP) José Henrique Delamain (SP)"
       },
       {
         "tabId": "comp-mq1926b4",
         "label": "Aula 8",
         "videoUrl": "https://vimeo.com/1197470545",
         "title": "AULA 8 - Choque cardiogênico no IAM: diagnóstico e dispositivos de assistência Professor: Rodrigo Wainstein (RS)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 8 - Choque cardiog&ecirc;nico no IAM: diagn&oacute;stico e&nbsp;dispositivos de assist&ecirc;ncia</span><br class=\"wixui-rich-text__text\">\nProfessor: Rodrigo Wainstein (RS)&nbsp;</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 8 - Choque cardiog&ecirc;nico no IAM: diagn&oacute;stico e&nbsp;dispositivos de assist&ecirc;ncia</span><br class=\"wixui-rich-text__text\">\nProfessor: Rodrigo Wainstein (RS)&nbsp;</span></span></span></span></h1>",
+        "theme": "AULA 8 - Choque cardiogênico no IAM: diagnóstico e dispositivos de assistência",
+        "prof": "Professor: Rodrigo Wainstein (RS)"
       },
       {
         "tabId": "comp-mq19gxko",
         "label": "Aula 9",
         "videoUrl": "https://vimeo.com/1197473853",
         "title": "AULA 9 -Complicações da Angioplastia Coronariana Professor: Gabriel Dodo Buchler",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 9 -Complica&ccedil;&otilde;es da Angioplastia Coronariana</span><br class=\"wixui-rich-text__text\">\nProfessor: Gabriel Dodo Buchler</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 9 -Complica&ccedil;&otilde;es da Angioplastia Coronariana</span><br class=\"wixui-rich-text__text\">\nProfessor: Gabriel Dodo Buchler</span></span></span></span></h1>",
+        "theme": "AULA 9 -Complicações da Angioplastia Coronariana",
+        "prof": "Professor: Gabriel Dodo Buchler"
       }
     ],
     "videoIA": "https://video.wixstatic.com/video/1d3d47_78c51b64d475493880c2bb0d332d6651/720p/mp4/file.mp4",
@@ -488,49 +522,63 @@
         "label": "Aula 1",
         "videoUrl": "https://vimeo.com/1205798677",
         "title": "AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - Les&otilde;es de Bifurca&ccedil;&atilde;o: Defini&ccedil;&otilde;es, T&eacute;cnicas e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Henrique Magalh&atilde;es Craveiro de Melo (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - Les&otilde;es de Bifurca&ccedil;&atilde;o: Defini&ccedil;&otilde;es, T&eacute;cnicas e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Henrique Magalh&atilde;es Craveiro de Melo (SP)</span></span></span></span></h1>",
+        "theme": "AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências",
+        "prof": "Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)"
       },
       {
         "tabId": "comp-mr6lbryj",
         "label": "Aula 2",
         "videoUrl": "https://vimeo.com/1205798266",
         "title": "AULA 2 - Lesões Calcificadas: Impacto Clínico e Métodos de Modificação de Placa Palestrante: Pedro Felipe Gomes Nicz (PR)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Les&otilde;es Calcificadas: Impacto Cl&iacute;nico e M&eacute;todos de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Felipe Gomes Nicz (PR)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Les&otilde;es Calcificadas: Impacto Cl&iacute;nico e M&eacute;todos de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Felipe Gomes Nicz (PR)</span></span></span></span></h1>",
+        "theme": "AULA 2 - Lesões Calcificadas: Impacto Clínico e Métodos de Modificação de Placa",
+        "prof": "Palestrante: Pedro Felipe Gomes Nicz (PR)"
       },
       {
         "tabId": "comp-mr6lbryl5",
         "label": "Aula 3",
         "videoUrl": "https://vimeo.com/1205797678",
         "title": "AULA 3 - Oclusão Total Crônica: Definição, Principais Técnicas e Algoritmo Híbrido Palestrante: Alexandre Schaan de Quadros (RS)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Oclus&atilde;o Total Cr&ocirc;nica: Defini&ccedil;&atilde;o, Principais T&eacute;cnicas e Algoritmo H&iacute;brido</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alexandre Schaan de Quadros (RS)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Oclus&atilde;o Total Cr&ocirc;nica: Defini&ccedil;&atilde;o, Principais T&eacute;cnicas e Algoritmo H&iacute;brido</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alexandre Schaan de Quadros (RS)</span></span></span></span></h1>",
+        "theme": "AULA 3 - Oclusão Total Crônica: Definição, Principais Técnicas e Algoritmo Híbrido",
+        "prof": "Palestrante: Alexandre Schaan de Quadros (RS)"
       },
       {
         "tabId": "comp-mr6lbryo",
         "label": "Aula 4",
         "videoUrl": "https://vimeo.com/1205797677",
         "title": "AULA 4 - ICP em Enxertos (Safena/Mamária): Particularidades e Evidências Palestrante: Daniel Peralta e Silva (RJ)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - ICP em Enxertos (Safena/Mam&aacute;ria): Particularidades e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Daniel Peralta e Silva (RJ)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - ICP em Enxertos (Safena/Mam&aacute;ria): Particularidades e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Daniel Peralta e Silva (RJ)</span></span></span></span></h1>",
+        "theme": "AULA 4 - ICP em Enxertos (Safena/Mamária): Particularidades e Evidências",
+        "prof": "Palestrante: Daniel Peralta e Silva (RJ)"
       },
       {
         "tabId": "comp-mr6lbryq4",
         "label": "Aula 5",
         "videoUrl": "https://vimeo.com/1205797851",
         "title": "SIMPÓSIO SATÉLITE TERUMO ‐ ICP Complexa na Prática Moderna: do Planejamento à Escolha da Plataforma e Otimização dos Resultados Palestrante: Louis Nakayama Ohe (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE TERUMO ‐ ICP Complexa na Pr&aacute;tica Moderna: do Planejamento &agrave; Escolha da Plataforma e Otimiza&ccedil;&atilde;o dos Resultados</span><br class=\"wixui-rich-text__text\">\nPalestrante: Louis Nakayama Ohe (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE TERUMO ‐ ICP Complexa na Pr&aacute;tica Moderna: do Planejamento &agrave; Escolha da Plataforma e Otimiza&ccedil;&atilde;o dos Resultados</span><br class=\"wixui-rich-text__text\">\nPalestrante: Louis Nakayama Ohe (SP)</span></span></span></span></h1>",
+        "theme": "SIMPÓSIO SATÉLITE TERUMO ‐ ICP Complexa na Prática Moderna: do Planejamento à Escolha da Plataforma e Otimização dos Resultados",
+        "prof": "Palestrante: Louis Nakayama Ohe (SP)"
       },
       {
         "tabId": "comp-mr6lbryv",
         "label": "Aula 6",
         "videoUrl": "https://vimeo.com/1205797676",
         "title": "Imagem Intracoronária: USIC e OCT – Das Técnicas às Diretrizes Palestrante: José de Ribamar Costa Junior (MA)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Imagem Intracoron&aacute;ria: USIC e OCT &ndash; Das T&eacute;cnicas &agrave;s Diretrizes</span><br class=\"wixui-rich-text__text\">\nPalestrante: Jos&eacute; de Ribamar Costa Junior (MA)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Imagem Intracoron&aacute;ria: USIC e OCT &ndash; Das T&eacute;cnicas &agrave;s Diretrizes</span><br class=\"wixui-rich-text__text\">\nPalestrante: Jos&eacute; de Ribamar Costa Junior (MA)</span></span></span></span></h1>",
+        "theme": "Imagem Intracoronária: USIC e OCT – Das Técnicas às Diretrizes",
+        "prof": "Palestrante: José de Ribamar Costa Junior (MA)"
       },
       {
         "tabId": "comp-mr6lbrys6",
         "label": "Aula 7",
         "videoUrl": "https://vimeo.com/1205798986",
         "title": "Fisiologia no Laboratório de Hemodinâmica: Métodos, Indicações e Evidências Palestrante: Felipe Souza Maia da Silva (RJ)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fisiologia no Laborat&oacute;rio de Hemodin&acirc;mica: M&eacute;todos, Indica&ccedil;&otilde;es e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Felipe Souza Maia da Silva (RJ)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fisiologia no Laborat&oacute;rio de Hemodin&acirc;mica: M&eacute;todos, Indica&ccedil;&otilde;es e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Felipe Souza Maia da Silva (RJ)</span></span></span></span></h1>",
+        "theme": "Fisiologia no Laboratório de Hemodinâmica: Métodos, Indicações e Evidências",
+        "prof": "Palestrante: Felipe Souza Maia da Silva (RJ)"
       }
     ],
     "videoIA": "https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4",
@@ -685,49 +733,63 @@
         "label": "Abertura",
         "videoUrl": "https://vimeo.com/1224100037",
         "title": "Introdução e Boas-vindas Tannas Jatene (GO)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>",
+        "theme": "Introdução e Boas-vindas",
+        "prof": "Palestrante: Tannas Jatene (GO)"
       },
       {
         "tabId": "comp-mto97w2x2",
         "label": "Aula 1",
         "videoUrl": "https://vimeo.com/1224108303",
         "title": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Rodrigo Nieckel da Costa (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTERATRIAL: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rodrigo Nieckel da Costa (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTERATRIAL: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rodrigo Nieckel da Costa (SP)</span></span></span></span></h1>",
+        "theme": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO",
+        "prof": "Palestrante: Rodrigo Nieckel da Costa (SP)"
       },
       {
         "tabId": "comp-mto97w30",
         "label": "Aula 2",
         "videoUrl": "https://vimeo.com/1224101875",
         "title": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Raul Arieta (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTER VENTRICULAR: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Raul Arieta (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTER VENTRICULAR: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Raul Arieta (SP)</span></span></span></span></h1>",
+        "theme": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO",
+        "prof": "Palestrante: Raul Arieta (SP)"
       },
       {
         "tabId": "comp-mto97w323",
         "label": "Aula 3",
         "videoUrl": "https://vimeo.com/1224100501",
         "title": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS Palestrante: Mauricio Jaramillo (DF)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">FORAME OVAL PERVIO: ESCORES, INDICA&Ccedil;&Atilde;O DE FECHAMENTO E TIPS AND TRICKS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Mauricio Jaramillo (DF)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">FORAME OVAL PERVIO: ESCORES, INDICA&Ccedil;&Atilde;O DE FECHAMENTO E TIPS AND TRICKS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Mauricio Jaramillo (DF)</span></span></span></span></h1>",
+        "theme": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS",
+        "prof": "Palestrante: Mauricio Jaramillo (DF)"
       },
       {
         "tabId": "comp-mto97w345",
         "label": "Aula 4 e 5",
         "videoUrl": "https://vimeo.com/1224109568",
         "title": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS Palestrante: Renata Mattos Silva (RJ)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">PERSIST&Ecirc;NCIA DO CANAL ARTERIAL: DIAGN&Oacute;STICO E CONDUTA DO REC&Eacute;M NASCIDO AO ADULTO / COARCTA&Ccedil;&Atilde;O DE AORTA: DIAGN&Oacute;STICO, INDICA&Ccedil;&Atilde;O DE INTERVEN&Ccedil;&Atilde;O E DISPOSITIVOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Renata Mattos Silva (RJ)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">PERSIST&Ecirc;NCIA DO CANAL ARTERIAL: DIAGN&Oacute;STICO E CONDUTA DO REC&Eacute;M NASCIDO AO ADULTO / COARCTA&Ccedil;&Atilde;O DE AORTA: DIAGN&Oacute;STICO, INDICA&Ccedil;&Atilde;O DE INTERVEN&Ccedil;&Atilde;O E DISPOSITIVOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Renata Mattos Silva (RJ)</span></span></span></span></h1>",
+        "theme": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS",
+        "prof": "Palestrante: Renata Mattos Silva (RJ)"
       },
       {
         "tabId": "comp-mto97w391",
         "label": "Aula 6",
         "videoUrl": "https://vimeo.com/1224106128",
         "title": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES Palestrante: Eduardo Kei Marquesini Washizu (MG)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, T&Eacute;CNICAS E COMPLICA&Ccedil;&Otilde;ES</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, T&Eacute;CNICAS E COMPLICA&Ccedil;&Otilde;ES</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>",
+        "theme": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES",
+        "prof": "Palestrante: Eduardo Kei Marquesini Washizu (MG)"
       },
       {
         "tabId": "comp-mto97w37",
         "label": "Aula 7",
         "videoUrl": "https://vimeo.com/1221573836",
         "title": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS Palestrante: Carlos Eduardo Diniz Couto (MG)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DOEN&Ccedil;A CAROT&Iacute;DEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS T&Eacute;CNICOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Carlos Eduardo Diniz Couto (MG)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DOEN&Ccedil;A CAROT&Iacute;DEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS T&Eacute;CNICOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Carlos Eduardo Diniz Couto (MG)</span></span></span></span></h1>",
+        "theme": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS",
+        "prof": "Palestrante: Carlos Eduardo Diniz Couto (MG)"
       }
     ],
     "videoIA": "https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4",
@@ -869,70 +931,90 @@
         "label": "Abertura",
         "videoUrl": "https://vimeo.com/1233095375",
         "title": "Introdução e Boas-vindas Tannas Jatene (GO)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>",
+        "theme": "Introdução e Boas-vindas",
+        "prof": "Palestrante: Tannas Jatene (GO)"
       },
       {
         "tabId": "comp-mv6v7nsw5",
         "label": "Aula 1",
         "videoUrl": "https://vimeo.com/1233091752",
         "title": "Tratamento percutâneo da estenose mitral - indicações e aspectos técnicos Palestrante: Henrique Barbosa Ribeiro (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da estenose mitral - indica&ccedil;&otilde;es e aspectos t&eacute;cnicos</span><br class=\"wixui-rich-text__text\">\nPalestrante: Henrique Barbosa Ribeiro (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da estenose mitral - indica&ccedil;&otilde;es e aspectos t&eacute;cnicos</span><br class=\"wixui-rich-text__text\">\nPalestrante: Henrique Barbosa Ribeiro (SP)</span></span></span></span></h1>",
+        "theme": "Tratamento percutâneo da estenose mitral - indicações e aspectos técnicos",
+        "prof": "Palestrante: Henrique Barbosa Ribeiro (SP)"
       },
       {
         "tabId": "comp-mv6v7nsx11",
         "label": "Aula 2",
         "videoUrl": "https://vimeo.com/1233095312",
         "title": "Tratamento da insuficiência mitral percutâneo bordo-abordo - pra quem e como fazer? Palestrante: Rogério Eduardo Gomes Sarmento Leite (RS)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento da insufici&ecirc;ncia mitral percut&acirc;neo bordo-abordo - pra quem e como fazer?</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rog&eacute;rio Eduardo Gomes Sarmento Leite (RS)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento da insufici&ecirc;ncia mitral percut&acirc;neo bordo-abordo - pra quem e como fazer?</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rog&eacute;rio Eduardo Gomes Sarmento Leite (RS)</span></span></span></span></h1>",
+        "theme": "Tratamento da insuficiência mitral percutâneo bordo-abordo - pra quem e como fazer?",
+        "prof": "Palestrante: Rogério Eduardo Gomes Sarmento Leite (RS)"
       },
       {
         "tabId": "comp-mv6v7nsy15",
         "label": "Aula 3",
         "videoUrl": "https://vimeo.com/1233090200",
         "title": "Tratamento percutâneo da estenose aórtica - tipos de estenose aórtica, guidelines e escolha da prótese Palestrante: Eduardo França Pessoa de Melo (PE)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da estenose a&oacute;rtica - tipos de estenose a&oacute;rtica, guidelines e escolha da pr&oacute;tese</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Fran&ccedil;a Pessoa de Melo (PE)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da estenose a&oacute;rtica - tipos de estenose a&oacute;rtica, guidelines e escolha da pr&oacute;tese</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Fran&ccedil;a Pessoa de Melo (PE)</span></span></span></span></h1>",
+        "theme": "Tratamento percutâneo da estenose aórtica - tipos de estenose aórtica, guidelines e escolha da prótese",
+        "prof": "Palestrante: Eduardo França Pessoa de Melo (PE)"
       },
       {
         "tabId": "comp-mv6v7nt02",
         "label": "Aula 4",
         "videoUrl": "https://vimeo.com/1233106051",
         "title": "TAVI além da estenose aórtica: IAo, VIV Aortico, VIV mitral Palestrante: Alberto Colella Cervone (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">TAVI al&eacute;m da estenose a&oacute;rtica: IAo, VIV Aortico, VIV mitral</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alberto Colella Cervone (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">TAVI al&eacute;m da estenose a&oacute;rtica: IAo, VIV Aortico, VIV mitral</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alberto Colella Cervone (SP)</span></span></span></span></h1>",
+        "theme": "TAVI além da estenose aórtica: IAo, VIV Aortico, VIV mitral",
+        "prof": "Palestrante: Alberto Colella Cervone (SP)"
       },
       {
         "tabId": "comp-mv6w2i1j",
         "label": "Aula 5",
         "videoUrl": "https://vimeo.com/1233106051",
         "title": "TAVI além da estenose aórtica: IAo, VIV Aortico, VIV mitral Palestrante: Alberto Colella Cervone (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">TAVI al&eacute;m da estenose a&oacute;rtica: IAo, VIV Aortico, VIV mitral</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alberto Colella Cervone (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">TAVI al&eacute;m da estenose a&oacute;rtica: IAo, VIV Aortico, VIV mitral</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alberto Colella Cervone (SP)</span></span></span></span></h1>",
+        "theme": "TAVI além da estenose aórtica: IAo, VIV Aortico, VIV mitral",
+        "prof": "Palestrante: Alberto Colella Cervone (SP)"
       },
       {
         "tabId": "comp-mv6v7nt28",
         "label": "Aula 6",
         "videoUrl": "https://vimeo.com/1233106052",
         "title": "SIMPÓSIO MERIL - Da medida ao resultado: por que o sizing é fundamental? Palestrante: Gabriel Dodo Buchler (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO MERIL - Da medida ao resultado: por que o sizing &eacute; fundamental?</span><br class=\"wixui-rich-text__text\">\nPalestrante: Gabriel Dodo Buchler (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO MERIL - Da medida ao resultado: por que o sizing &eacute; fundamental?</span><br class=\"wixui-rich-text__text\">\nPalestrante: Gabriel Dodo Buchler (SP)</span></span></span></span></h1>",
+        "theme": "SIMPÓSIO MERIL - Da medida ao resultado: por que o sizing é fundamental?",
+        "prof": "Palestrante: Gabriel Dodo Buchler (SP)"
       },
       {
         "tabId": "comp-mv6v7nt16",
         "label": "Aula 7",
         "videoUrl": "https://vimeo.com/1233106053",
         "title": "Tratamento percutâneo da valva tricúspide - indicações e estratégias de intervenção (TEER, TTVR e heterotópico) Palestrante: Pedro Alves Lemos Neto (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da valva tric&uacute;spide - indica&ccedil;&otilde;es e estrat&eacute;gias de interven&ccedil;&atilde;o (TEER, TTVR e heterot&oacute;pico)</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Alves Lemos Neto (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da valva tric&uacute;spide - indica&ccedil;&otilde;es e estrat&eacute;gias de interven&ccedil;&atilde;o (TEER, TTVR e heterot&oacute;pico)</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Alves Lemos Neto (SP)</span></span></span></span></h1>",
+        "theme": "Tratamento percutâneo da valva tricúspide - indicações e estratégias de intervenção (TEER, TTVR e heterotópico)",
+        "prof": "Palestrante: Pedro Alves Lemos Neto (SP)"
       },
       {
         "tabId": "comp-mv6wbyy0",
         "label": "Aula 8",
         "videoUrl": "https://vimeo.com/1233107734",
         "title": "Oclusão do apêndice atrial esquerdo - indicação, planejamento e execução Palestrante: Francisco Jose Araujo Chamié Queiroz (RJ)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Oclus&atilde;o do ap&ecirc;ndice atrial esquerdo - indica&ccedil;&atilde;o, planejamento e execu&ccedil;&atilde;o</span><br class=\"wixui-rich-text__text\">\nPalestrante: Francisco Jose Araujo Chami&eacute; Queiroz (RJ)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Oclus&atilde;o do ap&ecirc;ndice atrial esquerdo - indica&ccedil;&atilde;o, planejamento e execu&ccedil;&atilde;o</span><br class=\"wixui-rich-text__text\">\nPalestrante: Francisco Jose Araujo Chami&eacute; Queiroz (RJ)</span></span></span></span></h1>",
+        "theme": "Oclusão do apêndice atrial esquerdo - indicação, planejamento e execução",
+        "prof": "Palestrante: Francisco Jose Araujo Chamié Queiroz (RJ)"
       },
       {
         "tabId": "comp-mv6wc6bz",
         "label": "Aula 9",
         "videoUrl": "https://vimeo.com/1233111239",
         "title": "Tratamento percutâneo da miocardiopatia hipertrófica - guidelines, evidencias e Tips and tricks Palestrante: Leon Gustavo dos Reis Macedo (SP)",
-        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da miocardiopatia hipertr&oacute;fica - guidelines, evidencias e Tips and tricks</span><br class=\"wixui-rich-text__text\">\nPalestrante: Leon Gustavo dos Reis Macedo (SP)</span></span></span></span></h1>"
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da miocardiopatia hipertr&oacute;fica - guidelines, evidencias e Tips and tricks</span><br class=\"wixui-rich-text__text\">\nPalestrante: Leon Gustavo dos Reis Macedo (SP)</span></span></span></span></h1>",
+        "theme": "Tratamento percutâneo da miocardiopatia hipertrófica - guidelines, evidencias e Tips and tricks",
+        "prof": "Palestrante: Leon Gustavo dos Reis Macedo (SP)"
       }
     ],
     "videoIA": "https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4",
