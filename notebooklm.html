@@ -245,15 +245,64 @@
           </span>
         </div>
       </a>
+
+      <!-- Card 3 -->
+      <a href="https://notebook.google.com/notebook/797d1f51-4a06-4efb-9410-2edaf02fdf04" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="notebook-card" 
+         aria-label="Acessar NotebookLM: Webinar SBHCI - Lançamento Magic Touch">
+        <img class="notebook-cover-img" 
+             src="https://static.wixstatic.com/media/1d3d47_6e980fde42ca4733be1368e874014f4c~mv2.png" 
+             alt="Webinar SBHCI - Lançamento Magic Touch - A nova era dos balões farmacológicos" 
+             loading="lazy">
+        <div class="notebook-overlay">
+          <span class="btn-notebook-action">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Acessar NotebookLM
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="https://notebook.google.com/notebook/0fb21f5a-e17a-40c2-9dd6-24b5a2541c83" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="notebook-card" 
+         aria-label="Acessar NotebookLM: Webinar SBHCI - Da evidência ao paciente: a jornada do AGENT DCB">
+        <img class="notebook-cover-img" 
+             src="https://static.wixstatic.com/media/1d3d47_5b0c15d034334fcf8bcc28981279a1c8~mv2.jpg" 
+             alt="Webinar SBHCI - Da evidência ao paciente: a jornada do AGENT DCB" 
+             loading="lazy">
+        <div class="notebook-overlay">
+          <span class="btn-notebook-action">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Acessar NotebookLM
+          </span>
+        </div>
+      </a>
     </div>
   </main>
 
   <script>
     function notifyParentResize() {
       try {
-        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
-        window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height }, '*');
-        window.parent.postMessage({ type: 'cathlabflix:resize', height: height }, '*');
+        const height = Math.max(
+          document.documentElement.scrollHeight || 0,
+          document.body.scrollHeight || 0,
+          document.body.offsetHeight || 0
+        );
+        window.parent.postMessage({ type: 'setHeight', height: height + 35 }, '*');
+        window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height + 35 }, '*');
+        window.parent.postMessage({ type: 'cathlabflix:resize', height: height + 35 }, '*');
       } catch (e) {}
     }
 
