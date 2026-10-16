@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>CRF TCT Plus Latam Valves 2026 - CathlabFlix</title>
+  <meta name="description" content="Selecione o conteúdo do CRF TCT Plus Latam Valves 2026: Gravações em vídeo das sessões científicas, Grade de Aulas e Cobertura Oficial.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.cathlabflix.org/tct">
+  <meta property="og:title" content="TCT Plus Latam Valves 2026 - CathlabFlix Sessions">
+  <meta property="og:description" content="Acesse as Gravações, Grade de Aulas e Cobertura Oficial do CRF TCT Plus Latam Valves 2026.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - PADRÃO OFICIAL CATHLABFLIX (#010234 & #062257)
+       ========================================================================== -->
+  <style>
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #082b6e;
+      --color-surface-elevated: #0a2d72;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #B80710;
+      --color-primary-glow: rgba(229, 9, 20, 0.4);
+      --color-blue-accent: #38bdf8;
+      --color-blue-accent-glow: rgba(56, 189, 248, 0.35);
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 6px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 24px;
+      --radius-pill: 9999px;
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.3s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .tct-portal-wrapper {
+      width: 96%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 12px 60px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .tct-portal-wrapper {
+        width: 100% !important;
+        padding: 20px 12px 40px !important;
+      }
+    }
+
+    /* Cabeçalho Padronizado */
+    .tct-header {
+      width: 100%;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .tct-title {
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin: 0 0 8px 0;
+      line-height: 1.2;
+    }
+
+    .tct-title-underline {
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
+      border-radius: 2px;
+      margin-top: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tct-subtitle {
+      font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      line-height: 1.55;
+      max-width: 780px;
+      margin: 0;
+    }
+
+    /* Grid com 3 Cards (Gravação, Aulas, Cobertura) */
+    .tct-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .tct-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: 0 14px 34px -10px rgba(0, 0, 0, 0.6);
+      transition: all var(--transition-base);
+      position: relative;
+    }
+
+    .tct-card:hover,
+    .tct-card:focus-visible {
+      transform: translateY(-6px) scale(1.015);
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 
+        0 24px 48px -12px rgba(0, 0, 0, 0.75),
+        0 0 28px rgba(56, 189, 248, 0.25);
+      outline: none;
+    }
+
+    .tct-card-img-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 488 / 275;
+      background: #020718;
+      overflow: hidden;
+    }
+
+    .tct-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .tct-card:hover .tct-card-img {
+      transform: scale(1.04);
+    }
+
+    /* Rodapé do Card */
+    .tct-card-footer {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: linear-gradient(180deg, rgba(6, 34, 87, 0.8) 0%, rgba(2, 6, 39, 0.95) 100%);
+      flex: 1;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tct-card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-blue-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tct-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 0;
+      line-height: 1.35;
+      transition: color var(--transition-fast);
+    }
+
+    .tct-card:hover .tct-card-title {
+      color: var(--color-blue-accent);
+    }
+
+    .tct-card-btn {
+      margin-top: auto;
+      width: 100%;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: none;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 12px var(--color-primary-glow);
+    }
+
+    .tct-card:hover .tct-card-btn {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--color-primary-glow);
+    }
+
+    /* Responsividade */
+    @media (max-width: 960px) {
+      .tct-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .tct-cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        gap: 20px;
+      }
+      .tct-card-title {
+        font-size: 0.975rem;
+      }
+    }
+
+    /* Footer Institucional */
+    .tct-footer {
+      margin-top: 48px;
+      text-align: center;
+      width: 100%;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tct-footer-text {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      font-weight: 400;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .tct-footer-link {
+      color: #FFFFFF;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--transition-fast);
+    }
+
+    .tct-footer-link:hover {
+      color: var(--color-blue-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tct-portal-wrapper">
+
+    <!-- Topo Padronizado com Nome e Linha Vermelha -->
+    <header class="tct-header">
+      <h1 class="tct-title">TCT Plus Latam Valves 2026</h1>
+      <div class="tct-title-underline"></div>
+      <p class="tct-subtitle">
+        Selecione o conteúdo do CRF TCT Plus Latam Valves 2026: Gravações completas das sessões científicas, Grade de Aulas e Apresentações ou Cobertura Oficial do evento.
+      </p>
+    </header>
+
+    <!-- Grid de 3 Cards: Gravação, Aulas e Cobertura -->
+    <main class="tct-cards-grid" aria-label="Conteúdos do TCT Plus Latam Valves 2026">
+
+      <!-- Card 1: Gravação -->
+      <a href="https://www.cathlabflix.org/tctlatam-gravacao" target="_top" class="tct-card" title="Acessar gravações do TCT Plus Latam Valves 2026">
+        <div class="tct-card-img-wrapper">
+          <img 
+            src="https://static.wixstatic.com/media/1d3d47_b61f54a150ac447ea51bc683b4e00360~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Zoom-SBHCI.png" 
+            alt="TCT Plus Latam Valves 2026 - Gravação" 
+            class="tct-card-img"
+            width="488"
+            height="275"
+            loading="lazy"
+          >
+        </div>
+        <div class="tct-card-footer">
+          <span class="tct-card-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            62 Sessões On-Demand
+          </span>
+          <h2 class="tct-card-title">Gravações das Sessões Científicas</h2>
+          <span class="tct-card-btn">
+            <span>Acessar Gravações</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2: Aulas -->
+      <a href="https://www.cathlabflix.org/tct-aulas" target="_top" class="tct-card" title="Acessar grade de aulas e apresentações do TCT Plus">
+        <div class="tct-card-img-wrapper">
+          <img 
+            src="https://static.wixstatic.com/media/1d3d47_ff3d03fc68ce4373a4d21572a934170c~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Aulas.png" 
+            alt="TCT Plus Latam Valves 2026 - Aulas" 
+            class="tct-card-img"
+            width="488"
+            height="275"
+            loading="lazy"
+          >
+        </div>
+        <div class="tct-card-footer">
+          <span class="tct-card-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            22 Aulas Especializadas
+          </span>
+          <h2 class="tct-card-title">Grade de Aulas e Apresentações</h2>
+          <span class="tct-card-btn">
+            <span>Acessar Aulas</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 3: Cobertura -->
+      <a href="https://www.cathlabflix.org/tct-cobertura" target="_top" class="tct-card" title="Acessar cobertura oficial do TCT Plus">
+        <div class="tct-card-img-wrapper">
+          <img 
+            src="https://static.wixstatic.com/media/1d3d47_645af319363c42f7a48667d43b9f6fd9~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Cobertura.png" 
+            alt="TCT Plus Latam Valves 2026 - Cobertura" 
+            class="tct-card-img"
+            width="488"
+            height="275"
+            loading="lazy"
+          >
+        </div>
+        <div class="tct-card-footer">
+          <span class="tct-card-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Destaques & Entrevistas
+          </span>
+          <h2 class="tct-card-title">Cobertura Oficial do Congresso</h2>
+          <span class="tct-card-btn">
+            <span>Acessar Cobertura</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="tct-footer">
+      <p class="tct-footer-text">
+        CathlabFlix by SBHCI • Copyright &copy; Sociedade Brasileira de Hemodinâmica e Cardiologia Intervencionista • <a href="https://politicas-lgpd.s3.sa-east-1.amazonaws.com/11jun21-SBHCI-99-01-2020-Serv960-politica-de-privacidade-LGPD.pdf" target="_blank" rel="noopener noreferrer" class="tct-footer-link">Política de Privacidade</a>
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- Script de Redimensionamento Automático Wix -->
+  <script>
+    (function () {
+      'use strict';
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'setHeight', height: height + 35 }, '*');
+            window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height + 35 }, '*');
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener('load', () => {
+        sendResizeMessage();
+        setTimeout(sendResizeMessage, 300);
+        setTimeout(sendResizeMessage, 1200);
+        setTimeout(sendResizeMessage, 3000);
+      });
+
+      window.addEventListener('resize', sendResizeMessage);
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          sendResizeMessage();
+        });
+        ro.observe(document.body);
+      }
+    })();
+  </script>
+</body>
+</html>

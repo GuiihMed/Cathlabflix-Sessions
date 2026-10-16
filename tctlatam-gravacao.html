@@ -1,0 +1,2708 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="blue">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Gravações TCT Plus Latam Valves 2026 - CathlabFlix</title>
+  <meta name="description" content="Assista a todas as transmissões e sessões científicas gravadas do CRF TCT Plus Latam Valves 2026 com navegação por dias e salas.">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
+
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="video.other">
+  <meta property="og:url" content="https://www.cathlabflix.org/tctlatam-gravacao">
+  <meta property="og:title" content="Gravações TCT Plus Latam Valves 2026 - CathlabFlix Sessions">
+  <meta property="og:description" content="Transmissões e sessões científicas gravadas do CRF TCT Plus Latam Valves 2026.">
+  <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
+
+  <!-- Tipografia Montserrat Oficial SBHCI -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ==========================================================================
+       CSS COMPLETO INLINE - TEMA AZUL OFICIAL SBHCI (#010234 & #062257)
+       Layout 70% / 30% Assimétrico com Player 16:9 e Abas de Salas
+       ========================================================================== -->
+  <style>
+    /* 1. Variáveis de Design Tokens */
+    :root, [data-theme="blue"] {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #082b6e;
+      --color-surface-elevated: #0a2d72;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #B80710;
+      --color-primary-glow: rgba(229, 9, 20, 0.4);
+      --color-blue-accent: #38bdf8;
+      --color-blue-accent-glow: rgba(56, 189, 248, 0.35);
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --color-border-strong: rgba(255, 255, 255, 0.22);
+      --radius-xs: 6px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 24px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+      --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --shadow-player: 0 16px 40px -8px rgba(0, 0, 0, 0.7), 0 0 24px rgba(6, 34, 87, 0.5);
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-base: 0.25s ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden !important;
+    }
+
+    .app-container {
+      min-height: 100vh;
+      background-color: var(--color-bg-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Container Principal */
+    .gravacao-main {
+      width: 96%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 12px 60px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .gravacao-main {
+        width: 100% !important;
+        padding: 16px 12px 40px !important;
+      }
+    }
+
+    /* Barra Superior com Botão Voltar ao TCT Plus */
+    .top-nav-bar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .back-to-solaci-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .back-to-solaci-btn:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: var(--color-blue-accent);
+      transform: translateX(-3px);
+    }
+
+    /* Cabeçalho da Página */
+    .gravacao-header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .gravacao-title {
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .gravacao-title-underline {
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
+      border-radius: 2px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    /* ==========================================================================
+       GRID DO PLAYER (70% / 30%)
+       ========================================================================== */
+    .player-stage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(320px, 3.2fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Coluna Esquerda: Player 16:9, Metadados e Materiais (70%) */
+    .player-main-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 0;
+    }
+
+    /* Container do Vídeo com Proporção 16:9 Estrita */
+    .video-stage-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #020718;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-player);
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-stage-box iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-loading-placeholder {
+      color: var(--color-text-secondary);
+      font-size: 0.9375rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    /* Card de Metadados da Aula em Destaque */
+    .session-meta-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px 26px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Linha de Badges */
+    .meta-badges-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 26px;
+      padding: 0 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .badge-day {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px var(--color-primary-glow);
+    }
+
+    .badge-room {
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--color-blue-accent);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .badge-category {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .badge-time {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    /* Título Principal */
+    .session-main-title {
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+    }
+
+    /* Seção de Materiais Relacionados & Apresentações */
+    .related-materials-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    .materials-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .materials-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      max-width: 620px;
+      gap: 16px;
+    }
+
+    .material-card-banner {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .material-card-banner:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .material-card-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .material-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .material-card-icon.icon-aulas {
+      background: rgba(229, 9, 20, 0.16);
+      color: var(--color-primary);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+    }
+
+    .material-card-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .material-card-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .material-card-sub {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+    }
+
+    .material-card-arrow {
+      color: var(--color-text-secondary);
+      flex-shrink: 0;
+      transition: transform var(--transition-fast);
+    }
+
+    .material-card-banner:hover .material-card-arrow {
+      color: var(--color-blue-accent);
+      transform: translateX(3px);
+    }
+
+    /* ==========================================================================
+       COLUNA DIREITA: PLAYLIST DA SESSÃO, DIAS E ABAS DAS SALAS (30%)
+       ========================================================================== */
+    .playlist-sidebar-column {
+      position: sticky;
+      top: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    .playlist-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .playlist-heading-text {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    /* Nível 1: Abas dos Dias */
+    .filter-day-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .day-tab-btn {
+      flex: 1 1 auto;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      background: rgba(1, 2, 52, 0.65);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      text-align: center;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .day-tab-btn:hover {
+      background: var(--color-surface-hover);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .day-tab-btn.active {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border-color: var(--color-primary);
+      box-shadow: 0 2px 10px var(--color-primary-glow);
+    }
+
+    /* Nível 2: Abas das Salas */
+    .filter-room-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-room-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--color-text-tertiary);
+    }
+
+    .filter-room-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .room-tab-btn {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .room-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .room-tab-btn.active {
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--color-blue-accent);
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 12px var(--color-blue-accent-glow);
+    }
+
+    /* Campo de Busca Rápida */
+    .playlist-search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .playlist-search-input {
+      width: 100%;
+      height: 38px;
+      padding: 0 34px 0 36px;
+      background: rgba(1, 2, 52, 0.7);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      color: #FFFFFF;
+      font-size: 0.8125rem;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+    }
+
+    .playlist-search-input:focus {
+      outline: none;
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      background: rgba(1, 2, 52, 0.9);
+    }
+
+    .playlist-search-input::placeholder {
+      color: var(--color-text-tertiary);
+    }
+
+    .search-icon-left {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-tertiary);
+      pointer-events: none;
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-text-tertiary);
+      cursor: pointer;
+      display: none;
+      padding: 4px;
+    }
+
+    .search-clear-btn:hover {
+      color: #FFFFFF;
+    }
+
+    /* Lista com Scroll Interno */
+    .playlist-scroll-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+      max-height: 455px;
+      padding-right: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.45) rgba(255, 255, 255, 0.05);
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 8px;
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.45);
+      border-radius: 8px;
+    }
+
+    .playlist-scroll-list::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.8);
+    }
+
+    /* Card de Item na Playlist */
+    .playlist-item-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(1, 2, 52, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+      text-align: left;
+      user-select: none;
+    }
+
+    .playlist-item-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(2px);
+    }
+
+    .playlist-item-card.active {
+      background: rgba(229, 9, 20, 0.16);
+      border-color: rgba(229, 9, 20, 0.55);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Thumbnail do Card */
+    .playlist-thumb-box {
+      position: relative;
+      width: 96px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #020718;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .playlist-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .playlist-thumb-duration {
+      position: absolute;
+      bottom: 3px;
+      right: 3px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #FFFFFF;
+      font-size: 0.5625rem;
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    .playlist-thumb-play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .playlist-item-card:hover .playlist-thumb-play-overlay,
+    .playlist-item-card.active .playlist-thumb-play-overlay {
+      opacity: 1;
+    }
+
+    .playlist-item-card.active .playlist-thumb-play-overlay {
+      background: rgba(229, 9, 20, 0.4);
+      color: #FFFFFF;
+    }
+
+    /* Conteúdo Textual do Card */
+    .playlist-item-details {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .playlist-now-playing-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.625rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ff4d4d;
+      letter-spacing: 0.5px;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      animation: pulseAnimation 1.5s infinite;
+    }
+
+    @keyframes pulseAnimation {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+
+    .playlist-item-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .playlist-item-card.active .playlist-item-title {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .playlist-item-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 0.6875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .playlist-item-room-tag {
+      color: var(--color-blue-accent);
+      font-weight: 700;
+    }
+
+    .playlist-empty-state {
+      padding: 30px 16px;
+      text-align: center;
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE (TABLET & MOBILE)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .player-stage-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .player-main-column {
+        display: contents;
+      }
+
+      .video-stage-box {
+        order: 1;
+      }
+
+      .session-meta-card {
+        order: 2;
+      }
+
+      .playlist-sidebar-column {
+        order: 3;
+        position: static;
+        max-height: none;
+        height: auto !important;
+      }
+
+      .playlist-scroll-list {
+        max-height: 420px !important;
+      }
+
+      .related-materials-section {
+        order: 4;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gravacao-main {
+        padding: 14px 12px 36px;
+      }
+
+      .top-nav-bar {
+        margin-bottom: 12px;
+      }
+
+      .back-to-solaci-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+        gap: 6px;
+      }
+
+      .gravacao-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+      }
+
+      .gravacao-title {
+        font-size: 1.35rem;
+      }
+
+      .gravacao-title-underline {
+        width: 56px;
+        height: 3px;
+      }
+
+      .player-stage-grid {
+        gap: 20px;
+      }
+
+      .session-meta-card {
+        padding: 14px 14px;
+        border-radius: var(--radius-md);
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .badge-pill {
+        font-size: 0.6875rem;
+        padding: 3px 9px;
+      }
+
+      .session-main-title {
+        font-size: 1.125rem;
+        line-height: 1.35;
+      }
+
+      .playlist-sidebar-column {
+        padding: 14px 12px;
+        gap: 14px;
+        border-radius: var(--radius-md);
+      }
+
+      .playlist-heading-text {
+        font-size: 1rem;
+      }
+
+      .day-tab-btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+      }
+
+      .filter-room-label {
+        font-size: 0.625rem;
+      }
+
+      .room-tab-btn {
+        padding: 5px 11px;
+        font-size: 0.6875rem;
+      }
+
+      .playlist-search-input {
+        height: 36px;
+        font-size: 0.75rem;
+      }
+
+      .playlist-scroll-list {
+        max-height: 380px !important;
+        gap: 6px;
+      }
+
+      .playlist-item-card {
+        padding: 8px 10px;
+        gap: 10px;
+      }
+
+      .playlist-thumb-box {
+        width: 80px;
+        height: 45px;
+        min-width: 80px;
+      }
+
+      .playlist-item-title {
+        font-size: 0.75rem;
+        line-height: 1.3;
+      }
+
+      .playlist-item-meta-row {
+        font-size: 0.65rem;
+        gap: 5px;
+      }
+
+      .related-materials-section {
+        margin-top: 0;
+        gap: 12px;
+      }
+
+      .materials-title-wrap {
+        font-size: 1rem;
+        gap: 8px;
+      }
+
+      .materials-cards-grid {
+        max-width: 100%;
+        gap: 12px;
+      }
+
+      .material-card-banner {
+        padding: 14px 16px;
+      }
+
+      .material-card-title {
+        font-size: 0.875rem;
+      }
+
+      .material-card-sub {
+        font-size: 0.75rem;
+      }
+
+      .material-card-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gravacao-main {
+        padding: 10px 8px 30px;
+      }
+
+      .top-nav-bar {
+        margin-bottom: 10px;
+      }
+
+      .back-to-solaci-btn {
+        padding: 5px 10px;
+        font-size: 0.6875rem;
+        gap: 5px;
+      }
+
+      .gravacao-header {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+      }
+
+      .gravacao-title {
+        font-size: 1.125rem;
+        margin-bottom: 6px;
+      }
+
+      .gravacao-title-underline {
+        width: 44px;
+        height: 3px;
+      }
+
+      .player-stage-grid {
+        gap: 16px;
+      }
+
+      .video-stage-box {
+        border-radius: 10px;
+      }
+
+      .session-meta-card {
+        padding: 12px 10px;
+        border-radius: 10px;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .meta-badges-row {
+        gap: 5px;
+      }
+
+      .badge-pill {
+        font-size: 0.625rem;
+        padding: 2px 7px;
+        border-radius: 4px;
+      }
+
+      .session-main-title {
+        font-size: 0.9375rem;
+        line-height: 1.32;
+      }
+
+      .playlist-sidebar-column {
+        padding: 12px 10px;
+        gap: 10px;
+        border-radius: 10px;
+      }
+
+      .playlist-header-row {
+        padding-bottom: 8px;
+      }
+
+      .playlist-heading-text {
+        font-size: 0.875rem;
+      }
+
+      .filter-day-tabs {
+        gap: 4px;
+      }
+
+      .day-tab-btn {
+        padding: 5px 8px;
+        font-size: 0.6875rem;
+        min-width: 52px;
+        border-radius: 4px;
+      }
+
+      .filter-room-label {
+        font-size: 0.5625rem;
+      }
+
+      .filter-room-tabs {
+        gap: 4px;
+      }
+
+      .room-tab-btn {
+        padding: 4px 8px;
+        font-size: 0.625rem;
+      }
+
+      .playlist-search-input {
+        height: 33px;
+        font-size: 0.6875rem;
+        padding: 0 28px 0 30px;
+      }
+
+      .search-icon-left {
+        left: 10px;
+        width: 13px;
+        height: 13px;
+      }
+
+      .search-clear-btn {
+        right: 8px;
+      }
+
+      .playlist-scroll-list {
+        max-height: 320px !important;
+        gap: 5px;
+      }
+
+      .playlist-item-card {
+        padding: 6px 8px;
+        gap: 8px;
+        border-radius: 8px;
+      }
+
+      .playlist-thumb-box {
+        width: 70px;
+        height: 39px;
+        min-width: 70px;
+        border-radius: 6px;
+      }
+
+      .playlist-thumb-duration {
+        font-size: 0.5625rem;
+        padding: 1px 3px;
+      }
+
+      .playlist-now-playing-tag {
+        font-size: 0.5625rem;
+        gap: 3px;
+        margin-bottom: 2px;
+      }
+
+      .playlist-item-title {
+        font-size: 0.6875rem;
+        line-height: 1.25;
+        max-height: 2.5em;
+        -webkit-line-clamp: 2;
+      }
+
+      .playlist-item-meta-row {
+        font-size: 0.5625rem;
+        gap: 4px;
+      }
+
+      .playlist-item-room-tag {
+        font-size: 0.5625rem;
+        padding: 1px 4px;
+      }
+
+      .related-materials-section {
+        margin-top: 0;
+        gap: 8px;
+      }
+
+      .materials-title-wrap {
+        font-size: 0.8125rem;
+        gap: 6px;
+      }
+
+      .materials-title-wrap svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .materials-cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .material-card-banner {
+        padding: 10px 12px;
+        gap: 10px;
+        border-radius: 10px;
+      }
+
+      .material-card-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+      }
+
+      .material-card-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .material-card-title {
+        font-size: 0.75rem;
+      }
+
+      .material-card-sub {
+        font-size: 0.625rem;
+      }
+
+      .material-card-arrow {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <main class="gravacao-main" id="gravacaoMain">
+
+      <!-- 1. Barra de Navegação Superior (Apenas Botão Voltar ao TCT Plus) -->
+      <nav class="top-nav-bar" aria-label="Navegação secundária">
+        <a href="https://www.cathlabflix.org/tct" class="back-to-solaci-btn" target="_top" title="Voltar ao portal TCT Plus Latam Valves 2026">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar ao TCT Plus
+        </a>
+      </nav>
+
+      <!-- 2. Cabeçalho Principal (Apenas Título) -->
+      <header class="gravacao-header">
+        <h1 class="gravacao-title">Gravações TCT Plus Latam Valves 2026</h1>
+        <div class="gravacao-title-underline"></div>
+      </header>
+
+      <!-- 3. Stage Principal (70% Player e Metadados / 30% Playlist e Abas de Salas) -->
+      <div class="player-stage-grid">
+
+        <!-- Coluna Esquerda: Player 16:9 + Metadados + Materiais (70%) -->
+        <section class="player-main-column" id="playerSection" aria-label="Vídeo e Detalhes da Aula">
+
+          <!-- A. Video Player 16:9 -->
+          <div class="video-stage-box" id="videoStageBox">
+            <div class="video-loading-placeholder" id="videoLoadingPlaceholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Carregando player de vídeo...
+            </div>
+            <iframe 
+              id="vimeoPlayerIframe"
+              src=""
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              title="Player de Gravação TCT Plus Latam Valves 2026"
+              style="display: none;"
+            ></iframe>
+          </div>
+
+          <!-- B. Card de Informações e Metadados da Aula -->
+          <article class="session-meta-card" aria-label="Detalhes da sessão em evidência">
+            
+            <!-- Badges -->
+            <div class="meta-badges-row" id="sessionBadgesRow">
+              <span class="badge-pill badge-day" id="badgeDay">Dia 19</span>
+              <span class="badge-pill badge-room" id="badgeRoom">Sala 01</span>
+              <span class="badge-pill badge-category" id="badgeCategory">Sessão Científica</span>
+              <span class="badge-pill badge-time" id="badgeTime">13 min</span>
+            </div>
+
+            <!-- Título da Sessão -->
+            <h2 class="session-main-title" id="sessionMainTitle">Carregando gravação...</h2>
+
+          </article>
+
+          <!-- C. Conteúdos & Materiais Complementares (Junto à caixa de tema no desktop) -->
+          <section class="related-materials-section" aria-label="Conteúdos e materiais complementares">
+            <div class="materials-title-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+              Conteúdos & Materiais Complementares
+            </div>
+
+            <div class="materials-cards-grid">
+              
+              <!-- Card: Grade de Aulas & Apresentações -->
+              <a href="https://www.cathlabflix.org/tct-aulas" class="material-card-banner" target="_top" title="Acessar Grade de Aulas e Apresentações">
+                <div class="material-card-info">
+                  <div class="material-card-icon icon-aulas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                  </div>
+                  <div class="material-card-texts">
+                    <span class="material-card-title">Grade de Aulas & Apresentações</span>
+                    <span class="material-card-sub">22 Apresentações científicas e conferências</span>
+                  </div>
+                </div>
+                <svg class="material-card-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
+
+            </div>
+          </section>
+
+        </section>
+
+        <!-- Coluna Direita: Playlist da Sessão com Abas de Salas e Filtro de Dias (30%) -->
+        <aside class="playlist-sidebar-column" aria-label="Playlist e Grade de Gravações">
+          
+          <!-- Cabeçalho da Playlist -->
+          <div class="playlist-header-row">
+            <h3 class="playlist-heading-text">Gravações da Sessão</h3>
+          </div>
+
+          <!-- Nível 1: Abas dos Dias -->
+          <div class="filter-day-tabs" id="dayTabsContainer" role="tablist" aria-label="Filtrar gravações por dia">
+            <!-- Injetado dinamicamente via JS -->
+          </div>
+
+          <!-- Nível 2: Abas das Salas -->
+          <div class="filter-room-section">
+            <span class="filter-room-label">Salas do Evento:</span>
+            <div class="filter-room-tabs" id="roomTabsContainer" role="tablist" aria-label="Filtrar por sala">
+              <!-- Injetado dinamicamente via JS -->
+            </div>
+          </div>
+
+          <!-- Campo de Busca em Tempo Real -->
+          <div class="playlist-search-box">
+            <svg class="search-icon-left" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              class="playlist-search-input" 
+              id="playlistSearchInput" 
+              placeholder="Buscar por tema, médico ou sala..." 
+              autocomplete="off"
+              spellcheck="false"
+              aria-label="Buscar nas gravações"
+            >
+            <button type="button" class="search-clear-btn" id="searchClearBtn" aria-label="Limpar busca" title="Limpar busca">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Lista de Gravações com Scroll Vertical Interno -->
+          <div class="playlist-scroll-list" id="playlistScrollList" role="list">
+            <!-- Cards injetados dinamicamente via JS -->
+          </div>
+
+        </aside>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT MODULAR EMBUTIDO
+       Base de Dados Completa com as 38 Gravações Reais e Controle de Estados
+       ========================================================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      // 1. BASE DE DADOS COMPLETA DAS 62 SESSÕES OFICIAIS DO CRF TCT PLUS LATAM VALVES 2026
+      const SESSIONS = [
+  {
+    "id": "1199850334",
+    "vimeoId": "1199850334",
+    "title": "Redo TAVI",
+    "speaker": "Pedro Villablanca",
+    "time": "13 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 01",
+    "duration": "13 min",
+    "durationSec": 803,
+    "poster": "https://i.vimeocdn.com/video/2166790808-9ad1d5779ab28315dd26de6f89d4759f40c75034079fc8ae369fac36410e2780-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 01). Apresentação: Pedro Villablanca."
+  },
+  {
+    "id": "1199852487",
+    "vimeoId": "1199852487",
+    "title": "TAV-in-TAV",
+    "speaker": "Live Case in a Box 1",
+    "time": "36 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 01",
+    "duration": "36 min",
+    "durationSec": 2170,
+    "poster": "https://i.vimeocdn.com/video/2166796259-aa77d71e9e66a33cc26e02a7607f26162679e1410893fa430ab50b3b28a95a23-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 01). Apresentação: Live Case in a Box 1."
+  },
+  {
+    "id": "1199845538",
+    "vimeoId": "1199845538",
+    "title": "TAVI degeneration",
+    "speaker": "Nicolas Van Mieghem",
+    "time": "15 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 01",
+    "duration": "15 min",
+    "durationSec": 903,
+    "poster": "https://i.vimeocdn.com/video/2166780332-c4f3a48b23e2029c060efc5d616fbe7026a6b1b76928514e810126f1cdd2f07e-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 01). Apresentação: Nicolas Van Mieghem."
+  },
+  {
+    "id": "1199850312",
+    "vimeoId": "1199850312",
+    "title": "Welcome to TCT Plus LATAM Valves",
+    "speaker": "TCT Latam Faculty",
+    "time": "60 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 02",
+    "duration": "60 min",
+    "durationSec": 3613,
+    "poster": "https://i.vimeocdn.com/video/2166797305-7407be2d205f1dbfebb11cafef064a41bc7e807709ca6719f92039abc8d5cb38-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 02). Apresentação: TCT Latam Faculty."
+  },
+  {
+    "id": "1199846887",
+    "vimeoId": "1199846887",
+    "title": "Valve Replacement",
+    "speaker": "Juan Granada",
+    "time": "12 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 03",
+    "duration": "12 min",
+    "durationSec": 748,
+    "poster": "https://i.vimeocdn.com/video/2166784650-660db8e29fe2dfe024cab68e1adbf35ad6174fa78cd8b9f69a4bd64cc7447c7d-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 03). Apresentação: Juan Granada."
+  },
+  {
+    "id": "1199846890",
+    "vimeoId": "1199846890",
+    "title": "Valve Replacement - Piedmont Atlanta USA",
+    "speaker": "Live case 2",
+    "time": "46 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 03",
+    "duration": "46 min",
+    "durationSec": 2773,
+    "poster": "https://i.vimeocdn.com/video/2166791801-8e503c000c25b1de2edd938d663b1508d7131714242fb1f060c1640b0dba0c27-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 03). Apresentação: Live case 2."
+  },
+  {
+    "id": "1199846888",
+    "vimeoId": "1199846888",
+    "title": "Addressing Challenging Anatomy",
+    "speaker": "Jianfeng Luo",
+    "time": "13 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 04",
+    "duration": "13 min",
+    "durationSec": 780,
+    "poster": "https://i.vimeocdn.com/video/2166784604-02e49ebc567e13e5a34c58bfa93eab5d6c9a2670d58685349828bb26469181de-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 04). Apresentação: Jianfeng Luo."
+  },
+  {
+    "id": "1199846889",
+    "vimeoId": "1199846889",
+    "title": "Venus Valve",
+    "speaker": "Live case in a Box 3",
+    "time": "22 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 04",
+    "duration": "22 min",
+    "durationSec": 1331,
+    "poster": "https://i.vimeocdn.com/video/2166787517-fdf44403ce536c9ba044000c9c31071baa8e2d6f78521daf6900551c461318f5-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 04). Apresentação: Live case in a Box 3."
+  },
+  {
+    "id": "1199876485",
+    "vimeoId": "1199876485",
+    "title": "Fundacao Favarolo",
+    "speaker": "Live Case 6 – TAVI with SEV",
+    "time": "45 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 07",
+    "duration": "45 min",
+    "durationSec": 2735,
+    "poster": "https://i.vimeocdn.com/video/2166825057-f57824b965fb0393eafafbf1b352d8eab96c10beb1c6efdd2968b54c808198fc-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 07). Apresentação: Live Case 6 – TAVI with SEV."
+  },
+  {
+    "id": "1199875196",
+    "vimeoId": "1199875196",
+    "title": "Aortic regurgitation treatment",
+    "speaker": "Live Case in a Box 8",
+    "time": "16 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 08",
+    "duration": "16 min",
+    "durationSec": 970,
+    "poster": "https://i.vimeocdn.com/video/2166821564-d379e1257cd943066ec1274ef0281e0d924e36d875703ae52f53a2347018b680-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 08). Apresentação: Live Case in a Box 8."
+  },
+  {
+    "id": "1199875686",
+    "vimeoId": "1199875686",
+    "title": "Dedicated TAVI valve",
+    "speaker": "Live Case in a Box 7",
+    "time": "32 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 08",
+    "duration": "32 min",
+    "durationSec": 1929,
+    "poster": "https://i.vimeocdn.com/video/2166823693-9339507d0650aeb8b772a1afdd6b7a0dbd65df91a16d44b0d75513cbadba02f5-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 08). Apresentação: Live Case in a Box 7."
+  },
+  {
+    "id": "1199875614",
+    "vimeoId": "1199875614",
+    "title": "Dedicated devices for Pure AR",
+    "speaker": "Santiago Garcia",
+    "time": "8 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 08",
+    "duration": "8 min",
+    "durationSec": 534,
+    "poster": "https://i.vimeocdn.com/video/2166820690-589e65d7d457ff9d838cd1cd739ef0e5ca7dcc27d44f80fee98d5ef7c56b1fcb-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 08). Apresentação: Santiago Garcia."
+  },
+  {
+    "id": "1199871677",
+    "vimeoId": "1199871677",
+    "title": "Calcified Mitral Stenosis",
+    "speaker": "Santiago Garcia",
+    "time": "12 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 09",
+    "duration": "12 min",
+    "durationSec": 754,
+    "poster": "https://i.vimeocdn.com/video/2166817106-178cf1a248adab3cfafe973ff106dc68dd37a4d8b9bade81ee9594190dd3b9fb-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 09). Apresentação: Santiago Garcia."
+  },
+  {
+    "id": "1199871678",
+    "vimeoId": "1199871678",
+    "title": "Posterior mitral leaflet replacement",
+    "speaker": "Live Case in a Box 9",
+    "time": "27 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 09",
+    "duration": "27 min",
+    "durationSec": 1678,
+    "poster": "https://i.vimeocdn.com/video/2166818852-f0831b7c55bde948c5c6b32d075666305224bf76b37d406fbb6079519fed3691-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 09). Apresentação: Live Case in a Box 9."
+  },
+  {
+    "id": "1199871676",
+    "vimeoId": "1199871676",
+    "title": "TMVR for primary rheumatic mitral valve",
+    "speaker": "Live Case in a Box 10",
+    "time": "15 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 09",
+    "duration": "15 min",
+    "durationSec": 920,
+    "poster": "https://i.vimeocdn.com/video/2166817671-b5267888615ece41aef06c2a567de99d4e382e7b036de61c306b5d4cb93f59cd-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 09). Apresentação: Live Case in a Box 10."
+  },
+  {
+    "id": "1199871675",
+    "vimeoId": "1199871675",
+    "title": "What’s new in Transcatheter",
+    "speaker": "Azeem Latib",
+    "time": "16 min",
+    "dayId": "dia-19",
+    "dayLabel": "Dia 19",
+    "dayDate": "19 de Março",
+    "room": "Sala 09",
+    "duration": "16 min",
+    "durationSec": 969,
+    "poster": "https://i.vimeocdn.com/video/2166817745-7455cc59277eb6a270e9ac6eea902aa2e9b3dc0d260472c4f940da42910b90b8-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 19 - Sala 09). Apresentação: Azeem Latib."
+  },
+  {
+    "id": "1199891637",
+    "vimeoId": "1199891637",
+    "title": "Case Presentation 11",
+    "speaker": "Bernardo Kremer",
+    "time": "11 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 01",
+    "duration": "11 min",
+    "durationSec": 712,
+    "poster": "https://i.vimeocdn.com/video/2166839829-b47ddb94518fc58947d5a2d2c56cf4c6d9714b9ba82bed037c9c92855aa5785e-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 01). Apresentação: Bernardo Kremer."
+  },
+  {
+    "id": "1199889122",
+    "vimeoId": "1199889122",
+    "title": "Case Presentation 12",
+    "speaker": "Vinicius Daher",
+    "time": "16 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 01",
+    "duration": "16 min",
+    "durationSec": 985,
+    "poster": "https://i.vimeocdn.com/video/2166840455-84c9d781a1d5f3846608f73090d028821e033442ab558e031901c02e77299f95-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 01). Apresentação: Vinicius Daher."
+  },
+  {
+    "id": "1199887846",
+    "vimeoId": "1199887846",
+    "title": "Case Presentation 13",
+    "speaker": "Marco Wainstein",
+    "time": "16 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 01",
+    "duration": "16 min",
+    "durationSec": 1003,
+    "poster": "https://i.vimeocdn.com/video/2166838444-14cbac0b245261fe8265b13427d1b96c24525578d5fafc2a115981a472489118-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 01). Apresentação: Marco Wainstein."
+  },
+  {
+    "id": "1199894938",
+    "vimeoId": "1199894938",
+    "title": "InCor and Hosp Essen",
+    "speaker": "Live Case 14 and Live Case 15",
+    "time": "68 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 02",
+    "duration": "68 min",
+    "durationSec": 4123,
+    "poster": "https://i.vimeocdn.com/video/2166849698-cef1c0671fb198e785bde4f1b46f03f88db1a19d9ead24e86be7e1cddfc7c25e-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 02). Apresentação: Live Case 14 and Live Case 15."
+  },
+  {
+    "id": "1199895086",
+    "vimeoId": "1199895086",
+    "title": "Imaging for Tricuspid Interventions",
+    "speaker": "Rebecca Hahn",
+    "time": "13 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 03",
+    "duration": "13 min",
+    "durationSec": 836,
+    "poster": "https://i.vimeocdn.com/video/2166846624-61e5c7ec0eb1cded0145370dd1348b07f0bb6d9a4e1aab9248d21fe91e1ef9bc-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 03). Apresentação: Rebecca Hahn."
+  },
+  {
+    "id": "1200060475",
+    "vimeoId": "1200060475",
+    "title": "TTVR - InCor",
+    "speaker": "Live Case in a Box 16",
+    "time": "48 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 03",
+    "duration": "48 min",
+    "durationSec": 2925,
+    "poster": "https://i.vimeocdn.com/video/2167056898-b57948bac9f317c59cdd4166c3cc835effd5ce189879198d89059ad932bfc356-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 03). Apresentação: Live Case in a Box 16."
+  },
+  {
+    "id": "1199895051",
+    "vimeoId": "1199895051",
+    "title": "when T-TEER Fails",
+    "speaker": "Susheel Kodali",
+    "time": "12 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 03",
+    "duration": "12 min",
+    "durationSec": 739,
+    "poster": "https://i.vimeocdn.com/video/2166846380-d81d740866609d6758bf8d65e4f5f14d3f76732f09ed7f96d344f563fb4b000c-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 03). Apresentação: Susheel Kodali."
+  },
+  {
+    "id": "1199881693",
+    "vimeoId": "1199881693",
+    "title": "InCor V2",
+    "speaker": "Live case 17 – TAVI with SEV",
+    "time": "39 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 04",
+    "duration": "39 min",
+    "durationSec": 2383,
+    "poster": "https://i.vimeocdn.com/video/2166835143-1d5cc9089651d1a517df71c51e4b1dbbd53b861567dd70ee17598c532417c450-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 04). Apresentação: Live case 17 – TAVI with SEV."
+  },
+  {
+    "id": "1200075207",
+    "vimeoId": "1200075207",
+    "title": "InCor b",
+    "speaker": "Live case 17 – TAVI with SEV",
+    "time": "39 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 04",
+    "duration": "39 min",
+    "durationSec": 2383,
+    "poster": "https://i.vimeocdn.com/video/2167075983-6ecafd8bf1405ebe66e613a2087fff049b9fc3fe5a2461f7b65316cc08adfe3b-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 04). Apresentação: Live case 17 – TAVI with SEV."
+  },
+  {
+    "id": "1199895186",
+    "vimeoId": "1199895186",
+    "title": "Large annulus",
+    "speaker": "Rui Teles",
+    "time": "19 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 04",
+    "duration": "19 min",
+    "durationSec": 1176,
+    "poster": "https://i.vimeocdn.com/video/2166847284-5ab83c4eb115a7444134da442d5b41b17c8cc85552f1cacdae5bfa00bd32882b-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 04). Apresentação: Rui Teles."
+  },
+  {
+    "id": "1200074502",
+    "vimeoId": "1200074502",
+    "title": "Are We Treating All Eligible Patients",
+    "speaker": "Discussion Scientific Talk",
+    "time": "10 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 05",
+    "duration": "10 min",
+    "durationSec": 615,
+    "poster": "https://i.vimeocdn.com/video/2167072183-c081a01fa5e1b29a3c23890b57d5d4bb4b39c68b9fa6cd5cd35fcdf06f3f2338-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 05). Apresentação: Discussion Scientific Talk."
+  },
+  {
+    "id": "1200060265",
+    "vimeoId": "1200060265",
+    "title": "Challenges in Patient Recruitment",
+    "speaker": "Maria Antonieta Albanez",
+    "time": "12 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 05",
+    "duration": "12 min",
+    "durationSec": 767,
+    "poster": "https://i.vimeocdn.com/video/2167054785-57633c3173abf9e1d2f961ac615f5771dea4e3bb255423636aba6f635b04a3fe-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 05). Apresentação: Maria Antonieta Albanez."
+  },
+  {
+    "id": "1200060263",
+    "vimeoId": "1200060263",
+    "title": "Complexities in the Left Atrial Appendage-",
+    "speaker": "Felipe Maia",
+    "time": "12 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 05",
+    "duration": "12 min",
+    "durationSec": 734,
+    "poster": "https://i.vimeocdn.com/video/2167054692-a72fe2bd51696e8be3140f6c2b392023aba632588bf3bda775ddb7ba2cdedc0a-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 05). Apresentação: Felipe Maia."
+  },
+  {
+    "id": "1200060264",
+    "vimeoId": "1200060264",
+    "title": "Upcoming Studies",
+    "speaker": "Gagan Singh",
+    "time": "19 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 05",
+    "duration": "19 min",
+    "durationSec": 1149,
+    "poster": "https://i.vimeocdn.com/video/2167055482-6200924491a9afc691c8cf5795b7c592476c0f4f0eedc9c9ea8f458213455fee-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 05). Apresentação: Gagan Singh."
+  },
+  {
+    "id": "1200071438",
+    "vimeoId": "1200071438",
+    "title": "Imaging for M-TEER",
+    "speaker": "Rebecca Hahn",
+    "time": "16 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 06",
+    "duration": "16 min",
+    "durationSec": 1010,
+    "poster": "https://i.vimeocdn.com/video/2167070951-1ceea280f590600d1d36132f1dc070bfbc4b5c15ac3fa211786643ef4e98ef3f-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 06). Apresentação: Rebecca Hahn."
+  },
+  {
+    "id": "1200071437",
+    "vimeoId": "1200071437",
+    "title": "Live Case in a Box 18 - M- TEER after a recent myocardial",
+    "speaker": "Andrea Vilela",
+    "time": "27 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 06",
+    "duration": "27 min",
+    "durationSec": 1632,
+    "poster": "https://i.vimeocdn.com/video/2167073076-f12ceecc36b58daa8a48c7339a233ed618662257c06af77cb07b221bc0a314db-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 06). Apresentação: Andrea Vilela."
+  },
+  {
+    "id": "1200071436",
+    "vimeoId": "1200071436",
+    "title": "TEER for Mitral Regurgitation",
+    "speaker": "Rui Teles",
+    "time": "11 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 06",
+    "duration": "11 min",
+    "durationSec": 706,
+    "poster": "https://i.vimeocdn.com/video/2167069951-298e35d9adbf9413497ff139e5a17bc18d34cc2c31d3f66fecce6d403f3bae87-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 06). Apresentação: Rui Teles."
+  },
+  {
+    "id": "1200075381",
+    "vimeoId": "1200075381",
+    "title": "Dante Pazzanese",
+    "speaker": "Live Case 19- valve-in-valve with a balloon",
+    "time": "42 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 07",
+    "duration": "42 min",
+    "durationSec": 2529,
+    "poster": "https://i.vimeocdn.com/video/2167076201-05656b8659411a5ed85cccd83aaf026ffa1cea732311dad219cda6420dcd93fb-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 07). Apresentação: Live Case 19- valve-in-valve with a balloon."
+  },
+  {
+    "id": "1200071447",
+    "vimeoId": "1200071447",
+    "title": "young asymptomatic patient with severe aortic stenosis-",
+    "speaker": "Rogerio Sarmento",
+    "time": "15 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 07",
+    "duration": "15 min",
+    "durationSec": 947,
+    "poster": "https://i.vimeocdn.com/video/2167070853-24ba45739686174b63269d5ae1d375d551d0b7cc2976667e3f42a769aae9e99c-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 07). Apresentação: Rogerio Sarmento."
+  },
+  {
+    "id": "1200088834",
+    "vimeoId": "1200088834",
+    "title": "Advanced Imaging evaluation",
+    "speaker": "Joao Cavalcante",
+    "time": "10 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 08",
+    "duration": "10 min",
+    "durationSec": 633,
+    "poster": "https://i.vimeocdn.com/video/2167090864-acdba0d18aa0833abdaa91f110a19bc716fa5e578a3b384c4e7f1b5eebf7e404-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 08). Apresentação: Joao Cavalcante."
+  },
+  {
+    "id": "1200090982",
+    "vimeoId": "1200090982",
+    "title": "Aortic Bioprosthesis-",
+    "speaker": "Live Case Simulation 21",
+    "time": "21 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 08",
+    "duration": "21 min",
+    "durationSec": 1306,
+    "poster": "https://i.vimeocdn.com/video/2167094505-5d3fbe2a4081e7b8aa64514391ae94ac89b6c1a34e0a94f5f55f8242f7727f53-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 08). Apresentação: Live Case Simulation 21."
+  },
+  {
+    "id": "1199881695",
+    "vimeoId": "1199881695",
+    "title": "InCor",
+    "speaker": "Live Case 20 – TAVI with BEV",
+    "time": "25 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 08",
+    "duration": "25 min",
+    "durationSec": 1556,
+    "poster": "https://i.vimeocdn.com/video/2166832335-44510932325325c1700eace65666c1ffd40489a5654c39c2885dcd0d1eb629c4-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 08). Apresentação: Live Case 20 – TAVI with BEV."
+  },
+  {
+    "id": "1200088994",
+    "vimeoId": "1200088994",
+    "title": "TAVI with circulatory support-",
+    "speaker": "Live Case in a Box 22",
+    "time": "18 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 08",
+    "duration": "18 min",
+    "durationSec": 1124,
+    "poster": "https://i.vimeocdn.com/video/2167092864-7d91f040597a02f2df19d0dca8adb655cdc1787ed80a6b7234e8237219532e89-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 08). Apresentação: Live Case in a Box 22."
+  },
+  {
+    "id": "1200088275",
+    "vimeoId": "1200088275",
+    "title": "InCor",
+    "speaker": "Live Case 23- Left Main PCI",
+    "time": "32 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 09",
+    "duration": "32 min",
+    "durationSec": 1927,
+    "poster": "https://i.vimeocdn.com/video/2167094406-1c7674be03cf916e4a1d1670e2239345ef43853dfab6e3ff4f88430639959d49-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 09). Apresentação: Live Case 23- Left Main PCI."
+  },
+  {
+    "id": "1200085009",
+    "vimeoId": "1200085009",
+    "title": "Rui Teles -Interventionist Perspective",
+    "speaker": "TCT Latam Faculty",
+    "time": "8 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 09",
+    "duration": "8 min",
+    "durationSec": 527,
+    "poster": "https://i.vimeocdn.com/video/2167085847-21a65e8e2b40ca4e9667a180380cb64705b1d52af3676df02ec30f7bc20d4ef9-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 09). Apresentação: TCT Latam Faculty."
+  },
+  {
+    "id": "1200087015",
+    "vimeoId": "1200087015",
+    "title": "Surgery perspective",
+    "speaker": "Eduardo Saadi",
+    "time": "155 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 09",
+    "duration": "155 min",
+    "durationSec": 9318,
+    "poster": "https://i.vimeocdn.com/video/2167088071-767bc6e9ff514bdc0de695d4b86abe4b641a2694650bd0c2880a6c2948e12f78-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 09). Apresentação: Eduardo Saadi."
+  },
+  {
+    "id": "1200085012",
+    "vimeoId": "1200085012",
+    "title": "VECTOR-",
+    "speaker": "Adam Greenbaum",
+    "time": "15 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 09",
+    "duration": "15 min",
+    "durationSec": 901,
+    "poster": "https://i.vimeocdn.com/video/2167087499-4d0f94363a169f406b06d1f8fbd153535e5183450f1a0b58270232a5358b5aba-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 09). Apresentação: Adam Greenbaum."
+  },
+  {
+    "id": "1200085010",
+    "vimeoId": "1200085010",
+    "title": "Case presentation 24 - Short in Tall",
+    "speaker": "Azeem Latib",
+    "time": "18 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 10",
+    "duration": "18 min",
+    "durationSec": 1137,
+    "poster": "https://i.vimeocdn.com/video/2167088271-4047f6cb960b7e93ec88da8c583b3a750846649436d342f52bac901bab0715ae-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 10). Apresentação: Azeem Latib."
+  },
+  {
+    "id": "1200085011",
+    "vimeoId": "1200085011",
+    "title": "Tall in Short",
+    "speaker": "Adam Greenbaum -Case presentation 25",
+    "time": "18 min",
+    "dayId": "dia-20",
+    "dayLabel": "Dia 20",
+    "dayDate": "20 de Março",
+    "room": "Sala 10",
+    "duration": "18 min",
+    "durationSec": 1102,
+    "poster": "https://i.vimeocdn.com/video/2167088218-d6a0f33583e12c009a953da35f98fac383b9a9f1e5e6b1281af08dc9a83caea6-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 20 - Sala 10). Apresentação: Adam Greenbaum -Case presentation 25."
+  },
+  {
+    "id": "1200122885",
+    "vimeoId": "1200122885",
+    "title": "Case Presentation 26",
+    "speaker": "Guilherme Bratz",
+    "time": "18 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 01",
+    "duration": "18 min",
+    "durationSec": 1107,
+    "poster": "https://i.vimeocdn.com/video/2167138158-d7987a90f9dc4b0e8f39e54855ee06a60fd492bcf32a80a05683fb360b55b156-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 01). Apresentação: Guilherme Bratz."
+  },
+  {
+    "id": "1200122797",
+    "vimeoId": "1200122797",
+    "title": "Case Presentation 27",
+    "speaker": "Pedro Nicz",
+    "time": "19 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 01",
+    "duration": "19 min",
+    "durationSec": 1177,
+    "poster": "https://i.vimeocdn.com/video/2167138286-ba6652dd6d27802ffb78971919c6a58609c11f9325dfb6bff8608c1296df6756-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 01). Apresentação: Pedro Nicz."
+  },
+  {
+    "id": "1200117874",
+    "vimeoId": "1200117874",
+    "title": "Case Presentation 28",
+    "speaker": "Breno Falcao",
+    "time": "19 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 01",
+    "duration": "19 min",
+    "durationSec": 1181,
+    "poster": "https://i.vimeocdn.com/video/2167131732-70d32dabec8d352411180b1f22675371c0c23a85c9222fc476e5d3e4e583ecb6-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 01). Apresentação: Breno Falcao."
+  },
+  {
+    "id": "1200114684",
+    "vimeoId": "1200114684",
+    "title": "A new TEER device - NRCSC Kazakhstan",
+    "speaker": "Live Case 29",
+    "time": "44 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 02",
+    "duration": "44 min",
+    "durationSec": 2685,
+    "poster": "https://i.vimeocdn.com/video/2167137226-563457d55061825f6e219b9ca521c527ea485ba7a34293a3962979c387a179df-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 02). Apresentação: Live Case 29."
+  },
+  {
+    "id": "1200114683",
+    "vimeoId": "1200114683",
+    "title": "Aortic ViV with SEV",
+    "speaker": "Live Case in a Box 31",
+    "time": "28 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 03",
+    "duration": "28 min",
+    "durationSec": 1730,
+    "poster": "https://i.vimeocdn.com/video/2167131635-98515fc76bf2bd4aa0a6f85f487c2001bcf84e200b7a4fec36ace61c365ab7b5-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 03). Apresentação: Live Case in a Box 31."
+  },
+  {
+    "id": "1200114686",
+    "vimeoId": "1200114686",
+    "title": "Mitral Valve Mitral - Clinica Alemana Chile",
+    "speaker": "Live Case 30",
+    "time": "46 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 03",
+    "duration": "46 min",
+    "durationSec": 2792,
+    "poster": "https://i.vimeocdn.com/video/2167137849-231f8fb9842b392f354c550232403e05501dd518e1d3bdfe0714474a2adb185e-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 03). Apresentação: Live Case 30."
+  },
+  {
+    "id": "1200114685",
+    "vimeoId": "1200114685",
+    "title": "Case presentation 32",
+    "speaker": "Henrique Ribeiro",
+    "time": "9 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 04",
+    "duration": "9 min",
+    "durationSec": 560,
+    "poster": "https://i.vimeocdn.com/video/2167125219-c18a998c2032b7606bd10befce828c541aac48596a4a037f9532fd091f42fc09-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 04). Apresentação: Henrique Ribeiro."
+  },
+  {
+    "id": "1200131500",
+    "vimeoId": "1200131500",
+    "title": "Case resolution",
+    "speaker": "Henrique Ribeiro",
+    "time": "4 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 04",
+    "duration": "4 min",
+    "durationSec": 259,
+    "poster": "https://i.vimeocdn.com/video/2167143518-64e1f7f3e5c33c2c8bfa9bbacde0b3bb30cd585088a067f23a7669d9fdd301fb-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 04). Apresentação: Henrique Ribeiro."
+  },
+  {
+    "id": "1200132043",
+    "vimeoId": "1200132043",
+    "title": "Heart Team discussion",
+    "speaker": "TCT Latam Faculty",
+    "time": "15 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 04",
+    "duration": "15 min",
+    "durationSec": 930,
+    "poster": "https://i.vimeocdn.com/video/2167146686-351467a9b8281146b72a550b96a0267a26ef30449fae10703be13a8e936235e9-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 04). Apresentação: TCT Latam Faculty."
+  },
+  {
+    "id": "1200132496",
+    "vimeoId": "1200132496",
+    "title": "Image perspective",
+    "speaker": "Joao Cavalcante",
+    "time": "7 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 04",
+    "duration": "7 min",
+    "durationSec": 447,
+    "poster": "https://i.vimeocdn.com/video/2167146070-396bf61cc884df9b3a0a91456da9b55393c0a9cfddd951472450acaee266d7ba-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 04). Apresentação: Joao Cavalcante."
+  },
+  {
+    "id": "1200132371",
+    "vimeoId": "1200132371",
+    "title": "Is there any evidence to guide-",
+    "speaker": "Luis Marroquin",
+    "time": "9 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 04",
+    "duration": "9 min",
+    "durationSec": 583,
+    "poster": "https://i.vimeocdn.com/video/2167146378-bb3392a7c8ad11f20b27eae93e179c4f2defdb6ebc4fabe3a16c8c97eefb1def-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 04). Apresentação: Luis Marroquin."
+  },
+  {
+    "id": "1200105000",
+    "vimeoId": "1200105000",
+    "title": "Surgery perspective",
+    "speaker": "Paulo Cesar",
+    "time": "10 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 04",
+    "duration": "10 min",
+    "durationSec": 625,
+    "poster": "https://i.vimeocdn.com/video/2167109794-2491519d5ec7474c280eb4a32fdc3286c35b550ade81be68335945fe0e980e5d-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 04). Apresentação: Paulo Cesar."
+  },
+  {
+    "id": "1200128219",
+    "vimeoId": "1200128219",
+    "title": "BASILICA and UNICORN",
+    "speaker": "Susheel Kodali",
+    "time": "17 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 05",
+    "duration": "17 min",
+    "durationSec": 1065,
+    "poster": "https://i.vimeocdn.com/video/2167143685-1900db7b60e425bfa74942232e6c071112a1d4e6b64d4ab726ea4b185b25c2ed-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 05). Apresentação: Susheel Kodali."
+  },
+  {
+    "id": "1200131089",
+    "vimeoId": "1200131089",
+    "title": "Innovation in HF",
+    "speaker": "Nicolas Van Mieghem",
+    "time": "13 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 05",
+    "duration": "13 min",
+    "durationSec": 812,
+    "poster": "https://i.vimeocdn.com/video/2167144374-a6c2db8dab313c8d19c7cc63c9e04613efaa2df7510490383ebe9537fc9dd431-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 05). Apresentação: Nicolas Van Mieghem."
+  },
+  {
+    "id": "1200128067",
+    "vimeoId": "1200128067",
+    "title": "LAMPOON and its Variants",
+    "speaker": "Gagan Singh",
+    "time": "15 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 05",
+    "duration": "15 min",
+    "durationSec": 907,
+    "poster": "https://i.vimeocdn.com/video/2167143139-14998fda4890dc9e0e8035c19a6da227d1f807ea4df591eb8be5525002fc2554-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 05). Apresentação: Gagan Singh."
+  },
+  {
+    "id": "1200127747",
+    "vimeoId": "1200127747",
+    "title": "SESAME for Treatment of oHCM",
+    "speaker": "Adam Greenbaum",
+    "time": "13 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 05",
+    "duration": "13 min",
+    "durationSec": 826,
+    "poster": "https://i.vimeocdn.com/video/2167142397-bc26b4520583c19f48486db29c7a9af657f647f22154c4cb78ecead09a364ed8-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 05). Apresentação: Adam Greenbaum."
+  },
+  {
+    "id": "1200127298",
+    "vimeoId": "1200127298",
+    "title": "Best cases competition award!",
+    "speaker": "Closure Session",
+    "time": "14 min",
+    "dayId": "dia-21",
+    "dayLabel": "Dia 21",
+    "dayDate": "21 de Março",
+    "room": "Sala 06",
+    "duration": "14 min",
+    "durationSec": 850,
+    "poster": "https://i.vimeocdn.com/video/2167141916-036ad9d6cb97bf0a10632008241508710fea48aadfc47e475eb80cea6982c646-d_1920x1080?&r=pad&region=us",
+    "category": "Sessão Científica",
+    "description": "Sessão científica gravada no CRF TCT Plus Latam Valves 2026 (Dia 21 - Sala 06). Apresentação: Closure Session."
+  }
+];
+
+      // 2. CONFIGURAÇÃO DE DIAS E SALAS
+      const DAYS_CONFIG = [
+        { id: 'dia-19', label: 'Dia 19', date: '19 de Março' },
+        { id: 'dia-20', label: 'Dia 20', date: '20 de Março' },
+        { id: 'dia-21', label: 'Dia 21', date: '21 de Março' },
+        { id: 'all',    label: 'Todos os Dias', date: 'Grade Completa' }
+      ];
+
+      // Pôster padrão para miniaturas
+      const DEFAULT_POSTER = 'https://static.wixstatic.com/media/1d3d47_b61f54a150ac447ea51bc683b4e00360~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Zoom-SBHCI.png';
+
+      // 3. ESTADOS DA APLICAÇÃO
+      let currentSessionId = null;
+      let currentDay = 'dia-19';
+      let currentRoom = 'all';
+      let searchQuery = '';
+
+      // Elementos do DOM
+      const dom = {
+        iframe: document.getElementById('vimeoPlayerIframe'),
+        placeholder: document.getElementById('videoLoadingPlaceholder'),
+        stageBox: document.getElementById('videoStageBox'),
+        metaCard: document.querySelector('.session-meta-card'),
+        playlistSidebar: document.querySelector('.playlist-sidebar-column'),
+        mainTitle: document.getElementById('sessionMainTitle'),
+        badgeDay: document.getElementById('badgeDay'),
+        badgeRoom: document.getElementById('badgeRoom'),
+        badgeCategory: document.getElementById('badgeCategory'),
+        badgeTime: document.getElementById('badgeTime'),
+        dayTabs: document.getElementById('dayTabsContainer'),
+        roomTabs: document.getElementById('roomTabsContainer'),
+        playlistList: document.getElementById('playlistScrollList'),
+        searchInput: document.getElementById('playlistSearchInput'),
+        searchClear: document.getElementById('searchClearBtn')
+      };
+
+      // 4. ALINHAMENTO AUTOMÁTICO DAS CAIXAS NO DESKTOP
+      // Garante que a base da playlist coincida exatamente com a base da caixa de tema
+      function alignStageBoxes() {
+        if (window.innerWidth <= 1024) {
+          if (dom.playlistSidebar) {
+            dom.playlistSidebar.style.height = '';
+          }
+          if (dom.playlistList) {
+            dom.playlistList.style.maxHeight = '';
+          }
+          return;
+        }
+
+        const stageBox = dom.stageBox || document.getElementById('videoStageBox');
+        const metaCard = dom.metaCard || document.querySelector('.session-meta-card');
+        const sidebar = dom.playlistSidebar || document.querySelector('.playlist-sidebar-column');
+
+        if (stageBox && metaCard && sidebar) {
+          const videoTop = stageBox.getBoundingClientRect().top;
+          const metaBottom = metaCard.getBoundingClientRect().bottom;
+          const targetHeight = Math.round(metaBottom - videoTop);
+
+          if (targetHeight > 300) {
+            sidebar.style.height = `${targetHeight}px`;
+            if (dom.playlistList) {
+              dom.playlistList.style.maxHeight = 'none';
+            }
+          }
+        }
+      }
+
+      // 5. COMUNICAÇÃO DE RESIZE COM O IFRAME DO WIX
+      function sendResizeMessage() {
+        try {
+          const height = Math.max(
+            document.body.scrollHeight || 0,
+            document.documentElement.scrollHeight || 0,
+            document.body.offsetHeight || 0
+          );
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'setHeight', height: height + 35 }, '*');
+            window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height + 35 }, '*');
+          }
+        } catch (e) {}
+      }
+
+      // 5. RENDERIZAR ABAS DE DIAS
+      function renderDayTabs() {
+        dom.dayTabs.innerHTML = '';
+        DAYS_CONFIG.forEach(d => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `day-tab-btn ${currentDay === d.id ? 'active' : ''}`;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', currentDay === d.id ? 'true' : 'false');
+          btn.textContent = d.label;
+          btn.addEventListener('click', () => {
+            if (currentDay !== d.id) {
+              currentDay = d.id;
+              currentRoom = 'all'; // reseta a sala ao trocar de dia
+              renderDayTabs();
+              renderRoomTabs();
+              renderPlaylist();
+              if (dom.playlistList) dom.playlistList.scrollTop = 0;
+              alignStageBoxes();
+              sendResizeMessage();
+            }
+          });
+          dom.dayTabs.appendChild(btn);
+        });
+      }
+
+      // 6. RENDERIZAR ABAS DE SALAS
+      function renderRoomTabs() {
+        dom.roomTabs.innerHTML = '';
+
+        // Obter sessões do dia atual
+        const daySessions = currentDay === 'all' 
+          ? SESSIONS 
+          : SESSIONS.filter(s => s.dayId === currentDay);
+
+        // Obter salas únicas para este dia
+        const roomsSet = new Set();
+        daySessions.forEach(s => {
+          if (s.room) roomsSet.add(s.room);
+        });
+
+        // Botão 'Todas as Salas'
+        const allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.className = `room-tab-btn ${currentRoom === 'all' ? 'active' : ''}`;
+        allBtn.setAttribute('role', 'tab');
+        allBtn.setAttribute('aria-selected', currentRoom === 'all' ? 'true' : 'false');
+        allBtn.textContent = 'Todas as Salas';
+        allBtn.addEventListener('click', () => {
+          if (currentRoom !== 'all') {
+            currentRoom = 'all';
+            renderRoomTabs();
+            renderPlaylist();
+            if (dom.playlistList) dom.playlistList.scrollTop = 0;
+            alignStageBoxes();
+            sendResizeMessage();
+          }
+        });
+        dom.roomTabs.appendChild(allBtn);
+
+        // Botões para cada sala
+        roomsSet.forEach(roomName => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `room-tab-btn ${currentRoom === roomName ? 'active' : ''}`;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('aria-selected', currentRoom === roomName ? 'true' : 'false');
+          btn.textContent = roomName;
+          btn.addEventListener('click', () => {
+            if (currentRoom !== roomName) {
+              currentRoom = roomName;
+              renderRoomTabs();
+              renderPlaylist();
+              if (dom.playlistList) dom.playlistList.scrollTop = 0;
+              alignStageBoxes();
+              sendResizeMessage();
+            }
+          });
+          dom.roomTabs.appendChild(btn);
+        });
+      }
+
+      // 7. FILTRAGEM DAS SESSÕES
+      function getFilteredSessions() {
+        return SESSIONS.filter(session => {
+          // Filtro por dia
+          if (currentDay !== 'all' && session.dayId !== currentDay) {
+            return false;
+          }
+          // Filtro por sala
+          if (currentRoom !== 'all' && session.room !== currentRoom) {
+            return false;
+          }
+          // Filtro por busca
+          if (searchQuery.trim() !== '') {
+            const q = searchQuery.toLowerCase().trim();
+            const matchTitle = session.title.toLowerCase().includes(q);
+            const matchRaw = session.rawName.toLowerCase().includes(q);
+            const matchSpeaker = session.speaker.toLowerCase().includes(q);
+            const matchAffiliation = session.affiliation.toLowerCase().includes(q);
+            const matchCategory = session.category.toLowerCase().includes(q);
+            const matchRoom = session.room.toLowerCase().includes(q);
+            if (!matchTitle && !matchRaw && !matchSpeaker && !matchAffiliation && !matchCategory && !matchRoom) {
+              return false;
+            }
+          }
+          return true;
+        });
+      }
+
+      function escapeHTML(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // 8. RENDERIZAR PLAYLIST
+      function renderPlaylist() {
+        const filtered = getFilteredSessions();
+        dom.playlistList.innerHTML = '';
+
+        if (filtered.length === 0) {
+          dom.playlistList.innerHTML = `
+            <div class="playlist-empty-state">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-tertiary)" stroke-width="1.8">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Nenhuma gravação encontrada com os filtros selecionados.</span>
+            </div>
+          `;
+          return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        filtered.forEach(item => {
+          const isPlaying = (item.id === currentSessionId);
+          const card = document.createElement('div');
+          card.className = `playlist-item-card ${isPlaying ? 'active' : ''}`;
+          card.setAttribute('role', 'listitem');
+          card.setAttribute('data-id', item.id);
+
+          const timeHtml = item.time ? `<span>• ${escapeHTML(item.time)}</span>` : '';
+
+          card.innerHTML = `
+            <div class="playlist-thumb-box">
+              <img 
+                src="${DEFAULT_POSTER}" 
+                alt="${escapeHTML(item.title)}" 
+                class="playlist-thumb-img" 
+                loading="lazy"
+                width="96"
+                height="54"
+              >
+              <span class="playlist-thumb-duration">${item.duration}</span>
+              <div class="playlist-thumb-play-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </div>
+            </div>
+
+            <div class="playlist-item-details">
+              ${isPlaying ? `
+                <div class="playlist-now-playing-tag">
+                  <span class="pulse-dot"></span>
+                  Reproduzindo
+                </div>
+              ` : ''}
+              <div class="playlist-item-title" title="${escapeHTML(item.title)}">${escapeHTML(item.title)}</div>
+              <div class="playlist-item-meta-row">
+                <span class="playlist-item-room-tag">${escapeHTML(item.room)}</span>
+                <span>${escapeHTML(item.dayLabel)}</span>
+                ${timeHtml}
+              </div>
+            </div>
+          `;
+
+          card.addEventListener('click', () => {
+            playSession(item.id, true);
+          });
+
+          fragment.appendChild(card);
+        });
+
+        dom.playlistList.appendChild(fragment);
+      }
+
+      // 9. REPRODUZIR SESSÃO
+      function playSession(sessionId, shouldScroll) {
+        const session = SESSIONS.find(s => s.id === sessionId);
+        if (!session) return;
+
+        currentSessionId = session.id;
+
+        // Se a sessão selecionada pertencer a outro dia, sincronizar abas
+        if (currentDay !== 'all' && session.dayId !== currentDay) {
+          currentDay = session.dayId;
+          renderDayTabs();
+          renderRoomTabs();
+        } else if (currentRoom !== 'all' && session.room !== currentRoom) {
+          currentRoom = 'all';
+          renderRoomTabs();
+        }
+
+        // Atualizar Iframe do Vimeo
+        const embedUrl = `https://player.vimeo.com/video/${session.vimeoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=544935&autoplay=1`;
+        
+        if (dom.iframe.src !== embedUrl) {
+          dom.iframe.src = embedUrl;
+          dom.iframe.style.display = 'block';
+          if (dom.placeholder) {
+            dom.placeholder.style.display = 'none';
+          }
+        }
+
+        // Atualizar Metadados
+        dom.mainTitle.textContent = session.title;
+        dom.badgeDay.textContent = session.dayLabel;
+        dom.badgeRoom.textContent = session.room;
+        dom.badgeCategory.textContent = session.category;
+        
+        if (session.time) {
+          dom.badgeTime.textContent = session.time;
+          dom.badgeTime.style.display = 'inline-flex';
+        } else {
+          dom.badgeTime.style.display = 'none';
+        }
+
+        // Atualizar estado ativo da playlist
+        renderPlaylist();
+
+        // Rolar a lista da playlist para manter o card ativo visível se necessário
+        const activeCard = dom.playlistList.querySelector(`.playlist-item-card[data-id="${session.id}"]`);
+        if (activeCard) {
+          activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Scroll suave no mobile se solicitado
+        if (shouldScroll && window.innerWidth <= 1024) {
+          const stage = document.getElementById('videoStageBox') || document.getElementById('playerSection');
+          if (stage) {
+            stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+
+        // Atualizar URL sem recarregar a página
+        try {
+          const newUrl = new URL(window.location.href);
+          newUrl.searchParams.set('v', session.vimeoId);
+          window.history.replaceState({ id: session.vimeoId }, '', newUrl.toString());
+        } catch (e) {}
+
+        alignStageBoxes();
+        sendResizeMessage();
+      }
+
+      // 10. BUSCA RÁPIDA
+      dom.searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (searchQuery.trim().length > 0) {
+          dom.searchClear.style.display = 'block';
+        } else {
+          dom.searchClear.style.display = 'none';
+        }
+        renderPlaylist();
+        if (dom.playlistList) dom.playlistList.scrollTop = 0;
+        alignStageBoxes();
+        sendResizeMessage();
+      });
+
+      dom.searchClear.addEventListener('click', () => {
+        dom.searchInput.value = '';
+        searchQuery = '';
+        dom.searchClear.style.display = 'none';
+        dom.searchInput.focus();
+        renderPlaylist();
+        if (dom.playlistList) dom.playlistList.scrollTop = 0;
+        alignStageBoxes();
+        sendResizeMessage();
+      });
+
+      // 11. INICIALIZAÇÃO
+      window.addEventListener('load', () => {
+        renderDayTabs();
+        renderRoomTabs();
+
+        // Verificar se há parâmetro 'v' na URL para tocar um vídeo específico
+        let targetId = SESSIONS[0].id;
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const vParam = params.get('v');
+          if (vParam) {
+            const found = SESSIONS.find(s => s.vimeoId === vParam || s.id === vParam);
+            if (found) {
+              targetId = found.id;
+            }
+          }
+        } catch (e) {}
+
+        playSession(targetId, false);
+        alignStageBoxes();
+
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 150);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 400);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 1200);
+        setTimeout(() => { alignStageBoxes(); sendResizeMessage(); }, 3000);
+      });
+
+      window.addEventListener('resize', () => {
+        alignStageBoxes();
+        sendResizeMessage();
+      });
+
+      if ('ResizeObserver' in window) {
+        const ro = new ResizeObserver(() => {
+          alignStageBoxes();
+          sendResizeMessage();
+        });
+        const mainCol = document.getElementById('playerSection');
+        if (mainCol) ro.observe(mainCol);
+        ro.observe(document.body);
+      }
+
+      // Alinhamento imediato preventivo
+      alignStageBoxes();
+
+    })();
+  </script>
+</body>
+</html>
