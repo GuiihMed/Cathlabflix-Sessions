@@ -1293,18 +1293,34 @@
         return docUrl;
       }
 
+      // Busca campos de forma tolerante a maiúsculas, minúsculas, camelCase e snake_case
+      function getField(item, ...keys) {
+        if (!item || typeof item !== 'object') return '';
+        // 1. Match exato
+        for (const k of keys) {
+          if (item[k] !== undefined && item[k] !== null && item[k] !== '') return item[k];
+        }
+        // 2. Match normalizado (ignora maiúsculas/minúsculas e pontuação)
+        const itemKeys = Object.keys(item);
+        for (const target of keys) {
+          const cleanTarget = target.toLowerCase().replace(/[^a-z0-9]/g, '');
+          for (const actual of itemKeys) {
+            const cleanActual = actual.toLowerCase().replace(/[^a-z0-9]/g, '');
+            if (cleanActual === cleanTarget && item[actual] !== undefined && item[actual] !== null && item[actual] !== '') {
+              return item[actual];
+            }
+          }
+        }
+        return '';
+      }
+
       // Normaliza itens vindos da coleção "informativos" do Wix (ou do fallback local)
-      // Mapeia exclusivamente os 4 campos da coleção Wix:
-      // 1. Title (ou title, titulo)
-      // 2. data (ou date)
-      // 3. imagem_url (ou imagem, image, capa)
-      // 4. informativo_url (ou url, link)
       function normalizeWixItem(item, index) {
         if (!item || typeof item !== 'object') return null;
 
-        const titleStr = item.Title || item.title || item.titulo || item.Titulo || 'Informativo SBHCI';
+        const titleStr = getField(item, 'Title', 'title', 'titulo', 'Titulo', 'nome', 'Name') || 'Informativo SBHCI';
 
-        let dateVal = item.data !== undefined ? item.data : (item.date !== undefined ? item.date : item._createdDate);
+        let dateVal = getField(item, 'data', 'Data', 'date', 'Date', '_createdDate');
         let dateStr = 'Data não informada';
         let yearNum = null;
 
@@ -1326,10 +1342,10 @@
           }
         }
 
-        const rawCover = item.imagem_url || item.imagem || item.Imagem || item.image || item.Image || item.capa || item.cover || '';
+        const rawCover = getField(item, 'imagem_url', 'imagemUrl', 'imagem', 'image', 'Image', 'capa', 'cover');
         const coverUrl = formatWixImageUrl(rawCover) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
 
-        const rawUrl = item.informativo_url || item.Informativo_url || item.url || item.Url || item.link || item.Link || item.arquivo || item.pdf || '#';
+        const rawUrl = getField(item, 'informativo_url', 'informativoUrl', 'informativo', 'Informativo', 'url', 'Url', 'link', 'Link', 'arquivo', 'pdf') || '#';
         const targetUrl = formatWixDocumentUrl(rawUrl);
 
         return {
@@ -1350,15 +1366,23 @@
       let newslettersData = STATIC_NEWSLETTERS.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
 
       function setNewslettersFromWix(items) {
-        if (!Array.isArray(items) || items.length === 0) return;
+        console.log('[Cathlabflix Newsletter] Recebendo dados do Wix CMS:', items);
+        if (!Array.isArray(items) || items.length === 0) {
+          console.warn('[Cathlabflix Newsletter] Nenhum item recebido no array.');
+          return;
+        }
         const normalized = items.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
         if (normalized.length > 0) {
           newslettersData = normalized;
           currentPage = 1;
           renderGrid();
           sendResizeMessage();
+          console.log(`[Cathlabflix Newsletter] ${normalized.length} informativos carregados com sucesso do Wix CMS!`);
         }
       }
+
+      // Disponibiliza função global para testes no console
+      window.setNewsletters = setNewslettersFromWix;
 
       // 2. ELEMENTOS DO DOM
       const dom = {
@@ -1734,7 +1758,9 @@
       function requestWixData() {
         try {
           if (window.parent && window.parent !== window) {
+            console.log('[Cathlabflix Newsletter] Solicitando dados ao Wix parent...');
             window.parent.postMessage({ type: 'REQUEST_NEWSLETTERS', collection: 'informativos' }, '*');
+            window.parent.postMessage('REQUEST_NEWSLETTERS', '*');
           }
         } catch (e) {}
       }
@@ -1752,18 +1778,20 @@
           }
         }
 
-        // Caso 1: Velo enviou um array direto $w('#htmlEmbed').postMessage(results.items)
-        if (Array.isArray(data) && data.length > 0) {
-          setNewslettersFromWix(data);
-          return;
+        // Extrai array de itens de qualquer formato comum enviado pelo Wix Velo
+        let items = null;
+        if (Array.isArray(data)) {
+          items = data;
+        } else if (data && typeof data === 'object') {
+          if (Array.isArray(data.items)) items = data.items;
+          else if (Array.isArray(data.data)) items = data.data;
+          else if (Array.isArray(data.payload)) items = data.payload;
+          else if (Array.isArray(data.results)) items = data.results;
+          else if (data.data && Array.isArray(data.data.items)) items = data.data.items;
         }
 
-        // Caso 2: Velo enviou um objeto com propriedade items ou data
-        if (data && typeof data === 'object') {
-          const items = data.items || data.data;
-          if (Array.isArray(items) && items.length > 0) {
-            setNewslettersFromWix(items);
-          }
+        if (Array.isArray(items) && items.length > 0) {
+          setNewslettersFromWix(items);
         }
       });
 
@@ -1788,6 +1816,9 @@
       window.addEventListener('load', () => {
         renderGrid();
         requestWixData();
+        setTimeout(requestWixData, 500);
+        setTimeout(requestWixData, 1500);
+        setTimeout(requestWixData, 3000);
         setTimeout(sendResizeMessage, 300);
         setTimeout(sendResizeMessage, 1200);
         setTimeout(sendResizeMessage, 3000);
