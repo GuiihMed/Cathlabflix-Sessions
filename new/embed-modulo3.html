@@ -30,6 +30,9 @@
       --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-behavior: smooth;
+    }
     html, body {
       margin: 0; padding: 0; width: 100%; min-height: 100%;
       background-color: var(--color-bg-base) !important;
@@ -606,6 +609,7 @@
       margin-bottom: 22px;
       padding-top: 24px;
       border-top: 1px solid var(--color-border-subtle);
+      scroll-margin-top: 24px;
     }
     .ia-section-title {
       font-size: 19px;
@@ -625,41 +629,47 @@
     /* IA Tabs Navigation */
     .ia-tabs-container {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-bottom: 28px;
+      width: 100%;
     }
     .ia-tabs-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: contents;
     }
     .ia-tab-btn {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
-      color: #ffffff;
+      flex: 1 1 160px;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 18px;
       font-size: 13.5px;
       font-weight: 700;
-      padding: 10px 20px;
+      color: #ffffff;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
       border-radius: var(--radius-pill);
       cursor: pointer;
-      white-space: nowrap;
+      white-space: normal;
+      line-height: 1.25;
       transition: all var(--transition-fast);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
       font-family: inherit;
+      box-sizing: border-box;
     }
     .ia-tab-btn:hover {
       background: var(--color-surface-hover);
-      border-color: rgba(255, 255, 255, 0.35);
+      border-color: rgba(56, 189, 248, 0.45);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
     }
     .ia-tab-btn.active {
       background: var(--color-primary) !important;
       border-color: var(--color-primary) !important;
       color: #ffffff !important;
-      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.45) !important;
+      box-shadow: 0 4px 18px rgba(229, 9, 20, 0.5) !important;
     }
 
     /* Panels Wrap */
@@ -1586,8 +1596,12 @@
 
     <!-- IA Tabs Nav -->
     <div class="ia-tabs-container">
-      <div class="ia-tabs-row"><button type="button" class="ia-tab-btn active" data-tab="tab-infograficos">Infográficos</button><button type="button" class="ia-tab-btn" data-tab="tab-relatorio">Relatório do Módulo</button><button type="button" class="ia-tab-btn" data-tab="tab-resumos">Resumos em Áudio</button></div>
-      <div class="ia-tabs-row"><button type="button" class="ia-tab-btn" data-tab="tab-video-ia">Vídeo de análise do módulo com IA</button><button type="button" class="ia-tab-btn" data-tab="tab-ia-docs">Apresentações com IA</button><button type="button" class="ia-tab-btn" data-tab="tab-orig-docs">Slides Originais</button></div>
+      <button type="button" class="ia-tab-btn active" data-tab="tab-infograficos">Infográficos</button>
+      <button type="button" class="ia-tab-btn" data-tab="tab-relatorio">Relatório do Módulo</button>
+      <button type="button" class="ia-tab-btn" data-tab="tab-resumos">Resumos em Áudio</button>
+      <button type="button" class="ia-tab-btn" data-tab="tab-video-ia">Vídeo de análise do módulo com IA</button>
+      <button type="button" class="ia-tab-btn" data-tab="tab-ia-docs">Apresentações com IA</button>
+      <button type="button" class="ia-tab-btn" data-tab="tab-orig-docs">Slides Originais</button>
     </div>
 
     <!-- IA Panels Container -->
@@ -2416,6 +2430,23 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
     if (btnNextAula) {
       btnNextAula.addEventListener('click', () => {
         if (currentAulaIndex < AULAS_DATA.length - 1) selectAula(currentAulaIndex + 1);
+      });
+    }
+
+    // Smooth scroll para a seção de Conteúdos IA
+    const btnJumpIa = document.querySelector('.btn-jump-ia');
+    if (btnJumpIa) {
+      btnJumpIa.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.getElementById('ia-content-section');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          try {
+            const rect = target.getBoundingClientRect();
+            const topOffset = rect.top + window.pageYOffset;
+            window.parent.postMessage({ type: 'cathlabflix-scroll-to', target: 'ia-content-section', offsetTop: topOffset }, '*');
+          } catch (err) {}
+        }
       });
     }
 
