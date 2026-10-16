@@ -39,101 +39,562 @@
       overflow-x: hidden !important;
     }
     .module-container {
-      width: 96%; max-width: 1200px; margin: 0 auto; padding: 24px 12px 60px;
+      width: 96%; max-width: 1400px; margin: 0 auto; padding: 24px 12px 60px;
     }
     @media (max-width: 768px) {
       .module-container { width: 100%; padding: 16px 8px 40px; }
     }
 
-    /* Header */
+    /* ==========================================================================
+       Header & Breadcrumb
+       ========================================================================== */
     .module-header { margin-bottom: 24px; }
-    .module-category {
-      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--color-text-secondary); margin-bottom: 6px;
+    
+    .breadcrumb-nav {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+      font-size: 13px; font-weight: 600;
     }
-    .module-course-title {
-      font-size: 24px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 8px;
+    .breadcrumb-link {
+      color: var(--color-text-secondary); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 5px; transition: color var(--transition-fast);
+    }
+    .breadcrumb-link:hover { color: var(--color-blue-accent); }
+    .breadcrumb-sep { color: var(--color-text-tertiary); font-size: 11px; }
+    .breadcrumb-current { color: #ffffff; font-weight: 700; }
+
+    .module-title-box {
+      display: flex; flex-direction: column; gap: 8px;
     }
     .module-badge-row {
-      display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     }
-    .module-pill {
-      background: var(--color-primary); color: #ffffff; font-size: 12px; font-weight: 700;
-      padding: 4px 12px; border-radius: var(--radius-pill); text-transform: uppercase; letter-spacing: 0.6px;
+    .badge-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px;
     }
-    .module-name-sub {
-      font-size: 15px; font-weight: 600; color: var(--color-text-secondary);
+    .badge-primary {
+      background: var(--color-primary); color: #ffffff;
+      box-shadow: 0 2px 8px rgba(229, 9, 20, 0.35);
+    }
+    .badge-subtle {
+      background: rgba(255, 255, 255, 0.08); color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-subtle);
+    }
+    .badge-cyan {
+      background: rgba(56, 189, 248, 0.16); color: var(--color-blue-accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
     }
 
-    /* Aulas Selector Bar */
-    .aulas-nav-bar {
-      display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: center;
-      margin-bottom: 22px; padding: 6px 0;
+    .module-course-title {
+      font-size: clamp(20px, 2.5vw, 26px); font-weight: 800; color: #ffffff; line-height: 1.3;
+      letter-spacing: -0.015em; margin: 4px 0 0;
     }
-    @media (max-width: 768px) {
-      .aulas-nav-bar {
-        justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap;
-        padding-bottom: 10px; -webkit-overflow-scrolling: touch;
+    .module-red-bar {
+      width: 50px; height: 3px; background: var(--color-primary); margin-top: 6px; border-radius: 2px;
+    }
+
+    /* ==========================================================================
+       Player Stage Grid Layout (70% / 30%)
+       ========================================================================== */
+    .player-stage-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.85fr) minmax(320px, 1fr);
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 1080px) {
+      .player-stage-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
-      .aulas-nav-bar::-webkit-scrollbar { display: none; }
     }
-    .aula-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      font-size: 13.5px;
-      font-weight: 600;
-      padding: 9px 18px;
-      border-radius: var(--radius-pill);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all var(--transition-fast);
+
+    /* Coluna Esquerda: Player e Detalhes da Aula */
+    .player-stage-main {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .video-player-box {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #000000;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .video-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* Card de Metadados da Aula em Destaque */
+    .aula-meta-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .aula-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .aula-status-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      background: rgba(229, 9, 20, 0.16);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      color: #ff4d58;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
     }
-    .aula-btn:hover {
+
+    .pulse-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E50914;
+      box-shadow: 0 0 10px #E50914;
+      animation: pulseGlow 1.8s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .aula-meta-tags {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--color-border-subtle);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .current-aula-title {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .aula-author-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .author-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1 1 300px;
+    }
+
+    .author-avatar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0a2d72 0%, #04173d 100%);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-blue-accent);
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .author-caption {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--color-text-tertiary);
+    }
+
+    .author-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.35;
+    }
+
+    .aula-player-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-player-nav {
+      height: 36px;
+      padding: 0 14px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .btn-player-nav:hover:not(:disabled) {
       background: rgba(255, 255, 255, 0.16);
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: rgba(255, 255, 255, 0.35);
       transform: translateY(-1px);
     }
-    .aula-btn.active {
-      background: #ffffff !important;
-      color: #010234 !important;
-      border-color: #ffffff !important;
-      font-weight: 800 !important;
-      box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+
+    .btn-player-nav:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
     }
 
-    /* Video Player */
-    .video-player-wrap {
-      position: relative; width: 100%; padding-top: 56.25%; background: #000;
-      border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.12); margin-bottom: 18px;
-    }
-    .video-iframe {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
-    }
-
-    /* Dynamic Aula Title & Professor */
-    .aula-title-block {
-      text-align: center; max-width: 940px; margin: 0 auto 34px; padding: 0 12px;
-    }
-    .aula-title-heading {
-      font-size: 16px; font-weight: 800; color: #ffffff; line-height: 1.45; letter-spacing: 0.3px;
-      text-transform: uppercase; margin-bottom: 6px;
-    }
-    .aula-professor-text {
-      font-size: 14.5px; font-weight: 500; color: #94a3b8; line-height: 1.4; margin-top: 4px;
-    }
-    @media (max-width: 640px) {
-      .aula-title-heading { font-size: 14px; line-height: 1.4; }
-      .aula-professor-text { font-size: 13px; }
+    .btn-jump-ia {
+      height: 36px;
+      padding: 0 15px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 700;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      border: 1px solid var(--color-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 3px 12px rgba(229, 9, 20, 0.35);
+      transition: all var(--transition-fast);
+      font-family: inherit;
     }
 
-    /* Resumos e Conteúdos de IA Section */
+    .btn-jump-ia:hover {
+      background: var(--color-primary-hover);
+      border-color: var(--color-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 16px rgba(229, 9, 20, 0.5);
+    }
+
+    /* ==========================================================================
+       Coluna Direita: Playlist Lateral das Aulas
+       ========================================================================== */
+    .player-stage-sidebar {
+      position: sticky;
+      top: 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: calc(100vh - 40px);
+    }
+
+    @media (max-width: 1080px) {
+      .player-stage-sidebar {
+        position: static;
+        max-height: 480px;
+      }
+    }
+
+    .playlist-top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .playlist-header-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .playlist-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .playlist-counter-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      background: rgba(56, 189, 248, 0.16);
+      color: var(--color-blue-accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.5px;
+    }
+
+    .playlist-sub-tip {
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+    }
+
+    .playlist-items-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      flex: 1;
+      padding-right: 4px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(56, 189, 248, 0.45) rgba(255, 255, 255, 0.05);
+    }
+
+    .playlist-items-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .playlist-items-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+    }
+    .playlist-items-scroll::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.4);
+      border-radius: 4px;
+    }
+    .playlist-items-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.8);
+    }
+
+    /* Card Individual da Playlist */
+    .playlist-item-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      background: rgba(1, 2, 52, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+      text-align: left;
+      user-select: none;
+    }
+
+    .playlist-item-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(56, 189, 248, 0.35);
+      transform: translateX(2px);
+    }
+
+    .playlist-item-card.active {
+      background: rgba(229, 9, 20, 0.16) !important;
+      border-color: rgba(229, 9, 20, 0.55) !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .playlist-thumb-box {
+      position: relative;
+      width: 90px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #000;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .playlist-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+    }
+
+    .playlist-item-card:hover .playlist-thumb-img {
+      transform: scale(1.05);
+    }
+
+    .playlist-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .playlist-item-card:hover .playlist-thumb-overlay,
+    .playlist-item-card.active .playlist-thumb-overlay {
+      opacity: 1;
+    }
+
+    .playlist-thumb-label {
+      position: absolute;
+      bottom: 2px;
+      right: 3px;
+      background: rgba(0, 0, 0, 0.85);
+      color: #FFFFFF;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    .playlist-item-details {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .playlist-status-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .now-playing-pill {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .playlist-item-card.active .now-playing-pill {
+      display: inline-flex;
+    }
+
+    .equalizer-bar {
+      display: inline-block;
+      width: 2px;
+      background: var(--color-primary);
+      border-radius: 1px;
+      animation: eqPill 0.7s ease-in-out infinite alternate;
+    }
+    .equalizer-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+    .equalizer-bar:nth-child(2) { height: 11px; animation-delay: 0.3s; }
+    .equalizer-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
+
+    @keyframes eqPill {
+      0% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1); }
+    }
+
+    .aula-index-num {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .playlist-item-card.active .aula-index-num {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .playlist-item-theme {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .playlist-item-card.active .playlist-item-theme {
+      color: #FFFFFF;
+      font-weight: 800;
+    }
+
+    .playlist-item-prof {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+
+    .playlist-item-card.active .playlist-item-prof {
+      color: #cbd5e1;
+    }
+
+    /* ==========================================================================
+       Resumos e Conteúdos de IA Section
+       ========================================================================== */
     .ia-section-header {
-      margin-top: 40px; margin-bottom: 22px;
+      margin-top: 48px; margin-bottom: 22px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border-subtle);
     }
     .ia-section-title {
       font-size: 19px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px;
@@ -149,45 +610,37 @@
     .ia-tabs-row {
       display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
     }
-    @media (max-width: 768px) {
-      .ia-tabs-row { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 6px; }
-      .ia-tabs-row::-webkit-scrollbar { display: none; }
-    }
     .ia-tab-btn {
       background: var(--color-surface);
       border: 1px solid var(--color-border-subtle);
       color: #ffffff;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 9px 18px;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 10px 20px;
       border-radius: var(--radius-pill);
       cursor: pointer;
-      transition: all var(--transition-fast);
       white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      font-family: inherit;
     }
     .ia-tab-btn:hover {
       background: var(--color-surface-hover);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
     }
     .ia-tab-btn.active {
-      background: #ffffff !important;
-      color: #010234 !important;
-      border-color: #ffffff !important;
-      font-weight: 800 !important;
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.2);
+      background: var(--color-primary) !important;
+      border-color: var(--color-primary) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.45) !important;
     }
 
     /* Panels */
-    .ia-panel {
-      display: none; animation: fadeIn 0.25s ease;
-    }
-    .ia-panel.active {
-      display: block;
-    }
+    .ia-panels-wrap { width: 100%; }
+    .ia-panel { display: none; width: 100%; animation: fadeIn 0.3s ease; }
+    .ia-panel.active { display: block; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
@@ -195,397 +648,498 @@
 
     /* Buttons */
     .btn-primary {
-      background: var(--color-primary);
-      color: #ffffff !important;
-      font-weight: 700;
-      font-size: 13px;
-      padding: 9px 20px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      border: none;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+      background: var(--color-primary); color: #ffffff; font-size: 13px; font-weight: 700;
+      padding: 9px 18px; border-radius: var(--radius-pill); border: 0; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all var(--transition-fast); box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+      font-family: inherit;
     }
     .btn-primary:hover {
-      background: var(--color-primary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(229, 9, 20, 0.45);
+      background: var(--color-primary-hover); transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(229, 9, 20, 0.45);
     }
     .btn-secondary {
-      background: var(--color-surface);
-      color: #ffffff !important;
-      font-weight: 600;
-      font-size: 13.5px;
-      padding: 10px 20px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid var(--color-border-subtle);
-      transition: all var(--transition-fast);
+      background: rgba(255, 255, 255, 0.08); color: #ffffff; font-size: 13px; font-weight: 600;
+      padding: 9px 16px; border-radius: var(--radius-pill); border: 1px solid var(--color-border-subtle);
+      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      transition: all var(--transition-fast); font-family: inherit;
     }
     .btn-secondary:hover {
-      background: var(--color-surface-hover);
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
-    }
-    .btn-card-action {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: #ffffff !important;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 7px 14px;
-      border-radius: var(--radius-pill);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      white-space: nowrap;
-    }
-    .btn-card-action:hover {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: rgba(255, 255, 255, 0.35);
-      transform: translateY(-1px);
-    }
-    .btn-card-primary {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
-    }
-    .btn-card-primary:hover {
-      background: var(--color-primary-hover);
-      border-color: var(--color-primary-hover);
+      background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
     }
 
     /* Grid: Infográficos */
     .infograficos-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;
-    }
-    @media (max-width: 640px) {
-      .infograficos-grid { grid-template-columns: 1fr; }
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px; width: 100%;
     }
     .infografico-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-      transition: all var(--transition-fast);
+      background: var(--color-surface); border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      display: flex; flex-direction: column; transition: all var(--transition-fast);
     }
     .infografico-card:hover {
-      border-color: rgba(56, 189, 248, 0.4);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+      transform: translateY(-4px); border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
     }
     .infografico-thumb-wrap {
-      position: relative; width: 100%; padding-top: 65%; background: #000; overflow: hidden; cursor: pointer;
+      position: relative; width: 100%; padding-top: 141.4%; background: #000;
+      overflow: hidden; cursor: pointer;
     }
     .infografico-thumb {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;
-      transition: transform 0.3s ease;
-    }
-    .infografico-overlay {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(1, 2, 52, 0.65); opacity: 0; display: flex; align-items: center; justify-content: center;
-      transition: opacity 0.2s ease;
+      object-fit: cover; object-position: top; transition: transform 0.3s ease;
+    }
+    .infografico-card:hover .infografico-thumb { transform: scale(1.03); }
+    .infografico-overlay {
+      position: absolute; inset: 0; background: rgba(1, 2, 52, 0.65);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity var(--transition-fast);
     }
     .infografico-thumb-wrap:hover .infografico-overlay { opacity: 1; }
-    .infografico-thumb-wrap:hover .infografico-thumb { transform: scale(1.04); }
     .btn-zoom {
-      background: #ffffff; color: #010234; font-size: 12px; font-weight: 700; padding: 7px 16px;
-      border-radius: var(--radius-pill); display: inline-flex; align-items: center; gap: 6px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      background: #ffffff; color: #010234; font-size: 13px; font-weight: 800;
+      padding: 8px 16px; border-radius: var(--radius-pill); display: inline-flex;
+      align-items: center; gap: 6px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
     .infografico-card-footer {
-      padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 14px; display: flex; flex-direction: column; gap: 10px;
     }
     .infografico-card-title {
       font-size: 14px; font-weight: 700; color: #ffffff;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .infografico-btn-group {
-      display: flex; align-items: center; gap: 8px;
+      display: flex; gap: 8px;
     }
 
     /* Report / Relatório */
-    .report-box {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    .report-card-wrap {
+      background: var(--color-surface); border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg); padding: 28px 24px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     }
-    @media (max-width: 640px) {
-      .report-box { padding: 18px 14px; }
-    }
-    .report-top-bar {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding-bottom: 20px; margin-bottom: 24px; border-bottom: 1px solid var(--color-border-subtle);
-      flex-wrap: wrap;
+    .report-actions-bar {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+      gap: 12px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--color-border-subtle);
     }
     .report-badge {
-      font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--color-blue-accent);
-      background: var(--color-blue-soft); padding: 4px 10px; border-radius: var(--radius-pill);
-      display: inline-block; margin-bottom: 6px;
+      display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700;
+      color: var(--color-blue-accent); background: var(--color-blue-soft); padding: 4px 12px;
+      border-radius: var(--radius-pill); border: 1px solid rgba(56, 189, 248, 0.3);
     }
-    .report-title {
-      font-size: 18px; font-weight: 800; color: #ffffff; line-height: 1.3;
+    .report-body-text {
+      color: #e2e8f0; font-size: 14.5px; line-height: 1.7;
     }
-    .report-content {
-      line-height: 1.8; color: #e2e8f0; font-size: 15px;
+    .report-body-text h1, .report-body-text h2, .report-body-text h3 {
+      color: #ffffff; margin-top: 24px; margin-bottom: 12px; font-weight: 800;
     }
-    .report-content p { margin-bottom: 16px; }
-    .report-content strong, .report-content b { color: #ffffff; font-weight: 700; }
-    .report-content h1, .report-content h2, .report-content h3, .report-content h4 {
-      color: #ffffff; font-weight: 800; margin: 24px 0 12px; line-height: 1.3;
-    }
-    .report-content span { color: inherit !important; font-family: inherit !important; }
+    .report-body-text p { margin-bottom: 14px; }
+    .report-body-text ul, .report-body-text ol { margin-left: 20px; margin-bottom: 16px; }
+    .report-body-text li { margin-bottom: 6px; }
 
     /* Audios & Podcasts */
-    .audios-list {
-      display: flex; flex-direction: column; gap: 16px;
-    }
-    .audio-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 18px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: all var(--transition-fast);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    }
-    .audio-card:hover {
-      border-color: rgba(56, 189, 248, 0.35);
-      background: var(--color-surface-hover);
-    }
-    .audio-card-header {
-      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-    }
-    .audio-track-info {
-      flex: 1; min-width: 240px;
-    }
-    .audio-pill {
-      display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
-      color: var(--color-blue-accent); background: var(--color-blue-soft); padding: 3px 8px; border-radius: var(--radius-pill);
-      margin-bottom: 6px;
-    }
-    .pill-podcast {
-      color: #f59e0b; background: rgba(245, 158, 11, 0.15);
-    }
-    .audio-track-title {
-      font-size: 14.5px; font-weight: 700; color: #ffffff; line-height: 1.35; margin-bottom: 4px;
-    }
-    .audio-duration-meta {
-      font-size: 12px; font-weight: 500; color: var(--color-text-secondary);
+    .audio-list-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px; width: 100%;
     }
     .custom-audio-player {
-      display: flex; align-items: center; gap: 12px; background: #020627; padding: 10px 16px;
-      border-radius: var(--radius-pill); border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--color-surface); border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md); padding: 18px 20px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      display: flex; flex-direction: column; gap: 12px; transition: all var(--transition-fast);
+    }
+    .custom-audio-player:hover {
+      border-color: rgba(56, 189, 248, 0.35); transform: translateY(-2px);
+    }
+    .audio-player-header {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    }
+    .audio-meta { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .audio-title {
+      font-size: 14.5px; font-weight: 700; color: #ffffff; line-height: 1.35;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .audio-sub {
+      font-size: 12px; font-weight: 500; color: var(--color-text-secondary);
+    }
+    .audio-badge {
+      background: var(--color-blue-soft); color: var(--color-blue-accent);
+      font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-pill);
+      border: 1px solid rgba(56, 189, 248, 0.25); white-space: nowrap; flex-shrink: 0;
+    }
+    .audio-controls-row {
+      display: flex; align-items: center; gap: 12px;
     }
     .audio-play-btn {
-      background: var(--color-primary); color: #ffffff; border: none; width: 34px; height: 34px;
-      border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;
-      flex-shrink: 0; transition: transform 0.15s ease, background 0.15s ease;
+      width: 40px; height: 40px; border-radius: 50%; background: var(--color-primary);
+      color: #ffffff; border: 0; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; transition: all var(--transition-fast);
+      box-shadow: 0 4px 12px rgba(229, 9, 20, 0.35); font-family: inherit;
     }
     .audio-play-btn:hover {
-      background: var(--color-primary-hover); transform: scale(1.08);
+      background: var(--color-primary-hover); transform: scale(1.06);
     }
-    .audio-time {
-      font-size: 12px; font-weight: 600; color: var(--color-text-secondary); font-variant-numeric: tabular-nums;
-      flex-shrink: 0; min-width: 42px; text-align: center;
+    .audio-progress-wrap {
+      display: flex; flex-direction: column; gap: 4px; flex: 1;
     }
     .audio-seeker {
-      flex: 1; -webkit-appearance: none; appearance: none; height: 5px; border-radius: 3px;
-      background: rgba(255, 255, 255, 0.2); outline: none; cursor: pointer; transition: background 0.2s ease;
+      width: 100%; height: 5px; -webkit-appearance: none; appearance: none;
+      background: rgba(255, 255, 255, 0.15); border-radius: 3px; outline: none; cursor: pointer;
     }
     .audio-seeker::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 50%;
-      background: var(--color-primary); cursor: pointer; box-shadow: 0 0 6px rgba(229, 9, 20, 0.6);
+      -webkit-appearance: none; appearance: none; width: 13px; height: 13px;
+      border-radius: 50%; background: var(--color-primary); cursor: pointer;
+      box-shadow: 0 0 6px rgba(229, 9, 20, 0.6);
     }
-    .audio-seeker::-moz-range-thumb {
-      width: 14px; height: 14px; border-radius: 50%; background: var(--color-primary);
-      cursor: pointer; border: none; box-shadow: 0 0 6px rgba(229, 9, 20, 0.6);
+    .audio-time-row {
+      display: flex; justify-content: space-between; font-size: 11px;
+      font-weight: 600; color: var(--color-text-secondary);
     }
 
     /* Video IA Box */
     .video-ia-box {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      background: var(--color-surface); border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg); padding: 24px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      max-width: 900px; margin: 0 auto;
     }
-    @media (max-width: 640px) {
-      .video-ia-box { padding: 16px 12px; }
-    }
-    .video-ia-header {
-      margin-bottom: 16px;
-    }
-    .video-ia-badge {
-      font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--color-primary);
-      background: rgba(229, 9, 20, 0.15); padding: 4px 10px; border-radius: var(--radius-pill);
-      display: inline-block; margin-bottom: 6px;
-    }
-    .video-ia-title {
-      font-size: 17px; font-weight: 800; color: #ffffff;
-    }
-    .video-ia-player-wrap {
+    .video-ia-wrap {
       position: relative; width: 100%; padding-top: 56.25%; background: #000;
-      border-radius: var(--radius-md); overflow: hidden; margin-bottom: 18px;
+      border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .video-ia-element {
+    .video-ia-player {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     }
     .video-ia-footer {
-      display: flex; justify-content: flex-end;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
     }
 
     /* Docs (Apresentações IA & Slides Originais) */
-    .docs-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px;
+    .docs-cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px; width: 100%;
     }
-    @media (max-width: 640px) {
-      .docs-grid { grid-template-columns: 1fr; }
-    }
-    .doc-card {
-      background: var(--color-surface);
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
+    .doc-item-card {
+      background: var(--color-surface); border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md); padding: 18px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
       transition: all var(--transition-fast);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     }
-    .doc-card:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      background: var(--color-surface-hover);
-      transform: translateY(-2px);
+    .doc-item-card:hover {
+      border-color: rgba(56, 189, 248, 0.4); transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
     }
     .doc-icon-wrap {
-      width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.06);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 10px; background: rgba(229, 9, 20, 0.15);
+      color: var(--color-primary); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; border: 1px solid rgba(229, 9, 20, 0.3);
     }
-    .doc-info {
-      flex: 1; min-width: 0;
+    .doc-icon-wrap.pdf {
+      background: rgba(56, 189, 248, 0.15); color: var(--color-blue-accent);
+      border-color: rgba(56, 189, 248, 0.3);
     }
-    .doc-tag {
-      display: block; font-size: 11px; font-weight: 600; color: var(--color-primary); margin-bottom: 4px;
-    }
+    .doc-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
     .doc-title {
-      font-size: 14.5px; font-weight: 700; color: #ffffff; line-height: 1.35;
+      font-size: 14px; font-weight: 700; color: #ffffff;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .doc-sub {
+      font-size: 12px; font-weight: 500; color: var(--color-text-secondary);
     }
 
     /* Lightbox Modal */
     .lightbox-modal {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(1, 2, 52, 0.94); backdrop-filter: blur(8px); z-index: 99999;
-      align-items: center; justify-content: center; padding: 20px; opacity: 0;
-      transition: opacity 0.25s ease;
+      display: none; position: fixed; inset: 0; z-index: 999999;
+      background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 20px;
     }
-    .lightbox-modal.active {
-      display: flex; opacity: 1;
-    }
-    .lightbox-content {
-      position: relative; max-width: 92vw; max-height: 90vh; display: flex; flex-direction: column;
-      align-items: center;
+    .lightbox-modal.active { display: flex; }
+    .lightbox-dialog {
+      position: relative; max-width: 95vw; max-height: 92vh;
+      display: flex; flex-direction: column; align-items: center;
     }
     .lightbox-img {
-      max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: var(--radius-md);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8); border: 1px solid rgba(255, 255, 255, 0.15);
+      max-width: 100%; max-height: 82vh; object-fit: contain;
+      border-radius: var(--radius-sm); box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9);
+    }
+    .lightbox-close {
+      position: absolute; top: -14px; right: -14px; width: 38px; height: 38px;
+      border-radius: 50%; background: #ffffff; color: #010234; border: 0;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); font-weight: 900; z-index: 10;
     }
     .lightbox-bar {
       margin-top: 14px; display: flex; align-items: center; justify-content: space-between;
       width: 100%; gap: 16px;
     }
     .lightbox-caption {
-      color: #ffffff; font-size: 14px; font-weight: 600;
-    }
-    .lightbox-close-btn {
-      position: absolute; top: -45px; right: 0; background: rgba(255, 255, 255, 0.15);
-      border: none; color: #ffffff; width: 36px; height: 36px; border-radius: 50%;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s ease;
-    }
-    .lightbox-close-btn:hover {
-      background: var(--color-primary);
+      font-size: 14px; font-weight: 700; color: #ffffff;
     }
   </style>
 </head>
 <body>
-  <main class="module-container">
-    <!-- Top Module Header -->
+  <div class="module-container">
+
+    <!-- Header & Breadcrumb -->
     <header class="module-header">
-      <div class="module-category">Cursos SBHCI</div>
-      <h1 class="module-course-title">Curso para Intervencionistas em Formação 2026</h1>
-      <div class="module-badge-row">
-        <span class="module-pill">Módulo 4</span>
-        <span class="module-name-sub">Módulo 4 - O papel do cardiologista intervencionista nas cardiopatias congênitas e doenças extra-cardíacas</span>
+      <nav class="breadcrumb-nav" aria-label="Navegação">
+        <a href="https://www.cathlabflix.org/cursos" target="_top" class="breadcrumb-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          Cursos
+        </a>
+        <span class="breadcrumb-sep">/</span>
+        <a href="https://www.cathlabflix.org/curso-para-residentes" target="_top" class="breadcrumb-link">Curso para Intervencionistas 2026</a>
+        <span class="breadcrumb-sep">/</span>
+        <span class="breadcrumb-current">Módulo 4</span>
+      </nav>
+
+      <div class="module-title-box">
+        <div class="module-badge-row">
+          <span class="badge-tag badge-primary">MÓDULO 4</span>
+          <span class="badge-tag badge-subtle">SBHCI 2026</span>
+          <span class="badge-tag badge-cyan">7 Aulas Disponíveis</span>
+        </div>
+        <h1 class="module-course-title">Módulo 4 - O papel do cardiologista intervencionista nas cardiopatias congênitas e doenças extra-cardíacas</h1>
+        <div class="module-red-bar"></div>
       </div>
     </header>
 
-    <!-- Aulas Nav Bar -->
-    <nav class="aulas-nav-bar" aria-label="Navegação entre Aulas">
+    <!-- Player Stage Grid Layout (70% / 30%) -->
+    <main class="player-stage-grid">
       
-        <button type="button" class="aula-btn active" data-index="0" data-vimeo="1224100037" aria-label="Assistir Abertura">
-          Abertura
-        </button>
-        <button type="button" class="aula-btn" data-index="1" data-vimeo="1224108303" aria-label="Assistir Aula 1">
-          Aula 1
-        </button>
-        <button type="button" class="aula-btn" data-index="2" data-vimeo="1224101875" aria-label="Assistir Aula 2">
-          Aula 2
-        </button>
-        <button type="button" class="aula-btn" data-index="3" data-vimeo="1224100501" aria-label="Assistir Aula 3">
-          Aula 3
-        </button>
-        <button type="button" class="aula-btn" data-index="4" data-vimeo="1224109568" aria-label="Assistir Aula 4 e 5">
-          Aula 4 e 5
-        </button>
-        <button type="button" class="aula-btn" data-index="5" data-vimeo="1224106128" aria-label="Assistir Aula 6">
-          Aula 6
-        </button>
-        <button type="button" class="aula-btn" data-index="6" data-vimeo="1221573836" aria-label="Assistir Aula 7">
-          Aula 7
-        </button>
-    </nav>
+      <!-- Coluna Esquerda: Player 16:9 + Card de Metadados da Aula -->
+      <section class="player-stage-main">
+        <div class="video-player-box">
+          <iframe
+            id="mainVimeoPlayer"
+            class="video-iframe"
+            src="https://player.vimeo.com/video/1224100037?autoplay=0&dnt=1"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+            title="Player de Vídeo da Aula">
+          </iframe>
+        </div>
 
-    <!-- Video Player Container -->
-    <div class="video-player-wrap">
-      <iframe
-        id="mainVimeoPlayer"
-        class="video-iframe"
-        src="https://player.vimeo.com/video/1224100037?autoplay=0&dnt=1"
-        frameborder="0"
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen
-        title="Player de Vídeo da Aula">
-      </iframe>
-    </div>
+        <!-- Card de Metadados da Aula em Destaque -->
+        <article class="aula-meta-card">
+          <div class="aula-meta-top">
+            <div class="aula-status-badge">
+              <span class="pulse-indicator"></span>
+              <span id="currentAulaBadgeLabel">REPRODUZINDO: ABERTURA</span>
+            </div>
+            <div class="aula-meta-tags">
+              <span class="meta-tag">1080p FHD</span>
+              <span class="meta-tag">Vimeo</span>
+            </div>
+          </div>
 
-    <!-- Dynamic Aula Info / Subtitle -->
-    <div class="aula-title-block">
-      <h2 class="aula-title-heading" id="currentAulaTitle">Introdução e Boas-vindas</h2>
-      <p class="aula-professor-text" id="currentAulaProfessor">Palestrante: Tannas Jatene (GO)</p>
-    </div>
+          <h2 class="current-aula-title" id="currentAulaTitle">Introdução e Boas-vindas</h2>
 
+          <div class="aula-author-bar">
+            <div class="author-profile">
+              <div class="author-avatar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="author-info">
+                <span class="author-caption">Docente / Palestrante</span>
+                <span class="author-name" id="currentAulaProfessor">Palestrante: Tannas Jatene (GO)</span>
+              </div>
+            </div>
+
+            <div class="aula-player-controls">
+              <button type="button" class="btn-player-nav" id="btnPrevAula" title="Aula Anterior" disabled>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                Anterior
+              </button>
+              <button type="button" class="btn-player-nav" id="btnNextAula" title="Próxima Aula">
+                Próxima
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              <a href="#ia-content-section" class="btn-jump-ia" title="Acessar resumos e materiais de IA">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                Conteúdos IA
+              </a>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Coluna Direita: Playlist Lateral das Aulas -->
+      <aside class="player-stage-sidebar" aria-label="Playlist do Módulo">
+        <div class="playlist-top-header">
+          <div class="playlist-header-text">
+            <h3 class="playlist-title">Aulas do Módulo</h3>
+            <span class="playlist-counter-badge" id="playlistCounter">7 AULAS</span>
+          </div>
+          <span class="playlist-sub-tip">Clique para alternar</span>
+        </div>
+
+        <div class="playlist-items-scroll" id="playlistScrollList" role="list">
+          <div class="playlist-item-card active" data-index="0" data-vimeo="1224100037" role="button" tabindex="0" aria-label="Assistir Abertura">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Abertura" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Abertura</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">1 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">Introdução e Boas-vindas</h4>
+              <p class="playlist-item-prof">Palestrante: Tannas Jatene (GO)</p>
+            </div>
+          </div>
+          <div class="playlist-item-card " data-index="1" data-vimeo="1224108303" role="button" tabindex="0" aria-label="Assistir Aula 1">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Aula 1" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Aula 1</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">2 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</h4>
+              <p class="playlist-item-prof">Palestrante: Rodrigo Nieckel da Costa (SP)</p>
+            </div>
+          </div>
+          <div class="playlist-item-card " data-index="2" data-vimeo="1224101875" role="button" tabindex="0" aria-label="Assistir Aula 2">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Aula 2" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Aula 2</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">3 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</h4>
+              <p class="playlist-item-prof">Palestrante: Raul Arieta (SP)</p>
+            </div>
+          </div>
+          <div class="playlist-item-card " data-index="3" data-vimeo="1224100501" role="button" tabindex="0" aria-label="Assistir Aula 3">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Aula 3" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Aula 3</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">4 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS</h4>
+              <p class="playlist-item-prof">Palestrante: Mauricio Jaramillo (DF)</p>
+            </div>
+          </div>
+          <div class="playlist-item-card " data-index="4" data-vimeo="1224109568" role="button" tabindex="0" aria-label="Assistir Aula 4 e 5">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Aula 4 e 5" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Aula 4 e 5</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">5 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS</h4>
+              <p class="playlist-item-prof">Palestrante: Renata Mattos Silva (RJ)</p>
+            </div>
+          </div>
+          <div class="playlist-item-card " data-index="5" data-vimeo="1224106128" role="button" tabindex="0" aria-label="Assistir Aula 6">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Aula 6" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Aula 6</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">6 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES</h4>
+              <p class="playlist-item-prof">Palestrante: Eduardo Kei Marquesini Washizu (MG)</p>
+            </div>
+          </div>
+          <div class="playlist-item-card " data-index="6" data-vimeo="1221573836" role="button" tabindex="0" aria-label="Assistir Aula 7">
+            <div class="playlist-thumb-box">
+              <img src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Aula 7" class="playlist-thumb-img" loading="lazy">
+              <div class="playlist-thumb-overlay">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="playlist-thumb-label">Aula 7</span>
+            </div>
+            <div class="playlist-item-details">
+              <div class="playlist-status-row">
+                <span class="now-playing-pill">
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  <span class="equalizer-bar"></span>
+                  REPRODUZINDO
+                </span>
+                <span class="aula-index-num">7 de 7</span>
+              </div>
+              <h4 class="playlist-item-theme">DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS</h4>
+              <p class="playlist-item-prof">Palestrante: Carlos Eduardo Diniz Couto (MG)</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Resumos e Conteúdos de IA -->
     <!-- IA Section Header -->
-    <div class="ia-section-header">
+    <div class="ia-section-header" id="ia-content-section">
       <h3 class="ia-section-title">Resumos e conteúdos de IA</h3>
       <div class="red-line"></div>
     </div>
@@ -1079,6 +1633,9 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
     </div>
   </main>
 
+  </div>
+
+  <!-- Lightbox Modal -->
   <!-- Lightbox Modal -->
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
     <div class="lightbox-content" onclick="event.stopPropagation()">
@@ -1099,6 +1656,7 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
   <script>
     // Aulas Data for dynamic player
     const AULAS_DATA = [{"tabId": "comp-mto97w2n", "label": "Abertura", "videoUrl": "https://vimeo.com/1224100037", "title": "Introdução e Boas-vindas Tannas Jatene (GO)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>", "theme": "Introdução e Boas-vindas", "prof": "Palestrante: Tannas Jatene (GO)"}, {"tabId": "comp-mto97w2x2", "label": "Aula 1", "videoUrl": "https://vimeo.com/1224108303", "title": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Rodrigo Nieckel da Costa (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTERATRIAL: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rodrigo Nieckel da Costa (SP)</span></span></span></span></h1>", "theme": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO", "prof": "Palestrante: Rodrigo Nieckel da Costa (SP)"}, {"tabId": "comp-mto97w30", "label": "Aula 2", "videoUrl": "https://vimeo.com/1224101875", "title": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Raul Arieta (SP)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTER VENTRICULAR: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Raul Arieta (SP)</span></span></span></span></h1>", "theme": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO", "prof": "Palestrante: Raul Arieta (SP)"}, {"tabId": "comp-mto97w323", "label": "Aula 3", "videoUrl": "https://vimeo.com/1224100501", "title": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS Palestrante: Mauricio Jaramillo (DF)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">FORAME OVAL PERVIO: ESCORES, INDICA&Ccedil;&Atilde;O DE FECHAMENTO E TIPS AND TRICKS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Mauricio Jaramillo (DF)</span></span></span></span></h1>", "theme": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS", "prof": "Palestrante: Mauricio Jaramillo (DF)"}, {"tabId": "comp-mto97w345", "label": "Aula 4 e 5", "videoUrl": "https://vimeo.com/1224109568", "title": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS Palestrante: Renata Mattos Silva (RJ)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">PERSIST&Ecirc;NCIA DO CANAL ARTERIAL: DIAGN&Oacute;STICO E CONDUTA DO REC&Eacute;M NASCIDO AO ADULTO / COARCTA&Ccedil;&Atilde;O DE AORTA: DIAGN&Oacute;STICO, INDICA&Ccedil;&Atilde;O DE INTERVEN&Ccedil;&Atilde;O E DISPOSITIVOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Renata Mattos Silva (RJ)</span></span></span></span></h1>", "theme": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS", "prof": "Palestrante: Renata Mattos Silva (RJ)"}, {"tabId": "comp-mto97w391", "label": "Aula 6", "videoUrl": "https://vimeo.com/1224106128", "title": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES Palestrante: Eduardo Kei Marquesini Washizu (MG)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, T&Eacute;CNICAS E COMPLICA&Ccedil;&Otilde;ES</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>", "theme": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES", "prof": "Palestrante: Eduardo Kei Marquesini Washizu (MG)"}, {"tabId": "comp-mto97w37", "label": "Aula 7", "videoUrl": "https://vimeo.com/1221573836", "title": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS Palestrante: Carlos Eduardo Diniz Couto (MG)", "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DOEN&Ccedil;A CAROT&Iacute;DEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS T&Eacute;CNICOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Carlos Eduardo Diniz Couto (MG)</span></span></span></span></h1>", "theme": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS", "prof": "Palestrante: Carlos Eduardo Diniz Couto (MG)"}];
+    let currentAulaIndex = 0;
 
     // Parent iframe auto-resizing
     function notifyParentResize() {
@@ -1114,40 +1672,81 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
       new ResizeObserver(notifyParentResize).observe(document.body);
     }
 
-    // Aula Selector
-    const aulaButtons = document.querySelectorAll('.aula-btn');
+    // Elements
     const vimeoIframe = document.getElementById('mainVimeoPlayer');
+    const currentAulaBadgeLabel = document.getElementById('currentAulaBadgeLabel');
     const currentAulaTitle = document.getElementById('currentAulaTitle');
     const currentAulaProfessor = document.getElementById('currentAulaProfessor');
+    const btnPrevAula = document.getElementById('btnPrevAula');
+    const btnNextAula = document.getElementById('btnNextAula');
+    const playlistCards = document.querySelectorAll('.playlist-item-card');
 
-    aulaButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
+    function selectAula(index) {
+      if (index < 0 || index >= AULAS_DATA.length) return;
+      currentAulaIndex = index;
+      const aula = AULAS_DATA[index];
+
+      // Update Playlist Active State
+      playlistCards.forEach((card, idx) => {
+        if (idx === index) {
+          card.classList.add('active');
+          card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        } else {
+          card.classList.remove('active');
+        }
+      });
+
+      // Update Vimeo Player
+      const vId = aula.videoUrl.split('/').pop().split('?')[0];
+      if (vId && vimeoIframe) {
+        vimeoIframe.src = `https://player.vimeo.com/video/${vId}?autoplay=1&dnt=1`;
+      }
+
+      // Update Header & Docente
+      if (currentAulaBadgeLabel) {
+        currentAulaBadgeLabel.textContent = `REPRODUZINDO: ${aula.label.toUpperCase()}`;
+      }
+      if (currentAulaTitle) {
+        currentAulaTitle.textContent = aula.theme || aula.title;
+      }
+      if (currentAulaProfessor) {
+        currentAulaProfessor.textContent = aula.prof || '';
+        currentAulaProfessor.style.display = aula.prof ? 'block' : 'none';
+      }
+
+      // Update Nav Buttons
+      if (btnPrevAula) btnPrevAula.disabled = (index === 0);
+      if (btnNextAula) btnNextAula.disabled = (index === AULAS_DATA.length - 1);
+
+      notifyParentResize();
+    }
+
+    // Playlist Card Click Handlers
+    playlistCards.forEach(card => {
+      card.addEventListener('click', function() {
         const idx = parseInt(this.getAttribute('data-index'), 10);
-        const aula = AULAS_DATA[idx];
-        if (!aula) return;
-
-        // Update active class
-        aulaButtons.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-
-        // Extract and switch Vimeo
-        const vId = this.getAttribute('data-vimeo');
-        if (vId && vimeoIframe) {
-          vimeoIframe.src = `https://player.vimeo.com/video/${vId}?autoplay=1&dnt=1`;
+        selectAula(idx);
+      });
+      card.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const idx = parseInt(this.getAttribute('data-index'), 10);
+          selectAula(idx);
         }
-
-        // Update Theme and Professor cleanly
-        if (currentAulaTitle) {
-          currentAulaTitle.textContent = aula.theme || aula.title;
-        }
-        if (currentAulaProfessor) {
-          currentAulaProfessor.textContent = aula.prof || '';
-          currentAulaProfessor.style.display = aula.prof ? 'block' : 'none';
-        }
-
-        notifyParentResize();
       });
     });
+
+    // Step Navigation
+    if (btnPrevAula) {
+      btnPrevAula.addEventListener('click', () => {
+        if (currentAulaIndex > 0) selectAula(currentAulaIndex - 1);
+      });
+    }
+    if (btnNextAula) {
+      btnNextAula.addEventListener('click', () => {
+        if (currentAulaIndex < AULAS_DATA.length - 1) selectAula(currentAulaIndex + 1);
+      });
+    }
 
     // IA Tabs Navigation
     const tabButtons = document.querySelectorAll('.ia-tab-btn');
