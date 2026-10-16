@@ -345,7 +345,15 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      max-height: calc(100vh - 40px);
+      box-sizing: border-box;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    @media (min-width: 1081px) {
+      .player-stage-sidebar {
+        max-height: 580px;
+      }
     }
 
     @media (max-width: 1080px) {
@@ -361,6 +369,7 @@
       justify-content: space-between;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--color-border-subtle);
+      flex-shrink: 0;
     }
 
     .playlist-header-text {
@@ -399,7 +408,8 @@
       flex-direction: column;
       gap: 8px;
       overflow-y: auto;
-      flex: 1;
+      flex: 1 1 0;
+      min-height: 0;
       padding-right: 4px;
       scrollbar-width: thin;
       scrollbar-color: rgba(56, 189, 248, 0.45) rgba(255, 255, 255, 0.05);
@@ -2102,6 +2112,33 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
       new ResizeObserver(notifyParentResize).observe(document.body);
     }
 
+    // Sincronizar altura da playlist com a altura do player
+    function syncPlaylistHeight() {
+      const mainStage = document.querySelector('.player-stage-main');
+      const sidebar = document.querySelector('.player-stage-sidebar');
+      if (!mainStage || !sidebar) return;
+
+      if (window.innerWidth > 1080) {
+        const mainHeight = mainStage.offsetHeight;
+        if (mainHeight > 200) {
+          sidebar.style.height = mainHeight + 'px';
+          sidebar.style.maxHeight = mainHeight + 'px';
+        }
+      } else {
+        sidebar.style.height = '';
+        sidebar.style.maxHeight = '480px';
+      }
+    }
+    window.addEventListener('load', syncPlaylistHeight);
+    window.addEventListener('resize', syncPlaylistHeight);
+    if ('ResizeObserver' in window) {
+      const mainEl = document.querySelector('.player-stage-main');
+      if (mainEl) {
+        new ResizeObserver(syncPlaylistHeight).observe(mainEl);
+      }
+    }
+    setTimeout(syncPlaylistHeight, 100);
+
     // Elements
     const vimeoIframe = document.getElementById('mainVimeoPlayer');
     const currentAulaBadgeLabel = document.getElementById('currentAulaBadgeLabel');
@@ -2116,11 +2153,28 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
       currentAulaIndex = index;
       const aula = AULAS_DATA[index];
 
-      // Update Playlist Active State
+      // Update Playlist Active State & Scroll smoothly into view
       playlistCards.forEach((card, idx) => {
         if (idx === index) {
           card.classList.add('active');
-          card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          try {
+            const scrollContainer = card.closest('.playlist-items-scroll');
+            if (scrollContainer) {
+              const cardRect = card.getBoundingClientRect();
+              const containerRect = scrollContainer.getBoundingClientRect();
+              if (cardRect.top < containerRect.top) {
+                const diff = cardRect.top - containerRect.top;
+                scrollContainer.scrollBy({ top: diff - 8, behavior: 'smooth' });
+              } else if (cardRect.bottom > containerRect.bottom) {
+                const diff = cardRect.bottom - containerRect.bottom;
+                scrollContainer.scrollBy({ top: diff + 8, behavior: 'smooth' });
+              }
+            } else {
+              card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
+          } catch (e) {
+            card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
         } else {
           card.classList.remove('active');
         }
@@ -2148,6 +2202,7 @@ Manejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;
       if (btnPrevAula) btnPrevAula.disabled = (index === 0);
       if (btnNextAula) btnNextAula.disabled = (index === AULAS_DATA.length - 1);
 
+      syncPlaylistHeight();
       notifyParentResize();
     }
 
