@@ -1,0 +1,1060 @@
+{
+  "modulo1": {
+    "info": {
+      "id": "modulo1",
+      "number": 1,
+      "title": "Módulo 1 - Fundamentos e Diagnóstico em Cardiologia Intervencionista",
+      "shortTitle": "Módulo 1",
+      "slug": "2026-modulo1-curso-para-intervencionistas",
+      "cover": "https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(12)%20(1).png"
+    },
+    "aulas": [
+      {
+        "tabId": "comp-molswf2d",
+        "label": "Abertura",
+        "videoUrl": "https://vimeo.com/1187384730",
+        "title": "ABERTURA: INTRODUÇÃO AO CURSO PARA INTERVENCIONISTAS EM FORMAÇÃO 2026 Professores: José Airton Arruda (ES) e Silvio Gioppato (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ABERTURA: INTRODU&Ccedil;&Atilde;O AO CURSO PARA INTERVENCIONISTAS EM FORMA&Ccedil;&Atilde;O 2026</span><br class=\"wixui-rich-text__text\">\nProfessores: Jos&eacute; Airton Arruda (ES) e Silvio Gioppato (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-molt58kl",
+        "label": "Aula 1",
+        "videoUrl": "https://vimeo.com/1187386169",
+        "title": "AULA 1 - HISTÓRIA DA HEMODINÂMICA E CARDIOLOGIA INTERVENCIONISTA Professor: Dr. Gilberto Lahorgue Nunes (RS)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - HIST&Oacute;RIA DA HEMODIN&Acirc;MICA E CARDIOLOGIA INTERVENCIONISTA</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Gilberto Lahorgue Nunes (RS)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-molt5vzo",
+        "label": "Aula 2",
+        "videoUrl": "https://vimeo.com/1187391540",
+        "title": "AULA 2 - ANATOMIA CORONÁRIA, PROJEÇÕES ANGIOGRÁFICAS E ANOMALIAS DE CORONÁRIAS Professor: Dr. Lucas Lodi Junqueira (MG)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - ANATOMIA CORON&Aacute;RIA, PROJE&Ccedil;&Otilde;ES ANGIOGR&Aacute;FICAS E ANOMALIAS DE CORON&Aacute;RIAS</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Lucas Lodi Junqueira (MG)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-molt83r9",
+        "label": "Aula 3",
+        "videoUrl": "https://vimeo.com/1187379799",
+        "title": "AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE Professor: Dr. Décio Salvadori Júnior (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. D&eacute;cio Salvadori J&uacute;nior (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-moltc0dh",
+        "label": "Aula 4",
+        "videoUrl": "https://vimeo.com/1187351407",
+        "title": "AULA 4 - NOÇÕES BÁSICAS DE RADIAÇÕES IONIZANTES, FORMAÇÃO DA IMAGEM E PROTEÇÃO RADIOLÓGICA Professor: Dr. Silvio Gioppato (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - NO&Ccedil;&Otilde;ES B&Aacute;SICAS DE RADIA&Ccedil;&Otilde;ES IONIZANTES, FORMA&Ccedil;&Atilde;O DA IMAGEM E PROTE&Ccedil;&Atilde;O RADIOL&Oacute;GICA</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Silvio Gioppato (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-moltdkpy",
+        "label": "Aula 5",
+        "videoUrl": "https://vimeo.com/1187358635",
+        "title": "AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E TÉCNICA DE ACESSOS ARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICAÇÕES NO ACESSO VASCULAR; DISPOSITIVOS DE OCLUSÃO VASCULAR Professor: Dr. Eduardo Kei Marquesini Washizu (MG)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E T&Eacute;CNICA DE ACESSOS<br class=\"wixui-rich-text__text\">\nARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICA&Ccedil;&Otilde;ES NO ACESSO<br class=\"wixui-rich-text__text\">\nVASCULAR; DISPOSITIVOS DE OCLUS&Atilde;O VASCULAR</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-moltfp0j",
+        "label": "Aula 6",
+        "videoUrl": "https://vimeo.com/1187367883",
+        "title": "AULA 6 - EVOLUÇÃO DA TERAPIA ANTITROMBÓTICA ADJUNTA: O QUE VOCÊ PRECISA SABER Professor: Dr. Pedro Beraldo de Andrade (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 6 - EVOLU&Ccedil;&Atilde;O DA TERAPIA ANTITROMB&Oacute;TICA ADJUNTA: O QUE VOC&Ecirc; PRECISA SABER</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Pedro Beraldo de Andrade (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-molth90i",
+        "label": "Aula 7",
+        "videoUrl": "https://vimeo.com/1187373859",
+        "title": "AULA 7 - INDICAÇÕES E CONTRAINDICAÇÕES DE CATETERISMO CARDÍACO DIAGNÓSTICO Professor: Dr. Andre Labrunie (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 7 - INDICA&Ccedil;&Otilde;ES E CONTRAINDICA&Ccedil;&Otilde;ES DE CATETERISMO CARD&Iacute;ACO DIAGN&Oacute;STICO</span><br class=\"wixui-rich-text__text\">\nProfessor: Dr. Andre Labrunie (SP)</span></span></span></span></h1>"
+      }
+    ],
+    "videoIA": "https://video.wixstatic.com/video/1d3d47_0452e19fb31048fdb8e988fae0a89fa9/720p/mp4/file.mp4",
+    "resumosAudio": [
+      {
+        "cid": "comp-molr1fp1",
+        "trackName": "AULA 1 - HISTÓRIA DA HEMODINÂMICA E CARDIOLOGIA INTERVENCIONISTA",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_83a9e5c66e4447ed813b64cf3562102b-320.mp3",
+        "duration": 121
+      },
+      {
+        "cid": "comp-momc483e",
+        "trackName": "AULA 2 - ANATOMIA CORONÁRIA, PROJEÇÕES ANGIOGRÁFICAS E ANOMALIAS DE CORONÁRIAS",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_50a2c85ac44c4e4aaee1bd9b178675f5-320.mp3",
+        "duration": 123
+      },
+      {
+        "cid": "comp-momcav90",
+        "trackName": "AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_82c0ca999c2746c0b13660ccc9e0ca7e-320.mp3",
+        "duration": 113
+      },
+      {
+        "cid": "comp-momcaz80",
+        "trackName": "AULA 4 - NOÇÕES BÁSICAS DE RADIAÇÕES IONIZANTES, FORMAÇÃO DA IMAGEM E PROTEÇÃO RADIOLÓGICA",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_c75470a55b054359bf744d4791bbcdc0-320.mp3",
+        "duration": 110
+      },
+      {
+        "cid": "comp-momcb2uz",
+        "trackName": "AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E TÉCNICA DE ACESSOS ARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICAÇÕES NO ACESSO VASCULAR; DISPOSITIVOS DE OCLUSÃO VASCULAR",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_c47b1a6c64f7453e98c309ba42e5d557-320.mp3",
+        "duration": 124
+      },
+      {
+        "cid": "comp-momcbat0",
+        "trackName": "AULA 6 - EVOLUÇÃO DA TERAPIA ANTITROMBÓTICA ADJUNTA: O QUE VOCÊ PRECISA SABER",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_f19b8f8820454d9eb1bb4e5cee4a046f-320.mp3",
+        "duration": 113
+      },
+      {
+        "cid": "comp-momcbipb",
+        "trackName": "AULA 7 - INDICAÇÕES E CONTRAINDICAÇÕES DE CATETERISMO CARDÍACO DIAGNÓSTICO ",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_38414086d42949e384160ab93aa08cf1-320.mp3",
+        "duration": 101
+      }
+    ],
+    "podcasts": [
+      {
+        "cid": "comp-momr5cv61",
+        "trackName": "AULA 1 - HISTÓRIA DA HEMODINÂMICA E CARDIOLOGIA INTERVENCIONISTA",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_2c7d9331cf114ae7b80c085e3a2670fb-320.mp3",
+        "duration": 1233
+      },
+      {
+        "cid": "comp-momr5cvk1",
+        "trackName": "AULA 2 - ANATOMIA CORONÁRIA, PROJEÇÕES ANGIOGRÁFICAS E ANOMALIAS DE CORONÁRIAS",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_f219005db85b4a069a7c3d8c159df0c3-320.mp3",
+        "duration": 1292
+      },
+      {
+        "cid": "comp-momr5cvl1",
+        "trackName": "AULA 3 - MEIOS DE CONTRASTE E NEFROPATIA INDUZIDA POR CONTRASTE",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_896913ef760d40eb9951276073e27f31-320.mp3",
+        "duration": 1530
+      },
+      {
+        "cid": "comp-momr5cvm",
+        "trackName": "AULA 4 - NOÇÕES BÁSICAS DE RADIAÇÕES IONIZANTES, FORMAÇÃO DA IMAGEM E PROTEÇÃO RADIOLÓGICA",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_deb6bd189cdd481da8797f0e372e44bf-320.mp3",
+        "duration": 1437
+      },
+      {
+        "cid": "comp-momr5cvm7",
+        "trackName": "AULA 5 - ACESSOS VASCULARES: ANATOMIA VASCULAR, ESCOLHA E TÉCNICA DE ACESSOS ARTERIAIS, RECONHECIMENTO E TRATAMENTO DE COMPLICAÇÕES NO ACESSO VASCULAR; DISPOSITIVOS DE OCLUSÃO VASCULAR",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_f97224426ff14976b369a33e652b397e-320.mp3",
+        "duration": 1342
+      },
+      {
+        "cid": "comp-momr5cvn6",
+        "trackName": "AULA 6 - EVOLUÇÃO DA TERAPIA ANTITROMBÓTICA ADJUNTA: O QUE VOCÊ PRECISA SABER",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_f0d7fb1a59e347faa00cc4c646dd42b6-320.mp3",
+        "duration": 902
+      },
+      {
+        "cid": "comp-momr5cvo2",
+        "trackName": "AULA 7 - INDICAÇÕES E CONTRAINDICAÇÕES DE CATETERISMO CARDÍACO DIAGNÓSTICO ",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_f31f417eb461499b9f260c0eed24ecea-320.mp3",
+        "duration": 1421
+      }
+    ],
+    "apresentacoesIA": [
+      {
+        "cid": "comp-monsr9mp",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_2d44667422da487c9d0bf6a54141c1af.pdf"
+      },
+      {
+        "cid": "comp-monsr9nk",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_b1d2f150de2a4bfeab91ef3baa03fcd0.pdf"
+      },
+      {
+        "cid": "comp-monsr9oc",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_111f933b74a44ab6a931b26941d0ec9d.pdf"
+      },
+      {
+        "cid": "comp-monsr9n5",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_4e54b411c8e8417690129e7ba22ce174.pdf"
+      },
+      {
+        "cid": "comp-monsr9ny",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1a905d4daf30417b8431e325f1635bc3.pdf"
+      },
+      {
+        "cid": "comp-monsr9oq",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_a4ff0faca4d847a5b0f51eda9b4c9469.pdf"
+      },
+      {
+        "cid": "comp-monsr9p7",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1ddbab6cf0814d9cb3c3149c8e01eca6.pdf"
+      }
+    ],
+    "slidesOriginais": [
+      {
+        "cid": "comp-mons5jbc",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_75d760f96ba646ed92837419888b6f08.pdf"
+      },
+      {
+        "cid": "comp-mons7k2u",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_159fca793b5345b397cec33c927be120.pdf"
+      },
+      {
+        "cid": "comp-mons7tjt",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1c6056ef2bb9486f9c788be868098a55.pdf"
+      },
+      {
+        "cid": "comp-mons7yj1",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_5dd8053405934bdba629e7a50921b0d4.pdf"
+      },
+      {
+        "cid": "comp-mons84ve",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_f2bcbb82622a46baa25f449625ec274f.pdf"
+      },
+      {
+        "cid": "comp-mons8bg6",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_3d0cbe3108a94203b700169d1a7cf0ca.pdf"
+      },
+      {
+        "cid": "comp-mons8spp",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_af074ba44b984b4587b03dcd9f125d50.pdf"
+      }
+    ],
+    "relatorioHtml": "<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Sum&aacute;rio Executivo</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">O curso 2026 marca uma transi&ccedil;&atilde;o tecnol&oacute;gica significativa para a SBHCI, com o lan&ccedil;amento da plataforma CathlabFlix e a integra&ccedil;&atilde;o de intelig&ecirc;ncia artificial (IA) via NotebookLM Pro para facilitar o estudo (mapas mentais, podcasts gerados por IA e quest&otilde;es comentadas). O conte&uacute;do t&eacute;cnico refor&ccedil;a a hegemonia do acesso radial (&quot;Radial First&quot;), a necessidade de prote&ccedil;&atilde;o radiol&oacute;gica rigorosa e a personaliza&ccedil;&atilde;o da terapia antitromb&oacute;tica com base em scores de risco hemorr&aacute;gico. Historicamente, a especialidade evoluiu de diagn&oacute;sticos invasivos para interven&ccedil;&otilde;es estruturais complexas, mantendo o legado de pioneiros como Andreas Gr&uuml;ntzig, agora adaptado para a era digital e da medicina de precis&atilde;o.</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">1. Inova&ccedil;&otilde;es Educacionais e Plataforma CathlabFlix</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">A SBHCI introduziu um novo ecossistema de aprendizado para os residentes e s&oacute;cios:</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">CathlabFlix: </span>Reposit&oacute;rio centralizado de webinares, aulas do curso de forma&ccedil;&atilde;o e conte&uacute;dos de congressos.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">NotebookLM Pro: </span>Ferramenta que utiliza IA para processar a bibliografia, criando automaticamente mapas mentais, infogr&aacute;ficos e podcasts explicativos.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Interatividade:</span> Sistema de quest&otilde;es que comenta erros e acertos em tempo real, visando n&atilde;o apenas a aprova&ccedil;&atilde;o em provas de t&iacute;tulo, mas a reciclagem cont&iacute;nua de profissionais experientes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">2. Perspectiva Hist&oacute;rica: Da Autocateteriza&ccedil;&atilde;o &agrave; TAVI</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">A evolu&ccedil;&atilde;o da cardiologia intervencionista foi segmentada em marcos fundamentais:</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Prim&oacute;rdios:</span> Werner Forssmann (1929) realizou a autocateteriza&ccedil;&atilde;o do &aacute;trio direito. Mason Sones (1959) realizou a primeira angiografia coron&aacute;ria seletiva por dissec&ccedil;&atilde;o braquial.<br class=\"wixui-rich-text__text\">\nRevolu&ccedil;&atilde;o de Gr&uuml;ntzig (1977): Andreas Gr&uuml;ntzig realizou a primeira angioplastia coron&aacute;ria por bal&atilde;o em Zurique, com bal&otilde;es manufaturados artesanalmente.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Era dos Stents:</span> O primeiro stent coron&aacute;rio foi implantado em 1986 (Wallstent). Antonio Colombo, nos anos 90, demonstrou a import&acirc;ncia da alta press&atilde;o na expans&atilde;o guiada por ultrassom intracoron&aacute;rio para reduzir tromboses.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Pioneirismo no Brasil: </span>Eduardo Sousa realizou a primeira coronariografia no pa&iacute;s (1966), a primeira angioplastia (1979) e o primeiro implante de stent farmacol&oacute;gico (Cypher).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">3. Anatomia, Proje&ccedil;&otilde;es e Anomalias Coron&aacute;rias</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">A interpreta&ccedil;&atilde;o correta de imagens 2D para estruturas 3D exige dom&iacute;nio das proje&ccedil;&otilde;es ortogonais:</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Domin&acirc;ncia:</span> Definida pela art&eacute;ria que origina o ramo descendente posterior (85% direita, 7,5% esquerda, 7,5% balanceada).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Proje&ccedil;&otilde;es Angiogr&aacute;ficas:</span><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">OAD Caudal (Spider):</span> ideal para visualizar o tronco da coron&aacute;ria esquerda e os &oacute;stios de DA e CX.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">OAE Cranial: </span>promove melhor alongamento da descendente anterior (DA).<br class=\"wixui-rich-text__text\">\nAnomalias (Classifica&ccedil;&atilde;o de Angelini): Maior risco de morte s&uacute;bita em trajetos interarteriais e intramurais, especialmente em atletas jovens. A angiotomografia &eacute; o padr&atilde;o-ouro para diagn&oacute;stico anat&ocirc;mico.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">4. Meios de Contraste e Nefropatia (NIC)</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">A escolha do contraste deve equilibrar radiopacidade e seguran&ccedil;a renal:</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Propriedades Cr&iacute;ticas:</span> Osmolalidade e viscosidade. Contrastes isosmolares (ex: Iodixanol) apresentam menor osmolalidade, por&eacute;m maior viscosidade.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Nefropatia Induzida por Contraste (NIC):</span> Definida como aumento da creatinina &ge; 0,3 mg/dl ou &ge; 50% do valor basal (crit&eacute;rio KDIGO).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Preven&ccedil;&atilde;o:</span><br class=\"wixui-rich-text__text\">\nHidrata&ccedil;&atilde;o com solu&ccedil;&atilde;o fisiol&oacute;gica (1 ml/kg/h) 12h antes e ap&oacute;s o procedimento.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Volume limite: </span>3,4 &times; taxa de filtra&ccedil;&atilde;o glomerular.<br class=\"wixui-rich-text__text\">\nSuspens&atilde;o de metformina por 48h se TFG &lt; 30 ml/min.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">5. F&iacute;sica da Imagem e Prote&ccedil;&atilde;o Radiol&oacute;gica</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">A radia&ccedil;&atilde;o X interage com a mat&eacute;ria produzindo efeitos biol&oacute;gicos distintos:</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Efeitos Determin&iacute;sticos: </span>Dependentes de dose (limiar ~5 Gy), podendo causar radiodermite e catarata.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Efeitos Estoc&aacute;sticos: </span>Probabil&iacute;sticos e sem limiar (ex: neoplasias), com maior impacto em pacientes jovens e mulheres.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Grandezas de Medida:</span><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Air Kerma (Gray):</span> energia entregue em um ponto.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DAP: </span>relacionado ao risco estoc&aacute;stico.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Regra de Ouro: </span>Lei do inverso do quadrado da dist&acirc;ncia. Dobrar a dist&acirc;ncia reduz a exposi&ccedil;&atilde;o para 1/4.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">6. Acessos Vasculares e Complica&ccedil;&otilde;es</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Radial First:</span> Estrat&eacute;gia preferencial pela menor mortalidade e redu&ccedil;&atilde;o de sangramentos.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Acesso radial: </span>Permite deambula&ccedil;&atilde;o precoce e maior conforto ao paciente.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Complica&ccedil;&otilde;es radiais:</span> Espasmo, looping e oclus&atilde;o da art&eacute;ria radial (preven&ccedil;&atilde;o com heparina 50 U/kg).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Acesso femoral:</span> Indicado para procedimentos complexos (ex.: TAVI e CTO) devido ao maior suporte.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Complica&ccedil;&otilde;es femorais: </span>Hematoma retroperitoneal (sinal da &ldquo;meia-lua&rdquo;) e pseudoaneurisma.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">T&eacute;cnica BAT: </span>Uso de bal&atilde;o 0.14&quot; para facilitar a progress&atilde;o em anatomias tortuosas.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Ultrassom:</span> Padr&atilde;o-ouro para guiar pun&ccedil;&otilde;es vasculares, especialmente em pacientes complexos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">7. Terapia Antitromb&oacute;tica Adjunta</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">A modula&ccedil;&atilde;o da DAPT deve equilibrar risco isqu&ecirc;mico e hemorr&aacute;gico:</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Scores de Risco: </span>PRECISE-DAPT e ARC-HBR.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Descalonamento: </span>Troca para Clopidogrel guiada por gen&eacute;tica (CYP2C19) ou fun&ccedil;&atilde;o plaquet&aacute;ria.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Monoterapia:</span> Tend&ecirc;ncia de suspens&atilde;o da aspirina ap&oacute;s 1&ndash;3 meses.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fibrila&ccedil;&atilde;o Atrial:</span> Terapia dupla ap&oacute;s curto per&iacute;odo de terapia tripla (7&ndash;30 dias).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">8. Indica&ccedil;&otilde;es e Contraindica&ccedil;&otilde;es Cl&iacute;nicas</span></span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">O cateterismo deve seguir crit&eacute;rios de uso apropriado:</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Emerg&ecirc;ncia (&lt; 2h):</span> IAM com supra ou IAM sem supra de muito alto risco &mdash; sem contraindica&ccedil;&otilde;es absolutas.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Urg&ecirc;ncia (&lt; 24h): </span>IAM sem supra de alto risco (GRACE &gt; 140).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Doen&ccedil;a Cr&ocirc;nica: </span>Interven&ccedil;&atilde;o indicada principalmente em sintomas refrat&aacute;rios (estudo ISCHEMIA).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Contraindica&ccedil;&otilde;es Relativas: </span>Insufici&ecirc;ncia renal, infec&ccedil;&atilde;o ativa e coagulopatias devem ser corrigidas.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Heart Team: </span>Fundamental em casos complexos.</span></span></span></p>",
+    "infograficos": [
+      "https://static.wixstatic.com/media/a8daef_8d058fee542846e093ffd380b2e13aaf~mv2.png",
+      "https://static.wixstatic.com/media/a8daef_ca279a7671e34ae6a0d984097392e2a4~mv2.png",
+      "https://static.wixstatic.com/media/a8daef_d3ed53924afd478c98c66a3d664423df~mv2.png",
+      "https://static.wixstatic.com/media/a8daef_727b6166ce6c4627b099266d9b2908c1~mv2.png",
+      "https://static.wixstatic.com/media/a8daef_3511aac18e69422aa8bc247af93beab8~mv2.png",
+      "https://static.wixstatic.com/media/a8daef_6f1d91404ae74c95ba17124615825ea1~mv2.png",
+      "https://static.wixstatic.com/media/a8daef_054989cf61e24467beac87fc2dc51c70~mv2.png"
+    ]
+  },
+  "modulo2": {
+    "info": {
+      "id": "modulo2",
+      "number": 2,
+      "title": "Módulo 2 - Doença Coronariana Aguda, Crônica e Métodos Adjuntos",
+      "shortTitle": "Módulo 2",
+      "slug": "2026-modulo2-curso-para-intervencionistas",
+      "cover": "https://static.wixstatic.com/media/1d3d47_c92e1b32039e48a69c8174b8ca58405a~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(13).png"
+    },
+    "aulas": [
+      {
+        "tabId": "comp-mpyka24x2",
+        "label": "Aula 1",
+        "videoUrl": "https://vimeo.com/1197457024",
+        "title": "AULA 1 - O papel da revascularização percutânea na doença coronária estável ‐ da lesão uniarterial ao tronco da coronária esquerda Professor: Stefano Garzon (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - O papel da revasculariza&ccedil;&atilde;o percut&acirc;nea na doen&ccedil;a &nbsp;coron&aacute;ria est&aacute;vel ‐&nbsp;da les&atilde;o uniarterial ao tronco da coron&aacute;ria esquerda</span><br class=\"wixui-rich-text__text\">\nProfessor: Stefano Garzon (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mpyka24y11",
+        "label": "Aula 2",
+        "videoUrl": "https://vimeo.com/1197457025",
+        "title": "AULA 2 - Estado da arte no manejo da SCA sem supra ST ‐ o que dizem os últimos guidelines Professor: Antônio Fernando Diniz Freire (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Estado da arte no manejo da SCA sem supra ST ‐ o que dizem os &uacute;ltimos guidelines&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Ant&ocirc;nio Fernando Diniz Freire (SP)&nbsp;</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mpyka24z13",
+        "label": "Aula 3",
+        "videoUrl": "https://vimeo.com/1197459002",
+        "title": "AULA 3 - Estado da arte no manejo do IAM com supra de ST – o que dizem os últimos guidelines Professor: Felipe Mateus Teixeira Bezerra (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Estado da arte no manejo do IAM com supra de ST &ndash; o&nbsp; que dizem os &uacute;ltimos guidelines&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Felipe Mateus Teixeira Bezerra (SP)&nbsp;</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mpyka25017",
+        "label": "Aula 4",
+        "videoUrl": "https://vimeo.com/1197459035",
+        "title": "AULA 4 - Revascularização completa vs culpada: evidências atuais Professor: Micheli Zano Galon (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - Revasculariza&ccedil;&atilde;o completa vs culpada: evid&ecirc;ncias atuais&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Micheli Zano Galon (SP)&nbsp;</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mpyka2523",
+        "label": "Aula 5",
+        "videoUrl": "https://vimeo.com/1197459657",
+        "title": "SIMPÓSIO SATÉLITE MERIL ‐ Evolução dos stents e metodologia de imagens Professores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE MERIL ‐&nbsp;Evolu&ccedil;&atilde;o dos stents e&nbsp;metodologia de imagens&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessores: Louis Nakayama Ohe (SP) e&nbsp;Daniel Bandeira (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mq18vcgu",
+        "label": "Aula 6",
+        "videoUrl": "https://vimeo.com/1197461669",
+        "title": "SIMPÓSIO SATÉLITE MERIL ‐ Evolução dos stents e metodologia de imagens Professores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE MERIL ‐ Evolu&ccedil;&atilde;o dos stents e metodologia de imagens&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessores: Louis Nakayama Ohe (SP) e Daniel Bandeira (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mpyka254",
+        "label": "Aula 7",
+        "videoUrl": "https://vimeo.com/1197465935",
+        "title": "AULA 7 - Novas tecnologias Professor: Louis Nakayama Ohe (SP) José Henrique Delamain (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 7 - Novas tecnologias&nbsp;</span><br class=\"wixui-rich-text__text\">\nProfessor: Louis Nakayama Ohe (SP) Jos&eacute; Henrique Delamain (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mq1926b4",
+        "label": "Aula 8",
+        "videoUrl": "https://vimeo.com/1197470545",
+        "title": "AULA 8 - Choque cardiogênico no IAM: diagnóstico e dispositivos de assistência Professor: Rodrigo Wainstein (RS)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 8 - Choque cardiog&ecirc;nico no IAM: diagn&oacute;stico e&nbsp;dispositivos de assist&ecirc;ncia</span><br class=\"wixui-rich-text__text\">\nProfessor: Rodrigo Wainstein (RS)&nbsp;</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mq19gxko",
+        "label": "Aula 9",
+        "videoUrl": "https://vimeo.com/1197473853",
+        "title": "AULA 9 -Complicações da Angioplastia Coronariana Professor: Gabriel Dodo Buchler",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 9 -Complica&ccedil;&otilde;es da Angioplastia Coronariana</span><br class=\"wixui-rich-text__text\">\nProfessor: Gabriel Dodo Buchler</span></span></span></span></h1>"
+      }
+    ],
+    "videoIA": "https://video.wixstatic.com/video/1d3d47_78c51b64d475493880c2bb0d332d6651/720p/mp4/file.mp4",
+    "resumosAudio": [
+      {
+        "cid": "comp-mpyka26a10",
+        "trackName": "Aula 1 - Quando_o_stent_realmente_salva_vidas",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3",
+        "duration": 103
+      },
+      {
+        "cid": "comp-mpyka26b",
+        "trackName": "Aula 2 - Radial_e_microcâmeras_no_infarto_sem_supra",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3",
+        "duration": 111
+      },
+      {
+        "cid": "comp-mpyka26b7",
+        "trackName": "Aula 4 - Quando_desobstruir_todas_as_artérias_no_infarto",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3",
+        "duration": 96
+      },
+      {
+        "cid": "comp-mpyka26b14",
+        "trackName": "Aula 5 - A_evolução_dos_stents_coronários",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3",
+        "duration": 106
+      },
+      {
+        "cid": "comp-mpyka26c4",
+        "trackName": "Aula 6 - Stents_ultrafinos_e_polímeros_que_desaparecem",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3",
+        "duration": 116
+      },
+      {
+        "cid": "comp-mpyka26c11",
+        "trackName": "Aula 7 - Curar_o_coração_sem_deixar_rastros",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3",
+        "duration": 102
+      },
+      {
+        "cid": "comp-mpyka26c18",
+        "trackName": "Aula 8 - Tratamento_do_choque_cardiogênico_além_da_pressão",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3",
+        "duration": 113
+      },
+      {
+        "cid": "comp-mq1haqv5",
+        "trackName": "Aula 9 - Como_resolver_as_piores_complicações_na_angioplastia",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3",
+        "duration": 92
+      }
+    ],
+    "podcasts": [],
+    "apresentacoesIA": [
+      {
+        "cid": "comp-mpyka25p",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_da70b831f4e0476186cf6b7875a85120.pdf"
+      },
+      {
+        "cid": "comp-mpyka25u4",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_37c36070801545b0a3e171b4315ff6a0.pdf"
+      },
+      {
+        "cid": "comp-mpyka25t1",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1c4564912aaf4faba2e7a2b27aecac29.pdf"
+      },
+      {
+        "cid": "comp-mpyka25u11",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_7fc5ae21c4a64a298e57f44cb80f9075.pdf"
+      },
+      {
+        "cid": "comp-mpyka25t8",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_ffff52be95bf4817b38315e2840a01f9.pdf"
+      },
+      {
+        "cid": "comp-mpyka25v1",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_dbe4de0ba158422e9754d4ee9944ac41.pdf"
+      },
+      {
+        "cid": "comp-mpyka25v8",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_c444a8aa728941e1973402c852abc393.pdf"
+      },
+      {
+        "cid": "comp-mq1gb2hr",
+        "label": "Aula 8",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_4d9b85cb717f46088ab529c61ce93d1b.pdf"
+      },
+      {
+        "cid": "comp-mq1gbatj",
+        "label": "Aula 9",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_19b56b8bfb574aaaab226d604ee40d39.pdf"
+      }
+    ],
+    "slidesOriginais": [
+      {
+        "cid": "comp-mpyka2669",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_0adb1be762264b8085db7905eca0af9d.pdf"
+      },
+      {
+        "cid": "comp-muv6m2p9",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_91bd468ad7c7433bb57990cac6624f80.pdf"
+      },
+      {
+        "cid": "comp-mpyka26616",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1ab3aa3c68474ca1b696db63ca44d488.pdf"
+      },
+      {
+        "cid": "comp-mpyka2676",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_12d53884d1fb4e07b2a997ff186bcb7e.pdf"
+      },
+      {
+        "cid": "comp-mqza8js7",
+        "label": "Caso Clínico",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_b35c89ba2acb403599163cb037e6bede.pdf"
+      },
+      {
+        "cid": "comp-mpyka26713",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_16b2416f35324e16b3a792362606ceb6.pdf"
+      },
+      {
+        "cid": "comp-mpyka2681",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_9d1010bab39b4ea2a4a8202423f8ce24.pdf"
+      },
+      {
+        "cid": "comp-mpyka2688",
+        "label": "Aula 8",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_fbfa9f950efb49e3a75ec402eaa3ae9e.pdf"
+      },
+      {
+        "cid": "comp-muwqryh5",
+        "label": "Aula 9",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_f650722de3ef4cc29491c2ff7a03fb5d.pptx?dn=Gabriel%20-%20Aula%20SBHCI%20.pptx"
+      }
+    ],
+    "relatorioHtml": "<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Sum&aacute;rio Executivo</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA cardiologia intervencionista atravessa um per&iacute;odo de refinamento tecnol&oacute;gico focado na redu&ccedil;&atilde;o de eventos adversos e na melhoria da navegabilidade dos dispositivos. Os principais destaques incluem:<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Evolu&ccedil;&atilde;o para Hastes Ultra-finas: </span>A transi&ccedil;&atilde;o de hastes grossas (&gt;100&micro;m) para ultra-finas (&lt;70&micro;m), como as de 65&micro;m do BioMime Aura, resultou em menor trauma vascular, resposta inflamat&oacute;ria reduzida e menor risco de reestenose e trombose.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Plataforma BioMime Aura: </span>Demonstra superioridade em navegabilidade e sistema de entrega em compara&ccedil;&atilde;o com vers&otilde;es anteriores, apresentando resultados de n&atilde;o-inferioridade cl&iacute;nica em rela&ccedil;&atilde;o a stents de refer&ecirc;ncia no mercado (como o Xience).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Manejo da SCASSST: </span>A estratifica&ccedil;&atilde;o de risco atrav&eacute;s do Grace Score e TIMI Risk &eacute; fundamental para determinar o tempo da interven&ccedil;&atilde;o. Pacientes de alto risco (Grace &gt;140) obt&ecirc;m benef&iacute;cio m&aacute;ximo com a estrat&eacute;gia invasiva precoce (dentro de 24 horas).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Individualiza&ccedil;&atilde;o no Idoso: </span>O estudo Senior-Rita indica que a decis&atilde;o por estrat&eacute;gia invasiva em pacientes idosos e fr&aacute;geis deve ser individualizada, uma vez que os benef&iacute;cios em desfechos duros podem ser dilu&iacute;dos por comorbidades e expectativa de vida.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">1. Evolu&ccedil;&atilde;o Tecnol&oacute;gica e Propriedades dos Stents</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO desenvolvimento dos stents met&aacute;licos busca alcan&ccedil;ar um equil&iacute;brio entre efic&aacute;cia antiproliferativa e seguran&ccedil;a cl&iacute;nica.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nCaracter&iacute;sticas do Stent Ideal<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO material de suporte e o design do stent s&atilde;o cruciais para o sucesso do procedimento. Os crit&eacute;rios para um stent met&aacute;lico ideal incluem:</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<ul class=\"font_8 color_36 wixui-rich-text__text\" style=\"font-family:montserrat,sans-serif; font-weight:normal; text-align:justify; font-size:16px;\">\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\">Alta efic&aacute;cia antiproliferativa e r&aacute;pida endoteliza&ccedil;&atilde;o para mitigar o risco de trombose.</span></span></span></p>\n</li>\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\">Elevada for&ccedil;a radial mantendo a flexibilidade e navegabilidade para atravessar anatomias tortuosas.</span></span></span></p>\n</li>\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\">Alta visibilidade radiol&oacute;gica, permitindo posicionamento preciso mesmo em pacientes com maior massa corporal.</span></span></span></p>\n</li>\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\">Compatibilidade anat&ocirc;mica e baixo perfil de cruzamento.</span></span></span></p>\n</li>\n</ul>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Impacto da Espessura das Hastes</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA redu&ccedil;&atilde;o da espessura das hastes (struts) &eacute; um dos avan&ccedil;os mais significativos da 2&ordf; gera&ccedil;&atilde;o:<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Hastes Finas (ex: Cobalto-Cromo ou Platina-Cromo):</span> Reduzem o trauma &agrave; parede vascular e a inflama&ccedil;&atilde;o cr&ocirc;nica local.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Din&acirc;mica de Fluxo: </span>Hastes mais grossas geram fluxo turbulento e maior agrega&ccedil;&atilde;o plaquet&aacute;ria. Hastes ultra-finas promovem um fluxo mais laminar, acelerando a recupera&ccedil;&atilde;o endotelial.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Evid&ecirc;ncia (ISAR STEREO):</span> O estudo demonstrou que hastes de 50&micro;m apresentam taxas de reestenose angiogr&aacute;fica e cl&iacute;nica significativamente menores em compara&ccedil;&atilde;o com hastes de 100&micro;m.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">2. Plataforma BioMime Aura: An&aacute;lise de Caso e Performance</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA plataforma BioMime Aura representa a evolu&ccedil;&atilde;o dos stents de Sirolimus com pol&iacute;mero biodegrad&aacute;vel.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Especifica&ccedil;&otilde;es T&eacute;cnicas</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Material: </span>Cobalto-Cromo com hastes ultra-finas de 65&micro;m.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">F&aacute;rmaco:</span> Sirolimus, utilizando pol&iacute;mero biodegrad&aacute;vel.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Design:</span> Estrutura h&iacute;brida com c&eacute;lulas fechadas nas bordas (para estabilidade) e abertas no centro (para flexibilidade e acesso a ramos laterais).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Insights de Pr&aacute;tica Cl&iacute;nica</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nDiscuss&otilde;es entre especialistas destacam uma melhora dr&aacute;stica no sistema de entrega da nova vers&atilde;o do BioMime Aura em rela&ccedil;&atilde;o &agrave;s anteriores:</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\">&nbsp;</p>\n\n<ul class=\"font_8 color_36 wixui-rich-text__text\" style=\"font-weight:normal; font-family:montserrat, sans-serif; font-size:16px;\">\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Navegabilidade:</span> O sistema &eacute; descrito como tendo excelente &quot;trackability&quot;, conseguindo progredir em les&otilde;es distais e tortuosas de forma fluida (comparado ao termo &quot;descer como quiabo&quot; pela facilidade de entrega).</span></span></span></p>\n</li>\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Estabilidade de Libera&ccedil;&atilde;o:&nbsp;</span>Diferente de modelos antigos que podiam apresentar o efeito &quot;pop-up&quot; (deslocamento proximal ou distal durante a expans&atilde;o), a vers&atilde;o atual oferece uma libera&ccedil;&atilde;o controlada e precisa, garantindo a cobertura exata da les&atilde;o.</span></span></span></p>\n</li>\n<li class=\"wixui-rich-text__text\">\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Visibilidade:&nbsp;</span>Apesar das hastes ultra-finas, o dispositivo mant&eacute;m uma visibilidade radiol&oacute;gica satisfat&oacute;ria, facilitando o posicionamento e a dilata&ccedil;&atilde;o posterior.</span></span></span><br class=\"wixui-rich-text__text\">\n&nbsp;</p>\n</li>\n</ul>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">3. Evid&ecirc;ncias Cl&iacute;nicas e Ensaios MERIT</span><br class=\"wixui-rich-text__text\">\nA efic&aacute;cia e seguran&ccedil;a da linha BioMime foram validadas por meio de m&uacute;ltiplos ensaios cl&iacute;nicos.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">MERIT I, II e III: </span>Mostraram baixas taxas de Eventos Card&iacute;acos Adversos Maiores (MACE), variando de 0% (MERIT I - 30 pacientes) a 2,35% (MERIT III - 1.161 pacientes), com taxas de trombose de stent extremamente baixas (0,1% no MERIT III).<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">MERIT V:</span> Estudo randomizado comparando BioMime com o stent Xience (DP-EES). O desfecho prim&aacute;rio de perda tardia de l&uacute;men (late lumen loss) aos 9 meses confirmou a n&atilde;o-inferioridade do BioMime em rela&ccedil;&atilde;o ao padr&atilde;o ouro de pol&iacute;mero dur&aacute;vel.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">An&aacute;lise de Desfechos: </span>Dados agrupados de stents ultra-finos (como o BioMime) indicam uma tend&ecirc;ncia de redu&ccedil;&atilde;o na falha da les&atilde;o-alvo (TLF) e na revasculariza&ccedil;&atilde;o da les&atilde;o-alvo (TLR) em compara&ccedil;&atilde;o com stents de hastes mais grossas de gera&ccedil;&otilde;es anteriores.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">4. Manejo da S&iacute;ndrome Coronariana Aguda sem Supra (SCASSST)</span><br class=\"wixui-rich-text__text\">\nO manejo moderno da SCASSST baseia-se na identifica&ccedil;&atilde;o r&aacute;pida e estratifica&ccedil;&atilde;o rigorosa para definir a estrat&eacute;gia de tratamento.</span></span></span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"font-size:16px;\"><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Pilares do Diagn&oacute;stico</span><br class=\"wixui-rich-text__text\">\nO diagn&oacute;stico &eacute; fundamentado na tr&iacute;ade:<br class=\"wixui-rich-text__text\">\n1 - Apresenta&ccedil;&atilde;o cl&iacute;nica do paciente.<br class=\"wixui-rich-text__text\">\n2 - Achados eletrocardiogr&aacute;ficos.<br class=\"wixui-rich-text__text\">\n3 - Biomarcadores (Troponina de alta sensibilidade, que aumentou significativamente a sensibilidade diagn&oacute;stica).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Estratifica&ccedil;&atilde;o de Risco e Tempo de Interven&ccedil;&atilde;o</span><br class=\"wixui-rich-text__text\">\nA escolha entre estrat&eacute;gia invasiva ou conservadora depende do perfil de risco, geralmente calculado pelos escores Grace ou TIMI:<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Alto Risco (Grace &gt;140 ou troponina positiva): </span>Benef&iacute;cio claro de estrat&eacute;gia invasiva precoce, idealmente dentro das primeiras 24 horas. Estudos como o Timex e o Verdict confirmam que pacientes de alto risco t&ecirc;m redu&ccedil;&atilde;o de morte e infarto com a interven&ccedil;&atilde;o r&aacute;pida.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Risco Intermedi&aacute;rio (Grace 109-140): </span>A estratifica&ccedil;&atilde;o invasiva pode ser realizada em at&eacute; 72 horas.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Baixo Risco: </span>Pode-se optar por uma estrat&eacute;gia invasiva seletiva baseada em testes n&atilde;o invasivos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Popula&ccedil;&otilde;es Especiais e Acesso Vascular</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Idosos e Fr&aacute;geis:</span> O estudo Senior-Rita (pacientes com m&eacute;dia de 82 anos) n&atilde;o mostrou superioridade da estrat&eacute;gia invasiva sobre a conservadora em desfechos globais a curto prazo. A recomenda&ccedil;&atilde;o &eacute; individualizar a decis&atilde;o com base na fragilidade e comorbidades.<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Acesso Vascular:</span> O acesso radial &eacute; preconizado como padr&atilde;o, pois o sangramento relacionado ao local de acesso &eacute; respons&aacute;vel por at&eacute; 70% dos eventos hemorr&aacute;gicos em interven&ccedil;&otilde;es coron&aacute;rias.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">5. Conclus&otilde;es sobre Novas Tecnologias</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAl&eacute;m dos stents com pol&iacute;mero biodegrad&aacute;vel, o cen&aacute;rio tecnol&oacute;gico aponta para os stents sem pol&iacute;mero (Polymer-free), onde o medicamento &eacute; liberado diretamente de uma superf&iacute;cie met&aacute;lica microestruturada. Essa inova&ccedil;&atilde;o visa permitir terapias antiplaquet&aacute;rias duplas (DAPT) mais curtas, reduzindo o risco de sangramento sem comprometer a efic&aacute;cia antiproliferativa. A integra&ccedil;&atilde;o de imagem intravascular (IVUS/OCT) e fisiologia coronariana continua sendo o &quot;estado da arte&quot; para otimizar os resultados no laborat&oacute;rio de hemodin&acirc;mica.</span></span></span></span></span></p>",
+    "infograficos": [
+      "https://static.wixstatic.com/media/1d3d47_0aca243efc3f4c67932f3480ca75af12~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_112fdc68c1954c6b892974d79bbe23ea~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_17423e69095d4650894af3cf98785fcc~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_584b6a37a3304625b9abf0630528bed3~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_8212bf04d42c4cfe8a0db62948854613~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_92f591b169a84dd39cbb12262b2e564e~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_c7924a81b4e84bf3a7371a969909387c~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_cf3fd8dddca94d6fa903fd0c82228838~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_f03e7bd935c34b7db16d95a112a91649~mv2.png"
+    ]
+  },
+  "modulo3": {
+    "info": {
+      "id": "modulo3",
+      "number": 3,
+      "title": "Módulo 3 - Lesões Complexas e Métodos Adjuntos",
+      "shortTitle": "Módulo 3",
+      "slug": "2026-modulo3-curso-para-intervencionistas",
+      "cover": "https://static.wixstatic.com/media/1d3d47_cfc86a3aea5a42238ebd13a27cac3897~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(15).png"
+    },
+    "aulas": [
+      {
+        "tabId": "comp-mr6lbry81",
+        "label": "Aula 1",
+        "videoUrl": "https://vimeo.com/1205798677",
+        "title": "AULA 1 - Lesões de Bifurcação: Definições, Técnicas e Evidências Palestrante: Pedro Henrique Magalhães Craveiro de Melo (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 1 - Les&otilde;es de Bifurca&ccedil;&atilde;o: Defini&ccedil;&otilde;es, T&eacute;cnicas e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Henrique Magalh&atilde;es Craveiro de Melo (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mr6lbryj",
+        "label": "Aula 2",
+        "videoUrl": "https://vimeo.com/1205798266",
+        "title": "AULA 2 - Lesões Calcificadas: Impacto Clínico e Métodos de Modificação de Placa Palestrante: Pedro Felipe Gomes Nicz (PR)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 2 - Les&otilde;es Calcificadas: Impacto Cl&iacute;nico e M&eacute;todos de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Felipe Gomes Nicz (PR)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mr6lbryl5",
+        "label": "Aula 3",
+        "videoUrl": "https://vimeo.com/1205797678",
+        "title": "AULA 3 - Oclusão Total Crônica: Definição, Principais Técnicas e Algoritmo Híbrido Palestrante: Alexandre Schaan de Quadros (RS)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 3 - Oclus&atilde;o Total Cr&ocirc;nica: Defini&ccedil;&atilde;o, Principais T&eacute;cnicas e Algoritmo H&iacute;brido</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alexandre Schaan de Quadros (RS)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mr6lbryo",
+        "label": "Aula 4",
+        "videoUrl": "https://vimeo.com/1205797677",
+        "title": "AULA 4 - ICP em Enxertos (Safena/Mamária): Particularidades e Evidências Palestrante: Daniel Peralta e Silva (RJ)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">AULA 4 - ICP em Enxertos (Safena/Mam&aacute;ria): Particularidades e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Daniel Peralta e Silva (RJ)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mr6lbryq4",
+        "label": "Aula 5",
+        "videoUrl": "https://vimeo.com/1205797851",
+        "title": "SIMPÓSIO SATÉLITE TERUMO ‐ ICP Complexa na Prática Moderna: do Planejamento à Escolha da Plataforma e Otimização dos Resultados Palestrante: Louis Nakayama Ohe (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO SAT&Eacute;LITE TERUMO ‐ ICP Complexa na Pr&aacute;tica Moderna: do Planejamento &agrave; Escolha da Plataforma e Otimiza&ccedil;&atilde;o dos Resultados</span><br class=\"wixui-rich-text__text\">\nPalestrante: Louis Nakayama Ohe (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mr6lbryv",
+        "label": "Aula 6",
+        "videoUrl": "https://vimeo.com/1205797676",
+        "title": "Imagem Intracoronária: USIC e OCT – Das Técnicas às Diretrizes Palestrante: José de Ribamar Costa Junior (MA)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Imagem Intracoron&aacute;ria: USIC e OCT &ndash; Das T&eacute;cnicas &agrave;s Diretrizes</span><br class=\"wixui-rich-text__text\">\nPalestrante: Jos&eacute; de Ribamar Costa Junior (MA)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mr6lbrys6",
+        "label": "Aula 7",
+        "videoUrl": "https://vimeo.com/1205798986",
+        "title": "Fisiologia no Laboratório de Hemodinâmica: Métodos, Indicações e Evidências Palestrante: Felipe Souza Maia da Silva (RJ)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fisiologia no Laborat&oacute;rio de Hemodin&acirc;mica: M&eacute;todos, Indica&ccedil;&otilde;es e Evid&ecirc;ncias</span><br class=\"wixui-rich-text__text\">\nPalestrante: Felipe Souza Maia da Silva (RJ)</span></span></span></span></h1>"
+      }
+    ],
+    "videoIA": "https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4",
+    "resumosAudio": [
+      {
+        "cid": "comp-mr6lbs0q",
+        "trackName": "Aula 1 - Quando_o_stent_realmente_salva_vidas",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3",
+        "duration": 103
+      },
+      {
+        "cid": "comp-mr6lbs0x2",
+        "trackName": "Aula 2 - Radial_e_microcâmeras_no_infarto_sem_supra",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3",
+        "duration": 111
+      },
+      {
+        "cid": "comp-mr6lbs0y1",
+        "trackName": "Aula 4 - Quando_desobstruir_todas_as_artérias_no_infarto",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3",
+        "duration": 96
+      },
+      {
+        "cid": "comp-mr6lbs0z",
+        "trackName": "Aula 5 - A_evolução_dos_stents_coronários",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3",
+        "duration": 106
+      },
+      {
+        "cid": "comp-mr6lbs0z7",
+        "trackName": "Aula 6 - Stents_ultrafinos_e_polímeros_que_desaparecem",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3",
+        "duration": 116
+      },
+      {
+        "cid": "comp-mr6lbs106",
+        "trackName": "Aula 7 - Curar_o_coração_sem_deixar_rastros",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3",
+        "duration": 102
+      },
+      {
+        "cid": "comp-mr6lbs114",
+        "trackName": "Aula 8 - Tratamento_do_choque_cardiogênico_além_da_pressão",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3",
+        "duration": 113
+      },
+      {
+        "cid": "comp-mr6lbs121",
+        "trackName": "Aula 9 - Como_resolver_as_piores_complicações_na_angioplastia",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3",
+        "duration": 92
+      }
+    ],
+    "podcasts": [],
+    "apresentacoesIA": [
+      {
+        "cid": "comp-mr6lbrzh",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_da70b831f4e0476186cf6b7875a85120.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzn1",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_37c36070801545b0a3e171b4315ff6a0.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzo3",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1c4564912aaf4faba2e7a2b27aecac29.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzp1",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_7fc5ae21c4a64a298e57f44cb80f9075.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzq1",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_ffff52be95bf4817b38315e2840a01f9.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzr",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_dbe4de0ba158422e9754d4ee9944ac41.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzr7",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_c444a8aa728941e1973402c852abc393.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzs6",
+        "label": "Aula 8",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_4d9b85cb717f46088ab529c61ce93d1b.pdf"
+      },
+      {
+        "cid": "comp-mr6lbrzt6",
+        "label": "Aula 9",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_19b56b8bfb574aaaab226d604ee40d39.pdf"
+      }
+    ],
+    "slidesOriginais": [
+      {
+        "cid": "comp-mr6lbs0h",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_6c23d7acc22c40f088b41b9a3b237ce7.pdf"
+      },
+      {
+        "cid": "comp-mr6lbs0i",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_a6b76ad2557b43f18192154ffe50ea86.pdf"
+      },
+      {
+        "cid": "comp-mr6lbs0j",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_3d10c54e6ba64c3786f95006aef7eed0.pptx?dn=Alexandre%20-%20Aula%20CTO%20SBHCI%202026.pptx"
+      },
+      {
+        "cid": "comp-mr6lbs0k6",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_c2d41e2af06241ba8afd1efbd63a5a0f.pdf"
+      },
+      {
+        "cid": "comp-mr6lbs0l4",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_3d20464a3f3444e189e0cf18edbc6547.pdf"
+      }
+    ],
+    "relatorioHtml": "<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Sum&aacute;rio Executivo</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO aumento da expectativa de vida e a expans&atilde;o dos procedimentos de revasculariza&ccedil;&atilde;o em pacientes idosos elevaram significativamente a complexidade das interven&ccedil;&otilde;es coron&aacute;rias percut&acirc;neas (ICP). Este documento sintetiza as diretrizes mais recentes para o tratamento de estenoses gravemente calcificadas e as particularidades das interven&ccedil;&otilde;es em pacientes com hist&oacute;rico de cirurgia de revasculariza&ccedil;&atilde;o mioc&aacute;rdica (CRM).<br class=\"wixui-rich-text__text\">\nOs pontos centrais incluem a necessidade imperativa de diagn&oacute;stico preciso via imagem intravascular (IVUS ou OCT), uma vez que a angiografia convencional subestima consistentemente a carga de c&aacute;lcio. A sele&ccedil;&atilde;o de ferramentas &mdash; como aterectomia rotacional ou orbital, litotripsia intravascular (IVL) e bal&otilde;es especializados &mdash; deve ser ditada pela morfologia do c&aacute;lcio. Em paralelo, novos dados sugerem uma mudan&ccedil;a de paradigma no tratamento de pacientes p&oacute;s-cir&uacute;rgicos, onde a interven&ccedil;&atilde;o direta em enxertos de veia safena pode apresentar resultados superiores &agrave; interven&ccedil;&atilde;o em vasos nativos complexos em cen&aacute;rios espec&iacute;ficos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">An&aacute;lise de Estenoses Coron&aacute;rias Gravemente Calcificadas</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA calcifica&ccedil;&atilde;o coron&aacute;ria &eacute; um processo complexo envolvendo apoptose de macr&oacute;fagos e diferencia&ccedil;&atilde;o de c&eacute;lulas musculares lisas em fen&oacute;tipo osteobl&aacute;stico. Sua presen&ccedil;a reduz a complac&ecirc;ncia vascular e imp&otilde;e desafios t&eacute;cnicos severos, como dificuldade na entrega de dispositivos e expans&atilde;o incompleta de stents.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Avalia&ccedil;&atilde;o por Imagem</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Angiografia Coron&aacute;ria Invasiva (ICA): </span>Embora seja o padr&atilde;o inicial, a ICA tem baixa sensibilidade e reprodutibilidade para detectar c&aacute;lcio. A gravidade &eacute; classificada como moderada (densidades radiopacas vis&iacute;veis apenas em movimento) ou grave (vis&iacute;veis sem contraste e em ambos os lados da parede arterial).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAngiotomografia Computadorizada Coron&aacute;ria (CCTA): M&eacute;todo n&atilde;o invasivo eficaz para mapear a distribui&ccedil;&atilde;o global do c&aacute;lcio. Um escore de c&aacute;lcio por les&atilde;o &ge;453 &eacute; preditor de les&otilde;es indilat&aacute;veis.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nUltrassom Intravascular (IVUS): Detecta o c&aacute;lcio como uma &aacute;rea de alta ecogenicidade com sombra ac&uacute;stica. Permite quantificar o arco circunferencial e o comprimento, mas n&atilde;o a espessura.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nTomografia de Coer&ecirc;ncia &Oacute;ptica (OCT): Oferece maior resolu&ccedil;&atilde;o e, por ser luz infravermelha, penetra no c&aacute;lcio, permitindo a medi&ccedil;&atilde;o precisa da espessura, &aacute;rea e volume tridimensional, exceto em placas extremamente espessas.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Ferramentas de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nBal&otilde;es de Corte (Cutting) e Pontua&ccedil;&atilde;o (Scoring): Utilizam micro l&acirc;minas ou elementos de pontua&ccedil;&atilde;o para criar fraturas na placa com press&otilde;es de insufla&ccedil;&atilde;o menores.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nBal&otilde;es de Super Alta Press&atilde;o (SHP): Capazes de atingir at&eacute; 35-50 atm, s&atilde;o &uacute;teis em les&otilde;es conc&ecirc;ntricas cruz&aacute;veis, mas sua rigidez pode limitar a entrega.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAterectomia Rotacional (RA): Utiliza uma ogiva com diamantes em alta rota&ccedil;&atilde;o (135.000 a 180.000 rpm) para abla&ccedil;&atilde;o diferencial de tecido inel&aacute;stico. &Eacute; a ferramenta de escolha para les&otilde;es n&atilde;o cruz&aacute;veis por bal&atilde;o ou microcateter.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAterectomia Orbital (OA): Atua de forma bidirecional e utiliza for&ccedil;a centr&iacute;fuga para aumentar o di&acirc;metro da &oacute;rbita da coroa, sendo eficaz em vasos maiores e reduzindo limita&ccedil;&otilde;es de vi&eacute;s do fio guia.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nLitotripsia Intravascular (IVL): Utiliza ondas de choque ac&uacute;sticas para fraturar o c&aacute;lcio intimal e medial de forma circunferencial e transmural, preservando os tecidos moles. &Eacute; indicada especialmente para c&aacute;lcio profundo e n&oacute;dulos calcificados.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Interven&ccedil;&otilde;es em Enxertos e Pacientes P&oacute;s-Revasculariza&ccedil;&atilde;o Cir&uacute;rgica</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA revasculariza&ccedil;&atilde;o secund&aacute;ria &eacute; inerentemente mais desafiadora devido &agrave; aterosclerose mais agressiva, les&otilde;es difusas e m&uacute;ltiplas comorbidades dos pacientes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fases da Fal&ecirc;ncia de Enxertos Venosos</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nFase Aguda (at&eacute; 30 dias): Predom&iacute;nio de trombose, muitas vezes relacionada a quest&otilde;es peroperat&oacute;rias. O tratamento de escolha preferencial &eacute; o vaso nativo para evitar risco de perfura&ccedil;&atilde;o de suturas recentes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nM&eacute;dio Prazo (30 dias a 1 ano): Predom&iacute;nio de hiperplasia intimal.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nFase Tardia (ap&oacute;s 1 ano): Marcada pela degenera&ccedil;&atilde;o do conduto e aterosclerose acelerada. Estima-se que 68% dos enxertos de veia safena estejam oclu&iacute;dos ap&oacute;s 10 anos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Particularidades T&eacute;cnicas por Tipo de Enxerto</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nArt&eacute;ria Mam&aacute;ria: Raramente desenvolve aterosclerose. Exige proje&ccedil;&otilde;es craniais para imagem e o uso de extensores de cateter para evitar les&atilde;o ostial.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nEnxerto de Veia Safena (SVG): Apresenta alto risco de emboliza&ccedil;&atilde;o distal, slow-flow e no-reflow. Recomenda-se evitar a pr&eacute;-dilata&ccedil;&atilde;o, optando pelo implante de stent direto para aprisionar os debris contra a parede do vaso. O uso de dispositivos de prote&ccedil;&atilde;o distal &eacute; indicado em casos selecionados de alta complexidade.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO Estudo Proctor e a Mudan&ccedil;a de Estrat&eacute;gia<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nTradicionalmente, as diretrizes (Classe 2A, N&iacute;vel B) recomendam tratar o vaso nativo em vez do enxerto. No entanto, o estudo Proctor Trial introduziu novas evid&ecirc;ncias:<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO estudo comparou a ICP no vaso nativo versus no enxerto de safena.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA ICP no vaso nativo resultou em procedimentos mais longos, maior uso de contraste, maior n&uacute;mero de stents e maior tempo de fluoroscopia devido &agrave; alta preval&ecirc;ncia de oclus&otilde;es cr&ocirc;nicas e calcifica&ccedil;&atilde;o severa.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nResultados de MACE: Em 360 dias, a taxa de eventos adversos maiores (MACE) foi significativamente menor no grupo que tratou o enxerto (18%) comparado ao vaso nativo (34%).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nConclus&atilde;o: Tratar o enxerto pode ser mais vantajoso em cen&aacute;rios onde a anatomia do vaso nativo &eacute; proibitivamente complexa.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nMelhores Pr&aacute;ticas e Recomenda&ccedil;&otilde;es de Consenso<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAcesso Vascular: O acesso radial &eacute; fortemente recomendado para reduzir complica&ccedil;&otilde;es hemorr&aacute;gicas, especialmente em pacientes idosos com alto risco de sangramento.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nPrepara&ccedil;&atilde;o de Les&atilde;o: Nunca realizar o stenting direto em les&otilde;es moderada ou gravemente calcificadas. A falha na dilata&ccedil;&atilde;o de um bal&atilde;o (efeito &quot;dog-boning&quot;) deve disparar imediatamente o uso de t&eacute;cnicas avan&ccedil;adas (ateretomia ou IVL).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nUso de Imagem Intravascular: Crucial para avaliar a carga de c&aacute;lcio antes do stent e garantir a expans&atilde;o e aposi&ccedil;&atilde;o adequadas ap&oacute;s o implante. A incapacidade de cruzar com um cateter de imagem &eacute;, por si s&oacute;, um indicativo da necessidade de aterectomia.</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">Otimiza&ccedil;&atilde;o do Stent: Utilizar sistemas de realce angiogr&aacute;fico (stent boost) e bal&otilde;es de alta press&atilde;o para garantir que o l&uacute;men final seja otimizado, minimizando o risco de trombose e reestenose.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nManejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;ria (DAPT) obrigat&oacute;ria e o pr&eacute;-tratamento adequado s&atilde;o essenciais para reduzir eventos tromb&oacute;ticos periprocedimento.</span></span></span></p>",
+    "infograficos": [
+      "https://static.wixstatic.com/media/1d3d47_147f82ca90a9474f9e480dfa21abf74d~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_252732aa54394102a04c1a4eda1bdca7~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_365c2c4d3f14411fb4615b38cd906926~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_44c955823ddf472285854fe07d69ee43~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_5118f63df50b4df5acda16fc2e86c2db~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_65231c2b904d4529a24ce05e65c22aa1~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_f2cb34e496b649deacd85a1aacdb5fb6~mv2.png"
+    ]
+  },
+  "modulo4": {
+    "info": {
+      "id": "modulo4",
+      "number": 4,
+      "title": "Módulo 4 - O papel do cardiologista intervencionista nas cardiopatias congênitas e doenças extra-cardíacas",
+      "shortTitle": "Módulo 4",
+      "slug": "modulo-4",
+      "cover": "https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png"
+    },
+    "aulas": [
+      {
+        "tabId": "comp-mto97w2n",
+        "label": "Abertura",
+        "videoUrl": "https://vimeo.com/1224100037",
+        "title": "Introdução e Boas-vindas Tannas Jatene (GO)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mto97w2x2",
+        "label": "Aula 1",
+        "videoUrl": "https://vimeo.com/1224108303",
+        "title": "COMUNICAÇÃO INTERATRIAL: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Rodrigo Nieckel da Costa (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTERATRIAL: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rodrigo Nieckel da Costa (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mto97w30",
+        "label": "Aula 2",
+        "videoUrl": "https://vimeo.com/1224101875",
+        "title": "COMUNICAÇÃO INTER VENTRICULAR: CLASSIFICAÇÃO, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO Palestrante: Raul Arieta (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">COMUNICA&Ccedil;&Atilde;O INTER VENTRICULAR: CLASSIFICA&Ccedil;&Atilde;O, QUANDO FECHAR E COMO ESCOLHER O DISPOSITIVO</span><br class=\"wixui-rich-text__text\">\nPalestrante: Raul Arieta (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mto97w323",
+        "label": "Aula 3",
+        "videoUrl": "https://vimeo.com/1224100501",
+        "title": "FORAME OVAL PERVIO: ESCORES, INDICAÇÃO DE FECHAMENTO E TIPS AND TRICKS Palestrante: Mauricio Jaramillo (DF)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">FORAME OVAL PERVIO: ESCORES, INDICA&Ccedil;&Atilde;O DE FECHAMENTO E TIPS AND TRICKS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Mauricio Jaramillo (DF)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mto97w345",
+        "label": "Aula 4 e 5",
+        "videoUrl": "https://vimeo.com/1224109568",
+        "title": "PERSISTÊNCIA DO CANAL ARTERIAL: DIAGNÓSTICO E CONDUTA DO RECÉM NASCIDO AO ADULTO / COARCTAÇÃO DE AORTA: DIAGNÓSTICO, INDICAÇÃO DE INTERVENÇÃO E DISPOSITIVOS Palestrante: Renata Mattos Silva (RJ)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">PERSIST&Ecirc;NCIA DO CANAL ARTERIAL: DIAGN&Oacute;STICO E CONDUTA DO REC&Eacute;M NASCIDO AO ADULTO / COARCTA&Ccedil;&Atilde;O DE AORTA: DIAGN&Oacute;STICO, INDICA&Ccedil;&Atilde;O DE INTERVEN&Ccedil;&Atilde;O E DISPOSITIVOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Renata Mattos Silva (RJ)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mto97w391",
+        "label": "Aula 6",
+        "videoUrl": "https://vimeo.com/1224106128",
+        "title": "ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, TÉCNICAS E COMPLICAÇÕES Palestrante: Eduardo Kei Marquesini Washizu (MG)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">ANEURISMA DE AORTA ABDOMINAL: QUANDO INTERVIR, T&Eacute;CNICAS E COMPLICA&Ccedil;&Otilde;ES</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Kei Marquesini Washizu (MG)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mto97w37",
+        "label": "Aula 7",
+        "videoUrl": "https://vimeo.com/1221573836",
+        "title": "DOENÇA CAROTÍDEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS TÉCNICOS Palestrante: Carlos Eduardo Diniz Couto (MG)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">DOEN&Ccedil;A CAROT&Iacute;DEA: QUANDO INDICAR ANGIOPLASTI E ASPECTOS T&Eacute;CNICOS</span><br class=\"wixui-rich-text__text\">\nPalestrante: Carlos Eduardo Diniz Couto (MG)</span></span></span></span></h1>"
+      }
+    ],
+    "videoIA": "https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4",
+    "resumosAudio": [
+      {
+        "cid": "comp-muv6f1bs",
+        "trackName": "Aula 1 - Quando_o_stent_realmente_salva_vidas",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3",
+        "duration": 103
+      },
+      {
+        "cid": "comp-muv6f1c32",
+        "trackName": "Aula 2 - Radial_e_microcâmeras_no_infarto_sem_supra",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3",
+        "duration": 111
+      },
+      {
+        "cid": "comp-muv6f1c5",
+        "trackName": "Aula 4 - Quando_desobstruir_todas_as_artérias_no_infarto",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3",
+        "duration": 96
+      },
+      {
+        "cid": "comp-muv6f1c6",
+        "trackName": "Aula 5 - A_evolução_dos_stents_coronários",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3",
+        "duration": 106
+      },
+      {
+        "cid": "comp-muv6f1c71",
+        "trackName": "Aula 6 - Stents_ultrafinos_e_polímeros_que_desaparecem",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3",
+        "duration": 116
+      },
+      {
+        "cid": "comp-muv6f1c86",
+        "trackName": "Aula 7 - Curar_o_coração_sem_deixar_rastros",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3",
+        "duration": 102
+      },
+      {
+        "cid": "comp-muv6f1ca",
+        "trackName": "Aula 8 - Tratamento_do_choque_cardiogênico_além_da_pressão",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3",
+        "duration": 113
+      },
+      {
+        "cid": "comp-muv6f1cb",
+        "trackName": "Aula 9 - Como_resolver_as_piores_complicações_na_angioplastia",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3",
+        "duration": 92
+      }
+    ],
+    "podcasts": [],
+    "apresentacoesIA": [
+      {
+        "cid": "comp-muv6f19q",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_da70b831f4e0476186cf6b7875a85120.pdf"
+      },
+      {
+        "cid": "comp-muv6f1a1",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_37c36070801545b0a3e171b4315ff6a0.pdf"
+      },
+      {
+        "cid": "comp-muv6f1a24",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1c4564912aaf4faba2e7a2b27aecac29.pdf"
+      },
+      {
+        "cid": "comp-muv6f1a4",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_7fc5ae21c4a64a298e57f44cb80f9075.pdf"
+      },
+      {
+        "cid": "comp-muv6f1a6",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_ffff52be95bf4817b38315e2840a01f9.pdf"
+      },
+      {
+        "cid": "comp-muv6f1a72",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_dbe4de0ba158422e9754d4ee9944ac41.pdf"
+      },
+      {
+        "cid": "comp-muv6f1a9",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_c444a8aa728941e1973402c852abc393.pdf"
+      },
+      {
+        "cid": "comp-muv6f1aa1",
+        "label": "Aula 8",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_4d9b85cb717f46088ab529c61ce93d1b.pdf"
+      },
+      {
+        "cid": "comp-muv6f1ac",
+        "label": "Aula 9",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_19b56b8bfb574aaaab226d604ee40d39.pdf"
+      }
+    ],
+    "slidesOriginais": [
+      {
+        "cid": "comp-muv6f1bg",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_81d512b96d074f1db23ce214aaeec87d.pdf"
+      },
+      {
+        "cid": "comp-muv6f1bh1",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_4b42dfda8e364af2b2367343fdc41a49.pdf"
+      },
+      {
+        "cid": "comp-muv6f1bi4",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_531ba2757c7f4847941769ef9515f082.pdf"
+      },
+      {
+        "cid": "comp-muv6f1bk",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_cc62f03b46bf41e6a1a5a5ed5ef1b78b.pptx?dn=Renata_Coao%20curso%202026.pptx"
+      }
+    ],
+    "relatorioHtml": "<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Sum&aacute;rio Executivo</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO aumento da expectativa de vida e a expans&atilde;o dos procedimentos de revasculariza&ccedil;&atilde;o em pacientes idosos elevaram significativamente a complexidade das interven&ccedil;&otilde;es coron&aacute;rias percut&acirc;neas (ICP). Este documento sintetiza as diretrizes mais recentes para o tratamento de estenoses gravemente calcificadas e as particularidades das interven&ccedil;&otilde;es em pacientes com hist&oacute;rico de cirurgia de revasculariza&ccedil;&atilde;o mioc&aacute;rdica (CRM).<br class=\"wixui-rich-text__text\">\nOs pontos centrais incluem a necessidade imperativa de diagn&oacute;stico preciso via imagem intravascular (IVUS ou OCT), uma vez que a angiografia convencional subestima consistentemente a carga de c&aacute;lcio. A sele&ccedil;&atilde;o de ferramentas &mdash; como aterectomia rotacional ou orbital, litotripsia intravascular (IVL) e bal&otilde;es especializados &mdash; deve ser ditada pela morfologia do c&aacute;lcio. Em paralelo, novos dados sugerem uma mudan&ccedil;a de paradigma no tratamento de pacientes p&oacute;s-cir&uacute;rgicos, onde a interven&ccedil;&atilde;o direta em enxertos de veia safena pode apresentar resultados superiores &agrave; interven&ccedil;&atilde;o em vasos nativos complexos em cen&aacute;rios espec&iacute;ficos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">An&aacute;lise de Estenoses Coron&aacute;rias Gravemente Calcificadas</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA calcifica&ccedil;&atilde;o coron&aacute;ria &eacute; um processo complexo envolvendo apoptose de macr&oacute;fagos e diferencia&ccedil;&atilde;o de c&eacute;lulas musculares lisas em fen&oacute;tipo osteobl&aacute;stico. Sua presen&ccedil;a reduz a complac&ecirc;ncia vascular e imp&otilde;e desafios t&eacute;cnicos severos, como dificuldade na entrega de dispositivos e expans&atilde;o incompleta de stents.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Avalia&ccedil;&atilde;o por Imagem</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Angiografia Coron&aacute;ria Invasiva (ICA): </span>Embora seja o padr&atilde;o inicial, a ICA tem baixa sensibilidade e reprodutibilidade para detectar c&aacute;lcio. A gravidade &eacute; classificada como moderada (densidades radiopacas vis&iacute;veis apenas em movimento) ou grave (vis&iacute;veis sem contraste e em ambos os lados da parede arterial).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAngiotomografia Computadorizada Coron&aacute;ria (CCTA): M&eacute;todo n&atilde;o invasivo eficaz para mapear a distribui&ccedil;&atilde;o global do c&aacute;lcio. Um escore de c&aacute;lcio por les&atilde;o &ge;453 &eacute; preditor de les&otilde;es indilat&aacute;veis.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nUltrassom Intravascular (IVUS): Detecta o c&aacute;lcio como uma &aacute;rea de alta ecogenicidade com sombra ac&uacute;stica. Permite quantificar o arco circunferencial e o comprimento, mas n&atilde;o a espessura.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nTomografia de Coer&ecirc;ncia &Oacute;ptica (OCT): Oferece maior resolu&ccedil;&atilde;o e, por ser luz infravermelha, penetra no c&aacute;lcio, permitindo a medi&ccedil;&atilde;o precisa da espessura, &aacute;rea e volume tridimensional, exceto em placas extremamente espessas.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Ferramentas de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nBal&otilde;es de Corte (Cutting) e Pontua&ccedil;&atilde;o (Scoring): Utilizam micro l&acirc;minas ou elementos de pontua&ccedil;&atilde;o para criar fraturas na placa com press&otilde;es de insufla&ccedil;&atilde;o menores.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nBal&otilde;es de Super Alta Press&atilde;o (SHP): Capazes de atingir at&eacute; 35-50 atm, s&atilde;o &uacute;teis em les&otilde;es conc&ecirc;ntricas cruz&aacute;veis, mas sua rigidez pode limitar a entrega.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAterectomia Rotacional (RA): Utiliza uma ogiva com diamantes em alta rota&ccedil;&atilde;o (135.000 a 180.000 rpm) para abla&ccedil;&atilde;o diferencial de tecido inel&aacute;stico. &Eacute; a ferramenta de escolha para les&otilde;es n&atilde;o cruz&aacute;veis por bal&atilde;o ou microcateter.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAterectomia Orbital (OA): Atua de forma bidirecional e utiliza for&ccedil;a centr&iacute;fuga para aumentar o di&acirc;metro da &oacute;rbita da coroa, sendo eficaz em vasos maiores e reduzindo limita&ccedil;&otilde;es de vi&eacute;s do fio guia.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nLitotripsia Intravascular (IVL): Utiliza ondas de choque ac&uacute;sticas para fraturar o c&aacute;lcio intimal e medial de forma circunferencial e transmural, preservando os tecidos moles. &Eacute; indicada especialmente para c&aacute;lcio profundo e n&oacute;dulos calcificados.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Interven&ccedil;&otilde;es em Enxertos e Pacientes P&oacute;s-Revasculariza&ccedil;&atilde;o Cir&uacute;rgica</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA revasculariza&ccedil;&atilde;o secund&aacute;ria &eacute; inerentemente mais desafiadora devido &agrave; aterosclerose mais agressiva, les&otilde;es difusas e m&uacute;ltiplas comorbidades dos pacientes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fases da Fal&ecirc;ncia de Enxertos Venosos</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nFase Aguda (at&eacute; 30 dias): Predom&iacute;nio de trombose, muitas vezes relacionada a quest&otilde;es peroperat&oacute;rias. O tratamento de escolha preferencial &eacute; o vaso nativo para evitar risco de perfura&ccedil;&atilde;o de suturas recentes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nM&eacute;dio Prazo (30 dias a 1 ano): Predom&iacute;nio de hiperplasia intimal.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nFase Tardia (ap&oacute;s 1 ano): Marcada pela degenera&ccedil;&atilde;o do conduto e aterosclerose acelerada. Estima-se que 68% dos enxertos de veia safena estejam oclu&iacute;dos ap&oacute;s 10 anos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Particularidades T&eacute;cnicas por Tipo de Enxerto</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nArt&eacute;ria Mam&aacute;ria: Raramente desenvolve aterosclerose. Exige proje&ccedil;&otilde;es craniais para imagem e o uso de extensores de cateter para evitar les&atilde;o ostial.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nEnxerto de Veia Safena (SVG): Apresenta alto risco de emboliza&ccedil;&atilde;o distal, slow-flow e no-reflow. Recomenda-se evitar a pr&eacute;-dilata&ccedil;&atilde;o, optando pelo implante de stent direto para aprisionar os debris contra a parede do vaso. O uso de dispositivos de prote&ccedil;&atilde;o distal &eacute; indicado em casos selecionados de alta complexidade.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO Estudo Proctor e a Mudan&ccedil;a de Estrat&eacute;gia<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nTradicionalmente, as diretrizes (Classe 2A, N&iacute;vel B) recomendam tratar o vaso nativo em vez do enxerto. No entanto, o estudo Proctor Trial introduziu novas evid&ecirc;ncias:<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO estudo comparou a ICP no vaso nativo versus no enxerto de safena.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA ICP no vaso nativo resultou em procedimentos mais longos, maior uso de contraste, maior n&uacute;mero de stents e maior tempo de fluoroscopia devido &agrave; alta preval&ecirc;ncia de oclus&otilde;es cr&ocirc;nicas e calcifica&ccedil;&atilde;o severa.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nResultados de MACE: Em 360 dias, a taxa de eventos adversos maiores (MACE) foi significativamente menor no grupo que tratou o enxerto (18%) comparado ao vaso nativo (34%).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nConclus&atilde;o: Tratar o enxerto pode ser mais vantajoso em cen&aacute;rios onde a anatomia do vaso nativo &eacute; proibitivamente complexa.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nMelhores Pr&aacute;ticas e Recomenda&ccedil;&otilde;es de Consenso<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAcesso Vascular: O acesso radial &eacute; fortemente recomendado para reduzir complica&ccedil;&otilde;es hemorr&aacute;gicas, especialmente em pacientes idosos com alto risco de sangramento.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nPrepara&ccedil;&atilde;o de Les&atilde;o: Nunca realizar o stenting direto em les&otilde;es moderada ou gravemente calcificadas. A falha na dilata&ccedil;&atilde;o de um bal&atilde;o (efeito &quot;dog-boning&quot;) deve disparar imediatamente o uso de t&eacute;cnicas avan&ccedil;adas (ateretomia ou IVL).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nUso de Imagem Intravascular: Crucial para avaliar a carga de c&aacute;lcio antes do stent e garantir a expans&atilde;o e aposi&ccedil;&atilde;o adequadas ap&oacute;s o implante. A incapacidade de cruzar com um cateter de imagem &eacute;, por si s&oacute;, um indicativo da necessidade de aterectomia.</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">Otimiza&ccedil;&atilde;o do Stent: Utilizar sistemas de realce angiogr&aacute;fico (stent boost) e bal&otilde;es de alta press&atilde;o para garantir que o l&uacute;men final seja otimizado, minimizando o risco de trombose e reestenose.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nManejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;ria (DAPT) obrigat&oacute;ria e o pr&eacute;-tratamento adequado s&atilde;o essenciais para reduzir eventos tromb&oacute;ticos periprocedimento.</span></span></span></p>",
+    "infograficos": []
+  },
+  "modulo5": {
+    "info": {
+      "id": "modulo5",
+      "number": 5,
+      "title": "Módulo 5 - Intervenções Estruturais",
+      "shortTitle": "Módulo 5",
+      "slug": "modulo-5",
+      "cover": "https://static.wixstatic.com/media/1d3d47_bb12be820123459f837a3962413faf27~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(1).png"
+    },
+    "aulas": [
+      {
+        "tabId": "comp-mv6v7nsp1",
+        "label": "Abertura",
+        "videoUrl": "https://vimeo.com/1233095375",
+        "title": "Introdução e Boas-vindas Tannas Jatene (GO)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Introdu&ccedil;&atilde;o e Boas-vindas</span><br class=\"wixui-rich-text__text\">\nTannas Jatene (GO)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6v7nsw5",
+        "label": "Aula 1",
+        "videoUrl": "https://vimeo.com/1233091752",
+        "title": "Tratamento percutâneo da estenose mitral - indicações e aspectos técnicos Palestrante: Henrique Barbosa Ribeiro (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da estenose mitral - indica&ccedil;&otilde;es e aspectos t&eacute;cnicos</span><br class=\"wixui-rich-text__text\">\nPalestrante: Henrique Barbosa Ribeiro (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6v7nsx11",
+        "label": "Aula 2",
+        "videoUrl": "https://vimeo.com/1233095312",
+        "title": "Tratamento da insuficiência mitral percutâneo bordo-abordo - pra quem e como fazer? Palestrante: Rogério Eduardo Gomes Sarmento Leite (RS)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento da insufici&ecirc;ncia mitral percut&acirc;neo bordo-abordo - pra quem e como fazer?</span><br class=\"wixui-rich-text__text\">\nPalestrante: Rog&eacute;rio Eduardo Gomes Sarmento Leite (RS)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6v7nsy15",
+        "label": "Aula 3",
+        "videoUrl": "https://vimeo.com/1233090200",
+        "title": "Tratamento percutâneo da estenose aórtica - tipos de estenose aórtica, guidelines e escolha da prótese Palestrante: Eduardo França Pessoa de Melo (PE)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da estenose a&oacute;rtica - tipos de estenose a&oacute;rtica, guidelines e escolha da pr&oacute;tese</span><br class=\"wixui-rich-text__text\">\nPalestrante: Eduardo Fran&ccedil;a Pessoa de Melo (PE)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6v7nt02",
+        "label": "Aula 4",
+        "videoUrl": "https://vimeo.com/1233106051",
+        "title": "TAVI além da estenose aórtica: IAo, VIV Aortico, VIV mitral Palestrante: Alberto Colella Cervone (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">TAVI al&eacute;m da estenose a&oacute;rtica: IAo, VIV Aortico, VIV mitral</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alberto Colella Cervone (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6w2i1j",
+        "label": "Aula 5",
+        "videoUrl": "https://vimeo.com/1233106051",
+        "title": "TAVI além da estenose aórtica: IAo, VIV Aortico, VIV mitral Palestrante: Alberto Colella Cervone (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">TAVI al&eacute;m da estenose a&oacute;rtica: IAo, VIV Aortico, VIV mitral</span><br class=\"wixui-rich-text__text\">\nPalestrante: Alberto Colella Cervone (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6v7nt28",
+        "label": "Aula 6",
+        "videoUrl": "https://vimeo.com/1233106052",
+        "title": "SIMPÓSIO MERIL - Da medida ao resultado: por que o sizing é fundamental? Palestrante: Gabriel Dodo Buchler (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">SIMP&Oacute;SIO MERIL - Da medida ao resultado: por que o sizing &eacute; fundamental?</span><br class=\"wixui-rich-text__text\">\nPalestrante: Gabriel Dodo Buchler (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6v7nt16",
+        "label": "Aula 7",
+        "videoUrl": "https://vimeo.com/1233106053",
+        "title": "Tratamento percutâneo da valva tricúspide - indicações e estratégias de intervenção (TEER, TTVR e heterotópico) Palestrante: Pedro Alves Lemos Neto (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da valva tric&uacute;spide - indica&ccedil;&otilde;es e estrat&eacute;gias de interven&ccedil;&atilde;o (TEER, TTVR e heterot&oacute;pico)</span><br class=\"wixui-rich-text__text\">\nPalestrante: Pedro Alves Lemos Neto (SP)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6wbyy0",
+        "label": "Aula 8",
+        "videoUrl": "https://vimeo.com/1233107734",
+        "title": "Oclusão do apêndice atrial esquerdo - indicação, planejamento e execução Palestrante: Francisco Jose Araujo Chamié Queiroz (RJ)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Oclus&atilde;o do ap&ecirc;ndice atrial esquerdo - indica&ccedil;&atilde;o, planejamento e execu&ccedil;&atilde;o</span><br class=\"wixui-rich-text__text\">\nPalestrante: Francisco Jose Araujo Chami&eacute; Queiroz (RJ)</span></span></span></span></h1>"
+      },
+      {
+        "tabId": "comp-mv6wc6bz",
+        "label": "Aula 9",
+        "videoUrl": "https://vimeo.com/1233111239",
+        "title": "Tratamento percutâneo da miocardiopatia hipertrófica - guidelines, evidencias e Tips and tricks Palestrante: Leon Gustavo dos Reis Macedo (SP)",
+        "titleHtml": "<h1 class=\"font_0 wixui-rich-text__text\" style=\"font-size:16px; text-align:center;\"><span style=\"font-size:16px;\" class=\"wixui-rich-text__text\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Tratamento percut&acirc;neo da miocardiopatia hipertr&oacute;fica - guidelines, evidencias e Tips and tricks</span><br class=\"wixui-rich-text__text\">\nPalestrante: Leon Gustavo dos Reis Macedo (SP)</span></span></span></span></h1>"
+      }
+    ],
+    "videoIA": "https://video.wixstatic.com/video/1d3d47_0d5d3fbf67ee428b860a2638c7cf23dd/720p/mp4/file.mp4",
+    "resumosAudio": [
+      {
+        "cid": "comp-mv8353wx3",
+        "trackName": "Aula 1 - Quando_o_stent_realmente_salva_vidas",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_e1ac13e22f9f4f1291dae5c5c192c5af-320.mp3",
+        "duration": 103
+      },
+      {
+        "cid": "comp-mv8353x92",
+        "trackName": "Aula 2 - Radial_e_microcâmeras_no_infarto_sem_supra",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_47465ea84471432d988b70c5b91e29b6-320.mp3",
+        "duration": 111
+      },
+      {
+        "cid": "comp-mv8353xb1",
+        "trackName": "Aula 4 - Quando_desobstruir_todas_as_artérias_no_infarto",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_4bb6732979e64f78a7edf4a00a96442c-320.mp3",
+        "duration": 96
+      },
+      {
+        "cid": "comp-mv8353xd",
+        "trackName": "Aula 5 - A_evolução_dos_stents_coronários",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_49488f29102640b3a05cc9f905d7898a-320.mp3",
+        "duration": 106
+      },
+      {
+        "cid": "comp-mv8353xf",
+        "trackName": "Aula 6 - Stents_ultrafinos_e_polímeros_que_desaparecem",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_3ba1739edbba40b8bdddd10f9972af5b-320.mp3",
+        "duration": 116
+      },
+      {
+        "cid": "comp-mv8353xg1",
+        "trackName": "Aula 7 - Curar_o_coração_sem_deixar_rastros",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_13ebf5e0f1a44835af2055eb623486ff-320.mp3",
+        "duration": 102
+      },
+      {
+        "cid": "comp-mv8353xh5",
+        "trackName": "Aula 8 - Tratamento_do_choque_cardiogênico_além_da_pressão",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_6d1797f28c1a43faad0b560ed5b3ec0f-320.mp3",
+        "duration": 113
+      },
+      {
+        "cid": "comp-mv8353xj",
+        "trackName": "Aula 9 - Como_resolver_as_piores_complicações_na_angioplastia",
+        "url": "https://music.wixstatic.com/mp3/1d3d47_a96272f52ad04ecb8a7ae05b7cd30430-320.mp3",
+        "duration": 92
+      }
+    ],
+    "podcasts": [],
+    "apresentacoesIA": [
+      {
+        "cid": "comp-mv8353ut2",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_da70b831f4e0476186cf6b7875a85120.pdf"
+      },
+      {
+        "cid": "comp-mv8353v41",
+        "label": "Aula 2",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_37c36070801545b0a3e171b4315ff6a0.pdf"
+      },
+      {
+        "cid": "comp-mv8353v61",
+        "label": "Aula 3",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_1c4564912aaf4faba2e7a2b27aecac29.pdf"
+      },
+      {
+        "cid": "comp-mv8353v8",
+        "label": "Aula 4",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_7fc5ae21c4a64a298e57f44cb80f9075.pdf"
+      },
+      {
+        "cid": "comp-mv8353v94",
+        "label": "Aula 5",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_ffff52be95bf4817b38315e2840a01f9.pdf"
+      },
+      {
+        "cid": "comp-mv8353vb",
+        "label": "Aula 6",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_dbe4de0ba158422e9754d4ee9944ac41.pdf"
+      },
+      {
+        "cid": "comp-mv8353vd",
+        "label": "Aula 7",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_c444a8aa728941e1973402c852abc393.pdf"
+      },
+      {
+        "cid": "comp-mv8353ve1",
+        "label": "Aula 8",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_4d9b85cb717f46088ab529c61ce93d1b.pdf"
+      },
+      {
+        "cid": "comp-mv8353vg",
+        "label": "Aula 9",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_19b56b8bfb574aaaab226d604ee40d39.pdf"
+      }
+    ],
+    "slidesOriginais": [
+      {
+        "cid": "comp-mv8353wk3",
+        "label": "Aula 1",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_7fbd3e8c197c4e28a5a82315a7d5623b.pptx?dn=Aula%201_Henrique_Valvoplastia_Mitral_2026.pptx"
+      },
+      {
+        "cid": "comp-mv8353wm",
+        "label": "Aula 9",
+        "url": "https://www.cathlabflix.org/_files/ugd/1d3d47_9c3c83e0bd214fada8b70c0245ba3196.pdf"
+      }
+    ],
+    "relatorioHtml": "<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\"><span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Sum&aacute;rio Executivo</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO aumento da expectativa de vida e a expans&atilde;o dos procedimentos de revasculariza&ccedil;&atilde;o em pacientes idosos elevaram significativamente a complexidade das interven&ccedil;&otilde;es coron&aacute;rias percut&acirc;neas (ICP). Este documento sintetiza as diretrizes mais recentes para o tratamento de estenoses gravemente calcificadas e as particularidades das interven&ccedil;&otilde;es em pacientes com hist&oacute;rico de cirurgia de revasculariza&ccedil;&atilde;o mioc&aacute;rdica (CRM).<br class=\"wixui-rich-text__text\">\nOs pontos centrais incluem a necessidade imperativa de diagn&oacute;stico preciso via imagem intravascular (IVUS ou OCT), uma vez que a angiografia convencional subestima consistentemente a carga de c&aacute;lcio. A sele&ccedil;&atilde;o de ferramentas &mdash; como aterectomia rotacional ou orbital, litotripsia intravascular (IVL) e bal&otilde;es especializados &mdash; deve ser ditada pela morfologia do c&aacute;lcio. Em paralelo, novos dados sugerem uma mudan&ccedil;a de paradigma no tratamento de pacientes p&oacute;s-cir&uacute;rgicos, onde a interven&ccedil;&atilde;o direta em enxertos de veia safena pode apresentar resultados superiores &agrave; interven&ccedil;&atilde;o em vasos nativos complexos em cen&aacute;rios espec&iacute;ficos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">An&aacute;lise de Estenoses Coron&aacute;rias Gravemente Calcificadas</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA calcifica&ccedil;&atilde;o coron&aacute;ria &eacute; um processo complexo envolvendo apoptose de macr&oacute;fagos e diferencia&ccedil;&atilde;o de c&eacute;lulas musculares lisas em fen&oacute;tipo osteobl&aacute;stico. Sua presen&ccedil;a reduz a complac&ecirc;ncia vascular e imp&otilde;e desafios t&eacute;cnicos severos, como dificuldade na entrega de dispositivos e expans&atilde;o incompleta de stents.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Avalia&ccedil;&atilde;o por Imagem</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Angiografia Coron&aacute;ria Invasiva (ICA): </span>Embora seja o padr&atilde;o inicial, a ICA tem baixa sensibilidade e reprodutibilidade para detectar c&aacute;lcio. A gravidade &eacute; classificada como moderada (densidades radiopacas vis&iacute;veis apenas em movimento) ou grave (vis&iacute;veis sem contraste e em ambos os lados da parede arterial).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAngiotomografia Computadorizada Coron&aacute;ria (CCTA): M&eacute;todo n&atilde;o invasivo eficaz para mapear a distribui&ccedil;&atilde;o global do c&aacute;lcio. Um escore de c&aacute;lcio por les&atilde;o &ge;453 &eacute; preditor de les&otilde;es indilat&aacute;veis.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nUltrassom Intravascular (IVUS): Detecta o c&aacute;lcio como uma &aacute;rea de alta ecogenicidade com sombra ac&uacute;stica. Permite quantificar o arco circunferencial e o comprimento, mas n&atilde;o a espessura.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nTomografia de Coer&ecirc;ncia &Oacute;ptica (OCT): Oferece maior resolu&ccedil;&atilde;o e, por ser luz infravermelha, penetra no c&aacute;lcio, permitindo a medi&ccedil;&atilde;o precisa da espessura, &aacute;rea e volume tridimensional, exceto em placas extremamente espessas.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Ferramentas de Modifica&ccedil;&atilde;o de Placa</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nBal&otilde;es de Corte (Cutting) e Pontua&ccedil;&atilde;o (Scoring): Utilizam micro l&acirc;minas ou elementos de pontua&ccedil;&atilde;o para criar fraturas na placa com press&otilde;es de insufla&ccedil;&atilde;o menores.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nBal&otilde;es de Super Alta Press&atilde;o (SHP): Capazes de atingir at&eacute; 35-50 atm, s&atilde;o &uacute;teis em les&otilde;es conc&ecirc;ntricas cruz&aacute;veis, mas sua rigidez pode limitar a entrega.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAterectomia Rotacional (RA): Utiliza uma ogiva com diamantes em alta rota&ccedil;&atilde;o (135.000 a 180.000 rpm) para abla&ccedil;&atilde;o diferencial de tecido inel&aacute;stico. &Eacute; a ferramenta de escolha para les&otilde;es n&atilde;o cruz&aacute;veis por bal&atilde;o ou microcateter.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAterectomia Orbital (OA): Atua de forma bidirecional e utiliza for&ccedil;a centr&iacute;fuga para aumentar o di&acirc;metro da &oacute;rbita da coroa, sendo eficaz em vasos maiores e reduzindo limita&ccedil;&otilde;es de vi&eacute;s do fio guia.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nLitotripsia Intravascular (IVL): Utiliza ondas de choque ac&uacute;sticas para fraturar o c&aacute;lcio intimal e medial de forma circunferencial e transmural, preservando os tecidos moles. &Eacute; indicada especialmente para c&aacute;lcio profundo e n&oacute;dulos calcificados.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Interven&ccedil;&otilde;es em Enxertos e Pacientes P&oacute;s-Revasculariza&ccedil;&atilde;o Cir&uacute;rgica</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA revasculariza&ccedil;&atilde;o secund&aacute;ria &eacute; inerentemente mais desafiadora devido &agrave; aterosclerose mais agressiva, les&otilde;es difusas e m&uacute;ltiplas comorbidades dos pacientes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Fases da Fal&ecirc;ncia de Enxertos Venosos</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nFase Aguda (at&eacute; 30 dias): Predom&iacute;nio de trombose, muitas vezes relacionada a quest&otilde;es peroperat&oacute;rias. O tratamento de escolha preferencial &eacute; o vaso nativo para evitar risco de perfura&ccedil;&atilde;o de suturas recentes.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nM&eacute;dio Prazo (30 dias a 1 ano): Predom&iacute;nio de hiperplasia intimal.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nFase Tardia (ap&oacute;s 1 ano): Marcada pela degenera&ccedil;&atilde;o do conduto e aterosclerose acelerada. Estima-se que 68% dos enxertos de veia safena estejam oclu&iacute;dos ap&oacute;s 10 anos.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:bold;\" class=\"wixui-rich-text__text\">Particularidades T&eacute;cnicas por Tipo de Enxerto</span><br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nArt&eacute;ria Mam&aacute;ria: Raramente desenvolve aterosclerose. Exige proje&ccedil;&otilde;es craniais para imagem e o uso de extensores de cateter para evitar les&atilde;o ostial.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nEnxerto de Veia Safena (SVG): Apresenta alto risco de emboliza&ccedil;&atilde;o distal, slow-flow e no-reflow. Recomenda-se evitar a pr&eacute;-dilata&ccedil;&atilde;o, optando pelo implante de stent direto para aprisionar os debris contra a parede do vaso. O uso de dispositivos de prote&ccedil;&atilde;o distal &eacute; indicado em casos selecionados de alta complexidade.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO Estudo Proctor e a Mudan&ccedil;a de Estrat&eacute;gia<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nTradicionalmente, as diretrizes (Classe 2A, N&iacute;vel B) recomendam tratar o vaso nativo em vez do enxerto. No entanto, o estudo Proctor Trial introduziu novas evid&ecirc;ncias:<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nO estudo comparou a ICP no vaso nativo versus no enxerto de safena.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nA ICP no vaso nativo resultou em procedimentos mais longos, maior uso de contraste, maior n&uacute;mero de stents e maior tempo de fluoroscopia devido &agrave; alta preval&ecirc;ncia de oclus&otilde;es cr&ocirc;nicas e calcifica&ccedil;&atilde;o severa.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nResultados de MACE: Em 360 dias, a taxa de eventos adversos maiores (MACE) foi significativamente menor no grupo que tratou o enxerto (18%) comparado ao vaso nativo (34%).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nConclus&atilde;o: Tratar o enxerto pode ser mais vantajoso em cen&aacute;rios onde a anatomia do vaso nativo &eacute; proibitivamente complexa.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nMelhores Pr&aacute;ticas e Recomenda&ccedil;&otilde;es de Consenso<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nAcesso Vascular: O acesso radial &eacute; fortemente recomendado para reduzir complica&ccedil;&otilde;es hemorr&aacute;gicas, especialmente em pacientes idosos com alto risco de sangramento.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nPrepara&ccedil;&atilde;o de Les&atilde;o: Nunca realizar o stenting direto em les&otilde;es moderada ou gravemente calcificadas. A falha na dilata&ccedil;&atilde;o de um bal&atilde;o (efeito &quot;dog-boning&quot;) deve disparar imediatamente o uso de t&eacute;cnicas avan&ccedil;adas (ateretomia ou IVL).<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nUso de Imagem Intravascular: Crucial para avaliar a carga de c&aacute;lcio antes do stent e garantir a expans&atilde;o e aposi&ccedil;&atilde;o adequadas ap&oacute;s o implante. A incapacidade de cruzar com um cateter de imagem &eacute;, por si s&oacute;, um indicativo da necessidade de aterectomia.</span></span></span></p>\n\n<p class=\"font_8 wixui-rich-text__text\" style=\"text-align:justify; font-size:16px;\"><br class=\"wixui-rich-text__text\">\n<span style=\"font-weight:normal;\" class=\"wixui-rich-text__text\"><span style=\"font-family:montserrat,sans-serif;\" class=\"wixui-rich-text__text\"><span class=\"color_36 wixui-rich-text__text\">Otimiza&ccedil;&atilde;o do Stent: Utilizar sistemas de realce angiogr&aacute;fico (stent boost) e bal&otilde;es de alta press&atilde;o para garantir que o l&uacute;men final seja otimizado, minimizando o risco de trombose e reestenose.<br class=\"wixui-rich-text__text\">\n<br class=\"wixui-rich-text__text\">\nManejo Farmacol&oacute;gico: A dupla antiagrega&ccedil;&atilde;o plaquet&aacute;ria (DAPT) obrigat&oacute;ria e o pr&eacute;-tratamento adequado s&atilde;o essenciais para reduzir eventos tromb&oacute;ticos periprocedimento.</span></span></span></p>",
+    "infograficos": [
+      "https://static.wixstatic.com/media/1d3d47_147f82ca90a9474f9e480dfa21abf74d~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_252732aa54394102a04c1a4eda1bdca7~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_365c2c4d3f14411fb4615b38cd906926~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_44c955823ddf472285854fe07d69ee43~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_5118f63df50b4df5acda16fc2e86c2db~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_65231c2b904d4529a24ce05e65c22aa1~mv2.png",
+      "https://static.wixstatic.com/media/1d3d47_f2cb34e496b649deacd85a1aacdb5fb6~mv2.png"
+    ]
+  }
+}

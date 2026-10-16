@@ -162,6 +162,62 @@
     {
       "source": "/new/embed-solaci-gravacao",
       "destination": "/new/embed-solaci-gravacao.html"
+    },
+    {
+      "source": "/cursos",
+      "destination": "/embed-cursos.html"
+    },
+    {
+      "source": "/curso-para-residentes",
+      "destination": "/embed-curso-intervencionistas.html"
+    },
+    {
+      "source": "/curso-intervencionistas",
+      "destination": "/embed-curso-intervencionistas.html"
+    },
+    {
+      "source": "/modulo1",
+      "destination": "/embed-modulo1.html"
+    },
+    {
+      "source": "/2026-modulo1-curso-para-intervencionistas",
+      "destination": "/embed-modulo1.html"
+    },
+    {
+      "source": "/modulo2",
+      "destination": "/embed-modulo2.html"
+    },
+    {
+      "source": "/2026-modulo2-curso-para-intervencionistas",
+      "destination": "/embed-modulo2.html"
+    },
+    {
+      "source": "/modulo3",
+      "destination": "/embed-modulo3.html"
+    },
+    {
+      "source": "/2026-modulo3-curso-para-intervencionistas",
+      "destination": "/embed-modulo3.html"
+    },
+    {
+      "source": "/modulo4",
+      "destination": "/embed-modulo4.html"
+    },
+    {
+      "source": "/modulo-4",
+      "destination": "/embed-modulo4.html"
+    },
+    {
+      "source": "/modulo5",
+      "destination": "/embed-modulo5.html"
+    },
+    {
+      "source": "/modulo-5",
+      "destination": "/embed-modulo5.html"
+    },
+    {
+      "source": "/modulo",
+      "destination": "/embed-modulo.html"
     }
   ],
   "headers": [

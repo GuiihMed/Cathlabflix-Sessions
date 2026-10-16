@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Curso Para Intervencionistas em Formação 2026 - Módulos - CathlabFlix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #0a2d72;
+      --color-surface-card: #04173d;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #b80710;
+      --color-blue-accent: #38bdf8;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0; padding: 0; width: 100%; min-height: 100%;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden !important;
+    }
+    .container {
+      width: 96%; max-width: 1200px; margin: 0 auto; padding: 24px 12px 60px;
+    }
+    @media (max-width: 768px) {
+      .container { width: 100%; padding: 16px 12px 40px; }
+    }
+    .header-section { margin-bottom: 28px; }
+    .page-title {
+      font-size: 26px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.25;
+    }
+    .red-line {
+      width: 50px; height: 3px; background: var(--color-primary); margin-top: 8px; border-radius: 2px;
+    }
+    .modules-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;
+    }
+    @media (max-width: 640px) {
+      .modules-grid { grid-template-columns: 1fr; }
+    }
+    .module-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-fast);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .module-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+    }
+    .module-cover-wrap {
+      position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden;
+    }
+    .module-cover-img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .module-card:hover .module-cover-img { transform: scale(1.03); }
+    .module-card-body {
+      padding: 22px; display: flex; flex-direction: column; flex: 1;
+    }
+    .module-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: rgba(229, 9, 20, 0.15);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      color: var(--color-primary);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 12px;
+    }
+    .module-card-title {
+      font-size: 16px; font-weight: 700; color: #ffffff; line-height: 1.4; margin-bottom: 22px;
+    }
+    .module-card-footer {
+      margin-top: auto; display: flex; align-items: center; justify-content: flex-end;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: #ffffff !important;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(229, 9, 20, 0.5);
+    }
+    .btn-secondary {
+      background: var(--color-surface);
+      color: #ffffff !important;
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-border-subtle);
+      transition: all var(--transition-fast);
+    }
+    .btn-secondary:hover {
+      background: var(--color-surface-hover);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+    .nav-footer {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px;
+      margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--color-border-subtle);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="header-section">
+      <h1 class="page-title">Curso Para Intervencionistas em Formação 2026</h1>
+      <div class="red-line"></div>
+    </div>
+
+    <div class="modules-grid">
+      
+      <article class="module-card">
+        <a href="https://www.cathlabflix.org/2026-modulo1-curso-para-intervencionistas" target="_top" class="module-cover-wrap" aria-label="Acessar Módulo 1 - Fundamentos e Diagnóstico em Cardiologia Intervencionista">
+          <img class="module-cover-img" src="https://static.wixstatic.com/media/1d3d47_720fcf5cc1be4c93b2d26421c9ae4863~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(12)%20(1).png" alt="Capa Módulo 1 - Fundamentos e Diagnóstico em Cardiologia Intervencionista" loading="lazy">
+        </a>
+        <div class="module-card-body">
+          <div class="module-badge">Módulo 1</div>
+          <h2 class="module-card-title">Módulo 1 - Fundamentos e Diagnóstico em Cardiologia Intervencionista</h2>
+          <div class="module-card-footer">
+            <a href="https://www.cathlabflix.org/2026-modulo1-curso-para-intervencionistas" class="btn-primary" target="_top">Acessar Módulo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="module-card">
+        <a href="https://www.cathlabflix.org/2026-modulo2-curso-para-intervencionistas" target="_top" class="module-cover-wrap" aria-label="Acessar Módulo 2 - Doença Coronariana Aguda, Crônica e Métodos Adjuntos">
+          <img class="module-cover-img" src="https://static.wixstatic.com/media/1d3d47_c92e1b32039e48a69c8174b8ca58405a~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(13).png" alt="Capa Módulo 2 - Doença Coronariana Aguda, Crônica e Métodos Adjuntos" loading="lazy">
+        </a>
+        <div class="module-card-body">
+          <div class="module-badge">Módulo 2</div>
+          <h2 class="module-card-title">Módulo 2 - Doença Coronariana Aguda, Crônica e Métodos Adjuntos</h2>
+          <div class="module-card-footer">
+            <a href="https://www.cathlabflix.org/2026-modulo2-curso-para-intervencionistas" class="btn-primary" target="_top">Acessar Módulo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="module-card">
+        <a href="https://www.cathlabflix.org/2026-modulo3-curso-para-intervencionistas" target="_top" class="module-cover-wrap" aria-label="Acessar Módulo 3 - Lesões Complexas e Métodos Adjuntos">
+          <img class="module-cover-img" src="https://static.wixstatic.com/media/1d3d47_cfc86a3aea5a42238ebd13a27cac3897~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(15).png" alt="Capa Módulo 3 - Lesões Complexas e Métodos Adjuntos" loading="lazy">
+        </a>
+        <div class="module-card-body">
+          <div class="module-badge">Módulo 3</div>
+          <h2 class="module-card-title">Módulo 3 - Lesões Complexas e Métodos Adjuntos</h2>
+          <div class="module-card-footer">
+            <a href="https://www.cathlabflix.org/2026-modulo3-curso-para-intervencionistas" class="btn-primary" target="_top">Acessar Módulo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="module-card">
+        <a href="https://www.cathlabflix.org/modulo-4" target="_top" class="module-cover-wrap" aria-label="Acessar Módulo 4 - O papel do cardiologista intervencionista nas cardiopatias congênitas e doenças extra-cardíacas">
+          <img class="module-cover-img" src="https://static.wixstatic.com/media/1d3d47_f5ef8c888f2f428fbbfe517d5d181003~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(3)%20(1).png" alt="Capa Módulo 4 - O papel do cardiologista intervencionista nas cardiopatias congênitas e doenças extra-cardíacas" loading="lazy">
+        </a>
+        <div class="module-card-body">
+          <div class="module-badge">Módulo 4</div>
+          <h2 class="module-card-title">Módulo 4 - O papel do cardiologista intervencionista nas cardiopatias congênitas e doenças extra-cardíacas</h2>
+          <div class="module-card-footer">
+            <a href="https://www.cathlabflix.org/modulo-4" class="btn-primary" target="_top">Acessar Módulo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="module-card">
+        <a href="https://www.cathlabflix.org/modulo-5" target="_top" class="module-cover-wrap" aria-label="Acessar Módulo 5 - Intervenções Estruturais">
+          <img class="module-cover-img" src="https://static.wixstatic.com/media/1d3d47_bb12be820123459f837a3962413faf27~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(1).png" alt="Capa Módulo 5 - Intervenções Estruturais" loading="lazy">
+        </a>
+        <div class="module-card-body">
+          <div class="module-badge">Módulo 5</div>
+          <h2 class="module-card-title">Módulo 5 - Intervenções Estruturais</h2>
+          <div class="module-card-footer">
+            <a href="https://www.cathlabflix.org/modulo-5" class="btn-primary" target="_top">Acessar Módulo</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <nav class="nav-footer" aria-label="Navegação do Curso">
+      <a href="https://www.cathlabflix.org/cursos" class="btn-secondary" target="_top">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Voltar para Cursos
+      </a>
+      <a href="https://www.cathlabflix.org" class="btn-secondary" target="_top">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Página Inicial
+      </a>
+    </nav>
+  </main>
+
+  <script>
+    function notifyParentResize() {
+      try {
+        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+        window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height }, '*');
+        window.parent.postMessage({ type: 'cathlabflix:resize', height: height }, '*');
+      } catch (e) {}
+    }
+    window.addEventListener('load', notifyParentResize);
+    window.addEventListener('resize', notifyParentResize);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(notifyParentResize).observe(document.body);
+    }
+  </script>
+</body>
+</html>

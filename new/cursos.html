@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Cursos - CathlabFlix</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg-base: #010234;
+      --color-surface: #062257;
+      --color-surface-hover: #0a2d72;
+      --color-surface-card: #04173d;
+      --color-text-primary: #FFFFFF;
+      --color-text-secondary: #94a3b8;
+      --color-text-tertiary: #64748b;
+      --color-primary: #E50914;
+      --color-primary-hover: #b80710;
+      --color-border-subtle: rgba(255, 255, 255, 0.12);
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-pill: 9999px;
+      --font-family-base: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      margin: 0; padding: 0; width: 100%; min-height: 100%;
+      background-color: var(--color-bg-base) !important;
+      color: var(--color-text-primary) !important;
+      font-family: var(--font-family-base) !important;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden !important;
+    }
+    .cursos-container {
+      width: 96%; max-width: 1200px; margin: 0 auto; padding: 24px 12px 60px;
+    }
+    @media (max-width: 768px) {
+      .cursos-container { width: 100%; padding: 16px 12px 40px; }
+    }
+    .header-section { margin-bottom: 28px; }
+    .page-title {
+      font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.2;
+    }
+    .red-line {
+      width: 50px; height: 3px; background: var(--color-primary); margin-top: 8px; border-radius: 2px;
+    }
+    .courses-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;
+    }
+    @media (max-width: 640px) {
+      .courses-grid { grid-template-columns: 1fr; }
+    }
+    .course-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-fast);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+    }
+    .course-cover-wrap {
+      position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden;
+    }
+    .course-cover-img {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .course-card:hover .course-cover-img { transform: scale(1.03); }
+    .course-body {
+      padding: 22px; display: flex; flex-direction: column; flex: 1;
+    }
+    .course-title {
+      font-size: 18px; font-weight: 700; color: #ffffff; line-height: 1.35; margin-bottom: 8px;
+    }
+    .course-dates {
+      font-size: 13.5px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 22px;
+    }
+    .course-footer {
+      margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .course-logo {
+      height: 38px; width: auto; max-width: 130px; object-fit: contain;
+    }
+    .btn-confira {
+      background: var(--color-primary);
+      color: #ffffff !important;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.35);
+    }
+    .btn-confira:hover {
+      background: var(--color-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(229, 9, 20, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <main class="cursos-container">
+    <div class="header-section">
+      <h1 class="page-title">Cursos</h1>
+      <div class="red-line"></div>
+    </div>
+
+    <div class="courses-grid">
+      <!-- Curso 1: Curso para Intervencionistas em Formação – SBHCI 2026 -->
+      <article class="course-card">
+        <a href="https://www.cathlabflix.org/curso-para-residentes" target="_top" class="course-cover-wrap" aria-label="Acessar Curso para Intervencionistas em Formação 2026">
+          <img class="course-cover-img" src="https://static.wixstatic.com/media/1d3d47_a70627be956b421c80b79f33b054a898~mv2.png/v1/fill/w_488,h_275,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/CAPA%20(12)%20(1)%20(1)%20(1).png" alt="Capa Curso para Intervencionistas em Formação – SBHCI 2026" loading="lazy">
+        </a>
+        <div class="course-body">
+          <h2 class="course-title">Curso para Intervencionistas em Formação – SBHCI 2026</h2>
+          <p class="course-dates">De Abril a Outubro de 2026</p>
+          <div class="course-footer">
+            <img class="course-logo" src="https://static.wixstatic.com/media/963fe2_3a59d440a42144559b314ba3683d3baf~mv2.png" alt="Logo SBHCI">
+            <a href="https://www.cathlabflix.org/curso-para-residentes" class="btn-confira" target="_top">Confira</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script>
+    function notifyParentResize() {
+      try {
+        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+        window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: height }, '*');
+        window.parent.postMessage({ type: 'cathlabflix:resize', height: height }, '*');
+      } catch (e) {}
+    }
+    window.addEventListener('load', notifyParentResize);
+    window.addEventListener('resize', notifyParentResize);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(notifyParentResize).observe(document.body);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo - CathlabFlix</title>
+</head>
+<body style="margin:0; background:#010234;">
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      let mod = params.get('id') || params.get('modulo') || window.location.hash.replace('#', '') || 'modulo1';
+      mod = mod.toLowerCase();
+      if (!mod.startsWith('modulo')) {
+        mod = 'modulo' + mod;
+      }
+      const allowed = ['modulo1', 'modulo2', 'modulo3', 'modulo4', 'modulo5'];
+      if (!allowed.includes(mod)) {
+        mod = 'modulo1';
+      }
+      window.location.replace('embed-' + mod + '.html' + window.location.search);
+    })();
+  </script>
+</body>
+</html>
