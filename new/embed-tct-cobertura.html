@@ -457,18 +457,19 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) scale(0.9);
+      transform: translate(-50%, -50%) scale(1);
       width: 58px;
       height: 58px;
       border-radius: 50%;
-      background: rgba(229, 9, 20, 0.95);
+      background: rgba(229, 9, 20, 0.92);
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 25px rgba(229, 9, 20, 0.65);
       z-index: 3;
-      opacity: 0;
+      opacity: 0.92;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
 
     .card-play-overlay svg {
@@ -480,7 +481,37 @@
 
     .video-card:hover .card-play-overlay {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1.05);
+      background: #E50914;
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: 0 0 35px rgba(229, 9, 20, 0.85);
+    }
+
+    /* Player embutido dentro do próprio card */
+    .inline-player-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inline-player-container iframe,
+    .inline-player-container video {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      object-fit: cover;
+    }
+
+    .video-card.playing {
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.35);
     }
 
     /* Duração do Vídeo */
@@ -1487,7 +1518,7 @@
           card.setAttribute('aria-label', `Assistir vídeo: ${video.title} com ${video.speaker}`);
 
           card.innerHTML = `
-            <div class="video-thumb-wrap">
+            <div class="video-thumb-wrap" id="thumbWrap-${video.id}">
               <img 
                 src="${video.poster}" 
                 alt="${video.speaker} - ${video.title}" 
@@ -1504,7 +1535,7 @@
                 <span class="badge-day">${video.dayLabel}</span>
               </div>
 
-              <div class="card-play-overlay" aria-hidden="true">
+              <div class="card-play-overlay" aria-label="Reproduzir vídeo">
                 <svg viewBox="0 0 24 24">
                   <polygon points="5 3 19 12 5 21 5 3"></polygon>
                 </svg>
@@ -1531,12 +1562,17 @@
             </div>
           `;
 
-          // Eventos de clique e teclado
-          card.addEventListener('click', () => openVideoModal(video));
+          // Eventos de clique e teclado: reproduz o vídeo diretamente fixo no card (inline) sem abrir popup
+          card.addEventListener('click', (e) => {
+            // Se o usuário clicar dentro de um player já rodando, deixa os controles nativos funcionarem
+            if (e.target.closest('.inline-player-container')) return;
+            playVideoInline(card, video);
+          });
+
           card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              openVideoModal(video);
+              playVideoInline(card, video);
             }
           });
 
@@ -1547,7 +1583,58 @@
         sendResizeMessage();
       }
 
-      // 6. ABRIR E FECHAR MODAL LIGHTBOX (VIMEO OU MP4 DIRETO)
+      // 6. REPRODUZIR VÍDEO FIXO NO PRÓPRIO CARD (SEM POP-UP)
+      let currentlyPlayingCard = null;
+
+      function playVideoInline(card, video) {
+        // Se já estiver rodando neste card, não faz nada
+        if (card === currentlyPlayingCard && card.querySelector('.inline-player-container')) {
+          return;
+        }
+
+        // Para qualquer outro card que esteja tocando
+        if (currentlyPlayingCard) {
+          const oldWrap = currentlyPlayingCard.querySelector('.video-thumb-wrap');
+          const oldPlayer = currentlyPlayingCard.querySelector('.inline-player-container');
+          if (oldPlayer) oldPlayer.remove();
+          currentlyPlayingCard.classList.remove('playing');
+        }
+
+        const thumbWrap = card.querySelector('.video-thumb-wrap');
+        if (!thumbWrap) return;
+
+        const playerContainer = document.createElement('div');
+        playerContainer.className = 'inline-player-container';
+
+        if (video.mp4Url) {
+          playerContainer.innerHTML = `
+            <video 
+              src="${video.mp4Url}" 
+              poster="${video.poster}" 
+              controls 
+              autoplay 
+              playsinline 
+              style="width: 100%; height: 100%; object-fit: cover; background: #000;"
+            ></video>
+          `;
+        } else {
+          playerContainer.innerHTML = `
+            <iframe 
+              src="https://player.vimeo.com/video/${video.videoId}?autoplay=1&title=0&byline=0&portrait=0&color=E50914" 
+              title="${video.title} - ${video.speaker}" 
+              allow="autoplay; fullscreen; picture-in-picture" 
+              allowfullscreen
+            ></iframe>
+          `;
+        }
+
+        thumbWrap.appendChild(playerContainer);
+        card.classList.add('playing');
+        currentlyPlayingCard = card;
+        sendResizeMessage();
+      }
+
+      // Função de fallback caso chamada externamente
       function openVideoModal(video) {
         modalVideoTitle.textContent = video.title;
         modalVideoSpeaker.textContent = `${video.speaker} • ${video.role}`;
