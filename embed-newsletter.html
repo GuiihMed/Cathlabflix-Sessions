@@ -408,16 +408,13 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
 
+    .editorial-media-col video,
     .editorial-media-col img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .editorial-media-col:hover img {
-      transform: scale(1.03);
+      border-radius: inherit;
     }
 
     .editorial-media-overlay {
@@ -980,16 +977,17 @@
           </div>
         </div>
 
-        <div class="editorial-media-col" title="Equipe Editorial SBHCI News">
-          <img src="https://static.wixstatic.com/media/1d3d47_7e79306eb5d146e1bd61b2f02c95a74cf003.jpg/v1/fill/w_600,h_338,q_90,enc_avif,quality_auto/1d3d47_7e79306eb5d146e1bd61b2f02c95a74cf003.jpg" alt="Equipe de Editores da Newsletter SBHCI" loading="lazy">
-          <div class="editorial-media-overlay">
-            <span class="editorial-media-label">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              Time Editorial SBHCI News
-            </span>
-          </div>
+        <div class="editorial-media-col" title="Vídeo da Equipe Editorial SBHCI News">
+          <video 
+            class="editorial-video"
+            controls
+            playsinline
+            preload="metadata"
+            poster="https://static.wixstatic.com/media/1d3d47_7e79306eb5d146e1bd61b2f02c95a74cf003.jpg/v1/fill/w_600,h_338,q_90,enc_avif,quality_auto/1d3d47_7e79306eb5d146e1bd61b2f02c95a74cf003.jpg"
+          >
+            <source src="https://video.wixstatic.com/video/1d3d47_7e79306eb5d146e1bd61b2f02c95a74c/1080p/mp4/file.mp4" type="video/mp4">
+            Seu navegador não suporta reprodução de vídeos HTML5.
+          </video>
         </div>
       </section>
 
