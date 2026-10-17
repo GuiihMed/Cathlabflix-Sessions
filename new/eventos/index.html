@@ -61,10 +61,10 @@
     }
 
     .embed-eventos-container {
-      width: 94%;
-      max-width: 1100px;
+      width: 96%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 16px 8px 48px;
+      padding: 20px 8px 60px;
     }
 
     @media (max-width: 768px) {
@@ -100,10 +100,62 @@
        VIEW 1: CATÁLOGO DE EVENTOS
        ========================================================================== */
 
+    /* Cabeçalho do Feed */
+    .eventos-feed-header {
+      margin-bottom: 24px;
+    }
+
+    .eventos-feed-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .eventos-feed-title {
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .red-line {
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary, #E50914);
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .eventos-feed-title {
+        font-size: 1.35rem !important;
+      }
+    }
+
+    .eventos-count-badge {
+      display: none !important;
+    }
+
+    .eventos-feed-subtitle {
+      font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin: 0;
+    }
+
     /* Barra de Busca */
     .eventos-search-bar-wrap {
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .eventos-search-box {
@@ -113,20 +165,24 @@
       background: #020627;
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--radius-pill);
-      padding: 2px 16px;
+      padding: 0 16px;
+      min-height: 48px;
       transition: all 0.2s ease;
+      width: 100%;
     }
 
     .eventos-search-box:focus-within {
       border-color: var(--color-blue-accent);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
-      background: #050b38;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      background: #030a38;
     }
 
     .eventos-search-icon {
       color: var(--color-text-secondary);
-      margin-right: 10px;
+      margin-right: 12px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
     }
 
     .eventos-search-input {
@@ -135,9 +191,9 @@
       background: transparent;
       color: #FFFFFF;
       font-family: inherit;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      padding: 10px 0;
+      padding: 12px 0;
       outline: none;
     }
 
@@ -160,45 +216,67 @@
       color: #FFFFFF;
     }
 
-    /* Cabeçalho do Feed */
-    .eventos-feed-header {
-      margin-bottom: 20px;
-    }
-
-    .eventos-feed-title-row {
+    /* Abas Principais de Status: Próximos Eventos vs Eventos Realizados */
+    .eventos-status-tabs {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 6px;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 4px;
     }
 
-    .eventos-feed-title {
-      font-size: 1.22rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #FFFFFF;
-      display: flex;
+    .eventos-status-tab-btn {
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin: 0;
-    }
-
-    @media (max-width: 768px) {
-      .eventos-feed-title {
-        font-size: 1.1rem !important;
-      }
-    }
-
-    .eventos-count-badge {
-      display: none !important;
-    }
-
-    .eventos-feed-subtitle {
-      font-size: 0.8125rem;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 700;
       color: var(--color-text-secondary);
-      margin: 0;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .eventos-status-tab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .eventos-status-tab-btn.active {
+      color: #FFFFFF;
+      border-bottom-color: var(--color-primary);
+      background: rgba(6, 34, 87, 0.4);
+    }
+
+    .status-tab-count {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+    }
+
+    .eventos-status-tab-btn.active .status-tab-count {
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    /* Badge visual de Realizado nos cards */
+    .evento-card.is-past .evento-card-thumb-img {
+      filter: grayscale(18%) contrast(95%);
+    }
+
+    .badge-realizado {
+      background: rgba(71, 85, 105, 0.95);
+      border-color: #94a3b8;
+      color: #f1f5f9;
     }
 
     /* Pílulas de Filtro por Categoria */
@@ -243,19 +321,118 @@
       box-shadow: 0 2px 8px rgba(229, 9, 20, 0.35);
     }
 
-    /* Grade de Cards de Eventos (Igual Notícias) */
+    /* Grade de Cards de Eventos - 3 Colunas no Desktop / Tablet */
     .eventos-cards-grid {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
       width: 100%;
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 640px) and (max-width: 991px) {
       .eventos-cards-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 28px;
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .eventos-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+    }
+
+    /* Paginação Oficial de Eventos (12 por página) */
+    .eventos-pagination-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--color-border-subtle);
+      user-select: none;
+      width: 100%;
+    }
+
+    .eventos-pagination-numbers {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .eventos-pagination-btn,
+    .eventos-pagination-num {
+      font-family: var(--font-family-base);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 10px;
+      background: #010234;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+      color: #cbd5e1;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .eventos-pagination-btn {
+      height: 38px;
+      padding: 0 16px;
+    }
+
+    .eventos-pagination-num {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 8px;
+    }
+
+    .eventos-pagination-btn:hover:not(.disabled),
+    .eventos-pagination-num:hover:not(.active) {
+      background: #062257;
+      border-color: rgba(56, 189, 248, 0.45);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    }
+
+    .eventos-pagination-num.active {
+      background: var(--color-primary, #E50914);
+      border-color: var(--color-primary, #E50914);
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(229, 9, 20, 0.45);
+      pointer-events: none;
+    }
+
+    .eventos-pagination-btn.disabled,
+    .eventos-pagination-btn:disabled {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.25);
+      box-shadow: none;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .eventos-pagination-btn:active:not(.disabled),
+    .eventos-pagination-num:active:not(.active) {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .eventos-pagination-btn span {
+        display: none;
+      }
+      .eventos-pagination-btn {
+        padding: 0 10px;
+        min-width: 38px;
       }
     }
 
@@ -764,13 +941,27 @@
          ================================================================ -->
     <section class="eventos-view-panel active" id="eventosCatalogView">
 
+      <!-- Cabeçalho -->
+      <header class="eventos-feed-header">
+        <div class="eventos-feed-title-row">
+          <h1 class="eventos-feed-title">
+            <span>Agenda de Eventos & Congressos</span>
+          </h1>
+          <span class="eventos-count-badge" id="eventosCountBadge" style="display: none;"></span>
+        </div>
+        <div class="red-line"></div>
+        <p class="eventos-feed-subtitle">Confira a programação científica completa da SBHCI e parceiros oficiais.</p>
+      </header>
+
       <!-- Barra de Busca -->
       <div class="eventos-search-bar-wrap">
         <div class="eventos-search-box">
-          <svg class="eventos-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
+          <span class="eventos-search-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
           <input type="text" class="eventos-search-input" id="eventosSearchInput" placeholder="Buscar por evento, local, cidade ou tipo..." autocomplete="off">
           <button type="button" class="eventos-search-clear" id="eventosSearchClear" title="Limpar busca">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -781,16 +972,21 @@
         </div>
       </div>
 
-      <!-- Cabeçalho -->
-      <header class="eventos-feed-header">
-        <div class="eventos-feed-title-row">
-          <h1 class="eventos-feed-title">
-            <span>Agenda de Eventos & Congressos</span>
-          </h1>
-          <span class="eventos-count-badge" id="eventosCountBadge" style="display: none;"></span>
-        </div>
-        <p class="eventos-feed-subtitle">Confira a programação científica completa da SBHCI e parceiros oficiais.</p>
-      </header>
+      <!-- Abas de Status: Próximos Eventos vs Eventos Realizados -->
+      <nav class="eventos-status-tabs" id="eventosStatusTabs" role="tablist" aria-label="Status do Evento">
+        <button type="button" class="eventos-status-tab-btn active" data-status="upcoming" role="tab" aria-selected="true">
+          <span>Próximos Eventos</span>
+          <span class="status-tab-count" id="countUpcoming">0</span>
+        </button>
+        <button type="button" class="eventos-status-tab-btn" data-status="past" role="tab" aria-selected="false">
+          <span>Eventos Realizados</span>
+          <span class="status-tab-count" id="countPast">0</span>
+        </button>
+        <button type="button" class="eventos-status-tab-btn" data-status="all" role="tab" aria-selected="false">
+          <span>Todos</span>
+          <span class="status-tab-count" id="countAllStatus">0</span>
+        </button>
+      </nav>
 
       <!-- Pílulas de Filtro por Categoria -->
       <nav class="eventos-category-bar" aria-label="Filtrar por Categoria">
@@ -806,6 +1002,9 @@
       <main class="eventos-cards-grid" id="eventosCardsGrid">
         <!-- Renderizado dinamicamente via JS -->
       </main>
+
+      <!-- Paginação de Eventos (12 por página) -->
+      <nav class="eventos-pagination-nav" id="eventosPaginationContainer" aria-label="Navegação entre páginas de eventos" style="display: none;"></nav>
 
     </section>
 
@@ -1129,11 +1328,112 @@ if (typeof module !== 'undefined' && module.exports) {
 
       const STORAGE_KEY = 'cathlabflix_custom_events';
       const API_ENDPOINT = '/api/wix-events';
+      const EVENTS_PER_PAGE = 12;
 
       let allEvents = [];
       let filteredEvents = [];
+      let currentEventsPage = 1;
+      let currentStatus = 'upcoming'; // 'upcoming' (padrão) | 'past' | 'all'
       let currentFilter = 'all';
       let searchQuery = '';
+
+      function isEventPast(ev) {
+        // Se tiver endDate, usa endDate; senão usa date
+        const targetDateStr = ev.endDate || ev.date;
+        if (!targetDateStr) return false;
+        
+        // Final do dia da data indicada
+        const targetDate = new Date(`${targetDateStr}T23:59:59`);
+        const now = new Date();
+        return targetDate.getTime() < now.getTime();
+      }
+
+      // Função para normalizar itens vindos do Wix CMS (Velo postMessage ou API REST)
+      function normalizeWixEventItem(it, idx) {
+        if (!it || typeof it !== 'object') return null;
+
+        const id = it._id || it.id || it.slug || `evento-wix-${idx + 1}`;
+        const title = it.title || it.Title || it.nome || it.Nome || 'Evento Sem Título';
+        
+        // Data de início
+        let date = it.date || it.data || it.dataInicio || it.startDate || it.Data || '';
+        if (date instanceof Date) {
+          date = date.toISOString().split('T')[0];
+        } else if (typeof date === 'string' && date.includes('T')) {
+          date = date.split('T')[0];
+        }
+
+        // Data de término
+        let endDate = it.endDate || it.dataFim || it.dataTermino || it.EndDate || date;
+        if (endDate instanceof Date) {
+          endDate = endDate.toISOString().split('T')[0];
+        } else if (typeof endDate === 'string' && endDate.includes('T')) {
+          endDate = endDate.split('T')[0];
+        }
+
+        const time = it.time || it.horario || it.Horario || 'Horário a definir';
+        const location = it.location || it.local || it.cidade || it.Local || 'CathlabFlix Streaming';
+        const description = it.description || it.descricao || it.resumo || it.subtitle || it.Descricao || '';
+        const subtitle = it.subtitle || it.subtitulo || description.slice(0, 100);
+        
+        // Imagem (suporta wix:image:// e URLs diretas)
+        let image = it.image || it.imagem || it.foto || it.cover || it.Image || '';
+        if (image && typeof image === 'string' && image.startsWith('wix:image://')) {
+          const m = image.match(/wix:image:\/\/v1\/([^/]+)\//);
+          if (m && m[1]) {
+            image = `https://static.wixstatic.com/media/${m[1]}/v1/fill/w_1000,h_1000,al_c,q_80/file.png`;
+          }
+        }
+        if (!image) {
+          image = 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+        }
+
+        const type = (it.type || it.tipo || it.Tipo || 'evento').toLowerCase();
+        const isApoio = type.includes('apoio') || (it.badge && it.badge.includes('APOIO'));
+        const badge = it.badge || (isApoio ? 'APOIO SBHCI' : 'EVENTO OFICIAL SBHCI');
+        const category = it.category || it.categoria || (type.includes('webinar') ? 'Webinar' : (type.includes('curso') ? 'Curso' : 'Congresso'));
+        const registrationUrl = it.registrationUrl || it.linkInscricao || it.inscricao || it.link || '';
+
+        return {
+          id: String(id),
+          slug: it.slug || String(id),
+          title: String(title),
+          subtitle: String(subtitle),
+          description: String(description),
+          date: String(date),
+          endDate: String(endDate),
+          time: String(time),
+          location: String(location),
+          modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : 'Presencial'),
+          type: isApoio ? 'apoio_sbhci' : 'evento',
+          badge: String(badge),
+          category: String(category),
+          color: isApoio ? 'blue' : 'red',
+          image: String(image),
+          registrationUrl: String(registrationUrl),
+          actionUrl: `/new/evento?id=${encodeURIComponent(id)}`,
+          actionLabel: 'Confira'
+        };
+      }
+
+      function setEventsFromWix(rawItems) {
+        if (!Array.isArray(rawItems) || rawItems.length === 0) return;
+        console.log('[Cathlabflix Eventos] Recebidos itens do Wix CMS:', rawItems.length);
+
+        const normalized = rawItems.map((it, idx) => normalizeWixEventItem(it, idx)).filter(Boolean);
+        if (normalized.length > 0) {
+          const map = new Map();
+          // Itens vindos do banco do Wix têm precedência total
+          normalized.forEach(ev => map.set(ev.id, ev));
+          
+          allEvents = Array.from(map.values()).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+          applyFilters();
+          notifyHeight();
+          console.log(`[Cathlabflix Eventos] ${allEvents.length} eventos carregados do Wix CMS com sucesso!`);
+        }
+      }
+
+      window.setEvents = setEventsFromWix;
 
       // 1. Carrega eventos locais e remotos
       function loadAllEvents() {
@@ -1180,9 +1480,40 @@ if (typeof module !== 'undefined' && module.exports) {
         }
       }
 
-      // 2. Filtros e Busca
-      function applyFilters() {
+      // 2. Filtros, Status e Busca
+      function updateStatusCounts() {
+        let upcoming = 0;
+        let past = 0;
+
+        allEvents.forEach(ev => {
+          if (isEventPast(ev)) {
+            past++;
+          } else {
+            upcoming++;
+          }
+        });
+
+        const upEl = document.getElementById('countUpcoming');
+        const pastEl = document.getElementById('countPast');
+        const allEl = document.getElementById('countAllStatus');
+        if (upEl) upEl.textContent = upcoming;
+        if (pastEl) pastEl.textContent = past;
+        if (allEl) allEl.textContent = allEvents.length;
+      }
+
+      function applyFilters(resetPage = true) {
+        if (resetPage) {
+          currentEventsPage = 1;
+        }
+        updateStatusCounts();
+
         filteredEvents = allEvents.filter(ev => {
+          const past = isEventPast(ev);
+
+          // Filtro por Status (Próximos vs Realizados)
+          if (currentStatus === 'upcoming' && past) return false;
+          if (currentStatus === 'past' && !past) return false;
+
           // Filtro por Categoria
           if (currentFilter !== 'all') {
             const t = (ev.type || '').toLowerCase();
@@ -1209,13 +1540,26 @@ if (typeof module !== 'undefined' && module.exports) {
           return true;
         });
 
+        // Ordenação inteligente:
+        // - Eventos futuros: mais próximos primeiro (crescente)
+        // - Eventos passados: mais recentes primeiro (decrescente)
+        filteredEvents.sort((a, b) => {
+          const timeA = new Date(a.date).getTime();
+          const timeB = new Date(b.date).getTime();
+          if (currentStatus === 'past') {
+            return timeB - timeA;
+          }
+          return timeA - timeB;
+        });
+
         renderCatalog();
       }
 
-      // 3. Renderização do Catálogo
+      // 3. Renderização do Catálogo com Paginação (12 por página)
       function renderCatalog() {
         const grid = document.getElementById('eventosCardsGrid');
         const countBadge = document.getElementById('eventosCountBadge');
+        const paginationContainer = document.getElementById('eventosPaginationContainer');
         if (!grid) return;
 
         if (countBadge) {
@@ -1235,33 +1579,54 @@ if (typeof module !== 'undefined' && module.exports) {
               <button type="button" class="evento-card-btn" id="resetFiltersBtn">Limpar Filtros</button>
             </div>
           `;
+          if (paginationContainer) {
+            paginationContainer.style.display = 'none';
+            paginationContainer.innerHTML = '';
+          }
 
           const resetBtn = document.getElementById('resetFiltersBtn');
           if (resetBtn) {
             resetBtn.addEventListener('click', () => {
               searchQuery = '';
               currentFilter = 'all';
+              currentStatus = 'upcoming';
+              currentEventsPage = 1;
+              document.querySelectorAll('.eventos-status-tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-status') === 'upcoming'));
               const input = document.getElementById('eventosSearchInput');
               if (input) input.value = '';
               document.querySelectorAll('.eventos-category-pill').forEach(p => {
                 p.classList.toggle('active', p.getAttribute('data-filter') === 'all');
               });
-              applyFilters();
+              applyFilters(true);
             });
           }
+          notifyHeight();
           return;
         }
 
-        grid.innerHTML = filteredEvents.map(ev => {
+        const totalPages = Math.ceil(filteredEvents.length / EVENTS_PER_PAGE);
+        if (currentEventsPage < 1) currentEventsPage = 1;
+        if (totalPages > 0 && currentEventsPage > totalPages) currentEventsPage = totalPages;
+
+        const startIndex = (currentEventsPage - 1) * EVENTS_PER_PAGE;
+        const pageItems = filteredEvents.slice(startIndex, startIndex + EVENTS_PER_PAGE);
+
+        grid.innerHTML = pageItems.map(ev => {
+          const past = isEventPast(ev);
           const isApoio = (ev.type && ev.type.includes('apoio')) || (ev.badge && ev.badge.includes('APOIO'));
           const isGeral = (ev.type && ev.type === 'eventos') || (ev.badge && ev.badge.toLowerCase() === 'eventos');
-          const badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
-          const badgeText = isApoio ? 'APOIO SBHCI' : (isGeral ? 'EVENTOS' : 'EVENTO OFICIAL SBHCI');
+          let badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
+          let badgeText = isApoio ? 'APOIO SBHCI' : (isGeral ? 'EVENTOS' : 'EVENTO OFICIAL SBHCI');
+
+          if (past) {
+            badgeClass = 'badge-realizado';
+            badgeText = 'EVENTO REALIZADO';
+          }
           const dateLabel = formatDateLabel(ev.date, ev.endDate, ev.dateRangeLabel);
           const imgUrl = ev.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
 
           return `
-            <article class="evento-card" data-id="${escapeHTML(ev.id)}">
+            <article class="evento-card ${past ? 'is-past' : ''}" data-id="${escapeHTML(ev.id)}">
               <div class="evento-card-thumb-wrap" onclick="EventosRouter.openDetail('${escapeHTML(ev.id)}')">
                 <img src="${imgUrl}" alt="${escapeHTML(ev.title)}" class="evento-card-thumb-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
                 <span class="evento-card-badge ${badgeClass}">${badgeText}</span>
@@ -1313,7 +1678,87 @@ if (typeof module !== 'undefined' && module.exports) {
           `;
         }).join('');
 
+        renderEventosPagination(paginationContainer, totalPages, currentEventsPage);
         notifyHeight();
+      }
+
+      function renderEventosPagination(container, totalPages, currentPage) {
+        if (!container) return;
+
+        if (totalPages <= 1) {
+          container.style.display = 'none';
+          container.innerHTML = '';
+          return;
+        }
+
+        container.style.display = 'flex';
+        let html = '';
+
+        const prevDisabled = currentPage === 1;
+        html += `
+          <button 
+            type="button" 
+            class="eventos-pagination-btn prev ${prevDisabled ? 'disabled' : ''}" 
+            aria-label="Página anterior"
+            ${prevDisabled ? 'disabled' : ''}
+            data-page="${currentPage - 1}"
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Anterior</span>
+          </button>
+        `;
+
+        html += `<div class="eventos-pagination-numbers">`;
+        for (let i = 1; i <= totalPages; i++) {
+          const isActive = i === currentPage;
+          html += `
+            <button 
+              type="button" 
+              class="eventos-pagination-num ${isActive ? 'active' : ''}" 
+              aria-label="Página ${i}"
+              aria-current="${isActive ? 'page' : 'false'}"
+              data-page="${i}"
+            >
+              ${i}
+            </button>
+          `;
+        }
+        html += `</div>`;
+
+        const nextDisabled = currentPage === totalPages;
+        html += `
+          <button 
+            type="button" 
+            class="eventos-pagination-btn next ${nextDisabled ? 'disabled' : ''}" 
+            aria-label="Próxima página"
+            ${nextDisabled ? 'disabled' : ''}
+            data-page="${currentPage + 1}"
+          >
+            <span>Próximo</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        `;
+
+        container.innerHTML = html;
+
+        container.querySelectorAll('button[data-page]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetPage = parseInt(btn.getAttribute('data-page'), 10);
+            if (targetPage && targetPage !== currentEventsPage && targetPage >= 1 && targetPage <= totalPages) {
+              currentEventsPage = targetPage;
+              renderCatalog();
+              const headerEl = document.querySelector('.eventos-feed-header');
+              if (headerEl) {
+                headerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        });
       }
 
       // 4. Renderização do Leitor Interno
@@ -1626,9 +2071,79 @@ if (typeof module !== 'undefined' && module.exports) {
         return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       }
 
+      // Sincronização em Tempo Real com Wix Velo (postMessage bidirecional)
+      function requestWixData() {
+        try {
+          if (window.parent && window.parent !== window) {
+            console.log('[Cathlabflix Eventos] Solicitando eventos ao Wix parent...');
+            window.parent.postMessage({ type: 'REQUEST_EVENTS', collection: 'eventos' }, '*');
+            window.parent.postMessage({ type: 'REQUEST_EVENTS', collection: 'Eventos' }, '*');
+            window.parent.postMessage('REQUEST_EVENTS', '*');
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener('message', function(event) {
+        if (!event.data) return;
+        let data = event.data;
+
+        // Se os dados vierem em string (JSON stringificado pelo Velo)
+        if (typeof data === 'string') {
+          try {
+            data = JSON.parse(data);
+          } catch (e) {
+            return;
+          }
+        }
+
+        // Extrai array de itens de qualquer formato comum enviado pelo Wix Velo
+        let items = null;
+        if (Array.isArray(data)) {
+          items = data;
+        } else if (data && typeof data === 'object') {
+          if (Array.isArray(data.items)) items = data.items;
+          else if (Array.isArray(data.data)) items = data.data;
+          else if (Array.isArray(data.payload)) items = data.payload;
+          else if (Array.isArray(data.results)) items = data.results;
+          else if (data.data && Array.isArray(data.data.items)) items = data.data.items;
+          else if (data.type === 'EVENTS_DATA' && Array.isArray(data.items)) items = data.items;
+        }
+
+        if (Array.isArray(items) && items.length > 0) {
+          setEventsFromWix(items);
+        }
+      });
+
+      // Suporte a carregamento direto via API REST (se fornecida via query param ?api=URL ou endpoint Wix padrão)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const apiUrl = urlParams.get('api') || urlParams.get('endpoint') || 'https://www.cathlabflix.org/_functions/eventos';
+        if (apiUrl) {
+          fetch(apiUrl)
+            .then(res => {
+              if (!res.ok) throw new Error('Status ' + res.status);
+              return res.json();
+            })
+            .then(data => {
+              const items = data.items || data;
+              if (Array.isArray(items) && items.length > 0) {
+                console.log('[Cathlabflix Eventos] Dados recebidos via API HTTP:', items.length);
+                setEventsFromWix(items);
+              }
+            })
+            .catch(() => {
+              // Silencioso se o endpoint ainda não estiver configurado no Wix
+            });
+        }
+      } catch (err) {}
+
       // Inicialização
       document.addEventListener('DOMContentLoaded', () => {
         loadAllEvents();
+        requestWixData();
+        setTimeout(requestWixData, 500);
+        setTimeout(requestWixData, 1500);
+        setTimeout(requestWixData, 3000);
 
         // Busca
         const searchInput = document.getElementById('eventosSearchInput');
@@ -1652,6 +2167,20 @@ if (typeof module !== 'undefined' && module.exports) {
             }
           });
         }
+
+        // Abas de Status (Próximos vs Realizados)
+        document.querySelectorAll('.eventos-status-tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.eventos-status-tab-btn').forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            currentStatus = btn.getAttribute('data-status') || 'upcoming';
+            applyFilters();
+          });
+        });
 
         // Pílulas de Categoria
         document.querySelectorAll('.eventos-category-pill').forEach(btn => {
