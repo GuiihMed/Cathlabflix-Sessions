@@ -7,9 +7,92 @@
   'use strict';
 
   const STORAGE_KEY = 'cathlabflix_custom_events';
-  const API_ENDPOINT = '/api/wix-events';
+  let remoteEvents = [];
+
+  function normalizeWixEventItem(it, idx) {
+    if (!it || typeof it !== 'object') return null;
+
+    const id = it._id || it.id || it.slug || `evento-wix-${idx + 1}`;
+    const title = it.title || it.Title || it.nome || it.Nome || 'Evento Sem Título';
+    
+    // Data de início
+    let date = it.date || it.data || it.dataInicio || it.startDate || it.Data || '';
+    if (date instanceof Date) {
+      date = date.toISOString().split('T')[0];
+    } else if (typeof date === 'string' && date.includes('T')) {
+      date = date.split('T')[0];
+    }
+
+    // Data de término
+    let endDate = it.endDate || it.dataFim || it.dataTermino || it.EndDate || date;
+    if (endDate instanceof Date) {
+      endDate = endDate.toISOString().split('T')[0];
+    } else if (typeof endDate === 'string' && endDate.includes('T')) {
+      endDate = endDate.split('T')[0];
+    }
+
+    const time = it.time || it.horario || it.Horario || 'Horário a definir';
+    const location = it.location || it.local || it.cidade || it.Local || 'CathlabFlix Streaming';
+    const description = it.description || it.descricao || it.resumo || it.subtitle || it.Descricao || '';
+    const subtitle = it.subtitle || it.subtitulo || description.slice(0, 100);
+    
+    // Imagem (suporta wix:image:// e URLs diretas)
+    let image = it.image || it.imagem || it.foto || it.cover || it.Image || '';
+    if (image && typeof image === 'string' && image.startsWith('wix:image://')) {
+      const m = image.match(/wix:image:\/\/v1\/([^/]+)\//);
+      if (m && m[1]) {
+        image = `https://static.wixstatic.com/media/${m[1]}/v1/fill/w_1000,h_1000,al_c,q_80/file.png`;
+      }
+    }
+    if (!image) {
+      image = 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+    }
+
+    const type = (it.type || it.tipo || it.Tipo || 'evento').toLowerCase();
+    const isApoio = type.includes('apoio') || (it.badge && it.badge.includes('APOIO'));
+    const badge = it.badge || (isApoio ? 'APOIO SBHCI' : 'EVENTO OFICIAL SBHCI');
+    const category = it.category || it.categoria || (type.includes('webinar') ? 'Webinar' : (type.includes('curso') ? 'Curso' : 'Congresso'));
+    const registrationUrl = it.registrationUrl || it.linkInscricao || it.inscricao || it.link || '';
+
+    return {
+      id: String(id),
+      slug: it.slug || String(id),
+      title: String(title),
+      subtitle: String(subtitle),
+      description: String(description),
+      date: String(date),
+      endDate: String(endDate),
+      time: String(time),
+      location: String(location),
+      modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : 'Presencial'),
+      type: isApoio ? 'apoio_sbhci' : 'evento',
+      badge: String(badge),
+      category: String(category),
+      color: isApoio ? 'blue' : 'red',
+      image: String(image),
+      registrationUrl: String(registrationUrl),
+      actionUrl: `/new/evento?id=${encodeURIComponent(id)}`,
+      actionLabel: 'Confira'
+    };
+  }
 
   const EventsService = {
+    normalizeWixEventItem,
+
+    /**
+     * Define eventos diretamente do Wix CMS
+     */
+    setEventsFromWix(rawItems) {
+      if (!Array.isArray(rawItems) || rawItems.length === 0) return;
+      const normalized = rawItems.map((it, idx) => normalizeWixEventItem(it, idx)).filter(Boolean);
+      if (normalized.length > 0) {
+        remoteEvents = normalized;
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('cathlabflix:events-updated', { detail: normalized }));
+        }
+      }
+    },
+
     /**
      * Retorna todos os eventos combinando os eventos oficiais com os cadastrados via painel/Wix
      */
@@ -37,6 +120,8 @@
       const map = new Map();
       baseList.forEach(ev => map.set(ev.id, ev));
       customList.forEach(ev => map.set(ev.id, ev));
+      // Eventos remotos do Wix CMS têm prioridade máxima de atualização
+      remoteEvents.forEach(ev => map.set(ev.id, ev));
 
       const merged = Array.from(map.values());
       return merged.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -57,11 +142,13 @@
      */
     async syncFromRemote() {
       try {
-        const res = await fetch(API_ENDPOINT);
+        const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+        const endpoint = isLocal ? '/api/wix-events' : 'https://cathlabflix-sessions.vercel.app/api/wix-events';
+        const res = await fetch(endpoint);
         if (!res.ok) return null;
         const data = await res.json();
         if (data && data.success && Array.isArray(data.items)) {
-          // Atualiza lista em memória se aplicável
+          this.setEventsFromWix(data.items);
           if (typeof window !== 'undefined') {
             window.dispatchEvent(new CustomEvent('cathlabflix:remote-events-loaded', { detail: data.items }));
           }
@@ -349,6 +436,50 @@ export function post_eventos(request) {
     }
   };
 
+  // Ouvinte de mensagens do Wix Velo (postMessage bidirecional com o site pai)
+  if (typeof window !== 'undefined') {
+    function requestWixData() {
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'REQUEST_EVENTS', collection: 'eventos' }, '*');
+          window.parent.postMessage({ type: 'REQUEST_EVENTS', collection: 'Eventos' }, '*');
+          window.parent.postMessage('REQUEST_EVENTS', '*');
+        }
+      } catch (e) {}
+    }
+
+    EventsService.requestWixData = requestWixData;
+
+    window.addEventListener('message', function(event) {
+      if (!event.data) return;
+      let data = event.data;
+
+      if (typeof data === 'string') {
+        try {
+          data = JSON.parse(data);
+        } catch (e) {
+          return;
+        }
+      }
+
+      let items = null;
+      if (Array.isArray(data)) {
+        items = data;
+      } else if (data && typeof data === 'object') {
+        if (Array.isArray(data.items)) items = data.items;
+        else if (Array.isArray(data.data)) items = data.data;
+        else if (Array.isArray(data.payload)) items = data.payload;
+        else if (Array.isArray(data.results)) items = data.results;
+        else if (data.data && Array.isArray(data.data.items)) items = data.data.items;
+        else if (data.type === 'EVENTS_DATA' && Array.isArray(data.items)) items = data.items;
+      }
+
+      if (Array.isArray(items) && items.length > 0) {
+        EventsService.setEventsFromWix(items);
+      }
+    });
+  }
+
   // Exportação para escopo global e módulos
   global.EventsService = EventsService;
 
@@ -356,3 +487,4 @@ export function post_eventos(request) {
     module.exports = EventsService;
   }
 })(typeof window !== 'undefined' ? window : globalThis);
+

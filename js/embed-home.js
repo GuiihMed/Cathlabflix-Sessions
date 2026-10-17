@@ -158,6 +158,21 @@
       if (EmbedRouter.currentView === 'home') renderHomeNewsFeed();
       if (EmbedRouter.currentView === 'posts') renderAllPostsView();
     }).catch(() => {});
+
+    // Sincroniza eventos ao vivo da API e Wix CMS com o calendário
+    if (typeof EventsService !== 'undefined') {
+      if (typeof EventsService.requestWixData === 'function') {
+        EventsService.requestWixData();
+      }
+      if (typeof EventsService.syncFromRemote === 'function') {
+        EventsService.syncFromRemote().then(() => {
+          if (calendarInstance && typeof calendarInstance.renderContent === 'function') {
+            calendarInstance.events = EventsService.getAllEvents();
+            calendarInstance.renderContent();
+          }
+        }).catch(() => {});
+      }
+    }
   }
 
   if (document.readyState === 'loading') {
