@@ -216,6 +216,69 @@
       color: #FFFFFF;
     }
 
+    /* Abas Principais de Status: Próximos Eventos vs Eventos Realizados */
+    .eventos-status-tabs {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 4px;
+    }
+
+    .eventos-status-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-secondary);
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .eventos-status-tab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .eventos-status-tab-btn.active {
+      color: #FFFFFF;
+      border-bottom-color: var(--color-primary);
+      background: rgba(6, 34, 87, 0.4);
+    }
+
+    .status-tab-count {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+    }
+
+    .eventos-status-tab-btn.active .status-tab-count {
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    /* Badge visual de Realizado nos cards */
+    .evento-card.is-past .evento-card-thumb-img {
+      filter: grayscale(18%) contrast(95%);
+    }
+
+    .badge-realizado {
+      background: rgba(71, 85, 105, 0.95);
+      border-color: #94a3b8;
+      color: #f1f5f9;
+    }
+
     /* Pílulas de Filtro por Categoria */
     .eventos-category-bar {
       display: flex;
@@ -810,6 +873,22 @@
         </div>
       </div>
 
+      <!-- Abas de Status: Próximos Eventos vs Eventos Realizados -->
+      <nav class="eventos-status-tabs" id="eventosStatusTabs" role="tablist" aria-label="Status do Evento">
+        <button type="button" class="eventos-status-tab-btn active" data-status="upcoming" role="tab" aria-selected="true">
+          <span>Próximos Eventos</span>
+          <span class="status-tab-count" id="countUpcoming">0</span>
+        </button>
+        <button type="button" class="eventos-status-tab-btn" data-status="past" role="tab" aria-selected="false">
+          <span>Eventos Realizados</span>
+          <span class="status-tab-count" id="countPast">0</span>
+        </button>
+        <button type="button" class="eventos-status-tab-btn" data-status="all" role="tab" aria-selected="false">
+          <span>Todos</span>
+          <span class="status-tab-count" id="countAllStatus">0</span>
+        </button>
+      </nav>
+
       <!-- Pílulas de Filtro por Categoria -->
       <nav class="eventos-category-bar" aria-label="Filtrar por Categoria">
         <button type="button" class="eventos-category-pill active" data-filter="all">Todos os Eventos</button>
@@ -1150,8 +1229,22 @@ if (typeof module !== 'undefined' && module.exports) {
 
       let allEvents = [];
       let filteredEvents = [];
+      let currentStatus = 'upcoming'; // 'upcoming' (padrão) | 'past' | 'all'
       let currentFilter = 'all';
+              currentStatus = 'upcoming';
+              document.querySelectorAll('.eventos-status-tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-status') === 'upcoming'));
       let searchQuery = '';
+
+      function isEventPast(ev) {
+        // Se tiver endDate, usa endDate; senão usa date
+        const targetDateStr = ev.endDate || ev.date;
+        if (!targetDateStr) return false;
+        
+        // Final do dia da data indicada
+        const targetDate = new Date(`${targetDateStr}T23:59:59`);
+        const now = new Date();
+        return targetDate.getTime() < now.getTime();
+      }
 
       // 1. Carrega eventos locais e remotos
       function loadAllEvents() {
@@ -1198,9 +1291,37 @@ if (typeof module !== 'undefined' && module.exports) {
         }
       }
 
-      // 2. Filtros e Busca
+      // 2. Filtros, Status e Busca
+      function updateStatusCounts() {
+        let upcoming = 0;
+        let past = 0;
+
+        allEvents.forEach(ev => {
+          if (isEventPast(ev)) {
+            past++;
+          } else {
+            upcoming++;
+          }
+        });
+
+        const upEl = document.getElementById('countUpcoming');
+        const pastEl = document.getElementById('countPast');
+        const allEl = document.getElementById('countAllStatus');
+        if (upEl) upEl.textContent = upcoming;
+        if (pastEl) pastEl.textContent = past;
+        if (allEl) allEl.textContent = allEvents.length;
+      }
+
       function applyFilters() {
+        updateStatusCounts();
+
         filteredEvents = allEvents.filter(ev => {
+          const past = isEventPast(ev);
+
+          // Filtro por Status (Próximos vs Realizados)
+          if (currentStatus === 'upcoming' && past) return false;
+          if (currentStatus === 'past' && !past) return false;
+
           // Filtro por Categoria
           if (currentFilter !== 'all') {
             const t = (ev.type || '').toLowerCase();
@@ -1225,6 +1346,18 @@ if (typeof module !== 'undefined' && module.exports) {
           }
 
           return true;
+        });
+
+        // Ordenação inteligente:
+        // - Eventos futuros: mais próximos primeiro (crescente)
+        // - Eventos passados: mais recentes primeiro (decrescente)
+        filteredEvents.sort((a, b) => {
+          const timeA = new Date(a.date).getTime();
+          const timeB = new Date(b.date).getTime();
+          if (currentStatus === 'past') {
+            return timeB - timeA;
+          }
+          return timeA - timeB;
         });
 
         renderCatalog();
@@ -1259,6 +1392,8 @@ if (typeof module !== 'undefined' && module.exports) {
             resetBtn.addEventListener('click', () => {
               searchQuery = '';
               currentFilter = 'all';
+              currentStatus = 'upcoming';
+              document.querySelectorAll('.eventos-status-tab-btn').forEach(b => b.classList.toggle('active', b.getAttribute('data-status') === 'upcoming'));
               const input = document.getElementById('eventosSearchInput');
               if (input) input.value = '';
               document.querySelectorAll('.eventos-category-pill').forEach(p => {
@@ -1271,15 +1406,21 @@ if (typeof module !== 'undefined' && module.exports) {
         }
 
         grid.innerHTML = filteredEvents.map(ev => {
+          const past = isEventPast(ev);
           const isApoio = (ev.type && ev.type.includes('apoio')) || (ev.badge && ev.badge.includes('APOIO'));
           const isGeral = (ev.type && ev.type === 'eventos') || (ev.badge && ev.badge.toLowerCase() === 'eventos');
-          const badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
-          const badgeText = isApoio ? 'APOIO SBHCI' : (isGeral ? 'EVENTOS' : 'EVENTO OFICIAL SBHCI');
+          let badgeClass = isApoio ? 'badge-apoio' : (isGeral ? 'badge-eventos' : 'badge-oficial');
+          let badgeText = isApoio ? 'APOIO SBHCI' : (isGeral ? 'EVENTOS' : 'EVENTO OFICIAL SBHCI');
+
+          if (past) {
+            badgeClass = 'badge-realizado';
+            badgeText = 'EVENTO REALIZADO';
+          }
           const dateLabel = formatDateLabel(ev.date, ev.endDate, ev.dateRangeLabel);
           const imgUrl = ev.image || 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
 
           return `
-            <article class="evento-card" data-id="${escapeHTML(ev.id)}">
+            <article class="evento-card ${past ? 'is-past' : ''}" data-id="${escapeHTML(ev.id)}">
               <div class="evento-card-thumb-wrap" onclick="EventosRouter.openDetail('${escapeHTML(ev.id)}')">
                 <img src="${imgUrl}" alt="${escapeHTML(ev.title)}" class="evento-card-thumb-img" onerror="this.src='/assets/images/og-cathlabflix.png'">
                 <span class="evento-card-badge ${badgeClass}">${badgeText}</span>
@@ -1670,6 +1811,20 @@ if (typeof module !== 'undefined' && module.exports) {
             }
           });
         }
+
+        // Abas de Status (Próximos vs Realizados)
+        document.querySelectorAll('.eventos-status-tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.eventos-status-tab-btn').forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            currentStatus = btn.getAttribute('data-status') || 'upcoming';
+            applyFilters();
+          });
+        });
 
         // Pílulas de Categoria
         document.querySelectorAll('.eventos-category-pill').forEach(btn => {
