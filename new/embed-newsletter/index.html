@@ -997,15 +997,6 @@
           </svg>
           <span>Voltar ao Início</span>
         </a>
-
-        <a href="https://www.sbhci.org.br/ultimas-newsletters" target="_blank" rel="noopener noreferrer" class="external-sbhci-link">
-          <span>Portal SBHCI Oficial</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-        </a>
       </nav>
 
       <!-- 2. Cabeçalho Oficial da Página (Design System SBHCI) -->
@@ -1068,16 +1059,6 @@
               </svg>
             </button>
           </div>
-        </div>
-
-        <div class="filter-pills-row">
-          <div class="year-pills-wrap" id="year-filter-pills" role="tablist" aria-label="Filtrar por ano">
-            <button type="button" class="year-pill-btn active" data-year="all" role="tab" aria-selected="true">Todas as Edições</button>
-            <button type="button" class="year-pill-btn" data-year="2025" role="tab" aria-selected="false">Ano 2025</button>
-            <button type="button" class="year-pill-btn" data-year="2024" role="tab" aria-selected="false">Ano 2024</button>
-            <button type="button" class="year-pill-btn" data-year="arquivo" role="tab" aria-selected="false">Arquivo Histórico</button>
-          </div>
-
         </div>
       </section>
 
@@ -1501,7 +1482,6 @@
         pagination: document.getElementById('newsletter-pagination'),
         searchInput: document.getElementById('newsletter-search'),
         searchClear: document.getElementById('newsletter-clear'),
-        yearPills: document.querySelectorAll('.year-pill-btn'),
         resultsCount: document.getElementById('results-count'),
         modal: document.getElementById('newsletter-modal'),
         modalBadge: document.getElementById('modal-badge'),
@@ -1514,7 +1494,6 @@
       // 3. ESTADO DA APLICAÇÃO (12 ITENS POR PÁGINA)
       const ITEMS_PER_PAGE = 12;
       let currentPage = 1;
-      let activeYearFilter = 'all';
       let searchQuery = '';
 
       // 4. PROTOCOLO DE REDIMENSIONAMENTO WIX IFRAME (BIDIRECIONAL)
@@ -1532,15 +1511,10 @@
         } catch (e) {}
       }
 
-      // 5. FILTRAGEM DO DATASET (CAMPOS Title E data)
+      // 5. FILTRAGEM DO DATASET (BUSCA EM TEMPO REAL)
       function getFilteredNewsletters() {
         return newslettersData.filter(item => {
           if (!item) return false;
-
-          // Filtro por ano (extraído do campo data)
-          if (activeYearFilter === '2025' && item.year !== 2025) return false;
-          if (activeYearFilter === '2024' && item.year !== 2024) return false;
-          if (activeYearFilter === 'arquivo' && item.year && item.year >= 2024) return false;
 
           // Filtro por busca (Title ou data)
           if (searchQuery.trim() !== '') {
@@ -1607,8 +1581,6 @@
               searchQuery = '';
               dom.searchInput.value = '';
               dom.searchClear.style.display = 'none';
-              activeYearFilter = 'all';
-              dom.yearPills.forEach(p => p.classList.toggle('active', p.getAttribute('data-year') === 'all'));
               currentPage = 1;
               renderGrid();
               sendResizeMessage();
@@ -1847,22 +1819,6 @@
         dom.searchInput.focus();
         currentPage = 1;
         renderGrid();
-      });
-
-      dom.yearPills.forEach(pill => {
-        pill.addEventListener('click', () => {
-          const year = pill.getAttribute('data-year');
-          if (activeYearFilter !== year) {
-            activeYearFilter = year;
-            dom.yearPills.forEach(p => {
-              const isActive = p === pill;
-              p.classList.toggle('active', isActive);
-              p.setAttribute('aria-selected', isActive ? 'true' : 'false');
-            });
-            currentPage = 1;
-            renderGrid();
-          }
-        });
       });
 
       // 9. INTEGRAÇÃO WIX VELO (COLEÇÃO "informativos")
