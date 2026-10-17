@@ -1246,6 +1246,93 @@ if (typeof module !== 'undefined' && module.exports) {
         return targetDate.getTime() < now.getTime();
       }
 
+      // Função para normalizar itens vindos do Wix CMS (Velo postMessage ou API REST)
+      function normalizeWixEventItem(it, idx) {
+        if (!it || typeof it !== 'object') return null;
+
+        const id = it._id || it.id || it.slug || `evento-wix-${idx + 1}`;
+        const title = it.title || it.Title || it.nome || it.Nome || 'Evento Sem Título';
+        
+        // Data de início
+        let date = it.date || it.data || it.dataInicio || it.startDate || it.Data || '';
+        if (date instanceof Date) {
+          date = date.toISOString().split('T')[0];
+        } else if (typeof date === 'string' && date.includes('T')) {
+          date = date.split('T')[0];
+        }
+
+        // Data de término
+        let endDate = it.endDate || it.dataFim || it.dataTermino || it.EndDate || date;
+        if (endDate instanceof Date) {
+          endDate = endDate.toISOString().split('T')[0];
+        } else if (typeof endDate === 'string' && endDate.includes('T')) {
+          endDate = endDate.split('T')[0];
+        }
+
+        const time = it.time || it.horario || it.Horario || 'Horário a definir';
+        const location = it.location || it.local || it.cidade || it.Local || 'CathlabFlix Streaming';
+        const description = it.description || it.descricao || it.resumo || it.subtitle || it.Descricao || '';
+        const subtitle = it.subtitle || it.subtitulo || description.slice(0, 100);
+        
+        // Imagem (suporta wix:image:// e URLs diretas)
+        let image = it.image || it.imagem || it.foto || it.cover || it.Image || '';
+        if (image && typeof image === 'string' && image.startsWith('wix:image://')) {
+          const m = image.match(/wix:image:\/\/v1\/([^/]+)\//);
+          if (m && m[1]) {
+            image = `https://static.wixstatic.com/media/${m[1]}/v1/fill/w_1000,h_1000,al_c,q_80/file.png`;
+          }
+        }
+        if (!image) {
+          image = 'https://static.wixstatic.com/media/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png/v1/fill/w_3000,h_662,al_c,q_95,enc_avif,quality_auto/1d3d47_ea12f71c1a89466e8ce53ce73939e79d~mv2.png';
+        }
+
+        const type = (it.type || it.tipo || it.Tipo || 'evento').toLowerCase();
+        const isApoio = type.includes('apoio') || (it.badge && it.badge.includes('APOIO'));
+        const badge = it.badge || (isApoio ? 'APOIO SBHCI' : 'EVENTO OFICIAL SBHCI');
+        const category = it.category || it.categoria || (type.includes('webinar') ? 'Webinar' : (type.includes('curso') ? 'Curso' : 'Congresso'));
+        const registrationUrl = it.registrationUrl || it.linkInscricao || it.inscricao || it.link || '';
+
+        return {
+          id: String(id),
+          slug: it.slug || String(id),
+          title: String(title),
+          subtitle: String(subtitle),
+          description: String(description),
+          date: String(date),
+          endDate: String(endDate),
+          time: String(time),
+          location: String(location),
+          modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : 'Presencial'),
+          type: isApoio ? 'apoio_sbhci' : 'evento',
+          badge: String(badge),
+          category: String(category),
+          color: isApoio ? 'blue' : 'red',
+          image: String(image),
+          registrationUrl: String(registrationUrl),
+          actionUrl: `/new/evento?id=${encodeURIComponent(id)}`,
+          actionLabel: 'Confira'
+        };
+      }
+
+      function setEventsFromWix(rawItems) {
+        if (!Array.isArray(rawItems) || rawItems.length === 0) return;
+        console.log('[Cathlabflix Eventos] Recebidos itens do Wix CMS:', rawItems.length);
+
+        const normalized = rawItems.map((it, idx) => normalizeWixEventItem(it, idx)).filter(Boolean);
+        if (normalized.length > 0) {
+          const map = new Map();
+          // Itens vindos do banco do Wix têm precedência total
+          normalized.forEach(ev => map.set(ev.id, ev));
+          
+          allEvents = Array.from(map.values()).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+          applyFilters();
+          notifyHeight();
+          console.log(`[Cathlabflix Eventos] ${allEvents.length} eventos carregados do Wix CMS com sucesso!`);
+        }
+      }
+
+      window.setEvents = setEventsFromWix;
+
       // 1. Carrega eventos locais e remotos
       function loadAllEvents() {
         let baseList = [];
@@ -1785,9 +1872,79 @@ if (typeof module !== 'undefined' && module.exports) {
         return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       }
 
+      // Sincronização em Tempo Real com Wix Velo (postMessage bidirecional)
+      function requestWixData() {
+        try {
+          if (window.parent && window.parent !== window) {
+            console.log('[Cathlabflix Eventos] Solicitando eventos ao Wix parent...');
+            window.parent.postMessage({ type: 'REQUEST_EVENTS', collection: 'eventos' }, '*');
+            window.parent.postMessage({ type: 'REQUEST_EVENTS', collection: 'Eventos' }, '*');
+            window.parent.postMessage('REQUEST_EVENTS', '*');
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener('message', function(event) {
+        if (!event.data) return;
+        let data = event.data;
+
+        // Se os dados vierem em string (JSON stringificado pelo Velo)
+        if (typeof data === 'string') {
+          try {
+            data = JSON.parse(data);
+          } catch (e) {
+            return;
+          }
+        }
+
+        // Extrai array de itens de qualquer formato comum enviado pelo Wix Velo
+        let items = null;
+        if (Array.isArray(data)) {
+          items = data;
+        } else if (data && typeof data === 'object') {
+          if (Array.isArray(data.items)) items = data.items;
+          else if (Array.isArray(data.data)) items = data.data;
+          else if (Array.isArray(data.payload)) items = data.payload;
+          else if (Array.isArray(data.results)) items = data.results;
+          else if (data.data && Array.isArray(data.data.items)) items = data.data.items;
+          else if (data.type === 'EVENTS_DATA' && Array.isArray(data.items)) items = data.items;
+        }
+
+        if (Array.isArray(items) && items.length > 0) {
+          setEventsFromWix(items);
+        }
+      });
+
+      // Suporte a carregamento direto via API REST (se fornecida via query param ?api=URL ou endpoint Wix padrão)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const apiUrl = urlParams.get('api') || urlParams.get('endpoint') || 'https://www.cathlabflix.org/_functions/eventos';
+        if (apiUrl) {
+          fetch(apiUrl)
+            .then(res => {
+              if (!res.ok) throw new Error('Status ' + res.status);
+              return res.json();
+            })
+            .then(data => {
+              const items = data.items || data;
+              if (Array.isArray(items) && items.length > 0) {
+                console.log('[Cathlabflix Eventos] Dados recebidos via API HTTP:', items.length);
+                setEventsFromWix(items);
+              }
+            })
+            .catch(() => {
+              // Silencioso se o endpoint ainda não estiver configurado no Wix
+            });
+        }
+      } catch (err) {}
+
       // Inicialização
       document.addEventListener('DOMContentLoaded', () => {
         loadAllEvents();
+        requestWixData();
+        setTimeout(requestWixData, 500);
+        setTimeout(requestWixData, 1500);
+        setTimeout(requestWixData, 3000);
 
         // Busca
         const searchInput = document.getElementById('eventosSearchInput');
