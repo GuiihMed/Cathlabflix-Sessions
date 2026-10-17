@@ -31,8 +31,8 @@
       endDate = endDate.split('T')[0];
     }
 
-    const time = it.time || it.horario || it.Horario || 'Horário a definir';
-    const location = it.location || it.local || it.cidade || it.Local || 'CathlabFlix Streaming';
+    const time = (it.time || it.horario || it.Horario || '').trim();
+    const location = (it.location || it.local || it.cidade || it.Local || '').trim();
     const description = it.description || it.descricao || it.resumo || it.subtitle || it.Descricao || '';
     const subtitle = it.subtitle || it.subtitulo || description.slice(0, 100);
     
@@ -64,7 +64,7 @@
       endDate: String(endDate),
       time: String(time),
       location: String(location),
-      modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : 'Presencial'),
+      modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : (location ? 'Presencial' : '')),
       type: isApoio ? 'apoio_sbhci' : 'evento',
       badge: String(badge),
       category: String(category),

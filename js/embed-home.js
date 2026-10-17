@@ -641,31 +641,35 @@
             </div>
           </div>
 
-          <div class="event-info-card">
-            <div class="info-card-icon blue">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
+          ${event.time ? `
+            <div class="event-info-card">
+              <div class="info-card-icon blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-label">Horário</span>
+                <span class="info-card-val">${escapeHTML(event.time)}</span>
+              </div>
             </div>
-            <div class="info-card-text">
-              <span class="info-card-label">Horário</span>
-              <span class="info-card-val">${escapeHTML(event.time || 'A definir')}</span>
-            </div>
-          </div>
+          ` : ''}
 
-          <div class="event-info-card">
-            <div class="info-card-icon amber">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
+          ${event.location ? `
+            <div class="event-info-card">
+              <div class="info-card-icon amber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="info-card-text">
+                <span class="info-card-label">Local</span>
+                <span class="info-card-val">${escapeHTML(event.location)}</span>
+              </div>
             </div>
-            <div class="info-card-text">
-              <span class="info-card-label">Local</span>
-              <span class="info-card-val">${escapeHTML(event.location || 'CathlabFlix Streaming')}</span>
-            </div>
-          </div>
+          ` : ''}
         </section>
 
         <section class="event-action-bar">

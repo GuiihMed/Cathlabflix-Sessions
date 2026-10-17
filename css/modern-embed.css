@@ -1105,7 +1105,7 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
   .event-detail-img {
     height: 85px !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
   }
 
   .event-detail-media-badge {

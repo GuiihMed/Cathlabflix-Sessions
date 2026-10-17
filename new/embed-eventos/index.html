@@ -461,7 +461,10 @@
       aspect-ratio: 16 / 9;
       height: auto;
       overflow: hidden;
-      background: #010234;
+      background: #020b24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
     }
 
@@ -469,7 +472,7 @@
       width: 100%;
       height: 100%;
       aspect-ratio: 16 / 9;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
       display: block;
       transition: transform 0.35s ease;
@@ -821,6 +824,9 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       background: #020b24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
       margin-bottom: 24px;
     }
@@ -828,7 +834,8 @@
     .evento-hero-img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       display: block;
     }
 
@@ -1557,8 +1564,8 @@ if (typeof module !== 'undefined' && module.exports) {
           endDate = endDate.split('T')[0];
         }
 
-        const time = it.time || it.horario || it.Horario || 'Horário a definir';
-        const location = it.location || it.local || it.cidade || it.Local || 'CathlabFlix Streaming';
+        const time = (it.time || it.horario || it.Horario || '').trim();
+        const location = (it.location || it.local || it.cidade || it.Local || '').trim();
         const description = it.description || it.descricao || it.resumo || it.subtitle || it.Descricao || '';
         const subtitle = it.subtitle || it.subtitulo || description.slice(0, 100);
         
@@ -1590,7 +1597,7 @@ if (typeof module !== 'undefined' && module.exports) {
           endDate: String(endDate),
           time: String(time),
           location: String(location),
-          modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : 'Presencial'),
+          modality: it.modality || it.modalidade || (location.toLowerCase().includes('streaming') || location.toLowerCase().includes('on-line') || location.toLowerCase().includes('online') ? 'Transmissão Online' : (location ? 'Presencial' : '')),
           type: isApoio ? 'apoio_sbhci' : 'evento',
           badge: String(badge),
           category: String(category),
@@ -1824,22 +1831,28 @@ if (typeof module !== 'undefined' && module.exports) {
                   ${escapeHTML(ev.title)}
                 </h3>
 
-                <div class="evento-card-meta">
-                  <div class="evento-meta-row">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    <span>${escapeHTML(ev.time || 'Horário a definir')}</span>
+                ${(ev.time || ev.location) ? `
+                  <div class="evento-card-meta">
+                    ${ev.time ? `
+                      <div class="evento-meta-row">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span>${escapeHTML(ev.time)}</span>
+                      </div>
+                    ` : ''}
+                    ${ev.location ? `
+                      <div class="evento-meta-row">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                          <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>${escapeHTML(ev.location)}</span>
+                      </div>
+                    ` : ''}
                   </div>
-                  <div class="evento-meta-row">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span>${escapeHTML(ev.location || 'CathlabFlix Streaming')}</span>
-                  </div>
-                </div>
+                ` : ''}
 
                 <div class="evento-card-footer">
                   <button type="button" class="evento-card-btn" onclick="EventosRouter.openDetail('${escapeHTML(ev.id)}')">
@@ -2001,31 +2014,35 @@ if (typeof module !== 'undefined' && module.exports) {
                 </div>
               </div>
 
-              <div class="evento-info-card">
-                <div class="info-card-icon blue">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
+              ${ev.time ? `
+                <div class="evento-info-card">
+                  <div class="info-card-icon blue">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </div>
+                  <div class="info-card-text">
+                    <span class="info-card-label">Horário</span>
+                    <span class="info-card-val">${escapeHTML(ev.time)}</span>
+                  </div>
                 </div>
-                <div class="info-card-text">
-                  <span class="info-card-label">Horário</span>
-                  <span class="info-card-val">${escapeHTML(ev.time || 'A definir')}</span>
-                </div>
-              </div>
+              ` : ''}
 
-              <div class="evento-info-card">
-                <div class="info-card-icon amber">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
+              ${ev.location ? `
+                <div class="evento-info-card">
+                  <div class="info-card-icon amber">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div class="info-card-text">
+                    <span class="info-card-label">Local</span>
+                    <span class="info-card-val">${escapeHTML(ev.location)}</span>
+                  </div>
                 </div>
-                <div class="info-card-text">
-                  <span class="info-card-label">Local</span>
-                  <span class="info-card-val">${escapeHTML(ev.location || 'CathlabFlix Streaming')}</span>
-                </div>
-              </div>
+              ` : ''}
             </section>
 
             <section class="evento-reader-action-bar">
