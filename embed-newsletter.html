@@ -361,11 +361,12 @@
       background: linear-gradient(135deg, #062257 0%, #031436 100%);
       border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: var(--radius-lg);
-      padding: 28px 32px;
+      padding: 32px 36px;
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 340px);
+      gap: 36px;
       align-items: center;
+      justify-content: space-between;
       box-shadow: var(--shadow-md);
       position: relative;
       overflow: hidden;
@@ -376,8 +377,8 @@
       position: absolute;
       top: -60px;
       right: -60px;
-      width: 220px;
-      height: 220px;
+      width: 260px;
+      height: 260px;
       background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
       pointer-events: none;
     }
@@ -385,27 +386,27 @@
     .equipe-left-col {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .equipe-intro-text {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.9);
       margin: 0;
     }
 
     .equipe-headline {
-      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      font-size: clamp(1.45rem, 2.6vw, 2rem);
       font-weight: 900;
       color: #FFFFFF;
-      line-height: 1.25;
+      line-height: 1.2;
       margin: 0;
       letter-spacing: -0.01em;
     }
 
     .equipe-headline-underline {
-      width: 48px;
+      width: 52px;
       height: 3px;
       background: var(--color-primary, #E50914);
       border-radius: 2px;
@@ -414,9 +415,9 @@
     }
 
     .equipe-description {
-      font-size: 0.84rem;
+      font-size: 0.875rem;
       color: var(--color-text-secondary);
-      line-height: 1.6;
+      line-height: 1.65;
       margin: 0;
       max-width: 580px;
     }
@@ -426,22 +427,22 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .equipe-btn-primary {
       background: var(--color-primary);
       color: #FFFFFF;
       text-decoration: none;
-      font-size: 0.78125rem;
+      font-size: 0.8125rem;
       font-weight: 700;
-      padding: 9px 20px;
+      padding: 10px 22px;
       border-radius: var(--radius-pill);
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: all var(--transition-fast);
-      box-shadow: 0 4px 12px var(--color-primary-glow);
+      box-shadow: 0 4px 14px var(--color-primary-glow);
     }
 
     .equipe-btn-primary:hover {
@@ -454,9 +455,9 @@
       color: #FFFFFF;
       border: 1px solid var(--color-border-subtle);
       text-decoration: none;
-      font-size: 0.78125rem;
+      font-size: 0.8125rem;
       font-weight: 600;
-      padding: 9px 18px;
+      padding: 10px 20px;
       border-radius: var(--radius-pill);
       display: inline-flex;
       align-items: center;
@@ -469,25 +470,30 @@
       border-color: rgba(255, 255, 255, 0.3);
     }
 
-    /* Vídeo Vertical (9:16) da Aba 1 */
+    /* Vídeo Vertical (9:16) da Aba 1 - Sem cortes */
     .equipe-video-col {
       position: relative;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       aspect-ratio: 9 / 16;
-      max-height: 440px;
-      background: #000;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
-      justify-self: center;
       width: 100%;
-      max-width: 250px;
+      max-width: 310px;
+      height: auto;
+      max-height: 550px;
+      background: #000;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.65), 0 0 20px rgba(56, 189, 248, 0.15);
+      justify-self: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .equipe-video-player {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background: #000;
       display: block;
       border-radius: inherit;
     }
