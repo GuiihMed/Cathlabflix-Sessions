@@ -9265,10 +9265,10 @@ window.ModernAgendaCalendar = ModernAgendaCalendar;
   }
 
   function generateNewsCardHtml(item) {
-    const newsPageUrl = 'https://www.cathlabflix.org/noticias';
+    const postUrl = item.link || (item.slug ? `https://www.cathlabflix.org/post/${item.slug}` : (item.id ? `https://www.cathlabflix.org/post/${item.id}` : 'https://www.cathlabflix.org/noticias'));
     return `
       <article class="wix-news-card" data-post-id="${item.id}">
-        <a href="${newsPageUrl}" target="_top" class="news-card-thumb-wrapper" title="${escapeHTML(item.title)}">
+        <a href="${postUrl}" target="_top" class="news-card-thumb-wrapper" title="${escapeHTML(item.title)}">
           <img 
             src="${item.image}" 
             alt="${escapeHTML(item.title)}" 
@@ -9285,7 +9285,7 @@ window.ModernAgendaCalendar = ModernAgendaCalendar;
           </div>
 
           <h3 class="news-card-title">
-            <a href="${newsPageUrl}" target="_top" title="${escapeHTML(item.title)}">
+            <a href="${postUrl}" target="_top" title="${escapeHTML(item.title)}">
               ${escapeHTML(item.title)}
             </a>
           </h3>
@@ -9293,7 +9293,7 @@ window.ModernAgendaCalendar = ModernAgendaCalendar;
           <p class="news-card-excerpt">${escapeHTML(item.description)}</p>
 
           <div class="news-card-footer">
-            <a href="${newsPageUrl}" target="_top" class="news-card-btn" title="Confira">
+            <a href="${postUrl}" target="_top" class="news-card-btn" title="Confira">
               <span>Confira</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                 <polyline points="9 18 15 12 9 6"></polyline>
