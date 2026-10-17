@@ -1795,20 +1795,26 @@
         }
       });
 
-      // Suporte a carregamento direto via API REST (se fornecida via query param ?api=URL)
+      // Suporte a carregamento direto via API REST (se fornecida via query param ?api=URL ou endpoint Wix padrão)
       try {
         const urlParams = new URLSearchParams(window.location.search);
-        const apiUrl = urlParams.get('api') || urlParams.get('endpoint');
+        const apiUrl = urlParams.get('api') || urlParams.get('endpoint') || 'https://www.cathlabflix.org/_functions/informativos';
         if (apiUrl) {
           fetch(apiUrl)
-            .then(res => res.json())
+            .then(res => {
+              if (!res.ok) throw new Error('Status ' + res.status);
+              return res.json();
+            })
             .then(data => {
               const items = data.items || data;
               if (Array.isArray(items) && items.length > 0) {
+                console.log('[Cathlabflix Newsletter] Dados recebidos via API HTTP:', items.length);
                 setNewslettersFromWix(items);
               }
             })
-            .catch(err => console.error('Erro ao buscar dados da coleção informativos:', err));
+            .catch(() => {
+              // Silencioso se o endpoint ainda não estiver configurado no Wix
+            });
         }
       } catch (err) {}
 
