@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Busca Compacta de Cabeçalho - CathlabFlix</title>
+  
+  <!-- Força todos os links a abrirem na janela principal do site pai (essencial para iframes do Wix) -->
+  <base target="_top">
+
+  <!-- Tipografia Oficial Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CathlabFlix - Busca Compacta de Alto Contraste para Cabeçalho Wix
+       ========================================================================== */
+    :root {
+      --clf-red: #E50914;
+      --clf-red-hover: #ff1e27;
+      --clf-bg: #051336;           /* Fundo sólido de alto contraste */
+      --clf-bg-elevated: #092056;  /* Superfície interna elevada */
+      --clf-border: rgba(255, 255, 255, 0.35); /* Borda bem nítida */
+      --clf-text-title: #FFFFFF;   /* Branco puro 100% legível */
+      --clf-text-sub: #93c5fd;     /* Azul celeste claro (contraste AAA > 8:1) */
+      --clf-font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Suporte a tema claro caso explicitamente solicitado (?theme=light) */
+    body.theme-light {
+      --clf-bg: #FFFFFF;
+      --clf-bg-elevated: #F1F5F9;
+      --clf-border: #0F172A;
+      --clf-text-title: #000000;
+      --clf-text-sub: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: transparent !important;
+      font-family: var(--clf-font);
+      overflow: visible;
+      width: 100%;
+      height: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container Principal - Pequeno & Discreto para o Cabeçalho */
+    .clf-header-search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 250px; /* Reduzido para caber perfeitamente no cabeçalho */
+      margin: 0 auto;
+      padding: 2px;
+      font-family: var(--clf-font);
+      transition: max-width 0.22s ease;
+    }
+
+    .clf-header-search-wrapper:focus-within {
+      max-width: 280px; /* Expansão sutil ao focar */
+    }
+
+    /* Barra de Busca Compacta (34px de altura) */
+    .clf-search-form {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 34px; /* Altura compacta ideal para cabeçalho */
+      background: var(--clf-bg);
+      border: 1.5px solid var(--clf-border);
+      border-radius: 9999px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .clf-search-form:focus-within {
+      border-color: var(--clf-red);
+      box-shadow: 0 0 0 2.5px rgba(229, 9, 20, 0.4), 0 4px 14px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Ícone Lupa Compacto */
+    .clf-search-icon-left {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 10px;
+      padding-right: 6px;
+      color: #cbd5e1;
+      flex-shrink: 0;
+    }
+
+    body.theme-light .clf-search-icon-left {
+      color: #0f172a;
+    }
+
+    .clf-search-form:focus-within .clf-search-icon-left {
+      color: var(--clf-red);
+    }
+
+    /* Campo de Texto Compacto */
+    .clf-search-input {
+      flex: 1;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--clf-font);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--clf-text-title);
+      padding-right: 4px;
+      min-width: 0;
+    }
+
+    .clf-search-input::placeholder {
+      color: #94a3b8;
+      font-weight: 500;
+      font-size: 11.5px;
+    }
+
+    body.theme-light .clf-search-input::placeholder {
+      color: #64748b;
+    }
+
+    /* Botão Limpar (X) */
+    .clf-clear-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      margin-right: 3px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 9px;
+      font-weight: 800;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    body.theme-light .clf-clear-btn {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .clf-clear-btn:hover {
+      background: var(--clf-red);
+      color: #ffffff;
+    }
+
+    /* Botão Buscar Compacto */
+    .clf-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      margin-right: 4px;
+      border: none;
+      border-radius: 50%;
+      background: var(--clf-red);
+      color: #ffffff;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.18s ease;
+    }
+
+    .clf-submit-btn:hover {
+      background: var(--clf-red-hover);
+      transform: scale(1.08);
+    }
+
+    /* Painel Suspenso de Sugestões - Compacto e Alto Contraste */
+    .clf-suggestions-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 2px;
+      right: 2px;
+      background: var(--clf-bg);
+      border-radius: 12px;
+      border: 1.5px solid var(--clf-border);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+      padding: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999999;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+
+    .clf-suggestions-panel.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Cabeçalho do Painel */
+    .clf-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3px 6px 5px 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #93c5fd;
+    }
+
+    body.theme-light .clf-panel-header {
+      border-bottom-color: rgba(0, 0, 0, 0.1);
+      color: #334155;
+    }
+
+    .clf-panel-header .clf-match-badge {
+      font-size: 8.5px;
+      font-weight: 800;
+      background: var(--clf-red);
+      color: #ffffff;
+      padding: 1.5px 6px;
+      border-radius: 10px;
+      text-transform: uppercase;
+    }
+
+    /* Item de Sugestão */
+    .clf-suggestion-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+      border-left: 2px solid transparent;
+    }
+
+    .clf-suggestion-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .clf-suggestion-item:hover,
+    .clf-suggestion-item.is-selected {
+      background: var(--clf-bg-elevated);
+      border-left: 2px solid var(--clf-red);
+      transform: translateX(2px);
+    }
+
+    /* Ícone Compacto */
+    .clf-item-icon-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(229, 9, 20, 0.22);
+      color: #ff4d58;
+      flex-shrink: 0;
+    }
+
+    .clf-suggestion-item:hover .clf-item-icon-box {
+      background: var(--clf-red);
+      color: #ffffff;
+    }
+
+    /* Textos do Item */
+    .clf-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .clf-item-title-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .clf-item-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--clf-text-title);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .clf-item-badge {
+      font-size: 8px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 1px 5px;
+      border-radius: 3px;
+      background: var(--clf-red);
+      color: #ffffff;
+      letter-spacing: 0.3px;
+    }
+
+    .clf-item-desc {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--clf-text-sub); /* Alto contraste */
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Seta Lateral Compacta */
+    .clf-item-arrow {
+      color: #93c5fd;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .clf-suggestion-item:hover .clf-item-arrow {
+      color: var(--clf-red);
+      transform: translateX(2px);
+    }
+
+    /* Estado Vazio */
+    .clf-empty-state {
+      padding: 8px 6px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--clf-text-sub);
+    }
+
+    .clf-empty-title {
+      font-weight: 700;
+      color: var(--clf-text-title);
+      margin-bottom: 4px;
+      font-size: 11.5px;
+    }
+
+    .clf-empty-quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .clf-quick-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      background: var(--clf-bg-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+
+    body.theme-light .clf-quick-btn {
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    .clf-quick-btn:hover {
+      background: var(--clf-red);
+      border-color: var(--clf-red);
+      color: #ffffff;
+    }
+
+    /* Rodapé Compacto */
+    .clf-panel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 6px 2px 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-top: 4px;
+      font-size: 9px;
+      color: #93c5fd;
+    }
+
+    body.theme-light .clf-panel-footer {
+      border-top-color: rgba(0, 0, 0, 0.1);
+      color: #64748b;
+    }
+
+    .clf-kbd {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      padding: 0 3px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    body.theme-light .clf-kbd {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Componente: Busca Compacta de Cabeçalho (CathlabFlix)
+       ========================================================================== -->
+  <div class="clf-header-search-wrapper" id="clfSearchWrapper">
+    <form class="clf-search-form" id="clfSearchForm" role="search" autocomplete="off" onsubmit="return false;">
+      
+      <!-- Ícone Lupa -->
+      <span class="clf-search-icon-left" aria-hidden="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+
+      <!-- Input de Pesquisa -->
+      <input 
+        type="search" 
+        class="clf-search-input" 
+        id="clfSearchInput" 
+        placeholder="Buscar no site..." 
+        aria-label="Buscar no site"
+        aria-autocomplete="list"
+        aria-controls="clfSuggestionsList"
+        spellcheck="false"
+      >
+
+      <!-- Botão Limpar -->
+      <button type="button" class="clf-clear-btn" id="clfClearBtn" aria-label="Limpar termo" title="Limpar">
+        ✕
+      </button>
+
+      <!-- Botão Buscar -->
+      <button type="button" class="clf-submit-btn" id="clfSubmitBtn" aria-label="Executar busca">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </form>
+
+    <!-- Painel Suspenso de Sugestões com Redirecionamento -->
+    <div class="clf-suggestions-panel" id="clfSuggestionsPanel" role="region" aria-live="polite">
+      <div class="clf-panel-header">
+        <span id="clfPanelTitle">Ir para:</span>
+        <span class="clf-match-badge" id="clfMatchBadge">Acesso Direto</span>
+      </div>
+
+      <div class="clf-suggestions-list" id="clfSuggestionsList" role="listbox">
+        <!-- Injetado dinamicamente via JS -->
+      </div>
+
+      <div class="clf-panel-footer">
+        <span>Toque em <span class="clf-kbd">Enter ↵</span> para ir</span>
+        <span>CathlabFlix</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Dicionário de Rotas & Palavras-chave Relacionadas
+     */
+    const ROUTE_DATABASE = [
+      {
+        id: 'newsletter',
+        title: 'Newsletters',
+        badge: 'SBHCI News',
+        url: 'https://www.cathlabflix.org/newsletter',
+        description: 'Boletins oficiais e artigos comentados.',
+        icon: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>',
+        keywords: [
+          'newsletter', 'newsletters', 'boletim', 'boletins', 'artigo', 'artigos', 
+          'publicacao', 'publicacoes', 'sbhci news', 'noticia', 'noticias', 'edicao', 
+          'edicoes', 'informativo', 'editorial', 'paper', 'revista', 'estudo', 'leitura'
+        ]
+      },
+      {
+        id: 'webinares',
+        title: 'Webinares',
+        badge: 'Ao Vivo',
+        url: 'https://www.cathlabflix.org/webinares',
+        description: 'Transmissões online e gravações.',
+        icon: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>',
+        keywords: [
+          'webinar', 'webinares', 'webinario', 'webinarios', 'live', 'lives', 
+          'ao vivo', 'transmissao', 'transmissoes', 'gravacao', 'gravacoes', 
+          'debate', 'debates', 'online', 'reuniao', 'sessao clinica', 'discussao'
+        ]
+      },
+      {
+        id: 'congressos',
+        title: 'Congressos',
+        badge: 'SOLACI & TCT',
+        url: 'https://www.cathlabflix.org/congressos',
+        description: 'SOLACI-SBHCI 2026 e TCT Latam Valves.',
+        icon: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+        keywords: [
+          'congresso', 'congressos', 'solaci', 'solaci 2026', 'sbhci', 'tct', 
+          'tctlatam', 'tct latam', 'valves', 'evento', 'eventos', 'simposio', 
+          'simposios', 'jornada', 'jornadas', 'wtc', 'wtc sp', 'encontro', 'plenaria',
+          'slides solaci', 'aulas solaci', 'cobertura'
+        ]
+      },
+      {
+        id: 'cursos',
+        title: 'Cursos',
+        badge: 'Módulos',
+        url: 'https://www.cathlabflix.org/cursos',
+        description: 'Capacitação intervencionista e aulas.',
+        icon: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>',
+        keywords: [
+          'curso', 'cursos', 'modulo', 'modulos', 'modulo 1', 'modulo 2', 'modulo 3', 
+          'modulo 4', 'modulo 5', 'capacitacao', 'intervencionista', 'intervencionistas', 
+          'treinamento', 'formacao', 'fellowship', 'aula', 'aulas', 'aprendizado', 
+          'certificacao', 'certificado', 'educacao'
+        ]
+      }
+    ];
+
+    const MEDICAL_AFFINITY = {
+      'tavi': ['congressos', 'cursos', 'webinares'],
+      'angioplastia': ['cursos', 'congressos', 'webinares'],
+      'stent': ['cursos', 'congressos'],
+      'bifurcacao': ['cursos', 'webinares'],
+      'valvula': ['congressos', 'cursos'],
+      'mitral': ['congressos', 'webinares'],
+      'tricuspide': ['congressos', 'webinares'],
+      'coronaria': ['cursos', 'webinares'],
+      'infarto': ['webinares', 'newsletter'],
+      'hemodinamica': ['cursos', 'congressos', 'newsletter'],
+      'cto': ['cursos', 'congressos']
+    };
+
+    (function() {
+      'use strict';
+
+      const wrapper = document.getElementById('clfSearchWrapper');
+      const input = document.getElementById('clfSearchInput');
+      const clearBtn = document.getElementById('clfClearBtn');
+      const submitBtn = document.getElementById('clfSubmitBtn');
+      const panel = document.getElementById('clfSuggestionsPanel');
+      const list = document.getElementById('clfSuggestionsList');
+      const panelTitle = document.getElementById('clfPanelTitle');
+
+      // Detecta parâmetro de tema (ex: ?theme=light)
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('theme') === 'light') {
+          document.body.classList.add('theme-light');
+        }
+      } catch (e) {}
+
+      function normalize(str) {
+        return (str || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .trim();
+      }
+
+      function calculateScore(route, queryNorm) {
+        let score = 0;
+        const titleNorm = normalize(route.title);
+        const descNorm = normalize(route.description);
+
+        if (titleNorm === queryNorm) return 100;
+        if (titleNorm.startsWith(queryNorm)) score += 80;
+        else if (titleNorm.includes(queryNorm)) score += 60;
+
+        for (const kw of route.keywords) {
+          const kwNorm = normalize(kw);
+          if (kwNorm === queryNorm) {
+            score = Math.max(score, 90);
+          } else if (kwNorm.startsWith(queryNorm)) {
+            score = Math.max(score, 75);
+          } else if (kwNorm.includes(queryNorm) || queryNorm.includes(kwNorm)) {
+            score = Math.max(score, 60);
+          }
+        }
+
+        if (descNorm.includes(queryNorm)) {
+          score = Math.max(score, 40);
+        }
+
+        for (const [term, routes] of Object.entries(MEDICAL_AFFINITY)) {
+          if (queryNorm.includes(term) || term.includes(queryNorm)) {
+            if (routes.includes(route.id)) {
+              score = Math.max(score, 70);
+            }
+          }
+        }
+
+        return score;
+      }
+
+      function navigateTo(url) {
+        try {
+          if (window.top && window.top.location) {
+            window.top.location.href = url;
+            return;
+          }
+        } catch (e) {}
+
+        try {
+          if (window.parent && window.parent.location) {
+            window.parent.location.href = url;
+            return;
+          }
+        } catch (e) {}
+
+        window.open(url, '_top');
+      }
+
+      function renderSuggestions(query) {
+        const queryNorm = normalize(query);
+
+        if (!queryNorm || queryNorm.length < 2) {
+          closePanel();
+          return;
+        }
+
+        const scoredRoutes = ROUTE_DATABASE.map(route => ({
+          ...route,
+          score: calculateScore(route, queryNorm)
+        }));
+
+        let matched = scoredRoutes.filter(r => r.score > 25);
+        matched.sort((a, b) => b.score - a.score);
+
+        list.innerHTML = '';
+
+        if (matched.length > 0) {
+          panelTitle.textContent = `Resultados: "${query}"`;
+          
+          matched.forEach((item, index) => {
+            const el = document.createElement('a');
+            el.className = `clf-suggestion-item ${index === 0 ? 'is-selected' : ''}`;
+            el.href = item.url;
+            el.setAttribute('role', 'option');
+            el.setAttribute('target', '_top');
+
+            el.innerHTML = `
+              <div class="clf-item-icon-box" aria-hidden="true">
+                ${item.icon}
+              </div>
+              <div class="clf-item-info">
+                <div class="clf-item-title-row">
+                  <span class="clf-item-title">${item.title}</span>
+                  <span class="clf-item-badge">${item.badge}</span>
+                </div>
+                <div class="clf-item-desc">${item.description}</div>
+              </div>
+              <div class="clf-item-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            `;
+
+            el.addEventListener('click', (e) => {
+              e.preventDefault();
+              navigateTo(item.url);
+            });
+
+            list.appendChild(el);
+          });
+        } else {
+          panelTitle.textContent = 'Explorar Canais:';
+          list.innerHTML = `
+            <div class="clf-empty-state">
+              <div class="clf-empty-title">Nenhum termo exato.</div>
+              <div class="clf-empty-quick-links">
+                <a href="https://www.cathlabflix.org/newsletter" class="clf-quick-btn" target="_top">Newsletters</a>
+                <a href="https://www.cathlabflix.org/webinares" class="clf-quick-btn" target="_top">Webinares</a>
+                <a href="https://www.cathlabflix.org/congressos" class="clf-quick-btn" target="_top">Congressos</a>
+                <a href="https://www.cathlabflix.org/cursos" class="clf-quick-btn" target="_top">Cursos</a>
+              </div>
+            </div>
+          `;
+
+          list.querySelectorAll('.clf-quick-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              navigateTo(btn.href);
+            });
+          });
+        }
+
+        openPanel();
+      }
+
+      function openPanel() {
+        panel.classList.add('is-active');
+        try {
+          window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: 260 }, '*');
+        } catch (e) {}
+      }
+
+      function closePanel() {
+        panel.classList.remove('is-active');
+        try {
+          window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: 42 }, '*');
+        } catch (e) {}
+      }
+
+      function executeBestMatch() {
+        const query = input.value.trim();
+        const queryNorm = normalize(query);
+
+        if (!queryNorm) {
+          input.focus();
+          return;
+        }
+
+        const scoredRoutes = ROUTE_DATABASE.map(route => ({
+          ...route,
+          score: calculateScore(route, queryNorm)
+        })).sort((a, b) => b.score - a.score);
+
+        const best = scoredRoutes[0];
+
+        if (best && best.score >= 30) {
+          navigateTo(best.url);
+        } else {
+          renderSuggestions(query);
+          openPanel();
+        }
+      }
+
+      input.addEventListener('input', (e) => {
+        const val = e.target.value;
+        clearBtn.style.display = val.length > 0 ? 'inline-flex' : 'none';
+        renderSuggestions(val);
+      });
+
+      input.addEventListener('focus', () => {
+        if (input.value.trim().length >= 2) {
+          renderSuggestions(input.value);
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          executeBestMatch();
+        } else if (e.key === 'Escape') {
+          closePanel();
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        clearBtn.style.display = 'none';
+        closePanel();
+        input.focus();
+      });
+
+      submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        executeBestMatch();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          closePanel();
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

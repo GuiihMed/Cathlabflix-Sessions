@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Dropdown Compacto de Cabeçalho - CathlabFlix</title>
+
+  <!-- Força links a abrirem na janela principal do site pai (essencial para iframes do Wix) -->
+  <base target="_top">
+
+  <!-- Tipografia Oficial Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CathlabFlix - Dropdown Compacto e Limpo para Cabeçalho Wix
+       Apenas Ícones e Títulos com Alto Contraste
+       ========================================================================== */
+    :root {
+      --clf-red: #E50914;
+      --clf-red-hover: #ff1e27;
+      --clf-bg: #051336;           /* Fundo sólido escuro de alto contraste */
+      --clf-bg-elevated: #092056;  /* Superfície interna no hover */
+      --clf-border: rgba(255, 255, 255, 0.35); /* Borda bem nítida */
+      --clf-text-title: #FFFFFF;   /* Branco puro 100% legível */
+      --clf-font: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body.theme-light {
+      --clf-bg: #FFFFFF;
+      --clf-bg-elevated: #F1F5F9;
+      --clf-border: #0F172A;
+      --clf-text-title: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: transparent !important;
+      font-family: var(--clf-font);
+      overflow: visible;
+      width: 100%;
+      height: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Container Principal */
+    .clf-dropdown-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 190px; /* Extremamente compacto para o cabeçalho */
+      margin: 0 auto;
+      padding: 2px;
+      font-family: var(--clf-font);
+    }
+
+    /* Botão Gatilho Compacto (34px de altura) */
+    .clf-dropdown-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 34px;
+      padding: 0 12px;
+      background: var(--clf-bg);
+      border: 1.5px solid var(--clf-border);
+      border-radius: 9999px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      color: var(--clf-text-title);
+      font-family: var(--clf-font);
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    .clf-dropdown-trigger:hover {
+      border-color: var(--clf-red);
+      box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.35), 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .clf-dropdown-trigger[aria-expanded="true"] {
+      border-color: var(--clf-red);
+      background: var(--clf-bg-elevated);
+      box-shadow: 0 0 0 2.5px rgba(229, 9, 20, 0.4);
+    }
+
+    /* Conteúdo do Botão */
+    .clf-trigger-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .clf-trigger-icon {
+      color: var(--clf-red);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    #clfTriggerText {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .clf-trigger-chevron {
+      color: #93c5fd;
+      display: inline-flex;
+      align-items: center;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+
+    body.theme-light .clf-trigger-chevron {
+      color: #0f172a;
+    }
+
+    .clf-dropdown-trigger[aria-expanded="true"] .clf-trigger-chevron {
+      transform: rotate(180deg);
+      color: var(--clf-red);
+    }
+
+    /* Menu Suspenso Compacto (Apenas Ícones e Títulos) */
+    .clf-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 2px;
+      right: 2px;
+      background: var(--clf-bg);
+      border-radius: 12px;
+      border: 1.5px solid var(--clf-border);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+      padding: 5px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px) scale(0.98);
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999999;
+    }
+
+    .clf-dropdown-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Item Individual do Menu (Ícone + Título) */
+    .clf-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+      border-left: 2.5px solid transparent;
+    }
+
+    .clf-menu-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .clf-menu-item:hover {
+      background: var(--clf-bg-elevated);
+      border-left: 2.5px solid var(--clf-red);
+      transform: translateX(2px);
+    }
+
+    /* Ícone */
+    .clf-menu-item-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: rgba(229, 9, 20, 0.22);
+      color: #ff4d58;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .clf-menu-item:hover .clf-menu-item-icon {
+      background: var(--clf-red);
+      color: #ffffff;
+    }
+
+    /* Título do Item */
+    .clf-menu-item-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--clf-text-title);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       Componente: Dropdown Compacto de Cabeçalho (CathlabFlix)
+       ========================================================================== -->
+  <div class="clf-dropdown-wrapper" id="clfDropdownWrapper">
+    
+    <!-- Botão Gatilho Compacto -->
+    <button 
+      type="button" 
+      class="clf-dropdown-trigger" 
+      id="clfDropdownTrigger" 
+      aria-expanded="false" 
+      aria-haspopup="true" 
+      aria-controls="clfDropdownMenu"
+    >
+      <span class="clf-trigger-left">
+        <span class="clf-trigger-icon" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+        </span>
+        <span id="clfTriggerText">Explorar Seções</span>
+      </span>
+
+      <span class="clf-trigger-chevron" aria-hidden="true">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </span>
+    </button>
+
+    <!-- Menu Dropdown Limpo (Apenas Ícones e Títulos) -->
+    <div class="clf-dropdown-menu" id="clfDropdownMenu" role="menu">
+
+      <!-- Item 1: Newsletters -->
+      <a href="https://www.cathlabflix.org/newsletter" class="clf-menu-item" role="menuitem" data-url="https://www.cathlabflix.org/newsletter" target="_top">
+        <div class="clf-menu-item-icon" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </div>
+        <span class="clf-menu-item-title">Newsletters</span>
+      </a>
+
+      <!-- Item 2: Webinares -->
+      <a href="https://www.cathlabflix.org/webinares" class="clf-menu-item" role="menuitem" data-url="https://www.cathlabflix.org/webinares" target="_top">
+        <div class="clf-menu-item-icon" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7"></polygon>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+          </svg>
+        </div>
+        <span class="clf-menu-item-title">Webinares</span>
+      </a>
+
+      <!-- Item 3: Congressos -->
+      <a href="https://www.cathlabflix.org/congressos" class="clf-menu-item" role="menuitem" data-url="https://www.cathlabflix.org/congressos" target="_top">
+        <div class="clf-menu-item-icon" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <span class="clf-menu-item-title">Congressos</span>
+      </a>
+
+      <!-- Item 4: Cursos -->
+      <a href="https://www.cathlabflix.org/cursos" class="clf-menu-item" role="menuitem" data-url="https://www.cathlabflix.org/cursos" target="_top">
+        <div class="clf-menu-item-icon" aria-hidden="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </div>
+        <span class="clf-menu-item-title">Cursos</span>
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const wrapper = document.getElementById('clfDropdownWrapper');
+      const trigger = document.getElementById('clfDropdownTrigger');
+      const menu = document.getElementById('clfDropdownMenu');
+      const items = menu.querySelectorAll('.clf-menu-item');
+
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('theme') === 'light') {
+          document.body.classList.add('theme-light');
+        }
+      } catch (e) {}
+
+      function navigateTo(url) {
+        try {
+          if (window.top && window.top.location) {
+            window.top.location.href = url;
+            return;
+          }
+        } catch (e) {}
+
+        try {
+          if (window.parent && window.parent.location) {
+            window.parent.location.href = url;
+            return;
+          }
+        } catch (e) {}
+
+        window.open(url, '_top');
+      }
+
+      function toggleMenu() {
+        const isOpen = menu.classList.contains('is-open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      }
+
+      function openMenu() {
+        menu.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        try {
+          // Altura super compacta ao abrir: apenas 185px para os 4 itens
+          window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: 185 }, '*');
+        } catch (e) {}
+      }
+
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+        try {
+          window.parent.postMessage({ type: 'cathlabflix-sessions-resize', height: 42 }, '*');
+        } catch (e) {}
+      }
+
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      items.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetUrl = item.getAttribute('data-url');
+          if (targetUrl) {
+            closeMenu();
+            navigateTo(targetUrl);
+          }
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+          closeMenu();
+          trigger.focus();
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+          closeMenu();
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>

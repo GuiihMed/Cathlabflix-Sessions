@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Demonstração & Instalação - Busca no Cabeçalho CathlabFlix</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+
+  <!-- Montserrat Oficial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --clf-red: #E50914;
+      --clf-red-hover: #b80710;
+      --clf-dark-bg: #010234;
+      --clf-surface: #062257;
+      --clf-surface-elevated: #0a2d72;
+      --clf-text-primary: #FFFFFF;
+      --clf-text-secondary: #94a3b8;
+      --clf-border: rgba(255, 255, 255, 0.14);
+      --font-base: 'Montserrat', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      font-family: var(--font-base);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    header.demo-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 30px 20px;
+      background: linear-gradient(180deg, #062257 0%, #010234 100%);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+    }
+
+    .badge-pill {
+      display: inline-block;
+      background: rgba(229, 9, 20, 0.16);
+      color: #ff4d58;
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1.title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ffffff 40%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: #94a3b8;
+      font-size: 14px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Grade das 2 Versões */
+    .versions-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      margin-bottom: 48px;
+    }
+
+    .version-card {
+      background: #111827;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-top {
+      padding: 20px 24px;
+      background: #1e293b;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-title-group h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-title-group p {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    .pill-tag {
+      background: #E50914;
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Simulação de Cabeçalho do Site (Mockup) */
+    .header-mockup-wrapper {
+      padding: 24px;
+      background: #090d16;
+    }
+
+    .mockup-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .mockup-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-radius: 14px;
+      transition: all 0.25s ease;
+      min-height: 72px;
+    }
+
+    .mockup-header-bar.dark-style {
+      background: #010234;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mockup-header-bar.light-style {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .mockup-logo {
+      font-weight: 900;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      user-select: none;
+    }
+
+    .mockup-header-bar.dark-style .mockup-logo {
+      color: #ffffff;
+    }
+
+    .mockup-header-bar.light-style .mockup-logo {
+      color: #0f172a;
+    }
+
+    .mockup-logo span.red {
+      color: var(--clf-red);
+    }
+
+    .mockup-nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 12px;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .mockup-header-bar.dark-style .mockup-nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    .mockup-header-bar.light-style .mockup-nav-links a {
+      color: #475569;
+      text-decoration: none;
+    }
+
+    .mockup-embed-area {
+      flex: 1;
+      max-width: 440px;
+      margin: 0 16px;
+    }
+
+    /* Iframe de Preview */
+    .preview-iframe {
+      width: 100%;
+      height: 60px;
+      border: none;
+      background: transparent;
+      overflow: visible;
+      transition: height 0.2s ease;
+    }
+
+    /* Abas de Código */
+    .code-tabs-container {
+      padding: 24px;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: var(--font-base);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    .tab-btn.active {
+      background: var(--clf-red);
+      border-color: var(--clf-red);
+      color: #ffffff;
+    }
+
+    .code-box-wrapper {
+      position: relative;
+    }
+
+    pre.code-block {
+      background: #090d16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #38bdf8;
+      overflow-x: auto;
+      max-height: 320px;
+    }
+
+    .copy-code-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .copy-code-btn:hover {
+      background: var(--clf-red);
+      border-color: var(--clf-red);
+    }
+
+    /* Tabela de Destinos */
+    .destinations-card {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 24px;
+      margin-top: 36px;
+    }
+
+    .destinations-card h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .destinations-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .destinations-table th, 
+    .destinations-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .destinations-table th {
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .destinations-table a {
+      color: #38bdf8;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .destinations-table a:hover {
+      text-decoration: underline;
+    }
+
+    .keyword-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin: 2px;
+      color: #cbd5e1;
+    }
+
+    @media (max-width: 768px) {
+      .mockup-nav-links {
+        display: none;
+      }
+      .mockup-embed-area {
+        margin: 0;
+      }
+      .card-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Cabeçalho Principal -->
+    <header class="demo-header">
+      <span class="badge-pill">CathlabFlix SBHCI • Solução para Wix</span>
+      <h1 class="title">Busca e Navegação Inteligente para Cabeçalho</h1>
+      <p class="subtitle">
+        Como o motor nativo do Wix não indexa conteúdo dentro de embeds HTML/iFrames, 
+        estas 2 versões garantem redirecionamento inteligente para 
+        <strong>Newsletters</strong>, <strong>Webinares</strong>, <strong>Congressos</strong> e <strong>Cursos</strong>.
+      </p>
+    </header>
+
+    <!-- As 2 Versões -->
+    <div class="versions-grid">
+
+      <!-- ====================================================================
+           VERSÃO 1: Busca com Redirecionamento por Afinidade
+           ==================================================================== -->
+      <section class="version-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <h2>
+              <span>Versão 1: Campo de Busca com Sugestões & Redirecionamento</span>
+              <span class="pill-tag">Inteligente</span>
+            </h2>
+            <p>Digitação em tempo real com cálculo de relevância, menu flutuante de sugestões e redirecionamento direto no Enter.</p>
+          </div>
+        </div>
+
+        <!-- Demonstração Visual -->
+        <div class="header-mockup-wrapper">
+          <div class="mockup-label">
+            <span>Pré-visualização ao vivo (Simulação de Cabeçalho Wix Dark)</span>
+            <span>Experimente digitar: "solaci", "live", "edicao", "modulo", "tavi"</span>
+          </div>
+
+          <div class="mockup-header-bar dark-style">
+            <div class="mockup-logo">
+              CATHLAB<span class="red">FLIX</span>
+            </div>
+
+            <div class="mockup-embed-area" style="max-width: 250px;">
+              <!-- Embed da Versão 1 -->
+              <iframe 
+                src="/embed-busca-cabecalho.html" 
+                class="preview-iframe" 
+                id="iframeBusca"
+                style="height: 42px;"
+              ></iframe>
+            </div>
+
+            <div class="mockup-nav-links">
+              <a href="#">Início</a>
+              <a href="#">Sobre</a>
+              <a href="#">Contato</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instruções & Códigos de Instalação no Wix -->
+        <div class="code-tabs-container">
+          <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('v1-iframe', this)">Opção A: Iframe Direto (Wix Embed HTML)</button>
+            <button class="tab-btn" onclick="switchTab('v1-velo', this)">Opção B: Código Velo (Wix Dev Mode)</button>
+          </div>
+
+          <!-- Tab Iframe -->
+          <div id="v1-iframe" class="code-box-wrapper tab-content">
+            <button class="copy-code-btn" onclick="copyCode('code-v1-iframe', this)">Copiar Código</button>
+            <pre class="code-block" id="code-v1-iframe"><code>&lt;!-- ==========================================================
+     CathlabFlix - Busca Compacta de Cabeçalho (Wix HTML Embed)
+     Instruções: No Editor Wix, adicione "Embed Code" &gt; "Embed HTML"
+     no Cabeçalho do site e cole o código abaixo.
+     ========================================================== --&gt;
+&lt;iframe 
+  src="https://cathlabflix-sessions.vercel.app/embed-busca-cabecalho.html" 
+  width="100%" 
+  height="42" 
+  frameborder="0" 
+  scrolling="no" 
+  allowtransparency="true" 
+  style="background: transparent; border: none; overflow: visible; display: block; max-width: 260px; margin: 0 auto;"
+&gt;&lt;/iframe&gt;</code></pre>
+          </div>
+
+          <!-- Tab Velo -->
+          <div id="v1-velo" class="code-box-wrapper tab-content" style="display: none;">
+            <button class="copy-code-btn" onclick="copyCode('code-v1-velo', this)">Copiar Código Velo</button>
+            <pre class="code-block" id="code-v1-velo"><code>// Código Wix Velo (Adicione no masterPage.js para funcionar em todas as páginas)
+import wixLocation from 'wix-location';
+
+const ROUTES = [
+  { url: '/newsletter', keywords: ['newsletter', 'boletim', 'artigo', 'edicao', 'publicacao', 'noticia'] },
+  { url: '/webinares',  keywords: ['webinar', 'webinares', 'live', 'ao vivo', 'transmissao', 'debate', 'gravacao'] },
+  { url: '/congressos', keywords: ['congresso', 'solaci', 'tct', 'sbhci', 'valves', 'evento', 'simposio'] },
+  { url: '/cursos',     keywords: ['curso', 'cursos', 'modulo', 'capacitacao', 'intervencionista', 'aula'] }
+];
+
+$w.onReady(function () {
+  const searchInput = $w('#headerSearchInput'); // ID do seu Input de busca nativo do Wix
+
+  searchInput.onKeyPress((event) => {
+    if (event.key === 'Enter') {
+      const query = (searchInput.value || '').toLowerCase().trim();
+      if (!query) return;
+
+      // Encontra a rota com maior correspondência
+      let matchedRoute = ROUTES.find(r => r.keywords.some(kw => query.includes(kw) || kw.includes(query)));
+      
+      if (matchedRoute) {
+        wixLocation.to(matchedRoute.url);
+      } else {
+        // Redirecionamento padrão para congressos ou busca geral
+        wixLocation.to('/congressos');
+      }
+    }
+  });
+});</code></pre>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ====================================================================
+           VERSÃO 2: Dropdown de Navegação Rápida
+           ==================================================================== -->
+      <section class="version-card">
+        <div class="card-top">
+          <div class="card-title-group">
+            <h2>
+              <span>Versão 2: Dropdown Interativo de Cabeçalho</span>
+              <span class="pill-tag">Direto</span>
+            </h2>
+            <p>Menu suspenso moderno com ícones temáticos, badges e links diretos para cada uma das 4 seções.</p>
+          </div>
+        </div>
+
+        <!-- Demonstração Visual -->
+        <div class="header-mockup-wrapper">
+          <div class="mockup-label">
+            <span>Pré-visualização ao vivo (Simulação de Cabeçalho Wix Dark)</span>
+            <span>Clique no botão para abrir o menu suspenso</span>
+          </div>
+
+          <div class="mockup-header-bar dark-style">
+            <div class="mockup-logo">
+              CATHLAB<span class="red">FLIX</span>
+            </div>
+
+            <div class="mockup-embed-area" style="max-width: 210px;">
+              <!-- Embed da Versão 2 -->
+              <iframe 
+                src="/embed-dropdown-cabecalho.html" 
+                class="preview-iframe" 
+                id="iframeDropdown"
+                style="height: 42px;"
+              ></iframe>
+            </div>
+
+            <div class="mockup-nav-links">
+              <a href="#">Início</a>
+              <a href="#">Sobre</a>
+              <a href="#">Contato</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instruções & Códigos de Instalação no Wix -->
+        <div class="code-tabs-container">
+          <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('v2-iframe', this)">Opção A: Iframe Direto (Wix Embed HTML)</button>
+            <button class="tab-btn" onclick="switchTab('v2-select', this)">Opção B: HTML Select Compacto (Ultra Leve)</button>
+            <button class="tab-btn" onclick="switchTab('v2-velo', this)">Opção C: Código Velo para Dropdown Nativo</button>
+          </div>
+
+          <!-- Tab Iframe -->
+          <div id="v2-iframe" class="code-box-wrapper tab-content">
+            <button class="copy-code-btn" onclick="copyCode('code-v2-iframe', this)">Copiar Código</button>
+            <pre class="code-block" id="code-v2-iframe"><code>&lt;!-- ==========================================================
+     CathlabFlix - Dropdown Compacto de Cabeçalho (Wix HTML Embed)
+     Instruções: No Editor Wix, adicione "Embed Code" &gt; "Embed HTML"
+     no Cabeçalho do site e cole o código abaixo.
+     ========================================================== --&gt;
+&lt;iframe 
+  src="https://cathlabflix-sessions.vercel.app/embed-dropdown-cabecalho.html" 
+  width="100%" 
+  height="42" 
+  frameborder="0" 
+  scrolling="no" 
+  allowtransparency="true" 
+  style="background: transparent; border: none; overflow: visible; display: block; max-width: 220px; margin: 0 auto;"
+&gt;&lt;/iframe&gt;</code></pre>
+          </div>
+
+          <!-- Tab Select Nativo -->
+          <div id="v2-select" class="code-box-wrapper tab-content" style="display: none;">
+            <button class="copy-code-btn" onclick="copyCode('code-v2-select', this)">Copiar Código</button>
+            <pre class="code-block" id="code-v2-select"><code>&lt;!-- Select Nativo Estilizado (Ideal para espaço muito reduzido no cabeçalho) --&gt;
+&lt;base target="_top"&gt;
+&lt;select 
+  onchange="if(this.value) { window.top.location.href = this.value; }"
+  style="
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 9999px;
+    background: #062257;
+    color: #ffffff;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  "
+&gt;
+  &lt;option value="" disabled selected&gt;🧭 Explorar Seções...&lt;/option&gt;
+  &lt;option value="https://www.cathlabflix.org/newsletter"&gt;📰 Newsletters&lt;/option&gt;
+  &lt;option value="https://www.cathlabflix.org/webinares"&gt;🎥 Webinares&lt;/option&gt;
+  &lt;option value="https://www.cathlabflix.org/congressos"&gt;🏛️ Congressos&lt;/option&gt;
+  &lt;option value="https://www.cathlabflix.org/cursos"&gt;🎓 Cursos&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+          </div>
+
+          <!-- Tab Velo -->
+          <div id="v2-velo" class="code-box-wrapper tab-content" style="display: none;">
+            <button class="copy-code-btn" onclick="copyCode('code-v2-velo', this)">Copiar Código Velo</button>
+            <pre class="code-block" id="code-v2-velo"><code>// Código Wix Velo para Dropdown nativo ($w('#headerDropdown'))
+import wixLocation from 'wix-location';
+
+$w.onReady(function () {
+  const dropdown = $w('#headerDropdown'); // ID do seu Dropdown nativo no Wix
+
+  dropdown.options = [
+    { label: "📰 Newsletters", value: "https://www.cathlabflix.org/newsletter" },
+    { label: "🎥 Webinares",   value: "https://www.cathlabflix.org/webinares" },
+    { label: "🏛️ Congressos",  value: "https://www.cathlabflix.org/congressos" },
+    { label: "🎓 Cursos",      value: "https://www.cathlabflix.org/cursos" }
+  ];
+
+  dropdown.onChange((event) => {
+    const selectedUrl = dropdown.value;
+    if (selectedUrl) {
+      wixLocation.to(selectedUrl);
+    }
+  });
+});</code></pre>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Tabela de Mapeamento de Rotas -->
+    <div class="destinations-card">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E50914" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Mapeamento de Rotas & Palavras-chave Atendidas
+      </h3>
+      <table class="destinations-table">
+        <thead>
+          <tr>
+            <th>Seção</th>
+            <th>URL Destino</th>
+            <th>Palavras-chave Relacionadas que Disparam Redirecionamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>📰 Newsletters</strong></td>
+            <td><a href="https://www.cathlabflix.org/newsletter" target="_blank">https://www.cathlabflix.org/newsletter</a></td>
+            <td>
+              <span class="keyword-pill">newsletter</span>
+              <span class="keyword-pill">boletim</span>
+              <span class="keyword-pill">artigo</span>
+              <span class="keyword-pill">edicao</span>
+              <span class="keyword-pill">publicacao</span>
+              <span class="keyword-pill">sbhci news</span>
+              <span class="keyword-pill">noticia</span>
+              <span class="keyword-pill">editorial</span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🎥 Webinares</strong></td>
+            <td><a href="https://www.cathlabflix.org/webinares" target="_blank">https://www.cathlabflix.org/webinares</a></td>
+            <td>
+              <span class="keyword-pill">webinar</span>
+              <span class="keyword-pill">webinario</span>
+              <span class="keyword-pill">live</span>
+              <span class="keyword-pill">ao vivo</span>
+              <span class="keyword-pill">transmissao</span>
+              <span class="keyword-pill">debate</span>
+              <span class="keyword-pill">gravacao</span>
+              <span class="keyword-pill">sessao clinica</span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🏛️ Congressos</strong></td>
+            <td><a href="https://www.cathlabflix.org/congressos" target="_blank">https://www.cathlabflix.org/congressos</a></td>
+            <td>
+              <span class="keyword-pill">congresso</span>
+              <span class="keyword-pill">solaci</span>
+              <span class="keyword-pill">solaci 2026</span>
+              <span class="keyword-pill">tct</span>
+              <span class="keyword-pill">valves</span>
+              <span class="keyword-pill">evento</span>
+              <span class="keyword-pill">simposio</span>
+              <span class="keyword-pill">wtc</span>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>🎓 Cursos</strong></td>
+            <td><a href="https://www.cathlabflix.org/cursos" target="_blank">https://www.cathlabflix.org/cursos</a></td>
+            <td>
+              <span class="keyword-pill">curso</span>
+              <span class="keyword-pill">capacitacao</span>
+              <span class="keyword-pill">intervencionista</span>
+              <span class="keyword-pill">modulo</span>
+              <span class="keyword-pill">aula</span>
+              <span class="keyword-pill">treinamento</span>
+              <span class="keyword-pill">formacao</span>
+              <span class="keyword-pill">certificacao</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script>
+    // Gerenciador de Abas de Código
+    function switchTab(tabId, btn) {
+      const parent = btn.closest('.code-tabs-container');
+      parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+
+      btn.classList.add('active');
+      const targetContent = parent.querySelector('#' + tabId);
+      if (targetContent) {
+        targetContent.style.display = 'block';
+      }
+    }
+
+    // Função Copiar Código
+    function copyCode(elementId, btn) {
+      const code = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = '✓ Copiado!';
+        btn.style.background = '#10b981';
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.background = '';
+        }, 2000);
+      }).catch(err => {
+        alert('Erro ao copiar código: ' + err);
+      });
+    }
+
+    // Auto-ajuste de altura dos iframes na demo ao abrir sugestões ou dropdown
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.height && e.data.type === 'cathlabflix-sessions-resize') {
+        const iframeBusca = document.getElementById('iframeBusca');
+        const iframeDropdown = document.getElementById('iframeDropdown');
+        
+        // Verifica qual iframe enviou a mensagem
+        if (iframeBusca && iframeBusca.contentWindow === e.source) {
+          iframeBusca.style.height = e.data.height + 'px';
+        } else if (iframeDropdown && iframeDropdown.contentWindow === e.source) {
+          iframeDropdown.style.height = e.data.height + 'px';
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

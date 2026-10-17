@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Grade de Aulas e Apresentações - TCT Plus Latam Valves 2026 - CathlabFlix</title>
-  <meta name="description" content="Grade completa de apresentações, conferências e materiais do CRF TCT Plus Latam Valves 2026.">
+  <meta name="description" content="Grade completa de apresentações, conferências e materiais do CRF TCT Plus Latam Valves 2026 por Sala.">
 
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="https://cathlabflix-sessions.vercel.app/assets/images/favicon.png">
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.cathlabflix.org/tct-aulas">
   <meta property="og:title" content="Grade de Aulas e Apresentações - TCT Plus Latam Valves 2026">
-  <meta property="og:description" content="Consulte e acesse as apresentações e aulas do CRF TCT Plus Latam Valves 2026.">
+  <meta property="og:description" content="Consulte e acesse as apresentações e aulas do CRF TCT Plus Latam Valves 2026 divididas por sala.">
   <meta property="og:image" content="https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png">
 
   <!-- Tipografia Montserrat Oficial SBHCI -->
@@ -80,6 +80,7 @@
       flex-direction: column;
     }
 
+    /* Container Principal */
     .aulas-page-main {
       width: 96%;
       max-width: 1200px;
@@ -89,11 +90,10 @@
       flex: 1;
     }
 
-    /* Top Nav Bar */
+    /* Barra Superior com Botão Voltar ao TCT Plus */
     .aulas-top-nav-bar {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
       margin-bottom: 20px;
     }
 
@@ -143,7 +143,7 @@
       border-radius: 2px;
     }
 
-    /* Card Shell */
+    /* Card Shell Principal */
     .aulas-card-shell {
       background: var(--color-surface);
       border-radius: var(--radius-xl);
@@ -153,13 +153,128 @@
       transition: box-shadow var(--transition-base);
     }
 
-    /* Toolbar */
+    /* ==========================================================================
+       ABAS DE SALAS PRINCIPAIS (HEART TEAM ARENA, TRAINING HALL, ICOACH, etc.)
+       ========================================================================== */
+    .aulas-rooms-nav {
+      display: flex;
+      align-items: stretch;
+      background: rgba(1, 2, 52, 0.88);
+      border-bottom: 1px solid var(--color-border-subtle);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .aulas-rooms-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .aulas-room-tab-btn {
+      flex: 1 1 0;
+      min-width: 140px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 14px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .aulas-room-tab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .aulas-room-tab-btn.active {
+      color: #FFFFFF;
+      background: rgba(6, 34, 87, 0.7);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .room-tab-badge {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.12);
+      color: inherit;
+    }
+
+    .aulas-room-tab-btn.active .room-tab-badge {
+      background: var(--color-primary);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       SUB-ABAS DE SESSÃO / DIAS (19-03 - Manhã - Arena, etc.)
+       ========================================================================== */
+    .aulas-subtabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      background: rgba(4, 18, 47, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .aulas-subtabs-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .aulas-subtab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .aulas-subtab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .aulas-subtab-btn.active {
+      color: #FFFFFF;
+      background: rgba(56, 189, 248, 0.16);
+      border-color: var(--color-blue-accent);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+    }
+
+    /* Toolbar de Período & Busca */
     .aulas-toolbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 16px 20px;
+      padding: 14px 20px;
       background: rgba(1, 2, 52, 0.65);
       border-bottom: 1px solid var(--color-border-subtle);
       flex-wrap: wrap;
@@ -340,43 +455,32 @@
       margin: 0;
       font-size: 0.8125rem;
       color: var(--color-text-secondary);
-      line-height: 1.4;
     }
 
     .aulas-period-count-pill {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      background: rgba(56, 189, 248, 0.15);
+      font-size: 0.75rem;
+      font-weight: 700;
       color: var(--color-blue-accent);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.12);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       white-space: nowrap;
     }
 
     /* Accordion List */
     .aulas-list-wrapper {
-      padding: 16px 20px 24px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
     }
 
     .aulas-accordion-item {
-      border: 1px solid var(--color-border-subtle);
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
-      overflow: hidden;
-      transition: all var(--transition-fast);
+      border-bottom: 1px solid var(--color-border-subtle);
+      transition: background var(--transition-fast);
     }
 
-    .aulas-accordion-item:hover {
-      border-color: rgba(56, 189, 248, 0.45);
-    }
-
-    .aulas-accordion-item.open {
-      border-color: var(--color-blue-accent);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    .aulas-accordion-item:last-child {
+      border-bottom: none;
     }
 
     .aulas-accordion-header {
@@ -428,6 +532,16 @@
       letter-spacing: 0.3px;
     }
 
+    .aula-room-tag {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      background: rgba(229, 9, 20, 0.2);
+      color: #ff6b6b;
+      text-transform: uppercase;
+    }
+
     .aula-period-tag {
       font-size: 0.6875rem;
       font-weight: 700;
@@ -449,12 +563,16 @@
       font-weight: 700;
       color: #FFFFFF;
       line-height: 1.4;
+      margin: 0;
     }
 
     .aulas-item-chevron {
       color: var(--color-text-secondary);
-      transition: transform var(--transition-fast);
+      transition: transform var(--transition-fast), color var(--transition-fast);
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .aulas-accordion-item.open .aulas-item-chevron {
@@ -465,52 +583,62 @@
     /* Accordion Body */
     .aulas-accordion-body {
       display: none;
-      padding: 16px 18px;
-      background: rgba(1, 2, 52, 0.45);
+      padding: 16px 20px;
+      background: rgba(1, 2, 52, 0.5);
     }
 
     .aulas-accordion-item.open .aulas-accordion-body {
       display: block;
     }
 
+    /* PPTX Card */
     .aulas-pptx-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
       padding: 14px 18px;
-      border-radius: var(--radius-md);
-      background: var(--color-surface);
+      background: rgba(6, 34, 87, 0.7);
       border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition-fast);
+    }
+
+    .aulas-pptx-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
     }
 
     .aulas-pptx-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-sm);
-      background: rgba(229, 9, 20, 0.2);
-      border: 1px solid rgba(229, 9, 20, 0.4);
-      color: #ff6b6b;
-      font-weight: 900;
-      font-size: 0.75rem;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: #D24726;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      border-radius: var(--radius-sm);
       flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(210, 71, 38, 0.35);
     }
 
     .aulas-pptx-info {
-      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 4px;
+      flex: 1;
+      overflow: hidden;
     }
 
     .aulas-pptx-name {
       font-size: 0.875rem;
-      font-weight: 700;
+      font-weight: 600;
       color: #FFFFFF;
-      word-break: break-word;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .aulas-pptx-meta {
@@ -564,6 +692,14 @@
       .aulas-page-main {
         padding: 16px 12px 40px !important;
       }
+      .aulas-rooms-nav {
+        justify-content: flex-start;
+      }
+      .aulas-room-tab-btn {
+        min-width: 120px;
+        font-size: 0.75rem;
+        padding: 12px 10px;
+      }
       .aulas-toolbar {
         flex-direction: column;
         align-items: stretch;
@@ -616,12 +752,45 @@
       <!-- Card Principal de Apresentações -->
       <section class="aulas-card-shell" aria-label="Navegador de Aulas e Apresentações">
 
-        <!-- Barra de Ferramentas / Filtro de Período & Busca -->
+        <!-- 1. Abas Superiores de Salas (Heart Team Arena, Training Hall, iCoach, Spotlight, Scientific Corner) -->
+        <nav class="aulas-rooms-nav" id="aulasRoomsNav" role="tablist" aria-label="Salas do Evento">
+          <button type="button" class="aulas-room-tab-btn active" data-room="all" role="tab" aria-selected="true">
+            <span>Todas as Salas</span>
+            <span class="room-tab-badge" id="countAllRooms">22</span>
+          </button>
+          <button type="button" class="aulas-room-tab-btn" data-room="arena" role="tab" aria-selected="false">
+            <span>Heart Team Arena</span>
+            <span class="room-tab-badge" id="countArena">9</span>
+          </button>
+          <button type="button" class="aulas-room-tab-btn" data-room="training" role="tab" aria-selected="false">
+            <span>Training Hall</span>
+            <span class="room-tab-badge" id="countTraining">3</span>
+          </button>
+          <button type="button" class="aulas-room-tab-btn" data-room="icoach" role="tab" aria-selected="false">
+            <span>iCoach</span>
+            <span class="room-tab-badge" id="countIcoach">4</span>
+          </button>
+          <button type="button" class="aulas-room-tab-btn" data-room="spotlight" role="tab" aria-selected="false">
+            <span>Spotlight</span>
+            <span class="room-tab-badge" id="countSpotlight">3</span>
+          </button>
+          <button type="button" class="aulas-room-tab-btn" data-room="scientific" role="tab" aria-selected="false">
+            <span>Scientific Corner</span>
+            <span class="room-tab-badge" id="countScientific">3</span>
+          </button>
+        </nav>
+
+        <!-- 2. Barra de Sub-abas de Sessão por Data / Sala -->
+        <div class="aulas-subtabs-bar" id="aulasSubtabsBar" aria-label="Sessões por Data e Período">
+          <!-- Preenchido dinamicamente via JS de acordo com a sala selecionada -->
+        </div>
+
+        <!-- 3. Barra de Ferramentas / Filtro de Período & Busca -->
         <div class="aulas-toolbar">
           <!-- Filtro de Período -->
           <div class="aulas-period-switch" id="aulasPeriodSwitch" role="tablist" aria-label="Filtrar por período">
             <button type="button" class="aulas-period-btn active" data-period="all" role="tab" aria-selected="true">
-              <span>Todas</span>
+              <span>Todos os Horários</span>
               <span class="period-btn-count" id="countAllPeriod">22</span>
             </button>
             <button type="button" class="aulas-period-btn" data-period="manha" role="tab" aria-selected="false">
@@ -672,351 +841,467 @@
     (function () {
       'use strict';
 
+      // BANCO DE DADOS OFICIAL DE APRESENTAÇÕES (DIVIDIDAS POR SALA E SESSÃO)
       const AULAS = [
-  {
-    "id": "aula-1",
-    "time": "8:50am",
-    "speaker": "Dr(a). NICOLAS MARIA D VAN MIEGHEM",
-    "title": "TAVI degeneration: the new Achilleas heel of contemporary interventional cardiology?",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "TAVI_degeneration__the_new_Achillea_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "10.0 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-2",
-    "time": "9:00am",
-    "speaker": "Dr(a). PEDRO VILLABLANCA",
-    "title": "Technique and Valve Choice for Redo TAVI",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Technique_and_Valve_Choice_for_Redo_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "11.8 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-3",
-    "time": "9:10am",
-    "speaker": "Op: FÁBIO SÂNDOLI DE BRITO JÚNIOR",
-    "title": "Live Case in a Box 1 - TAV-in-TAV: Left Main Protection in a High Coronary Obstruction Risk Patient",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Live_Case_in_a_Box_1___TAV_in_TAV___TCT2026.pptx",
-      "format": "PPTX",
-      "size": "13.6 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-4",
-    "time": "10:02am",
-    "speaker": "Dr(a). JOSÉ AIRTON DE ARRUDA",
-    "title": "TCT PLUS LATAM Valves 2026: Program Highlights",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "TCT_PLUS_LATAM_Valves_2026__Program_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "15.4 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-5",
-    "time": "10:10am",
-    "speaker": "Dr(a). ALBERTO COLELLA CERVONE",
-    "title": "LIVE Cases 2025 Revisited: Clinical Follow Up and Lessons Learned",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "LIVE_Cases_2025_Revisited__Clinical_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "17.2 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-6",
-    "time": "10:10am",
-    "speaker": "Dr(a). CARLOS AUGUSTO HOMEM DE MAGALHÃES CAMPOS",
-    "title": "LIVE Cases 2025 Revisited: Clinical Follow Up and Lessons Learned",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "LIVE_Cases_2025_Revisited__Clinical_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "19.0 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-7",
-    "time": "10:18am",
-    "speaker": "Dr(a). REBECCA HAHN",
-    "title": "Structural Heart Disease Interventions: How Advanced Imaging Will Continue to Shape the Field",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Structural_Heart_Disease_Interventi_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "20.8 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-8",
-    "time": "10:40am",
-    "speaker": "Dr(a). JUAN F. GRANADA",
-    "title": "AI-Power Structural Heart Care: Reinventing the Structuralist for a New Era",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "AI_Power_Structural_Heart_Care__Rei_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "22.6 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-9",
-    "time": "11:00am",
-    "speaker": "Dr(a). JUAN F. GRANADA",
-    "title": "Tricuspid replacement: Are We Entering in a New Era?",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Tricuspid_replacement__Are_We_Enter_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "24.4 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-10",
-    "time": "08:00pm",
-    "speaker": "Dr(a). RICHARD HALTI CABRAL",
-    "title": "Mitral Valve and Interatrial Septum Anatomy",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Mitral_Valve_and_Interatrial_Septum_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "26.2 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-11",
-    "time": "09:00pm",
-    "speaker": "Dr(a). Marcio Siqueira",
-    "title": "Transeptal Puncture - Lecture",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Transeptal_Puncture___Lecture_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "28.0 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-12",
-    "time": "11:00pm",
-    "speaker": "Dr(a). Marcio Siqueira",
-    "title": "Mitral Edge-to-Edge - The Basics",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Mitral_Edge_to_Edge___The_Basics_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "29.8 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-13",
-    "time": "11:00pm",
-    "speaker": "Dr(a). Carlos Augusto Cardoso Pedra",
-    "title": "ASD closure and pulmonary hypertension",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "ASD_closure_and_pulmonary_hypertens_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "31.6 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-14",
-    "time": "11:00pm",
-    "speaker": "Op: Francisco Jose Araujo Chamié Queiroz",
-    "title": "Live Case in a Box 38 - PFO",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Live_Case_in_a_Box_38___PFO_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "33.4 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-15",
-    "time": "11:30pm",
-    "speaker": "Dr. Gustavo Feitosa",
-    "title": "Apresentação Científica & Casos Clínicos Estruturais",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Apresenta__o_Cient_fica___Casos_Cl__TCT2026.pptx",
-      "format": "PPTX",
-      "size": "35.2 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-16",
-    "time": "11:15pm",
-    "speaker": "Dr(a). ADRIANO DIAS DOURADO OLIVEIRA",
-    "title": "Challenges of VSD closure in the adult population",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Challenges_of_VSD_closure_in_the_ad_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "10.0 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-17",
-    "time": "8:00am",
-    "speaker": "Dr(a). Renata Avila Cintra",
-    "title": "Bicuspid anatomies",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Bicuspid_anatomies_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "11.8 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-18",
-    "time": "8:30am",
-    "speaker": "Dr(a). Ariane Binoti Pacheco Leal",
-    "title": "Valve-in-Valve - VTC, VTSTJ, Valve Fracture",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Valve_in_Valve___VTC__VTSTJ__Valve__TCT2026.pptx",
-      "format": "PPTX",
-      "size": "13.6 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-19",
-    "time": "8:35am",
-    "speaker": "Dr(a). Ariane Binoti Pacheco Leal",
-    "title": "Valve-in-Valve - VTC, VTSTJ, Valve Fracture",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Valve_in_Valve___VTC__VTSTJ__Valve__TCT2026.pptx",
-      "format": "PPTX",
-      "size": "15.4 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-20",
-    "time": "08H30",
-    "speaker": "Dr(a). GIOVANNA GUEDES",
-    "title": "Bioprosthesis dysfunction and PVL",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Bioprosthesis_dysfunction_and_PVL_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "17.2 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-21",
-    "time": "09H38",
-    "speaker": "Dr(a). GIOVANNA GUEDES",
-    "title": "Mitral ViV TRUEID",
-    "period": "Manhã",
-    "periodKey": "manha",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Mitral_ViV_TRUEID_TCT2026.pptx",
-      "format": "PPTX",
-      "size": "19.0 MB",
-      "downloadUrl": "#"
-    }
-  },
-  {
-    "id": "aula-22",
-    "time": "11H16",
-    "speaker": "Dr(a). GIOVANNA GUEDES",
-    "title": "Aortic ViV (hostile anatomy)",
-    "period": "Tarde / Noite",
-    "periodKey": "tarde",
-    "room": "Plenária TCT Valves",
-    "file": {
-      "name": "Aortic_ViV__hostile_anatomy__TCT2026.pptx",
-      "format": "PPTX",
-      "size": "20.8 MB",
-      "downloadUrl": "#"
-    }
-  }
-];
+        {
+          id: "aula-1",
+          time: "8:50am",
+          speaker: "Dr(a). NICOLAS MARIA D VAN MIEGHEM",
+          title: "TAVI degeneration: the new Achilleas heel of contemporary interventional cardiology?",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "TAVI_degeneration__the_new_Achillea_TCT2026.pptx",
+            format: "PPTX",
+            size: "10.0 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-2",
+          time: "9:00am",
+          speaker: "Dr(a). PEDRO VILLABLANCA",
+          title: "Technique and Valve Choice for Redo TAVI",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "Technique_and_Valve_Choice_for_Redo_TCT2026.pptx",
+            format: "PPTX",
+            size: "11.8 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-3",
+          time: "9:10am",
+          speaker: "Op: FÁBIO SÂNDOLI DE BRITO JÚNIOR",
+          title: "Live Case in a Box 1 - TAV-in-TAV: Left Main Protection in a High Coronary Obstruction Risk Patient",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "Live_Case_in_a_Box_1___TAV_in_TAV___TCT2026.pptx",
+            format: "PPTX",
+            size: "13.6 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-4",
+          time: "10:02am",
+          speaker: "Dr(a). JOSÉ AIRTON DE ARRUDA",
+          title: "TCT PLUS LATAM Valves 2026: Program Highlights",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "TCT_PLUS_LATAM_Valves_2026__Program_TCT2026.pptx",
+            format: "PPTX",
+            size: "15.4 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-5",
+          time: "10:10am",
+          speaker: "Dr(a). ALBERTO COLELLA CERVONE",
+          title: "LIVE Cases 2025 Revisited: Clinical Follow Up and Lessons Learned",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "LIVE_Cases_2025_Revisited__Clinical_TCT2026.pptx",
+            format: "PPTX",
+            size: "17.2 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-6",
+          time: "10:10am",
+          speaker: "Dr(a). CARLOS AUGUSTO HOMEM DE MAGALHÃES CAMPOS",
+          title: "LIVE Cases 2025 Revisited: Clinical Follow Up and Lessons Learned",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "LIVE_Cases_2025_Revisited__Clinical_TCT2026.pptx",
+            format: "PPTX",
+            size: "19.0 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-7",
+          time: "10:18am",
+          speaker: "Dr(a). REBECCA HAHN",
+          title: "Structural Heart Disease Interventions: How Advanced Imaging Will Continue to Shape the Field",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "Structural_Heart_Disease_Interventi_TCT2026.pptx",
+            format: "PPTX",
+            size: "20.8 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-8",
+          time: "10:40am",
+          speaker: "Dr(a). JUAN F. GRANADA",
+          title: "AI-Power Structural Heart Care: Reinventing the Structuralist for a New Era",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "AI_Power_Structural_Heart_Care__Rei_TCT2026.pptx",
+            format: "PPTX",
+            size: "22.6 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-9",
+          time: "11:00am",
+          speaker: "Dr(a). JUAN F. GRANADA",
+          title: "Tricuspid replacement: Are We Entering in a New Era?",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "HEART TEAM ARENA",
+          roomKey: "arena",
+          subtab: "19-03 - Manhã - Arena",
+          subtabKey: "19-manha-arena",
+          file: {
+            name: "Tricuspid_replacement__Are_We_Enter_TCT2026.pptx",
+            format: "PPTX",
+            size: "24.4 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-10",
+          time: "08:00pm",
+          speaker: "Dr(a). RICHARD HALTI CABRAL",
+          title: "Mitral Valve and Interatrial Septum Anatomy",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "TRAINING HALL",
+          roomKey: "training",
+          subtab: "20-03 - Manhã - HALL NOBRE",
+          subtabKey: "20-manha-hall",
+          file: {
+            name: "Mitral_Valve_and_Interatrial_Septum_TCT2026.pptx",
+            format: "PPTX",
+            size: "26.2 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-11",
+          time: "09:00pm",
+          speaker: "Dr(a). Marcio Siqueira",
+          title: "Transeptal Puncture - Lecture",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "TRAINING HALL",
+          roomKey: "training",
+          subtab: "20-03 - Manhã - HALL NOBRE",
+          subtabKey: "20-manha-hall",
+          file: {
+            name: "Transeptal_Puncture___Lecture_TCT2026.pptx",
+            format: "PPTX",
+            size: "28.0 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-12",
+          time: "11:00pm",
+          speaker: "Dr(a). Marcio Siqueira",
+          title: "Mitral Edge-to-Edge - The Basics",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "TRAINING HALL",
+          roomKey: "training",
+          subtab: "20-03 - Manhã - HALL NOBRE",
+          subtabKey: "20-manha-hall",
+          file: {
+            name: "Mitral_Edge_to_Edge___The_Basics_TCT2026.pptx",
+            format: "PPTX",
+            size: "29.8 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-13",
+          time: "11:00pm",
+          speaker: "Dr(a). Carlos Augusto Cardoso Pedra",
+          title: "ASD closure and pulmonary hypertension",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "ICOACH",
+          roomKey: "icoach",
+          subtab: "19-03 - Manhã - ICOACH",
+          subtabKey: "19-manha-icoach",
+          file: {
+            name: "ASD_closure_and_pulmonary_hyperten_TCT2026.pptx",
+            format: "PPTX",
+            size: "31.6 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-14",
+          time: "11:00pm",
+          speaker: "Op: Francisco Jose Araujo Chamié Queiroz",
+          title: "Live Case in a Box 38 - PFO",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "ICOACH",
+          roomKey: "icoach",
+          subtab: "19-03 - Manhã - ICOACH",
+          subtabKey: "19-manha-icoach",
+          file: {
+            name: "Live_Case_in_a_Box_38___PFO_TCT2026.pptx",
+            format: "PPTX",
+            size: "33.4 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-15",
+          time: "11:30pm",
+          speaker: "Dr. Gustavo Feitosa",
+          title: "Apresentação Científica & Casos Clínicos Estruturais",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "ICOACH",
+          roomKey: "icoach",
+          subtab: "19-03 - Manhã - ICOACH",
+          subtabKey: "19-manha-icoach",
+          file: {
+            name: "Apresenta__o_Cient_fica___Casos_Cl__TCT2026.pptx",
+            format: "PPTX",
+            size: "35.2 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-16",
+          time: "11:15pm",
+          speaker: "Dr(a). ADRIANO DIAS DOURADO OLIVEIRA",
+          title: "Challenges of VSD closure in the adult population",
+          period: "Tarde / Noite",
+          periodKey: "tarde",
+          room: "ICOACH",
+          roomKey: "icoach",
+          subtab: "19-03 - Manhã - ICOACH",
+          subtabKey: "19-manha-icoach",
+          file: {
+            name: "Challenges_of_VSD_closure_in_the_ad_TCT2026.pptx",
+            format: "PPTX",
+            size: "10.0 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-17",
+          time: "8:00am",
+          speaker: "Dr(a). Renata Avila Cintra",
+          title: "Bicuspid anatomies",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "SPOTLIGHT",
+          roomKey: "spotlight",
+          subtab: "19-03 - Manhã - SPOTLIGHT",
+          subtabKey: "19-manha-spotlight",
+          file: {
+            name: "Bicuspid_anatomies_TCT2026.pptx",
+            format: "PPTX",
+            size: "11.8 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-18",
+          time: "8:30am",
+          speaker: "Dr(a). Ariane Binoti Pacheco Leal",
+          title: "Valve-in-Valve - VTC, VTSTJ, Valve Fracture",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "SPOTLIGHT",
+          roomKey: "spotlight",
+          subtab: "19-03 - Manhã - SPOTLIGHT",
+          subtabKey: "19-manha-spotlight",
+          file: {
+            name: "Valve_in_Valve___VTC__VTSTJ__Valve__TCT2026.pptx",
+            format: "PPTX",
+            size: "13.6 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-19",
+          time: "8:35am",
+          speaker: "Dr(a). Ariane Binoti Pacheco Leal",
+          title: "Valve-in-Valve - VTC, VTSTJ, Valve Fracture",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "SPOTLIGHT",
+          roomKey: "spotlight",
+          subtab: "19-03 - Manhã - SPOTLIGHT",
+          subtabKey: "19-manha-spotlight",
+          file: {
+            name: "Valve_in_Valve___VTC__VTSTJ__Valve__TCT2026.pptx",
+            format: "PPTX",
+            size: "15.4 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-20",
+          time: "08H30",
+          speaker: "Dr(a). GIOVANNA GUEDES",
+          title: "Bioprosthesis dysfunction and PVL",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "SCIENTIFIC CORNER",
+          roomKey: "scientific",
+          subtab: "19-03 - Manhã - ViV & PVL",
+          subtabKey: "19-manha-viv",
+          file: {
+            name: "Bioprosthesis_dysfunction_and_PVL_TCT2026.pptx",
+            format: "PPTX",
+            size: "17.2 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-21",
+          time: "09H38",
+          speaker: "Dr(a). GIOVANNA GUEDES",
+          title: "Mitral ViV TRUEID",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "SCIENTIFIC CORNER",
+          roomKey: "scientific",
+          subtab: "19-03 - Manhã - ViV & PVL",
+          subtabKey: "19-manha-viv",
+          file: {
+            name: "Mitral_ViV_TRUEID_TCT2026.pptx",
+            format: "PPTX",
+            size: "19.0 MB",
+            downloadUrl: "#"
+          }
+        },
+        {
+          id: "aula-22",
+          time: "11H16",
+          speaker: "Dr(a). GIOVANNA GUEDES",
+          title: "Aortic ViV (hostile anatomy)",
+          period: "Manhã",
+          periodKey: "manha",
+          room: "SCIENTIFIC CORNER",
+          roomKey: "scientific",
+          subtab: "19-03 - Manhã - ViV & PVL",
+          subtabKey: "19-manha-viv",
+          file: {
+            name: "Aortic_ViV__hostile_anatomy__TCT2026.pptx",
+            format: "PPTX",
+            size: "20.8 MB",
+            downloadUrl: "#"
+          }
+        }
+      ];
 
+      // DEFINIÇÃO DAS SUB-ABAS POR SALA
+      const ROOM_SUBTABS = {
+        arena: [
+          { key: '19-manha-arena', label: '19-03 - Manhã - Arena' },
+          { key: '19-tarde-arena', label: '19-03 - Tarde - Arena' },
+          { key: '20-manha-arena', label: '20-03 - Manhã - Arena' },
+          { key: '20-tarde-arena', label: '20-03 - Tarde - Arena' },
+          { key: '21-manha-arena', label: '21-03 - Manhã - Arena' },
+          { key: '21-tarde-arena', label: '21-03 - Tarde - Arena' }
+        ],
+        training: [
+          { key: 'all', label: 'Todas as Sessões' },
+          { key: '19-hall', label: '19-03 - HALL NOBRE' },
+          { key: '20-manha-hall', label: '20-03 - Manhã - HALL NOBRE' },
+          { key: '20-tarde-hall', label: '20-03 - Tarde - HALL NOBRE' },
+          { key: '21-manha-hall', label: '21-03 - Manhã - HALL NOBRE' }
+        ],
+        icoach: [
+          { key: '19-manha-icoach', label: '19-03 - Manhã - ICOACH' },
+          { key: '19-tarde-icoach', label: '19-03 - Tarde - ICOACH' },
+          { key: '20-manha-icoach', label: '20-03 - Manhã - ICOACH' },
+          { key: '20-tarde-icoach', label: '20-03 - Tarde - ICOACH' },
+          { key: '21-manha-icoach', label: '21-03 - Manhã - ICOACH' },
+          { key: '21-tarde-icoach', label: '21-03 - Tarde - ICOACH' }
+        ],
+        spotlight: [
+          { key: '19-manha-spotlight', label: '19-03 - Manhã - SPOTLIGHT' },
+          { key: '19-tarde-spotlight', label: '19-03 - Tarde - SPOTLIGHT' },
+          { key: '20-manha-icoach', label: '20-03 - Manhã - ICOACH' },
+          { key: '20-tarde-icoach', label: '20-03 - Tarde - ICOACH' },
+          { key: '21-manha-spotlight', label: '21-03 - Manhã - SPOTLIGHT' }
+        ],
+        scientific: [
+          { key: 'all', label: 'Todas as Sessões' },
+          { key: '19-manha-viv', label: '19-03 - ViV & PVL (Giovanna Guedes)' }
+        ]
+      };
+
+      let currentRoom = 'all';
+      let currentSubtab = 'all';
       let currentPeriod = 'all';
       let searchQuery = '';
       const openAulaIds = new Set();
 
       const dom = {
         container: document.getElementById('aulasContainer'),
+        roomsNav: document.getElementById('aulasRoomsNav'),
+        roomButtons: document.querySelectorAll('.aulas-room-tab-btn'),
+        subtabsBar: document.getElementById('aulasSubtabsBar'),
         periodButtons: document.querySelectorAll('.aulas-period-btn'),
         searchInput: document.getElementById('aulasSearchInput'),
         searchClearBtn: document.getElementById('aulasSearchClearBtn'),
-        countAll: document.getElementById('countAllPeriod'),
-        countManha: document.getElementById('countManhaPeriod'),
-        countTarde: document.getElementById('countTardePeriod')
+        countAllRooms: document.getElementById('countAllRooms'),
+        countArena: document.getElementById('countArena'),
+        countTraining: document.getElementById('countTraining'),
+        countIcoach: document.getElementById('countIcoach'),
+        countSpotlight: document.getElementById('countSpotlight'),
+        countScientific: document.getElementById('countScientific'),
+        countAllPeriod: document.getElementById('countAllPeriod'),
+        countManhaPeriod: document.getElementById('countManhaPeriod'),
+        countTardePeriod: document.getElementById('countTardePeriod')
       };
 
       function sendResizeMessage() {
@@ -1043,17 +1328,63 @@
           .replace(/'/g, '&#039;');
       }
 
+      function renderSubtabsBar() {
+        dom.subtabsBar.innerHTML = '';
+        if (currentRoom === 'all') {
+          dom.subtabsBar.style.display = 'none';
+          return;
+        }
+
+        const subtabs = ROOM_SUBTABS[currentRoom] || [];
+        if (subtabs.length === 0) {
+          dom.subtabsBar.style.display = 'none';
+          return;
+        }
+
+        dom.subtabsBar.style.display = 'flex';
+
+        // Sempre adiciona "Todas as Sessões" primeiro caso não esteja explícito
+        const hasAll = subtabs.some(s => s.key === 'all');
+        const listToRender = hasAll ? subtabs : [{ key: 'all', label: 'Todas as Sessões' }, ...subtabs];
+
+        listToRender.forEach(st => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'aulas-subtab-btn' + (currentSubtab === st.key ? ' active' : '');
+          btn.textContent = st.label;
+          btn.addEventListener('click', () => {
+            currentSubtab = st.key;
+            dom.subtabsBar.querySelectorAll('.aulas-subtab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderAulas();
+          });
+          dom.subtabsBar.appendChild(btn);
+        });
+      }
+
       function getFilteredAulas() {
         return AULAS.filter(aula => {
+          // Filtro por Sala
+          if (currentRoom !== 'all' && aula.roomKey !== currentRoom) {
+            return false;
+          }
+          // Filtro por Sub-aba de Sessão
+          if (currentSubtab !== 'all' && aula.subtabKey !== currentSubtab) {
+            return false;
+          }
+          // Filtro por Período
           if (currentPeriod !== 'all' && aula.periodKey !== currentPeriod) {
             return false;
           }
+          // Busca textual
           if (searchQuery.trim() !== '') {
             const q = searchQuery.toLowerCase().trim();
             const titleMatch = (aula.title || '').toLowerCase().includes(q);
             const speakerMatch = (aula.speaker || '').toLowerCase().includes(q);
             const timeMatch = (aula.time || '').toLowerCase().includes(q);
-            if (!titleMatch && !speakerMatch && !timeMatch) return false;
+            const roomMatch = (aula.room || '').toLowerCase().includes(q);
+            const subtabMatch = (aula.subtab || '').toLowerCase().includes(q);
+            if (!titleMatch && !speakerMatch && !timeMatch && !roomMatch && !subtabMatch) return false;
           }
           return true;
         });
@@ -1070,6 +1401,7 @@
             <div class="aulas-header-content">
               <div class="aulas-header-meta">
                 <span class="aula-time-badge">${escapeHTML(aula.time)}</span>
+                <span class="aula-room-tag">${escapeHTML(aula.room)}</span>
                 <span class="aula-period-tag">${escapeHTML(aula.period)}</span>
                 <span class="aulas-item-speaker">${escapeHTML(aula.speaker)}</span>
               </div>
@@ -1086,7 +1418,7 @@
               <div class="aulas-pptx-badge">PPTX</div>
               <div class="aulas-pptx-info">
                 <span class="aulas-pptx-name">${escapeHTML(aula.file.name)}</span>
-                <span class="aulas-pptx-meta">Apresentação Oficial • Tamanho: ${escapeHTML(aula.file.size)}</span>
+                <span class="aulas-pptx-meta">Apresentação Oficial • Sala: ${escapeHTML(aula.room)} • Tamanho: ${escapeHTML(aula.file.size)}</span>
               </div>
               <div class="aulas-pptx-actions">
                 <a href="${escapeHTML(aula.file.downloadUrl)}" class="aulas-pptx-download-btn" title="Baixar material da aula" onclick="event.preventDefault(); alert('Material científico disponível para download oficial dos inscritos TCT Plus Latam Valves 2026.');">
@@ -1133,8 +1465,8 @@
           return;
         }
 
-        // Divide by period if 'all' is selected
-        if (currentPeriod === 'all' && searchQuery.trim() === '') {
+        // Caso sala = 'all' e período = 'all' e sem busca, agrupa amigavelmente
+        if (currentPeriod === 'all' && currentSubtab === 'all' && searchQuery.trim() === '') {
           const manhaList = filtered.filter(a => a.periodKey === 'manha');
           const tardeList = filtered.filter(a => a.periodKey === 'tarde');
 
@@ -1218,12 +1550,41 @@
       function updateCounts() {
         const manhaCount = AULAS.filter(a => a.periodKey === 'manha').length;
         const tardeCount = AULAS.filter(a => a.periodKey === 'tarde').length;
-        if (dom.countAll) dom.countAll.textContent = AULAS.length;
-        if (dom.countManha) dom.countManha.textContent = manhaCount;
-        if (dom.countTarde) dom.countTarde.textContent = tardeCount;
+        if (dom.countAllPeriod) dom.countAllPeriod.textContent = AULAS.length;
+        if (dom.countManhaPeriod) dom.countManhaPeriod.textContent = manhaCount;
+        if (dom.countTardePeriod) dom.countTardePeriod.textContent = tardeCount;
+
+        const arenaCount = AULAS.filter(a => a.roomKey === 'arena').length;
+        const trainingCount = AULAS.filter(a => a.roomKey === 'training').length;
+        const icoachCount = AULAS.filter(a => a.roomKey === 'icoach').length;
+        const spotlightCount = AULAS.filter(a => a.roomKey === 'spotlight').length;
+        const scientificCount = AULAS.filter(a => a.roomKey === 'scientific').length;
+
+        if (dom.countAllRooms) dom.countAllRooms.textContent = AULAS.length;
+        if (dom.countArena) dom.countArena.textContent = arenaCount;
+        if (dom.countTraining) dom.countTraining.textContent = trainingCount;
+        if (dom.countIcoach) dom.countIcoach.textContent = icoachCount;
+        if (dom.countSpotlight) dom.countSpotlight.textContent = spotlightCount;
+        if (dom.countScientific) dom.countScientific.textContent = scientificCount;
       }
 
-      // Event Listeners
+      // Event Listeners para Salas
+      dom.roomButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          dom.roomButtons.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          currentRoom = btn.dataset.room;
+          currentSubtab = 'all';
+          renderSubtabsBar();
+          renderAulas();
+        });
+      });
+
+      // Event Listeners para Período
       dom.periodButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           dom.periodButtons.forEach(b => {
@@ -1237,6 +1598,7 @@
         });
       });
 
+      // Event Listeners para Busca
       dom.searchInput.addEventListener('input', (e) => {
         searchQuery = e.target.value;
         if (searchQuery.trim().length > 0) {
@@ -1257,6 +1619,7 @@
 
       window.addEventListener('load', () => {
         updateCounts();
+        renderSubtabsBar();
         renderAulas();
         sendResizeMessage();
         setTimeout(sendResizeMessage, 300);

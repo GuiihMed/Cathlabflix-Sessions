@@ -234,6 +234,18 @@
     {
       "source": "/new/embed-notebooklm",
       "destination": "/new/embed-notebooklm.html"
+    },
+    {
+      "source": "/embed-busca-cabecalho",
+      "destination": "/embed-busca-cabecalho.html"
+    },
+    {
+      "source": "/embed-dropdown-cabecalho",
+      "destination": "/embed-dropdown-cabecalho.html"
+    },
+    {
+      "source": "/demo-busca-cabecalho",
+      "destination": "/demo-busca-cabecalho.html"
     }
   ],
   "headers": [
