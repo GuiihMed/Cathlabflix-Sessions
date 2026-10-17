@@ -1314,6 +1314,105 @@
         return '';
       }
 
+      // Mapa de meses em português para ordenação cronológica precisa
+      const PT_MONTHS = {
+        janeiro: 0, jan: 0,
+        fevereiro: 1, fev: 1,
+        marco: 2, março: 2, mar: 2,
+        abril: 3, abr: 3,
+        maio: 4, mai: 4,
+        junho: 5, jun: 5,
+        julho: 6, jul: 6,
+        agosto: 7, ago: 7,
+        setembro: 8, set: 8,
+        outubro: 9, out: 9,
+        novembro: 10, nov: 10,
+        dezembro: 11, dez: 11
+      };
+
+      // Extrai timestamp numérico de qualquer formato de data ou texto
+      function extractDateScore(item, titleStr, rawDateStr, rawDateVal) {
+        const combined = `${rawDateStr || ''} ${titleStr || ''} ${typeof rawDateVal === 'string' ? rawDateVal : ''}`.toLowerCase();
+
+        // 1. Data completa em português: "30 de outubro de 2020", "01 de fevereiro de 2021"
+        const fullDateMatch = combined.match(/(\d{1,2})\s+(?:de\s+)?([a-zçã]+)\s+(?:de\s+)?(20\d\d)/i);
+        if (fullDateMatch && PT_MONTHS[fullDateMatch[2].toLowerCase()] !== undefined) {
+          const day = parseInt(fullDateMatch[1], 10);
+          const month = PT_MONTHS[fullDateMatch[2].toLowerCase()];
+          const year = parseInt(fullDateMatch[3], 10);
+          return new Date(year, month, day, 12).getTime();
+        }
+
+        // 2. Data em formato numérico: "DD/MM/YYYY" ou "YYYY-MM-DD"
+        const slashMatch = combined.match(/(\d{1,2})\/(\d{1,2})\/(20\d\d)/);
+        if (slashMatch) {
+          return new Date(parseInt(slashMatch[3], 10), parseInt(slashMatch[2], 10) - 1, parseInt(slashMatch[1], 10), 12).getTime();
+        }
+        const isoMatch = combined.match(/(20\d\d)-(\d{2})-(\d{2})/);
+        if (isoMatch) {
+          return new Date(parseInt(isoMatch[1], 10), parseInt(isoMatch[2], 10) - 1, parseInt(isoMatch[3], 10), 12).getTime();
+        }
+
+        // 3. Mês + Ano: "Março de 2022", "Outubro de 2020"
+        const myMatch = combined.match(/([a-zçã]+)\s+(?:de\s+)?(20\d\d)/i);
+        if (myMatch && PT_MONTHS[myMatch[1].toLowerCase()] !== undefined) {
+          const month = PT_MONTHS[myMatch[1].toLowerCase()];
+          const year = parseInt(myMatch[2], 10);
+          let day = 15;
+          const weekMatch = combined.match(/semana\s*(\d)/i);
+          if (weekMatch) {
+            const w = parseInt(weekMatch[1], 10);
+            day = Math.min(28, w * 7);
+          }
+          return new Date(year, month, day, 12).getTime();
+        }
+
+        // 4. Data nativa Date ou timestamp _createdDate
+        if (rawDateVal instanceof Date && !isNaN(rawDateVal.getTime())) {
+          return rawDateVal.getTime();
+        }
+        if (item && item._createdDate) {
+          const cd = new Date(item._createdDate).getTime();
+          if (!isNaN(cd)) return cd;
+        }
+
+        // 5. Ano isolado: "Ano 2023", "2024"
+        const yearMatch = combined.match(/\b(20\d\d)\b/);
+        if (yearMatch) {
+          return new Date(parseInt(yearMatch[1], 10), 0, 1, 12).getTime();
+        }
+
+        // 6. Número da edição: "#20"
+        const edMatch = combined.match(/#(\d+)/);
+        if (edMatch) {
+          return new Date(2020, 0, 1).getTime() + (parseInt(edMatch[1], 10) * 86400000 * 14);
+        }
+
+        return 0;
+      }
+
+      // Ordena rigorosamente do mais novo para o mais antigo (Decrescente)
+      function sortNewslettersDescending(list) {
+        return list.slice().sort((a, b) => {
+          // 1. Data/Timestamp decrescente (mais recente no topo)
+          const timeA = a.timestamp || 0;
+          const timeB = b.timestamp || 0;
+          if (timeB !== timeA) {
+            return timeB - timeA;
+          }
+
+          // 2. Número da edição decrescente (#20 antes de #19)
+          const edA = a.editionNum || 0;
+          const edB = b.editionNum || 0;
+          if (edB !== edA) {
+            return edB - edA;
+          }
+
+          // 3. Fallback alfabético reverso do título
+          return String(b.title || '').localeCompare(String(a.title || ''));
+        });
+      }
+
       // Normaliza itens vindos da coleção "informativos" do Wix (ou do fallback local)
       function normalizeWixItem(item, index) {
         if (!item || typeof item !== 'object') return null;
@@ -1342,6 +1441,15 @@
           }
         }
 
+        if (!yearNum) {
+          const matchYear = (titleStr + ' ' + dateStr).match(/\b(20\d\d)\b/);
+          if (matchYear) yearNum = parseInt(matchYear[1], 10);
+        }
+
+        const editionMatch = (titleStr + ' ' + (item.edicao || item.edition || '')).match(/#(\d+)/);
+        const editionNum = editionMatch ? parseInt(editionMatch[1], 10) : 0;
+        const timestampVal = extractDateScore(item, titleStr, dateStr, dateVal);
+
         const rawCover = getField(item, 'imagem_url', 'imagemUrl', 'imagem', 'image', 'Image', 'capa', 'cover');
         const coverUrl = formatWixImageUrl(rawCover) || 'https://cathlabflix-sessions.vercel.app/assets/images/og-cathlabflix.png';
 
@@ -1355,6 +1463,8 @@
           date: dateStr,
           data: dateStr,
           year: yearNum,
+          timestamp: timestampVal,
+          editionNum: editionNum,
           cover: coverUrl,
           imagem_url: coverUrl,
           url: targetUrl,
@@ -1362,8 +1472,8 @@
         };
       }
 
-      // Array dinâmico inicializado com o fallback local devidamente normalizado
-      let newslettersData = STATIC_NEWSLETTERS.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
+      // Array dinâmico inicializado com o fallback local devidamente normalizado e ordenado
+      let newslettersData = sortNewslettersDescending(STATIC_NEWSLETTERS.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean));
 
       function setNewslettersFromWix(items) {
         console.log('[Cathlabflix Newsletter] Recebendo dados do Wix CMS:', items);
@@ -1373,11 +1483,12 @@
         }
         const normalized = items.map((it, idx) => normalizeWixItem(it, idx)).filter(Boolean);
         if (normalized.length > 0) {
-          newslettersData = normalized;
+          // Ordena rigorosamente do mais novo para o mais antigo
+          newslettersData = sortNewslettersDescending(normalized);
           currentPage = 1;
           renderGrid();
           sendResizeMessage();
-          console.log(`[Cathlabflix Newsletter] ${normalized.length} informativos carregados com sucesso do Wix CMS!`);
+          console.log(`[Cathlabflix Newsletter] ${newslettersData.length} informativos carregados e ordenados com sucesso (do mais novo ao mais antigo)!`);
         }
       }
 
